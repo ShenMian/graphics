@@ -1,3 +1,6 @@
 [submodule "Thirdparty/assimp"]
 	path = Thirdparty/assimp
 	url = https://github.com/assimp/assimp.git
+[submodule "Thirdparty/Vulkan-Headers"]
+	path = Thirdparty/Vulkan-Headers
+	url = https://github.com/KhronosGroup/Vulkan-Headers.git
