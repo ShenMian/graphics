@@ -34,3 +34,4 @@ thirdparty["vulkan"] = "%{wks.location}/thirdparty/Vulkan-Headers"
 outputdir = "%{cfg.system}-%{cfg.architecture}-%{cfg.buildcfg}"
 
 include "Source"
+include "Examples"
