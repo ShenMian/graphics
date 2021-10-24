@@ -70,10 +70,7 @@ void Model::loadNode(aiNode* node)
 
 	// 加载材质
 	for(unsigned int i = 0; i < node->mNumChildren; i++)
-	{
-		auto children = node->mChildren[i];
-		loadNode(children);
-	}
+		loadNode(node->mChildren[i]);
 }
 
 static_assert(std::same_as<ai_real, float>);

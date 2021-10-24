@@ -26,6 +26,7 @@ public:
 private:
     int  getUniformLocation(const std::string& name);
     void attach(const std::shared_ptr<Shader> shader);
+    void link();
 
     unsigned int handle;
 };

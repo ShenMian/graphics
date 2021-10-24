@@ -41,20 +41,7 @@ GLProgram::GLProgram(const std::string& name)
     }
     assert(vert && frag && "program must have vertex shader and fragment shader");
 
-    glLinkProgram(handle);
-
-    // 获取链接结果状态
-    int status;
-    glGetProgramiv(handle, GL_LINK_STATUS, &status);
-    if(status == GL_FALSE)
-    {
-        // 获取报错内容
-        int size;
-        glGetProgramiv(handle, GL_INFO_LOG_LENGTH, &size);
-        std::string info(size, '\0');
-        glGetProgramInfoLog(handle, (GLsizei)info.size(), &size, info.data());
-        // assert(false && std::format("program '{}' link failure: {}", name, info));
-    }
+    link();
 }
 
 GLProgram::~GLProgram()
@@ -130,4 +117,22 @@ int GLProgram::getUniformLocation(const std::string& name)
 void GLProgram::attach(const std::shared_ptr<Shader> shader)
 {
     glAttachShader(handle, (GLuint)shader->getNativeHandle());
+}
+
+void GLProgram::link()
+{
+    glLinkProgram(handle);
+
+    // 获取链接结果状态
+    int status;
+    glGetProgramiv(handle, GL_LINK_STATUS, &status);
+    if(status == GL_FALSE)
+    {
+        // 获取报错内容
+        int size;
+        glGetProgramiv(handle, GL_INFO_LOG_LENGTH, &size);
+        std::string info(size, '\0');
+        glGetProgramInfoLog(handle, (GLsizei)info.size(), &size, info.data());
+        // assert(false && std::format("program '{}' link failure: {}", name, info));
+    }
 }

@@ -30,6 +30,8 @@ private:
     static API api;
 };
 
+// TODO: 移动到合适的位置, 这是与 OpenGL 相关的代码.
+
 void GLCheckError();
 void GLClearError();
 

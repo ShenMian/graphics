@@ -12,7 +12,8 @@
 #include <system_error>
 #include <unordered_map>
 
-// 1. 析构后线程可能仍在运行, 导致 callback 获取不存在的数据.
+// TODO: 析构后线程可能仍在运行, 导致 callback 获取不存在的数据.
+//       或许应该让用户自己创建一个线程/协程来执行同步操作.
 
 /**
  * @brief 3D 模型.
