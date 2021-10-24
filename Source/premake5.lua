@@ -19,6 +19,7 @@ project "Source"
   links {
     -- "GLAD",
     -- "GLFW",
+    "%{thirdparty.assimp}/build/lib/Debug/assimp-vc142-mtd",
     -- "%{thirdparty.openal}/lib/openal32",
     -- "%{thirdparty.vulkan}/lib/vulkan-1"
   }

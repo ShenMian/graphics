@@ -7,7 +7,7 @@ project "Examples"
   cppdialect "C++latest"
   staticruntime "on"
 
-  targetdir("%{wks.location}/build/" .. outputdir .. "/%{prj.name}/lib")
+  targetdir("%{wks.location}/build/" .. outputdir .. "/%{prj.name}/bin")
   objdir("%{wks.location}/build/" .. outputdir .. "/%{prj.name}/obj")
 
   files {"**.cpp", "**.hpp", "**.h", "**.inl", "premake5.lua"}

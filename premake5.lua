@@ -35,3 +35,5 @@ outputdir = "%{cfg.system}-%{cfg.architecture}-%{cfg.buildcfg}"
 
 include "Source"
 include "Examples"
+
+-- include "Thirdparty/assimp"
