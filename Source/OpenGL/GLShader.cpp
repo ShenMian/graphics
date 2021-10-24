@@ -11,10 +11,15 @@
 
 namespace fs = std::filesystem;
 
-static std::unordered_map<Shader::Stage, GLenum> GLStage = {
+namespace
+{
+
+std::unordered_map<Shader::Stage, GLenum> GLStage = {
 	{Shader::Stage::Vertex, GL_VERTEX_SHADER},
 	{Shader::Stage::Geometry, GL_GEOMETRY_SHADER},
 	{Shader::Stage::Fragment, GL_FRAGMENT_SHADER} };
+
+}
 
 GLShader::GLShader(const std::string& name, Stage stage)
 	: Shader(name, stage)
@@ -41,6 +46,7 @@ void GLShader::load()
 
 		std::vector<std::byte> buffer(size);
 		file.read((char*)buffer.data(), size);
+		assert(file.good());
 		file.close();
 
 		glShaderBinary(1, &handle, GL_SHADER_BINARY_FORMAT_SPIR_V, buffer.data(), (GLsizei)buffer.size());
@@ -62,6 +68,7 @@ void GLShader::load()
 		std::string buffer;
 		buffer.resize(size);
 		file.read((char*)buffer.data(), size);
+		assert(file.good());
 		file.close();
 		buffer += "\0";
 
@@ -80,6 +87,7 @@ void GLShader::load()
 			glGetShaderiv(handle, GL_INFO_LOG_LENGTH, &size);
 			std::string info(size, '\0');
 			glGetShaderInfoLog(handle, (GLsizei)info.size(), &size, info.data());
+			assert(false);
 		}
 
 		return;
