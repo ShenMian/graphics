@@ -13,13 +13,14 @@ project "Source"
   files {"**.cpp", "**.hpp", "**.h", "**.inl", "premake5.lua"}
 
   includedirs {
+    "%{thirdparty.glad}/include",
     "%{thirdparty.assimp}/include",
     "%{thirdparty.vulkan}/include"}
 
   links {
-    -- "GLAD",
-    -- "GLFW",
+    "glad",
     "%{thirdparty.assimp}/build/lib/Debug/assimp-vc142-mtd",
+    -- "glfw",
     -- "%{thirdparty.openal}/lib/openal32",
     -- "%{thirdparty.vulkan}/lib/vulkan-1"
   }

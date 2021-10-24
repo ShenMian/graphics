@@ -28,12 +28,14 @@ workspace "Graphics"
       linkoptions "-pthread"
 
 thirdparty = {}
-thirdparty["assimp"] = "%{wks.location}/thirdparty/assimp"
-thirdparty["vulkan"] = "%{wks.location}/thirdparty/Vulkan-Headers"
+thirdparty["glad"] = "%{wks.location}/Thirdparty/glad"
+thirdparty["assimp"] = "%{wks.location}/Thirdparty/assimp"
+thirdparty["vulkan"] = "%{wks.location}/Thirdparty/Vulkan-Headers"
 
 outputdir = "%{cfg.system}-%{cfg.architecture}-%{cfg.buildcfg}"
 
 include "Source"
 include "Examples"
 
+include "Thirdparty/glad"
 -- include "Thirdparty/assimp"
