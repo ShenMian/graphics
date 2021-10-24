@@ -7,14 +7,6 @@
 #include <string>
 #include <unordered_map>
 
-namespace clem
-{
-
-/**
- * @addtogroup Rendering
- * @{
- */
-
 class Program
 {
 public:
@@ -41,10 +33,3 @@ protected:
 
     inline static std::unordered_map<std::string, std::shared_ptr<Program>> cache;
 };
-
-/**
- * end of Rendering group
- * @}
- */
-
-} // namespace clem

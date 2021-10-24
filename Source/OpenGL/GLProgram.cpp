@@ -3,46 +3,43 @@
 
 
 #include "GLProgram.h"
-#include "../Program.h"
 #include "GLShader.h"
+#include "../Program.h"
+#include "../Renderer.h"
 #include <filesystem>
+#include <cassert>
 #include <glad/glad.h>
 
-#include "Rendering/OpenGL/GLRenderer.h"
-
 namespace fs = std::filesystem;
-
-namespace clem
-{
 
 GLProgram::GLProgram(const std::string& name)
     : Program(name)
 {
     handle = glCreateProgram();
 
-    std::shared_ptr<Shader_> vert, geom, frag, comp;
+    std::shared_ptr<Shader> vert, geom, frag, comp;
 
     if(fs::exists(name + ".vert.spv") || fs::exists(name + ".vert.glsl"))
     {
-        vert = Shader_::create(name, Shader_::Stage::Vertex);
+        vert = Shader::create(name, Shader::Stage::Vertex);
         attach(vert);
     }
     if(fs::exists(name + ".geom.spv") || fs::exists(name + ".geom.glsl"))
     {
-        geom = Shader_::create(name, Shader_::Stage::Geometry);
+        geom = Shader::create(name, Shader::Stage::Geometry);
         attach(geom);
     }
     if(fs::exists(name + ".frag.spv") || fs::exists(name + ".frag.glsl"))
     {
-        frag = Shader_::create(name, Shader_::Stage::Fragment);
+        frag = Shader::create(name, Shader::Stage::Fragment);
         attach(frag);
     }
     if(fs::exists(name + ".comp.spv") || fs::exists(name + ".comp.glsl"))
     {
-        comp = Shader_::create(name, Shader_::Stage::Compute);
+        comp = Shader::create(name, Shader::Stage::Compute);
         attach(comp);
     }
-    Assert::isTrue(vert && frag, "program must have vertex shader and fragment shader");
+    assert(vert && frag && "program must have vertex shader and fragment shader");
 
     glLinkProgram(handle);
 
@@ -56,7 +53,7 @@ GLProgram::GLProgram(const std::string& name)
         glGetProgramiv(handle, GL_INFO_LOG_LENGTH, &size);
         std::string info(size, '\0');
         glGetProgramInfoLog(handle, (GLsizei)info.size(), &size, info.data());
-        Assert::isTrue(false, std::format("program '{}' link failure: {}", name, info));
+        // assert(false && std::format("program '{}' link failure: {}", name, info));
     }
 }
 
@@ -85,6 +82,7 @@ void GLProgram::uploadUniform(const std::string& name, float value)
     GLCheckError();
 }
 
+/*
 void GLProgram::uploadUniform(const std::string& name, const Vector2& value)
 {
     bind();
@@ -112,6 +110,7 @@ void GLProgram::uploadUniform(const std::string& name, const Matrix4& value)
     glUniformMatrix4fv(getUniformLocation(name), 1, false, value.data());
     GLCheckError();
 }
+*/
 
 int GLProgram::getUniformLocation(const std::string& name)
 {
@@ -128,9 +127,7 @@ int GLProgram::getUniformLocation(const std::string& name)
     return it->second;
 }
 
-void GLProgram::attach(const std::shared_ptr<Shader_> shader)
+void GLProgram::attach(const std::shared_ptr<Shader> shader)
 {
     glAttachShader(handle, (GLuint)shader->getNativeHandle());
 }
-
-} // namespace clem

@@ -3,14 +3,6 @@
 
 #pragma once
 
-namespace clem
-{
-
-/**
- * @addtogroup Rendering
- * @{
- */
-
 class Renderer
 {
 public:
@@ -38,9 +30,17 @@ private:
     static API api;
 };
 
-/**
- * end of Rendering group
- * @}
- */
+void GLCheckError();
+void GLClearError();
 
-} // namespace clem
+#if 1
+#    define GLCall(func)    \
+        do                  \
+        {                   \
+            GLClearError(); \
+            func;           \
+            GLCheckError(); \
+        } while(false)
+#else
+#    define GLCall(func) func
+#endif

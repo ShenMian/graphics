@@ -8,26 +8,23 @@
 #include "OpenGL/GLShader.h"
 #include "Vulkan/VKShader.h"
 
-namespace clem
-{
+std::unordered_map<Shader::Stage, const char*> Shader::extension = {
+    {Shader::Stage::Vertex, "vert"},
+    {Shader::Stage::Geometry, "geom"},
+    {Shader::Stage::Fragment, "frag"},
+    {Shader::Stage::Compute, "comp"}};
 
-std::unordered_map<Shader_::Stage, const char*> Shader_::extension = {
-    {Shader_::Stage::Vertex, "vert"},
-    {Shader_::Stage::Geometry, "geom"},
-    {Shader_::Stage::Fragment, "frag"},
-    {Shader_::Stage::Compute, "comp"}};
-
-std::shared_ptr<Shader_> Shader_::create(const std::string& name, Stage stage)
+std::shared_ptr<Shader> Shader::create(const std::string& name, Stage stage)
 {
-    switch(Renderer_::getAPI())
+    switch(Renderer::getAPI())
     {
-        using enum Renderer_::API;
+        using enum Renderer::API;
 
     case OpenGL:
-        return std::make_shared<GLShader_>(name, stage);
+        return std::make_shared<GLShader>(name, stage);
 
     case Vulkan:
-        return std::make_shared<VKShader_>(name, stage);
+        return std::make_shared<VKShader>(name, stage);
 
     default:
         assert(false);
@@ -35,19 +32,17 @@ std::shared_ptr<Shader_> Shader_::create(const std::string& name, Stage stage)
     return nullptr;
 }
 
-Shader_::Shader_(const std::string& name, Stage stage)
+Shader::Shader(const std::string& name, Stage stage)
     : name(name), stage(stage)
 {
 }
 
-const std::string& Shader_::getName() const
+const std::string& Shader::getName() const
 {
     return name;
 }
 
-Shader_::Stage Shader_::getStage() const
+Shader::Stage Shader::getStage() const
 {
     return stage;
 }
-
-} // namespace clem

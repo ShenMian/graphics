@@ -100,8 +100,8 @@ void Model::loadMesh(aiMesh* mesh)
 		if(mesh->mTextureCoords[0])
 		{
 			// 获取 UV 坐标(纹理坐标)
-			vertex.uv.x = mesh->mTextureCoords[i]->x;
-			vertex.uv.y = mesh->mTextureCoords[i]->y;
+			vertex.uv.x = mesh->mTextureCoords[0][i].x;
+			vertex.uv.y = mesh->mTextureCoords[0][i].y;
 
 			// 获取 tangent
 			std::memcpy(&vertex.tangent, &mesh->mTangents[i], sizeof(vertex.tangent));
@@ -122,9 +122,6 @@ void Model::loadMesh(aiMesh* mesh)
 	}
 
 	// 获取材质数据
-
-
-
 }
 
 /*

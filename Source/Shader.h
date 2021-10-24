@@ -7,18 +7,10 @@
 #include <string>
 #include <unordered_map>
 
-namespace clem
-{
-
-/**
- * @addtogroup Rendering
- * @{
- */
-
 /**
  * @brief 着色器.
  */
-class Shader_
+class Shader
 {
 public:
     enum class Stage
@@ -36,7 +28,7 @@ public:
 	 * @param name  着色器名称.
      * @param stage 着色器阶段.
 	 */
-    static std::shared_ptr<Shader_> create(const std::string& name, Stage stage);
+    static std::shared_ptr<Shader> create(const std::string& name, Stage stage);
 
     /**
      * @brief 构造函数.
@@ -44,7 +36,7 @@ public:
 	 * @param name  着色器名称.
      * @param stage 着色器阶段.
      */
-    Shader_(const std::string& name, Stage stage);
+    Shader(const std::string& name, Stage stage);
 
     /**
      * @brief 获取名称.
@@ -65,12 +57,5 @@ protected:
     std::string name;
     Stage       stage;
 
-    static std::unordered_map<Shader_::Stage, const char*> extension;
+    static std::unordered_map<Shader::Stage, const char*> extension;
 };
-
-/**
- * end of Rendering group
- * @}
- */
-
-} // namespace clem

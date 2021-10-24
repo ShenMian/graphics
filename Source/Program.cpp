@@ -7,9 +7,6 @@
 
 #include "OpenGL/GLProgram.h"
 
-namespace clem
-{
-
 std::shared_ptr<Program> Program::create(const std::string& name)
 {
     // 防止路径穿透
@@ -40,5 +37,3 @@ Program::Program(const std::string& name)
     : name(name)
 {
 }
-
-} // namespace clem

@@ -5,25 +5,10 @@
 
 #include "../Shader.h"
 
-namespace clem
-{
-
-/**
- * @addtogroup Rendering
- * @{
- */
-
-class VKShader_ : public Shader_
+class VKShader : public Shader
 {
 public:
-    VKShader_(const std::string& name, Stage stage);
+    VKShader(const std::string& name, Stage stage);
 
     size_t getNativeHandle() const override;
 };
-
-/**
- * end of Rendering group
- * @}
- */
-
-} // namespace clem

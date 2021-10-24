@@ -5,19 +5,11 @@
 
 #include "../Shader.h"
 
-namespace clem
-{
-
-/**
- * @addtogroup Rendering
- * @{
- */
-
-class GLShader_ : public Shader_
+class GLShader : public Shader
 {
 public:
-    GLShader_(const std::string& name, Stage stage);
-    virtual ~GLShader_();
+    GLShader(const std::string& name, Stage stage);
+    virtual ~GLShader();
 
     void load();
 
@@ -26,10 +18,3 @@ public:
 private:
     unsigned int handle;
 };
-
-/**
- * end of Rendering group
- * @}
- */
-
-} // namespace clem

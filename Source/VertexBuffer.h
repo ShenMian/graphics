@@ -45,6 +45,8 @@ public:
 	 *
 	 * @param data  顶点缓冲区.
 	 * @param usage 使用方式.
+	 * 
+	 * @note 可能会被弃用.
 	 */
 	static std::shared_ptr<VertexBuffer> create(const std::vector<value_type>& data, Usage usage = Usage::Static);
 
@@ -56,4 +58,6 @@ public:
 	 * @param usage 使用方式.
 	 */
 	static std::shared_ptr<VertexBuffer> create(const void* data, size_t size, Usage usage = Usage::Static);
+
+	virtual void bind() = 0;
 };

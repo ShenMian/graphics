@@ -4,18 +4,13 @@
 #include "VKShader.h"
 #include <vulkan/vulkan.h>
 
-namespace clem
-{
-
-VKShader_::VKShader_(const std::string& name, Stage stage)
-    : Shader_(name, stage)
+VKShader::VKShader(const std::string& name, Stage stage)
+    : Shader(name, stage)
 {
 }
 
-size_t VKShader_::getNativeHandle() const
+size_t VKShader::getNativeHandle() const
 {
     // TODO
     return size_t();
 }
-
-} // namespace clem
