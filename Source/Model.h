@@ -5,10 +5,14 @@
 
 #include "ErrorCode.h"
 #include <assimp/scene.h>
+#include <assimp/Exporter.hpp>
+#include <assimp/Importer.hpp>
 #include <filesystem>
 #include <functional>
 #include <system_error>
 #include <unordered_map>
+
+// 1. 析构后线程可能仍在运行, 导致 callback 获取不存在的数据.
 
 /**
  * @brief 3D 模型.
@@ -23,7 +27,14 @@ public:
 	void saveAsync(const std::filesystem::path& path, std::function<void(std::error_code)> callback);
 
 private:
-	aiScene* scene = nullptr;
+	void loadNode(aiNode* node);
+	void loadMesh(aiMesh* mesh);
+
+	std::filesystem::path path;
+
+	const aiScene*   scene = nullptr;
+	Assimp::Importer importer;
+	Assimp::Exporter exporter;
 };
 
 /*
