@@ -1,7 +1,7 @@
 -- Copyright 2021 SMS
 -- License(Apache-2.0)
 
-include "thirdparty/premake/solution_items.lua"
+include "Thirdparty/premake/solution_items.lua"
 
 workspace "Graphics"
   architecture "x86_64"
