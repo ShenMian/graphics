@@ -7,3 +7,6 @@
 [submodule "Thirdparty/meshoptimizer"]
 	path = Thirdparty/meshoptimizer
 	url = https://github.com/zeux/meshoptimizer.git
+[submodule "Thirdparty/glfw"]
+	path = Thirdparty/glfw
+	url = https://github.com/glfw/glfw.git

@@ -29,8 +29,10 @@ workspace "Graphics"
 
 thirdparty = {}
 thirdparty["glad"] = "%{wks.location}/Thirdparty/glad"
+thirdparty["glfw"] = "%{wks.location}/Thirdparty/glfw"
 thirdparty["assimp"] = "%{wks.location}/Thirdparty/assimp"
 thirdparty["vulkan"] = "%{wks.location}/Thirdparty/Vulkan-Headers"
+thirdparty["meshoptimizer"] = "%{wks.location}/Thirdparty/meshoptimizer"
 
 outputdir = "%{cfg.system}-%{cfg.architecture}-%{cfg.buildcfg}"
 
@@ -38,4 +40,5 @@ include "Source"
 include "Examples"
 
 include "Thirdparty/glad"
+include "Thirdparty/glfw"
 -- include "Thirdparty/assimp"

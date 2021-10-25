@@ -14,8 +14,10 @@ project "Source"
 
   includedirs {
     "%{thirdparty.glad}/include",
+    "%{thirdparty.glfw}/include",
     "%{thirdparty.assimp}/include",
-    "%{thirdparty.vulkan}/include"}
+    "%{thirdparty.vulkan}/include",
+    "%{thirdparty.meshoptimizer}/src"}
 
   links {
     "glad",
