@@ -6,26 +6,29 @@
 
 #include "OpenGL/GLVertexBuffer.h"
 
-std::shared_ptr<VertexBuffer> VertexBuffer::create(const std::vector<value_type>& data, Usage usage)
+std::shared_ptr<VertexBuffer> VertexBuffer::create(const void* data, size_t size, size_t count, Usage usage)
 {
 	switch(Renderer::getAPI())
 	{
 		using enum Renderer::API;
 
 	case OpenGL:
-		;// return std::make_shared<GLVertexBuffer>(data.data(), data.size() * sizeof(value_type), usage);
+		return std::make_shared<GLVertexBuffer>(data, size, count, usage);
 	}
 	return nullptr;
 }
 
-std::shared_ptr<VertexBuffer> VertexBuffer::create(const void* data, size_t size, Usage usage)
+size_t VertexBuffer::getSize() const
 {
-	switch(Renderer::getAPI())
-	{
-		using enum Renderer::API;
+	return size;
+}
 
-	case OpenGL:
-		;// return std::make_shared<GLVertexBuffer>(data, size, usage);
-	}
-	return nullptr;
+size_t VertexBuffer::getCount() const
+{
+	return count;
+}
+
+VertexBuffer::VertexBuffer(size_t size, size_t count)
+	: size(size), count(count)
+{
 }

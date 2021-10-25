@@ -4,6 +4,8 @@
 #include "GLIndexBuffer.h"
 #include <unordered_map>
 
+#include "../Renderer.h"
+
 namespace
 {
 
@@ -14,11 +16,14 @@ std::unordered_map<IndexBuffer::Usage, uint32_t> GLusage = {
 
 }
 
-GLIndexBuffer::GLIndexBuffer(const void* data, size_t size, Usage usage)
+GLIndexBuffer::GLIndexBuffer(const void* data, size_t size, size_t count, Usage usage)
+	: IndexBuffer(size, count)
 {
+	GLCheckError();
 	glCreateBuffers(1, &handle);
 	bind();
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, size, data, GLusage[usage]);
+	GLCheckError();
 }
 
 GLIndexBuffer::~GLIndexBuffer()

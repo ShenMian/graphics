@@ -7,21 +7,20 @@
 
 int main()
 {
+	/*
+	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "LearnOpenGL", NULL, NULL);
+	glfwMakeContextCurrent(window);
+
+	if(!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+		std::cout << "Failed to initialize OpenGL context" << std::endl;
+		return -1;
+	}
+	*/
+
 	Model model;
-	model.loadAsync("../../3DModel/scene/SunTemple/SunTemple.fbx", [](std::error_code ec)
-	{
-		if(ec)
-		{
-			puts(ec.message().c_str());
-			return;
-		}
-		puts("载入成功 SunTemple");
-	});
+	model.load("../../3DModel/scene/SunTemple/SunTemple.fbx");
+	puts("载入成功 SunTemple");
 
 	getch();
-
-	while(true)
-		;
-
 	return 0;
 }
