@@ -4,3 +4,6 @@
 [submodule "Thirdparty/Vulkan-Headers"]
 	path = Thirdparty/Vulkan-Headers
 	url = https://github.com/KhronosGroup/Vulkan-Headers.git
+[submodule "Thirdparty/meshoptimizer"]
+	path = Thirdparty/meshoptimizer
+	url = https://github.com/zeux/meshoptimizer.git
