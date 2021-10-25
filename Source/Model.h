@@ -34,8 +34,8 @@ public:
 	 */
 	void save(const std::filesystem::path& path);
 
-	void loadAsync(const std::filesystem::path& path, std::function<void(std::error_code)> callback) noexcept;
-	void saveAsync(const std::filesystem::path& path, std::function<void(std::error_code)> callback) noexcept;
+	void loadAsync(const std::filesystem::path& path, std::function<void(std::error_code)> callback = nullptr) noexcept;
+	void saveAsync(const std::filesystem::path& path, std::function<void(std::error_code)> callback = nullptr) noexcept;
 
 private:
 	/**

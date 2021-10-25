@@ -10,7 +10,6 @@
 #include <cassert>
 #include <concepts>
 #include <cstring>
-#include <stdexcept>
 #include <future>
 #include <vector>
 
@@ -31,7 +30,7 @@ void optimize(std::vector<IndexBuffer::value_type>& indices, std::vector<VertexB
 void Model::load(const fs::path& path)
 {
 	if(!fs::exists(path) && !fs::is_regular_file(path))
-		throw std::invalid_argument("no such file or directory");
+		throw std::exception("no such file or directory");
 
 	// 从文件导入场景数据
 	scene = importer.ReadFile(path.string(),
@@ -41,7 +40,7 @@ void Model::load(const fs::path& path)
 		aiProcess_SortByPType);
 
 	if(scene == nullptr || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || scene->mRootNode == nullptr)
-		throw std::runtime_error("scene data incomplete");
+		throw std::exception("scene data incomplete");
 
 	loadNode(scene->mRootNode);
 }
@@ -52,17 +51,9 @@ void Model::loadAsync(const fs::path& path, std::function<void(std::error_code)>
 	{
 		std::error_code ec;
 		load(path);
-		callback(ec);
+		if(callback)
+			callback(ec);
 	}).detach();
-
-#if 0
-	static auto future = std::async([=]()
-	{
-		std::error_code ec;
-		load(path, ec);
-		callback(ec);
-	});
-#endif
 }
 
 void Model::loadNode(aiNode* node)
@@ -138,7 +129,7 @@ void Model::save(const fs::path& path)
 	// 导出场景数据到文件
 	auto ret = exporter.Export(scene, path.extension().string(), path.string());
 	if(ret == aiReturn_FAILURE)
-		throw std::runtime_error("export scene data failed");
+		throw std::exception("export scene data failed");
 }
 
 void Model::saveAsync(const fs::path& path, std::function<void(std::error_code)> callback) noexcept
@@ -147,17 +138,9 @@ void Model::saveAsync(const fs::path& path, std::function<void(std::error_code)>
 	{
 		std::error_code ec;
 		save(path, ec);
-		callback(ec);
+		if(callback)
+			callback(ec);
 	}).detach();
-
-#if 0
-	static auto future = std::async([=]()
-	{
-		std::error_code ec;
-		save(path, ec);
-		callback(ec);
-	});
-#endif
 }
 */
 
