@@ -1,26 +1,16 @@
 ﻿// Copyright 2021 SMS
 // License(Apache-2.0)
 
-#include "Model.h"
-
-#include <conio.h>
+#include "Graphics.h"
 
 int main()
 {
-	/*
-	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "LearnOpenGL", NULL, NULL);
-	glfwMakeContextCurrent(window);
+	Window::init();
 
-	if(!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-		std::cout << "Failed to initialize OpenGL context" << std::endl;
-		return -1;
-	}
-	*/
+	Window window("Title", {1920 / 2, 1080 / 2});
 
-	Model model;
-	model.load("../../3DModel/scene/SunTemple/SunTemple.fbx");
-	puts("载入成功 SunTemple");
+	while(true)
+		window.update();
 
-	getch();
 	return 0;
 }
