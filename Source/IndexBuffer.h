@@ -9,8 +9,6 @@
 class IndexBuffer
 {
 public:
-	using value_type = unsigned int;
-
 	enum class Usage
 	{
 		Static,

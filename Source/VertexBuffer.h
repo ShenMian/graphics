@@ -31,8 +31,6 @@ struct Vertex
 class VertexBuffer
 {
 public:
-	using value_type = Vertex;
-
 	enum class Usage
 	{
 		Static,

@@ -18,7 +18,7 @@ namespace fs = std::filesystem;
 namespace
 {
 
-void optimize(std::vector<IndexBuffer::value_type>& indices, std::vector<VertexBuffer::value_type>& vertices)
+void optimize(std::vector<unsigned int>& indices, std::vector<Vertex>& vertices)
 {
 	meshopt_optimizeVertexCache(indices.data(), indices.data(), indices.size(), vertices.size());
 	meshopt_optimizeOverdraw(indices.data(), indices.data(), indices.size(), &vertices[0].position.x, vertices.size(), sizeof(Vertex), 1.05f);
@@ -78,7 +78,7 @@ void Model::loadMesh(aiMesh* mesh)
 	{
 		auto v = mesh->mVertices[i];
 
-		VertexBuffer::value_type vertex;
+		Vertex vertex;
 
 		// 获取坐标
 		std::memcpy(&vertex.normal, &mesh->mVertices[i], sizeof(vertex.position));
