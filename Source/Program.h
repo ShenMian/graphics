@@ -19,7 +19,7 @@ public:
 
     explicit Program(const std::string& name);
 
-    virtual void bind() = 0;
+    virtual void use() = 0;
 
     virtual void uploadUniform(const std::string& name, int value)            = 0;
     virtual void uploadUniform(const std::string& name, float value)          = 0;

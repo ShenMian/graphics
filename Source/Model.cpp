@@ -108,17 +108,17 @@ void Model::loadMesh(aiMesh* mesh)
 	for(unsigned int i = 0; i < mesh->mNumFaces; i++)
 	{
 		const auto& face = mesh->mFaces[i];
-
 		for(unsigned int j = 0; j < face.mNumIndices; j++)
 			indices.push_back(face.mIndices[j]);
 	}
 
-	// optimize(indices, vertices);
+	optimize(indices, vertices);
 
 	auto indexBuffer  = IndexBuffer::create(indices);
 	auto vertexBuffer = VertexBuffer::create(vertices);
 
 	// 获取材质数据
+	// TODO
 }
 
 /*

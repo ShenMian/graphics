@@ -42,4 +42,5 @@ include "Examples"
 
 include "Thirdparty/glad"
 include "Thirdparty/glfw"
+include "Thirdparty/meshoptimizer"
 -- include "Thirdparty/assimp"

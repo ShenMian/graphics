@@ -30,7 +30,8 @@ int main()
 	Window window("Title", {1920 / 2, 1080 / 2});
 
 	Model model;
-	model.loadAsync("../../3DModel/scene/SunTemple/SunTemple.fbx", [](std::error_code ec) {
+	model.loadAsync("../../3DModel/scene/SunTemple/SunTemple.fbx", [](std::error_code ec)
+	{
 		if(ec)
 			return;
 		puts("加载完毕.");

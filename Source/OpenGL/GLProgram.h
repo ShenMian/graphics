@@ -14,7 +14,7 @@ public:
     explicit GLProgram(const std::string& name);
     virtual ~GLProgram();
 
-    void bind() override;
+    void use() override;
 
     void uploadUniform(const std::string& name, int value) override;
     void uploadUniform(const std::string& name, float value) override;

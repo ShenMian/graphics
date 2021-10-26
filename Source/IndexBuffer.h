@@ -35,7 +35,14 @@ public:
 	 */
 	static std::shared_ptr<IndexBuffer> create(const void* data, size_t size, size_t count, Usage usage = Usage::Static);
 
+	/**
+	 * @brief 获取缓冲区大小, 单位: 字节.
+	 */
 	size_t getSize() const;
+
+	/**
+	 * @brief 获取索引数.
+	 */
 	size_t getCount() const;
 
 	virtual void bind() = 0;

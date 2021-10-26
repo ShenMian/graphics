@@ -49,7 +49,7 @@ GLProgram::~GLProgram()
     glDeleteProgram(handle);
 }
 
-void GLProgram::bind()
+void GLProgram::use()
 {
     glUseProgram(handle);
     GLCheckError();
@@ -57,14 +57,14 @@ void GLProgram::bind()
 
 void GLProgram::uploadUniform(const std::string& name, int value)
 {
-    bind();
+    use();
     glUniform1i(getUniformLocation(name), value);
     GLCheckError();
 }
 
 void GLProgram::uploadUniform(const std::string& name, float value)
 {
-    bind();
+    use();
     glUniform1f(getUniformLocation(name), value);
     GLCheckError();
 }
