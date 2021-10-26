@@ -9,3 +9,5 @@
 #include "Shader.h"
 
 #include "Window.h"
+
+#include "Image.h"

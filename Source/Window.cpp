@@ -2,36 +2,39 @@
 // License(Apache-2.0)
 
 #include "Window.h"
+#include "Image.h"
 #include <cassert>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
 namespace fs = std::filesystem;
 
-Window::Window(const std::string& title, Vector2i size)
+Window::Window(const std::string& title, Vector2i size, bool fullscreen)
 {
     auto       monitor   = glfwGetPrimaryMonitor();
     const auto videoMode = glfwGetVideoMode(monitor);
 
-    if(false)
+    // TODO: 支持全屏分辨率调节
+    if(fullscreen)
         handle = glfwCreateWindow(videoMode->width, videoMode->height, title.c_str(), monitor, nullptr);
     else
         handle = glfwCreateWindow(size.x, size.y, title.c_str(), nullptr, nullptr);
 
+    // TODO: OpenGL/Glad 相关代码, 转移到合适的位置
     glfwMakeContextCurrent(handle);
-
-    auto ret = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-    assert(ret);
+    static auto ret = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+    if(!ret)
+        throw std::exception("glad init failed");
 
     glfwSetWindowUserPointer(handle, static_cast<void*>(this));
-
-    setupCallbacks();
 
     // glfwSetInputMode(handle, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
     // 开启 MASS 抗锯齿
     // glfwWindowHint(GLFW_SAMPLES, 2);
     // glEnable(GL_MULTISAMPLE);
+
+    setupCallbacks();
 }
 
 Window::~Window()
@@ -95,12 +98,16 @@ void Window::setSync(bool enable) noexcept
         glfwSwapInterval(0);
 }
 
-void Window::setIcon(const std::filesystem::path& path)
+void Window::setIcon(const Image& image)
 {
-    if(!fs::exists(path) && !fs::is_regular_file(path))
-        throw std::exception("no such file or directory");
+    if(image.getSize().x > 48 && image.getSize().y > 48)
+        throw std::exception("image size too large");
 
-    // TODO: usg class 'Image', instead using stb_image.h API directly
+    GLFWimage glfwImage;
+    glfwImage.pixels = image.getData();
+    glfwImage.width  = image.getSize().x;
+    glfwImage.height = image.getSize().y;
+    glfwSetWindowIcon(handle, 1, &glfwImage);
 }
 
 void* Window::getNativeHandle() const
@@ -111,7 +118,8 @@ void* Window::getNativeHandle() const
 void Window::init()
 {
     auto ret = glfwInit();
-    assert(ret && "GLFW init failed");
+    if(!ret)
+        throw std::exception("GLFW init failed");
 }
 
 void Window::deinit()
@@ -123,6 +131,7 @@ void Window::setupCallbacks()
 {
     glfwSetErrorCallback([](int error, const char* desc)
     {
+        puts(desc);
         throw std::exception(desc);
     });
 

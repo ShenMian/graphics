@@ -15,15 +15,19 @@ struct Vector2i
 
 struct GLFWwindow;
 
+class Image;
+
 class Window
 {
 public:
 	/**
-	 * @brief 构造函数.
+	 * @brief 构造函数, 创建一个窗口.
 	 *
-	 * @param title 窗口标题.
+	 * @param title      窗口标题.
+	 * @param size       窗口大小(分辨率).
+	 * @param fullscreen 是否全屏, true 为全屏.
 	 */
-	Window(const std::string& title, Vector2i size);
+	Window(const std::string& title, Vector2i size, bool fullscreen = false);
 
 	/**
 	 * @brief 析构函数.
@@ -94,9 +98,9 @@ public:
 	/**
 	 * @brief 设置窗口图标.
 	 *
-	 * @param path 图标文件路径.
+	 * @param image 图标图像.
 	 */
-	void setIcon(const std::filesystem::path& path);
+	void setIcon(const Image& image);
 
 	/**
 	 * @brief 获取本地句柄.
