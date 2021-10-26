@@ -54,7 +54,7 @@ public:
 	/**
 	 * @brief 获取窗口大小.
 	 */
-	Vector2i getSize() const;
+	Vector2i getSize() const noexcept;
 
 	/**
 	 * @brief 设置窗口坐标.
@@ -68,28 +68,28 @@ public:
 	 *
 	 * @return 当前窗口坐标.
 	 */
-	Vector2i getPosition();
+	Vector2i getPosition() noexcept;
 
 	/**
 	 * @brief 设置窗口可见性.
 	 *
 	 * @param visible true 为可见, false 为不可见.
 	 */
-	void setVisible(bool visible);
+	void setVisible(bool visible) noexcept;
 
 	/**
 	 * @brief 获取窗口可见性.
 	 *
 	 * @return true 为可见, false 为不可见.
 	 */
-	bool isVisible() const;
+	bool isVisible() const noexcept;
 
 	/**
 	 * @brief 设置是否开启垂直同步.
 	 *
 	 * @param enable true 为开启, false 为关闭.
 	 */
-	void setSync(bool enable);
+	void setSync(bool enable) noexcept;
 
 	/**
 	 * @brief 设置窗口图标.

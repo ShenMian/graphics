@@ -6,6 +6,8 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
+namespace fs = std::filesystem;
+
 Window::Window(const std::string& title, Vector2i size)
 {
     auto       monitor   = glfwGetPrimaryMonitor();
@@ -53,7 +55,7 @@ void Window::setSize(Vector2i size)
     glfwSetWindowSize(handle, size.x, size.y);
 }
 
-Vector2i Window::getSize() const
+Vector2i Window::getSize() const noexcept
 {
     int x, y;
     glfwGetWindowSize(handle, &x, &y);
@@ -65,14 +67,14 @@ void Window::setPosition(Vector2i pos)
     glfwSetWindowPos(handle, pos.x, pos.y);
 }
 
-Vector2i Window::getPosition()
+Vector2i Window::getPosition() noexcept
 {
     Vector2i size;
     glfwGetWindowPos(handle, &size.x, &size.y);
     return size;
 }
 
-void Window::setVisible(bool visible)
+void Window::setVisible(bool visible) noexcept
 {
     if(visible)
         glfwShowWindow(handle);
@@ -80,17 +82,25 @@ void Window::setVisible(bool visible)
         glfwHideWindow(handle);
 }
 
-bool Window::isVisible() const
+bool Window::isVisible() const noexcept
 {
     return glfwGetWindowAttrib(handle, GLFW_VISIBLE);
 }
 
-void Window::setSync(bool enable)
+void Window::setSync(bool enable) noexcept
 {
     if(enable)
         glfwSwapInterval(1);
     else
         glfwSwapInterval(0);
+}
+
+void Window::setIcon(const std::filesystem::path& path)
+{
+    if(!fs::exists(path) && !fs::is_regular_file(path))
+        throw std::exception("no such file or directory");
+
+    // TODO: usg class 'Image', instead using stb_image.h API directly
 }
 
 void* Window::getNativeHandle() const
