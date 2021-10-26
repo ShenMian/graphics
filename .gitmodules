@@ -10,3 +10,6 @@
 [submodule "Thirdparty/glfw"]
 	path = Thirdparty/glfw
 	url = https://github.com/glfw/glfw.git
+[submodule "Thirdparty/stb"]
+	path = Thirdparty/stb
+	url = https://github.com/nothings/stb.git

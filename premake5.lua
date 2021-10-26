@@ -28,6 +28,7 @@ workspace "Graphics"
       linkoptions "-pthread"
 
 thirdparty = {}
+thirdparty["stb"] = "%{wks.location}/Thirdparty/stb"
 thirdparty["glad"] = "%{wks.location}/Thirdparty/glad"
 thirdparty["glfw"] = "%{wks.location}/Thirdparty/glfw"
 thirdparty["assimp"] = "%{wks.location}/Thirdparty/assimp"

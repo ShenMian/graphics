@@ -13,6 +13,7 @@ project "Source"
   files {"**.cpp", "**.hpp", "**.h", "**.inl", "premake5.lua"}
 
   includedirs {
+    "%{thirdparty.stb}",
     "%{thirdparty.glad}/include",
     "%{thirdparty.glfw}/include",
     "%{thirdparty.assimp}/include",
