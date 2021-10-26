@@ -4,7 +4,6 @@
 #include "Renderer.h"
 #include <cassert>
 #include <format>
-#include <glad/glad.h>
 
 Renderer::API Renderer::api = Renderer::API::OpenGL;
 
@@ -17,6 +16,9 @@ Renderer::API Renderer::getAPI()
 {
 	return api;
 }
+
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
 
 const char* GLGetErrorString(GLenum error)
 {
@@ -57,7 +59,7 @@ void GLCheckError()
 	{
 		if(error == GL_NO_ERROR)
 			break;
-		// assert(false && std::format("OpenGL error: ({}): {}", error, GLGetErrorString(error)));
+		throw std::exception(std::format("OpenGL error ({}): {}", error, GLGetErrorString(error)).c_str());
 	}
 }
 
