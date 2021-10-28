@@ -1,4 +1,4 @@
-// Copyright 2021 SMS
+﻿// Copyright 2021 SMS
 // License(Apache-2.0)
 
 #pragma once
@@ -30,6 +30,16 @@ public:
 
 	virtual void setViewport(const Vector2i& origin, const Vector2i& size) = 0;
 
+	/**
+	 * @brief 清空缓冲区.
+	 * 
+	 * @param flags 类型.
+	 * 
+	 * @see ClearFlag
+	 * @see setClearColor
+	 * @see setClearDepth
+	 * @see setClearStencil
+	 */
 	virtual void clear(uint8_t flags) = 0;
 	virtual void setClearColor(const Vector4& color) = 0;
 	virtual void setClearDepth(float depth) = 0;

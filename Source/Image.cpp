@@ -2,6 +2,7 @@
 // License(Apache-2.0)
 
 #include "Image.h"
+#include <format>
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"

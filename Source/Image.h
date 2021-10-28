@@ -3,9 +3,8 @@
 
 #pragma once
 
+#include <Math/Vector2.hpp>
 #include <filesystem>
-
-#include "Window.h" // FIXME: Vector2i
 
 class Image
 {
