@@ -33,14 +33,14 @@ public:
   unsigned char* getData() const;
 
   /**
-   * @brief 获取通道数.
-   */
-  int getChannelCount() const;
-
-  /**
    * @brief 获取图像分辨率.
    */
   Vector2i getSize() const;
+
+  /**
+   * @brief 获取通道数.
+   */
+  int getChannelCount() const;
 
 private:
 	unsigned char* data;

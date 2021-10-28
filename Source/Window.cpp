@@ -131,8 +131,7 @@ void Window::setupCallbacks()
 {
     glfwSetErrorCallback([](int error, const char* desc)
     {
-        puts(desc);
-        throw std::exception(desc);
+        throw std::exception(std::format("GLFW error: {}", desc).c_str());
     });
 
 

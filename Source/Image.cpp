@@ -34,12 +34,12 @@ unsigned char* Image::getData() const
     return data;
 }
 
-int Image::getChannelCount() const
-{
-    return channels;
-}
-
 Vector2i Image::getSize() const
 {
     return size;
+}
+
+int Image::getChannelCount() const
+{
+    return channels;
 }

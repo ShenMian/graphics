@@ -29,6 +29,7 @@ workspace "Graphics"
 
 thirdparty = {}
 thirdparty["stb"] = "%{wks.location}/Thirdparty/stb"
+thirdparty["math"] = "%{wks.location}/Thirdparty/Math"
 thirdparty["glad"] = "%{wks.location}/Thirdparty/glad"
 thirdparty["glfw"] = "%{wks.location}/Thirdparty/glfw"
 thirdparty["assimp"] = "%{wks.location}/Thirdparty/assimp"

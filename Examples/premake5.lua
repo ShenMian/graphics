@@ -14,6 +14,7 @@ project "Examples"
 
   includedirs {
     "../Source",
+    "%{thirdparty.math}/include",
     "%{thirdparty.assimp}/include",
     "%{thirdparty.vulkan}/include"}
 

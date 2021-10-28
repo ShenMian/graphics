@@ -13,3 +13,6 @@
 [submodule "Thirdparty/stb"]
 	path = Thirdparty/stb
 	url = https://github.com/nothings/stb.git
+[submodule "Thirdparty/Math"]
+	path = Thirdparty/Math
+	url = https://github.com/ShenMian/Math

@@ -3,15 +3,10 @@
 
 #pragma once
 
+#include <Math/Vector2.hpp>
 #include <string_view>
 #include <filesystem>
 #include <functional>
-
-struct Vector2i
-{
-	int x = 0;
-	int y = 0;
-};
 
 struct GLFWwindow;
 

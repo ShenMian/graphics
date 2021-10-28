@@ -14,6 +14,7 @@ project "Source"
 
   includedirs {
     "%{thirdparty.stb}",
+    "%{thirdparty.math}/include",
     "%{thirdparty.glad}/include",
     "%{thirdparty.glfw}/include",
     "%{thirdparty.assimp}/include",
