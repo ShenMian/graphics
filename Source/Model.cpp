@@ -47,13 +47,20 @@ void Model::load(const fs::path& path)
 
 void Model::loadAsync(const fs::path& path, std::function<void(std::error_code)> callback) noexcept
 {
-	std::thread([=]()
+	try
 	{
-		std::error_code ec;
-		load(path);
-		if(callback)
-			callback(ec);
-	}).detach();
+		std::thread([=]()
+		{
+			std::error_code ec;
+			load(path);
+			if(callback)
+				callback(ec);
+		}).detach();
+	}
+	catch(...)
+	{
+		assert(false);
+	}
 }
 
 void Model::loadNode(aiNode* node)
