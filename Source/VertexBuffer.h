@@ -3,21 +3,10 @@
 
 #pragma once
 
+#include <Math/Vector2.hpp>
+#include <Math/Vector3.hpp>
 #include <memory>
 #include <vector>
-
-struct Vector2
-{
-	float x = 0.f;
-	float y = 0.f;
-};
-
-struct Vector3
-{
-	float x = 0.f;
-	float y = 0.f;
-	float z = 0.f;
-};
 
 struct Vertex
 {
