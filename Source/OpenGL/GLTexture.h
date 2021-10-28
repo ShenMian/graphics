@@ -12,11 +12,11 @@ public:
 	GLTexture(const Image& image);
 	~GLTexture();
 
-	void bind(unsigned int slot = 0);
-	void setMinFilter(Filter filter);
-	void setMagFilter(Filter filter);
-	void setSWarp(Warp warp);
-	void setTWarp(Warp warp);
+	void bind(unsigned int slot = 0) override;
+	void setMinFilter(Filter filter) override;
+	void setMagFilter(Filter filter) override;
+	void setSWarp(Warp warp) override;
+	void setTWarp(Warp warp) override;
 	void generateMipmap();
 
 private:
