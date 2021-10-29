@@ -4,7 +4,9 @@
 #pragma once
 
 #include <Math/Vector2.hpp>
+#include <cstdint>
 #include <filesystem>
+#include <vector>
 
 class Image
 {
@@ -17,19 +19,28 @@ public:
   Image(const std::filesystem::path& path);
 
   /**
-   * @brief 析构函数.
+   * @brief 从文件载入图像.
+   *
+   * @param path 图像文件地址.
    */
-  virtual ~Image();
+  void loadFromFile(const std::filesystem::path& path);
+
+  /**
+   * @brief 导出图像到文件.
+   *
+   * @param path 图像文件地址.
+   */
+  void saveToFile(const std::filesystem::path& path) const;
 
   /**
    * @brief 获取图像数据.
    */
-  unsigned char* getData();
+  uint8_t* getData();
 
   /**
    * @brief 获取图像数据.
    */
-  unsigned char* getData() const;
+  const uint8_t* getData() const;
 
   /**
    * @brief 获取图像分辨率.
@@ -42,7 +53,7 @@ public:
   int getChannelCount() const;
 
 private:
-	unsigned char* data;
-	Vector2i       size;
-	int            channels;
+	std::vector<uint8_t> data;
+	Vector2i             size;
+	int                  channels;
 };

@@ -104,7 +104,7 @@ void Window::setIcon(const Image& image)
         throw std::exception("image size too large");
 
     GLFWimage glfwImage;
-    glfwImage.pixels = image.getData();
+    glfwImage.pixels = const_cast<unsigned char*>(image.getData());
     glfwImage.width  = image.getSize().x;
     glfwImage.height = image.getSize().y;
     glfwSetWindowIcon(handle, 1, &glfwImage);
