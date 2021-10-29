@@ -28,5 +28,6 @@ private:
     void attach(const std::shared_ptr<Shader> shader);
     void link();
 
-    unsigned int handle;
+	unsigned int                         handle;
+    std::unordered_map<std::string, int> uniformLocations;
 };
