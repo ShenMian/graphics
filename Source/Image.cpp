@@ -40,22 +40,22 @@ void Image::saveToFile(const std::filesystem::path& path) const
     if(ext == ".jpg" || ext == "jpeg")
     {
         if(!stbi_write_jpg(path.string().c_str(), size.x, size.y, channels, data.data(), 90)) // quality is between 1 and 100
-            throw std::exception();
+            throw std::exception("can't save image to jpg/jpeg");
     }
     else if(ext == ".png")
     {
         if(!stbi_write_png(path.string().c_str(), size.x, size.y, channels, data.data(), 0))
-            throw std::exception();
+            throw std::exception("can't save image to png");
     }
     else if(ext == ".bmp")
     {
         if(!stbi_write_bmp(path.string().c_str(), size.x, size.y, channels, data.data()))
-            throw std::exception();
+            throw std::exception("can't save image to bmp");
     }
     else if(ext == ".tga")
     {
         if(!stbi_write_tga(path.string().c_str(), size.x, size.y, channels, data.data()))
-            throw std::exception();
+            throw std::exception("can't save image to tga");
     }
     else
         assert(false); // 不支持的导出格式

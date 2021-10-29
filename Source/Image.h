@@ -55,5 +55,5 @@ public:
 private:
 	std::vector<uint8_t> data;
 	Vector2i             size;
-	int                  channels;
+	int                  channels = 0;
 };
