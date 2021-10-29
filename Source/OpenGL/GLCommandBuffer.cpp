@@ -141,6 +141,7 @@ size_t GLCommandBuffer::execute(GLOpcode opcode, uint8_t* pc)
 	default:
 		assert(false);
 	}
+	return 0;
 }
 
 void GLCommandBuffer::addCommand(GLOpcode opcode)
