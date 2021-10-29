@@ -21,12 +21,12 @@ public:
 
     virtual void use() = 0;
 
-    virtual void uploadUniform(const std::string& name, int value)            = 0;
-    virtual void uploadUniform(const std::string& name, float value)          = 0;
-    // virtual void uploadUniform(const std::string& name, const Vector2& value) = 0;
-    // virtual void uploadUniform(const std::string& name, const Vector3& value) = 0;
-    // virtual void uploadUniform(const std::string& name, const Vector4& value) = 0;
-    // virtual void uploadUniform(const std::string& name, const Matrix4& value) = 0;
+	virtual void setUniform(const std::string& name, int value) = 0;
+	virtual void setUniform(const std::string& name, float value) = 0;
+    // virtual void setUniform(const std::string& name, const Vector2& value) = 0;
+    // virtual void setUniform(const std::string& name, const Vector3& value) = 0;
+    // virtual void setUniform(const std::string& name, const Vector4& value) = 0;
+    // virtual void setUniform(const std::string& name, const Matrix4& value) = 0;
 
 protected:
     std::string name;

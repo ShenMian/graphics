@@ -25,6 +25,7 @@ std::shared_ptr<Program> Program::create(const std::string& name)
 
     case OpenGL:
         result = std::make_shared<GLProgram>(name);
+        break;
 
     default:
         assert(false);

@@ -55,14 +55,14 @@ void GLProgram::use()
     GLCheckError();
 }
 
-void GLProgram::uploadUniform(const std::string& name, int value)
+void GLProgram::setUniform(const std::string& name, int value)
 {
     use();
     glUniform1i(getUniformLocation(name), value);
     GLCheckError();
 }
 
-void GLProgram::uploadUniform(const std::string& name, float value)
+void GLProgram::setUniform(const std::string& name, float value)
 {
     use();
     glUniform1f(getUniformLocation(name), value);
