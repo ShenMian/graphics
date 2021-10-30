@@ -48,8 +48,7 @@ int main()
 	{
 		cmds->begin();
 		{
-			cmds->setViewport({0, 0}, {800, 200});
-			cmds->setClearColor({0, 1, 0, 0});
+			cmds->setClearColor({0, 0, 0, 0});
 			cmds->clear(ClearFlag::Color | ClearFlag::Depth);
 		}
 		cmds->end();

@@ -37,8 +37,8 @@ private:
 template<typename T>
 inline T* GLCommandBuffer::addCommand(GLOpcode opcode)
 {
-	buffer.push_back(static_cast<uint8_t>(opcode));
 	auto offset = buffer.size();
-	buffer.resize(offset + sizeof(T));
-	return reinterpret_cast<T*>(&buffer[offset]);
+	buffer.push_back(static_cast<uint8_t>(opcode));
+	buffer.resize(offset + sizeof(GLOpcode) + sizeof(T));
+	return reinterpret_cast<T*>(&buffer[offset + sizeof(GLOpcode)]);
 }
