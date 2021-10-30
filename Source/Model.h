@@ -24,18 +24,27 @@ public:
 	 * @brief 从文件载入场景.
 	 * 
 	 * @param path 场景文件路径.
+	 * 
+	 * @see loadAsync
 	 */
 	void load(const std::filesystem::path& path);
 
 	/**
+	 * @brief 从文件载入场景, 异步.
+	 *
+	 * @param path 场景文件路径.
+	 *
+	 * @see load
+	 */
+	void loadAsync(const std::filesystem::path& path, std::function<void(std::error_code)> callback = nullptr) noexcept;
+
+	/**
 	 * @brief 保存场景到文件.
-	 * 
+	 *
 	 * @param path 场景文件路径.
 	 */
-	void save(const std::filesystem::path& path);
-
-	void loadAsync(const std::filesystem::path& path, std::function<void(std::error_code)> callback = nullptr) noexcept;
-	void saveAsync(const std::filesystem::path& path, std::function<void(std::error_code)> callback = nullptr) noexcept;
+	// void save(const std::filesystem::path& path);
+	// void saveAsync(const std::filesystem::path& path, std::function<void(std::error_code)> callback = nullptr) noexcept;
 
 private:
 	/**
