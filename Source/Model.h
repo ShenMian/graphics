@@ -3,6 +3,8 @@
 
 #pragma once
 
+#include "VertexBuffer.h"
+#include "IndexBuffer.h"
 #include <system_error>
 #include <assimp/scene.h>
 #include <assimp/Exporter.hpp>
@@ -13,6 +15,15 @@
 
 // TODO: 析构后线程可能仍在运行, 导致 callback 获取不存在的数据.
 //       或许应该让用户自己创建一个线程/协程来执行同步操作.
+
+struct Vertex
+{
+	Vector3 position;
+	Vector3 normal;
+	Vector2 uv;
+	Vector3 tangent;
+	Vector3 bitangent;
+};
 
 /**
  * @brief 3D 模型.
@@ -60,6 +71,10 @@ private:
 	 * @param mesh assimp 网格.
 	 */
 	void loadMesh(aiMesh* mesh);
+
+	std::string                   name;
+	std::shared_ptr<IndexBuffer>  indexBuffer;
+	std::shared_ptr<VertexBuffer> vertexBuffer;
 
 	std::filesystem::path path;
 

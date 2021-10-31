@@ -8,15 +8,6 @@
 #include <memory>
 #include <vector>
 
-struct Vertex
-{
-	Vector3 position;
-	Vector3 normal;
-	Vector2 uv;
-	Vector3 tangent;
-	Vector3 bitangent;
-};
-
 class VertexBuffer
 {
 public:

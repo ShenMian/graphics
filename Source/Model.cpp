@@ -40,7 +40,9 @@ void Model::load(const fs::path& path)
 		aiProcess_SortByPType);
 
 	if(scene == nullptr || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || scene->mRootNode == nullptr)
-		throw std::exception("scene data incomplete");
+		throw std::exception(importer.GetErrorString());
+
+	name = scene->mName.C_Str();
 
 	loadNode(scene->mRootNode);
 }
@@ -69,17 +71,19 @@ void Model::loadNode(aiNode* node)
 	for(unsigned int i = 0; i < node->mNumMeshes; i++)
 		loadMesh(scene->mMeshes[node->mMeshes[i]]);
 
-	// 加载材质
+	// 加载其余节点
 	for(unsigned int i = 0; i < node->mNumChildren; i++)
 		loadNode(node->mChildren[i]);
 }
 
 void Model::loadMesh(aiMesh* mesh)
 {
-	std::vector<Vertex>       vertices;
-	std::vector<unsigned int> indices;
+	std::string name = mesh->mName.C_Str();
+
+	// TODO: 创建包围盒
 
 	// 获取顶点数据
+	std::vector<Vertex> vertices;
 	static_assert(std::same_as<ai_real, float>);
 	for(unsigned int i = 0; i < mesh->mNumVertices; i++)
 	{
@@ -112,6 +116,7 @@ void Model::loadMesh(aiMesh* mesh)
 
 	// 获取索引数据
 	// static_assert(typeid(aiFace::mIndices) == typeid(IndexBuffer::value_type*));
+	std::vector<unsigned int> indices;
 	for(unsigned int i = 0; i < mesh->mNumFaces; i++)
 	{
 		const auto& face = mesh->mFaces[i];
@@ -121,8 +126,8 @@ void Model::loadMesh(aiMesh* mesh)
 
 	optimize(indices, vertices);
 
-	auto indexBuffer  = IndexBuffer::create(indices);
-	auto vertexBuffer = VertexBuffer::create(vertices);
+	indexBuffer  = IndexBuffer::create(indices);
+	vertexBuffer = VertexBuffer::create(vertices);
 
 	// 获取材质数据
 	// TODO
@@ -136,7 +141,7 @@ void Model::save(const fs::path& path)
 	// 导出场景数据到文件
 	auto ret = exporter.Export(scene, path.extension().string(), path.string());
 	if(ret == aiReturn_FAILURE)
-		throw std::exception("export scene data failed");
+		throw std::exception(exporter.GetErrorString());
 }
 
 void Model::saveAsync(const fs::path& path, std::function<void(std::error_code)> callback) noexcept
