@@ -3,6 +3,7 @@
 
 #include "Renderer.h"
 #include "CommandBuffer.h"
+#include "CommandQueue.h"
 #include "Texture.h"
 #include "Program.h"
 #include "Shader.h"

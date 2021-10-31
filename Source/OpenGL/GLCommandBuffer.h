@@ -25,14 +25,19 @@ public:
 	void setClearDepth(float depth) override;
 	void setClearStencil() override;
 
-private:
-	size_t execute(GLOpcode opcode, uint8_t* pc);
+	const auto& getData() const;
 
+private:
 	void addCommand(GLOpcode opcode);
 	template <typename T> T* addCommand(GLOpcode opcode);
 
 	std::vector<uint8_t> buffer;
 };
+
+inline const auto& GLCommandBuffer::getData() const
+{
+	return buffer;
+}
 
 template<typename T>
 inline T* GLCommandBuffer::addCommand(GLOpcode opcode)
@@ -42,3 +47,34 @@ inline T* GLCommandBuffer::addCommand(GLOpcode opcode)
 	buffer.resize(offset + sizeof(GLOpcode) + sizeof(T));
 	return reinterpret_cast<T*>(&buffer[offset + sizeof(GLOpcode)]);
 }
+
+enum class GLOpcode
+{
+	setViewport,
+
+	clear,
+	setClearColor,
+	setClearDepth,
+	setClearStencil
+};
+
+struct GLCmdSetViewport
+{
+	Vector2i origin;
+	Vector2i size;
+};
+
+struct GLCmdClear
+{
+	uint8_t flags;
+};
+
+struct GLCmdSetClearColor
+{
+	Vector4 color;
+};
+
+struct GLCmdSetClearDepth
+{
+	float depth;
+};
