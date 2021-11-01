@@ -115,18 +115,6 @@ void* Window::getNativeHandle() const
     return handle;
 }
 
-void Window::init()
-{
-    auto ret = glfwInit();
-    if(!ret)
-        throw std::exception("GLFW init failed");
-}
-
-void Window::deinit()
-{
-    glfwTerminate();
-}
-
 void Window::setupCallbacks()
 {
     glfwSetErrorCallback([](int error, const char* desc)
@@ -184,4 +172,17 @@ void Window::setupCallbacks()
         const auto handle = static_cast<Window*>(glfwGetWindowUserPointer(native));
         // TODO
     });
+}
+
+void Window::init()
+{
+    auto ret = glfwInit();
+    if(!ret)
+        throw std::exception("GLFW init failed");
+    glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE); // 创建新窗口默认不可见
+}
+
+void Window::deinit()
+{
+    glfwTerminate();
 }

@@ -27,32 +27,30 @@ int main()
 {
 	Window::init();
 
-	Window window("Title", {1920 / 2, 1080 / 2});
+	Window window("Example", {1920 / 2, 1080 / 2});
+	window.setVisible(true);
 
 	Model model;
 	model.loadAsync("../../3DModel/scene/SunTemple/SunTemple.fbx", [](std::error_code ec)
 	{
-		if(ec)
-			return;
+		if(ec) return;
 		puts("加载完毕.");
 	});
 
-	bool running = true;
+	auto cmdQueue  = CommandQueue::create();
+	auto cmdBuffer = CommandBuffer::create();
 
+	bool running   = true;
 	window.onClose = [&]() { running = false; };
-
-	auto cmdQueue = CommandQueue::create();
-	auto commands = CommandBuffer::create();
-
 	while(running)
 	{
-		commands->begin();
+		cmdBuffer->begin();
 		{
-			commands->setClearColor({0, 0.3, 0, 0});
-			commands->clear(ClearFlag::Color | ClearFlag::Depth);
+			cmdBuffer->setClearColor({0, 0.3, 0, 0});
+			cmdBuffer->clear(ClearFlag::Color | ClearFlag::Depth);
 		}
-		commands->end();
-		cmdQueue->submit(commands);
+		cmdBuffer->end();
+		cmdQueue->submit(cmdBuffer);
 
 		window.update();
 	}
