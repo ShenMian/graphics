@@ -5,6 +5,7 @@
 #include "Renderer.h"
 
 #include "OpenGL/GLCommandBuffer.h"
+#include "Vulkan/VKCommandBuffer.h"
 
 std::shared_ptr<CommandBuffer> CommandBuffer::create()
 {
@@ -14,6 +15,9 @@ std::shared_ptr<CommandBuffer> CommandBuffer::create()
 
 	case OpenGL:
 		return std::make_shared<GLCommandBuffer>();
+
+	case Vulkan:
+		return std::make_shared<VKCommandBuffer>();
 	}
 	return nullptr;
 }

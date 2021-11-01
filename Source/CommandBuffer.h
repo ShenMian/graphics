@@ -26,7 +26,7 @@ public:
 
 	virtual void end() = 0;
 
-	virtual void execute() = 0;
+	// virtual void execute(std::shared_ptr<CommandBuffer> commandBuffer) = 0;
 
 	virtual void setViewport(const Vector2i& origin, const Vector2i& size) = 0;
 
