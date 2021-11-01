@@ -18,6 +18,11 @@ public:
 		return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - start).count();
 	}
 
+	auto getSeconds() const
+	{
+		return getMilliseconds() / 1000.0;
+	}
+
 private:
 	std::chrono::steady_clock::time_point start;
 };
