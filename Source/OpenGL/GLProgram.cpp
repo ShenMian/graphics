@@ -4,8 +4,8 @@
 
 #include "GLProgram.h"
 #include "GLShader.h"
+#include "GLRenderer.h"
 #include "../Program.h"
-#include "../Renderer.h"
 #include <filesystem>
 #include <cassert>
 #include <glad/glad.h>

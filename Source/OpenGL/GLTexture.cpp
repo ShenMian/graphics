@@ -2,8 +2,8 @@
 // License(Apache-2.0)
 
 #include "GLTexture.h"
+#include "GLRenderer.h"
 #include "../Image.h"
-#include "../Renderer.h"
 #include <unordered_map>
 
 namespace
@@ -83,6 +83,7 @@ uint32_t GLFormat(Texture::Format fmt)
 GLTexture::GLTexture(const Image& image)
 {
 	format = ChannelsToFormat[image.getChannelCount()];
+	glTarget = GL_TEXTURE_2D;
 
 	glCreateTextures(glTarget, 1, &handle);
 	bind();
@@ -140,7 +141,8 @@ void GLTexture::generateMipmap()
 	GLCheckError();
 }
 
-void GLTexture::bind(unsigned int slot) {
+void GLTexture::bind(unsigned int slot)
+{
 	glBindTextureUnit(slot, handle);
 	GLCheckError();
 }

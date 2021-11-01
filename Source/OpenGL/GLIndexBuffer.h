@@ -9,11 +9,13 @@
 class GLIndexBuffer : public IndexBuffer
 {
 public:
+    using handle_type = unsigned int;
+
     GLIndexBuffer(const void* data, size_t size, size_t count, Usage usage);
     virtual ~GLIndexBuffer();
 
     void bind() override;
 
 private:
-    GLuint handle;
+    handle_type handle;
 };

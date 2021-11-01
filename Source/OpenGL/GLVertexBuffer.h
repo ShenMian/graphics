@@ -9,11 +9,13 @@
 class GLVertexBuffer : public VertexBuffer
 {
 public:
+    using handle_type = unsigned int;
+
     GLVertexBuffer(const void* data, size_t size, size_t count, Usage usage);
     virtual ~GLVertexBuffer();
 
     void bind() override;
 
 private:
-    GLuint handle;
+    handle_type handle;
 };

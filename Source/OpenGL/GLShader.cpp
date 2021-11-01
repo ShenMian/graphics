@@ -73,7 +73,7 @@ void GLShader::load()
 		buffer += "\0";
 
 		// 编译源代码
-		const char* strings = buffer.data();
+		const auto strings = buffer.data();
 		glShaderSource(handle, 1, &strings, nullptr);
 		glCompileShader(handle);
 

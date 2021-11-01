@@ -11,6 +11,8 @@ class Shader;
 class GLProgram : public Program
 {
 public:
+    using handle_type = unsigned int;
+
     explicit GLProgram(const std::string& name);
     virtual ~GLProgram();
 
@@ -28,6 +30,6 @@ private:
     void attach(const std::shared_ptr<Shader> shader);
     void link();
 
-	unsigned int                         handle;
+	handle_type                          handle;
     std::unordered_map<std::string, int> uniformLocations;
 };
