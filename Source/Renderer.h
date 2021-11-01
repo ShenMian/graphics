@@ -3,6 +3,8 @@
 
 #pragma once
 
+#include <string>
+
 class Renderer
 {
 public:
@@ -13,6 +15,8 @@ public:
         D3D12,
         Metal
     };
+
+    static Renderer* get();
 
     /**
 	 * @brief 设置图形 API.
@@ -26,23 +30,10 @@ public:
 	 */
     static API getAPI();
 
+    virtual std::string getDeviceName() const = 0;
+    virtual std::string getRendererName() const = 0;
+    virtual std::string getVendorName() const = 0;
+
 private:
     static API api;
 };
-
-// TODO: 移动到合适的位置, 这是与 OpenGL 相关的代码.
-
-void GLCheckError();
-void GLClearError();
-
-#if 1
-#    define GLCall(func)    \
-        do                  \
-        {                   \
-            GLClearError(); \
-            func;           \
-            GLCheckError(); \
-        } while(false)
-#else
-#    define GLCall(func) func
-#endif

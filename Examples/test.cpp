@@ -15,8 +15,13 @@ int main()
 	model.loadAsync("../../3DModel/scene/SunTemple/SunTemple.fbx", [&](std::error_code ec)
 	{
 		if(ec) return;
-		puts(std::format("模型加载完毕: {}ms\n", timer.getMilliseconds()).c_str());
+		puts(std::format("模型加载完毕: {}ms", timer.getMilliseconds()).c_str());
 	});
+
+	auto renderer = Renderer::get();
+	puts(std::format("Device:   {}", renderer->getDeviceName()).c_str());
+	puts(std::format("Renderer: {}", renderer->getRendererName()).c_str());
+	puts(std::format("Vendor:   {}", renderer->getVendorName()).c_str());
 
 	auto cmdQueue  = CommandQueue::create();
 	auto cmdBuffer = CommandBuffer::create();
