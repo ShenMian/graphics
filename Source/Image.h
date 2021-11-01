@@ -53,6 +53,17 @@ public:
   int getChannelCount() const;
 
 private:
+
+	/**
+	 * @brief 从内存载入图像.
+	 *
+	 * @param data 图像内存地址.
+	 * @param size 图像大小, 单位: 字节.
+	 *
+	 * @warning 图片尺寸需要提前指定.
+	 */
+	void loadFromMemory(const void* data, size_t size);
+
 	std::vector<uint8_t> data;
 	Vector2i             size;
 	int                  channels = 0;
