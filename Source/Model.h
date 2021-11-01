@@ -3,6 +3,7 @@
 
 #pragma once
 
+#include "Mesh.h"
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
 #include <system_error>
@@ -24,6 +25,9 @@ struct Vertex
 	Vector3 tangent;
 	Vector3 bitangent;
 };
+
+class Mesh;
+class Material;
 
 /**
  * @brief 3D 模型.
@@ -57,6 +61,8 @@ public:
 	// void save(const std::filesystem::path& path);
 	// void saveAsync(const std::filesystem::path& path, std::function<void(std::error_code)> callback = nullptr) noexcept;
 
+	const std::vector<Mesh> getMeshs() const;
+
 private:
 	/**
 	 * @brief 从场景中递归载入节点数据.
@@ -72,13 +78,19 @@ private:
 	 */
 	void loadMesh(aiMesh* mesh);
 
+	/**
+	 * @brief 载入 assimp 材质数据到 Mesh 的 Material.
+	 *
+	 * @param mesh 网格.
+	 * @param aiMesh assimp 网格.
+	 */
+	void loadMaterial(Mesh* mesh, aiMesh* aiMesh);
+
 	void loadVertices(std::vector<Vertex>& vertices, aiMesh* mesh);     // 获取顶点数据
 	void loadIndices(std::vector<unsigned int>& indices, aiMesh* mesh); // 获取索引数据
 
-	std::string                   name;
-	std::shared_ptr<IndexBuffer>  indexBuffer;
-	std::shared_ptr<VertexBuffer> vertexBuffer;
-
+	std::string           name;
+	std::vector<Mesh>     meshs;
 	std::filesystem::path path;
 
 	const aiScene*   scene = nullptr;

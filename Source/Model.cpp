@@ -4,6 +4,8 @@
 #include "Model.h"
 #include "IndexBuffer.h"
 #include "VertexBuffer.h"
+#include "Material.h"
+#include "Image.h"
 #include <assimp/postprocess.h>
 #include <meshoptimizer.h>
 #include <algorithm>
@@ -14,7 +16,6 @@
 #include <vector>
 
 #include "Timer.hpp"
-#include <format>
 
 namespace fs = std::filesystem;
 
@@ -37,6 +38,10 @@ void Model::load(const fs::path& path)
 	if(!fs::exists(path) && !fs::is_regular_file(path))
 		throw std::exception("no such file or directory");
 
+	this->path = path;
+
+	Timer timer; // TODO: debug
+
 	// 从文件导入场景数据
 	scene = importer.ReadFile(path.string(),
 		aiProcess_CalcTangentSpace |
@@ -50,6 +55,7 @@ void Model::load(const fs::path& path)
 	name = scene->mName.C_Str();
 
 	loadNode(scene->mRootNode);
+	puts(std::format("网格载入完毕: {}s", timer.getSeconds()).c_str()); // TODO: debug
 }
 
 void Model::loadAsync(const fs::path& path, std::function<void(std::error_code)> callback) noexcept
@@ -70,6 +76,11 @@ void Model::loadAsync(const fs::path& path, std::function<void(std::error_code)>
 	}
 }
 
+const std::vector<Mesh> Model::getMeshs() const
+{
+	return meshs;
+}
+
 void Model::loadNode(aiNode* node)
 {
 	// 加载网格
@@ -83,7 +94,11 @@ void Model::loadNode(aiNode* node)
 
 void Model::loadMesh(aiMesh* mesh)
 {
-	std::string name = mesh->mName.C_Str();
+	static auto currScene = scene; // TODO: debug
+	static unsigned int i = 0;
+	if(currScene != scene)
+		currScene = scene, i = 0;
+	printf(std::format("载入网格: {:>3}/{:<3}\r", ++i, scene->mNumMeshes).c_str());
 
 	std::vector<Vertex> vertices;
 	std::vector<unsigned int> indices;
@@ -93,17 +108,55 @@ void Model::loadMesh(aiMesh* mesh)
 
 	optimize(indices, vertices);
 
-	indexBuffer  = IndexBuffer::create(indices);
-	vertexBuffer = VertexBuffer::create(vertices);
+	auto vertexBuffer = VertexBuffer::create(vertices);
+	auto indexBuffer  = IndexBuffer::create(indices);
+
+	std::string name = mesh->mName.C_Str();
 
 	// TODO: 创建包围盒
 	// for(auto& vertex : vertices)
-	mesh->mAABB;
+	// mesh->mAABB;
 
-	// 获取材质数据
-	// TODO
-	auto mat = scene->mMaterials[mesh->mMaterialIndex];
-	mat->GetName().C_Str();
+	meshs.emplace_back(name, vertexBuffer, indexBuffer);
+
+	loadMaterial(&meshs.back(), mesh);
+}
+
+void Model::loadMaterial(Mesh* mesh, aiMesh* aiMesh)
+{
+	const auto dir = path.parent_path();
+	const auto aiMat = scene->mMaterials[aiMesh->mMaterialIndex];
+
+	auto loadTexture = [&](aiTextureType type)->std::shared_ptr<Texture>
+	{
+		for(unsigned int i = 0; i < aiMat->GetTextureCount(type); i++)
+		{
+			aiString aiPath;
+			aiMat->GetTexture(type, 0, &aiPath);
+			const auto path = dir / aiPath.C_Str();
+			// if(fs::exists(path))
+			return Texture::create(Image(path));
+		}
+		return nullptr;
+	};
+
+	mesh->material.name = aiMat->GetName().C_Str();
+
+	mesh->material.pbr.albedo = loadTexture(aiTextureType_BASE_COLOR);
+	mesh->material.pbr.normals = loadTexture(aiTextureType_NORMAL_CAMERA);
+	mesh->material.pbr.emissive = loadTexture(aiTextureType_EMISSION_COLOR);
+	mesh->material.pbr.metallic = loadTexture(aiTextureType_METALNESS);
+	mesh->material.pbr.roughness = loadTexture(aiTextureType_DIFFUSE_ROUGHNESS);
+	mesh->material.pbr.ao = loadTexture(aiTextureType_AMBIENT_OCCLUSION);
+	
+	mesh->material.diffuse = loadTexture(aiTextureType_DIFFUSE);
+	mesh->material.specular = loadTexture(aiTextureType_SPECULAR);
+	mesh->material.ambient = loadTexture(aiTextureType_AMBIENT);
+	mesh->material.emissive = loadTexture(aiTextureType_EMISSIVE);
+	mesh->material.height = loadTexture(aiTextureType_HEIGHT);
+	mesh->material.normals = loadTexture(aiTextureType_NORMALS);
+	mesh->material.shininess = loadTexture(aiTextureType_SHININESS);
+	mesh->material.opacity = loadTexture(aiTextureType_OPACITY);
 }
 
 void Model::loadVertices(std::vector<Vertex>& vertices, aiMesh* mesh)
