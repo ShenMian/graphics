@@ -9,6 +9,8 @@
 #include "Shader.h"
 
 #include "Model.h"
-#include "Image.h"
 
 #include "Window.h"
+
+#include "Image.h"
+#include "Timer.hpp"

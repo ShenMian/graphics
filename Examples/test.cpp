@@ -3,26 +3,6 @@
 
 #include "Graphics.h"
 
-#include <chrono>
-#include <atomic>
-
-class Timer
-{
-public:
-	Timer()
-		: start(std::chrono::high_resolution_clock::now())
-	{
-	}
-
-	auto getMilliseconds() const
-	{
-		return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - start).count();
-	}
-
-private:
-	std::chrono::steady_clock::time_point start;
-};
-
 int main()
 {
 	Window::init();
@@ -31,10 +11,11 @@ int main()
 	window.setVisible(true);
 
 	Model model;
-	model.loadAsync("../../3DModel/scene/SunTemple/SunTemple.fbx", [](std::error_code ec)
+	Timer timer;
+	model.loadAsync("../../3DModel/scene/SunTemple/SunTemple.fbx", [&](std::error_code ec)
 	{
 		if(ec) return;
-		puts("加载完毕.");
+		puts(std::format("模型加载完毕: {}ms\n", timer.getMilliseconds()).c_str());
 	});
 
 	auto cmdQueue  = CommandQueue::create();
