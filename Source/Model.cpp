@@ -13,11 +13,16 @@
 #include <future>
 #include <vector>
 
+#include "Timer.hpp"
+#include <format>
+
 namespace fs = std::filesystem;
 
 namespace
 {
 
+// TODO: 属于 Mesh 的职责.
+// 优化网格
 void optimize(std::vector<unsigned int>& indices, std::vector<Vertex>& vertices)
 {
 	meshopt_optimizeVertexCache(indices.data(), indices.data(), indices.size(), vertices.size());
@@ -80,10 +85,29 @@ void Model::loadMesh(aiMesh* mesh)
 {
 	std::string name = mesh->mName.C_Str();
 
-	// TODO: 创建包围盒
-
-	// 获取顶点数据
 	std::vector<Vertex> vertices;
+	std::vector<unsigned int> indices;
+
+	loadVertices(vertices, mesh);
+	loadIndices(indices, mesh);
+
+	optimize(indices, vertices);
+
+	indexBuffer  = IndexBuffer::create(indices);
+	vertexBuffer = VertexBuffer::create(vertices);
+
+	// TODO: 创建包围盒
+	// for(auto& vertex : vertices)
+	mesh->mAABB;
+
+	// 获取材质数据
+	// TODO
+	auto mat = scene->mMaterials[mesh->mMaterialIndex];
+	mat->GetName().C_Str();
+}
+
+void Model::loadVertices(std::vector<Vertex>& vertices, aiMesh* mesh)
+{
 	static_assert(std::same_as<ai_real, float>);
 	for(unsigned int i = 0; i < mesh->mNumVertices; i++)
 	{
@@ -92,7 +116,12 @@ void Model::loadMesh(aiMesh* mesh)
 		Vertex vertex;
 
 		// 获取坐标
-		std::memcpy(&vertex.normal, &mesh->mVertices[i], sizeof(vertex.position));
+		std::memcpy(&vertex.position, &mesh->mVertices[i], sizeof(vertex.position));
+
+		// TODO: 性能测试.
+		// vertex.position.x = mesh->mVertices[i][0];
+		// vertex.position.x = mesh->mVertices[i][1];
+		// vertex.position.x = mesh->mVertices[i][2];
 
 		// 获取法向量
 		if(mesh->HasNormals())
@@ -100,37 +129,24 @@ void Model::loadMesh(aiMesh* mesh)
 
 		if(mesh->mTextureCoords[0])
 		{
-			// 获取 UV 坐标(纹理坐标)
-			vertex.uv.x = mesh->mTextureCoords[0][i].x;
-			vertex.uv.y = mesh->mTextureCoords[0][i].y;
-
-			// 获取 tangent
-			std::memcpy(&vertex.tangent, &mesh->mTangents[i], sizeof(vertex.tangent));
-
-			// 获取 bitangent
-			std::memcpy(&vertex.bitangent, &mesh->mBitangents[i], sizeof(vertex.bitangent));
+			std::memcpy(&vertex.uv, &mesh->mTextureCoords[0][i], sizeof(vertex.uv));         // 获取 UV 坐标(纹理坐标)
+			std::memcpy(&vertex.tangent, &mesh->mTangents[i], sizeof(vertex.tangent));       // 获取 tangent
+			std::memcpy(&vertex.bitangent, &mesh->mBitangents[i], sizeof(vertex.bitangent)); // 获取 bitangent
 		}
 
 		vertices.push_back(vertex);
 	}
+}
 
-	// 获取索引数据
-	// static_assert(typeid(aiFace::mIndices) == typeid(IndexBuffer::value_type*));
-	std::vector<unsigned int> indices;
+void Model::loadIndices(std::vector<unsigned int>& indices, aiMesh* mesh)
+{
+	// static_assert(std::same_as<decltype(aiFace::mIndices), unsigned int*>);
 	for(unsigned int i = 0; i < mesh->mNumFaces; i++)
 	{
 		const auto& face = mesh->mFaces[i];
 		for(unsigned int j = 0; j < face.mNumIndices; j++)
 			indices.push_back(face.mIndices[j]);
 	}
-
-	optimize(indices, vertices);
-
-	indexBuffer  = IndexBuffer::create(indices);
-	vertexBuffer = VertexBuffer::create(vertices);
-
-	// 获取材质数据
-	// TODO
 }
 
 /*

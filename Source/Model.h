@@ -72,6 +72,9 @@ private:
 	 */
 	void loadMesh(aiMesh* mesh);
 
+	void loadVertices(std::vector<Vertex>& vertices, aiMesh* mesh);     // 获取顶点数据
+	void loadIndices(std::vector<unsigned int>& indices, aiMesh* mesh); // 获取索引数据
+
 	std::string                   name;
 	std::shared_ptr<IndexBuffer>  indexBuffer;
 	std::shared_ptr<VertexBuffer> vertexBuffer;
