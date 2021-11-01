@@ -26,6 +26,17 @@ public:
   void loadFromFile(const std::filesystem::path& path);
 
   /**
+   * @brief 从内存载入图像.
+   *
+   * @param data 图像内存地址.
+   * @param len  图像数据大小, 单位: 字节.
+   * @param size 图像尺寸.
+   *
+   * @warning 图片尺寸需要提前指定.
+   */
+  void loadFromMemory(const void* data, size_t len, Vector2i size);
+
+  /**
    * @brief 导出图像到文件.
    *
    * @param path 图像文件地址.
@@ -53,17 +64,6 @@ public:
   int getChannelCount() const;
 
 private:
-
-	/**
-	 * @brief 从内存载入图像.
-	 *
-	 * @param data 图像内存地址.
-	 * @param size 图像大小, 单位: 字节.
-	 *
-	 * @warning 图片尺寸需要提前指定.
-	 */
-	void loadFromMemory(const void* data, size_t size);
-
 	std::vector<uint8_t> data;
 	Vector2i             size;
 	int                  channels = 0;

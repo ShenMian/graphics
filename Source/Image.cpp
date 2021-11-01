@@ -27,15 +27,17 @@ void Image::loadFromFile(const std::filesystem::path& path)
     if(pixels == nullptr)
         throw std::exception(std::format("can't load image from file: '{}'", path.string()).c_str());
 
-    loadFromMemory(pixels, size.x * size.y * channels);
+    loadFromMemory(pixels, size.x * size.y * channels, size);
 
     stbi_image_free(pixels);
 }
 
-void Image::loadFromMemory(const void* data, size_t size)
+void Image::loadFromMemory(const void* data, size_t len, Vector2i size)
 {
-    this->data.resize(size);
+    this->size = size;
+    this->data.resize(len);
     std::memcpy(this->data.data(), data, this->data.size());
+    this->data.shrink_to_fit();
 }
 
 void Image::saveToFile(const std::filesystem::path& path) const
