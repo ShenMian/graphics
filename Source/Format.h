@@ -10,6 +10,8 @@ enum class Format
     RGB8F,
     RGBA8F,
 
+    R16F,
+    RG16F,
     RGB16F,
     RGBA16F,
 
