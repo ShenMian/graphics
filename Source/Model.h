@@ -24,6 +24,8 @@ struct Vertex
 	Vector2 uv;
 	Vector3 tangent;
 	Vector3 bitangent;
+
+	auto operator<=>(const Vertex&) const = default;
 };
 
 class Mesh;
