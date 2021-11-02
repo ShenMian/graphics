@@ -3,6 +3,7 @@
 
 #pragma once
 
+#include "Format.h"
 #include <memory>
 
 class Image;
@@ -24,20 +25,6 @@ public:
 		Repeat, // 重复
 		ClampToEdge,
 		MirrorRepeat // 镜像重复
-	};
-
-	// 像素格式
-	enum class Format
-	{
-		R8,
-		RG8,
-		RGB8,
-		RGBA8,
-		RGB16,
-		RGBA16,
-		Depth,
-		Stencil,
-		DepthStencil
 	};
 
 	/**

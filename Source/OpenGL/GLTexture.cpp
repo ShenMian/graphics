@@ -4,6 +4,7 @@
 #include "GLTexture.h"
 #include "GLRenderer.h"
 #include "../Image.h"
+#include "../Format.h"
 #include <unordered_map>
 
 namespace
@@ -19,31 +20,31 @@ std::unordered_map<Texture::Warp, GLenum> GLWarp = {
 	{Texture::Warp::MirrorRepeat, GL_MIRRORED_REPEAT},
 	{Texture::Warp::ClampToEdge, GL_CLAMP_TO_EDGE}};
 
-std::unordered_map<int, Texture::Format> ChannelsToFormat = {
-	{1, Texture::Format::R8},
-	{2, Texture::Format::RG8},
-	{3, Texture::Format::RGB8},
-	{4, Texture::Format::RGBA8},
-	{6, Texture::Format::RGB16},
-	{8, Texture::Format::RGBA16}};
+std::unordered_map<int, Format> ChannelsToFormat = {
+	{1, Format::R8F},
+	{2, Format::RG8F},
+	{3, Format::RGB8F},
+	{4, Format::RGBA8F},
+	{6, Format::RGB16F},
+	{8, Format::RGBA16F}};
 
-uint32_t GLInternalFormat(Texture::Format fmt)
+uint32_t GLInternalFormat(Format fmt)
 {
 	switch(fmt)
 	{
-		using enum Texture::Format;
+		using enum Format;
 
-	case RGBA8:
-		return GL_RGBA8;
+	case R8F:
+		return GL_R8;
 
-	case RGB8:
-		return GL_RGB8;
-
-	case RG8:
+	case RG8F:
 		return GL_RG8;
 
-	case R8:
-		return GL_R8;
+	case RGB8F:
+		return GL_RGB8;
+
+	case RGBA8F:
+		return GL_RGBA8;
 
 	case DepthStencil:
 		return GL_DEPTH24_STENCIL8;
@@ -54,23 +55,23 @@ uint32_t GLInternalFormat(Texture::Format fmt)
 	}
 }
 
-uint32_t GLFormat(Texture::Format fmt)
+uint32_t GLFormat(Format fmt)
 {
 	switch(fmt)
 	{
-		using enum Texture::Format;
+		using enum Format;
 
-	case RGBA8:
-		return GL_RGBA;
+	case R8F:
+		return GL_RED;
 
-	case RGB8:
-		return GL_RGB;
-
-	case RG8:
+	case RG8F:
 		return GL_RG;
 
-	case R8:
-		return GL_RED;
+	case RGB8F:
+		return GL_RGB;
+
+	case RGBA8F:
+		return GL_RGBA;
 
 	default:
 		assert(false && "no corresponding GL format");
