@@ -3,6 +3,14 @@
 
 #include "Graphics.h"
 
+#include <glad/glad.h>
+
+struct Vertex_
+{
+	Vector2 position;
+	Vector3 color;
+};
+
 int main()
 {
 	Window::init();
@@ -16,9 +24,26 @@ int main()
 	puts(std::format("Vendor:   {}", renderer->getVendorName()).c_str());
 
 	Model model;
-	model.load("../../3DModel/scene/SunTemple/SunTemple.fbx");
-	// model.load("../../3DModel/weapon/m4a1/m4a1.gltf");
 	// model.load("../../3DModel/scene/Crytek_Sponza/sponza.obj");
+	// model.load("../../3DModel/scene/SunTemple/SunTemple.fbx"); // 存在不支持格式的纹理资源
+	// model.load("../../3DModel/weapon/m4a1/m4a1.gltf");
+
+	std::vector<Vertex_> vertices = {
+		{{0  ,   0.5}, {1, 0, 0}},
+		{{0.5,  -0.5}, {0, 1, 0}},
+		{{-0.5, -0.5}, {0, 0, 1}}
+	};
+
+	VertexFormat fmt = {
+		{"position", Format::RG32F},
+		{"color", Format::RGB32F}
+	};
+	fmt.setStride(sizeof(Vertex_));
+
+	auto vbo = VertexBuffer::create(vertices);
+
+	GLVertexArray vao;
+	vao.build(fmt);
 
 	auto cmdQueue  = CommandQueue::create();
 	auto cmdBuffer = CommandBuffer::create();
@@ -33,11 +58,13 @@ int main()
 		{
 			cmdBuffer->setClearColor({0, 0.3, 0, 0});
 			cmdBuffer->clear(ClearFlag::Color | ClearFlag::Depth);
-
-			forword->use();
 		}
 		cmdBuffer->end();
 		cmdQueue->submit(cmdBuffer);
+		vbo->bind();
+		vao.bind();
+		forword->use();
+		glDrawArrays(GL_TRIANGLES, 0, 3);
 
 		window.update();
 	}
