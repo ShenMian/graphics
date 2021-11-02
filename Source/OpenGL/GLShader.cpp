@@ -45,8 +45,8 @@ void GLShader::load()
 		assert(file.is_open());
 
 		std::vector<std::byte> buffer(size);
-		if(!file.read((char*)buffer.data(), size))
-			throw std::exception("can't read data from file");
+		file.read((char*)buffer.data(), size);
+		assert(file.good() && file.gcount() == size);
 		file.close();
 
 		glShaderBinary(1, &handle, GL_SHADER_BINARY_FORMAT_SPIR_V, buffer.data(), (GLsizei)buffer.size());
@@ -67,9 +67,8 @@ void GLShader::load()
 		// 读取源代码
 		std::string buffer;
 		buffer.resize(size);
-		if(!file.read((char*)buffer.data(), size))
-			throw std::exception("can't read data from file");
-		file.close();
+		file.read((char*)buffer.data(), size);
+		assert(file.good() && file.gcount() == size);
 		buffer += "\0";
 
 		// 编译源代码
