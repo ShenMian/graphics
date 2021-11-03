@@ -3,9 +3,6 @@
 
 #pragma once
 
-#include "GLVertexBuffer.h"
-#include "GLIndexBuffer.h"
-
 class VertexFormat;
 
 class GLVertexArray

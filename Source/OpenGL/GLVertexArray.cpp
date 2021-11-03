@@ -4,6 +4,7 @@
 #include "GLVertexArray.h"
 #include "../VertexFormat.h"
 #include "GLRenderer.h"
+#include <glad/glad.h>
 #include <unordered_map>
 
 namespace
@@ -54,7 +55,8 @@ void GLVertexArray::build(const VertexFormat& fmt)
 	for(const auto& attr : fmt.getAttributes())
 	{
 		glEnableVertexAttribArray(attribIndex);
-		glVertexAttribPointer(attribIndex, GLCount[attr.format], GLType[attr.format], attr.normalized, fmt.getStride(),
+		glVertexAttribPointer(attribIndex, GLCount[attr.format], GLType[attr.format], attr.normalized,
+			static_cast<GLsizei>(fmt.getStride()),
 			reinterpret_cast<const void*>(attr.offset));
 		attribIndex++;
 		GLCheckError();

@@ -164,7 +164,15 @@ void Model::loadMesh(aiMesh* mesh)
 
 	optimize(indices, vertices);
 
-	auto vertexBuffer = VertexBuffer::create(vertices);
+	VertexFormat fmt = {
+		{"position", Format::RGB32F},
+		{"normal", Format::RGB32F},
+		{"uv", Format::RG32F},
+		{"tangent", Format::RGB32F},
+		{"bitangent", Format::RGB32F},
+	};
+
+	auto vertexBuffer = VertexBuffer::create(vertices, fmt);
 	auto indexBuffer  = IndexBuffer::create(indices);
 
 	std::string name = mesh->mName.C_Str();

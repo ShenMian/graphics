@@ -40,10 +40,7 @@ int main()
 	};
 	fmt.setStride(sizeof(Vertex));
 
-	auto vbo = VertexBuffer::create(vertices);
-
-	GLVertexArray vao;
-	vao.build(fmt);
+	auto vbo = VertexBuffer::create(vertices, fmt);
 
 	auto cmdQueue  = CommandQueue::create();
 	auto cmdBuffer = CommandBuffer::create();
@@ -57,12 +54,11 @@ int main()
 		cmdBuffer->begin();
 		{
 			cmdBuffer->setClearColor({0, 0.3, 0, 0});
-			cmdBuffer->clear(ClearFlag::Color | ClearFlag::Depth);
+			cmdBuffer->clear(ClearFlag::Color);
 		}
 		cmdBuffer->end();
 		cmdQueue->submit(cmdBuffer);
 		vbo->bind();
-		vao.bind();
 		forword->use();
 		glDrawArrays(GL_TRIANGLES, 0, 3);
 
