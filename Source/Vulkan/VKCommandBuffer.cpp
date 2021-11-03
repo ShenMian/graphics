@@ -17,6 +17,14 @@ void VKCommandBuffer::setViewport(const Vector2i& origin, const Vector2i& size)
 {
 }
 
+void VKCommandBuffer::setVertexBuffer(std::shared_ptr<VertexBuffer> vertexBuffer)
+{
+}
+
+void VKCommandBuffer::setIndexBuffer(std::shared_ptr<IndexBuffer> indexBuffer)
+{
+}
+
 void VKCommandBuffer::clear(uint8_t flags)
 {
 }

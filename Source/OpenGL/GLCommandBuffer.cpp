@@ -31,6 +31,18 @@ void GLCommandBuffer::setViewport(const Vector2i& origin, const Vector2i& size)
 	cmd->size   = size;
 }
 
+void GLCommandBuffer::setVertexBuffer(std::shared_ptr<VertexBuffer> vertexBuffer)
+{
+	auto cmd = addCommand<GLCmdSetVertexBuffer>(GLOpcode::setVertexBuffer);
+	cmd->vertexBuffer = vertexBuffer;
+}
+
+void GLCommandBuffer::setIndexBuffer(std::shared_ptr<IndexBuffer> indexBuffer)
+{
+	auto cmd = addCommand<GLCmdSetIndexBuffer>(GLOpcode::setIndexBuffer);
+	cmd->indexBuffer = indexBuffer;
+}
+
 void GLCommandBuffer::clear(uint8_t flags)
 {
 	auto cmd   = addCommand<GLCmdClear>(GLOpcode::clear);

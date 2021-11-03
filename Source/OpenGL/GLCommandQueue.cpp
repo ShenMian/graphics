@@ -31,6 +31,20 @@ size_t GLCommandQueue::execute(GLOpcode opcode, const uint8_t* pc)
 		return sizeof(*args);
 	}
 
+	case GLOpcode::setVertexBuffer:
+	{
+		auto args = reinterpret_cast<const GLCmdSetVertexBuffer*>(pc);
+		args->vertexBuffer->bind();
+		return sizeof(*args);
+	}
+
+	case GLOpcode::setIndexBuffer:
+	{
+		auto args = reinterpret_cast<const GLCmdSetIndexBuffer*>(pc);
+		args->indexBuffer->bind();
+		return sizeof(*args);
+	}
+
 	case GLOpcode::clear:
 	{
 		auto args = reinterpret_cast<const GLCmdClear*>(pc);

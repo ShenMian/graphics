@@ -29,7 +29,7 @@ int main()
 	// model.load("../../3DModel/weapon/m4a1/m4a1.gltf");
 
 	std::vector<Vertex> vertices = {
-		{{0  ,   0.5}, {1, 0, 0}},
+		{{0,     0.5}, {1, 0, 0}},
 		{{0.5,  -0.5}, {0, 1, 0}},
 		{{-0.5, -0.5}, {0, 0, 1}}
 	};
@@ -55,12 +55,12 @@ int main()
 		{
 			cmdBuffer->setClearColor({0, 0.3, 0, 0});
 			cmdBuffer->clear(ClearFlag::Color);
+			cmdBuffer->setVertexBuffer(vbo);
 		}
 		cmdBuffer->end();
 		cmdQueue->submit(cmdBuffer);
-		vbo->bind();
 		forword->use();
-		glDrawArrays(GL_TRIANGLES, 0, 3);
+		glDrawArrays(GL_TRIANGLES, 0, vbo->getCount());
 
 		window.update();
 	}
