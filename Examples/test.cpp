@@ -5,7 +5,7 @@
 
 #include <glad/glad.h>
 
-struct Vertex_
+struct Vertex
 {
 	Vector2 position;
 	Vector3 color;
@@ -28,7 +28,7 @@ int main()
 	// model.load("../../3DModel/scene/SunTemple/SunTemple.fbx"); // 存在不支持格式的纹理资源
 	// model.load("../../3DModel/weapon/m4a1/m4a1.gltf");
 
-	std::vector<Vertex_> vertices = {
+	std::vector<Vertex> vertices = {
 		{{0  ,   0.5}, {1, 0, 0}},
 		{{0.5,  -0.5}, {0, 1, 0}},
 		{{-0.5, -0.5}, {0, 0, 1}}
@@ -38,7 +38,7 @@ int main()
 		{"position", Format::RG32F},
 		{"color", Format::RGB32F}
 	};
-	fmt.setStride(sizeof(Vertex_));
+	fmt.setStride(sizeof(Vertex));
 
 	auto vbo = VertexBuffer::create(vertices);
 
