@@ -5,10 +5,17 @@
 #include "GLRenderer.h"
 #include "../Image.h"
 #include "../Format.h"
+#include <cassert>
 #include <unordered_map>
 
 namespace
 {
+
+std::unordered_map<Texture::Type, GLenum> GLType = {
+	{Texture::Type::_2D, GL_TEXTURE_2D},
+	{Texture::Type::_3D, GL_TEXTURE_3D},
+	{Texture::Type::Cube, GL_TEXTURE_CUBE_MAP},
+};
 
 std::unordered_map<Texture::Filter, GLenum> GLFilter = {
 	{Texture::Filter::Nearest, GL_NEAREST},
@@ -81,10 +88,10 @@ uint32_t GLFormat(Format fmt)
 
 }
 
-GLTexture::GLTexture(const Image& image)
+GLTexture::GLTexture(const Image& image, Type type)
+	: Texture(type, ChannelsToFormat[image.getChannelCount()])
 {
-	format = ChannelsToFormat[image.getChannelCount()];
-	glTarget = GL_TEXTURE_2D;
+	glTarget = GLType[type];
 
 	glCreateTextures(glTarget, 1, &handle);
 	bind();
@@ -130,6 +137,15 @@ void GLTexture::setSWarp(Warp warp)
 
 void GLTexture::setTWarp(Warp warp)
 {
+	bind();
+	glTexParameteri(glTarget, GL_TEXTURE_WRAP_T, GLWarp[warp]);
+	GLCheckError();
+}
+
+void GLTexture::setRWarp(Warp warp)
+{
+	assert(type == Type::_3D);
+
 	bind();
 	glTexParameteri(glTarget, GL_TEXTURE_WRAP_T, GLWarp[warp]);
 	GLCheckError();

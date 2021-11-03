@@ -27,12 +27,21 @@ public:
 		MirrorRepeat // 镜像重复
 	};
 
+	// 纹理类型
+	enum class Type
+	{
+		_2D,
+		_3D,
+		Cube,
+	};
+
 	/**
 	 * @brief 从图像创建纹理.
 	 *
 	 * @param image 图像.
+	 * @param type  纹理类型.
 	 */
-	static std::shared_ptr<Texture> create(const Image& image);
+	static std::shared_ptr<Texture> create(const Image& image, Type type = Type::_2D);
 
 	virtual void bind(unsigned int slot = 0) = 0;
 
@@ -64,6 +73,23 @@ public:
 	 */
 	virtual void setTWarp(Warp warp) = 0;
 
+	/**
+	 * @brief 设置 R 环绕方式.
+	 *
+	 * @param warp 环绕方式.
+	 */
+	virtual void setRWarp(Warp warp) = 0;
+
+	/**
+	 * @brief 获取纹理类型.
+	 */
+	Type getType() const;
+
+	Format getFormat() const;
+
 protected:
+	Texture(Type type, Format fmt);
+
+	Type   type;
 	Format format;
 };

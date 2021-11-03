@@ -11,7 +11,7 @@ class GLTexture : public Texture
 public:
     using handle_type = unsigned int;
 
-	GLTexture(const Image& image);
+	GLTexture(const Image& image, Type type);
 	~GLTexture();
 
 	void bind(unsigned int slot = 0) override;
@@ -19,6 +19,7 @@ public:
 	void setMagFilter(Filter filter) override;
 	void setSWarp(Warp warp) override;
 	void setTWarp(Warp warp) override;
+	void setRWarp(Warp warp) override;
 	void generateMipmap();
 
 private:
