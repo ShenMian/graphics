@@ -76,7 +76,7 @@ size_t GLCommandQueue::execute(GLOpcode opcode, const uint8_t* pc)
 	case GLOpcode::draw:
 	{
 		const auto args = reinterpret_cast<const GLCmdDraw*>(pc);
-		glDrawArrays(GL_TRIANGLES, args->first, args->num);
+		glDrawArrays(GL_TRIANGLES, (GLsizei)args->first, (GLsizei)args->num);
 		return sizeof(*args);
 	}
 

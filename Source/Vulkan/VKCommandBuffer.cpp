@@ -41,6 +41,6 @@ void VKCommandBuffer::setClearStencil()
 {
 }
 
-void VKCommandBuffer::draw(uint32_t first, uint32_t num)
+void VKCommandBuffer::draw(size_t first, size_t num)
 {
 }

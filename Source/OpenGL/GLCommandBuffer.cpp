@@ -65,7 +65,7 @@ void GLCommandBuffer::setClearStencil()
 {
 }
 
-void GLCommandBuffer::draw(uint32_t first, uint32_t num)
+void GLCommandBuffer::draw(size_t first, size_t num)
 {
 	auto cmd = addCommand<GLCmdDraw>(GLOpcode::draw);
 	cmd->first = first;

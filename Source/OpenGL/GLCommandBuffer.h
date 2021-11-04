@@ -27,7 +27,7 @@ public:
 	void setClearDepth(float depth) override;
 	void setClearStencil() override;
 
-	void draw(uint32_t first, uint32_t num) override;
+	void draw(size_t first, size_t num) override;
 
 	const auto& getData() const;
 
@@ -100,6 +100,6 @@ struct GLCmdSetClearDepth
 
 struct GLCmdDraw
 {
-	uint32_t first;
-	uint32_t num;
+	size_t first;
+	size_t num;
 };
