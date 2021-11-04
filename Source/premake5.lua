@@ -10,6 +10,8 @@ project "Source"
   targetdir("%{wks.location}/build/" .. outputdir .. "/%{prj.name}/lib")
   objdir("%{wks.location}/build/" .. outputdir .. "/%{prj.name}/obj")
 
+  defines {"_CRT_SECURE_NO_WARNINGS"} -- stb_image_write.h
+
   files {"**.cpp", "**.hpp", "**.h", "**.inl", "premake5.lua"}
 
   includedirs {
@@ -24,8 +26,7 @@ project "Source"
   links {
     "glad",
     "glfw",
+    "assimp",
     "meshoptimizer",
-    "%{thirdparty.assimp}/build/lib/Debug/assimp-vc142-mtd",
     -- "%{thirdparty.vulkan}/lib/vulkan-1",
-    -- "%{thirdparty.openal}/lib/openal32",
   }

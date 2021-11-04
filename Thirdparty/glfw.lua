@@ -2,12 +2,12 @@ project "glfw"
 	kind "StaticLib"
 	language "C"
 	staticruntime "on"
+	warnings "Off"
 
 	targetdir("%{wks.location}/build/" .. outputdir .. "/%{prj.name}/lib")
 	objdir("%{wks.location}/build/" .. outputdir .. "/%{prj.name}/obj")
 
-	files
-	{
+	files {
 		"glfw/include/GLFW/glfw3.h",
 		"glfw/include/GLFW/glfw3native.h",
 		"glfw/src/glfw_config.h",
@@ -16,17 +16,17 @@ project "glfw"
 		"glfw/src/input.c",
 		"glfw/src/monitor.c",
 		"glfw/src/vulkan.c",
-		"glfw/src/window.c"
-	}
+		"glfw/src/window.c"}
 
 	links "msvcrtd"
 
 	filter "system:linux"
 		pic "On"
 		systemversion "latest"
+
+		defines {"_GLFW_X11"}
 		
-		files
-		{
+		files {
 			"glfw/src/platform.c",
 			"glfw/src/null_init.c",
 
@@ -36,32 +36,22 @@ project "glfw"
 			"glfw/src/xkb_unicode.c",
 			"glfw/src/glx_context.c",
 			"glfw/src/egl_context.c",
-			"glfw/src/osmesa_context.c"
-		}
-
-		defines
-		{
-			"_GLFW_X11"
-		}
+			"glfw/src/osmesa_context.c"}
 
 	filter "system:windows"
 		systemversion "latest"
 
-		files
-		{
+		defines { 
+			"_GLFW_WIN32",
+			"_CRT_SECURE_NO_WARNINGS"}
+
+		files {
 			"glfw/src/platform.c",
 			"glfw/src/null_*.c",
 			"glfw/src/win32_*.c",
 			"glfw/src/wgl_context.c",
 			"glfw/src/egl_context.c",
-			"glfw/src/osmesa_context.c"
-		}
-
-		defines 
-		{ 
-			"_GLFW_WIN32",
-			"_CRT_SECURE_NO_WARNINGS"
-		}
+			"glfw/src/osmesa_context.c"}
 
 	filter "configurations:Debug"
 		runtime "Debug"

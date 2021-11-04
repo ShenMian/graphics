@@ -3,8 +3,6 @@
 
 #include "Graphics.h"
 
-#include <glad/glad.h>
-
 struct Vertex
 {
 	Vector2 position;

@@ -15,9 +15,7 @@ project "Examples"
   includedirs {
     "../Source",
     "%{thirdparty.math}/include",
-    "%{thirdparty.glad}/include", -- debug
     "%{thirdparty.assimp}/include",
     "%{thirdparty.vulkan}/include"}
 
-  links {
-    "Source"}
+  links "Source"
