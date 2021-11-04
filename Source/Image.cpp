@@ -4,7 +4,7 @@
 #include "Image.h"
 #include <format>
 
-#define STB_IMAGE_IMPLEMENTATION
+// #define STB_IMAGE_IMPLEMENTATION // 防止和 assimp 内的 stb 重定义
 #include "stb_image.h"
 
 #define STB_IMAGE_WRITE_IMPLEMENTATION
