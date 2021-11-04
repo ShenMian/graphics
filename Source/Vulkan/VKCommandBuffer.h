@@ -20,4 +20,6 @@ public:
 	void setClearColor(const Vector4& color) override;
 	void setClearDepth(float depth) override;
 	void setClearStencil() override;
+
+	void draw(uint32_t first, uint32_t num) override;
 };

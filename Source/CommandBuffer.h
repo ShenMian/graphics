@@ -51,6 +51,8 @@ public:
 	virtual void setClearDepth(float depth) = 0;
 	virtual void setClearStencil() = 0;
 
+	virtual void draw(uint32_t first, uint32_t num) = 0;
+
 private:
 	std::shared_ptr<Program> program;
 };

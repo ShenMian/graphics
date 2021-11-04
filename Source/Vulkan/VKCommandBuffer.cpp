@@ -40,3 +40,7 @@ void VKCommandBuffer::setClearDepth(float depth)
 void VKCommandBuffer::setClearStencil()
 {
 }
+
+void VKCommandBuffer::draw(uint32_t first, uint32_t num)
+{
+}

@@ -65,6 +65,13 @@ void GLCommandBuffer::setClearStencil()
 {
 }
 
+void GLCommandBuffer::draw(uint32_t first, uint32_t num)
+{
+	auto cmd = addCommand<GLCmdDraw>(GLOpcode::draw);
+	cmd->first = first;
+	cmd->num   = num;
+}
+
 void GLCommandBuffer::addCommand(GLOpcode opcode)
 {
 	buffer.push_back(static_cast<uint8_t>(opcode));

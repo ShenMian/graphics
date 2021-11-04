@@ -21,7 +21,8 @@ std::unordered_map<Format, GLenum> GLType = {
 	{Format::RGBA32F, GL_FLOAT},
 };
 
-std::unordered_map<Format, GLenum> GLCount = {
+// TODO: FormatAttribute
+std::unordered_map<Format, GLenum> Components = {
 	{Format::R16F, 1},
 	{Format::RG16F, 2},
 	{Format::RGB16F, 3},
@@ -55,7 +56,7 @@ void GLVertexArray::build(const VertexFormat& fmt)
 	for(const auto& attr : fmt.getAttributes())
 	{
 		glEnableVertexAttribArray(attribIndex);
-		glVertexAttribPointer(attribIndex, GLCount[attr.format], GLType[attr.format], attr.normalized,
+		glVertexAttribPointer(attribIndex, Components[attr.format], GLType[attr.format], attr.normalized,
 			static_cast<GLsizei>(fmt.getStride()),
 			reinterpret_cast<const void*>(attr.offset));
 		attribIndex++;
