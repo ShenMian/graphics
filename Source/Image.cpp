@@ -32,10 +32,10 @@ void Image::loadFromFile(const std::filesystem::path& path)
     stbi_image_free(pixels);
 }
 
-void Image::loadFromMemory(const void* data, size_t len, Vector2i size)
+void Image::loadFromMemory(const void* data, size_t dataSize, Vector2i size)
 {
     this->size = size;
-    this->data.resize(len);
+    this->data.resize(dataSize);
     std::memcpy(this->data.data(), data, this->data.size());
     this->data.shrink_to_fit();
 }

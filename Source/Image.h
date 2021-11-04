@@ -34,7 +34,7 @@ public:
    *
    * @warning 图片尺寸需要提前指定.
    */
-  void loadFromMemory(const void* data, size_t len, Vector2i size);
+  void loadFromMemory(const void* data, size_t dataSize, Vector2i size);
 
   /**
    * @brief 导出图像到文件.
