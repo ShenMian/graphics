@@ -24,3 +24,18 @@ enum class Format
     Stencil,
     DepthStencil
 };
+
+enum class DataType
+{
+    Int8,
+    Int16,
+    Int32,
+
+    Uint8,
+    Uint16,
+    Uint32,
+
+    Float16,
+    Float32,
+    Float64
+};
