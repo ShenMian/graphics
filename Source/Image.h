@@ -44,6 +44,16 @@ public:
   void saveToFile(const std::filesystem::path& path) const;
 
   /**
+   * @brief 水平(左右)翻转.
+   */
+  void flipHorizontally();
+
+  /**
+   * @brief 垂直(上下)翻转.
+   */
+  void flipVertically();
+
+  /**
    * @brief 获取图像数据.
    */
   uint8_t* getData();

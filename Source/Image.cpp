@@ -68,6 +68,41 @@ void Image::saveToFile(const std::filesystem::path& path) const
         assert(false); // 不支持的导出格式
 }
 
+void Image::flipHorizontally()
+{
+    const auto rowSize = size.x * channels;
+
+    for(size_t y = 0; y < size.y; y++)
+    {
+        auto left = data.begin() + y * rowSize;
+        auto right = data.begin() + (y + 1) * rowSize - channels;
+
+        for(size_t x = 0; x < size.x / 2; x++)
+        {
+            std::swap_ranges(left, left + channels, right);
+
+            left += channels;
+            right -= channels;
+        }
+    }
+}
+
+void Image::flipVertically()
+{
+    const auto rowSize = size.x * channels;
+
+    auto top = data.begin();
+    auto bottom = data.end() - rowSize;
+
+    for(size_t y = 0; y < size.y / 2; y++)
+    {
+        std::swap_ranges(top, top + rowSize, bottom);
+
+        top += rowSize;
+        bottom -= rowSize;
+    }
+}
+
 uint8_t* Image::getData()
 {
     return data.data();
