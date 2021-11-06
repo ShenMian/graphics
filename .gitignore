@@ -5,6 +5,7 @@
 
 # Makefile
 Makefile
+*.make
 
 # Visual Studio
 *.sln
