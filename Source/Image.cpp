@@ -21,9 +21,10 @@ void Image::loadFromFile(const std::filesystem::path& path)
 {
     if(!fs::exists(path) && !fs::is_regular_file(path))
         throw std::exception("no such file or directory");
-
+    
     // stbi_set_flip_vertically_on_load(1);
-    auto pixels = stbi_load(path.string().c_str(), &size.x, &size.y, &channels, 0);
+    auto pixels = stbi_load(path.string().c_str(), reinterpret_cast<int*>(&size.x),
+        reinterpret_cast<int*>(&size.y), &channels, 0);
     if(pixels == nullptr)
         throw std::exception(std::format("can't load image from file: '{}'", path.string()).c_str());
 
@@ -32,7 +33,7 @@ void Image::loadFromFile(const std::filesystem::path& path)
     stbi_image_free(pixels);
 }
 
-void Image::loadFromMemory(const void* data, size_t dataSize, Vector2i size)
+void Image::loadFromMemory(const void* data, size_t dataSize, Size2 size)
 {
     this->size = size;
     this->data.resize(dataSize);
@@ -66,6 +67,23 @@ void Image::saveToFile(const std::filesystem::path& path) const
     }
     else
         assert(false); // 不支持的导出格式
+}
+
+void Image::setPixel(Vector4f color, Size2 pos)
+{
+    assert(pos.x < size.x && pos.y < size.y);
+    auto pixel = &data[(pos.y * size.x + pos.x) * channels];
+    *pixel++ = color.r * 255;
+    *pixel++ = color.g * 255;
+    *pixel++ = color.b * 255;
+    *pixel++ = color.a * 255;
+}
+
+Vector4f Image::getPixel(Size2 pos) const
+{
+    assert(pos.x < size.x && pos.y < size.y);
+    const auto pixel = &data[(pos.y * size.x + pos.x) * channels];
+    return {pixel[0] / 255.f, pixel[1] / 255.f, pixel[2] / 255.f, pixel[3] / 255.f};
 }
 
 void Image::flipHorizontally()
@@ -113,7 +131,12 @@ const uint8_t* Image::getData() const
     return data.data();
 }
 
-Vector2i Image::getSize() const
+size_t Image::getDataSize() const
+{
+    return data.size();
+}
+
+Size2 Image::getSize() const
 {
     return size;
 }
