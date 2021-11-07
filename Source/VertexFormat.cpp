@@ -8,10 +8,10 @@ namespace
 {
 
 std::unordered_map<Format, size_t> sizeOf = {
-	{Format::R8F, 4},
-	{Format::RG8F, 4 * 2},
-	{Format::RGB8F, 4 * 3},
-	{Format::RGBA8F, 4 * 4}
+	{Format::R32F, 4},
+	{Format::RG32F, 4 * 2},
+	{Format::RGB32F, 4 * 3},
+	{Format::RGBA32F, 4 * 4}
 };
 
 }
