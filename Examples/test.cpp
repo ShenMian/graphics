@@ -52,7 +52,7 @@ int main()
 		forword->use();
 		cmdBuffer->begin();
 		{
-			cmdBuffer->setClearColor({0, 0.3, 0, 0});
+			cmdBuffer->setClearColor({0, 0.3f, 0, 0});
 			cmdBuffer->clear(ClearFlag::Color);
 			cmdBuffer->setVertexBuffer(vbo);
 			cmdBuffer->draw(0, vbo->getCount());
