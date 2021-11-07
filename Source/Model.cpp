@@ -64,12 +64,12 @@ void loadVertices(std::vector<Vertex>& vertices, aiMesh* mesh)
 		if(mesh->HasNormals())
 			std::memcpy(&vertex.normal, &mesh->mNormals[i], sizeof(vertex.normal));
 
+		// 获取 UV 坐标(纹理坐标)
 		if(mesh->mTextureCoords[0])
-		{
-			std::memcpy(&vertex.uv, &mesh->mTextureCoords[0][i], sizeof(vertex.uv));         // 获取 UV 坐标(纹理坐标)
-			std::memcpy(&vertex.tangent, &mesh->mTangents[i], sizeof(vertex.tangent));       // 获取 tangent
-			std::memcpy(&vertex.bitangent, &mesh->mBitangents[i], sizeof(vertex.bitangent)); // 获取 bitangent
-		}
+			std::memcpy(&vertex.uv, &mesh->mTextureCoords[0][i], sizeof(vertex.uv));
+
+		std::memcpy(&vertex.tangent, &mesh->mTangents[i], sizeof(vertex.tangent));       // 获取 tangent
+		std::memcpy(&vertex.bitangent, &mesh->mBitangents[i], sizeof(vertex.bitangent)); // 获取 bitangent
 
 		vertices.push_back(vertex);
 	}
