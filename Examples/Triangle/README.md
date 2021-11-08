@@ -50,7 +50,7 @@ auto vbo = VertexBuffer::create(vertices, format);
 
 ## 着色器
 从指定的位置寻找源文件并创建着色器程序.
-```
+```cpp
 auto program = Program::create("Shaders/forword");
 ```
 这行代码会找到 [Shaders](Shaders) 文件夹下了两个源文件, 分别是 [forword.vert.glsl](Shaders/forword.vert.glsl)(顶点着色器源文件) 和 [forword.frag.glsl](Shaders/forword.frag.glsl)(片段着色器源文件). 将其编译并链接为着色器程序.
