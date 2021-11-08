@@ -11,10 +11,12 @@ struct Vertex
 
 int main()
 {
-	Window::init(); // 初始化窗口
+	Window::init();
 
-	Window window("Triangle", {960, 540}); // 创建一个标题为 Triangle, 大小为 960x540 像素的窗口 (并初始化 glad)
-	window.setVisible(true);               // 设置窗口可见
+	Window window("Triangle", {960, 540});
+	window.setVisible(true); // 设置窗口可见
+
+	Renderer::setAPI(Renderer::API::OpenGL); // 设置渲染 API 为 OpenGL
 
 	// 打印基本信息
 	const auto renderer = Renderer::get();
@@ -22,23 +24,21 @@ int main()
 	puts(std::format("Renderer: {}", renderer->getRendererName()).c_str());
 	puts(std::format("Vendor:   {}", renderer->getVendorName()).c_str());
 
-	// 创建顶点数据, 一个有三种颜色的三角形
 	const std::vector<Vertex> vertices = {
 		{{0,     0.5}, {1, 0, 0}},
 		{{0.5,  -0.5}, {0, 1, 0}},
 		{{-0.5, -0.5}, {0, 0, 1}}
 	};
 
-	// 创建顶点数据格式
 	VertexFormat format = {
 		{"position", Format::RG32F},
 		{"color", Format::RGB32F}
 	};
-	format.setStride(sizeof(Vertex)); // 设置每个顶点数据的大小
+	format.setStride(sizeof(Vertex));
 
-	auto vbo = VertexBuffer::create(vertices, format); // 创建顶点缓冲区
+	auto vbo = VertexBuffer::create(vertices, format);
 
-	auto forword = Program::create("Shaders/forword"); // 从源文件创建着色器程序
+	auto program = Program::create("Shaders/forword");
 
 	auto cmdQueue  = CommandQueue::create();
 	auto cmdBuffer = CommandBuffer::create();
@@ -47,7 +47,7 @@ int main()
 	window.onClose = [&]() { running = false; };
 	while(running)
 	{
-		forword->use();
+		program->use();
 		cmdBuffer->begin();
 		{
 			cmdBuffer->setClearColor({0, 0, 0, 0});
