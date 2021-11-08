@@ -3,6 +3,7 @@
 
 #include "VertexFormat.h"
 #include <unordered_map>
+#include <cassert>
 
 namespace
 {
@@ -18,6 +19,7 @@ std::unordered_map<Format, size_t> sizeOf = {
 
 size_t VertexFormat::Attribute::getSize() const
 {
+	assert(sizeOf.contains(format));
 	return sizeOf[format];
 }
 

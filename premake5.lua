@@ -39,11 +39,15 @@ thirdparty["meshoptimizer"] = "%{wks.location}/Thirdparty/meshoptimizer"
 outputdir = "%{cfg.system}-%{cfg.architecture}-%{cfg.buildcfg}"
 
 include "Source"
-include "Examples"
+
+group "Examples"
+  include "Examples/Triangle"
+  include "Examples/Test"
+group ""
 
 group "Thirdparty"
   include "Thirdparty/glad"
   include "Thirdparty/glfw"
   include "Thirdparty/meshoptimizer"
   include "Thirdparty/assimp"
-group""
+group ""

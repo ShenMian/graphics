@@ -1,7 +1,7 @@
 -- Copyright 2021 SMS
 -- License(Apache-2.0)
 
-project "Examples"
+project "Test"
   kind "ConsoleApp"
   language "C++"
   cppdialect "C++latest"
@@ -13,7 +13,7 @@ project "Examples"
   files {"**.cpp", "**.hpp", "**.h", "**.inl", "premake5.lua"}
 
   includedirs {
-    "../Source",
+    "%{wks.location}/Source",
     "%{thirdparty.math}/include",
     "%{thirdparty.assimp}/include",
     "%{thirdparty.vulkan}/include"}
