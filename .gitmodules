@@ -16,3 +16,6 @@
 [submodule "Thirdparty/Math"]
 	path = Thirdparty/Math
 	url = https://github.com/ShenMian/Math
+[submodule "Thirdparty/shaderc"]
+	path = Thirdparty/shaderc
+	url = https://github.com/google/shaderc.git
