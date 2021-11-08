@@ -164,7 +164,7 @@ void Model::loadMesh(aiMesh* mesh)
 
 	optimize(indices, vertices);
 
-	VertexFormat fmt = {
+	VertexFormat format = {
 		{"position", Format::RGB32F},
 		{"normal", Format::RGB32F},
 		{"uv", Format::RG32F},
@@ -172,7 +172,7 @@ void Model::loadMesh(aiMesh* mesh)
 		{"bitangent", Format::RGB32F},
 	};
 
-	auto vertexBuffer = VertexBuffer::create(vertices, fmt);
+	auto vertexBuffer = VertexBuffer::create(vertices, format);
 	auto indexBuffer  = IndexBuffer::create(indices);
 
 	std::string name = mesh->mName.C_Str();
@@ -181,9 +181,11 @@ void Model::loadMesh(aiMesh* mesh)
 	// for(auto& vertex : vertices)
 	// mesh->mAABB;
 
+	// vertices 应该由 Model 管理, 传递给 Mesh 构造函数. Mesh 在已有的基础上继续添加顶点数据.
+
 	meshs.emplace_back(name, vertexBuffer, indexBuffer);
 
-	loadMaterial(&meshs.back(), mesh);
+	// loadMaterial(&meshs.back(), mesh);
 }
 
 void Model::loadMaterial(Mesh* mesh, aiMesh* aiMesh)
