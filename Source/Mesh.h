@@ -18,10 +18,13 @@ public:
 
 	const std::string& getName() const;
 
+	std::shared_ptr<VertexBuffer> getVertexBuffer() const;
+	std::shared_ptr<IndexBuffer>  getIndexBuffer() const;
+
 	Material material;
 
 private:
 	std::string                   name;
-	std::shared_ptr<IndexBuffer>  indexBuffer;
 	std::shared_ptr<VertexBuffer> vertexBuffer;
+	std::shared_ptr<IndexBuffer>  indexBuffer;
 };

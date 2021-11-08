@@ -12,3 +12,13 @@ const std::string& Mesh::getName() const
 {
 	return name;
 }
+
+std::shared_ptr<VertexBuffer> Mesh::getVertexBuffer() const
+{
+	return vertexBuffer;
+}
+
+std::shared_ptr<IndexBuffer> Mesh::getIndexBuffer() const
+{
+	return indexBuffer;
+}
