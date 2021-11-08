@@ -38,7 +38,7 @@ int main()
 
 	auto vbo = VertexBuffer::create(vertices, format); // 创建顶点缓冲区
 
-	auto forword = Program::create("Shaders/forword"); // 从源文件创建着色器(Shader)程序
+	auto forword = Program::create("Shaders/forword"); // 从源文件创建着色器程序
 
 	auto cmdQueue  = CommandQueue::create();
 	auto cmdBuffer = CommandBuffer::create();

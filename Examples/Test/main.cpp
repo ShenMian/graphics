@@ -13,19 +13,20 @@ int main()
 {
 	Window::init();
 
-	Window window("Example", {1920 / 2, 1080 / 2});
-	window.setVisible(true);
+	Window window("Example", {960, 540}); // 创建一个标题为 Example, 大小为 960x540 像素的窗口 (并初始化 glad)
+	window.setVisible(true);              // 设置窗口可见
 
+	// 打印基本信息
 	auto renderer = Renderer::get();
 	puts(std::format("Device:   {}", renderer->getDeviceName()).c_str());
 	puts(std::format("Renderer: {}", renderer->getRendererName()).c_str());
 	puts(std::format("Vendor:   {}", renderer->getVendorName()).c_str());
 
-	auto forword = Program::create("Shaders/forword");
+	auto forword = Program::create("Shaders/forword"); // 从源文件创建着色器程序
 
 	Model model;
 	model.load("../../../3DModel/scene/Crytek_Sponza/sponza.obj");
-	// model.load("../../../3DModel/scene/SunTemple/SunTemple.fbx"); // 存在不支持格式的纹理资源
+	// model.load("../../../3DModel/scene/SunTemple/SunTemple.fbx"); // 暂不支持格式的压缩纹理资源
 	// model.load("../../../3DModel/weapon/m4a1/m4a1.gltf");
 
 	auto cmdQueue  = CommandQueue::create();
