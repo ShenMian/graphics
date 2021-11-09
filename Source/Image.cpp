@@ -33,7 +33,7 @@ void Image::loadFromFile(const std::filesystem::path& path)
     stbi_image_free(pixels);
 }
 
-void Image::loadFromMemory(const void* data, size_t dataSize, Size2 size)
+void Image::loadFromMemory(const void* data, size_t dataSize, Vector2i size)
 {
     this->size = size;
     this->data.resize(dataSize);
@@ -73,10 +73,10 @@ void Image::setPixel(Vector4f color, Size2 pos)
 {
     assert(pos.x < size.x && pos.y < size.y);
     auto pixel = &data[(pos.y * size.x + pos.x) * channels];
-    *pixel++ = color.r * 255;
-    *pixel++ = color.g * 255;
-    *pixel++ = color.b * 255;
-    *pixel++ = color.a * 255;
+    *pixel++ = (uint8_t)(color.r * 255);
+    *pixel++ = (uint8_t)(color.g * 255);
+    *pixel++ = (uint8_t)(color.b * 255);
+    *pixel++ = (uint8_t)(color.a * 255);
 }
 
 Vector4f Image::getPixel(Size2 pos) const
@@ -136,7 +136,7 @@ size_t Image::getDataSize() const
     return data.size();
 }
 
-Size2 Image::getSize() const
+Vector2i Image::getSize() const
 {
     return size;
 }

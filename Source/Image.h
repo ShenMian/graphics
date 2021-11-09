@@ -35,7 +35,7 @@ public:
    *
    * @warning 图片尺寸需要提前指定.
    */
-  void loadFromMemory(const void* data, size_t dataSize, Size2 size);
+  void loadFromMemory(const void* data, size_t dataSize, Vector2i size);
 
   /**
    * @brief 导出图像到文件.
@@ -82,7 +82,7 @@ public:
   /**
    * @brief 获取图像分辨率.
    */
-  Size2 getSize() const;
+  Vector2i getSize() const;
 
   /**
    * @brief 获取通道数.
@@ -91,6 +91,6 @@ public:
 
 private:
 	std::vector<uint8_t> data;
-	Size2                size;
+	Vector2i             size;
 	int                  channels = 0;
 };
