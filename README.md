@@ -4,4 +4,4 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/422b087dd2534010ba3d005c39ec0567)](https://www.codacy.com/gh/ShenMian/Graphics/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ShenMian/Graphics&amp;utm_campaign=Badge_Grade)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FShenMian%2FGraphics.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FShenMian%2FGraphics?ref=badge_shield)
 
-A simple cross-platform graphics library.
+A simple abstraction layer for the modern graphics APIs.
