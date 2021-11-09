@@ -19,3 +19,12 @@
 [submodule "Thirdparty/shaderc"]
 	path = Thirdparty/shaderc
 	url = https://github.com/google/shaderc.git
+[submodule "Thirdparty/glslang"]
+	path = Thirdparty/glslang
+	url = https://github.com/KhronosGroup/glslang.git
+[submodule "Thirdparty/SPIRV-Tools"]
+	path = Thirdparty/SPIRV-Tools
+	url = https://github.com/KhronosGroup/SPIRV-Tools.git
+[submodule "Thirdparty/SPIRV-Headers"]
+	path = Thirdparty/SPIRV-Headers
+	url = https://github.com/KhronosGroup/SPIRV-Headers

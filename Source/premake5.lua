@@ -20,6 +20,7 @@ project "Source"
     "%{thirdparty.glad}/include",
     "%{thirdparty.glfw}/include",
     "%{thirdparty.assimp}/include",
+    -- "%{thirdparty.shaderc}/libshaderc/include",
     "%{thirdparty.vulkan}/include",
     "%{thirdparty.meshoptimizer}/src"}
 
@@ -28,5 +29,6 @@ project "Source"
     "glfw",
     "assimp",
     "meshoptimizer",
+    -- "shaderc"
     -- "%{thirdparty.vulkan}/lib/vulkan-1",
   }
