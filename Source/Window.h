@@ -84,6 +84,18 @@ public:
 	bool isVisible() const noexcept;
 
 	/**
+	 * @brief 设置窗口是否全屏.
+	 *
+	 * @param fullscreen true 为全屏, false 为窗口.
+	 */
+	void setFullscreen(bool fullscreen);
+
+	/**
+	 * @brief 是否处于全屏模式.
+	 */
+	bool isFullscreen() const noexcept;
+
+	/**
 	 * @brief 设置是否开启垂直同步.
 	 *
 	 * @param enable true 为开启, false 为关闭.
@@ -116,4 +128,7 @@ private:
 	void setupCallbacks();
 
 	GLFWwindow* handle;
+
+	Vector2i size;
+	Vector2i position;
 };

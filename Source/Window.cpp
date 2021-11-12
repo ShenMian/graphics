@@ -14,11 +14,8 @@ Window::Window(const std::string& title, Vector2i size, bool fullscreen)
     auto       monitor   = glfwGetPrimaryMonitor();
     const auto videoMode = glfwGetVideoMode(monitor);
 
-    // TODO: 支持全屏分辨率调节
-    if(fullscreen)
-        handle = glfwCreateWindow(videoMode->width, videoMode->height, title.c_str(), monitor, nullptr);
-    else
-        handle = glfwCreateWindow(size.x, size.y, title.c_str(), nullptr, nullptr);
+    handle = glfwCreateWindow(size.x, size.y, title.c_str(), fullscreen ? monitor : nullptr, nullptr);
+    // videoMode->width, videoMode->height
 
     // TODO: OpenGL/Glad 相关代码, 转移到合适的位置
     glfwMakeContextCurrent(handle);
@@ -44,6 +41,12 @@ Window::~Window()
 
 void Window::update()
 {
+    // debug
+    if(glfwGetKey(handle, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+        exit(0);
+    if(glfwGetKey(handle, GLFW_KEY_F11) == GLFW_PRESS)
+        setFullscreen(!isFullscreen());
+
     glfwSwapBuffers(handle);
     glfwPollEvents();
 }
@@ -88,6 +91,23 @@ void Window::setVisible(bool visible) noexcept
 bool Window::isVisible() const noexcept
 {
     return glfwGetWindowAttrib(handle, GLFW_VISIBLE);
+}
+
+void Window::setFullscreen(bool fullscreen)
+{
+    if(fullscreen)
+    {
+        size     = getSize();
+        position = getPosition();
+    }
+
+	auto monitor = glfwGetPrimaryMonitor();
+    glfwSetWindowMonitor(handle, fullscreen ? monitor : nullptr, position.x, position.y, size.x, size.y, 0);
+}
+
+bool Window::isFullscreen() const noexcept
+{
+    return glfwGetWindowMonitor(handle) != nullptr;
 }
 
 void Window::setSync(bool enable) noexcept
