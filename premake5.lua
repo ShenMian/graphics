@@ -10,7 +10,7 @@ workspace "Graphics"
     flags "MultiProcessorCompile"
 
     solution_items {
-        ".clang-format",
+        ".editorconfig",
         "README.md",
         "premake5.lua"}
 
