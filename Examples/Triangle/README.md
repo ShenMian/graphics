@@ -2,7 +2,7 @@
 
 该例子渲染了单个三角形.
 
-![](screenshot.png)
+<p align="center"><img src="screenshot.png"/></p>
 
 代码大致可以分为一下几个步骤.
 
