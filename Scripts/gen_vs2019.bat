@@ -7,7 +7,7 @@ pushd %~dp0\..
 if not exist Graphics.sln set firstGenerate=true
 
 REM 生成VS解决方案
-Thirdparty\premake\bin\premake5.exe vs2019
+ThirdParty\premake\bin\premake5.exe vs2019
 if errorlevel 1 pause
 
 REM 打开解决方案

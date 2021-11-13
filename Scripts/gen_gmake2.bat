@@ -5,6 +5,6 @@ REM License(Apache-2.0)
 REM 切换到主目录
 pushd %~dp0\..
 
-Thirdparty\premake\bin\premake5.exe gmake2
+ThirdParty\premake\bin\premake5.exe gmake2
 
 popd
