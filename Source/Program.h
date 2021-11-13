@@ -7,6 +7,9 @@
 #include <string>
 #include <unordered_map>
 
+/**
+ * @brief 着色器程序.
+ */
 class Program
 {
 public:

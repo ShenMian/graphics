@@ -9,6 +9,9 @@
 #include <filesystem>
 #include <vector>
 
+/**
+ * @brief 图像.
+ */
 class Image
 {
 public:

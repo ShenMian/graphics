@@ -6,6 +6,9 @@
 #include <memory>
 #include <vector>
 
+/**
+ * @brief 索引缓冲区.
+ */
 class IndexBuffer
 {
 public:

@@ -7,6 +7,9 @@
 #include <initializer_list>
 #include <vector>
 
+/**
+ * @brief 顶点格式.
+ */
 class VertexFormat
 {
 public:

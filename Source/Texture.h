@@ -8,6 +8,9 @@
 
 class Image;
 
+/**
+ * @brief 纹理.
+ */
 class Texture
 {
 public:

@@ -5,6 +5,9 @@
 
 #include <chrono>
 
+/**
+ * @brief 计时器.
+ */
 class Timer
 {
 public:

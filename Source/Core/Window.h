@@ -1,4 +1,4 @@
-﻿// Copyright 2021 SMS
+// Copyright 2021 SMS
 // License(Apache-2.0)
 
 #pragma once
@@ -12,6 +12,9 @@ struct GLFWwindow;
 
 class Image;
 
+/**
+ * @brief 窗体.
+ */
 class Window
 {
 public:
@@ -114,12 +117,12 @@ public:
 	 */
 	void* getNativeHandle() const;
 
-	std::function<void(Vector2i)>         onResize;    // 窗口大小变化时回调
-	std::function<void(bool)>             onFocus;     // 窗口获取/失去焦点回调
-	std::function<void()>                 onClose;     // 窗口关闭按钮按下回调
-	std::function<void(int, int)>         onKey;       // 键盘按键回调
-	std::function<void(double, double)>   onScroll;    // 鼠标滚轮滚动回调
-	std::function<void(double, double)>   onMouseMove; // 鼠标移动回调
+	std::function<void(Vector2i)>         onResize;    ///< 窗口大小变化时回调
+	std::function<void(bool)>             onFocus;     ///< 窗口获取/失去焦点回调
+	std::function<void()>                 onClose;     ///< 窗口关闭按钮按下回调
+	std::function<void(int, int)>         onKey;       ///< 键盘按键回调
+	std::function<void(double, double)>   onScroll;    ///< 鼠标滚轮滚动回调
+	std::function<void(double, double)>   onMouseMove; ///< 鼠标移动回调
 
 	static void init();
 	static void deinit();

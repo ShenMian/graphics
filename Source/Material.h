@@ -6,6 +6,9 @@
 #include "Texture.h"
 #include <string>
 
+/**
+ * @brief 材质.
+ */
 class Material
 {
 public:

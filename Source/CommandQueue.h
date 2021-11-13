@@ -6,6 +6,9 @@
 #include "CommandBuffer.h"
 #include <memory>
 
+/**
+ * @brief 命令队列.
+ */
 class CommandQueue
 {
 public:

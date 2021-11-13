@@ -9,6 +9,9 @@
 #include <memory>
 #include <vector>
 
+/**
+ * @brief 顶点缓冲区.
+ */
 class VertexBuffer
 {
 public:

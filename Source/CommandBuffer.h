@@ -20,6 +20,9 @@ struct ClearFlag
 	};
 };
 
+/**
+ * @brief 命令缓冲区.
+ */
 class CommandBuffer
 {
 public:
