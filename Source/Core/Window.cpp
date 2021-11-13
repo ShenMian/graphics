@@ -1,9 +1,10 @@
-// Copyright 2021 SMS
+ï»¿// Copyright 2021 SMS
 // License(Apache-2.0)
 
 #include "Window.h"
 #include "Image.h"
 #include <cassert>
+#include <format>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
@@ -15,9 +16,8 @@ Window::Window(const std::string& title, Vector2i size, bool fullscreen)
     const auto videoMode = glfwGetVideoMode(monitor);
 
     handle = glfwCreateWindow(size.x, size.y, title.c_str(), fullscreen ? monitor : nullptr, nullptr);
-    // videoMode->width, videoMode->height
 
-    // TODO: OpenGL/Glad Ïà¹Ø´úÂë, ×ªÒÆµ½ºÏÊÊµÄÎ»ÖÃ
+    // TODO: OpenGL/Glad ç›¸å…³ä»£ç , è½¬ç§»åˆ°åˆé€‚çš„ä½ç½®
     glfwMakeContextCurrent(handle);
     static auto ret = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
     if(!ret)
@@ -27,7 +27,7 @@ Window::Window(const std::string& title, Vector2i size, bool fullscreen)
 
     // glfwSetInputMode(handle, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
-    // ¿ªÆô MASS ¿¹¾â³İ
+    // å¼€å¯ MASS æŠ—é”¯é½¿
     // glfwWindowHint(GLFW_SAMPLES, 2);
     // glEnable(GL_MULTISAMPLE);
 
@@ -199,7 +199,7 @@ void Window::init()
     auto ret = glfwInit();
     if(!ret)
         throw std::exception("GLFW init failed");
-    glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE); // ´´½¨ĞÂ´°¿ÚÄ¬ÈÏ²»¿É¼û
+    glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE); // åˆ›å»ºæ–°çª—å£é»˜è®¤ä¸å¯è§
 }
 
 void Window::deinit()

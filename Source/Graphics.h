@@ -11,7 +11,7 @@
 
 #include "Model.h"
 
-#include "Window.h"
-
-#include "Image.h"
-#include "Timer.hpp"
+#include "Core/Window.h"
+#include "Core/Monitor.h"
+#include "Core/Image.h"
+#include "Core/Timer.hpp"

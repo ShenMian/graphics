@@ -12,8 +12,16 @@ struct Vertex
 int main()
 {
 	Window::init();
+	Monitor::init();
 
-	Window window("Triangle", {960, 540});
+	for(const auto& mon : Monitor::getMonitors())
+	{
+		puts("Monitor");
+		puts(std::format("|-Size         : {}x{}", mon.getSize().x, mon.getSize().y).c_str());
+		puts(std::format("`-Refresh rate : {} Hz", mon.getRefreshRate()).c_str());
+	}
+
+	Window window("Triangle", Monitor::getPrimary().getSize() / 2);
 	window.setVisible(true); // 设置窗口可见
 
 	Renderer::setAPI(Renderer::API::OpenGL); // 设置渲染 API 为 OpenGL
@@ -61,6 +69,9 @@ int main()
 
 		window.update();
 	}
+
+	Monitor::deinit();
+	Window::deinit();
 
 	return 0;
 }

@@ -14,7 +14,6 @@ int main()
 	Window::init();
 
 	Window window("Example", {960, 540}); // 创建一个标题为 Example, 大小为 960x540 像素的窗口 (并初始化 glad)
-	window.setVisible(true);              // 设置窗口可见
 
 	// 打印基本信息
 	auto renderer = Renderer::get();
@@ -28,6 +27,8 @@ int main()
 	model.load("../../../3DModel/scene/Crytek_Sponza/sponza.obj");
 	// model.load("../../../3DModel/scene/SunTemple/SunTemple.fbx"); // 暂不支持格式的压缩纹理资源
 	// model.load("../../../3DModel/weapon/m4a1/m4a1.gltf");
+
+	window.setVisible(true); // 设置窗口可见
 
 	auto cmdQueue  = CommandQueue::create();
 	auto cmdBuffer = CommandBuffer::create();

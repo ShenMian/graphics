@@ -4,28 +4,28 @@
 include "Thirdparty/premake/solution_items.lua"
 
 workspace "Graphics"
-  architecture "x86_64"
-  -- startproject ""
-  configurations {"Debug", "Release"}
-  flags "MultiProcessorCompile"
+    architecture "x86_64"
+    -- startproject ""
+    configurations {"Debug", "Release"}
+    flags "MultiProcessorCompile"
 
-  solution_items {
-    ".clang-format",
-    "README.md",
-    "premake5.lua"}
+    solution_items {
+        ".clang-format",
+        "README.md",
+        "premake5.lua"}
 
-  filter "configurations:Debug"
-    defines "DEBUG"
-    runtime "Debug"
-    symbols "on"
+    filter "configurations:Debug"
+        defines "DEBUG"
+        runtime "Debug"
+        symbols "on"
 
-  filter "configurations:Release"
-    defines "NDEBUG"
-    runtime "Release"
-    optimize "on"
+    filter "configurations:Release"
+        defines "NDEBUG"
+        runtime "Release"
+        optimize "on"
 
-  filter "system:linux"
-      linkoptions "-pthread"
+    filter "system:linux"
+        linkoptions "-pthread"
 
 thirdparty = {}
 thirdparty["stb"] = "%{wks.location}/Thirdparty/stb"
@@ -45,16 +45,16 @@ outputdir = "%{cfg.system}-%{cfg.architecture}-%{cfg.buildcfg}"
 include "Source"
 
 group "Examples"
-  include "Examples/Triangle"
-  include "Examples/Test"
+    include "Examples/Triangle"
+    include "Examples/Test"
 group ""
 
 group "Thirdparty"
-  include "Thirdparty/glad"
-  include "Thirdparty/glfw"
-  include "Thirdparty/assimp"
-  include "Thirdparty/shaderc"
-  include "Thirdparty/glslang"
-  include "Thirdparty/spirv_tools"
-  include "Thirdparty/meshoptimizer"
+    include "Thirdparty/glad"
+    include "Thirdparty/glfw"
+    include "Thirdparty/assimp"
+    -- include "Thirdparty/shaderc"
+    -- include "Thirdparty/glslang"
+    -- include "Thirdparty/spirv_tools"
+    include "Thirdparty/meshoptimizer"
 group ""

@@ -3,8 +3,8 @@
 
 #include "GLTexture.h"
 #include "GLRenderer.h"
-#include "../Image.h"
-#include "../Format.h"
+#include "Core/Image.h"
+#include "Format.h"
 #include <cassert>
 #include <unordered_map>
 
