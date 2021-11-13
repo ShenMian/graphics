@@ -22,6 +22,11 @@ public:
     static const std::vector<Monitor>& getMonitors();
 
     /**
+     * @brief 获取显示器名称.
+     */
+    const std::string& getName() const;
+
+    /**
      * @brief 获取显示器大小(即分辨率), 单位: 像素.
      */
     Vector2i getSize() const;

@@ -17,6 +17,11 @@ const std::vector<Monitor>& Monitor::getMonitors()
     return monitors;
 }
 
+const std::string& Monitor::getName() const
+{
+    return name;
+}
+
 Vector2i Monitor::getSize() const
 {
     const auto videoMode = glfwGetVideoMode(handle);
