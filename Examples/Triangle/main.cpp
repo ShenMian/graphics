@@ -14,23 +14,26 @@ int main()
 	Window::init();
 	Monitor::init();
 
-	for(const auto& mon : Monitor::getMonitors())
-	{
-		puts("Monitor");
-		puts(std::format("|-Size         : {}x{}", mon.getSize().x, mon.getSize().y).c_str());
-		puts(std::format("`-Refresh rate : {} Hz", mon.getRefreshRate()).c_str());
-	}
-
 	Window window("Triangle", Monitor::getPrimary().getSize() / 2);
 	window.setVisible(true); // 设置窗口可见
 
 	Renderer::setAPI(Renderer::API::OpenGL); // 设置渲染 API 为 OpenGL
 
+	// 打印显示器信息
+	for(const auto& mon : Monitor::getMonitors())
+	{
+		puts("Monitor");
+		puts(std::format("|-Name        : {}", mon.getName()).c_str());
+		puts(std::format("|-Size        : {}x{}", mon.getSize().x, mon.getSize().y).c_str());
+		puts(std::format("`-Refresh rate: {} Hz", mon.getRefreshRate()).c_str());
+	}
+
 	// 打印基本信息
 	const auto renderer = Renderer::get();
-	puts(std::format("Device:   {}", renderer->getDeviceName()).c_str());
-	puts(std::format("Renderer: {}", renderer->getRendererName()).c_str());
-	puts(std::format("Vendor:   {}", renderer->getVendorName()).c_str());
+	puts("Basic");
+	puts(std::format("|-Device  : {}", renderer->getDeviceName()).c_str());
+	puts(std::format("|-Renderer: {}", renderer->getRendererName()).c_str());
+	puts(std::format("`-Vendor  : {}", renderer->getVendorName()).c_str());
 
 	const std::vector<Vertex> vertices = {
 		{{0,     0.5}, {1, 0, 0}},
