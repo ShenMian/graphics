@@ -1,7 +1,7 @@
 # Build
 [Bb]uild/
 [Bb]in/
-!thirdparty/premake/bin/
+!ThirdParty/premake/bin/
 
 # Makefile
 Makefile
