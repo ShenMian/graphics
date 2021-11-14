@@ -6,7 +6,7 @@ project "assimp"
 
 	targetdir("%{wks.location}/build/" .. outputdir .. "/%{prj.name}/lib")
 	objdir("%{wks.location}/build/" .. outputdir .. "/%{prj.name}/obj")
-	
+
 	sysincludedirs {
 		"assimp",
 		"assimp/code",
@@ -17,7 +17,7 @@ project "assimp"
 		"assimp/contrib/irrXML",
 		"assimp/contrib/pugixml/src",
 		"assimp/contrib/rapidjson/include"}
-	
+
 	includedirs {
 		"assimp",
 		"assimp/code",
@@ -104,7 +104,7 @@ project "assimp"
 		"assimp/contrib/unzip/**",
 		"assimp/contrib/irrXML/**",
 		"assimp/contrib/zlib/*",
-		
+
 		-- Code
 		"assimp/code/Common/**",
 		"assimp/code/PostProcessing/**",

@@ -1,4 +1,4 @@
-﻿// Copyright 2021 SMS
+﻿// Copyright 2021 ShenMian
 // License(Apache-2.0)
 
 #include "Window.h"
@@ -139,6 +139,8 @@ void Window::setupCallbacks()
 {
     glfwSetErrorCallback([](int error, const char* desc)
     {
+        if(error == 65537)
+            assert(false && "ensure that all windows created on the stack are destroyed");
         throw std::exception(std::format("GLFW error: {}", desc).c_str());
     });
 
