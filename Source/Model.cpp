@@ -5,7 +5,7 @@
 #include "IndexBuffer.h"
 #include "VertexBuffer.h"
 #include "Material.h"
-#include "Image.h"
+#include "Core/Image.h"
 #include <assimp/postprocess.h>
 #include <meshoptimizer.h>
 #include <algorithm>
@@ -15,7 +15,7 @@
 #include <future>
 #include <vector>
 
-#include "Timer.hpp"
+#include "Core/Timer.hpp"
 
 namespace fs = std::filesystem;
 
