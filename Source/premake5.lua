@@ -16,14 +16,13 @@ project "Graphics"
 
 	includedirs {
 		"%{wks.location}/Source",
-		"%{thirdparty.stb}",
-		"%{thirdparty.math}/include",
-		"%{thirdparty.glad}/include",
-		"%{thirdparty.glfw}/include",
-		"%{thirdparty.assimp}/include",
-		-- "%{thirdparty.shaderc}/libshaderc/include",
-		"%{thirdparty.vulkan}/include",
-		"%{thirdparty.meshoptimizer}/src"}
+		"%{deps_include.stb}",
+		"%{deps_include.math}",
+		"%{deps_include.glad}",
+		"%{deps_include.glfw}",
+		"%{deps_include.assimp}",
+		"%{deps_include.vulkan}",
+		"%{deps_include.meshoptimizer}"}
 
 	links {
 		"glad",
@@ -31,5 +30,5 @@ project "Graphics"
 		"assimp",
 		"meshoptimizer",
 		-- "shaderc"
-		-- "%{thirdparty.vulkan}/lib/vulkan-1",
+		-- "%{deps.vulkan}/lib/vulkan-1",
 		}

@@ -5,7 +5,7 @@ include "ThirdParty/premake/solution_items.lua"
 
 workspace "Graphics"
     architecture "x86_64"
-    -- startproject ""
+    startproject "Triangle"
     configurations {"Debug", "Release"}
     flags "MultiProcessorCompile"
 
@@ -27,18 +27,28 @@ workspace "Graphics"
     filter "system:linux"
         linkoptions "-pthread"
 
-thirdparty = {}
-thirdparty["stb"] = "%{wks.location}/ThirdParty/stb"
-thirdparty["math"] = "%{wks.location}/ThirdParty/Math"
-thirdparty["glad"] = "%{wks.location}/ThirdParty/glad"
-thirdparty["glfw"] = "%{wks.location}/ThirdParty/glfw"
-thirdparty["assimp"] = "%{wks.location}/ThirdParty/assimp"
-thirdparty["shaderc"] = "%{wks.location}/ThirdParty/shaderc"
-thirdparty["glslang"] = "%{wks.location}/ThirdParty/glslang"
-thirdparty["vulkan"] = "%{wks.location}/ThirdParty/Vulkan-Headers"
-thirdparty["spirv_tools"] = "%{wks.location}/ThirdParty/SPIRV-Tools"
-thirdparty["spirv_headers"] = "%{wks.location}/ThirdParty/SPIRV-Headers"
-thirdparty["meshoptimizer"] = "%{wks.location}/ThirdParty/meshoptimizer"
+deps = {}
+deps["stb"]           = "%{wks.location}/ThirdParty/stb"
+deps["math"]          = "%{wks.location}/ThirdParty/Math"
+deps["glad"]          = "%{wks.location}/ThirdParty/glad"
+deps["glfw"]          = "%{wks.location}/ThirdParty/glfw"
+deps["assimp"]        = "%{wks.location}/ThirdParty/assimp"
+deps["shaderc"]       = "%{wks.location}/ThirdParty/shaderc"
+deps["glslang"]       = "%{wks.location}/ThirdParty/glslang"
+deps["vulkan"]        = "%{wks.location}/ThirdParty/Vulkan-Headers"
+deps["spirv_tools"]   = "%{wks.location}/ThirdParty/SPIRV-Tools"
+deps["spirv_headers"] = "%{wks.location}/ThirdParty/SPIRV-Headers"
+deps["meshoptimizer"] = "%{wks.location}/ThirdParty/meshoptimizer"
+
+deps_include = {}
+deps_include["stb"]           = "%{deps.stb}"
+deps_include["math"]          = "%{deps.math}/include"
+deps_include["glad"]          = "%{deps.glad}/include"
+deps_include["glfw"]          = "%{deps.glfw}/include"
+deps_include["assimp"]        = "%{deps.assimp}/include"
+-- deps_include["shaderc"] = "%{deps.shaderc}/libshaderc/include"
+deps_include["vulkan"]        = "%{deps.vulkan}/include"
+deps_include["meshoptimizer"] = "%{deps.meshoptimizer}/src"
 
 outputdir = "%{cfg.system}-%{cfg.architecture}-%{cfg.buildcfg}"
 
