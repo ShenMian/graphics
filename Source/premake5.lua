@@ -1,7 +1,7 @@
 -- Copyright 2021 SMS
 -- License(Apache-2.0)
 
-project "Source"
+project "Graphics"
 	kind "StaticLib"
 	language "C++"
 	cppdialect "C++latest"
