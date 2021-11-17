@@ -16,7 +16,7 @@ Makefile
 /.vscode
 
 # Doxygen
-/Doc/html
+/Docs/html
 
 # Prerequisites
 *.d
