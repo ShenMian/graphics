@@ -13,8 +13,8 @@ int main()
 {
 	Window::init();
 
-	Window window("Example", {960, 540}); // 创建一个标题为 Example, 大小为 960x540 像素的窗口 (并初始化 glad)
-	window.setVisible(true);              // 设置窗口可见
+    auto window = new Window("Example", Monitor::getPrimary().getSize() / 2);
+	window->setVisible(true); // 设置窗口可见
 
 	auto forword = Program::create("Shaders/forword"); // 从源文件创建着色器程序
 
@@ -26,8 +26,24 @@ int main()
 	auto cmdQueue  = CommandQueue::create();
 	auto cmdBuffer = CommandBuffer::create();
 
-	bool running   = true;
-	window.onClose = [&]() { running = false; };
+	bool running    = true;
+	window->onClose = [&]() { running = false; };
+    window->onKey   = [&](int action, Key key)
+    {
+        if (action == 1)
+        {
+            switch (key)
+            {
+            case Key::ESCAPE:
+                running = false;
+                break;
+
+            case Key::F11:
+                window->setFullscreen(!window->isFullscreen());
+                break;
+            }
+        }
+    };
 	while(running)
 	{
 		forword->use();
@@ -49,8 +65,11 @@ int main()
 		cmdBuffer->end();
 		cmdQueue->submit(cmdBuffer);
 
-		window.update();
+		window->update();
 	}
+    delete window;
+
+    Window::deinit();
 
 	return 0;
 }

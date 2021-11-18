@@ -3,6 +3,7 @@
 
 #include "Window.h"
 #include "Image.h"
+#include "Monitor.h"
 #include <cassert>
 #include <format>
 #include <glad/glad.h>
@@ -12,10 +13,8 @@ namespace fs = std::filesystem;
 
 Window::Window(const std::string& title, Vector2i size, bool fullscreen)
 {
-    auto       monitor   = glfwGetPrimaryMonitor();
-    const auto videoMode = glfwGetVideoMode(monitor);
-
-    handle = glfwCreateWindow(size.x, size.y, title.c_str(), fullscreen ? monitor : nullptr, nullptr);
+    handle = glfwCreateWindow(size.x, size.y, title.c_str(),
+        fullscreen ? reinterpret_cast<GLFWmonitor*>(Monitor::getPrimary().getNativeHandle()) : nullptr, nullptr);
 
     // TODO: OpenGL/Glad 相关代码, 转移到合适的位置
     glfwMakeContextCurrent(handle);
@@ -25,6 +24,7 @@ Window::Window(const std::string& title, Vector2i size, bool fullscreen)
 
     glfwSetWindowUserPointer(handle, static_cast<void*>(this));
 
+    // 将光标锁定在窗口内
     // glfwSetInputMode(handle, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
     // 开启 MASS 抗锯齿
@@ -41,12 +41,6 @@ Window::~Window()
 
 void Window::update()
 {
-    // debug
-    if(glfwGetKey(handle, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-        exit(0);
-    if(glfwGetKey(handle, GLFW_KEY_F11) == GLFW_PRESS)
-        setFullscreen(!isFullscreen());
-
     glfwSwapBuffers(handle);
     glfwPollEvents();
 }
@@ -178,7 +172,7 @@ void Window::setupCallbacks()
     {
         const auto handle = static_cast<Window*>(glfwGetWindowUserPointer(native));
         if(handle->onKey)
-            handle->onKey(action, key);
+            handle->onKey(action, static_cast<Key>(key));
     });
 
 
@@ -202,9 +196,11 @@ void Window::init()
     if(!ret)
         throw std::exception("GLFW init failed");
     glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE); // 创建新窗口默认不可见
+    Monitor::init();
 }
 
 void Window::deinit()
 {
+    Monitor::deinit();
     glfwTerminate();
 }

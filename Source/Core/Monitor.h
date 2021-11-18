@@ -33,7 +33,7 @@ public:
      * @brief 获取显示器大小(即分辨率), 单位: 像素.
      */
     Vector2i getSize() const;
-    
+
     /**
      * @brief 获取显示器刷新率, 单位: Hz.
      */
@@ -43,6 +43,11 @@ public:
      * @brief 是否为主显示器.
      */
     bool isPrimary() const;
+
+	/**
+	 * @brief 获取本地句柄.
+	 */
+    void* getNativeHandle() const;
 
     static void init();
     static void deinit();

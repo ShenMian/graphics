@@ -39,6 +39,11 @@ bool Monitor::isPrimary() const
     return handle == glfwGetPrimaryMonitor();
 }
 
+void* Monitor::getNativeHandle() const
+{
+    return handle;
+}
+
 Monitor::Monitor(GLFWmonitor* handle)
     : handle(handle), name(glfwGetMonitorName(handle))
 {

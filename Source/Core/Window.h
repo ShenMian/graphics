@@ -3,6 +3,7 @@
 
 #pragma once
 
+#include "Key.h"
 #include <Math/Vector2.hpp>
 #include <string_view>
 #include <filesystem>
@@ -120,7 +121,7 @@ public:
 	std::function<void(Vector2i)>         onResize;    ///< 窗口大小变化时回调
 	std::function<void(bool)>             onFocus;     ///< 窗口获取/失去焦点回调
 	std::function<void()>                 onClose;     ///< 窗口关闭按钮按下回调
-	std::function<void(int, int)>         onKey;       ///< 键盘按键回调
+	std::function<void(int, Key)>         onKey;       ///< 键盘按键回调
 	std::function<void(double, double)>   onScroll;    ///< 鼠标滚轮滚动回调
 	std::function<void(double, double)>   onMouseMove; ///< 鼠标移动回调
 
