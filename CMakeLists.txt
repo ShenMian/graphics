@@ -27,4 +27,4 @@ if(WIN32)
 endif(WIN32)
 
 add_subdirectory(Source)
-add_subdirectory(Examples/Triangle)
+# add_subdirectory(Examples/Triangle)

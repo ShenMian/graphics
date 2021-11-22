@@ -1,9 +1,9 @@
 set(THIRDPARTY_DIR "${PROJECT_SOURCE_DIR}/ThirdParty")
 
-# include("${THIRDPARTY_DIR}/glad.cmake")
-# add_subdirectory("${THIRDPARTY_DIR}/glfw" glfw/lib)
-# add_subdirectory("${THIRDPARTY_DIR}/assimp" assimp/lib)
+include("${THIRDPARTY_DIR}/glad.cmake")
 # add_subdirectory("${THIRDPARTY_DIR}/meshoptimizer" meshoptimizer/lib)
+
+set(glfw3_DIR "C:/Program Files (x86)/GLFW/lib/cmake/glfw3")
 
 # find_package(glad CONFIG REQUIRED)
 find_package(glfw3 CONFIG REQUIRED)
@@ -23,4 +23,4 @@ include_directories(
 
 add_library(graphics STATIC ${sources})
 
-target_link_libraries(graphics PRIVATE glfw glad::glad assimp::assimp)
+target_link_libraries(graphics PRIVATE glad glfw assimp::assimp)
