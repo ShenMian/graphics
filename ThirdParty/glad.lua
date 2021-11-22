@@ -4,9 +4,6 @@ project "glad"
 	staticruntime "on"
 	warnings "Off"
 
-	targetdir("%{wks.location}/build/" .. outputdir .. "/%{prj.name}/lib")
-	objdir("%{wks.location}/build/" .. outputdir .. "/%{prj.name}/obj")
-
 	files {
 		"glad/include/glad/glad.h",
 		"glad/include/KHR/khrplatform.h",

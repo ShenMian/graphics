@@ -4,9 +4,6 @@ project "glslang"
 	staticruntime "on"
 	warnings "Off"
 
-	targetdir("%{wks.location}/build/" .. outputdir .. "/%{prj.name}/lib")
-	objdir("%{wks.location}/build/" .. outputdir .. "/%{prj.name}/obj")
-
 	files {}
 
 	includedirs "glslang"

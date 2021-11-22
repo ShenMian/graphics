@@ -4,9 +4,6 @@ project "glfw"
 	staticruntime "on"
 	warnings "Off"
 
-	targetdir("%{wks.location}/build/" .. outputdir .. "/%{prj.name}/lib")
-	objdir("%{wks.location}/build/" .. outputdir .. "/%{prj.name}/obj")
-
 	files {
 		"glfw/include/GLFW/glfw3.h",
 		"glfw/include/GLFW/glfw3native.h",
@@ -25,7 +22,7 @@ project "glfw"
 		systemversion "latest"
 
 		defines {"_GLFW_X11"}
-		
+
 		files {
 			"glfw/src/platform.c",
 			"glfw/src/null_init.c",
@@ -41,7 +38,7 @@ project "glfw"
 	filter "system:windows"
 		systemversion "latest"
 
-		defines { 
+		defines {
 			"_GLFW_WIN32",
 			"_CRT_SECURE_NO_WARNINGS"}
 

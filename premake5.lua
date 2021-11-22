@@ -9,6 +9,10 @@ workspace "Graphics"
     configurations {"Debug", "Release"}
     flags "MultiProcessorCompile"
 
+    output_dir = "%{cfg.system}-%{cfg.architecture}-%{cfg.buildcfg}"
+    targetdir("%{wks.location}/build/" .. output_dir .. "/%{prj.name}/lib")
+    objdir("%{wks.location}/build/" .. output_dir .. "/%{prj.name}/obj")
+
     solution_items {
         ".editorconfig",
         "README.md",
@@ -40,17 +44,15 @@ deps["spirv_tools"]   = "%{wks.location}/ThirdParty/SPIRV-Tools"
 deps["spirv_headers"] = "%{wks.location}/ThirdParty/SPIRV-Headers"
 deps["meshoptimizer"] = "%{wks.location}/ThirdParty/meshoptimizer"
 
-deps_include = {}
-deps_include["stb"]           = "%{deps.stb}"
-deps_include["math"]          = "%{deps.math}/include"
-deps_include["glad"]          = "%{deps.glad}/include"
-deps_include["glfw"]          = "%{deps.glfw}/include"
-deps_include["assimp"]        = "%{deps.assimp}/include"
--- deps_include["shaderc"] = "%{deps.shaderc}/libshaderc/include"
-deps_include["vulkan"]        = "%{deps.vulkan}/include"
-deps_include["meshoptimizer"] = "%{deps.meshoptimizer}/src"
-
-outputdir = "%{cfg.system}-%{cfg.architecture}-%{cfg.buildcfg}"
+deps_inc = {}
+deps_inc["stb"]           = "%{deps.stb}"
+deps_inc["math"]          = "%{deps.math}/include"
+deps_inc["glad"]          = "%{deps.glad}/include"
+deps_inc["glfw"]          = "%{deps.glfw}/include"
+deps_inc["assimp"]        = "%{deps.assimp}/include"
+-- deps_inc["shaderc"] = "%{deps.shaderc}/libshaderc/include"
+deps_inc["vulkan"]        = "%{deps.vulkan}/include"
+deps_inc["meshoptimizer"] = "%{deps.meshoptimizer}/src"
 
 include "Source"
 

@@ -7,22 +7,19 @@ project "Graphics"
 	cppdialect "C++latest"
 	staticruntime "on"
 
-	targetdir("%{wks.location}/build/" .. outputdir .. "/%{prj.name}/lib")
-	objdir("%{wks.location}/build/" .. outputdir .. "/%{prj.name}/obj")
-
 	defines {"_CRT_SECURE_NO_WARNINGS"} -- stb_image_write.h
 
 	files {"**.cpp", "**.hpp", "**.h", "**.inl", "premake5.lua"}
 
 	includedirs {
 		"%{wks.location}/Source",
-		"%{deps_include.stb}",
-		"%{deps_include.math}",
-		"%{deps_include.glad}",
-		"%{deps_include.glfw}",
-		"%{deps_include.assimp}",
-		"%{deps_include.vulkan}",
-		"%{deps_include.meshoptimizer}"}
+		"%{deps_inc.stb}",
+		"%{deps_inc.math}",
+		"%{deps_inc.glad}",
+		"%{deps_inc.glfw}",
+		"%{deps_inc.assimp}",
+		"%{deps_inc.vulkan}",
+		"%{deps_inc.meshoptimizer}"}
 
 	links {
 		"glad",
