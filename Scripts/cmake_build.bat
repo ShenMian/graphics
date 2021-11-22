@@ -2,8 +2,8 @@
 REM Copyright 2021 ShenMian
 REM License(Apache-2.0)
 
-REM 签出第三方库
-git submodule update --init
+if exist "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvars64.bat" call "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvars64.bat" >NUL
+if exist "C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Auxiliary\Build\vcvars64.bat" call "C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Auxiliary\Build\vcvars64.bat" >NUL
 
 REM 安装依赖项
 call cmake_install_deps || exit /b 1

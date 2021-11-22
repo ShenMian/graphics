@@ -9,6 +9,9 @@ net.exe session 1>NUL 2>NUL || (
 
 pushd %~dp0\..\ThirdParty
 
+REM 签出第三方库
+git submodule update --init
+
 echo Installing dependencies...
 
 for %%i in ("assimp" "glfw" "meshoptimizer") do (
