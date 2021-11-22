@@ -5,11 +5,11 @@ REM License(Apache-2.0)
 if exist "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvars64.bat" call "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvars64.bat" >NUL
 if exist "C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Auxiliary\Build\vcvars64.bat" call "C:\Program Files\Microsoft Visual Studio\2022\Preview\VC\Auxiliary\Build\vcvars64.bat" >NUL
 
-REM 安装依赖项
-call cmake_install_deps || exit /b 1
-
 REM 切换到主目录
 pushd %~dp0\..
+
+REM 安装依赖项
+call Scripts/cmake_install_deps || exit /b 1
 
 REM 創建 build 目錄
 if not exist build mkdir build
