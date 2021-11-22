@@ -11,7 +11,7 @@ pushd %~dp0\..\ThirdParty
 
 echo Installing dependencies...
 
-for %%i in ("assimp" "glfw") do (
+for %%i in ("assimp" "glfw" "meshoptimizer") do (
     echo ^|-Installing '%%~i'...
 
     pushd %%i
@@ -21,6 +21,7 @@ for %%i in ("assimp" "glfw") do (
     cd build
 
     REM 生成 CMake 緩存
+    echo  ^|-Gerenating CMake cache...
     cmake .. >NUL || (
         echo  ^|-Failed to generate CMake cache.
         exit /b 1
