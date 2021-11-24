@@ -1,3 +1,5 @@
+# Copyright 2021 ShenMian
+# License(Apache-2.0)
 
 # 切换到 ThirdParty 目录
 cd "$( cd "$( dirname "$0"  )" && pwd  )" || exit
@@ -49,4 +51,3 @@ do
 
     cd ..
 done
-

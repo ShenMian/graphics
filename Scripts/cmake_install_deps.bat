@@ -24,9 +24,6 @@ for %%i in ("assimp" "glfw" "meshoptimizer") do (
 
     pushd %%i
 
-    REM 創建 build 目錄
-    if not exist build mkdir build
-
     REM 生成 CMake 緩存
     echo  ^|-Gerenating CMake cache...
     cmake -B build >NUL || (

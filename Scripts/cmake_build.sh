@@ -1,13 +1,12 @@
+# Copyright 2021 ShenMian
+# License(Apache-2.0)
 
 # 切换到主目录
 cd "$( cd "$( dirname "$0"  )" && pwd  )" || exit
 cd ..
 
+# 安装依赖项
 ./Scripts/cmake_install_deps.sh || exit
-
-if [ ! -d "build" ]; then
-  mkdir build
-fi
 
 # 生成 CMake 緩存
 echo Generating CMake cache...
@@ -27,4 +26,3 @@ if [ $? -ne 0 ]; then
 fi
 
 echo Done.
-
