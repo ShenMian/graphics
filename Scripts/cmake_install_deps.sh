@@ -1,3 +1,4 @@
+#!/bin/bash
 # Copyright 2021 ShenMian
 # License(Apache-2.0)
 
@@ -10,8 +11,7 @@ sudo echo
 
 # 签出第三方库
 echo Checkout third-party libraries...
-git submodule update --init >/dev/null
-if [ $? -ne 0 ]; then
+if ! git submodule update --init >/dev/null
     echo Failed to checkout third-party libraries.
     exit 1
 fi
@@ -21,28 +21,25 @@ echo Installing dependencies...
 deps=("assimp" "glfw" "meshoptimizer")
 for (( i = 0 ; i < ${#deps[@]} ; i++ ))
 do
-    cd ${deps[$i]}
+    cd "${deps[$i]}" || exit
 
     # 生成 CMake 緩存
     echo "|-Gerenating CMake cache..."
-    cmake -B build >/dev/null
-    if [ $? -ne 0 ]; then
+    if ! cmake -B build >/dev/null
         echo "|-Failed to generate CMake cache."
         exit 1
     fi
 
     # 构建
     echo "|-Building..."
-    cmake --build build --config Release >/dev/null
-    if [ $? -ne 0 ]; then
+    if ! cmake --build build --config Release >/dev/null
         echo "|-Failed to build."
         exit 1
     fi
 
     # 安装
     echo  "|-Installing..."
-    sudo cmake --install build >/dev/null
-    if [ $? -ne 0 ]; then
+    if ! sudo cmake --install build >/dev/null
         echo "|-Failed to install."
         exit 1
     fi

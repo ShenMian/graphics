@@ -1,3 +1,4 @@
+#!/bin/bash
 # Copyright 2021 ShenMian
 # License(Apache-2.0)
 
@@ -10,16 +11,14 @@ cd ..
 
 # 生成 CMake 緩存
 echo Generating CMake cache...
-cmake -B build >/dev/null
-if [ $? -ne 0 ]; then
+if ! cmake -B build >/dev/null
     echo Failed to generate CMake cache.
     exit 1
 fi
 
 # 構建
 echo Building...
-cmake --build build >/dev/null
-if [ $? -ne 0 ]; then
+if ! cmake --build build >/dev/null
     echo Failed to build.
     cmake --build build
     exit 1
