@@ -12,6 +12,7 @@ cd ..
 # 生成 CMake 緩存
 echo Generating CMake cache...
 if ! cmake -B build >/dev/null
+then
     echo Failed to generate CMake cache.
     exit 1
 fi
@@ -19,6 +20,7 @@ fi
 # 構建
 echo Building...
 if ! cmake --build build >/dev/null
+then
     echo Failed to build.
     cmake --build build
     exit 1

@@ -12,6 +12,7 @@ sudo echo
 # 签出第三方库
 echo Checkout third-party libraries...
 if ! git submodule update --init >/dev/null
+then
     echo Failed to checkout third-party libraries.
     exit 1
 fi
@@ -26,6 +27,7 @@ do
     # 生成 CMake 緩存
     echo "|-Gerenating CMake cache..."
     if ! cmake -B build >/dev/null
+    then
         echo "|-Failed to generate CMake cache."
         exit 1
     fi
@@ -33,6 +35,7 @@ do
     # 构建
     echo "|-Building..."
     if ! cmake --build build --config Release >/dev/null
+    then
         echo "|-Failed to build."
         exit 1
     fi
@@ -40,6 +43,7 @@ do
     # 安装
     echo  "|-Installing..."
     if ! sudo cmake --install build >/dev/null
+    then
         echo "|-Failed to install."
         exit 1
     fi
