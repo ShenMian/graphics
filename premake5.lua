@@ -9,14 +9,16 @@ workspace "Graphics"
     configurations {"Debug", "Release"}
     flags "MultiProcessorCompile"
 
+    -- 启用 OpenMP
+    openmp "On"
+    filter "toolset:not msc*"
+        buildoptions "-fopenmp"
+
     output_dir = "%{cfg.system}-%{cfg.architecture}-%{cfg.buildcfg}"
     targetdir("%{wks.location}/build/" .. output_dir .. "/%{prj.name}/lib")
     objdir("%{wks.location}/build/" .. output_dir .. "/%{prj.name}/obj")
 
-    solution_items {
-        ".editorconfig",
-        "README.md",
-        "premake5.lua"}
+    configurations {"Debug", "Release"}
 
     filter "configurations:Debug"
         defines "DEBUG"
@@ -30,6 +32,11 @@ workspace "Graphics"
 
     filter "system:linux"
         linkoptions "-pthread"
+
+    solution_items {
+        ".editorconfig",
+        "README.md",
+        "premake5.lua"}
 
 deps = {}
 deps["stb"]           = "%{wks.location}/ThirdParty/stb"
