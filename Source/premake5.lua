@@ -9,10 +9,9 @@ project "Graphics"
 
 	defines {"_CRT_SECURE_NO_WARNINGS"} -- stb_image_write.h
 
-	files {"**.cpp", "**.hpp", "**.h", "**.inl", "premake5.lua"}
+	files {"**.cpp", "**.hpp", "**.h", "**.inl", "CMakeLists.txt", "premake5.lua"}
 
-	includedirs {
-		"%{wks.location}/Source",
+	sysincludedirs {
 		"%{deps_inc.stb}",
 		"%{deps_inc.math}",
 		"%{deps_inc.glad}",
@@ -20,6 +19,9 @@ project "Graphics"
 		"%{deps_inc.assimp}",
 		"%{deps_inc.vulkan}",
 		"%{deps_inc.meshoptimizer}"}
+
+	includedirs {
+		"%{wks.location}/Source"}
 
 	links {
 		"glad",

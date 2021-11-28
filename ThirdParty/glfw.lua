@@ -4,6 +4,8 @@ project "glfw"
 	staticruntime "on"
 	warnings "Off"
 
+	removeplatforms "emscripten"
+
 	files {
 		"glfw/include/GLFW/glfw3.h",
 		"glfw/include/GLFW/glfw3native.h",
@@ -47,6 +49,23 @@ project "glfw"
 			"glfw/src/null_*.c",
 			"glfw/src/win32_*.c",
 			"glfw/src/wgl_context.c",
+			"glfw/src/egl_context.c",
+			"glfw/src/osmesa_context.c"}
+
+
+	filter "system:macosx"
+		defines {
+			"_GLFW_COCOA",
+			"_GLFW_USE_RETINA"}
+
+		files {
+			"glfw/src/cocoa_init.m",
+			"glfw/src/cocoa_joystick.m",
+			"glfw/src/cocoa_monitor.m",
+			"glfw/src/cocoa_window.m",
+			"glfw/src/cocoa_time.c",
+			"glfw/src/nsgl_context.m",
+			"glfw/src/posix_thread.c",
 			"glfw/src/egl_context.c",
 			"glfw/src/osmesa_context.c"}
 

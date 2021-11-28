@@ -7,7 +7,7 @@ project "Triangle"
   cppdialect "C++latest"
   staticruntime "on"
 
-  files {"**.cpp", "**.hpp", "**.h", "**.inl", "premake5.lua"}
+	files {"**.cpp", "**.hpp", "**.h", "**.inl", "CMakeLists.txt", "premake5.lua"}
 
   includedirs {
     "%{wks.location}/Source",
