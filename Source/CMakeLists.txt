@@ -1,8 +1,12 @@
+﻿# Copyright 2021 SMS
+# License(Apache-2.0)
+
 set(THIRDPARTY_DIR "${PROJECT_SOURCE_DIR}/ThirdParty")
 
 include("${THIRDPARTY_DIR}/glad.cmake")
 # add_subdirectory("${THIRDPARTY_DIR}/meshoptimizer" meshoptimizer/lib)
 
+# TODO: 添加 FindGLFW3.cmake
 set(glfw3_DIR "C:/Program Files (x86)/GLFW/lib/cmake/glfw3")
 
 # find_package(glad CONFIG REQUIRED)
