@@ -7,14 +7,15 @@
 #include "Material.h"
 #include "Core/Image.h"
 #include <assimp/postprocess.h>
-#include <meshoptimizer.h>
 #include <algorithm>
 #include <cassert>
 #include <concepts>
 #include <cstring>
 #include <future>
+#include <meshoptimizer.h>
 #include <vector>
 
+#include <format>
 #include "Core/Timer.hpp"
 
 namespace fs = std::filesystem;
