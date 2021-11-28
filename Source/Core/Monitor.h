@@ -4,6 +4,7 @@
 #pragma once
 
 #include <Math/Vector2.hpp>
+#include <string>
 #include <vector>
 
 struct GLFWmonitor;
@@ -44,9 +45,9 @@ public:
      */
     bool isPrimary() const;
 
-	/**
-	 * @brief 获取本地句柄.
-	 */
+    /**
+     * @brief 获取本地句柄.
+     */
     void* getNativeHandle() const;
 
     static void init();
