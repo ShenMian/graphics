@@ -8,7 +8,7 @@ cmake_minimum_required(VERSION 3.16)
 project(Graphics VERSION 0.0.0)
 
 # 指定 C++ 标准
-set(CMAKE_CXX_STANDARD          20)
+set(CMAKE_CXX_STANDARD          23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # 指定构建目录
