@@ -27,27 +27,27 @@ do
     echo "|-Installing '${deps[$i]}'..."
 
     # 生成 CMake 緩存
-    echo "|-Gerenating CMake cache..."
+    echo " |-Gerenating CMake cache..."
     if ! cmake -B build >/dev/null 2>&1
     then
-        echo "|-Failed to generate CMake cache."
+        echo " |-Failed to generate CMake cache."
         exit 1
     fi
 
     # 构建
-    echo "|-Building..."
+    echo " |-Building..."
     if ! cmake --build build --config Release >/dev/null
     then
-        echo "|-Failed to build."
+        echo " |-Failed to build."
         cmake --build build --config Release
         exit 1
     fi
 
     # 安装
-    echo  "|-Installing..."
+    echo  " |-Installing..."
     if ! sudo cmake --install build >/dev/null
     then
-        echo "|-Failed to install."
+        echo " |-Failed to install."
         exit 1
     fi
 
