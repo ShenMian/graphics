@@ -5,7 +5,13 @@ set(THIRDPARTY_DIR "${PROJECT_SOURCE_DIR}/ThirdParty")
 
 include_directories(
     "${PROJECT_SOURCE_DIR}/Source"
-    "${THIRDPARTY_DIR}/Math/include")
+    "${THIRDPARTY_DIR}/stb"
+    "${THIRDPARTY_DIR}/Math/include"
+    "${THIRDPARTY_DIR}/glad/include"
+    "${THIRDPARTY_DIR}/glfw/include"
+    "${THIRDPARTY_DIR}/assimp/include"
+    "${THIRDPARTY_DIR}/Vulkan-Headers/include"
+    "${THIRDPARTY_DIR}/meshoptimizer/src")
 
 add_executable(main main.cpp)
 
