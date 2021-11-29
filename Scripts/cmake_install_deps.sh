@@ -37,6 +37,7 @@ do
     if ! cmake --build build --config Release >/dev/null
     then
         echo "|-Failed to build."
+        cmake --build build --config Release
         exit 1
     fi
 
