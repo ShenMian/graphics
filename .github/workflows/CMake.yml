@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{matrix.os}}
     strategy:
       matrix:
         os: [windows-latest] # ubuntu-latest, macos-latest
@@ -16,3 +16,9 @@ jobs:
 
       - name: Build
         run: ./Scripts/cmake_build.bat
+
+      - name: Upload
+        uses: actions/upload-artifact@v2
+        with:
+          name: build-artifacts
+          path: build/${{env.prog_name}}
