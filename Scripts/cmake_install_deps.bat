@@ -3,7 +3,7 @@ REM Copyright 2021 ShenMian
 REM License(Apache-2.0)
 
 REM 检测是否有管理员权限
-net.exe session 1>nul 2>nul || (
+net.exe session >nul 2>&1 || (
     echo Please run this script with administrator privilege.
     exit /b 1
 )
@@ -12,7 +12,7 @@ pushd %~dp0\..\ThirdParty
 
 REM 签出第三方库
 echo Checkout third-party libraries...
-git submodule update --init >nul || (
+git submodule update --init >nul 2>&1 || (
     echo Failed to checkout third-party libraries.
     exit /b 1
 )
