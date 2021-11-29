@@ -9,32 +9,32 @@
 
 std::shared_ptr<Program> Program::create(const std::string& name)
 {
-    // 防止路径穿透
-    // assert(name.find("/") == std::string::npos);
-    // assert(name.find("\\") == std::string::npos);
-    // assert(name.find("..") == std::string::npos);
+	// 防止路径穿透
+	// assert(name.find("/") == std::string::npos);
+	// assert(name.find("\\") == std::string::npos);
+	// assert(name.find("..") == std::string::npos);
 
-    auto it = cache.find(name);
-    if(it != cache.end())
-        return it->second;
+	auto it = cache.find(name);
+	if(it != cache.end())
+		return it->second;
 
-    std::shared_ptr<Program> result;
-    switch(Renderer::getAPI())
-    {
-        using enum Renderer::API;
+	std::shared_ptr<Program> result;
+	switch(Renderer::getAPI())
+	{
+		using enum Renderer::API;
 
-    case OpenGL:
-        result = std::make_shared<GLProgram>(name);
-        break;
+	case OpenGL:
+		result = std::make_shared<GLProgram>(name);
+		break;
 
-    default:
-        assert(false);
-    }
-    cache.insert({result->name, result});
-    return result;
+	default:
+		assert(false);
+	}
+	cache.insert({result->name, result});
+	return result;
 }
 
 Program::Program(const std::string& name)
-    : name(name)
+	: name(name)
 {
 }

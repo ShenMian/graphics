@@ -14,8 +14,8 @@ struct ClearFlag
 {
 	enum
 	{
-		Color   = (1 << 0),
-		Depth   = (1 << 1),
+		Color = (1 << 0),
+		Depth = (1 << 1),
 		Stencil = (1 << 2)
 	};
 };
@@ -41,9 +41,9 @@ public:
 
 	/**
 	 * @brief 清空缓冲区.
-	 * 
+	 *
 	 * @param flags 类型.
-	 * 
+	 *
 	 * @see ClearFlag
 	 * @see setClearColor
 	 * @see setClearDepth

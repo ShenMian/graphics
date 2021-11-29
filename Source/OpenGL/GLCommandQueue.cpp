@@ -72,7 +72,7 @@ size_t GLCommandQueue::execute(GLOpcode opcode, const uint8_t* pc)
 		glClearDepth(args->depth);
 		return sizeof(*args);
 	}
-	
+
 	case GLOpcode::draw:
 	{
 		const auto args = reinterpret_cast<const GLCmdDraw*>(pc);

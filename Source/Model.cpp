@@ -174,7 +174,7 @@ void Model::loadMesh(aiMesh* mesh)
 	};
 
 	auto vertexBuffer = VertexBuffer::create(vertices, format);
-	auto indexBuffer  = IndexBuffer::create(indices);
+	auto indexBuffer = IndexBuffer::create(indices);
 
 	std::string name = mesh->mName.C_Str();
 
@@ -215,7 +215,7 @@ void Model::loadMaterial(Mesh* mesh, aiMesh* aiMesh)
 	mesh->material.pbr.metallic = loadTexture(aiTextureType_METALNESS);
 	mesh->material.pbr.roughness = loadTexture(aiTextureType_DIFFUSE_ROUGHNESS);
 	mesh->material.pbr.ao = loadTexture(aiTextureType_AMBIENT_OCCLUSION);
-	
+
 	mesh->material.diffuse = loadTexture(aiTextureType_DIFFUSE);
 	mesh->material.specular = loadTexture(aiTextureType_SPECULAR);
 	mesh->material.ambient = loadTexture(aiTextureType_AMBIENT);

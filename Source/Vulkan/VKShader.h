@@ -8,7 +8,7 @@
 class VKShader : public Shader
 {
 public:
-    VKShader(const std::string& name, Stage stage);
+	VKShader(const std::string& name, Stage stage);
 
-    size_t getNativeHandle() const override;
+	size_t getNativeHandle() const override;
 };

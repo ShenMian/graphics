@@ -9,7 +9,7 @@
 class GLTexture : public Texture
 {
 public:
-    using handle_type = unsigned int;
+	using handle_type = unsigned int;
 
 	GLTexture(const Image& image, Type type);
 	~GLTexture();

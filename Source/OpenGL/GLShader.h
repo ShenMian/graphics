@@ -8,15 +8,15 @@
 class GLShader : public Shader
 {
 public:
-    using handle_type = unsigned int;
+	using handle_type = unsigned int;
 
-    GLShader(const std::string& name, Stage stage);
-    virtual ~GLShader();
+	GLShader(const std::string& name, Stage stage);
+	virtual ~GLShader();
 
-    void load();
+	void load();
 
-    size_t getNativeHandle() const override;
+	size_t getNativeHandle() const override;
 
 private:
-    handle_type handle;
+	handle_type handle;
 };

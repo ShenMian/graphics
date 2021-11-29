@@ -8,9 +8,9 @@
 class GLRenderer : public Renderer
 {
 public:
-    std::string getDeviceName() const override;
-    std::string getRendererName() const override;
-    std::string getVendorName() const override;
+	std::string getDeviceName() const override;
+	std::string getRendererName() const override;
+	std::string getVendorName() const override;
 };
 
 void GLCheckError();

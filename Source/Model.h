@@ -28,9 +28,9 @@ class Model
 public:
 	/**
 	 * @brief 从文件载入场景.
-	 * 
+	 *
 	 * @param path 场景文件路径.
-	 * 
+	 *
 	 * @see loadAsync
 	 */
 	void load(const std::filesystem::path& path);
@@ -49,22 +49,22 @@ public:
 	 *
 	 * @param path 场景文件路径.
 	 */
-	// void save(const std::filesystem::path& path);
-	// void saveAsync(const std::filesystem::path& path, std::function<void(std::error_code)> callback = nullptr) noexcept;
+	 // void save(const std::filesystem::path& path);
+	 // void saveAsync(const std::filesystem::path& path, std::function<void(std::error_code)> callback = nullptr) noexcept;
 
 	const std::vector<Mesh> getMeshs() const;
 
 private:
 	/**
 	 * @brief 从场景中递归载入节点数据.
-	 * 
+	 *
 	 * @param node assimp 节点.
 	 */
 	void loadNode(aiNode* node);
 
 	/**
 	 * @brief 载入 assimp 网格数据, 创建 Mesh.
-	 * 
+	 *
 	 * @param mesh assimp 网格.
 	 */
 	void loadMesh(aiMesh* mesh);
@@ -81,7 +81,7 @@ private:
 	std::vector<Mesh>     meshs;
 	std::filesystem::path path;
 
-	const aiScene*   scene = nullptr;
+	const aiScene* scene = nullptr;
 	Assimp::Importer importer;
 	Assimp::Exporter exporter;
 };

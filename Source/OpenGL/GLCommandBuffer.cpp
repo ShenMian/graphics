@@ -26,9 +26,9 @@ void GLCommandBuffer::end()
 
 void GLCommandBuffer::setViewport(const Vector2i& origin, const Vector2i& size)
 {
-	auto cmd    = addCommand<GLCmdSetViewport>(GLOpcode::setViewport);
+	auto cmd = addCommand<GLCmdSetViewport>(GLOpcode::setViewport);
 	cmd->origin = origin;
-	cmd->size   = size;
+	cmd->size = size;
 }
 
 void GLCommandBuffer::setVertexBuffer(std::shared_ptr<VertexBuffer> vertexBuffer)
@@ -45,19 +45,19 @@ void GLCommandBuffer::setIndexBuffer(std::shared_ptr<IndexBuffer> indexBuffer)
 
 void GLCommandBuffer::clear(uint8_t flags)
 {
-	auto cmd   = addCommand<GLCmdClear>(GLOpcode::clear);
+	auto cmd = addCommand<GLCmdClear>(GLOpcode::clear);
 	cmd->flags = flags;
 }
 
 void GLCommandBuffer::setClearColor(const Vector4& color)
 {
-	auto cmd   = addCommand<GLCmdSetClearColor>(GLOpcode::setClearColor);
+	auto cmd = addCommand<GLCmdSetClearColor>(GLOpcode::setClearColor);
 	cmd->color = color;
 }
 
 void GLCommandBuffer::setClearDepth(float depth)
 {
-	auto cmd   = addCommand<GLCmdSetClearDepth>(GLOpcode::setClearDepth);
+	auto cmd = addCommand<GLCmdSetClearDepth>(GLOpcode::setClearDepth);
 	cmd->depth = depth;
 }
 
@@ -69,7 +69,7 @@ void GLCommandBuffer::draw(size_t first, size_t num)
 {
 	auto cmd = addCommand<GLCmdDraw>(GLOpcode::draw);
 	cmd->first = first;
-	cmd->num   = num;
+	cmd->num = num;
 }
 
 void GLCommandBuffer::addCommand(GLOpcode opcode)

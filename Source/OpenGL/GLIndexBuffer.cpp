@@ -12,7 +12,7 @@ namespace
 std::unordered_map<IndexBuffer::Usage, uint32_t> GLusage = {
 	{IndexBuffer::Usage::Static, GL_STATIC_DRAW},
 	{IndexBuffer::Usage::Dynamic, GL_DYNAMIC_DRAW},
-	{IndexBuffer::Usage::Stream, GL_STREAM_DRAW} };
+	{IndexBuffer::Usage::Stream, GL_STREAM_DRAW}};
 
 }
 

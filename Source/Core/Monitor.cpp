@@ -9,64 +9,64 @@ std::vector<Monitor> Monitor::monitors;
 
 const Monitor& Monitor::getPrimary()
 {
-    return primary;
+	return primary;
 }
 
 const std::vector<Monitor>& Monitor::getMonitors()
 {
-    return monitors;
+	return monitors;
 }
 
 const std::string& Monitor::getName() const
 {
-    return name;
+	return name;
 }
 
 Vector2i Monitor::getSize() const
 {
-    const auto videoMode = glfwGetVideoMode(handle);
-    return {videoMode->width, videoMode->height};
+	const auto videoMode = glfwGetVideoMode(handle);
+	return {videoMode->width, videoMode->height};
 }
 
 int Monitor::getRefreshRate() const
 {
-    const auto videoMode = glfwGetVideoMode(handle);
-    return videoMode->refreshRate;
+	const auto videoMode = glfwGetVideoMode(handle);
+	return videoMode->refreshRate;
 }
 
 bool Monitor::isPrimary() const
 {
-    return handle == glfwGetPrimaryMonitor();
+	return handle == glfwGetPrimaryMonitor();
 }
 
 void* Monitor::getNativeHandle() const
 {
-    return handle;
+	return handle;
 }
 
 Monitor::Monitor(GLFWmonitor* handle)
-    : handle(handle), name(glfwGetMonitorName(handle))
+	: handle(handle), name(glfwGetMonitorName(handle))
 {
 }
 
 void Monitor::init()
 {
 	glfwSetMonitorCallback([](GLFWmonitor* monitor, int event) { update(); });
-    update();
+	update();
 }
 
 void Monitor::deinit()
 {
-    glfwSetMonitorCallback(nullptr);
+	glfwSetMonitorCallback(nullptr);
 }
 
 void Monitor::update()
 {
-    primary = Monitor(glfwGetPrimaryMonitor());
+	primary = Monitor(glfwGetPrimaryMonitor());
 
-    int count;
-    const auto handles = glfwGetMonitors(&count);
-    monitors.clear();
-    for(int i = 0; i < count; i++)
-        monitors.push_back(std::move(Monitor(handles[i])));
+	int count;
+	const auto handles = glfwGetMonitors(&count);
+	monitors.clear();
+	for(int i = 0; i < count; i++)
+		monitors.push_back(std::move(Monitor(handles[i])));
 }
