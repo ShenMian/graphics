@@ -3,15 +3,14 @@
 
 set(THIRDPARTY_DIR "${PROJECT_SOURCE_DIR}/ThirdParty")
 
-# add_subdirectory("${THIRDPARTY_DIR}/meshoptimizer" meshoptimizer/lib)
-
 # TODO: 添加 FindGLFW3.cmake
 set(glfw3_DIR "C:/Program Files (x86)/GLFW/lib/cmake/glfw3")
 
 # find_package(glad CONFIG REQUIRED)
 include("${THIRDPARTY_DIR}/glad.cmake")
-find_package(glfw3 CONFIG REQUIRED)
-find_package(assimp CONFIG REQUIRED)
+find_package(glfw3         CONFIG REQUIRED)
+find_package(assimp        CONFIG REQUIRED)
+find_package(meshoptimizer CONFIG REQUIRED)
 
 file(GLOB_RECURSE sources "*.cpp")
 
@@ -27,4 +26,4 @@ include_directories(
 
 add_library(graphics STATIC ${sources})
 
-target_link_libraries(graphics PRIVATE glad glfw assimp::assimp)
+target_link_libraries(graphics PRIVATE glad glfw assimp::assimp meshoptimizer::meshoptimizer)
