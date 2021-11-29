@@ -20,5 +20,5 @@ jobs:
       - name: Upload
         uses: actions/upload-artifact@v2
         with:
-          name: build-artifacts
-          path: build/${{env.prog_name}}
+          name: graphics
+          path: build/${{env.prog_name}}/lib
