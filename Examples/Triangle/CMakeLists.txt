@@ -1,7 +1,9 @@
 ﻿# Copyright 2021 SMS
 # License(Apache-2.0)
 
-include_directories("${PROJECT_SOURCE_DIR}/Source")
+include_directories(
+    "${PROJECT_SOURCE_DIR}/Source"
+    "${THIRDPARTY_DIR}/Math/include")
 
 add_executable(main main.cpp)
 
