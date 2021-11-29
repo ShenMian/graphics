@@ -20,7 +20,7 @@ include_directories(
     "${THIRDPARTY_DIR}/Math/include"
     "${THIRDPARTY_DIR}/glad/include"
     "${THIRDPARTY_DIR}/glfw/include"
-    "${THIRDPARTY_DIR}/assimp/include"
+    "${THIRDPARTY_DIR}/assimp/build/include/assimp"
     "${THIRDPARTY_DIR}/Vulkan-Headers/include"
     "${THIRDPARTY_DIR}/meshoptimizer/src")
 
