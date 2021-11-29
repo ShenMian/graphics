@@ -4,6 +4,9 @@ project "assimp"
 	staticruntime "on"
 	warnings "Off"
 
+	prebuildcommands {
+		"{COPY} \"%{deps.assimp}/contrib/zlib/zconf.h.in\" \"%{deps.assimp}/contrib/zlib/zconf.h\""}
+
 	sysincludedirs {
 		"assimp",
 		"assimp/code",
@@ -34,7 +37,7 @@ project "assimp"
 		"ASSIMP_BUILD_NO_AC_IMPORTER",
 		"ASSIMP_BUILD_NO_AMF_IMPORTER",
 		"ASSIMP_BUILD_NO_ASE_IMPORTER",
-		-- "ASSIMP_BUILD_NO_ASSBIN_IMPORTER"
+		-- "ASSIMP_BUILD_NO_ASSBIN_IMPORTER",
 		"ASSIMP_BUILD_NO_B3D_IMPORTER",
 		"ASSIMP_BUILD_NO_BLEND_IMPORTER",
 		"ASSIMP_BUILD_NO_BVH_IMPORTER",

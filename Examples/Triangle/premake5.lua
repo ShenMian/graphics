@@ -16,3 +16,5 @@ project "Triangle"
     "%{deps_inc.vulkan}"}
 
   links "Graphics"
+
+  postbuildcommands "{COPYDIR} \"Shader\" \"%{cfg.targetdir}\""
