@@ -7,7 +7,11 @@ cd "$( cd "$( dirname "$0"  )" && pwd  )" || exit
 cd ../ThirdParty
 
 # 獲取管理員權限
-sudo echo
+if ! sudo echo
+then
+    echo "Can not get sudo permission."
+    exit 1
+fi
 
 # 签出第三方库
 echo Checkout third-party libraries...
