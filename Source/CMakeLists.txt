@@ -1,7 +1,7 @@
 ﻿# Copyright 2021 SMS
 # License(Apache-2.0)
 
-file(GLOB_RECURSE sources "*.cpp")
+set(THIRDPARTY_DIR "${PROJECT_SOURCE_DIR}/ThirdParty")
 
 include_directories(
     "${PROJECT_SOURCE_DIR}/Source"
@@ -14,9 +14,9 @@ include_directories(
     "${THIRDPARTY_DIR}/Vulkan-Headers/include"
     "${THIRDPARTY_DIR}/meshoptimizer/src")
 
-add_library(graphics STATIC ${sources})
+file(GLOB_RECURSE sources "*.cpp")
 
-set(THIRDPARTY_DIR "${PROJECT_SOURCE_DIR}/ThirdParty")
+add_library(graphics STATIC ${sources})
 
 # TODO: 添加 FindGLFW3.cmake
 set(glfw3_DIR "C:/Program Files (x86)/GLFW/lib/cmake/glfw3")
