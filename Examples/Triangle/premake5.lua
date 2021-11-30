@@ -17,4 +17,4 @@ project "Triangle"
 
   links "Graphics"
 
-  postbuildcommands "{COPYDIR} \"Shader\" \"%{cfg.targetdir}\""
+  postbuildcommands "{COPYDIR} \"Shaders\" \"%{cfg.targetdir}\""
