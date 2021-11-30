@@ -32,7 +32,7 @@ do
 
     # 生成 CMake 緩存
     echo " |-Gerenating CMake cache..."
-    if ! cmake -B build -DCMAKE_INSTALL_PREFIX=build >/dev/null 2>&1
+    if ! cmake -B build >/dev/null 2>&1
     then
         echo " |-Failed to generate CMake cache."
         exit 1
@@ -55,7 +55,7 @@ do
         exit 1
     fi
 
-    echo "|-Done."
+    echo " |-Done."
 
     cd ..
 done

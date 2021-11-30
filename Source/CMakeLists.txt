@@ -18,8 +18,14 @@ file(GLOB_RECURSE sources "*.cpp")
 
 add_library(graphics STATIC ${sources})
 
+list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/Scripts")
+
 # TODO: 添加 FindGLFW3.cmake
+<<<<<<< HEAD
 set(glfw3_DIR "C:/Program Files (x86)/GLFW/lib/cmake/glfw3")
+=======
+# set(glfw3_DIR "${PROJECT_SOURCE_DIR}/build/GLFW/lib/cmake/glfw3")
+>>>>>>> 68657faf39d249902de2c9e9cc483230aee24747
 
 # find_package(glad CONFIG REQUIRED)
 include("${THIRDPARTY_DIR}/glad.cmake")
