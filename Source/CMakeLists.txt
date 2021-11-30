@@ -20,9 +20,6 @@ add_library(graphics STATIC ${sources})
 
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/Scripts")
 
-# TODO: 添加 FindGLFW3.cmake
-set(glfw3_DIR "C:/Program Files (x86)/GLFW/lib/cmake/glfw3")
-
 # find_package(glad CONFIG REQUIRED)
 include("${THIRDPARTY_DIR}/glad.cmake")
 find_package(glfw3         CONFIG REQUIRED)
