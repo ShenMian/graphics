@@ -176,7 +176,7 @@ void Model::loadMesh(aiMesh* mesh)
 	auto vertexBuffer = VertexBuffer::create(vertices, format);
 	auto indexBuffer = IndexBuffer::create(indices);
 
-	std::string name = mesh->mName.C_Str();
+	const std::string name = mesh->mName.C_Str();
 
 	// TODO: 创建包围盒
 	// for(auto& vertex : vertices)

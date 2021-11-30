@@ -14,8 +14,10 @@
 #include <functional>
 #include <unordered_map>
 
-// TODO: 析构后线程可能仍在运行, 导致 callback 获取不存在的数据.
-//       或许应该让用户自己创建一个线程/协程来执行同步操作.
+// TODO:
+// 1. 析构后线程可能仍在运行, 导致 callback 获取不存在的数据.
+//    或许应该让用户自己创建一个线程/协程来执行同步操作.
+// 2. 处理顶点数据时异步读取纹理数据到 Image, 并在读取完毕后同步的创建 Texture.
 
 class Mesh;
 class Material;
