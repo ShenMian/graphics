@@ -16,6 +16,8 @@ include_directories(
 
 add_executable(main main.cpp)
 
-target_link_libraries(main PRIVATE graphics glad)
+find_package(assimp CONFIG REQUIRED)
 
-file(COPY Shaders DESTINATION ".")
+target_link_libraries(main PRIVATE graphics glad assimp::assimp)
+
+file(COPY "Shaders" DESTINATION ".")

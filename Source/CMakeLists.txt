@@ -1,17 +1,6 @@
 ﻿# Copyright 2021 SMS
 # License(Apache-2.0)
 
-set(THIRDPARTY_DIR "${PROJECT_SOURCE_DIR}/ThirdParty")
-
-# TODO: 添加 FindGLFW3.cmake
-set(glfw3_DIR "C:/Program Files (x86)/GLFW/lib/cmake/glfw3")
-
-# find_package(glad CONFIG REQUIRED)
-include("${THIRDPARTY_DIR}/glad.cmake")
-find_package(glfw3         CONFIG REQUIRED)
-find_package(assimp        CONFIG REQUIRED)
-find_package(meshoptimizer CONFIG REQUIRED)
-
 file(GLOB_RECURSE sources "*.cpp")
 
 include_directories(
@@ -26,5 +15,16 @@ include_directories(
     "${THIRDPARTY_DIR}/meshoptimizer/src")
 
 add_library(graphics STATIC ${sources})
+
+set(THIRDPARTY_DIR "${PROJECT_SOURCE_DIR}/ThirdParty")
+
+# TODO: 添加 FindGLFW3.cmake
+set(glfw3_DIR "C:/Program Files (x86)/GLFW/lib/cmake/glfw3")
+
+# find_package(glad CONFIG REQUIRED)
+include("${THIRDPARTY_DIR}/glad.cmake")
+find_package(glfw3         CONFIG REQUIRED)
+find_package(assimp        CONFIG REQUIRED)
+find_package(meshoptimizer CONFIG REQUIRED)
 
 target_link_libraries(graphics PRIVATE glad glfw assimp::assimp meshoptimizer::meshoptimizer)
