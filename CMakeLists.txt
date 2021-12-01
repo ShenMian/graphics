@@ -44,7 +44,7 @@ if(USE_CMAKE_PACKAGE)
     find_package(glfw3         CONFIG REQUIRED)
     find_package(assimp        CONFIG REQUIRED)
     find_package(meshoptimizer CONFIG REQUIRED)
-if()
+endif()
 
 add_subdirectory(Source)
 
