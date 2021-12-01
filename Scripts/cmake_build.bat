@@ -15,7 +15,7 @@ dir build
 
 REM 生成 CMake 緩存
 echo Generating CMake cache...
-cmake -B build -DCMAKE_PREFIX_PATH=. >nul || (
+cmake -B build >nul || (
     echo Failed to generate CMake cache.
     exit /b 1
 )
