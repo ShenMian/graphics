@@ -36,6 +36,9 @@ if(WIN32)
     add_define(NOMINMAX)
 endif()
 
+# 添加第三方库
+set(THIRDPARTY_DIR "${PROJECT_SOURCE_DIR}/ThirdParty")
+
 if(USE_CMAKE_PACKAGE)
     list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/Scripts")
 
@@ -44,6 +47,10 @@ if(USE_CMAKE_PACKAGE)
     find_package(glfw3         CONFIG REQUIRED)
     find_package(assimp        CONFIG REQUIRED)
     find_package(meshoptimizer CONFIG REQUIRED)
+else()
+    add_subdirectory("${THIRDPARTY_DIR}/glfw")
+    add_subdirectory("${THIRDPARTY_DIR}/assimp")
+    add_subdirectory("${THIRDPARTY_DIR}/meshoptimizer")
 endif()
 
 add_subdirectory(Source)
