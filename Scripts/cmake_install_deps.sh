@@ -32,7 +32,7 @@ do
 
     # 生成 CMake 緩存
     echo " |-Gerenating CMake cache..."
-    if ! cmake -B build >/dev/null 2>&1
+    if ! cmake -B build -DCMAKE_INSTALL_PREFIX=. >/dev/null 2>&1
     then
         echo " |-Failed to generate CMake cache."
         exit 1
@@ -49,7 +49,7 @@ do
 
     # 安装
     echo  " |-Installing..."
-    if ! sudo cmake --install build >/dev/null
+    if ! sudo cmake --install build -DCMAKE_PREFIX_PATH=. >/dev/null
     then
         echo " |-Failed to install."
         exit 1

@@ -26,7 +26,7 @@ for %%i in ("assimp" "glfw" "meshoptimizer") do (
 
     REM 生成 CMake 緩存
     echo  ^|-Gerenating CMake cache...
-    cmake -B build >nul || (
+    cmake -B build -DCMAKE_INSTALL_PREFIX=. >nul || (
         echo  ^|-Failed to generate CMake cache.
         exit /b 1
     )
@@ -41,7 +41,7 @@ for %%i in ("assimp" "glfw" "meshoptimizer") do (
 
     REM 安装
     echo  ^|-Installing...
-    cmake --install build >nul || (
+    cmake --install build -DCMAKE_PREFIX_PATH=. >nul || (
         echo  ^|-Failed to install.
         exit /b 1
     )
