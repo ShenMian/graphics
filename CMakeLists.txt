@@ -11,6 +11,11 @@ project(Graphics VERSION 0.0.0)
 set(CMAKE_CXX_STANDARD          23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# 选项
+option(BUILD_EXAMPLES    "Build examples"    ON)
+option(BUILD_TESTS       "Build tests"       ON)
+option(USE_CMAKE_PACKAGE "Use CMake package" ON)
+
 # 指定构建目录
 set(CMAKE_BINARY_DIR               "${PROJECT_SOURCE_DIR}/build")
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
@@ -29,7 +34,20 @@ if(WIN32)
     add_define(UNICODE)
     add_define(_UNICODE)
     add_define(NOMINMAX)
-endif(WIN32)
+endif()
+
+if(USE_CMAKE_PACKAGE)
+    list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/Scripts")
+
+    # find_package(glad CONFIG REQUIRED)
+    include("${THIRDPARTY_DIR}/glad.cmake")
+    find_package(glfw3         CONFIG REQUIRED)
+    find_package(assimp        CONFIG REQUIRED)
+    find_package(meshoptimizer CONFIG REQUIRED)
+if()
 
 add_subdirectory(Source)
-add_subdirectory(Examples/Triangle)
+
+if(BUILD_EXAMPLES)
+    add_subdirectory(Examples/Triangle)
+endif()

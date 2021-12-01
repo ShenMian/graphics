@@ -18,12 +18,4 @@ file(GLOB_RECURSE sources "*.cpp")
 
 add_library(graphics STATIC ${sources})
 
-list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/Scripts")
-
-# find_package(glad CONFIG REQUIRED)
-include("${THIRDPARTY_DIR}/glad.cmake")
-find_package(glfw3         CONFIG REQUIRED)
-find_package(assimp        CONFIG REQUIRED)
-find_package(meshoptimizer CONFIG REQUIRED)
-
 target_link_libraries(graphics PRIVATE glad glfw assimp::assimp meshoptimizer::meshoptimizer)
