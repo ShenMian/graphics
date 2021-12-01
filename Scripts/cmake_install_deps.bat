@@ -41,7 +41,7 @@ for %%i in ("assimp" "glfw" "meshoptimizer") do (
 
     REM 安装
     echo  ^|-Installing...
-    cmake --install build -DCMAKE_PREFIX_PATH=. >nul || (
+    cmake --install build >nul || (
         echo  ^|-Failed to install.
         exit /b 1
     )

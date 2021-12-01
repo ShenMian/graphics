@@ -49,7 +49,7 @@ do
 
     # 安装
     echo  " |-Installing..."
-    if ! sudo cmake --install build -DCMAKE_PREFIX_PATH=. >/dev/null
+    if ! sudo cmake --install build >/dev/null
     then
         echo " |-Failed to install."
         exit 1

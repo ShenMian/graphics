@@ -11,7 +11,7 @@ cd ..
 
 # 生成 CMake 緩存
 echo Generating CMake cache...
-if ! cmake -B build >/dev/null
+if ! cmake -B build -DCMAKE_PREFIX_PATH=. >/dev/null
 then
     echo Failed to generate CMake cache.
     exit 1
