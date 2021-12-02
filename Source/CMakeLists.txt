@@ -16,4 +16,4 @@ file(GLOB_RECURSE sources "*.cpp")
 
 add_library(graphics STATIC ${sources})
 
-target_link_libraries(graphics PRIVATE glad glfw assimp::assimp meshoptimizer::meshoptimizer)
+target_link_libraries(graphics PUBLIC glad glfw assimp::assimp meshoptimizer::meshoptimizer)
