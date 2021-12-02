@@ -40,7 +40,8 @@ endif()
 set(THIRDPARTY_DIR "${PROJECT_SOURCE_DIR}/ThirdParty")
 
 if(USE_CMAKE_PACKAGE)
-    list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/Scripts")
+    # list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/Scripts")
+    set(glfw3_DIR "C:/Program Files (x86)/GLFW/lib/cmake/glfw3")
 
     # find_package(glad CONFIG REQUIRED)
     include("${THIRDPARTY_DIR}/glad.cmake")
