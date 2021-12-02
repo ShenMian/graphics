@@ -11,8 +11,6 @@ pushd %~dp0\..
 REM 安装依赖项
 call Scripts/cmake_install_deps || exit /b 1
 
-dir build
-
 REM 生成 CMake 緩存
 echo Generating CMake cache...
 cmake -B build >nul || (
