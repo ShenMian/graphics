@@ -3,6 +3,20 @@ name: CMake
 on: [push, pull_request]
 
 jobs:
+  build_third_party:
+    runs-on: ${{matrix.os}}
+    strategy:
+      matrix:
+        os: [windows-latest] # ubuntu-latest, macos-latest
+        arch: [x64, x86, arm64, arm]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build
+        run: ./Scripts/cmake_install_deps.bat
+
+
   build:
     runs-on: ${{matrix.os}}
     strategy:
@@ -22,3 +36,6 @@ jobs:
         with:
           name: graphics
           path: build/${{env.prog_name}}/lib
+
+    needs:
+      - build_third_party
