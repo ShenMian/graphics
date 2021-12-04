@@ -13,6 +13,7 @@ enum class Key
     MINUS            = 45,  /* - */
     PERIOD           = 46,  /* . */
     SLASH            = 47,  /* / */
+
     _0               = 48,
     _1               = 49,
     _2               = 50,
@@ -23,8 +24,10 @@ enum class Key
     _7               = 55,
     _8               = 56,
     _9               = 57,
+
     SEMICOLON        = 59,  /* ; */
     EQUAL            = 61,  /* = */
+
     A                = 65,
     B                = 66,
     C                = 67,
@@ -51,6 +54,7 @@ enum class Key
     X                = 88,
     Y                = 89,
     Z                = 90,
+
     LEFT_BRACKET     = 91,  /* [ */
     BACKSLASH        = 92,  /* \ */
     RIGHT_BRACKET    = 93,  /* ] */
@@ -76,6 +80,7 @@ enum class Key
     NUM_LOCK         = 282,
     PRINT_SCREEN     = 283,
     PAUSE            = 284,
+
     F1               = 290,
     F2               = 291,
     F3               = 292,
@@ -101,6 +106,7 @@ enum class Key
     F23              = 312,
     F24              = 313,
     F25              = 314,
+
     KP_0             = 320,
     KP_1             = 321,
     KP_2             = 322,
@@ -118,6 +124,7 @@ enum class Key
     KP_ADD           = 334,
     KP_ENTER         = 335,
     KP_EQUAL         = 336,
+
     LEFT_SHIFT       = 340,
     LEFT_CONTROL     = 341,
     LEFT_ALT         = 342,
@@ -126,4 +133,48 @@ enum class Key
     RIGHT_CONTROL    = 345,
     RIGHT_ALT        = 346,
     RIGHT_SUPER      = 347
+};
+
+enum class Mouse
+{
+	_1 = 0,
+	_2 = 1,
+	_3 = 2,
+	_4 = 3,
+	_5 = 4,
+	_6 = 5,
+	_7 = 6,
+	_8 = 7,
+
+	Left   = _1,
+	Right  = _2,
+	Middle = _3
+};
+
+enum class Gamepad
+{
+	A = 0,
+	B = 1,
+	X = 2,
+	Y = 3,
+
+	LeftBumper  = 4,
+	RightBumper = 5,
+
+	Back  = 6,
+	Start = 7,
+	Guide = 8,
+
+	LeftThumb  = 9,
+	RightThumb = 10,
+
+	DPAD_Up    = 11,
+	DPAD_Right = 12,
+	DPAD_Down  = 13,
+	DPAD_Left  = 14,
+
+	Cross    = A,
+	Circle   = B,
+	Square   = X,
+	Triangle = Y
 };

@@ -188,7 +188,8 @@ void Window::setupCallbacks()
 	glfwSetMouseButtonCallback(handle, [](GLFWwindow* native, int button, int action, int mods)
 	{
 		const auto handle = static_cast<Window*>(glfwGetWindowUserPointer(native));
-		// TODO
+		if(handle->onMouse)
+			handle->onMouse(action, static_cast<Mouse>(button));
 	});
 }
 
