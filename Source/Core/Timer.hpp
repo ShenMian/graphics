@@ -16,6 +16,11 @@ public:
 	{
 	}
 
+	void restart()
+	{
+		start = std::chrono::high_resolution_clock::now();
+	}
+
 	auto getMilliseconds() const
 	{
 		return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - start).count();
