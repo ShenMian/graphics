@@ -3,6 +3,7 @@
 
 #include "GLRenderer.h"
 #include <format>
+#include <stdexcept>
 #include <glad/glad.h>
 
 std::string GLRenderer::getDeviceName() const
@@ -59,7 +60,7 @@ void GLCheckError()
 	{
 		if(error == GL_NO_ERROR)
 			break;
-		throw std::exception(std::format("OpenGL error ({}): {}", error, GLGetErrorString(error)).c_str());
+		throw std::runtime_error(std::format("OpenGL error ({}): {}", error, GLGetErrorString(error)).c_str());
 	}
 }
 
