@@ -37,13 +37,13 @@ jobs:
       - name: Upload libs
         uses: actions/upload-artifact@v2
         with:
-          name: graphics
+          name: Graphics
           path: build/${{env.prog_name}}/lib
 
       - name: Upload bins
         uses: actions/upload-artifact@v2
         with:
-          name: graphics
+          name: Examples
           path: build/${{env.prog_name}}/bin
 
     needs:
