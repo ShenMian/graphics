@@ -24,7 +24,7 @@ void Gamepad::update()
 	axes = glfwGetJoystickAxes(handle, &axisCount);
 	buttons = glfwGetJoystickButtons(handle, &buttonCount);
 
-	assert(axisCount >= 6 && buttonCount >= 14);
+	assert(axisCount > GLFW_GAMEPAD_AXIS_LAST && buttonCount > GLFW_GAMEPAD_BUTTON_LAST);
 }
 
 bool Gamepad::get(Button button) const
@@ -37,11 +37,11 @@ Vector2 Gamepad::get(Thumb thumb) const
 	switch(thumb)
 	{
 	case Thumb::left:
-		return {axes[0], axes[1]};
+		return {axes[GLFW_GAMEPAD_AXIS_LEFT_X], axes[GLFW_GAMEPAD_AXIS_LEFT_Y]};
 		break;
 
 	case Thumb::right:
-		return {axes[2], axes[3]};
+		return {axes[GLFW_GAMEPAD_AXIS_RIGHT_X], axes[GLFW_GAMEPAD_AXIS_RIGHT_Y]};
 		break;
 	}
 }
@@ -51,11 +51,11 @@ float Gamepad::get(Trigger trigger) const
 	switch(trigger)
 	{
 	case Trigger::left:
-		return axes[4];
+		return axes[GLFW_GAMEPAD_AXIS_LEFT_TRIGGER];
 		break;
 
 	case Trigger::right:
-		return axes[5];
+		return axes[GLFW_GAMEPAD_AXIS_RIGHT_TRIGGER];
 		break;
 	}
 }
