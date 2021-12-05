@@ -6,7 +6,6 @@ include "ThirdParty/premake/solution_items.lua"
 workspace "Graphics"
     architecture "x86_64"
     startproject "Triangle"
-    configurations {"Debug", "Release"}
     flags "MultiProcessorCompile"
 
     output_dir = "%{cfg.system}-%{cfg.architecture}-%{cfg.buildcfg}"
