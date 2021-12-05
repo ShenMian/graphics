@@ -2,7 +2,6 @@
 // License(Apache-2.0)
 
 #include "Graphics.h"
-#include <thread>
 
 void PrintInfo();
 
