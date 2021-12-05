@@ -12,6 +12,7 @@
 #include "Model.h"
 
 #include "Core/Window.h"
+#include "Core/Input.h"
 #include "Core/Monitor.h"
 #include "Core/Image.h"
 #include "Core/Timer.hpp"
