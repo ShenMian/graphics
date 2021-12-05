@@ -16,4 +16,4 @@ add_executable(main main.cpp)
 
 target_link_libraries(main PRIVATE graphics glad assimp::assimp)
 
-file(COPY "Shaders" DESTINATION ".")
+file(COPY "Shaders" DESTINATION "${EXECUTABLE_OUTPUT_PATH}")
