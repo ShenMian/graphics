@@ -47,7 +47,7 @@ int main()
 		{
 			switch(key)
 			{
-			case Key::ESCAPE:
+			case Key::Escape:
 				running = false;
 				break;
 

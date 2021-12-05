@@ -2,6 +2,7 @@
 // License(Apache-2.0)
 
 #include "Graphics.h"
+#include <thread>
 
 void PrintInfo();
 
@@ -11,6 +12,7 @@ int main()
 
 	auto window = new Window("Example", Monitor::getPrimary().getSize() / 2);
 	window->setVisible(true); // 设置窗口可见
+	Input::setWindow(window);
 
 	Renderer::setAPI(Renderer::API::OpenGL); // 设置渲染 API 为 OpenGL
 
@@ -18,8 +20,12 @@ int main()
 
 	Model model;
 	model.load("../../../3DModel/scene/Crytek_Sponza/sponza.obj");
-	// model.load("../../../3DModel/scene/SunTemple/SunTemple.fbx"); // 暂不支持格式的压缩纹理资源
 	// model.load("../../../3DModel/weapon/m4a1/m4a1.gltf");
+	// model.load("../../../3DModel/scene/SunTemple/SunTemple.fbx"); // 暂不支持格式的压缩纹理资源
+	/*model.loadAsync("../../../3DModel/scene/Crytek_Sponza/sponza.obj", [](std::string_view error){
+		if(!error.empty())
+			puts(error.data());
+	});*/
 
 	auto program = Program::create("Shaders/forword");
 	auto cmdQueue = CommandQueue::create();
@@ -33,7 +39,7 @@ int main()
 		{
 			switch(key)
 			{
-			case Key::ESCAPE:
+			case Key::Escape:
 				running = false;
 				break;
 
@@ -62,7 +68,6 @@ int main()
 				cmdBuffer->setIndexBuffer(ibo);
 				cmdBuffer->draw(0, vbo->getCount());
 			}
-
 		}
 		cmdBuffer->end();
 		cmdQueue->submit(cmdBuffer);
