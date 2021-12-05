@@ -16,6 +16,11 @@ class Image
 {
 public:
 	/**
+	 * @brief 默认构造函数.
+	 */
+	Image() = default;
+
+	/**
 	 * @brief 构造函数, 从文件载入图像.
 	 *
 	 * @param path 图像文件地址.
