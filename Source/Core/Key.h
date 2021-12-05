@@ -1,18 +1,20 @@
 ﻿// Copyright 2021 ShenMian
 // License(Apache-2.0)
 
+#pragma once
+
 enum class Key
 {
     /* The unknown key */
-    UNKNOWN          = -1,
+    Unknown          = -1,
 
     /* Printable keys */
-    SPACE            = 32,
-    APOSTROPHE       = 39,  /* ' */
-    COMMA            = 44,  /* , */
-    MINUS            = 45,  /* - */
-    PERIOD           = 46,  /* . */
-    SLASH            = 47,  /* / */
+    Space            = 32,
+    Apostrophe       = 39,  /* ' */
+    Comma            = 44,  /* , */
+    Minus            = 45,  /* - */
+    Period           = 46,  /* . */
+    Slash            = 47,  /* / */
 
     _0               = 48,
     _1               = 49,
@@ -25,8 +27,8 @@ enum class Key
     _8               = 56,
     _9               = 57,
 
-    SEMICOLON        = 59,  /* ; */
-    EQUAL            = 61,  /* = */
+    Semicolon        = 59,  /* ; */
+    Equal            = 61,  /* = */
 
     A                = 65,
     B                = 66,
@@ -55,31 +57,31 @@ enum class Key
     Y                = 89,
     Z                = 90,
 
-    LEFT_BRACKET     = 91,  /* [ */
-    BACKSLASH        = 92,  /* \ */
-    RIGHT_BRACKET    = 93,  /* ] */
-    GRAVE_ACCENT     = 96,  /* ` */
+    LeftBracket      = 91,  /* [ */
+    Backslash        = 92,  /* \ */
+    RightBracket     = 93,  /* ] */
+    GraveAccent      = 96,  /* ` */
 
     /* Function keys */
-    ESCAPE           = 256,
-    ENTER            = 257,
-    TAB              = 258,
-    BACKSPACE        = 259,
-    INSERT           = 260,
-    DELETE           = 261,
-    RIGHT            = 262,
-    LEFT             = 263,
-    DOWN             = 264,
-    UP               = 265,
-    PAGE_UP          = 266,
-    PAGE_DOWN        = 267,
-    HOME             = 268,
-    END              = 269,
-    CAPS_LOCK        = 280,
-    SCROLL_LOCK      = 281,
-    NUM_LOCK         = 282,
-    PRINT_SCREEN     = 283,
-    PAUSE            = 284,
+    Escape           = 256,
+    Enter            = 257,
+    Tab              = 258,
+    Backspace        = 259,
+    Insert           = 260,
+    Delete           = 261,
+    Right            = 262,
+    Left             = 263,
+    Down             = 264,
+    Up               = 265,
+    PageUp           = 266,
+    PageDown         = 267,
+    Home             = 268,
+    End              = 269,
+    CapsLock         = 280,
+    ScrollLock       = 281,
+    NumLock          = 282,
+    PrintScreen      = 283,
+    Pause            = 284,
 
     F1               = 290,
     F2               = 291,
@@ -117,22 +119,22 @@ enum class Key
     KP_7             = 327,
     KP_8             = 328,
     KP_9             = 329,
-    KP_DECIMAL       = 330,
-    KP_DIVIDE        = 331,
-    KP_MULTIPLY      = 332,
-    KP_SUBTRACT      = 333,
-    KP_ADD           = 334,
-    KP_ENTER         = 335,
-    KP_EQUAL         = 336,
+    KP_Decimal       = 330,
+    KP_Divide        = 331,
+    KP_Multiply      = 332,
+    KP_Subtract      = 333,
+    KP_Add           = 334,
+    KP_Enter         = 335,
+    KP_Equal         = 336,
 
-    LEFT_SHIFT       = 340,
-    LEFT_CONTROL     = 341,
-    LEFT_ALT         = 342,
-    LEFT_SUPER       = 343,
-    RIGHT_SHIFT      = 344,
-    RIGHT_CONTROL    = 345,
-    RIGHT_ALT        = 346,
-    RIGHT_SUPER      = 347
+    LeftShift        = 340,
+    LeftControl      = 341,
+    LeftAlt          = 342,
+    LeftSuper        = 343,
+    RightShift       = 344,
+    RightControl     = 345,
+    RightAlt         = 346,
+    RightSuper       = 347
 };
 
 enum class Mouse
