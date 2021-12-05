@@ -31,9 +31,6 @@ jobs:
       - name: Build
         run: ./Scripts/cmake_build.bat
 
-      - name: Test
-        run: dir build/${{env.prog_name}}
-
       - name: Upload libs
         uses: actions/upload-artifact@v2
         with:
