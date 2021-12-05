@@ -13,6 +13,7 @@
 
 #include "Core/Window.h"
 #include "Core/Input.h"
+#include "Core/Gamepad.h"
 #include "Core/Monitor.h"
 #include "Core/Image.h"
 #include "Core/Timer.hpp"
