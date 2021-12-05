@@ -16,6 +16,11 @@ option(BUILD_EXAMPLES    "Build examples"    ON)
 option(BUILD_TESTS       "Build tests"       ON)
 option(USE_CMAKE_PACKAGE "Use CMake package" ON)
 
+# 指定默认编译类型
+if(NOT DEFINED CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE Debug)
+endif()
+
 # 指定构建目录
 set(CMAKE_BINARY_DIR               "${PROJECT_SOURCE_DIR}/build")
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
