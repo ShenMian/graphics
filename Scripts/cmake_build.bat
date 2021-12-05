@@ -9,7 +9,7 @@ REM 切换到主目录
 pushd %~dp0\..
 
 REM 安装依赖项
-REM call Scripts/cmake_install_deps || exit /b 1
+call Scripts/cmake_install_deps || exit /b 1
 
 REM 生成 CMake 緩存
 echo Generating CMake cache...
