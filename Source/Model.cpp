@@ -7,6 +7,9 @@
 #include "Material.h"
 #include "Core/Image.h"
 #include <assimp/postprocess.h>
+#include <assimp/scene.h>
+#include <assimp/Exporter.hpp>
+#include <assimp/Importer.hpp>
 #include <algorithm>
 #include <cassert>
 #include <concepts>
@@ -34,17 +37,8 @@ struct Vertex
 	auto operator<=>(const Vertex&) const = default;
 };
 
-// TODO: 属于 Mesh 的职责.
-// 优化网格
-void optimize(std::vector<unsigned int>& indices, std::vector<Vertex>& vertices)
-{
-	meshopt_optimizeVertexCache(indices.data(), indices.data(), indices.size(), vertices.size());
-	meshopt_optimizeOverdraw(indices.data(), indices.data(), indices.size(), &vertices[0].position.x, vertices.size(), sizeof(Vertex), 1.05f);
-	meshopt_optimizeVertexFetch(vertices.data(), indices.data(), indices.size(), vertices.data(), vertices.size(), sizeof(Vertex));
-}
-
 // 获取顶点数据
-void loadVertices(std::vector<Vertex>& vertices, aiMesh* mesh)
+void loadVertices(std::vector<Vertex>& vertices, const aiMesh* mesh)
 {
 	static_assert(std::same_as<ai_real, float>);
 	for(unsigned int i = 0; i < mesh->mNumVertices; i++)
@@ -77,7 +71,7 @@ void loadVertices(std::vector<Vertex>& vertices, aiMesh* mesh)
 }
 
 // 获取索引数据
-void loadIndices(std::vector<unsigned int>& indices, aiMesh* mesh)
+void loadIndices(std::vector<unsigned int>& indices, const aiMesh* mesh)
 {
 	// static_assert(std::same_as<decltype(aiFace::mIndices), unsigned int*>);
 	for(unsigned int i = 0; i < mesh->mNumFaces; i++)
@@ -88,80 +82,73 @@ void loadIndices(std::vector<unsigned int>& indices, aiMesh* mesh)
 	}
 }
 
+// 优化网格
+void optimize(std::vector<unsigned int>& indices, std::vector<Vertex>& vertices)
+{
+	meshopt_optimizeVertexCache(indices.data(), indices.data(), indices.size(), vertices.size());
+	meshopt_optimizeOverdraw(indices.data(), indices.data(), indices.size(), &vertices[0].position.x, vertices.size(), sizeof(Vertex), 1.05f);
+	meshopt_optimizeVertexFetch(vertices.data(), indices.data(), indices.size(), vertices.data(), vertices.size(), sizeof(Vertex));
 }
 
-void Model::load(const fs::path& path)
+void loadMaterial(Material& mat, const aiMesh* aiMesh, const aiScene* scene, const fs::path path)
 {
-	if(!fs::exists(path) && !fs::is_regular_file(path))
-		throw std::exception("no such file or directory");
-
-	this->path = path;
-
-	Timer timer; // TODO: debug
-
-	// 从文件导入场景数据
-	scene = importer.ReadFile(path.string(),
-		aiProcess_CalcTangentSpace |
-		aiProcess_Triangulate |
-		aiProcess_JoinIdenticalVertices |
-		aiProcess_SortByPType);
-
-	if(scene == nullptr || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || scene->mRootNode == nullptr)
-		throw std::exception(importer.GetErrorString());
-
-	name = scene->mName.C_Str();
-
-	loadNode(scene->mRootNode);
-	puts(std::format("网格载入完毕: {}s", timer.getSeconds()).c_str()); // TODO: debug
-}
-
-void Model::loadAsync(const fs::path& path, std::function<void(std::error_code)> callback) noexcept
-{
-	try
+	const auto dir = path.parent_path();
+	const auto aiMat = scene->mMaterials[aiMesh->mMaterialIndex];
+	auto loadTexture = [&](aiTextureType type)->std::shared_ptr<Texture>
 	{
-		std::thread([=]()
+		for(unsigned int i = 0; i < aiMat->GetTextureCount(type); i++)
 		{
-			std::error_code ec;
-			load(path);
-			if(callback)
-				callback(ec);
-		}).detach();
-	}
-	catch(...)
-	{
-		assert(false);
-	}
+			aiString aiPath;
+			aiMat->GetTexture(type, 0, &aiPath);
+			const auto path = dir / aiPath.C_Str();
+			// if(fs::exists(path))
+			return Texture::create(Image(path));
+		}
+		return nullptr;
+	};
+
+	mat.name = aiMat->GetName().C_Str();
+
+	mat.pbr.albedo = loadTexture(aiTextureType_BASE_COLOR);
+	mat.pbr.normals = loadTexture(aiTextureType_NORMAL_CAMERA);
+	mat.pbr.emissive = loadTexture(aiTextureType_EMISSION_COLOR);
+	mat.pbr.metallic = loadTexture(aiTextureType_METALNESS);
+	mat.pbr.roughness = loadTexture(aiTextureType_DIFFUSE_ROUGHNESS);
+	mat.pbr.ao = loadTexture(aiTextureType_AMBIENT_OCCLUSION);
+
+	mat.diffuse = loadTexture(aiTextureType_DIFFUSE);
+	mat.specular = loadTexture(aiTextureType_SPECULAR);
+	mat.ambient = loadTexture(aiTextureType_AMBIENT);
+	mat.emissive = loadTexture(aiTextureType_EMISSIVE);
+	mat.height = loadTexture(aiTextureType_HEIGHT);
+	mat.normals = loadTexture(aiTextureType_NORMALS);
+	mat.shininess = loadTexture(aiTextureType_SHININESS);
+	mat.opacity = loadTexture(aiTextureType_OPACITY);
 }
 
-const std::vector<Mesh> Model::getMeshs() const
+/**
+ * @brief 载入 assimp 网格数据, 创建 Mesh.
+ *
+ * @param aiMesh  assimp 网格.
+ * @param aiScene assimp 场景.
+ * @param path    模型位置.
+ * @param meshs   要载入到的 Mesh 数组.
+ */
+void loadMesh(const aiMesh* aiMesh, const aiScene* aiScene, const fs::path& path, std::vector<Mesh>& meshs)
 {
-	return meshs;
-}
-
-void Model::loadNode(aiNode* node)
-{
-	// 加载网格
-	for(unsigned int i = 0; i < node->mNumMeshes; i++)
-		loadMesh(scene->mMeshes[node->mMeshes[i]]);
-
-	// 加载其余节点
-	for(unsigned int i = 0; i < node->mNumChildren; i++)
-		loadNode(node->mChildren[i]);
-}
-
-void Model::loadMesh(aiMesh* mesh)
-{
-	static auto currScene = scene; // TODO: debug
+	static auto currScene = aiScene; // TODO: debug
 	static unsigned int i = 0;
-	if(currScene != scene)
-		currScene = scene, i = 0;
-	printf(std::format("载入网格: {:>3}/{:<3}\r", ++i, scene->mNumMeshes).c_str());
+	if(currScene != aiScene)
+		currScene = aiScene, i = 0;
+	printf(std::format("处理网格: {:>3}/{:<3}\r", ++i, aiScene->mNumMeshes).c_str());
+
+	Mesh mesh;
 
 	std::vector<Vertex> vertices;
 	std::vector<unsigned int> indices;
 
-	loadVertices(vertices, mesh);
-	loadIndices(indices, mesh);
+	loadVertices(vertices, aiMesh);
+	loadIndices(indices, aiMesh);
 
 	optimize(indices, vertices);
 
@@ -176,78 +163,134 @@ void Model::loadMesh(aiMesh* mesh)
 	auto vertexBuffer = VertexBuffer::create(vertices, format);
 	auto indexBuffer = IndexBuffer::create(indices);
 
-	const std::string name = mesh->mName.C_Str();
+	const std::string name = aiMesh->mName.C_Str();
 
 	// TODO: 创建包围盒
 	// for(auto& vertex : vertices)
 	// mesh->mAABB;
 
-	// vertices 应该由 Model 管理, 传递给 Mesh 构造函数. Mesh 在已有的基础上继续添加顶点数据.
+	Material mat;
+	loadMaterial(mat, aiMesh, aiScene, path);
 
-	meshs.emplace_back(name, vertexBuffer, indexBuffer);
+	mesh.setName(name);
+	mesh.setVertexBuffer(vertexBuffer);
+	mesh.setIndexBuffer(indexBuffer);
+	mesh.setMaterial(mat);
 
-	// loadMaterial(&meshs.back(), mesh);
+	meshs.push_back(std::move(mesh));
 }
 
-void Model::loadMaterial(Mesh* mesh, aiMesh* aiMesh)
+/**
+ * @brief 从场景中递归载入节点数据.
+ *
+ * @param aiNode  assimp 节点.
+ * @param aiScene assimp 场景.
+ * @param path    模型位置.
+ * @param meshs   要载入到的 Mesh 数组.
+ */
+void loadNode(const aiNode* aiNode, const aiScene* aiScene, const fs::path& path, std::vector<Mesh>& meshs)
 {
-	const auto dir = path.parent_path();
-	const auto aiMat = scene->mMaterials[aiMesh->mMaterialIndex];
+	// 加载网格
+	for(unsigned int i = 0; i < aiNode->mNumMeshes; i++)
+		loadMesh(aiScene->mMeshes[aiNode->mMeshes[i]], aiScene, path, meshs);
 
-	auto loadTexture = [&](aiTextureType type)->std::shared_ptr<Texture>
-	{
-		for(unsigned int i = 0; i < aiMat->GetTextureCount(type); i++)
-		{
-			aiString aiPath;
-			aiMat->GetTexture(type, 0, &aiPath);
-			const auto path = dir / aiPath.C_Str();
-			// if(fs::exists(path))
-			return Texture::create(Image(path));
-		}
-		return nullptr;
-	};
-
-	mesh->material.name = aiMat->GetName().C_Str();
-
-	mesh->material.pbr.albedo = loadTexture(aiTextureType_BASE_COLOR);
-	mesh->material.pbr.normals = loadTexture(aiTextureType_NORMAL_CAMERA);
-	mesh->material.pbr.emissive = loadTexture(aiTextureType_EMISSION_COLOR);
-	mesh->material.pbr.metallic = loadTexture(aiTextureType_METALNESS);
-	mesh->material.pbr.roughness = loadTexture(aiTextureType_DIFFUSE_ROUGHNESS);
-	mesh->material.pbr.ao = loadTexture(aiTextureType_AMBIENT_OCCLUSION);
-
-	mesh->material.diffuse = loadTexture(aiTextureType_DIFFUSE);
-	mesh->material.specular = loadTexture(aiTextureType_SPECULAR);
-	mesh->material.ambient = loadTexture(aiTextureType_AMBIENT);
-	mesh->material.emissive = loadTexture(aiTextureType_EMISSIVE);
-	mesh->material.height = loadTexture(aiTextureType_HEIGHT);
-	mesh->material.normals = loadTexture(aiTextureType_NORMALS);
-	mesh->material.shininess = loadTexture(aiTextureType_SHININESS);
-	mesh->material.opacity = loadTexture(aiTextureType_OPACITY);
+	// 加载其余节点
+	for(unsigned int i = 0; i < aiNode->mNumChildren; i++)
+		loadNode(aiNode->mChildren[i], aiScene, path, meshs);
 }
 
-/*
-void Model::save(const fs::path& path)
+}
+
+Model::Model()
+	: importer(std::make_shared<Assimp::Importer>()),
+	exporter(std::make_shared<Assimp::Exporter>())
+{
+}
+
+void Model::load(const fs::path& path)
+{
+	if(!fs::exists(path) && !fs::is_regular_file(path))
+		throw std::runtime_error("no such file or directory");
+
+	this->path = path;
+
+	Timer timer; // TODO: debug
+
+	// 从文件导入场景数据
+	aiScene = importer->ReadFile(path.string(),
+		aiProcess_CalcTangentSpace |
+		aiProcess_Triangulate |
+		aiProcess_JoinIdenticalVertices |
+		aiProcess_SortByPType);
+
+	if(aiScene == nullptr || aiScene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || aiScene->mRootNode == nullptr)
+		throw std::runtime_error(importer->GetErrorString());
+
+	name = aiScene->mName.C_Str();
+
+	puts(std::format("网格加载完毕: {}s", timer.getSeconds()).c_str()); // TODO: debug
+
+	timer.restart(); // TODO: debug
+	loadNode(aiScene->mRootNode, aiScene, path, meshs);
+	puts(std::format("网格处理完毕: {}s", timer.getSeconds()).c_str()); // TODO: debug
+}
+
+void Model::loadAsync(const fs::path& path, std::function<void(std::string_view)> callback) noexcept
+{
+	try
+	{
+		std::thread([=]()
+		{
+			try
+			{
+				load(path);
+				if(callback)
+					callback("");
+			}
+			catch(std::runtime_error& e)
+			{
+				if(callback)
+					callback(e.what());
+			}
+		}).detach();
+	}
+	catch(...)
+	{
+		assert(false);
+	}
+}
+
+const std::vector<Mesh> Model::getMeshs() const
+{
+	return meshs;
+}
+
+/*void Model::save(const fs::path& path)
 {
 	assert(scene != nullptr);
 
 	// 导出场景数据到文件
-	auto ret = exporter.Export(scene, path.extension().string(), path.string());
+	auto ret = importer->Export(scene, path.extension().string(), path.string());
 	if(ret == aiReturn_FAILURE)
-		throw std::exception(exporter.GetErrorString());
+		throw std::runtime_error(importer->GetErrorString());
 }
 
-void Model::saveAsync(const fs::path& path, std::function<void(std::error_code)> callback) noexcept
+void Model::saveAsync(const fs::path& path, std::function<void(std::string_view)> callback) noexcept
 {
 	std::thread([=]()
 	{
-		std::error_code ec;
-		save(path, ec);
-		if(callback)
-			callback(ec);
+		try
+		{
+			save(path);
+			if(callback)
+				callback("");
+		} catch(std::runtime_error& e)
+		{
+			if(callback)
+				callback(e.what());
+		}
 	}).detach();
-}
-*/
+}*/
 
 // static std::vector<std::future<void>> futures;
 // futures.erase(std::remove_if(futures.begin(), futures.end(), [](std::future<void>& f) { return f.wait_for(std::chrono::seconds(0)) == std::future_status::ready; }), futures.end());

@@ -6,18 +6,24 @@
 #include "Mesh.h"
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
-#include <system_error>
-#include <assimp/scene.h>
-#include <assimp/Exporter.hpp>
-#include <assimp/Importer.hpp>
+#include <stdexcept>
 #include <filesystem>
 #include <functional>
 #include <unordered_map>
 
 // TODO:
-// 1. 析构后线程可能仍在运行, 导致 callback 获取不存在的数据.
-//    或许应该让用户自己创建一个线程/协程来执行同步操作.
-// 2. 处理顶点数据时异步读取纹理数据到 Image, 并在读取完毕后同步的创建 Texture.
+// 1. 顶点数据应该由 Model 管理, Mesh 保存顶点数据的引用和顶点索引.
+// 2. 析构后线程可能仍在运行, 导致 callback 获取不存在的数据.
+
+namespace Assimp
+{
+
+class Importer;
+class Exporter;
+
+}
+
+struct aiScene;
 
 class Mesh;
 class Material;
@@ -28,6 +34,8 @@ class Material;
 class Model
 {
 public:
+	Model();
+
 	/**
 	 * @brief 从文件载入场景.
 	 *
@@ -44,7 +52,7 @@ public:
 	 *
 	 * @see load
 	 */
-	void loadAsync(const std::filesystem::path& path, std::function<void(std::error_code)> callback = nullptr) noexcept;
+	void loadAsync(const std::filesystem::path& path, std::function<void(std::string_view)> callback = nullptr) noexcept;
 
 	/**
 	 * @brief 保存场景到文件.
@@ -57,35 +65,14 @@ public:
 	const std::vector<Mesh> getMeshs() const;
 
 private:
-	/**
-	 * @brief 从场景中递归载入节点数据.
-	 *
-	 * @param node assimp 节点.
-	 */
-	void loadNode(aiNode* node);
-
-	/**
-	 * @brief 载入 assimp 网格数据, 创建 Mesh.
-	 *
-	 * @param mesh assimp 网格.
-	 */
-	void loadMesh(aiMesh* mesh);
-
-	/**
-	 * @brief 载入 assimp 材质数据到 Mesh 的 Material.
-	 *
-	 * @param mesh 网格.
-	 * @param aiMesh assimp 网格.
-	 */
-	void loadMaterial(Mesh* mesh, aiMesh* aiMesh);
 
 	std::string           name;
 	std::vector<Mesh>     meshs;
 	std::filesystem::path path;
 
-	const aiScene* scene = nullptr;
-	Assimp::Importer importer;
-	Assimp::Exporter exporter;
+	const aiScene* aiScene = nullptr;
+	std::shared_ptr<Assimp::Importer> importer;
+	std::shared_ptr<Assimp::Exporter> exporter;
 };
 
 /*
