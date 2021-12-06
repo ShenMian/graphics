@@ -28,6 +28,3 @@ jobs:
         with:
           name: examples-${{matrix.arch}}
           path: build/${{env.prog_name}}/bin
-
-    needs:
-      - build_third_party
