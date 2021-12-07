@@ -14,7 +14,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # 选项
 option(BUILD_EXAMPLES    "Build examples"    ON)
 option(BUILD_TESTS       "Build tests"       ON)
-option(USE_CMAKE_PACKAGE "Use CMake package" ON)
+option(USE_CMAKE_PACKAGE "Use CMake package" OFF)
 
 # 指定默认编译类型
 if(NOT DEFINED CMAKE_BUILD_TYPE)
