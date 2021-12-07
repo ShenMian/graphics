@@ -14,6 +14,6 @@ include_directories(
 
 add_executable(main main.cpp)
 
-target_link_libraries(main PRIVATE graphics glad assimp::assimp)
+target_link_libraries(main PRIVATE graphics glad)
 
 file(COPY "Shaders" DESTINATION "${EXECUTABLE_OUTPUT_PATH}/${CMAKE_BUILD_TYPE}")
