@@ -7,23 +7,25 @@ list(APPEND INCS
     "${DEPS_DIR}/glad/include"
     "${DEPS_DIR}/glfw/include")
 
+set(INCS
+    "${DEPS_DIR}/stb"
+    "${DEPS_DIR}/Math/include"
+    "${DEPS_DIR}/glad/include"
+    "${DEPS_DIR}/glfw/include"
+    "${DEPS_DIR}/assimp/include"
+    "${DEPS_DIR}/assimp/build/include")
+
 list(APPEND LIBS
     glad
     glfw)
 
 find_package(assimp CONFIG)
 if(assimp_FOUND)
-    list(APPEND INCS ${assimp_INCLUDE_DIRS})
     list(APPEND LIBS ${assimp_LIBRARIES})
 else()
     add_subdirectory("${DEPS_DIR}/assimp")
-    list(APPEND INCS
-        "${DEPS_DIR}/assimp/include"
-        "${DEPS_DIR}/assimp/build/include")
     list(APPEND LIBS assimp)
 endif()
-
-message("${INCS}")
 
 include_directories(
     ${INCS}
