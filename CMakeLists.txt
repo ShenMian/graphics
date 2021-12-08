@@ -44,18 +44,22 @@ endif()
 # 添加第三方库
 set(THIRDPARTY_DIR "${PROJECT_SOURCE_DIR}/ThirdParty")
 
+include("${THIRDPARTY_DIR}/glad.cmake")
+
+find_package(assimp CONFIG)
+if(not assimp_FOUND)
+    add_subdirectory("${THIRDPARTY_DIR}/assimp")
+endif()
+
 if(USE_CMAKE_PACKAGE)
     # list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/Scripts")
     set(glfw3_DIR "C:/Program Files (x86)/GLFW/lib/cmake/glfw3")
 
     # find_package(glad CONFIG REQUIRED)
-    include("${THIRDPARTY_DIR}/glad.cmake")
-    find_package(glfw3         CONFIG REQUIRED)
-    find_package(assimp        CONFIG REQUIRED)
-    find_package(meshoptimizer CONFIG REQUIRED)
+    find_package(glfw3         CONFIG)
+    find_package(meshoptimizer CONFIG)
 else()
     add_subdirectory("${THIRDPARTY_DIR}/glfw")
-    add_subdirectory("${THIRDPARTY_DIR}/assimp")
     add_subdirectory("${THIRDPARTY_DIR}/meshoptimizer")
 endif()
 
