@@ -3,14 +3,14 @@
 
 include_directories(
     "${PROJECT_SOURCE_DIR}/Source"
-    "${THIRDPARTY_DIR}/stb"
-    "${THIRDPARTY_DIR}/Math/include"
-    "${THIRDPARTY_DIR}/glad/include"
-    "${THIRDPARTY_DIR}/glfw/include"
-    "${THIRDPARTY_DIR}/assimp/include"
-    "${THIRDPARTY_DIR}/assimp/build/include"
-    "${THIRDPARTY_DIR}/Vulkan-Headers/include"
-    "${THIRDPARTY_DIR}/meshoptimizer/src")
+    "${DEPS_DIR}/stb"
+    "${DEPS_DIR}/Math/include"
+    "${DEPS_DIR}/glad/include"
+    "${DEPS_DIR}/glfw/include"
+    "${DEPS_DIR}/assimp/include"
+    "${DEPS_DIR}/assimp/build/include"
+    "${DEPS_DIR}/Vulkan-Headers/include"
+    "${DEPS_DIR}/meshoptimizer/src")
 
 add_executable(main main.cpp)
 

@@ -42,9 +42,9 @@ if(WIN32)
 endif()
 
 # 添加第三方库
-set(THIRDPARTY_DIR "${PROJECT_SOURCE_DIR}/ThirdParty")
+set(DEPS_DIR "${PROJECT_SOURCE_DIR}/ThirdParty")
 
-include("${THIRDPARTY_DIR}/glad.cmake")
+include("${DEPS_DIR}/glad.cmake")
 
 if(USE_CMAKE_PACKAGE)
     # list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/Scripts")
@@ -54,8 +54,8 @@ if(USE_CMAKE_PACKAGE)
     find_package(glfw3         CONFIG)
     find_package(meshoptimizer CONFIG)
 else()
-    add_subdirectory("${THIRDPARTY_DIR}/glfw")
-    add_subdirectory("${THIRDPARTY_DIR}/meshoptimizer")
+    add_subdirectory("${DEPS_DIR}/glfw")
+    add_subdirectory("${DEPS_DIR}/meshoptimizer")
 endif()
 
 add_subdirectory(Source)

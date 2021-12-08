@@ -1,26 +1,33 @@
 ﻿# Copyright 2021 SMS
 # License(Apache-2.0)
 
-list(APPEND LIBS glad glfw)
+list(APPEND INCS
+    "${DEPS_DIR}/stb"
+    "${DEPS_DIR}/Math/include"
+    "${DEPS_DIR}/glad/include"
+    "${DEPS_DIR}/glfw/include")
+
+list(APPEND LIBS
+    glad
+    glfw)
 
 find_package(assimp CONFIG)
 if(assimp_FOUND)
-    list(APPEND LIBS assimp::assimp)
+    list(APPEND INCS ${assimp_INCLUDE_DIRS})
+    list(APPEND LIBS ${assimp_LIBRARIES})
 else()
-    add_subdirectory("${THIRDPARTY_DIR}/assimp")
+    add_subdirectory("${DEPS_DIR}/assimp")
+    list(APPEND INCS
+        "${DEPS_DIR}/assimp/include"
+        "${DEPS_DIR}/assimp/build/include")
     list(APPEND LIBS assimp)
 endif()
 
 include_directories(
+    ${INCS}
     "${PROJECT_SOURCE_DIR}/Source"
-    "${THIRDPARTY_DIR}/stb"
-    "${THIRDPARTY_DIR}/Math/include"
-    "${THIRDPARTY_DIR}/glad/include"
-    "${THIRDPARTY_DIR}/glfw/include"
-    "${THIRDPARTY_DIR}/assimp/include"
-    "${THIRDPARTY_DIR}/assimp/build/include"
-    "${THIRDPARTY_DIR}/Vulkan-Headers/include"
-    "${THIRDPARTY_DIR}/meshoptimizer/src")
+    "${DEPS_DIR}/Vulkan-Headers/include"
+    "${DEPS_DIR}/meshoptimizer/src")
 
 file(GLOB_RECURSE SOURCES "*.cpp")
 
