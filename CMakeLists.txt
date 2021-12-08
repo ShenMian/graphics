@@ -46,11 +46,6 @@ set(THIRDPARTY_DIR "${PROJECT_SOURCE_DIR}/ThirdParty")
 
 include("${THIRDPARTY_DIR}/glad.cmake")
 
-find_package(assimp CONFIG)
-if(not assimp_FOUND)
-    add_subdirectory("${THIRDPARTY_DIR}/assimp")
-endif()
-
 if(USE_CMAKE_PACKAGE)
     # list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/Scripts")
     set(glfw3_DIR "C:/Program Files (x86)/GLFW/lib/cmake/glfw3")
