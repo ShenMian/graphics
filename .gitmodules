@@ -1,30 +1,30 @@
 [submodule "Thirdparty/assimp"]
-	path = ThirdParty/assimp
+	path = Deps/assimp
 	url = https://github.com/assimp/assimp.git
 [submodule "Thirdparty/Vulkan-Headers"]
-	path = ThirdParty/Vulkan-Headers
+	path = Deps/Vulkan-Headers
 	url = https://github.com/KhronosGroup/Vulkan-Headers.git
 [submodule "Thirdparty/meshoptimizer"]
-	path = ThirdParty/meshoptimizer
+	path = Deps/meshoptimizer
 	url = https://github.com/zeux/meshoptimizer.git
 [submodule "Thirdparty/glfw"]
-	path = ThirdParty/glfw
+	path = Deps/glfw
 	url = https://github.com/glfw/glfw.git
 [submodule "Thirdparty/stb"]
-	path = ThirdParty/stb
+	path = Deps/stb
 	url = https://github.com/nothings/stb.git
 [submodule "Thirdparty/Math"]
-	path = ThirdParty/Math
+	path = Deps/Math
 	url = https://github.com/ShenMian/Math
 [submodule "Thirdparty/shaderc"]
-	path = ThirdParty/shaderc
+	path = Deps/shaderc
 	url = https://github.com/google/shaderc.git
 [submodule "Thirdparty/glslang"]
-	path = ThirdParty/glslang
+	path = Deps/glslang
 	url = https://github.com/KhronosGroup/glslang.git
 [submodule "Thirdparty/SPIRV-Tools"]
-	path = ThirdParty/SPIRV-Tools
+	path = Deps/SPIRV-Tools
 	url = https://github.com/KhronosGroup/SPIRV-Tools.git
 [submodule "Thirdparty/SPIRV-Headers"]
-	path = ThirdParty/SPIRV-Headers
+	path = Deps/SPIRV-Headers
 	url = https://github.com/KhronosGroup/SPIRV-Headers

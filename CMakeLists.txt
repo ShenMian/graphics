@@ -41,7 +41,7 @@ if(WIN32)
 endif()
 
 # 添加第三方库
-set(DEPS_DIR "${PROJECT_SOURCE_DIR}/ThirdParty")
+set(DEPS_DIR "${PROJECT_SOURCE_DIR}/Deps")
 
 add_subdirectory(Source)
 
