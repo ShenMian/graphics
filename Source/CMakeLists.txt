@@ -15,12 +15,21 @@ find_package(assimp CONFIG)
 if(assimp_FOUND)
     list(APPEND LIBS ${assimp_LIBRARIES})
 else()
-    add_subdirectory("${DEPS_DIR}/assimp")
+    add_subdirectory("${DEPS_DIR}/assimp" "assimp")
     list(APPEND LIBS assimp)
 endif()
 list(APPEND INCS
     "${DEPS_DIR}/assimp/include"
     "${DEPS_DIR}/assimp/build/include")
+
+find_package(meshoptimizer CONFIG)
+if(meshoptimizer_FOUND)
+    list(APPEND LIBS ${meshoptimizer_LIBRARIES})
+else()
+    add_subdirectory("${DEPS_DIR}/meshoptimizer" "meshoptimizer")
+    list(APPEND LIBS meshoptimizer)
+endif()
+list(APPEND INCS "${DEPS_DIR}/meshoptimizer/src")
 
 include_directories(
     ${INCS}
