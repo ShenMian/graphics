@@ -3,19 +3,22 @@
 
 list(APPEND INCS
     "${DEPS_DIR}/stb"
-    "${DEPS_DIR}/Math/include"
-    "${DEPS_DIR}/glad/include"
-    "${DEPS_DIR}/glfw/include")
-
-list(APPEND LIBS
-    glad
-    glfw)
+    "${DEPS_DIR}/Math/include")
 
 include("${DEPS_DIR}/glad.cmake")
+list(APPEND LIBS glad)
+list(APPEND INCS "${DEPS_DIR}/glad/include")
 
 # list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/Scripts")
 set(glfw3_DIR "C:/Program Files (x86)/GLFW/lib/cmake/glfw3")
-add_subdirectory("${DEPS_DIR}/glfw")
+find_package(GLFW3)
+if(glfw3_FOUND)
+    list(APPEND LIBS ${glfw3_LIBRARIES})
+else()
+    add_subdirectory("${DEPS_DIR}/glfw" "glfw3")
+    list(APPEND LIBS glfw)
+endif()
+list(APPEND INCS "${DEPS_DIR}/glfw/include")
 
 find_package(assimp CONFIG)
 if(assimp_FOUND)
