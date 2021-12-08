@@ -11,6 +11,8 @@ list(APPEND LIBS
     glad
     glfw)
 
+include("${DEPS_DIR}/glad.cmake")
+
 # list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/Scripts")
 set(glfw3_DIR "C:/Program Files (x86)/GLFW/lib/cmake/glfw3")
 add_subdirectory("${DEPS_DIR}/glfw")

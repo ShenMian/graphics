@@ -43,8 +43,6 @@ endif()
 # 添加第三方库
 set(DEPS_DIR "${PROJECT_SOURCE_DIR}/ThirdParty")
 
-include("${DEPS_DIR}/glad.cmake")
-
 add_subdirectory(Source)
 
 if(BUILD_EXAMPLES)
