@@ -23,6 +23,8 @@ else()
     list(APPEND LIBS assimp)
 endif()
 
+message("${INCS}")
+
 include_directories(
     ${INCS}
     "${PROJECT_SOURCE_DIR}/Source"
