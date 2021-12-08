@@ -14,7 +14,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # 选项
 option(BUILD_EXAMPLES    "Build examples"    ON)
 option(BUILD_TESTS       "Build tests"       ON)
-option(USE_CMAKE_PACKAGE "Use CMake package" OFF)
 
 # 指定默认编译类型
 if(NOT DEFINED CMAKE_BUILD_TYPE)
@@ -45,18 +44,6 @@ endif()
 set(DEPS_DIR "${PROJECT_SOURCE_DIR}/ThirdParty")
 
 include("${DEPS_DIR}/glad.cmake")
-
-if(USE_CMAKE_PACKAGE)
-    # list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/Scripts")
-    set(glfw3_DIR "C:/Program Files (x86)/GLFW/lib/cmake/glfw3")
-
-    # find_package(glad CONFIG REQUIRED)
-    find_package(glfw3         CONFIG)
-    find_package(meshoptimizer CONFIG)
-else()
-    add_subdirectory("${DEPS_DIR}/glfw")
-    add_subdirectory("${DEPS_DIR}/meshoptimizer")
-endif()
 
 add_subdirectory(Source)
 

@@ -11,6 +11,10 @@ list(APPEND LIBS
     glad
     glfw)
 
+# list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/Scripts")
+set(glfw3_DIR "C:/Program Files (x86)/GLFW/lib/cmake/glfw3")
+add_subdirectory("${DEPS_DIR}/glfw")
+
 find_package(assimp CONFIG)
 if(assimp_FOUND)
     list(APPEND LIBS ${assimp_LIBRARIES})
@@ -41,8 +45,4 @@ file(GLOB_RECURSE SOURCES "*.cpp")
 
 add_library(graphics STATIC ${SOURCES})
 
-if(USE_CMAKE_PACKAGE)
-    target_link_libraries(graphics PUBLIC ${LIBS} meshoptimizer::meshoptimizer)
-else()
-    target_link_libraries(graphics PUBLIC ${LIBS} meshoptimizer)
-endif()
+target_link_libraries(graphics PUBLIC ${LIBS})
