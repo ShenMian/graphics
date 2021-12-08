@@ -2,9 +2,9 @@
 # Copyright 2021 ShenMian
 # License(Apache-2.0)
 
-# 切换到 ThirdParty 目录
+# 切换到 Deps 目录
 cd "$( cd "$( dirname "$0"  )" && pwd  )" || exit
-cd ../ThirdParty
+cd ../Deps
 
 # 獲取管理員權限
 if ! sudo echo

@@ -1,7 +1,7 @@
 -- Copyright 2021 SMS
 -- License(Apache-2.0)
 
-include "ThirdParty/premake/solution_items.lua"
+include "Deps/premake/solution_items.lua"
 
 workspace "Graphics"
     architecture "x86_64"
@@ -41,17 +41,17 @@ workspace "Graphics"
 
     -- 第三方库路径
     deps = {}
-    deps["stb"]           = "%{wks.location}/ThirdParty/stb"
-    deps["math"]          = "%{wks.location}/ThirdParty/Math"
-    deps["glad"]          = "%{wks.location}/ThirdParty/glad"
-    deps["glfw"]          = "%{wks.location}/ThirdParty/glfw"
-    deps["assimp"]        = "%{wks.location}/ThirdParty/assimp"
-    deps["shaderc"]       = "%{wks.location}/ThirdParty/shaderc"
-    deps["glslang"]       = "%{wks.location}/ThirdParty/glslang"
-    deps["vulkan"]        = "%{wks.location}/ThirdParty/Vulkan-Headers"
-    deps["spirv_tools"]   = "%{wks.location}/ThirdParty/SPIRV-Tools"
-    deps["spirv_headers"] = "%{wks.location}/ThirdParty/SPIRV-Headers"
-    deps["meshoptimizer"] = "%{wks.location}/ThirdParty/meshoptimizer"
+    deps["stb"]           = "%{wks.location}/Deps/stb"
+    deps["math"]          = "%{wks.location}/Deps/Math"
+    deps["glad"]          = "%{wks.location}/Deps/glad"
+    deps["glfw"]          = "%{wks.location}/Deps/glfw"
+    deps["assimp"]        = "%{wks.location}/Deps/assimp"
+    deps["shaderc"]       = "%{wks.location}/Deps/shaderc"
+    deps["glslang"]       = "%{wks.location}/Deps/glslang"
+    deps["vulkan"]        = "%{wks.location}/Deps/Vulkan-Headers"
+    deps["spirv_tools"]   = "%{wks.location}/Deps/SPIRV-Tools"
+    deps["spirv_headers"] = "%{wks.location}/Deps/SPIRV-Headers"
+    deps["meshoptimizer"] = "%{wks.location}/Deps/meshoptimizer"
 
     -- 第三方库头文件路径
     deps_inc = {}
@@ -71,13 +71,13 @@ workspace "Graphics"
         include "Examples/Test"
     group ""
 
-    group "ThirdParty"
-        include "ThirdParty/glad"
-        include "ThirdParty/glfw"
-        include "ThirdParty/assimp"
-        -- include "ThirdParty/shaderc"
-        -- include "ThirdParty/glslang"
-        -- include "ThirdParty/spirv_tools"
-        -- include "ThirdParty/spirv_cross"
-        include "ThirdParty/meshoptimizer"
+    group "Deps"
+        include "Deps/glad"
+        include "Deps/glfw"
+        include "Deps/assimp"
+        -- include "Deps/shaderc"
+        -- include "Deps/glslang"
+        -- include "Deps/spirv_tools"
+        -- include "Deps/spirv_cross"
+        include "Deps/meshoptimizer"
     group ""
