@@ -40,6 +40,11 @@ if(WIN32)
     add_define(NOMINMAX)
 endif()
 
+if(MSVC)
+  set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MT")
+  set(CMAKE_CXX_FLAGS_DEBUG   "${CMAKE_CXX_FLAGS_DEBUG} /MTd")
+endif()
+
 # 添加第三方库
 set(DEPS_DIR "${PROJECT_SOURCE_DIR}/Deps")
 
