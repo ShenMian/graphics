@@ -7,14 +7,6 @@ list(APPEND INCS
     "${DEPS_DIR}/glad/include"
     "${DEPS_DIR}/glfw/include")
 
-set(INCS
-    "${DEPS_DIR}/stb"
-    "${DEPS_DIR}/Math/include"
-    "${DEPS_DIR}/glad/include"
-    "${DEPS_DIR}/glfw/include"
-    "${DEPS_DIR}/assimp/include"
-    "${DEPS_DIR}/assimp/build/include")
-
 list(APPEND LIBS
     glad
     glfw)
@@ -26,6 +18,9 @@ else()
     add_subdirectory("${DEPS_DIR}/assimp")
     list(APPEND LIBS assimp)
 endif()
+list(APPEND INCS
+    "${DEPS_DIR}/assimp/include"
+    "${DEPS_DIR}/assimp/build/include")
 
 include_directories(
     ${INCS}
