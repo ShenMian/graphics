@@ -4,7 +4,7 @@
 
 #include "GLProgram.h"
 #include "GLShader.h"
-#include "GLRenderer.h"
+#include "GLCheck.h"
 #include "../Program.h"
 #include <cassert>
 #include <format>

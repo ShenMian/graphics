@@ -2,7 +2,7 @@
 // License(Apache-2.0)
 
 #include "GLTexture.h"
-#include "GLRenderer.h"
+#include "GLCheck.h"
 #include "Core/Image.h"
 #include "Format.h"
 #include <cassert>

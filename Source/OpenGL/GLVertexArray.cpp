@@ -3,7 +3,7 @@
 
 #include "GLVertexArray.h"
 #include "../VertexFormat.h"
-#include "GLRenderer.h"
+#include "GLCheck.h"
 #include <glad/glad.h>
 #include <unordered_map>
 
