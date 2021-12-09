@@ -126,6 +126,11 @@ void Window::setIcon(const Image& image)
 	glfwSetWindowIcon(handle, 1, &glfwImage);
 }
 
+void Window::requestFocus()
+{
+	glfwRequestWindowAttention(handle);
+}
+
 void* Window::getNativeHandle() const
 {
 	return handle;
@@ -198,7 +203,10 @@ void Window::init()
 	auto ret = glfwInit();
 	if(!ret)
 		throw std::runtime_error("GLFW init failed");
-	glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE); // 创建新窗口默认不可见
+
+	glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);                      // 创建新窗口默认不可见
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); // OpenGL 将使用核心模式
+
 	Monitor::init();
 }
 

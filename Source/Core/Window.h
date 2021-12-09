@@ -114,17 +114,22 @@ public:
 	void setIcon(const Image& image);
 
 	/**
+	 * @brief 请求聚焦.
+	 */
+	void requestFocus();
+
+	/**
 	 * @brief 获取本地句柄.
 	 */
 	void* getNativeHandle() const;
 
-	std::function<void(Vector2i)>         onResize;    ///< 窗口大小变化时回调
-	std::function<void(bool)>             onFocus;     ///< 窗口获取/失去焦点回调
-	std::function<void()>                 onClose;     ///< 窗口关闭按钮按下回调
-	std::function<void(int, Key)>         onKey;       ///< 键盘按键回调
-	std::function<void(double, double)>   onScroll;    ///< 鼠标滚轮滚动回调
-	std::function<void(double, double)>   onMouseMove; ///< 鼠标移动回调
-	std::function<void(int, Mouse)>       onMouse;     ///< 鼠标按键回调
+	std::function<void(Vector2i)>       onResize;    ///< 窗口大小变化时回调
+	std::function<void(bool)>           onFocus;     ///< 窗口获取/失去焦点回调
+	std::function<void()>               onClose;     ///< 窗口关闭按钮按下回调
+	std::function<void(int, Key)>       onKey;       ///< 键盘按键回调
+	std::function<void(double, double)> onScroll;    ///< 鼠标滚轮滚动回调
+	std::function<void(double, double)> onMouseMove; ///< 鼠标移动回调
+	std::function<void(int, Mouse)>     onMouse;     ///< 鼠标按键回调
 
 	static void init();
 	static void deinit();
