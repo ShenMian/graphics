@@ -10,7 +10,6 @@ int main()
 	Window::init();
 
 	auto window = new Window("Example", Monitor::getPrimary().getSize() / 2);
-	window->setVisible(true); // 设置窗口可见
 	Input::setWindow(window);
 
 	Renderer::setAPI(Renderer::API::OpenGL); // 设置渲染 API 为 OpenGL
@@ -18,7 +17,9 @@ int main()
 	PrintInfo();
 
 	Model model;
-	model.load("../../../3DModel/scene/Crytek_Sponza/sponza.obj");
+	model.load("../../../3DModel/basic/cube.obj");
+	// model.load("../../../3DModel/scene/Crytek_Sponza/sponza.obj");
+	// model.load("../../../3DModel/scene/Amazon_Lumberyard_Bistro/Exterior/exterior.obj");
 	// model.load("../../../3DModel/weapon/m4a1/m4a1.gltf");
 	// model.load("../../../3DModel/scene/SunTemple/SunTemple.fbx"); // 暂不支持格式的压缩纹理资源
 	/*model.loadAsync("../../../3DModel/scene/Crytek_Sponza/sponza.obj", [](std::string_view error){
@@ -48,6 +49,7 @@ int main()
 			}
 		}
 	};
+	window->setVisible(true); // 设置窗口可见
 
 	while(running)
 	{
@@ -56,7 +58,7 @@ int main()
 		{
 			cmdBuffer->setViewport({0, 0}, window->getSize());
 			cmdBuffer->setClearColor({0, 0, 0, 0});
-			cmdBuffer->clear(ClearFlag::Color);
+			cmdBuffer->clear(ClearFlag::Color | ClearFlag::Depth);
 
 			for(const auto& mesh : model.getMeshs())
 			{

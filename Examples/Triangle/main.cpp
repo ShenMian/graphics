@@ -16,7 +16,6 @@ int main()
 	Window::init();
 
 	auto window = new Window("Triangle", Monitor::getPrimary().getSize() / 2);
-	window->setVisible(true); // 设置窗口可见
 
 	Renderer::setAPI(Renderer::API::OpenGL); // 设置渲染 API 为 OpenGL
 
@@ -57,6 +56,7 @@ int main()
 			}
 		}
 	};
+	window->setVisible(true); // 设置窗口可见
 
 	while(running)
 	{
