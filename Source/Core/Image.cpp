@@ -25,10 +25,10 @@ Image::Image(const std::filesystem::path& path)
 void Image::loadFromFile(const std::filesystem::path& path)
 {
 	if(!fs::exists(path) && !fs::is_regular_file(path))
-		throw std::runtime_error("no such file or directory");
+		throw std::runtime_error("no such file");
 
 	// stbi_set_flip_vertically_on_load(1);
-	auto pixels = stbi_load(path.string().c_str(), reinterpret_cast<int*>(&size.x),
+	const auto pixels = stbi_load(path.string().c_str(), reinterpret_cast<int*>(&size.x),
 		reinterpret_cast<int*>(&size.y), &channels, 0);
 	if(pixels == nullptr)
 		throw std::runtime_error(std::format("can't load image from file: '{}'", path.string()).c_str());
