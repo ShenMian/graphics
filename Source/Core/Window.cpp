@@ -196,6 +196,13 @@ void Window::setupCallbacks()
 		if(handle->onMouse)
 			handle->onMouse(action, static_cast<Mouse>(button));
 	});
+
+
+	glfwSetDropCallback(handle, [](GLFWwindow* native, int pathCount, const char* paths[]) {
+		const auto handle = static_cast<Window*>(glfwGetWindowUserPointer(native));
+		if(handle->onDrop)
+			handle->onDrop(pathCount, paths);
+	});
 }
 
 void Window::init()
@@ -204,8 +211,7 @@ void Window::init()
 	if(!ret)
 		throw std::runtime_error("GLFW init failed");
 
-	glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);                      // 创建新窗口默认不可见
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); // OpenGL 将使用核心模式
+	glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE); // 创建新窗口默认不可见
 
 	Monitor::init();
 }
