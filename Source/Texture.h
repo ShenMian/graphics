@@ -88,6 +88,9 @@ public:
 	 */
 	Type getType() const;
 
+	/**
+	 * @brief 获取像素格式.
+	 */
 	Format getFormat() const;
 
 protected:
