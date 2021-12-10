@@ -2,6 +2,7 @@
 // License(Apache-2.0)
 
 #include "Image.h"
+#include <stdexcept>
 #include <format>
 
 #ifndef STB_IMAGE_IMPLEMENTATION
@@ -9,7 +10,9 @@
 #endif
 #include <stb_image.h>
 
-#define STB_IMAGE_WRITE_IMPLEMENTATION
+#ifndef STB_IMAGE_WRITE_IMPLEMENTATION
+	#define STB_IMAGE_WRITE_IMPLEMENTATION
+#endif
 #include <stb_image_write.h>
 
 namespace fs = std::filesystem;
@@ -22,13 +25,13 @@ Image::Image(const std::filesystem::path& path)
 void Image::loadFromFile(const std::filesystem::path& path)
 {
 	if(!fs::exists(path) && !fs::is_regular_file(path))
-		throw std::exception("no such file or directory");
+		throw std::runtime_error("no such file or directory");
 
 	// stbi_set_flip_vertically_on_load(1);
 	auto pixels = stbi_load(path.string().c_str(), reinterpret_cast<int*>(&size.x),
 		reinterpret_cast<int*>(&size.y), &channels, 0);
 	if(pixels == nullptr)
-		throw std::exception(std::format("can't load image from file: '{}'", path.string()).c_str());
+		throw std::runtime_error(std::format("can't load image from file: '{}'", path.string()).c_str());
 
 	loadFromMemory(pixels, size.x * size.y * channels, size);
 
@@ -50,22 +53,22 @@ void Image::saveToFile(const std::filesystem::path& path) const
 	if(ext == ".jpg" || ext == "jpeg")
 	{
 		if(!stbi_write_jpg(path.string().c_str(), size.x, size.y, channels, data.data(), 90)) // quality is between 1 and 100
-			throw std::exception("can't save image to jpg/jpeg");
+			throw std::runtime_error("can't save image to jpg/jpeg");
 	}
 	else if(ext == ".png")
 	{
 		if(!stbi_write_png(path.string().c_str(), size.x, size.y, channels, data.data(), 0))
-			throw std::exception("can't save image to png");
+			throw std::runtime_error("can't save image to png");
 	}
 	else if(ext == ".bmp")
 	{
 		if(!stbi_write_bmp(path.string().c_str(), size.x, size.y, channels, data.data()))
-			throw std::exception("can't save image to bmp");
+			throw std::runtime_error("can't save image to bmp");
 	}
 	else if(ext == ".tga")
 	{
 		if(!stbi_write_tga(path.string().c_str(), size.x, size.y, channels, data.data()))
-			throw std::exception("can't save image to tga");
+			throw std::runtime_error("can't save image to tga");
 	}
 	else
 		assert(false); // 不支持的导出格式
