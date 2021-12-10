@@ -65,7 +65,6 @@ public:
 	const std::vector<Mesh> getMeshs() const;
 
 private:
-
 	std::string           name;
 	std::vector<Mesh>     meshs;
 	std::filesystem::path path;
