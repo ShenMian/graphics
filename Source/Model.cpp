@@ -59,7 +59,7 @@ void loadVertices(std::vector<Vertex>& vertices, const aiMesh* mesh)
 		if(mesh->HasNormals())
 			std::memcpy(&vertex.normal, &mesh->mNormals[i], sizeof(vertex.normal));
 
-		// 获取 UV 坐标(纹理坐标)
+		// 获取纹理坐标
 		if(mesh->mTextureCoords[0])
 			std::memcpy(&vertex.uv, &mesh->mTextureCoords[0][i], sizeof(vertex.uv));
 
