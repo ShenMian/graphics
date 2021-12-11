@@ -7,13 +7,15 @@ cmake_minimum_required(VERSION 3.16)
 # 指定项目名和版本号
 project(Graphics VERSION 0.0.0)
 
+# TODO: 使用 target_* 系列函数, 避免污染.
+
 # 指定 C++ 标准
 set(CMAKE_CXX_STANDARD          23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # 选项
-option(BUILD_EXAMPLES    "Build examples"    ON)
-option(BUILD_TESTS       "Build tests"       ON)
+option(BUILD_EXAMPLES "Build examples" ON)
+option(BUILD_TESTS    "Build tests"    ON)
 
 # 指定默认编译类型
 if(NOT DEFINED CMAKE_BUILD_TYPE)
@@ -29,17 +31,18 @@ set(LIBRARY_OUTPUT_PATH            "${CMAKE_BINARY_DIR}/lib")
 set(EXECUTABLE_OUTPUT_PATH         "${CMAKE_BINARY_DIR}/bin")
 
 macro(add_define IDENT)
-    add_definitions("-D${IDENT}")
+  add_definitions("-D${IDENT}")
 endmacro()
 
 if(WIN32)
-    add_define(_CRT_SECURE_NO_WARNINGS)
-    add_define(_SCL_SECURE_NO_WARNINGS)
-    add_define(UNICODE)
-    add_define(_UNICODE)
-    add_define(NOMINMAX)
+  add_define(_CRT_SECURE_NO_WARNINGS)
+  add_define(_SCL_SECURE_NO_WARNINGS)
+  add_define(UNICODE)
+  add_define(_UNICODE)
+  add_define(NOMINMAX)
 endif()
 
+# 静态链接 MSVC 运行库
 if(MSVC)
   set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MT")
   set(CMAKE_CXX_FLAGS_DEBUG   "${CMAKE_CXX_FLAGS_DEBUG} /MTd")
@@ -51,5 +54,5 @@ set(DEPS_DIR "${PROJECT_SOURCE_DIR}/Deps")
 add_subdirectory(Source)
 
 if(BUILD_EXAMPLES)
-    add_subdirectory(Examples/Triangle)
+  add_subdirectory(Examples/Triangle)
 endif()
