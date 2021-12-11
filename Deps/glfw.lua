@@ -4,6 +4,9 @@ project "glfw"
 	staticruntime "on"
 	warnings "Off"
 
+    targetdir("%{wks.location}/build/" .. output_dir .. "/%{prj.name}/lib")
+    objdir("%{wks.location}/build/" .. output_dir .. "/%{prj.name}/obj")
+
 	removeplatforms "emscripten"
 
 	files {

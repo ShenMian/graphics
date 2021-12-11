@@ -7,7 +7,10 @@ project "Test"
   cppdialect "C++latest"
   staticruntime "on"
 
-	files {"**.cpp", "**.hpp", "**.h", "**.inl", "CMakeLists.txt", "premake5.lua"}
+  targetdir("%{wks.location}/build/" .. output_dir .. "/%{prj.name}/bin")
+  objdir("%{wks.location}/build/" .. output_dir .. "/%{prj.name}/obj")
+
+  files {"**.cpp", "**.hpp", "**.h", "**.inl", "CMakeLists.txt", "premake5.lua"}
 
   includedirs {
     "%{wks.location}/Source",

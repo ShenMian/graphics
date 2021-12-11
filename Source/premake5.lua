@@ -7,6 +7,9 @@ project "Graphics"
 	cppdialect "C++latest"
 	staticruntime "on"
 
+	targetdir("%{wks.location}/build/" .. output_dir .. "/%{prj.name}/lib")
+	objdir("%{wks.location}/build/" .. output_dir .. "/%{prj.name}/obj")
+
 	defines {"_CRT_SECURE_NO_WARNINGS"} -- stb_image_write.h
 
 	files {"**.cpp", "**.hpp", "**.h", "**.inl", "CMakeLists.txt", "premake5.lua"}

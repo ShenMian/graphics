@@ -4,6 +4,9 @@ project "assimp"
 	staticruntime "on"
 	warnings "Off"
 
+    targetdir("%{wks.location}/build/" .. output_dir .. "/%{prj.name}/lib")
+    objdir("%{wks.location}/build/" .. output_dir .. "/%{prj.name}/obj")
+
 	prebuildcommands {
 		"{COPY} \"%{deps.assimp}/contrib/zlib/zconf.h.in\" \"%{deps.assimp}/contrib/zlib/zconf.h\""}
 

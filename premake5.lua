@@ -10,8 +10,6 @@ workspace "Graphics"
     flags "MultiProcessorCompile"
 
     output_dir = "%{cfg.system}-%{cfg.architecture}-%{cfg.buildcfg}"
-    targetdir("%{wks.location}/build/" .. output_dir .. "/%{prj.name}/lib")
-    objdir("%{wks.location}/build/" .. output_dir .. "/%{prj.name}/obj")
 
     configurations {"Debug", "Release"}
 
