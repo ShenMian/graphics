@@ -11,13 +11,12 @@ jobs:
         arch: [x64, x86, arm64, arm]
         include:
         - os: windows-latest
-            cmake_install_deps: ./Scripts/cmake_install_deps.bat
-            make_build: ./Scripts/cmake_build.bat
-            
+          cmake_install_deps: ./Scripts/cmake_install_deps.bat
+          make_build: ./Scripts/cmake_build.bat
+
         - os: ubuntu-latest
-          env:
-            cmake_install_deps: ./Scripts/cmake_install_deps.sh
-            cmake_build: ./Scripts/cmake_build.sh
+          cmake_install_deps: ./Scripts/cmake_install_deps.sh
+          cmake_build: ./Scripts/cmake_build.sh
 
     steps:
       - uses: actions/checkout@v2
