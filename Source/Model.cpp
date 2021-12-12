@@ -140,7 +140,7 @@ void loadMesh(const aiMesh* aiMesh, const aiScene* aiScene, const fs::path& path
 	static unsigned int i = 0;
 	if(currScene != aiScene)
 		currScene = aiScene, i = 0;
-	printf(std::format("处理网格: {:>3}/{:<3}\r", ++i, aiScene->mNumMeshes).c_str());
+	printf("处理网格: %3d/%-3d\r", ++i, aiScene->mNumMeshes);
 
 	Mesh mesh;
 
@@ -228,11 +228,11 @@ void Model::load(const fs::path& path)
 
 	name = aiScene->mName.C_Str();
 
-	puts(std::format("网格加载完毕: {}s", timer.getSeconds()).c_str()); // TODO: debug
+	printf("网格加载完毕: %.2lfs\n", timer.getSeconds()); // TODO: debug
 
 	timer.restart(); // TODO: debug
 	loadNode(aiScene->mRootNode, aiScene, path, meshs);
-	puts(std::format("网格处理完毕: {}s", timer.getSeconds()).c_str()); // TODO: debug
+	printf("网格处理完毕: %.2lfs\n", timer.getSeconds()); // TODO: debug
 }
 
 void Model::loadAsync(const fs::path& path, std::function<void(std::string_view)> callback) noexcept

@@ -6,6 +6,8 @@
 #include <stdexcept>
 #include <glad/glad.h>
 
+using namespace std::literals::string_literals;
+
 const char* GLGetErrorString(GLenum error)
 {
 	switch(error)
@@ -45,7 +47,8 @@ void GLCheckError()
 	{
 		if(error == GL_NO_ERROR)
 			break;
-		throw std::runtime_error(std::format("OpenGL error ({}): {}", error, GLGetErrorString(error)).c_str());
+		// std::format("OpenGL error ({}): {}", error, GLGetErrorString(error)).c_str()
+		throw std::runtime_error(("OpenGL error ("s + std::to_string(error) + "): " + GLGetErrorString(error)).c_str());
 	}
 }
 

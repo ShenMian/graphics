@@ -36,9 +36,10 @@ GLShader::~GLShader()
 void GLShader::load()
 {
 	// 从 SPIR-V 文件载入
-	if(fs::exists(std::format("{}.{}.spv", name, extension[stage])))
+	// std::format("{}.{}.spv", name, extension[stage])
+	if(fs::exists(name + "." + extension[stage] + ".spv"))
 	{
-		const fs::path path = std::format("{}.{}.spv", name, extension[stage]);
+		const fs::path path = name + "." + extension[stage] + ".spv";
 		const auto     size = fs::file_size(path);
 
 		std::ifstream file(path, std::ios::binary);
@@ -56,9 +57,10 @@ void GLShader::load()
 	}
 
 	// 从源文件载入
-	else if(fs::exists(std::format("{}.{}.glsl", name, extension[stage])))
+	// std::format("{}.{}.glsl", name, extension[stage])
+	else if(fs::exists(name + "." + extension[stage] + ".glsl"))
 	{
-		const fs::path path = std::format("{}.{}.glsl", name, extension[stage]);
+		const fs::path path = name + "." + extension[stage] + ".glsl";
 		const auto     size = fs::file_size(path);
 
 		std::ifstream file(path, std::ios::binary);

@@ -86,16 +86,34 @@ void PrintInfo()
 	// 打印显示器信息
 	for(const auto& mon : Monitor::getMonitors())
 	{
-		puts("Monitor");
-		puts(std::format("|-Name        : {}", mon.getName()).c_str());
-		puts(std::format("|-Size        : {}x{}", mon.getSize().x, mon.getSize().y).c_str());
-		puts(std::format("`-Refresh rate: {} Hz", mon.getRefreshRate()).c_str());
+		/*printf(std::format(
+			"Monitor\n"
+			"|-Name        : {}\n"
+			"|-Size        : {}x{}\n"
+			"`-Refresh rate: {} Hz\n",
+			mon.getName(), mon.getSize().x, mon.getSize().y, mon.getRefreshRate()).c_str());*/
+		printf(
+			"Monitor\n"
+			"|-Name        : %s\n"
+			"|-Size        : %dx%d\n"
+			"`-Refresh rate: %d Hz\n",
+			mon.getName().c_str(), mon.getSize().x, mon.getSize().y, mon.getRefreshRate());
 	}
 
 	// 打印基本信息
 	const auto renderer = Renderer::get();
-	puts("Basic");
-	puts(std::format("|-Device  : {}", renderer->getDeviceName()).c_str());
-	puts(std::format("|-Renderer: {}", renderer->getRendererName()).c_str());
-	puts(std::format("`-Vendor  : {}", renderer->getVendorName()).c_str());
+	/*printf(std::format(
+		"Basic\n"
+		"|-Device  : {}\n"
+		"|-Renderer: {}\n"
+		"`-Vendor  : {}\n",
+		renderer->getDeviceName(), renderer->getRendererName(), renderer->getVendorName()).c_str());*/
+	printf(
+		"Basic\n"
+		"|-Device  : %s\n"
+		"|-Renderer: %s\n"
+		"`-Vendor  : %s\n",
+		renderer->getDeviceName().c_str(),
+		renderer->getRendererName().c_str(),
+		renderer->getVendorName().c_str());
 }

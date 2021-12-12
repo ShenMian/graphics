@@ -10,6 +10,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
+using namespace std::literals::string_literals;
 namespace fs = std::filesystem;
 
 Window::Window(const std::string& title, Vector2i size, bool fullscreen)
@@ -142,9 +143,8 @@ void Window::setupCallbacks()
 	{
 		if(error == 65537)
 			throw std::runtime_error("GLFW error: ensure that all windows created on the stack are destroyed");
-		throw std::runtime_error(std::format("GLFW error: {}", desc).c_str());
+		throw std::runtime_error(("GLFW error: "s + desc).c_str());
 	});
-
 
 	glfwSetWindowSizeCallback(handle, [](GLFWwindow* native, int width, int height)
 	{
