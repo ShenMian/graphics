@@ -7,17 +7,30 @@ jobs:
     runs-on: ${{matrix.os}}
     strategy:
       matrix:
-        os: [windows-latest] # ubuntu-latest, macos-latest
+        include:
+          os: windows-latest
+            env:
+              - cmake_install_deps: ./Scripts/cmake_install_deps.bat
+              - cmake_build: ./Scripts/cmake_build.bat
+          os: ubuntu-latest
+            env:
+              - cmake_install_deps: ./Scripts/cmake_install_deps.sh
+              - cmake_build: ./Scripts/cmake_build.sh
         arch: [x64, x86, arm64, arm]
 
     steps:
       - uses: actions/checkout@v2
 
       - name: Setup MSVC Developer Command Environment
+        if: ${{matrix.os == 'windows-latest'}}
         uses: ilammy/msvc-dev-cmd@v1.10.0
 
+      - name: Install dependencies
+        if: ${{matrix.os == 'windows-latest'}}
+        run: ${{env.cmake_install_deps}}
+
       - name: Build
-        run: ./Scripts/cmake_build.bat
+        run: ${{env.cmake_build}}
 
       - name: Upload libs
         uses: actions/upload-artifact@v2
