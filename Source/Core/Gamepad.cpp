@@ -43,6 +43,10 @@ Vector2 Gamepad::get(Thumb thumb) const
 	case Thumb::right:
 		return {axes[GLFW_GAMEPAD_AXIS_RIGHT_X], axes[GLFW_GAMEPAD_AXIS_RIGHT_Y]};
 		break;
+
+	default:
+		assert(false);
+		return {};
 	}
 }
 
@@ -57,6 +61,10 @@ float Gamepad::get(Trigger trigger) const
 	case Trigger::right:
 		return axes[GLFW_GAMEPAD_AXIS_RIGHT_TRIGGER];
 		break;
+
+	default:
+		assert(false);
+		return {};
 	}
 }
 
