@@ -18,7 +18,6 @@
 #include <meshoptimizer.h>
 #include <vector>
 
-#include <format>
 #include "Core/Timer.hpp"
 
 namespace fs = std::filesystem;
@@ -90,24 +89,24 @@ void optimize(std::vector<unsigned int>& indices, std::vector<Vertex>& vertices)
 	meshopt_optimizeVertexFetch(vertices.data(), indices.data(), indices.size(), vertices.data(), vertices.size(), sizeof(Vertex));
 }
 
-void loadMaterial(Material& mat, const aiMesh* aiMesh, const aiScene* scene, const fs::path path)
+void loadMaterial(Material& mat, const aiMesh* aMesh, const aiScene* scene, const fs::path path)
 {
 	const auto dir = path.parent_path();
-	const auto aiMat = scene->mMaterials[aiMesh->mMaterialIndex];
+	const auto aMat = scene->mMaterials[aMesh->mMaterialIndex];
 	auto loadTexture = [&](aiTextureType type)->std::shared_ptr<Texture>
 	{
-		for(unsigned int i = 0; i < aiMat->GetTextureCount(type); i++)
+		for(unsigned int i = 0; i < aMat->GetTextureCount(type); i++)
 		{
-			aiString aiPath;
-			aiMat->GetTexture(type, 0, &aiPath);
-			const auto path = dir / aiPath.C_Str();
+			aiString aPath;
+			aMat->GetTexture(type, 0, &aPath);
+			const auto path = dir / aPath.C_Str();
 			// if(fs::exists(path))
 			return Texture::create(Image(path));
 		}
 		return nullptr;
 	};
 
-	mat.name = aiMat->GetName().C_Str();
+	mat.name = aMat->GetName().C_Str();
 
 	mat.pbr.albedo = loadTexture(aiTextureType_BASE_COLOR);
 	mat.pbr.normals = loadTexture(aiTextureType_NORMAL_CAMERA);
@@ -129,26 +128,26 @@ void loadMaterial(Material& mat, const aiMesh* aiMesh, const aiScene* scene, con
 /**
  * @brief 载入 assimp 网格数据, 创建 Mesh.
  *
- * @param aiMesh  assimp 网格.
- * @param aiScene assimp 场景.
- * @param path    模型位置.
- * @param meshs   要载入到的 Mesh 数组.
+ * @param aMesh  assimp 网格.
+ * @param aScene assimp 场景.
+ * @param path   模型位置.
+ * @param meshs  要载入到的 Mesh 数组.
  */
-void loadMesh(const aiMesh* aiMesh, const aiScene* aiScene, const fs::path& path, std::vector<Mesh>& meshs)
+void loadMesh(const aiMesh* aMesh, const aiScene* aScene, const fs::path& path, std::vector<Mesh>& meshs)
 {
-	static auto currScene = aiScene; // TODO: debug
+	static auto currScene = aScene; // TODO: debug
 	static unsigned int i = 0;
-	if(currScene != aiScene)
-		currScene = aiScene, i = 0;
-	printf("处理网格: %3d/%-3d\r", ++i, aiScene->mNumMeshes);
+	if(currScene != aScene)
+		currScene = aScene, i = 0;
+	printf("处理网格: %3d/%-3d\r", ++i, aScene->mNumMeshes);
 
 	Mesh mesh;
 
 	std::vector<Vertex> vertices;
 	std::vector<unsigned int> indices;
 
-	loadVertices(vertices, aiMesh);
-	loadIndices(indices, aiMesh);
+	loadVertices(vertices, aMesh);
+	loadIndices(indices, aMesh);
 
 	optimize(indices, vertices);
 
@@ -163,14 +162,14 @@ void loadMesh(const aiMesh* aiMesh, const aiScene* aiScene, const fs::path& path
 	auto vertexBuffer = VertexBuffer::create(vertices, format);
 	auto indexBuffer = IndexBuffer::create(indices);
 
-	const std::string name = aiMesh->mName.C_Str();
+	const std::string name = aMesh->mName.C_Str();
 
 	// TODO: 创建包围盒
 	// for(auto& vertex : vertices)
 	// mesh->mAABB;
 
 	Material mat;
-	loadMaterial(mat, aiMesh, aiScene, path);
+	loadMaterial(mat, aMesh, aScene, path);
 
 	mesh.setName(name);
 	mesh.setVertexBuffer(vertexBuffer);
@@ -183,20 +182,20 @@ void loadMesh(const aiMesh* aiMesh, const aiScene* aiScene, const fs::path& path
 /**
  * @brief 从场景中递归载入节点数据.
  *
- * @param aiNode  assimp 节点.
- * @param aiScene assimp 场景.
- * @param path    模型位置.
- * @param meshs   要载入到的 Mesh 数组.
+ * @param aNode  assimp 节点.
+ * @param aScene assimp 场景.
+ * @param path   模型位置.
+ * @param meshs  要载入到的 Mesh 数组.
  */
-void loadNode(const aiNode* aiNode, const aiScene* aiScene, const fs::path& path, std::vector<Mesh>& meshs)
+void loadNode(const aiNode* aNode, const aiScene* aScene, const fs::path& path, std::vector<Mesh>& meshs)
 {
 	// 加载网格
-	for(unsigned int i = 0; i < aiNode->mNumMeshes; i++)
-		loadMesh(aiScene->mMeshes[aiNode->mMeshes[i]], aiScene, path, meshs);
+	for(unsigned int i = 0; i < aNode->mNumMeshes; i++)
+		loadMesh(aScene->mMeshes[aNode->mMeshes[i]], aScene, path, meshs);
 
 	// 加载其余节点
-	for(unsigned int i = 0; i < aiNode->mNumChildren; i++)
-		loadNode(aiNode->mChildren[i], aiScene, path, meshs);
+	for(unsigned int i = 0; i < aNode->mNumChildren; i++)
+		loadNode(aNode->mChildren[i], aScene, path, meshs);
 }
 
 }
@@ -217,21 +216,21 @@ void Model::load(const fs::path& path)
 	Timer timer; // TODO: debug
 
 	// 从文件导入场景数据
-	aiScene = importer->ReadFile(path.string(),
+	aScene = importer->ReadFile(path.string(),
 		aiProcess_CalcTangentSpace |
 		aiProcess_Triangulate |
 		aiProcess_JoinIdenticalVertices |
 		aiProcess_SortByPType);
 
-	if(aiScene == nullptr || aiScene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || aiScene->mRootNode == nullptr)
+	if(aScene == nullptr || aScene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || aScene->mRootNode == nullptr)
 		throw std::runtime_error(importer->GetErrorString());
 
-	name = aiScene->mName.C_Str();
+	name = aScene->mName.C_Str();
 
 	printf("网格加载完毕: %.2lfs\n", timer.getSeconds()); // TODO: debug
 
 	timer.restart(); // TODO: debug
-	loadNode(aiScene->mRootNode, aiScene, path, meshs);
+	loadNode(aScene->mRootNode, aScene, path, meshs);
 	printf("网格处理完毕: %.2lfs\n", timer.getSeconds()); // TODO: debug
 }
 

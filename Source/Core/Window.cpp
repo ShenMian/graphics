@@ -5,10 +5,10 @@
 #include "Image.h"
 #include "Monitor.h"
 #include <cassert>
-#include <format>
 #include <stdexcept>
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+// #include <format>
 
 using namespace std::literals::string_literals;
 namespace fs = std::filesystem;
@@ -118,7 +118,7 @@ void Window::setSync(bool enable) noexcept
 void Window::setIcon(const Image& image)
 {
 	if(image.getSize().x > 48 && image.getSize().y > 48)
-		throw std::exception("image size too large");
+		throw std::runtime_error("image size too large");
 
 	GLFWimage glfwImage;
 	glfwImage.pixels = const_cast<unsigned char*>(image.getData());

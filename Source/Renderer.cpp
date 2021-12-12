@@ -3,7 +3,6 @@
 
 #include "Renderer.h"
 #include <cassert>
-#include <format>
 
 #include "OpenGL/GLRenderer.h"
 

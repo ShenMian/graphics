@@ -69,7 +69,7 @@ private:
 	std::vector<Mesh>     meshs;
 	std::filesystem::path path;
 
-	const aiScene* aiScene = nullptr;
+	const aiScene* aScene = nullptr;
 	std::shared_ptr<Assimp::Importer> importer;
 	std::shared_ptr<Assimp::Exporter> exporter;
 };

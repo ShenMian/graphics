@@ -3,7 +3,8 @@
 
 #include "Image.h"
 #include <stdexcept>
-#include <format>
+#include <cstring>
+// #include <format>
 
 #ifndef STB_IMAGE_IMPLEMENTATION
 	#define STB_IMAGE_IMPLEMENTATION // 防止和 assimp 内的 stb 重定义

@@ -2,7 +2,7 @@
 // License(Apache-2.0)
 
 #include "Monitor.h"
-#include <glfw/glfw3.h>
+#include <GLFW/glfw3.h>
 
 Monitor              Monitor::primary;
 std::vector<Monitor> Monitor::monitors;

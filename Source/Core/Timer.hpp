@@ -32,5 +32,5 @@ public:
 	}
 
 private:
-	std::chrono::steady_clock::time_point start;
+	std::chrono::time_point<std::chrono::high_resolution_clock> start;
 };

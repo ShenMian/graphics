@@ -1,4 +1,4 @@
-#!/bin/bash
+﻿#!/bin/bash
 # Copyright 2021 ShenMian
 # License(Apache-2.0)
 
@@ -7,7 +7,7 @@ cd "$( cd "$( dirname "$0"  )" && pwd  )" || exit
 cd ..
 
 # 安装依赖项
-./Scripts/cmake_install_deps.sh || exit
+# ./Scripts/cmake_install_deps.sh || exit
 
 # 生成 CMake 緩存
 echo Generating CMake cache...
