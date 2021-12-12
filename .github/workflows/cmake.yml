@@ -7,16 +7,17 @@ jobs:
     runs-on: ${{matrix.os}}
     strategy:
       matrix:
-        include:
-          os: windows-latest
-            env:
-              - cmake_install_deps: ./Scripts/cmake_install_deps.bat
-              - cmake_build: ./Scripts/cmake_build.bat
-          os: ubuntu-latest
-            env:
-              - cmake_install_deps: ./Scripts/cmake_install_deps.sh
-              - cmake_build: ./Scripts/cmake_build.sh
+        os: [windows-latest, ubuntu-latest]
         arch: [x64, x86, arm64, arm]
+        include:
+        - os: windows-latest
+            cmake_install_deps: ./Scripts/cmake_install_deps.bat
+            make_build: ./Scripts/cmake_build.bat
+            
+        - os: ubuntu-latest
+          env:
+            cmake_install_deps: ./Scripts/cmake_install_deps.sh
+            cmake_build: ./Scripts/cmake_build.sh
 
     steps:
       - uses: actions/checkout@v2
@@ -27,10 +28,10 @@ jobs:
 
       - name: Install dependencies
         if: ${{matrix.os == 'windows-latest'}}
-        run: ${{env.cmake_install_deps}}
+        run: ${{matrix.cmake_install_deps}}
 
       - name: Build
-        run: ${{env.cmake_build}}
+        run: ${{matrix.cmake_build}}
 
       - name: Upload libs
         uses: actions/upload-artifact@v2
