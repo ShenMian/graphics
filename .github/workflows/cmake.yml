@@ -26,7 +26,6 @@ jobs:
         uses: ilammy/msvc-dev-cmd@v1.10.0
 
       - name: Install dependencies
-        if: ${{matrix.os == 'windows-latest'}}
         run: ${{matrix.cmake_install_deps}}
 
       - name: Build
