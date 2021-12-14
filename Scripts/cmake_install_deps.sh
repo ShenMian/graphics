@@ -61,14 +61,21 @@ fi
 
 echo Installing dependencies...
 
-# if apt-get >/dev/null 2>&1
-# then
-#     sudo apt-get install -y xorg-dev
-#     sudo apt-get install -y libassimp-dev
-#     sudo apt-get install -y libglfw3-dev
-#     install "meshoptimizer"
-#     exit
-# fi
+if apt-get >/dev/null 2>&1
+then
+    sudo apt-get install -y libx11-dev
+    sudo apt-get install -y mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev
+    sudo apt-get install -y libxrandr-dev
+    sudo apt-get install -y libxi-dev
+    sudo apt-get install -y libxmu-dev
+    sudo apt-get install -y libblas-dev
+    sudo apt-get install -y libxinerama-dev
+    sudo apt-get install -y libxcursor-dev
+    sudo apt-get install -y libassimp-dev
+    sudo apt-get install -y libglfw3-dev
+    install "meshoptimizer"
+    exit
+fi
 
 deps=("assimp" "glfw" "meshoptimizer")
 for (( i = 0 ; i < ${#deps[@]} ; i++ ))
