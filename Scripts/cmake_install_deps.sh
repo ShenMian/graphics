@@ -61,7 +61,7 @@ fi
 
 echo Installing dependencies...
 
-if command -v apt-get >/dev/null 2>&1
+if apt-get >/dev/null 2>&1
 then
     sudo apt-get install -y xorg-dev
     sudo apt-get install -y libassimp-dev
