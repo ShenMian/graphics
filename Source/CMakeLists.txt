@@ -22,9 +22,6 @@ find_library(GLFW3_LIBRARY
         "/usr/local/lib"
         "C:/Program Files (x86)/GLFW/lib")
 
-message("GLFW3_LIBRARY" ${GLFW3_LIBRARY})
-message("CMAKE_INSTALL_PREFIX" ${CMAKE_INSTALL_PREFIX})
-
 set(glfw3_DIR "C:/Program Files (x86)/GLFW/lib/cmake/glfw3")
 find_package(GLFW3)
 if(glfw3_FOUND)
