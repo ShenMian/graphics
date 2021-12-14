@@ -7,16 +7,16 @@ jobs:
     runs-on: ${{matrix.os}}
     strategy:
       matrix:
-        os: [windows-latest] # ubuntu-latest
+        os: [windows-latest, archlinux-latest]
         arch: [x64, x86, arm64, arm]
         include:
         - os: windows-latest
-          cmake_install_deps: ./Scripts/cmake_install_deps.bat
-          make_build: ./Scripts/cmake_build.bat
+          script_cmake_install_deps: ./Scripts/cmake_install_deps.bat
+          script_make_build: ./Scripts/cmake_build.bat
 
-        # - os: ubuntu-latest
-        #   cmake_install_deps: ./Scripts/cmake_install_deps.sh
-        #   cmake_build: ./Scripts/cmake_build.sh
+        - os: archlinux-latest
+          script_cmake_install_deps: ./Scripts/cmake_install_deps.sh
+          script_make_build: ./Scripts/cmake_build.sh
 
     steps:
       - uses: actions/checkout@v2
@@ -26,10 +26,10 @@ jobs:
         uses: ilammy/msvc-dev-cmd@v1.10.0
 
       - name: Install dependencies
-        run: ${{matrix.cmake_install_deps}}
+        run: ${{matrix.script_cmake_install_deps}}
 
       - name: Build
-        run: ${{matrix.cmake_build}}
+        run: ${{matrix.script_make_build}}
 
       - name: Upload libs
         uses: actions/upload-artifact@v2
