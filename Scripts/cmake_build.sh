@@ -14,6 +14,7 @@ echo Generating CMake cache...
 if ! cmake -B build >/dev/null
 then
     echo Failed to generate CMake cache.
+    cmake -B build
     exit 1
 fi
 

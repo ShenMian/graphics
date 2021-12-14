@@ -15,6 +15,7 @@ REM 生成 CMake 緩存
 echo Generating CMake cache...
 cmake -B build >nul || (
     echo Failed to generate CMake cache.
+    cmake -B build
     exit /b 1
 )
 
