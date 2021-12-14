@@ -21,7 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Setup MSVC Developer Command Environment
+      - name: Setup MSVC Developer Command Environment (Windows)
         if: ${{matrix.os == 'windows-latest'}}
         uses: ilammy/msvc-dev-cmd@v1.10.0
 
