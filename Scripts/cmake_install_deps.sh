@@ -61,15 +61,6 @@ fi
 
 echo Installing dependencies...
 
-if apt-get >/dev/null 2>&1
-then
-    sudo apt-get install -y xorg-dev
-    sudo apt-get install -y libassimp-dev
-    sudo apt-get install -y libglfw3-dev
-    install "meshoptimizer"
-    exit
-fi
-
 deps=("assimp" "glfw" "meshoptimizer")
 for (( i = 0 ; i < ${#deps[@]} ; i++ ))
 do
