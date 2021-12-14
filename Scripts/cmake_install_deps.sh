@@ -3,7 +3,7 @@
 # License(Apache-2.0)
 
 function install() {
-    dep = $1
+    dep=$1
 
     cd "${dep}" || return 1
 
