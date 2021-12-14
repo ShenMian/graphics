@@ -7,14 +7,14 @@ jobs:
     runs-on: ${{matrix.os}}
     strategy:
       matrix:
-        os: [windows-latest] # ubuntu-latest
+        os: [windows-latest, ubuntu-latest]
         arch: [x64, x86, arm64, arm]
         include:
         - os: windows-latest
           script_cmake_install_deps: ./Scripts/cmake_install_deps.bat
           script_make_build: ./Scripts/cmake_build.bat
 
-        - os: archlinux-latest
+        - os: ubuntu-latest
           script_cmake_install_deps: ./Scripts/cmake_install_deps.sh
           script_make_build: ./Scripts/cmake_build.sh
 
