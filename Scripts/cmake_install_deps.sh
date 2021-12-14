@@ -2,6 +2,44 @@
 # Copyright 2021 ShenMian
 # License(Apache-2.0)
 
+function install() {
+    dep = $1
+
+    cd "${dep}" || return 1
+
+    echo "|-Installing '${dep}'..."
+
+    # 生成 CMake 緩存
+    echo " |-Gerenating CMake cache..."
+    if ! cmake -B build >/dev/null 2>&1
+    then
+        echo " |-Failed to generate CMake cache."
+        cmake -B build
+        return 1
+    fi
+
+    # 构建
+    echo " |-Building..."
+    if ! cmake --build build --config Release >/dev/null
+    then
+        echo " |-Failed to build."
+        cmake --build build --config Release
+        return 1
+    fi
+
+    # 安装
+    echo  " |-Installing..."
+    if ! sudo cmake --install build >/dev/null
+    then
+        echo " |-Failed to install."
+        return 1
+    fi
+
+    echo " |-Done."
+
+    cd ..
+}
+
 # 切换到 Deps 目录
 cd "$( cd "$( dirname "$0"  )" && pwd  )" || exit
 cd ../Deps
@@ -28,44 +66,15 @@ then
     sudo apt-get install -y xorg-dev
     sudo apt-get install -y libassimp-dev
     sudo apt-get install -y libglfw3-dev
-    sudo apt-get install -y libmeshoptimizer-dev
+    install "meshoptimizer"
     exit
 fi
 
 deps=("assimp" "glfw" "meshoptimizer")
 for (( i = 0 ; i < ${#deps[@]} ; i++ ))
 do
-    cd "${deps[$i]}" || exit
-
-    echo "|-Installing '${deps[$i]}'..."
-
-    # 生成 CMake 緩存
-    echo " |-Gerenating CMake cache..."
-    if ! cmake -B build >/dev/null 2>&1
+    if ! install "${deps[$i]}"
     then
-        echo " |-Failed to generate CMake cache."
-        cmake -B build
         exit 1
     fi
-
-    # 构建
-    echo " |-Building..."
-    if ! cmake --build build --config Release >/dev/null
-    then
-        echo " |-Failed to build."
-        cmake --build build --config Release
-        exit 1
-    fi
-
-    # 安装
-    echo  " |-Installing..."
-    if ! sudo cmake --install build >/dev/null
-    then
-        echo " |-Failed to install."
-        exit 1
-    fi
-
-    echo " |-Done."
-
-    cd ..
 done
