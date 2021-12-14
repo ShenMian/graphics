@@ -35,6 +35,7 @@ do
     if ! cmake -B build >/dev/null 2>&1
     then
         echo " |-Failed to generate CMake cache."
+        cmake -B build
         exit 1
     fi
 

@@ -28,6 +28,7 @@ for %%i in ("assimp" "glfw" "meshoptimizer") do (
     echo  ^|-Gerenating CMake cache...
     cmake -B build >nul || (
         echo  ^|-Failed to generate CMake cache.
+        cmake -B build
         exit /b 1
     )
 
