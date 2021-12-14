@@ -7,7 +7,7 @@ jobs:
     runs-on: ${{matrix.os}}
     strategy:
       matrix:
-        os: [windows-latest, archlinux-latest]
+        os: [windows-latest] # ubuntu-latest
         arch: [x64, x86, arm64, arm]
         include:
         - os: windows-latest
@@ -34,11 +34,11 @@ jobs:
       - name: Upload libs
         uses: actions/upload-artifact@v2
         with:
-          name: graphics-${{matrix.arch}}
+          name: graphics-${{matrix.os}}-${{matrix.arch}}
           path: build/${{env.prog_name}}/lib
 
       - name: Upload bins
         uses: actions/upload-artifact@v2
         with:
-          name: examples-${{matrix.arch}}
+          name: examples-${{matrix.os}}-${{matrix.arch}}
           path: build/${{env.prog_name}}/bin
