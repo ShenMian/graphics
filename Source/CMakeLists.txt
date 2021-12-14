@@ -9,19 +9,6 @@ include("${DEPS_DIR}/glad.cmake")
 list(APPEND LIBS glad)
 list(APPEND INCS "${DEPS_DIR}/glad/include")
 
-find_path(glfw3_DIR
-    NAME "GLFW/glfw3.h"
-    PATHS
-        "/usr/include"
-        "/usr/local/include"
-        "C:/Program Files (x86)/GLFW/include")
-find_library(GLFW3_LIBRARY
-    NAMES glfw3 glfw
-    PATHS
-        "/usr/lib"
-        "/usr/local/lib"
-        "C:/Program Files (x86)/GLFW/lib")
-
 set(glfw3_DIR "C:/Program Files (x86)/GLFW/lib/cmake/glfw3")
 find_package(GLFW3)
 if(glfw3_FOUND)
