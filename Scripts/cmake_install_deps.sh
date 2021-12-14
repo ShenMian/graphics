@@ -63,6 +63,7 @@ echo Installing dependencies...
 
 if apt-get >/dev/null 2>&1
 then
+    sudo apt-get update
     sudo apt-get install -y libx11-dev
     sudo apt-get install -y mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev
     sudo apt-get install -y libxrandr-dev
