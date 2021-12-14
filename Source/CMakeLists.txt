@@ -52,14 +52,13 @@ else()
 endif()
 list(APPEND INCS "${DEPS_DIR}/meshoptimizer/src")
 
-include_directories(
-    ${INCS}
-    "${PROJECT_SOURCE_DIR}/Source"
-    "${DEPS_DIR}/Vulkan-Headers/include"
-    "${DEPS_DIR}/meshoptimizer/src")
-
 file(GLOB_RECURSE SOURCES "*.cpp")
 
 add_library(graphics STATIC ${SOURCES})
 
+target_include_directories(graphics PUBLIC
+    ${INCS}
+    "${PROJECT_SOURCE_DIR}/Source"
+    "${DEPS_DIR}/Vulkan-Headers/include"
+    "${DEPS_DIR}/meshoptimizer/src")
 target_link_libraries(graphics PUBLIC ${LIBS})
