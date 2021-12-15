@@ -7,8 +7,6 @@ cmake_minimum_required(VERSION 3.16)
 # 指定项目名和版本号
 project(Graphics VERSION 0.0.0)
 
-# TODO: 使用 target_* 系列函数, 避免污染.
-
 # 指定 C++ 标准
 set(CMAKE_CXX_STANDARD          23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
