@@ -2,7 +2,16 @@
 # Copyright 2021 ShenMian
 # License(Apache-2.0)
 
-function install() {
+function install_apt() {
+    deps=$*
+
+    if ! sudo apt install -y $deps; then
+        echo "apt install failed"
+        exit 1
+    fi
+}
+
+function install_cmake() {
     dep=$1
 
     cd "${dep}" || return 1
@@ -61,29 +70,23 @@ fi
 
 echo Installing dependencies...
 
-if apt-get >/dev/null 2>&1
+if apt >/dev/null 2>&1
 then
     echo Installing dependencies on Ubuntu...
-    sudo apt-get update
-    sudo apt-get install -y libx11-dev
-    sudo apt-get install -y mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev
-    sudo apt-get install -y libxrandr-dev
-    sudo apt-get install -y libxi-dev
-    sudo apt-get install -y libxmu-dev
-    sudo apt-get install -y libblas-dev
-    sudo apt-get install -y libxinerama-dev
-    sudo apt-get install -y libxcursor-dev
-    sudo apt-get install -y libassimp-dev
-    sudo apt-get install -y libglfw3-dev
-    install "glfw"
-    install "meshoptimizer"
+
+    sudo apt update
+    install_apt libx11-dev mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev libxrandr-dev libxi-dev libxmu-dev libblas-dev libxinerama-dev libxcursor-dev
+    install_apt libassimp-dev
+    install_apt libglfw3-dev
+    install_cmake "meshoptimizer"
+
     exit
 fi
 
 deps=("assimp" "glfw" "meshoptimizer")
 for (( i = 0 ; i < ${#deps[@]} ; i++ ))
 do
-    if ! install "${deps[$i]}"
+    if ! install_cmake "${deps[$i]}"
     then
         exit 1
     fi
