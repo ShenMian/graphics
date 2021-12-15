@@ -48,8 +48,6 @@ file(GLOB_RECURSE SOURCES "*.cpp")
 
 add_library(graphics STATIC ${SOURCES})
 
-message("LIBS: " ${LIBS})
-
 target_include_directories(graphics PUBLIC
     ${INCS}
     "${PROJECT_SOURCE_DIR}/Source"
