@@ -74,6 +74,7 @@ then
     sudo apt-get install -y libxcursor-dev
     sudo apt-get install -y libassimp-dev
     sudo apt-get install -y libglfw3-dev
+    install "glfw"
     install "meshoptimizer"
     exit
 fi
