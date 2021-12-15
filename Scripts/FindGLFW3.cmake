@@ -1,14 +1,11 @@
-# Locate the glfw3 library
+# 定位 GLFW3 库.
 #
-# This module defines the following variables:
+# 该模块将定义以下变量:
+#   GLFW3_FOUND                           是否找到 GLFW3 库.
+#   GLFW3_INCLUDE_DIR, GLFW3_INCLUDE_DIRS 头文件路径.
+#   GLFW3_LIBRARY, GLFW3_LIBRARIES        库文件路径.
 #
-# GLFW3_LIBRARY     the name of the library;
-# GLFW3_INCLUDE_DIR where to find glfw include files.
-# GLFW3_FOUND       true if both the GLFW3_LIBRARY and GLFW3_INCLUDE_DIR have been found.
-#
-# To help locate the library and include file, you can define a
-# variable called GLFW3_ROOT which points to the root of the glfw library
-# installation.
+# 可以在 GLFW3_ROOT 中指定要额外搜索的 GLFW 库的安装目录.
 
 set(_GLFW3_HEADER_SEARCH_DIRS
   "/usr/include"
@@ -28,22 +25,25 @@ if(NOT GLFW3_ROOT AND _GLFW3_ENV_ROOT)
 	set(GLFW3_ROOT ${_GLFW3_ENV_ROOT})
 endif()
 
-# Put user specified location at beginning of search
+# 添加用户指定的查找路径
 if(GLFW3_ROOT)
 	list(INSERT _GLFW3_HEADER_SEARCH_DIRS 0 "${GLFW3_ROOT}/include")
 	list(INSERT _GLFW3_LIB_SEARCH_DIRS    0 "${GLFW3_ROOT}/lib")
 endif()
 
-# Search for the header
+# 查找头文件路径
 find_path(GLFW3_INCLUDE_DIR
   NAME "GLFW/glfw3.h"
   PATHS ${_GLFW3_HEADER_SEARCH_DIRS})
+set(GLFW3_INCLUDE_DIRS ${GLFW3_INCLUDE_DIR})
 
-# Search for the library
+# 查找库文件路径
 find_library(GLFW3_LIBRARY
   NAMES glfw3 glfw
   PATHS ${_GLFW3_LIB_SEARCH_DIRS})
+set(GLFW3_LIBRARIES ${GLFW3_LIBRARY})
 
+# 是否找到指定头文件和库文件路径
 if(GLFW3_INCLUDE_DIR AND GLFW3_LIBRARY)
   set(GLFW3_FOUND TRUE)
 endif()
