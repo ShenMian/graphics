@@ -11,10 +11,10 @@ list(APPEND LIBS glad)
 list(APPEND INCS "${DEPS_DIR}/glad/include")
 
 # 添加 GLFW3
-# list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/Scripts")
-set(glfw3_DIR "C:/Program Files (x86)/GLFW/lib/cmake/glfw3")
+list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/Scripts")
+set(GLFW3_DIR "C:/Program Files (x86)/GLFW/lib/cmake/glfw3")
 find_package(GLFW3)
-if(glfw3_FOUND)
+if(GLFW3_FOUND)
     list(APPEND LIBS ${glfw3_LIBRARIES})
 else()
     add_subdirectory("${DEPS_DIR}/glfw" "glfw3")
@@ -54,3 +54,4 @@ target_include_directories(graphics PUBLIC
     "${DEPS_DIR}/Vulkan-Headers/include"
     "${DEPS_DIR}/meshoptimizer/src")
 target_link_libraries(graphics PUBLIC ${LIBS})
+target_compile_definitions(graphics PUBLIC ${DEFINES})
