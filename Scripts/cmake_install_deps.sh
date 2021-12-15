@@ -71,11 +71,10 @@ fi
 echo Installing dependencies...
 
 # Ubuntu
-if apt >/dev/null 2>&1
+if sudo apt update >/dev/null 2>&1
 then
     echo Installing dependencies on Ubuntu...
 
-    sudo apt update
     install_apt libx11-dev mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev libxrandr-dev libxi-dev libxmu-dev libblas-dev libxinerama-dev libxcursor-dev
     install_apt libassimp-dev
     install_apt libglfw3-dev
@@ -85,7 +84,7 @@ then
 fi
 
 # MacOS
-if brew >/dev/null 2>&1
+if brew update >/dev/null 2>&1
 then
     echo Installing dependencies on MacOS...
 
