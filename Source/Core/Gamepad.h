@@ -51,9 +51,17 @@ public:
 	bool get(Button button) const;
 
 	/**
-	 * @brief 获取设备名称.
+	 * @brief 获取设备名称. 人类可读, UTF-8 编码.
 	 */
 	std::string_view getName() const;
+
+	/**
+	 * @brief 检查手柄是否处于连接状态.
+	 *
+	 * @return true  已连接.
+	 * @return false 已断开.
+	 */
+	bool isConnected() const;
 
 private:
 	handle_type handle = 0;

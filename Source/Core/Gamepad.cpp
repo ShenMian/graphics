@@ -8,14 +8,10 @@
 Gamepad::Gamepad()
 {
 	glfwSetJoystickCallback([](int handle, int event){
-		switch(event)
-		{
-		case GLFW_CONNECTED:
-			break;
-
-		case GLFW_DISCONNECTED:
-			break;
-		}
+		if(event == GLFW_CONNECTED)
+			;
+		else if(event == GLFW_DISCONNECTED)
+			;
 	});
 }
 
@@ -71,4 +67,9 @@ float Gamepad::get(Trigger trigger) const
 std::string_view Gamepad::getName() const
 {
 	return glfwGetJoystickName(handle);
+}
+
+bool Gamepad::isConnected() const
+{
+	return glfwJoystickPresent(handle);
 }
