@@ -17,8 +17,13 @@ target_link_libraries(main PRIVATE graphics glad)
 target_compile_definitions(main PUBLIC ${DEFINES})
 
 # 指定 C++ 标准
-set_property(TARGET main PROPERTY CXX_STANDARD          23)
-set_property(TARGET main PROPERTY CXX_STANDARD_REQUIRED ON)
+if(MSVC)
+    set_property(TARGET main PROPERTY CXX_STANDARD          23)
+    set_property(TARGET main PROPERTY CXX_STANDARD_REQUIRED ON)
+else()
+    set_property(TARGET main PROPERTY CXX_STANDARD          20)
+    set_property(TARGET main PROPERTY CXX_STANDARD_REQUIRED ON)
+endif()
 
 # 将 Shader 源文件复制到可执行文件的目录下
 file(COPY "Shaders" DESTINATION "${EXECUTABLE_OUTPUT_PATH}/${CMAKE_BUILD_TYPE}")

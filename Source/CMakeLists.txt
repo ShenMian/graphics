@@ -59,5 +59,10 @@ target_compile_definitions(graphics PUBLIC ${DEFINES})
 set_property(TARGET graphics PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 
 # 指定 C++ 标准
-set_property(TARGET graphics PROPERTY CXX_STANDARD          23)
-set_property(TARGET graphics PROPERTY CXX_STANDARD_REQUIRED ON)
+if(MSVC)
+    set_property(TARGET graphics PROPERTY CXX_STANDARD          23)
+    set_property(TARGET graphics PROPERTY CXX_STANDARD_REQUIRED ON)
+else()
+    set_property(TARGET graphics PROPERTY CXX_STANDARD          20)
+    set_property(TARGET graphics PROPERTY CXX_STANDARD_REQUIRED ON)
+endif()
