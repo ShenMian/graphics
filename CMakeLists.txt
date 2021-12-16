@@ -11,6 +11,11 @@ project(Graphics VERSION 0.0.0)
 option(BUILD_EXAMPLES "Build examples" ON)
 option(BUILD_TESTS    "Build tests"    ON)
 
+# 输出编译器信息
+message("Compiler")
+message("|- ID     : ${CMAKE_COMPILER_ID}")
+message("`- Version: ${CMAKE_COMPILER_VERSION}")
+
 # 指定默认编译类型
 if(NOT DEFINED CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE Debug)
