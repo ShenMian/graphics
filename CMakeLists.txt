@@ -38,7 +38,7 @@ endif()
 
 if(MSVC)
   # 静态链接 MSVC 运行库
-  set_property(GLOBAL MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+  set_property(GLOBAL PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 endif()
 
 if(UNIX)
