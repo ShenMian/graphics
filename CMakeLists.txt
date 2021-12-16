@@ -5,16 +5,20 @@
 cmake_minimum_required(VERSION 3.16)
 
 # 指定项目名和版本号
-project(Graphics VERSION 0.0.0 LANGUAGES CXX)
+project(Graphics
+  VERSION     0.0.0
+  DESCRIPTION "A simple abstraction layer for the modern graphics APIs."
+  LANGUAGES   CXX)
 
 # 选项
 option(BUILD_EXAMPLES "Build examples" ON)
 option(BUILD_TESTS    "Build tests"    ON)
 
 # 输出编译器信息
-message("Compiler")
-message("|- ID     : ${CMAKE_COMPILER_ID}")
-message("`- Version: ${CMAKE_COMPILER_VERSION}")
+message(STATUS "Compiler")
+message(STATUS "|- ID     : ${CMAKE_COMPILER_ID}")
+message(STATUS "|- Version: ${CMAKE_COMPILER_VERSION}")
+message(STATUS "`- Options: ${CMAKE_CXX_FLAGS}")
 
 # 指定默认编译类型
 if(NOT DEFINED CMAKE_BUILD_TYPE)
