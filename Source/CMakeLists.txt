@@ -70,5 +70,3 @@ if(MSVC)
 else()
     target_compile_options(graphics PRIVATE -std=c++20)
 endif()
-
-set_property(TARGET graphics PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
