@@ -18,8 +18,9 @@ target_compile_definitions(main PUBLIC ${GRAPHICS_DEFINES})
 
 # 指定 C++ 标准
 if(MSVC)
-    set_property(TARGET main PROPERTY CXX_STANDARD          23)
-    set_property(TARGET main PROPERTY CXX_STANDARD_REQUIRED ON)
+    set_property(TARGET main PROPERTY
+        CXX_STANDARD          23
+        CXX_STANDARD_REQUIRED ON)
 else()
     target_compile_options(main PRIVATE -std=c++20)
 endif()

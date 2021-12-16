@@ -66,8 +66,7 @@ target_compile_definitions(graphics PUBLIC ${GRAPHICS_DEFINES})
 if(MSVC)
     set_property(TARGET graphics PROPERTY
         CXX_STANDARD          23
-        CXX_STANDARD_REQUIRED ON
-        MSVC_RUNTIME_LIBRARY  "MultiThreaded$<$<CONFIG:${CMAKE_BUILD_TYPE}>:${CMAKE_BUILD_TYPE}>")
+        CXX_STANDARD_REQUIRED ON)
 else()
     target_compile_options(graphics PRIVATE -std=c++20)
 endif()

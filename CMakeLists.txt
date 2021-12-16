@@ -38,21 +38,10 @@ endif()
 
 if(MSVC)
   # 静态链接 MSVC 运行库
-  if(CMAKE_BUILD_TYPE STREQUAL Release)
-    add_link_options("/MT")
-  elseif(CMAKE_BUILD_TYPE STREQUAL Debug)
-    add_link_options("/MTd")
-  endif()
+  set_property(GLOBAL MSVC_RUNTIME_LIBRARY  "MultiThreaded$<$<CONFIG:${CMAKE_BUILD_TYPE}>:${CMAKE_BUILD_TYPE}>")
+endif()
 
-  foreach(var
-      CMAKE_CXX_FLAGS CMAKE_CXX_FLAGS_DEBUG CMAKE_CXX_FLAGS_RELEASE
-      CMAKE_CXX_FLAGS_MINSIZEREL CMAKE_CXX_FLAGS_RELWITHDEBINFO
-    )
-    if(${var} MATCHES "/MD")
-      string(REGEX REPLACE "/MD" "/MT" ${var} "${${var}}")
-    endif()
-  endforeach()
-elseif(UNIX)
+if(UNIX)
   add_link_options("-ldl")
 endif()
 
