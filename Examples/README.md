@@ -1,6 +1,6 @@
 # Examples
 
-## [Triangle](Triangle/README.md)
+## [Triangle](Triangle)
 
 渲染单个三角形.
 
