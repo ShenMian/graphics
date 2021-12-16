@@ -7,8 +7,7 @@ cmake_minimum_required(VERSION 3.16)
 # 指定项目名和版本号
 project(Graphics
   VERSION     0.0.0
-  DESCRIPTION "A simple abstraction layer for the modern graphics APIs."
-  LANGUAGES   CXX)
+  DESCRIPTION "A simple abstraction layer for the modern graphics APIs.")
 
 # 选项
 option(BUILD_EXAMPLES "Build examples" ON)
