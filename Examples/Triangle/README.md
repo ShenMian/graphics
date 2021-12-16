@@ -1,6 +1,6 @@
 # Triangle
 
-该例子渲染了单个三角形.
+渲染单个三角形.
 
 <p align="center"><img src="screenshot.png"/></p>
 
