@@ -21,6 +21,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Install Clang
+        uses: egor-tensin/setup-clang@v1
+
       - name: Setup MSVC Developer Command Environment (Windows)
         if: ${{matrix.os == 'windows-latest'}}
         uses: ilammy/msvc-dev-cmd@v1.10.0
