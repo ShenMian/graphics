@@ -39,12 +39,12 @@ endif()
 if(MSVC)
   # 静态链接 MSVC 运行库
   if(CMAKE_BUILD_TYPE STREQUAL Release)
-    add_compile_options("/MT")
+    add_link_options("/MT")
   elseif(CMAKE_BUILD_TYPE STREQUAL Debug)
-    add_compile_options("/MTd")
+    add_link_options("/MTd")
   endif()
 elseif(UNIX)
-  add_compile_options("-ldl")
+  add_link_options("-ldl")
 endif()
 
 # 添加第三方库
