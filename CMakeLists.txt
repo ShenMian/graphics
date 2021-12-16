@@ -36,13 +36,15 @@ if(WIN32)
   list(APPEND GRAPHICS_DEFINES _CRT_SECURE_NO_WARNINGS _SCL_SECURE_NO_WARNINGS UNICODE _UNICODE NOMINMAX)
 endif()
 
-# 静态链接 MSVC 运行库
 if(MSVC)
+  # 静态链接 MSVC 运行库
   if(CMAKE_BUILD_TYPE STREQUAL Release)
     add_compile_options("/MT")
   elseif(CMAKE_BUILD_TYPE STREQUAL Debug)
     add_compile_options("/MTd")
   endif()
+elseif(UNIX)
+  add_compile_options("-ldl")
 endif()
 
 # 添加第三方库
