@@ -139,7 +139,7 @@ void loadMesh(const aiMesh* aMesh, const aiScene* aScene, const fs::path& path, 
 	static unsigned int i = 0;
 	if(currScene != aScene)
 		currScene = aScene, i = 0;
-	printf("处理网格: %3d/%-3d\r", ++i, aScene->mNumMeshes);
+	printf("处理网格: %3u/%-3u\r", ++i, aScene->mNumMeshes);
 
 	Mesh mesh;
 
