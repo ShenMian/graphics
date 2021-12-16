@@ -16,8 +16,8 @@ option(BUILD_TESTS    "Build tests"    ON)
 
 # 输出编译器信息
 message(STATUS "Compiler")
-message(STATUS "|- ID     : ${CMAKE_COMPILER_ID}")
-message(STATUS "`- Version: ${CMAKE_COMPILER_VERSION}")
+message(STATUS "|- ID     : ${CMAKE_CXX_COMPILER_ID}")
+message(STATUS "`- Version: ${CMAKE_CXX_COMPILER_VERSION}")
 
 # 指定默认编译类型
 if(NOT DEFINED CMAKE_BUILD_TYPE)
