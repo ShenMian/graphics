@@ -21,7 +21,7 @@ if(MSVC)
     set_property(TARGET main PROPERTY CXX_STANDARD          23)
     set_property(TARGET main PROPERTY CXX_STANDARD_REQUIRED ON)
 else()
-    target_compile_options(main PRIVATE -std=c++2a)
+    target_compile_options(main PRIVATE -std=c++20)
 endif()
 
 # 将 Shader 源文件复制到可执行文件的目录下
