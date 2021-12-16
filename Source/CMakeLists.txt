@@ -46,22 +46,30 @@ list(APPEND INCS "${DEPS_DIR}/meshoptimizer/src")
 
 file(GLOB_RECURSE SOURCES "*.cpp")
 
+# 添加静态库文件
 add_library(graphics STATIC ${SOURCES})
 
+# 指定头文件目录
 target_include_directories(graphics PUBLIC
     ${INCS}
     "${PROJECT_SOURCE_DIR}/Source"
     "${DEPS_DIR}/Vulkan-Headers/include"
     "${DEPS_DIR}/meshoptimizer/src")
-target_link_libraries(graphics PUBLIC ${LIBS})
-target_compile_definitions(graphics PUBLIC ${GRAPHICS_DEFINES})
 
-set_property(TARGET graphics PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+# 指定库文件目录
+target_link_libraries(graphics PUBLIC ${LIBS})
+
+# 添加宏定义
+target_compile_definitions(graphics PUBLIC ${GRAPHICS_DEFINES})
 
 # 指定 C++ 标准
 if(MSVC)
-    set_property(TARGET graphics PROPERTY CXX_STANDARD          23)
-    set_property(TARGET graphics PROPERTY CXX_STANDARD_REQUIRED ON)
+    set_property(TARGET graphics PROPERTY
+        CXX_STANDARD          23
+        CXX_STANDARD_REQUIRED ON
+        MSVC_RUNTIME_LIBRARY  "MultiThreaded$<$<CONFIG:${CMAKE_BUILD_TYPE}>:${CMAKE_BUILD_TYPE}>")
 else()
     target_compile_options(graphics PRIVATE -std=c++20)
 endif()
+
+set_property(TARGET graphics PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
