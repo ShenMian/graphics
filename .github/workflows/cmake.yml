@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         os: [windows-latest, ubuntu-latest]
-        arch: [x64, x86, arm64, arm]
+        arch: [x64, arm64]
         include:
         - os: windows-latest
           script_cmake_install_deps: ./Scripts/cmake_install_deps.bat
