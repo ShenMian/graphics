@@ -55,3 +55,9 @@ target_include_directories(graphics PUBLIC
     "${DEPS_DIR}/meshoptimizer/src")
 target_link_libraries(graphics PUBLIC ${LIBS})
 target_compile_definitions(graphics PUBLIC ${DEFINES})
+
+set_property(TARGET Graphics PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+
+# 指定 C++ 标准
+set_property(TARGET unit_test PROPERTY CXX_STANDARD          23)
+set_property(TARGET unit_test PROPERTY CXX_STANDARD_REQUIRED ON)
