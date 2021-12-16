@@ -54,7 +54,7 @@ target_include_directories(graphics PUBLIC
     "${DEPS_DIR}/Vulkan-Headers/include"
     "${DEPS_DIR}/meshoptimizer/src")
 target_link_libraries(graphics PUBLIC ${LIBS})
-target_compile_definitions(graphics PUBLIC ${DEFINES})
+target_compile_definitions(graphics PUBLIC ${GRAPHICS_DEFINES})
 
 set_property(TARGET graphics PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 

@@ -17,8 +17,7 @@ option(BUILD_TESTS    "Build tests"    ON)
 # 输出编译器信息
 message(STATUS "Compiler")
 message(STATUS "|- ID     : ${CMAKE_COMPILER_ID}")
-message(STATUS "|- Version: ${CMAKE_COMPILER_VERSION}")
-message(STATUS "`- Options: ${CMAKE_CXX_FLAGS}")
+message(STATUS "`- Version: ${CMAKE_COMPILER_VERSION}")
 
 # 指定默认编译类型
 if(NOT DEFINED CMAKE_BUILD_TYPE)
@@ -33,14 +32,18 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 set(LIBRARY_OUTPUT_PATH            "${CMAKE_BINARY_DIR}/lib")
 set(EXECUTABLE_OUTPUT_PATH         "${CMAKE_BINARY_DIR}/bin")
 
+# 指定 Win32 下要定义的宏
 if(WIN32)
-  list(APPEND DEFINES _CRT_SECURE_NO_WARNINGS _SCL_SECURE_NO_WARNINGS UNICODE _UNICODE NOMINMAX)
+  list(APPEND GRAPHICS_DEFINES _CRT_SECURE_NO_WARNINGS _SCL_SECURE_NO_WARNINGS UNICODE _UNICODE NOMINMAX)
 endif()
 
 # 静态链接 MSVC 运行库
 if(MSVC)
-  set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MT")
-  set(CMAKE_CXX_FLAGS_DEBUG   "${CMAKE_CXX_FLAGS_DEBUG}   /MTd")
+  if(CMAKE_BUILD_TYPE STREQUAL Release)
+    add_compile_options("/MT")
+  elseif(CMAKE_BUILD_TYPE STREQUAL Debug)
+    add_compile_options("/MTd")
+  endif()
 endif()
 
 # 添加第三方库

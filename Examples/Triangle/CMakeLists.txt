@@ -14,7 +14,7 @@ target_include_directories(graphics PUBLIC
     "${DEPS_DIR}/Vulkan-Headers/include"
     "${DEPS_DIR}/meshoptimizer/src")
 target_link_libraries(main PRIVATE graphics glad)
-target_compile_definitions(main PUBLIC ${DEFINES})
+target_compile_definitions(main PUBLIC ${GRAPHICS_DEFINES})
 
 # 指定 C++ 标准
 if(MSVC)
