@@ -238,7 +238,7 @@ void Model::loadAsync(const fs::path& path, std::function<void(std::string_view)
 {
 	try
 	{
-		std::thread([=]()
+		std::thread([=, this]()
 		{
 			try
 			{
