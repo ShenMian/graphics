@@ -23,8 +23,11 @@ jobs:
       - name: Install dependencies
         run: ./Scripts/cmake_install_deps.sh
 
+      - name: Generating CMake cache
+        run: cmake -B build
+
       - name: Build
-        run: ./Scripts/cmake_build.sh
+        run: cmake --build build --config ${{ matrix.config }} -j2
 
       - name: Upload libs
         uses: actions/upload-artifact@v2
