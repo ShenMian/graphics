@@ -144,6 +144,9 @@ enum class Key
     RightSuper       = 347
 };
 
+/**
+ * @brief 鼠标按键.
+ */
 enum class Mouse
 {
 	_1 = 0,
