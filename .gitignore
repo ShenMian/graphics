@@ -1,6 +1,8 @@
 # Build
 [Bb]uild/
 [Bb]in/
+[Oo]bj/
+[Ll]ib/
 !Deps/premake/bin/
 
 # Makefile
