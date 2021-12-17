@@ -29,7 +29,7 @@
  * --------
  * A simple abstraction layer for the modern graphics APIs.
  *
- * Getting Started
+ * Examples
  * ---------------
  * [Triangle](https://github.com/ShenMian/Graphics/tree/main/Examples/Triangle)
  *
