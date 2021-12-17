@@ -33,4 +33,7 @@
  * --------
  * [Triangle](https://github.com/ShenMian/Graphics/tree/main/Examples/Triangle)
  *
+ * @defgroup core   核心
+ * @defgroup model  模型
+ * @defgroup shader 渲染器
  */

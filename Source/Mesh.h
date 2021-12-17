@@ -10,6 +10,13 @@
 class IndexBuffer;
 class VertexBuffer;
 
+/** @addtogroup model
+ *  @{
+ */
+
+/**
+ * @brief 网格.
+ */
 class Mesh
 {
 public:
@@ -37,3 +44,5 @@ private:
 	std::shared_ptr<IndexBuffer>  indexBuffer;
 	Material                      material;
 };
+
+/** @}*/

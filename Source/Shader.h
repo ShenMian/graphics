@@ -7,6 +7,10 @@
 #include <string>
 #include <unordered_map>
 
+/** @addtogroup shader
+ *  @{
+ */
+
 /**
  * @brief 阶段着色器.
  */
@@ -59,3 +63,5 @@ protected:
 
 	static std::unordered_map<Shader::Stage, const char*> extension;
 };
+
+/** @}*/

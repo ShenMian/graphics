@@ -58,7 +58,7 @@ public:
 	bool get(Button button) const;
 
 	/**
-	 * @brief 获取设备名称. 人类可读, UTF-8 编码.
+	 * @brief 获取设备名称. 人类可读的, UTF-8 编码.
 	 */
 	std::string_view getName() const;
 
@@ -79,18 +79,27 @@ private:
 	const unsigned char* buttons = nullptr;
 };
 
+/**
+ * @brief 手柄摇杆.
+ */
 enum class Gamepad::Thumb
 {
 	left,
 	right
 };
 
+/**
+ * @brief 手柄线性按键.
+ */
 enum class Gamepad::Trigger
 {
 	left,
 	right
 };
 
+/**
+ * @brief 手柄按键.
+ */
 enum class Gamepad::Button : uint8_t
 {
 	A = 0,

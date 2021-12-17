@@ -28,6 +28,10 @@ struct aiScene;
 class Mesh;
 class Material;
 
+/** @addtogroup model
+ *  @{
+ */
+
 /**
  * @brief 3D 模型.
  */
@@ -79,3 +83,5 @@ inline static std::vector<std::string> extensions = {
 	"collada", "x", "stp", "obj", "objnomtl", "stl", "stlb", "ply", "plyb", "3ds",
 	"gltf2", "glb2", "gltf", "glb", "assbin", "assxml", "x3d", "3mf", "pbrt", "assjson"};
 */
+
+/** @}*/

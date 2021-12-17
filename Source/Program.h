@@ -7,6 +7,10 @@
 #include <string>
 #include <unordered_map>
 
+/** @addtogroup shader
+ *  @{
+ */
+
 /**
  * @brief 着色器程序.
  */
@@ -36,3 +40,5 @@ protected:
 
 	inline static std::unordered_map<std::string, std::shared_ptr<Program>> cache;
 };
+
+/** @}*/

@@ -6,6 +6,10 @@
 #include "Texture.h"
 #include <string>
 
+/** @addtogroup model
+ *  @{
+ */
+
 /**
  * @brief 材质.
  */
@@ -35,3 +39,5 @@ public:
 	std::shared_ptr<Texture> shininess;
 	std::shared_ptr<Texture> opacity;
 };
+
+/** @}*/
