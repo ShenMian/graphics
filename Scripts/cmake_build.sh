@@ -1,4 +1,4 @@
-﻿#!/bin/bash
+#!/bin/bash
 # Copyright 2021 ShenMian
 # License(Apache-2.0)
 
