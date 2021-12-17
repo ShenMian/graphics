@@ -3,25 +3,25 @@
 # License(Apache-2.0)
 
 function install_macos() {
-    deps=$*
+    local deps=$*
 
-    if ! brew install $deps; then
+    if ! brew install "$deps"; then
         echo "apt install failed"
         exit 1
     fi
 }
 
 function install_ubuntu() {
-    deps=$*
+    local deps=$*
 
-    if ! sudo apt install -y $deps; then
+    if ! sudo apt install -y "$deps"; then
         echo "apt install failed"
         exit 1
     fi
 }
 
 function install_cmake() {
-    dep=$1
+    local dep=$1
 
     cd "${dep}" || return 1
 
