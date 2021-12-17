@@ -26,17 +26,20 @@ jobs:
       - name: Install dependencies
         run: ./Scripts/cmake_install_deps.bat
 
+      - name: Generating CMake cache
+        run: cmake -B build
+
       - name: Build
-        run: ./Scripts/cmake_build.bat
+        run: cmake --build build --config ${{ matrix.config }} -j2
 
       - name: Upload libs
         uses: actions/upload-artifact@v2
         with:
           name: graphics-windows-${{ matrix.arch }}
-          path: build/lib/Release
+          path: build/lib/${{ matrix.config }}
 
       - name: Upload bins
         uses: actions/upload-artifact@v2
         with:
           name: examples-windows-${{ matrix.arch }}
-          path: build/bin/Release
+          path: build/bin/${{ matrix.config }}
