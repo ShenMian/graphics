@@ -1,0 +1,1 @@
+/usr/bin/c++ -ldl -lpthread CMakeFiles/main.dir/main.cpp.o -o ../../bin/main  ../../lib/libgraphics.a ../../lib/libglad.a /usr/local/lib/libglfw3.a 

@@ -1,0 +1,9 @@
+/home/sms/repo/Graphics/build/CMakeFiles/edit_cache.dir
+/home/sms/repo/Graphics/build/CMakeFiles/rebuild_cache.dir
+/home/sms/repo/Graphics/build/Source/CMakeFiles/glad.dir
+/home/sms/repo/Graphics/build/Source/CMakeFiles/graphics.dir
+/home/sms/repo/Graphics/build/Source/CMakeFiles/edit_cache.dir
+/home/sms/repo/Graphics/build/Source/CMakeFiles/rebuild_cache.dir
+/home/sms/repo/Graphics/build/Examples/Triangle/CMakeFiles/main.dir
+/home/sms/repo/Graphics/build/Examples/Triangle/CMakeFiles/edit_cache.dir
+/home/sms/repo/Graphics/build/Examples/Triangle/CMakeFiles/rebuild_cache.dir
