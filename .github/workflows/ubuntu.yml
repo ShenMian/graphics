@@ -1,0 +1,39 @@
+name: Ubuntu
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        arch: [x64, arm64]
+        config: [Debug, Release]
+
+    runs-on: ubuntu-latest
+    name: ${{ matrix.config }}-${{ matrix.arch }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Clang
+        uses: egor-tensin/setup-clang@v1
+        with:
+          version: 13
+
+      - name: Install dependencies
+        run: ./Scripts/cmake_install_deps.sh
+
+      - name: Build
+        run: ./Scripts/cmake_build.sh
+
+      - name: Upload libs
+        uses: actions/upload-artifact@v2
+        with:
+          name: graphics-ubuntu-${{ matrix.arch }}
+          path: build/lib
+
+      - name: Upload bins
+        uses: actions/upload-artifact@v2
+        with:
+          name: examples-ubuntu-${{ matrix.arch }}
+          path: build/bin
