@@ -2,7 +2,16 @@
 # Copyright 2021 ShenMian
 # License(Apache-2.0)
 
-function install_apt() {
+function install_macos() {
+    deps=$*
+
+    if ! brew install -y $deps; then
+        echo "apt install failed"
+        exit 1
+    fi
+}
+
+function install_ubuntu() {
     deps=$*
 
     if ! sudo apt install -y $deps; then
@@ -75,9 +84,9 @@ if sudo apt update >/dev/null 2>&1
 then
     echo Installing dependencies on Ubuntu...
 
-    install_apt libx11-dev mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev libxrandr-dev libxi-dev libxmu-dev libblas-dev libxinerama-dev libxcursor-dev
-    install_apt libassimp-dev
-    install_apt libglfw3-dev
+    install_ubuntu libx11-dev mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev libxrandr-dev libxi-dev libxmu-dev libblas-dev libxinerama-dev libxcursor-dev
+    install_ubuntu libassimp-dev
+    install_ubuntu libglfw3-dev
     install_cmake "meshoptimizer"
 
     exit
@@ -88,7 +97,7 @@ if brew update >/dev/null 2>&1
 then
     echo Installing dependencies on MacOS...
 
-    brew install glfw
+    install_macos glfw
     install_cmake "assimp"
     install_cmake "meshoptimizer"
 
