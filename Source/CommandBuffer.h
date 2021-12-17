@@ -4,7 +4,7 @@
 #pragma once
 
 #include "Program.h"
-#include <Math/Vector4.hpp>
+#include <Math/Math.hpp>
 #include <memory>
 
 class VertexBuffer;

@@ -3,8 +3,7 @@
 
 #pragma once
 
-#include <Math/Vector2.hpp>
-#include <Math/Vector4.hpp>
+#include <Math/Math.hpp>
 #include <cstdint>
 #include <filesystem>
 #include <vector>

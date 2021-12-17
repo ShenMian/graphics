@@ -4,7 +4,7 @@
 #pragma once
 
 #include <string_view>
-#include <Math/Vector2.hpp>
+#include <Math/Math.hpp>
 
 /** @addtogroup core
  *  @{

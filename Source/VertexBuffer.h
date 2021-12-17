@@ -4,8 +4,7 @@
 #pragma once
 
 #include "VertexFormat.h"
-#include <Math/Vector2.hpp>
-#include <Math/Vector3.hpp>
+#include <Math/Math.hpp>
 #include <memory>
 #include <vector>
 
