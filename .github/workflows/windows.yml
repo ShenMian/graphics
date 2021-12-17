@@ -6,7 +6,7 @@ jobs:
   build:
     strategy:
       matrix:
-        arch: [x64, arm64]
+        arch: [x64] # arm64
         config: [Debug, Release]
 
     runs-on: windows-latest
