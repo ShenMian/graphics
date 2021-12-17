@@ -33,10 +33,10 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: graphics-windows-${{ matrix.arch }}
-          path: build/Release/lib
+          path: build/lib/Release
 
       - name: Upload bins
         uses: actions/upload-artifact@v2
         with:
           name: examples-windows-${{ matrix.arch }}
-          path: build/Release/bin
+          path: build/bin/Release
