@@ -98,7 +98,7 @@ then
     echo Installing dependencies on MacOS...
 
     install_macos glfw
-    install_cmake "assimp"
+    install_macos assimp
     install_cmake "meshoptimizer"
 
     exit
