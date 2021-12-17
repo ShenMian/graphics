@@ -67,6 +67,8 @@ if(MSVC)
     set_property(TARGET graphics PROPERTY
         CXX_STANDARD          23
         CXX_STANDARD_REQUIRED ON)
+elseif(APPLE)
+    target_compile_options(graphics PRIVATE -std=c++2a)
 else()
     target_compile_options(graphics PRIVATE -std=c++20)
 endif()
