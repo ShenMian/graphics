@@ -42,7 +42,7 @@ if(MSVC)
 endif()
 
 if(UNIX)
-  add_link_options("-ldl")
+  add_link_options("-ldl" "-lpthread")
 endif()
 
 # 添加第三方库
