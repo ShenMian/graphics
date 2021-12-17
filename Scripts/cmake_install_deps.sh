@@ -5,7 +5,7 @@
 function install_macos() {
     deps=$*
 
-    if ! brew install -y $deps; then
+    if ! brew install $deps; then
         echo "apt install failed"
         exit 1
     fi
