@@ -14,6 +14,10 @@ struct GLFWwindow;
 
 class Image;
 
+/** @addtogroup core
+ *  @{
+ */
+
 /**
  * @brief 窗体.
  */
@@ -144,3 +148,5 @@ private:
 	Vector2i size;
 	Vector2i position;
 };
+
+/** @}*/

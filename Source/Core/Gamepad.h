@@ -6,6 +6,13 @@
 #include <string_view>
 #include <Math/Vector2.hpp>
 
+/** @addtogroup core
+ *  @{
+ */
+
+/**
+ * @brief 游戏手柄.
+ */
 class Gamepad
 {
 public:
@@ -111,3 +118,5 @@ enum class Gamepad::Button : uint8_t
 	Square = X,
 	Triangle = Y
 };
+
+/** @}*/

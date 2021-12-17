@@ -5,6 +5,10 @@
 
 #include <chrono>
 
+/** @addtogroup core
+ *  @{
+ */
+
 /**
  * @brief 计时器.
  */
@@ -34,3 +38,5 @@ public:
 private:
 	std::chrono::time_point<std::chrono::high_resolution_clock> start;
 };
+
+/** @}*/

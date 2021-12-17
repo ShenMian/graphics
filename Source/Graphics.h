@@ -18,9 +18,9 @@
 #include "Core/Image.h"
 #include "Core/Timer.hpp"
 
-//DOXYGEN MAIN PAGE
+// Doxygen main page
 /**
- * \mainpage Graphics Documentation
+ * @mainpage Graphics Documentation
  *
  * Graphics
  * ========
@@ -30,7 +30,7 @@
  * A simple abstraction layer for the modern graphics APIs.
  *
  * Examples
- * ---------------
+ * --------
  * [Triangle](https://github.com/ShenMian/Graphics/tree/main/Examples/Triangle)
  *
  */

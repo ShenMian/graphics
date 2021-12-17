@@ -3,6 +3,13 @@
 
 #pragma once
 
+/** @addtogroup core
+ *  @{
+ */
+
+/**
+ * @brief 键盘按键.
+ */
 enum class Key
 {
     /* The unknown key */
@@ -152,3 +159,5 @@ enum class Mouse
 	Right  = _2,
 	Middle = _3
 };
+
+/** @}*/

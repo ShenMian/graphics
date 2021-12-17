@@ -9,6 +9,10 @@
 
 struct GLFWmonitor;
 
+/** @addtogroup core
+ *  @{
+ */
+
 /**
  * @brief 显示器.
  */
@@ -65,3 +69,5 @@ private:
 
 	static void update();
 };
+
+/** @}*/

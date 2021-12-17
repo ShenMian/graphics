@@ -8,6 +8,13 @@
 
 class Window;
 
+/** @addtogroup core
+ *  @{
+ */
+
+/**
+ * @brief 键盘/鼠标输入.
+ */
 class Input
 {
 public:
@@ -52,3 +59,5 @@ public:
 private:
 	static Window* window;
 };
+
+/** @}*/

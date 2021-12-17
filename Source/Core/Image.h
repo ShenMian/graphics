@@ -9,6 +9,10 @@
 #include <filesystem>
 #include <vector>
 
+/** @addtogroup core
+ *  @{
+ */
+
 /**
  * @brief 图像.
  */
@@ -102,3 +106,5 @@ private:
 	Vector2i             size;
 	int                  channels = 0;
 };
+
+/** @}*/
