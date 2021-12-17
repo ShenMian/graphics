@@ -1,0 +1,42 @@
+name: Windows
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        arch: [x64, arm64]
+        config: [Debug, Release]
+
+    runs-on: windows-latest
+    name: ${{ matrix.config }}-${{ matrix.arch }}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Clang
+        uses: egor-tensin/setup-clang@v1
+        with:
+          version: 13
+
+      # - name: Setup MSVC Developer Command Environment
+      #   uses: ilammy/msvc-dev-cmd@v1.10.0
+
+      - name: Install dependencies
+        run: ./Scripts/cmake_install_deps.bat
+
+      - name: Build
+        run: ./Scripts/cmake_build.bat
+
+      - name: Upload libs
+        uses: actions/upload-artifact@v2
+        with:
+          name: graphics-windows-${{ matrix.arch }}
+          path: build/Release/lib
+
+      - name: Upload bins
+        uses: actions/upload-artifact@v2
+        with:
+          name: examples-windows-${{ matrix.arch }}
+          path: build/Release/bin
