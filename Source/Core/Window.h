@@ -18,9 +18,9 @@ class Image;
  *  @{
  */
 
-/**
- * @brief 窗体.
- */
+ /**
+  * @brief 窗体.
+  */
 class Window
 {
 public:

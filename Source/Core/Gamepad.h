@@ -10,9 +10,9 @@
  *  @{
  */
 
-/**
- * @brief 游戏手柄.
- */
+ /**
+  * @brief 游戏手柄.
+  */
 class Gamepad
 {
 public:

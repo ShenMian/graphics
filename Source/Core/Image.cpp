@@ -7,12 +7,12 @@
 // #include <format>
 
 #ifndef STB_IMAGE_IMPLEMENTATION
-	#define STB_IMAGE_IMPLEMENTATION // 防止和 assimp 内的 stb 重定义
+#define STB_IMAGE_IMPLEMENTATION // 防止和 assimp 内的 stb 重定义
 #endif
 #include <stb_image.h>
 
 #ifndef STB_IMAGE_WRITE_IMPLEMENTATION
-	#define STB_IMAGE_WRITE_IMPLEMENTATION
+#define STB_IMAGE_WRITE_IMPLEMENTATION
 #endif
 #include <stb_image_write.h>
 

@@ -32,9 +32,9 @@ class Material;
  *  @{
  */
 
-/**
- * @brief 3D 模型.
- */
+ /**
+  * @brief 3D 模型.
+  */
 class Model
 {
 public:

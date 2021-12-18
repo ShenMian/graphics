@@ -11,9 +11,9 @@
  *  @{
  */
 
-/**
- * @brief 着色器程序.
- */
+ /**
+  * @brief 着色器程序.
+  */
 class Program
 {
 public:

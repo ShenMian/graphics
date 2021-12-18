@@ -9,9 +9,9 @@
  *  @{
  */
 
-/**
- * @brief 计时器.
- */
+ /**
+  * @brief 计时器.
+  */
 class Timer
 {
 public:

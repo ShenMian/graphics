@@ -12,9 +12,9 @@
  *  @{
  */
 
-/**
- * @brief 图像.
- */
+ /**
+  * @brief 图像.
+  */
 class Image
 {
 public:

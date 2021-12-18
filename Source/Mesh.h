@@ -14,9 +14,9 @@ class VertexBuffer;
  *  @{
  */
 
-/**
- * @brief 网格.
- */
+ /**
+  * @brief 网格.
+  */
 class Mesh
 {
 public:

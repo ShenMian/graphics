@@ -11,9 +11,9 @@
  *  @{
  */
 
-/**
- * @brief 阶段着色器.
- */
+ /**
+  * @brief 阶段着色器.
+  */
 class Shader
 {
 public:

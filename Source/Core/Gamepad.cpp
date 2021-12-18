@@ -7,7 +7,7 @@
 
 Gamepad::Gamepad()
 {
-	glfwSetJoystickCallback([](int handle, int event){
+	glfwSetJoystickCallback([](int handle, int event) {
 		if(event == GLFW_CONNECTED)
 			;
 		else if(event == GLFW_DISCONNECTED)
