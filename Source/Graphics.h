@@ -5,9 +5,10 @@
 #include "CommandBuffer.h"
 #include "CommandQueue.h"
 #include "Texture.h"
+#include "VertexFormat.h"
+
 #include "Program.h"
 #include "Shader.h"
-#include "VertexFormat.h"
 
 #include "Model.h"
 
