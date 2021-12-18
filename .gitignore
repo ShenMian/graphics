@@ -19,6 +19,8 @@ Makefile
 
 # Doxygen
 /Docs/html
+/Docs/man
+/Docs/xml
 
 # Prerequisites
 *.d
