@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['fliphorizontally_0',['flipHorizontally',['../class_image.html#a670aa8908444da5e54a864204a09ec01',1,'Image']]],
-  ['flipvertically_1',['flipVertically',['../class_image.html#a7e5594ca0d776f1dcc8eb9662401b21b',1,'Image']]]
+  ['ddsheader_0',['DDSHeader',['../struct_d_d_s_header.html',1,'']]],
+  ['ddsheaderdxt10_1',['DDSHeaderDXT10',['../struct_d_d_s_header_d_x_t10.html',1,'']]],
+  ['ddspixelformat_2',['DDSPixelFormat',['../struct_d_d_s_pixel_format.html',1,'']]]
 ];

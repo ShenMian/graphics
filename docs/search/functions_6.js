@@ -8,7 +8,7 @@ var searchData=
   ['setminfilter_5',['setMinFilter',['../class_g_l_texture.html#ab6dbf1736f0b47c7696d3f0271495b8c',1,'GLTexture::setMinFilter()'],['../class_texture.html#a23aaceb94559abb5b9c756c2ec8ac431',1,'Texture::setMinFilter()']]],
   ['setpixel_6',['setPixel',['../class_image.html#a5c4bc51e491be5f0ba98f42269f5fe86',1,'Image']]],
   ['setposition_7',['setPosition',['../class_window.html#a868bf9978fed1d7bf87574158dc9a60d',1,'Window']]],
-  ['setrwarp_8',['setRWarp',['../class_texture.html#a6488dbab409fd08a4731dcb2c921aad7',1,'Texture::setRWarp()'],['../class_g_l_texture.html#ab34e9183b04a4d2a92f22261005b060a',1,'GLTexture::setRWarp()']]],
+  ['setrwarp_8',['setRWarp',['../class_g_l_texture.html#ab34e9183b04a4d2a92f22261005b060a',1,'GLTexture::setRWarp()'],['../class_texture.html#a6488dbab409fd08a4731dcb2c921aad7',1,'Texture::setRWarp()']]],
   ['setsize_9',['setSize',['../class_window.html#a54b3eebca0fb871d4b2aa7a5c8e849f0',1,'Window']]],
   ['setswarp_10',['setSWarp',['../class_g_l_texture.html#abcc3dbf8017148989bb22777afc1c839',1,'GLTexture::setSWarp()'],['../class_texture.html#a78ca4624d52f3b74d6af79beaa3ce5c1',1,'Texture::setSWarp()']]],
   ['setsync_11',['setSync',['../class_window.html#af27c43823adcc3762b3cfab498f189f2',1,'Window']]],

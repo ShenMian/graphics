@@ -13,7 +13,7 @@ var searchData=
   ['getmouseposition_10',['getMousePosition',['../class_input.html#ada65d73a18226652a1b8330addf35e8a',1,'Input']]],
   ['getmousex_11',['getMouseX',['../class_input.html#aad68569383410edc8f78a943113ce511',1,'Input']]],
   ['getmousey_12',['getMouseY',['../class_input.html#ab8cd307e1a0fe647309da8583a51807b',1,'Input']]],
-  ['getname_13',['getName',['../class_gamepad.html#ab0fd07c0c3c1ac1f0ab997000061bd80',1,'Gamepad::getName()'],['../class_shader.html#a6e91ea814d9d8ab826b483e209634393',1,'Shader::getName()'],['../class_monitor.html#a389aee29459de05e808ef216254343e8',1,'Monitor::getName() const']]],
+  ['getname_13',['getName',['../class_gamepad.html#ab0fd07c0c3c1ac1f0ab997000061bd80',1,'Gamepad::getName()'],['../class_monitor.html#a389aee29459de05e808ef216254343e8',1,'Monitor::getName()'],['../class_shader.html#a6e91ea814d9d8ab826b483e209634393',1,'Shader::getName()']]],
   ['getnativehandle_14',['getNativeHandle',['../class_monitor.html#a8d12b21b90a3f8449d8440452327d93f',1,'Monitor::getNativeHandle()'],['../class_window.html#ac2dcba6f351bed84db15e477a39f285d',1,'Window::getNativeHandle()'],['../class_g_l_shader.html#a14d2ea10906f1ad73c645d0ddc9d7cf0',1,'GLShader::getNativeHandle()'],['../class_shader.html#ac4d7bcb657dc42c70d27d6522ab4fe7e',1,'Shader::getNativeHandle()'],['../class_v_k_shader.html#a20dac334d0a5aea2be11c75a1a4e71eb',1,'VKShader::getNativeHandle()']]],
   ['getpixel_15',['getPixel',['../class_image.html#af84c9c11ffe818939f1fd532e3f1285c',1,'Image']]],
   ['getposition_16',['getPosition',['../class_window.html#a415b9a3166cc91d5db11bc2062dd461c',1,'Window']]],

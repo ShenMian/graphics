@@ -1,9 +1,4 @@
 var searchData=
 [
-  ['vertexbuffer_0',['VertexBuffer',['../class_vertex_buffer.html',1,'']]],
-  ['vertexformat_1',['VertexFormat',['../class_vertex_format.html',1,'']]],
-  ['vkcommandbuffer_2',['VKCommandBuffer',['../class_v_k_command_buffer.html',1,'']]],
-  ['vkcommandqueue_3',['VKCommandQueue',['../class_v_k_command_queue.html',1,'']]],
-  ['vkrenderer_4',['VKRenderer',['../class_v_k_renderer.html',1,'']]],
-  ['vkshader_5',['VKShader',['../class_v_k_shader.html',1,'']]]
+  ['update_0',['update',['../class_gamepad.html#ae37f83a954aabbf634e9d6f37697ae58',1,'Gamepad::update()'],['../class_window.html#a59515fc5a56e86d5a46d771595daac55',1,'Window::update()']]]
 ];

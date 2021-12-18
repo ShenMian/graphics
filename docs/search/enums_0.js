@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['key_0',['Key',['../group__core.html#gab3c7af4820830f9166ede9e5623c4e73',1,'Key.h']]]
+  ['button_0',['Button',['../group__core.html#ga0f09c7e25e2059e68148d494ed9449b1',1,'Gamepad']]]
 ];

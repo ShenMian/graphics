@@ -1,11 +1,11 @@
 var indexSectionsWithContent =
 {
-  0: "acdfgiklmoprstuvw~",
+  0: "abcdfgiklmoprstuvw~核模渲",
   1: "acdgimprstvw",
   2: "cfgilrsuw~",
   3: "o",
-  4: "k",
-  5: "c",
+  4: "bkmt",
+  5: "核模渲",
   6: "g"
 };
 
@@ -22,12 +22,12 @@ var indexSectionNames =
 
 var indexSectionLabels =
 {
-  0: "All",
-  1: "Classes",
-  2: "Functions",
-  3: "Variables",
-  4: "Enumerations",
-  5: "Modules",
-  6: "Pages"
+  0: "全部",
+  1: "类",
+  2: "函数",
+  3: "变量",
+  4: "枚举",
+  5: "组",
+  6: "页"
 };
 
