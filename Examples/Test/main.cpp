@@ -18,6 +18,10 @@ int main()
 
 	PrintInfo();
 
+	Camera camera;
+	camera.setType(Camera::Type::Perspective);
+	camera.setPerspective(60, window->getSize().x / window->getSize().y, 0.1f, 500.0f);
+
 	Model model;
 	model.load("../../../3DModel/basic/cube.obj");
 	// model.load("../../../3DModel/scene/Crytek_Sponza/sponza.obj");
