@@ -11,7 +11,7 @@
 #include "Shader.h"
 
 #include "Model.h"
-#include "Camera.h"
+#include "Camera/Camera.h"
 
 #include "Core/Window.h"
 #include "Core/Input.h"
