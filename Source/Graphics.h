@@ -12,6 +12,8 @@
 
 #include "Model.h"
 #include "Camera/Camera.h"
+#include "Camera/PerspectiveCamera.h"
+#include "Camera/OrthographicCamera.h"
 
 #include "Core/Window.h"
 #include "Core/Input.h"
