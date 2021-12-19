@@ -23,22 +23,32 @@ public:
     /**
      * @brief 设置截头锥体观察体, 用于透视投影.
      *
-     * @param yFOV   垂直视角范围, 单位: 弧度制.
+     * @param vFOV   垂直视角范围, 单位: 弧度制.
      * @param aspect 宽高比.
-     * @param near   近平面距离.
-     * @param far    远平面距离.
+     * @param near   近裁剪平面距离, 最近可见范围.
+     * @param far    远裁剪平面距离, 最远可见范围.
      */
-    void setPerspective(float yFOV, float aspect, float near, float far);
+    void setPerspective(float vFOV, float aspect, float near, float far);
 
     /**
      * @brief 设置正投影观观察体, 用于正交投影.
      *
      * @param width  宽度.
      * @param height 高度.
-     * @param near   近平面距离.
-     * @param far    远平面距离.
+     * @param near   近裁剪平面距离, 最近可见范围.
+     * @param far    远裁剪平面距离, 最远可见范围.
      */
     void setOrthographic(float width, float height, float near, float far);
+
+	/**
+	 * @brief 获取观察矩阵.
+	 */
+	const Matrix4& getView() const;
+
+	/**
+	 * @brief 获取投影矩阵.
+	 */
+	const Matrix4& getProjection() const;
 
     /**
      * @brief 设置投影类型.
@@ -70,6 +80,7 @@ private:
 		} orthographic;
 	};
 
+	Matrix4 view;
 	Matrix4 projection;
 	Type    type = Type::Perspective;;
 };
