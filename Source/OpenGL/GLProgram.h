@@ -20,10 +20,10 @@ public:
 
 	void setUniform(const std::string& name, int value) override;
 	void setUniform(const std::string& name, float value) override;
-	// void setUniform(const std::string& name, const Vector2& value) override;
-	// void setUniform(const std::string& name, const Vector3& value) override;
-	// void setUniform(const std::string& name, const Vector4& value) override;
-	// void setUniform(const std::string& name, const Matrix4& value) override;
+	void setUniform(const std::string& name, const Vector2& value) override;
+	void setUniform(const std::string& name, const Vector3& value) override;
+	void setUniform(const std::string& name, const Vector4& value) override;
+	void setUniform(const std::string& name, const Matrix4& value) override;
 
 private:
 	int  getUniformLocation(const std::string& name);

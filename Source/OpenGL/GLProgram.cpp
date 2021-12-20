@@ -71,35 +71,33 @@ void GLProgram::setUniform(const std::string& name, float value)
 	GLCheckError();
 }
 
-/*
-void GLProgram::uploadUniform(const std::string& name, const Vector2& value)
+void GLProgram::setUniform(const std::string& name, const Vector2& value)
 {
-	bind();
+	use();
 	glUniform2f(getUniformLocation(name), value.x, value.y);
 	GLCheckError();
 }
 
-void GLProgram::uploadUniform(const std::string& name, const Vector3& value)
+void GLProgram::setUniform(const std::string& name, const Vector3& value)
 {
-	bind();
+	use();
 	glUniform3f(getUniformLocation(name), value.x, value.y, value.z);
 	GLCheckError();
 }
 
-void GLProgram::uploadUniform(const std::string& name, const Vector4& value)
+void GLProgram::setUniform(const std::string& name, const Vector4& value)
 {
-	bind();
+	use();
 	glUniform4f(getUniformLocation(name), value.x, value.y, value.z, value.w);
 	GLCheckError();
 }
 
-void GLProgram::uploadUniform(const std::string& name, const Matrix4& value)
+void GLProgram::setUniform(const std::string& name, const Matrix4& value)
 {
-	bind();
+	use();
 	glUniformMatrix4fv(getUniformLocation(name), 1, false, value.data());
 	GLCheckError();
 }
-*/
 
 int GLProgram::getUniformLocation(const std::string& name)
 {
@@ -107,7 +105,7 @@ int GLProgram::getUniformLocation(const std::string& name)
 	if(it == uniformLocations.end())
 	{
 		const auto location = glGetUniformLocation(handle, name.c_str());
-		if(location != -1)
+		if(location == -1)
 			// throw std::runtime_error(std::format("uniform '{}' doesn't exist", name).c_str());
 			throw std::runtime_error(("uniform doesn't exist:" + name).c_str());
 		uniformLocations[name] = location;
