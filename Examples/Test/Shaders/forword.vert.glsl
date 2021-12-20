@@ -18,6 +18,9 @@ out Out
     vec3 bitangent;
 } vert;
 
+uniform mat4 view;
+uniform mat4 projection;
+
 void main()
 {
     vert.position  = position;
@@ -26,5 +29,5 @@ void main()
     vert.tangent   = tangent;
     vert.bitangent = bitangent;
 
-    gl_Position = vec4(position, 1.0);
+    gl_Position = projection * view * vec4(position, 1.0);
 }
