@@ -21,6 +21,7 @@
 #include "Core/Monitor.h"
 #include "Core/Image.h"
 #include "Core/Timer.hpp"
+#include "Core/RID.hpp"
 
 // Doxygen main page
 /**
