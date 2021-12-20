@@ -18,18 +18,24 @@ int main()
 
 	PrintInfo();
 
-	auto camera = std::make_shared<PerspectiveCamera>(60, window->getSize().x / window->getSize().y, 0.1f, 500.0f);
+	auto camera = std::make_shared<PerspectiveCamera>(60.f, (float)window->getSize().x / window->getSize().y, 0.1f, 500.0f);
 
 	Model model;
-	model.load("../../../3DModel/basic/cube.obj");
-	// model.load("../../../3DModel/scene/Crytek_Sponza/sponza.obj");
-	// model.load("../../../3DModel/scene/Amazon_Lumberyard_Bistro/Exterior/exterior.obj");
-	// model.load("../../../3DModel/weapon/m4a1/m4a1.gltf");
-	// model.load("../../../3DModel/scene/SunTemple/SunTemple.fbx"); // 暂不支持 DDS 格式的纹理资源
-	/*model.loadAsync("../../../3DModel/scene/Crytek_Sponza/sponza.obj", [](std::string_view error){
-		if(!error.empty())
-			puts(error.data());
-	});*/
+	try
+	{
+		model.load("../../../3DModel/basic/cube.obj");
+		// model.load("../../../3DModel/scene/Crytek_Sponza/sponza.obj");
+		// model.load("../../../3DModel/scene/Amazon_Lumberyard_Bistro/Exterior/exterior.obj");
+		// model.load("../../../3DModel/weapon/m4a1/m4a1.gltf");
+		// model.load("../../../3DModel/scene/SunTemple/SunTemple.fbx"); // 暂不支持 DDS 格式的纹理资源
+		/*model.loadAsync("../../../3DModel/scene/Crytek_Sponza/sponza.obj", [](std::string_view error){
+			if(!error.empty())
+				puts(error.data());
+		});*/
+	} catch(std::runtime_error& e)
+	{
+		puts(e.what());
+	}
 
 	auto program = Program::create("Shaders/forword");
 	auto cmdQueue = CommandQueue::create();
@@ -63,6 +69,9 @@ int main()
 			cmdBuffer->setViewport({0, 0}, window->getSize());
 			cmdBuffer->setClearColor({0, 0, 0, 0});
 			cmdBuffer->clear(ClearFlag::Color | ClearFlag::Depth);
+
+			program->setUniform("view", Matrix4::translate({0, 0, 3}));
+			program->setUniform("projection", camera->getProjection());
 
 			for(const auto& mesh : model.getMeshs())
 			{
