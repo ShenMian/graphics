@@ -6,6 +6,7 @@
 #include "Mesh.h"
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
+#include <Math/Math.hpp>
 #include <stdexcept>
 #include <filesystem>
 #include <functional>
@@ -66,12 +67,15 @@ public:
 	 // void save(const std::filesystem::path& path);
 	 // void saveAsync(const std::filesystem::path& path, std::function<void(std::error_code)> callback = nullptr) noexcept;
 
+	const AABB3& getAABB() const;
+
 	const std::vector<Mesh> getMeshs() const;
 
 private:
 	std::string           name;
 	std::vector<Mesh>     meshs;
 	std::filesystem::path path;
+	AABB3                 aabb;
 
 	const aiScene* aScene = nullptr;
 	std::shared_ptr<Assimp::Importer> importer;

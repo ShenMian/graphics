@@ -133,7 +133,7 @@ void loadMaterial(Material& mat, const aiMesh* aMesh, const aiScene* scene, cons
  * @param path   模型位置.
  * @param meshs  要载入到的 Mesh 数组.
  */
-void loadMesh(const aiMesh* aMesh, const aiScene* aScene, const fs::path& path, std::vector<Mesh>& meshs)
+void loadMesh(const aiMesh* aMesh, const aiScene* aScene, const fs::path& path, std::vector<Mesh>& meshs, AABB3& aabb)
 {
 	static auto currScene = aScene; // TODO: debug
 	static unsigned int i = 0;
@@ -164,9 +164,14 @@ void loadMesh(const aiMesh* aMesh, const aiScene* aScene, const fs::path& path, 
 
 	const std::string name = aMesh->mName.C_Str();
 
-	// TODO: 创建包围盒
-	// for(auto& vertex : vertices)
-	// mesh->mAABB;
+#if 1
+	for(auto& vertex : vertices)
+		aabb.expand(vertex.position);
+#else
+	auto& min = aMesh->mAABB.mMin;
+	auto& max = aMesh->mAABB.mMax;
+	aabb.expand({{min.x, min.y, min.z}, {max.x, max.y, max.z}});
+#endif
 
 	Material mat;
 	loadMaterial(mat, aMesh, aScene, path);
@@ -187,15 +192,15 @@ void loadMesh(const aiMesh* aMesh, const aiScene* aScene, const fs::path& path, 
  * @param path   模型位置.
  * @param meshs  要载入到的 Mesh 数组.
  */
-void loadNode(const aiNode* aNode, const aiScene* aScene, const fs::path& path, std::vector<Mesh>& meshs)
+void loadNode(const aiNode* aNode, const aiScene* aScene, const fs::path& path, std::vector<Mesh>& meshs, AABB3& aabb)
 {
 	// 加载网格
 	for(unsigned int i = 0; i < aNode->mNumMeshes; i++)
-		loadMesh(aScene->mMeshes[aNode->mMeshes[i]], aScene, path, meshs);
+		loadMesh(aScene->mMeshes[aNode->mMeshes[i]], aScene, path, meshs, aabb);
 
 	// 加载其余节点
 	for(unsigned int i = 0; i < aNode->mNumChildren; i++)
-		loadNode(aNode->mChildren[i], aScene, path, meshs);
+		loadNode(aNode->mChildren[i], aScene, path, meshs, aabb);
 }
 
 }
@@ -220,7 +225,8 @@ void Model::load(const fs::path& path)
 		aiProcess_CalcTangentSpace |
 		aiProcess_Triangulate |
 		aiProcess_JoinIdenticalVertices |
-		aiProcess_SortByPType);
+		aiProcess_SortByPType |
+		aiProcess_OptimizeMeshes);
 
 	if(aScene == nullptr || aScene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || aScene->mRootNode == nullptr)
 		throw std::runtime_error(importer->GetErrorString());
@@ -230,7 +236,7 @@ void Model::load(const fs::path& path)
 	printf("网格加载完毕: %.2lfs\n", timer.getSeconds()); // TODO: debug
 
 	timer.restart(); // TODO: debug
-	loadNode(aScene->mRootNode, aScene, path, meshs);
+	loadNode(aScene->mRootNode, aScene, path, meshs, aabb);
 	printf("网格处理完毕: %.2lfs\n", timer.getSeconds()); // TODO: debug
 }
 
@@ -257,6 +263,11 @@ void Model::loadAsync(const fs::path& path, std::function<void(std::string_view)
 	{
 		assert(false);
 	}
+}
+
+const AABB3& Model::getAABB() const
+{
+	return aabb;
 }
 
 const std::vector<Mesh> Model::getMeshs() const
