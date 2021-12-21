@@ -6,7 +6,6 @@
 #include "Monitor.h"
 #include <cassert>
 #include <stdexcept>
-#include <glad/glad.h>
 #include <GLFW/glfw3.h>
 // #include <format>
 
@@ -18,12 +17,6 @@ Window::Window(const std::string& title, Vector2i size, bool fullscreen)
 	handle = glfwCreateWindow(size.x, size.y, title.c_str(),
 		fullscreen ? reinterpret_cast<GLFWmonitor*>(Monitor::getPrimary().getNativeHandle()) : nullptr, nullptr);
 	assert(handle);
-
-	// TODO: OpenGL/GLAD 相关代码, 转移到合适的位置
-	glfwMakeContextCurrent(handle);
-	static auto ret = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-	if(!ret)
-		throw std::runtime_error("glad init failed");
 
 	glfwSetWindowUserPointer(handle, static_cast<void*>(this));
 
@@ -211,6 +204,7 @@ void Window::init()
 	if(!ret)
 		throw std::runtime_error("GLFW init failed");
 
+	glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
 	glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE); // 创建新窗口默认不可见
 
 	Monitor::init();

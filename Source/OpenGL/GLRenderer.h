@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "../Renderer.h"
+#include "Renderer.h"
 
 class GLRenderer : public Renderer
 {
@@ -11,4 +11,6 @@ public:
 	std::string getDeviceName() const override;
 	std::string getRendererName() const override;
 	std::string getVendorName() const override;
+
+	static void init(const Window& win);
 };

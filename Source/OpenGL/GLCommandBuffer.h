@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "../CommandBuffer.h"
+#include "CommandBuffer.h"
 #include "GLVertexBuffer.h"
 #include "GLIndexBuffer.h"
 #include <cstdint>

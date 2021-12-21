@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "../Program.h"
+#include "Program.h"
 #include <unordered_map>
 
 class Shader;

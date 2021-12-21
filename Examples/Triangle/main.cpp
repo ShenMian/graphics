@@ -109,7 +109,7 @@ void PrintInfo()
 		"`-Vendor  : {}\n",
 		renderer->getDeviceName(), renderer->getRendererName(), renderer->getVendorName()).c_str());*/
 	printf(
-		"Basic\n"
+		"Renderer\n"
 		"|-Device  : %s\n"
 		"|-Renderer: %s\n"
 		"`-Vendor  : %s\n",

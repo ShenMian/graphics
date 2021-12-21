@@ -3,6 +3,7 @@
 
 #pragma once
 
+#include "Core/Window.h"
 #include <string>
 
 class Renderer
@@ -33,6 +34,8 @@ public:
 	virtual std::string getDeviceName() const = 0;
 	virtual std::string getRendererName() const = 0;
 	virtual std::string getVendorName() const = 0;
+
+	static void init(const Window& win);
 
 private:
 	static API api;

@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "../CommandBuffer.h"
+#include "CommandBuffer.h"
 
 class VKCommandBuffer : public CommandBuffer
 {

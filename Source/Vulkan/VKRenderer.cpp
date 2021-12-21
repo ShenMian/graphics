@@ -4,33 +4,57 @@
 #include "VKRenderer.h"
 #include <VkBootstrap.h>
 
-VkInstance       VKRenderer::instance;
-VkPhysicalDevice VKRenderer::physicalDevice;
-VkDevice         VKRenderer::device;
-VkQueue          VKRenderer::queue;
+#include <GLFW/glfw3.h>
+
+namespace
+{
+
+VkInstance                 instance;
+VkPhysicalDevice           physicalDevice;
+VkPhysicalDeviceProperties physicalDeviceProperties;
+VkDevice                   device;
+VkQueue                    queue;
+
+}
 
 std::string VKRenderer::getDeviceName() const
 {
-	return std::string();
+	return physicalDeviceProperties.deviceName;
 }
 
 std::string VKRenderer::getRendererName() const
 {
-	return std::string();
+	const auto version = physicalDeviceProperties.apiVersion;
+	return "Vulkan " +
+		std::to_string(VK_VERSION_MAJOR(version)) + '.' +
+		std::to_string(VK_VERSION_MINOR(version)) + '.' +
+		std::to_string(VK_VERSION_PATCH(version));
 }
 
 std::string VKRenderer::getVendorName() const
 {
-	return std::string();
+	const auto id = physicalDeviceProperties.vendorID;
+	switch(id)
+	{
+	case 0x1002: return "Advanced Micro Devices, Inc.";
+	case 0x10de: return "NVIDIA Corporation";
+	case 0x102b: return "Matrox Electronic Systems Ltd.";
+	case 0x1414: return "Microsoft Corporation";
+	case 0x5333: return "S3 Graphics Co., Ltd.";
+	case 0x8086: return "Intel Corporation";
+	case 0x80ee: return "Oracle Corporation";
+	case 0x15ad: return "VMware Inc.";
+	}
+	return "Unknown";
 }
 
-void VKRenderer::init()
+void VKRenderer::init(const Window& win)
 {
 	vkb::Instance vkbInstance;
 	{
 		vkb::InstanceBuilder builder;
 		const auto result = builder.request_validation_layers()
-			.use_default_debug_messenger()
+			// .use_default_debug_messenger()
 			.build();
 		if(!result)
 			throw std::runtime_error(result.error().message());
@@ -40,14 +64,19 @@ void VKRenderer::init()
 
 	vkb::PhysicalDevice vkbPhysicalDevice;
 	{
+		VkSurfaceKHR surface;
+		glfwCreateWindowSurface(instance, reinterpret_cast<GLFWwindow*>(win.getNativeHandle()), nullptr, &surface);
+
 		vkb::PhysicalDeviceSelector selector(vkbInstance);
-		const auto result = selector.require_dedicated_transfer_queue()
+		const auto result = selector.set_surface(surface)
+			.require_dedicated_transfer_queue()
 			.select();
 		if(!result)
 			throw std::runtime_error(result.error().message());
 		vkbPhysicalDevice = result.value();
 	}
 	physicalDevice = vkbPhysicalDevice;
+	physicalDeviceProperties = vkbPhysicalDevice.properties;
 
 	vkb::Device vkbDevice;
 	{

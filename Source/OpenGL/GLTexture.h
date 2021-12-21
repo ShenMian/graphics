@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "../Texture.h"
+#include "Texture.h"
 #include <glad/glad.h>
 
 class GLTexture : public Texture

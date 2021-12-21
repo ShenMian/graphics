@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "../IndexBuffer.h"
+#include "IndexBuffer.h"
 #include <glad/glad.h>
 
 class GLIndexBuffer : public IndexBuffer

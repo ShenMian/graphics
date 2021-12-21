@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "../VertexBuffer.h"
+#include "VertexBuffer.h"
 #include "GLVertexArray.h"
 #include <glad/glad.h>
 

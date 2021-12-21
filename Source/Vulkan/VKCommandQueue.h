@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "../CommandQueue.h"
+#include "CommandQueue.h"
 
 class VKCommandQueue : public CommandQueue
 {

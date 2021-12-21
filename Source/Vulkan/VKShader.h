@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "../Shader.h"
+#include "Shader.h"
 
 class VKShader : public Shader
 {

@@ -23,7 +23,6 @@ Renderer* Renderer::get()
 
 	case Vulkan:
 	{
-		VKRenderer::init();
 		static auto renderer = new VKRenderer;
 		return renderer;
 	}
@@ -39,4 +38,20 @@ void Renderer::setAPI(API newAPI)
 Renderer::API Renderer::getAPI()
 {
 	return api;
+}
+
+void Renderer::init(const Window& win)
+{
+	switch(Renderer::getAPI())
+	{
+		using enum Renderer::API;
+
+	case OpenGL:
+		GLRenderer::init(win);
+		break;
+
+	case Vulkan:
+		VKRenderer::init(win);
+		break;
+	}
 }
