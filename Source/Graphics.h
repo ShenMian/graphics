@@ -2,6 +2,7 @@
 // License(Apache-2.0)
 
 #include "Renderer.h"
+#include "Pipeline.h"
 #include "CommandBuffer.h"
 #include "CommandQueue.h"
 #include "Texture.h"

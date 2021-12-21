@@ -13,6 +13,8 @@ public:
 
 	void setViewport(const Vector2i& origin, const Vector2i& size) override;
 
+	void setPipeline(std::shared_ptr<Pipeline> pipeline) override;
+
 	void setVertexBuffer(std::shared_ptr<VertexBuffer> vertexBuffer) override;
 	void setIndexBuffer(std::shared_ptr<IndexBuffer> indexBuffer) override;
 

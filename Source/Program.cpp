@@ -6,6 +6,7 @@
 #include <cassert>
 
 #include "OpenGL/GLProgram.h"
+#include "Vulkan/VKProgram.h"
 
 std::shared_ptr<Program> Program::create(const std::string& name)
 {
@@ -25,6 +26,10 @@ std::shared_ptr<Program> Program::create(const std::string& name)
 
 	case OpenGL:
 		result = std::make_shared<GLProgram>(name);
+		break;
+
+	case Vulkan:
+		result = std::make_shared<VKProgram>(name);
 		break;
 
 	default:

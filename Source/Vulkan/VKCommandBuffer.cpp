@@ -17,6 +17,10 @@ void VKCommandBuffer::setViewport(const Vector2i& origin, const Vector2i& size)
 {
 }
 
+void VKCommandBuffer::setPipeline(std::shared_ptr<Pipeline> pipeline)
+{
+}
+
 void VKCommandBuffer::setVertexBuffer(std::shared_ptr<VertexBuffer> vertexBuffer)
 {
 }

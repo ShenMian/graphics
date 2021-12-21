@@ -5,7 +5,6 @@
 #include "GLProgram.h"
 #include "GLShader.h"
 #include "GLCheck.h"
-#include "../Program.h"
 #include <cassert>
 #include <stdexcept>
 #include <filesystem>

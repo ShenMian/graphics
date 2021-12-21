@@ -1,6 +1,7 @@
 ﻿// Copyright 2021 ShenMian
 // License(Apache-2.0)
 
+#include "../Pipeline.h"
 #include "GLCommandQueue.h"
 #include "GLCommandBuffer.h"
 #include <glad/glad.h>
@@ -28,6 +29,13 @@ size_t GLCommandQueue::execute(GLOpcode opcode, const uint8_t* pc)
 	{
 		auto args = reinterpret_cast<const GLCmdSetViewport*>(pc);
 		glViewport(args->origin.x, args->origin.y, args->size.x, args->size.y);
+		return sizeof(*args);
+	}
+
+	case GLOpcode::setPipeline:
+	{
+		auto args = reinterpret_cast<const GLCmdSetPipeline*>(pc);
+		args->pipeline->program->use();
 		return sizeof(*args);
 	}
 

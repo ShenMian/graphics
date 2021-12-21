@@ -31,6 +31,12 @@ void GLCommandBuffer::setViewport(const Vector2i& origin, const Vector2i& size)
 	cmd->size = size;
 }
 
+void GLCommandBuffer::setPipeline(std::shared_ptr<Pipeline> pipeline)
+{
+	auto cmd = addCommand<GLCmdSetPipeline>(GLOpcode::setPipeline);
+	cmd->pipeline = pipeline;
+}
+
 void GLCommandBuffer::setVertexBuffer(std::shared_ptr<VertexBuffer> vertexBuffer)
 {
 	auto cmd = addCommand<GLCmdSetVertexBuffer>(GLOpcode::setVertexBuffer);

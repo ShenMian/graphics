@@ -14,7 +14,8 @@ int main()
 	auto window = new Window("Example", Monitor::getPrimary().getSize() / 2);
 	Input::setWindow(window);
 
-	Renderer::setAPI(Renderer::API::OpenGL); // 设置渲染 API 为 OpenGL
+	// Renderer::setAPI(Renderer::API::OpenGL); // 设置渲染 API 为 OpenGL
+	Renderer::setAPI(Renderer::API::Vulkan);
 
 	PrintInfo();
 
@@ -38,6 +39,9 @@ int main()
 	}
 
 	auto program = Program::create("Shaders/mesh");
+
+	auto pipeline = std::make_shared<Pipeline>(program);
+
 	auto cmdQueue = CommandQueue::create();
 	auto cmdBuffer = CommandBuffer::create();
 
@@ -59,13 +63,17 @@ int main()
 			}
 		}
 	};
+	window->onResize = [&](Vector2i size)
+	{
+		camera->setProjection(60.f, (float)size.x / size.y, 0.1f, 500.0f);
+	};
 	window->setVisible(true); // 设置窗口可见
 
 	while(running)
 	{
 		program->setUniform("view", Matrix4::translate({0, 0, 3}));
+		// program->setUniform("view", camera->getView());
 		program->setUniform("projection", camera->getProjection());
-		program->use();
 
 		cmdBuffer->begin();
 		{
@@ -73,6 +81,7 @@ int main()
 			cmdBuffer->setClearColor({0, 0, 0, 0});
 			cmdBuffer->clear(ClearFlag::Color | ClearFlag::Depth);
 
+			cmdBuffer->setPipeline(pipeline);
 			for(const auto& mesh : model.getMeshs())
 			{
 				const auto vbo = mesh.getVertexBuffer();

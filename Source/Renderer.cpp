@@ -5,6 +5,7 @@
 #include <cassert>
 
 #include "OpenGL/GLRenderer.h"
+#include "Vulkan/VKRenderer.h"
 
 Renderer::API Renderer::api = Renderer::API::OpenGL;
 
@@ -17,6 +18,13 @@ Renderer* Renderer::get()
 	case OpenGL:
 	{
 		static auto renderer = new GLRenderer;
+		return renderer;
+	}
+
+	case Vulkan:
+	{
+		VKRenderer::init();
+		static auto renderer = new VKRenderer;
 		return renderer;
 	}
 	}

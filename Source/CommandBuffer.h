@@ -7,6 +7,7 @@
 #include <Math/Math.hpp>
 #include <memory>
 
+class Pipeline;
 class VertexBuffer;
 class IndexBuffer;
 
@@ -35,6 +36,8 @@ public:
 	// virtual void execute(std::shared_ptr<CommandBuffer> commandBuffer) = 0;
 
 	virtual void setViewport(const Vector2i& origin, const Vector2i& size) = 0;
+
+	virtual void setPipeline(std::shared_ptr<Pipeline> pipeline) = 0;
 
 	virtual void setVertexBuffer(std::shared_ptr<VertexBuffer> vertexBuffer) = 0;
 	virtual void setIndexBuffer(std::shared_ptr<IndexBuffer> indexBuffer) = 0;
