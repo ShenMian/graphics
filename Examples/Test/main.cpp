@@ -37,7 +37,7 @@ int main()
 		puts(e.what());
 	}
 
-	auto program = Program::create("Shaders/forword");
+	auto program = Program::create("Shaders/mesh");
 	auto cmdQueue = CommandQueue::create();
 	auto cmdBuffer = CommandBuffer::create();
 
@@ -63,15 +63,15 @@ int main()
 
 	while(running)
 	{
+		program->setUniform("view", Matrix4::translate({0, 0, 3}));
+		program->setUniform("projection", camera->getProjection());
 		program->use();
+
 		cmdBuffer->begin();
 		{
 			cmdBuffer->setViewport({0, 0}, window->getSize());
 			cmdBuffer->setClearColor({0, 0, 0, 0});
 			cmdBuffer->clear(ClearFlag::Color | ClearFlag::Depth);
-
-			program->setUniform("view", Matrix4::translate({0, 0, 3}));
-			program->setUniform("projection", camera->getProjection());
 
 			for(const auto& mesh : model.getMeshs())
 			{
