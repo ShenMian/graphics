@@ -37,6 +37,7 @@ struct Vertex
 };
 
 // 获取顶点数据
+template <typename Vertex>
 void loadVertices(std::vector<Vertex>& vertices, const aiMesh* mesh)
 {
 	static_assert(std::same_as<ai_real, float>);
@@ -73,7 +74,9 @@ void loadVertices(std::vector<Vertex>& vertices, const aiMesh* mesh)
 // 获取索引数据
 void loadIndices(std::vector<unsigned int>& indices, const aiMesh* mesh)
 {
-	// static_assert(std::same_as<decltype(aiFace::mIndices), unsigned int*>);
+	static_assert(std::same_as<decltype(aiMesh::mNumFaces), unsigned int>);
+	static_assert(std::same_as<decltype(aiFace::mIndices), unsigned int*>);
+
 	for(unsigned int i = 0; i < mesh->mNumFaces; i++)
 	{
 		const auto& face = mesh->mFaces[i];
