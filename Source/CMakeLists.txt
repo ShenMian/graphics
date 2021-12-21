@@ -34,6 +34,10 @@ list(APPEND INCS
     "${DEPS_DIR}/assimp/include"
     "${DEPS_DIR}/assimp/build/include")
 
+# 添加 vk-bootstrap
+add_subdirectory("${DEPS_DIR}/vk-bootstrap" "vk-bootstrap")
+list(APPEND LIBS vk-bootstrap::vk-bootstrap)
+
 # 添加 meshoptimizer
 find_package(meshoptimizer CONFIG)
 if(meshoptimizer_FOUND)

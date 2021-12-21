@@ -21,6 +21,7 @@ project "Graphics"
 		"%{deps_inc.glfw}",
 		"%{deps_inc.assimp}",
 		"%{deps_inc.vulkan}",
+		"%{deps_inc.vk_bootstrap}",
 		"%{deps_inc.meshoptimizer}"}
 
 	includedirs {
@@ -30,6 +31,7 @@ project "Graphics"
 		"glad",
 		"glfw",
 		"assimp",
+		"vk_bootstrap",
 		"meshoptimizer",
 		-- "shaderc"
 		-- "%{deps.vulkan}/lib/vulkan-1",
