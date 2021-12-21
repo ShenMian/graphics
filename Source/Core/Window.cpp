@@ -143,7 +143,7 @@ void Window::setupCallbacks()
 	{
 		if(error == 65537)
 			throw std::runtime_error("GLFW error: ensure that all windows created on the stack are destroyed");
-		throw std::runtime_error(("GLFW error: "s + desc).c_str());
+		throw std::runtime_error("GLFW error: "s + desc);
 	});
 
 	glfwSetWindowSizeCallback(handle, [](GLFWwindow* native, int width, int height)

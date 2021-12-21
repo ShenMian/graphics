@@ -48,8 +48,8 @@ void GLCheckError()
 	{
 		if(error == GL_NO_ERROR)
 			break;
-		// std::format("OpenGL error ({}): {}", error, GLGetErrorString(error)).c_str()
-		throw std::runtime_error(("OpenGL error ("s + std::to_string(error) + "): " + GLGetErrorString(error)).c_str());
+		// std::format("OpenGL error ({}): {}", error, GLGetErrorString(error))
+		throw std::runtime_error("OpenGL error ("s + std::to_string(error) + "): " + GLGetErrorString(error));
 	}
 }
 

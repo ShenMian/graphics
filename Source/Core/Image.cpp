@@ -32,7 +32,7 @@ void Image::loadFromFile(const std::filesystem::path& path)
 	const auto pixels = stbi_load(path.string().c_str(), reinterpret_cast<int*>(&size.x),
 		reinterpret_cast<int*>(&size.y), &channels, 0);
 	if(pixels == nullptr)
-		throw std::runtime_error(("can't load image from file:" + path.string()).c_str());
+		throw std::runtime_error("can't load image from file:" + path.string());
 
 	loadFromMemory(pixels, size.x * size.y * channels, size);
 
