@@ -13,11 +13,13 @@ struct Vertex
 
 int main()
 {
+	Renderer::setAPI(Renderer::API::OpenGL); // 设置渲染 API 为 OpenGL
+
 	Window::init();
 
 	auto window = new Window("Triangle", Monitor::getPrimary().getSize() / 2);
 
-	Renderer::setAPI(Renderer::API::OpenGL); // 设置渲染 API 为 OpenGL
+	Renderer::init(*window);
 
 	PrintInfo();
 
