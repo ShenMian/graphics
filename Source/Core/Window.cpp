@@ -4,6 +4,7 @@
 #include "Window.h"
 #include "Image.h"
 #include "Monitor.h"
+#include "Renderer.h"
 #include <cassert>
 #include <stdexcept>
 #include <GLFW/glfw3.h>
@@ -204,7 +205,8 @@ void Window::init()
 	if(!ret)
 		throw std::runtime_error("GLFW init failed");
 
-	glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
+	if(Renderer::get()->getAPI() == Renderer::API::Vulkan)
+		glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
 	glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE); // 创建新窗口默认不可见
 
 	Monitor::init();
