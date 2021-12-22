@@ -4,7 +4,6 @@
 #pragma once
 
 #include "Renderer.h"
-#include <Vulkan/vulkan.h>
 
 class VKRenderer : public Renderer
 {
