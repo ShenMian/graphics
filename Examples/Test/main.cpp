@@ -22,22 +22,21 @@ int main()
 
 		PrintInfo();
 
-		auto camera = std::make_shared<PerspectiveCamera>(60.f, (float)window->getSize().x / window->getSize().y, 0.1f, 500.0f);
-
 		Model model;
-			model.load("../../../3DModel/basic/cube.obj");
-			// model.load("../../../3DModel/scene/Crytek_Sponza/sponza.obj");
-			// model.load("../../../3DModel/scene/Amazon_Lumberyard_Bistro/Exterior/exterior.obj");
-			// model.load("../../../3DModel/weapon/m4a1/m4a1.gltf");
-			// model.load("../../../3DModel/scene/SunTemple/SunTemple.fbx"); // 暂不支持 DDS 格式的纹理资源
-			/*model.loadAsync("../../../3DModel/scene/Crytek_Sponza/sponza.obj", [](std::string_view error){
-				if(!error.empty())
-					puts(error.data());
-			});*/
+		model.load("../../../3DModel/basic/cube.obj");
+		// model.load("../../../3DModel/scene/Crytek_Sponza/sponza.obj");
+		// model.load("../../../3DModel/scene/Amazon_Lumberyard_Bistro/Exterior/exterior.obj");
+		// model.load("../../../3DModel/weapon/m4a1/m4a1.gltf");
+		// model.load("../../../3DModel/scene/SunTemple/SunTemple.fbx"); // 暂不支持 DDS 格式的纹理资源
+		/*model.loadAsync("../../../3DModel/scene/Crytek_Sponza/sponza.obj", [](std::string_view error){
+			if(!error.empty())
+				puts(error.data());
+		});*/
+
+		auto camera = PerspectiveCamera::create(60.f, (float)window->getSize().x / window->getSize().y, 0.1f, 500.0f);
 
 		auto program = Program::create("Shaders/mesh");
-
-		auto pipeline = std::make_shared<Pipeline>(program);
+		auto pipeline = Pipeline::create(program);
 
 		auto cmdQueue = CommandQueue::create();
 		auto cmdBuffer = CommandBuffer::create();
