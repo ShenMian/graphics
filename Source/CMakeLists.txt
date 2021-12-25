@@ -52,6 +52,7 @@ file(GLOB_RECURSE SOURCES "*.cpp")
 
 # 添加静态库文件
 add_library(graphics STATIC ${SOURCES})
+add_library(graphics::graphics ALIAS graphics)
 
 # 指定头文件目录
 target_include_directories(graphics PUBLIC
