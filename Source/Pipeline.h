@@ -10,6 +10,8 @@ class Program;
 class Pipeline
 {
 public:
+	static std::shared_ptr<Pipeline> create(std::shared_ptr<Program> program);
+
 	Pipeline(std::shared_ptr<Program> program);
 
 // private:

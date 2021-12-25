@@ -3,6 +3,11 @@
 
 #include "PerspectiveCamera.h"
 
+std::shared_ptr<PerspectiveCamera> PerspectiveCamera::create(float vFOV, float aspect, float n, float f)
+{
+	return std::make_shared<PerspectiveCamera>(vFOV, aspect, n, f);
+}
+
 PerspectiveCamera::PerspectiveCamera(float vFOV, float aspect, float n, float f)
 {
 	setProjection(vFOV, aspect, n, f);

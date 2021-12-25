@@ -3,6 +3,11 @@
 
 #include "OrthographicCamera.h"
 
+std::shared_ptr<OrthographicCamera> OrthographicCamera::create(float w, float h, float n, float f)
+{
+	return std::make_shared<OrthographicCamera>(w, h, n, f);
+}
+
 OrthographicCamera::OrthographicCamera(float w, float h, float n, float f)
 {
 	setProjection(w, h, n, f);

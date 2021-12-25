@@ -4,10 +4,13 @@
 #pragma once
 
 #include "Camera.h"
+#include <memory>
 
 class OrthographicCamera : public Camera
 {
 public:
+	static std::shared_ptr<OrthographicCamera> create(float width, float height, float near, float far);
+
 	/**
 	 * @brief 构造函数.
 	 *

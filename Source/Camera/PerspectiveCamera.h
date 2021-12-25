@@ -4,10 +4,13 @@
 #pragma once
 
 #include "Camera.h"
+#include <memory>
 
 class PerspectiveCamera : public Camera
 {
 public:
+	static std::shared_ptr<PerspectiveCamera> create(float vFOV, float aspect, float near, float far);
+
 	/**
 	 * @brief 构造函数.
 	 *
