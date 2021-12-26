@@ -93,14 +93,14 @@ if sudo pacman -Syyu >/dev/null 2>&1
 then
     echo Installing dependencies on Arch Linux...
 
-    install_cmake "meshoptimizer"
+    if ! glxinfo | grep -i vulkan >/dev/null
+    then
+        install_arch vulkan-intel
+        install_arch vulkan-radeon
+        yay -S amdgpu-pro-vulkan
+    fi
 
-    :'
-    install_arch vulkan-intel
-    install_arch vulkan-radeon
-    yay -S amdgpu-pro-vulkan
-    glxinfo | grep -i vulkan
-    '
+    install_cmake "meshoptimizer"
 
     exit
 fi
@@ -110,25 +110,24 @@ if sudo apt update >/dev/null 2>&1
 then
     echo Installing dependencies on Ubuntu...
 
+    if ! vulkaninfo | grep -i vulkan
+    then
+        # AMD GPU
+        sudo add-apt-repository ppa:oibaf/graphics-drivers
+        sudo apt update
+        sudo apt upgrade
+        install_ubuntu libvulkan1 mesa-vulkan-drivers vulkan-utils
+
+        # Nvidia GPU
+        # sudo add-apt-repository ppa:graphics-drivers/ppa
+        # sudo apt update
+        # sudo apt upgrade
+        # install_ubuntu nvidia-graphics-drivers-396 nvidia-settings vulkan vulkan-utils
+    fi
+
     install_ubuntu libx11-dev mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev libxrandr-dev libxi-dev libxmu-dev libblas-dev libxinerama-dev libxcursor-dev
     install_ubuntu libassimp-dev
     install_ubuntu libglfw3-dev
-
-    :'
-    # AMD GPU
-    sudo add-apt-repository ppa:oibaf/graphics-drivers
-    sudo apt update
-    sudo apt upgrade
-    install_ubuntu libvulkan1 mesa-vulkan-drivers vulkan-utils
-
-    # Nvidia GPU
-    # sudo add-apt-repository ppa:graphics-drivers/ppa
-    # sudo apt update
-    # sudo apt upgrade
-    # install_ubuntu nvidia-graphics-drivers-396 nvidia-settings vulkan vulkan-utils
-
-    vulkaninfo
-    '
 
     install_cmake "Vulkan-Headers"
     install_cmake "meshoptimizer"
