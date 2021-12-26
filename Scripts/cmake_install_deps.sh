@@ -88,9 +88,12 @@ then
     install_ubuntu libassimp-dev
     install_ubuntu libglfw3-dev
 
-    wget -qO - http://packages.lunarg.com/lunarg-signing-key-pub.asc | sudo apt-key add -
-    sudo wget -qO /etc/apt/sources.list.d/lunarg-vulkan-focal.list http://packages.lunarg.com/vulkan/lunarg-vulkan-focal.list
-    install_ubuntu vulkan-sdk
+    install_ubuntu vulkan-utils
+    install_ubuntu libvulkan1 mesa-vulkan-drivers vulkan-utils
+    vulkaninfo
+    # wget -qO - http://packages.lunarg.com/lunarg-signing-key-pub.asc | sudo apt-key add -
+    # sudo wget -qO /etc/apt/sources.list.d/lunarg-vulkan-focal.list http://packages.lunarg.com/vulkan/lunarg-vulkan-focal.list
+    # install_ubuntu vulkan-sdk
 
     install_cmake "meshoptimizer"
 
