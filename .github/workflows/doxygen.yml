@@ -1,0 +1,23 @@
+name: Doxygen
+
+on: [push, pull_request]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Generate documentation
+        uses: mattnotmitt/doxygen-action@v1
+        with:
+          working-directory: ./docs
+          doxyfile-path: ./Doxyfile
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs/html
+          destination_dir: ./docs
