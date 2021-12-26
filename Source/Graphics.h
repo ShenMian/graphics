@@ -26,7 +26,7 @@
 
 // Doxygen main page
 /**
- * @mainpage Graphics Documentation
+ * @mainpage Graphics 文檔
  *
  * Graphics
  * ========
@@ -70,6 +70,14 @@
  * ./Scripts/gen_xcode4 # 生成 Xcode4 项目文件
  * ```
  * 除此之外, 你还可以自行调用 premake5 生成你想要的内容. 详情请查看[相关文档](https://github.com/premake/premake-core/wiki/Using-Premake#using-premake-to-generate-project-files).
+ *
+ * 更新克隆倉庫
+ * ------------
+ * 因爲該庫對 Git 子模塊的更新較爲頻繁, 請注意將子模塊牽出到相應的提交. 你可以使用下面的命令更新本地克隆倉庫.
+ * ```bash
+ * git pull                    # 拉取到最新的提交
+ * git submodule update --init # 牽出子模塊
+ * ```
  *
  * 示例
  * ----
