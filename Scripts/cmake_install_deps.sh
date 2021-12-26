@@ -93,12 +93,14 @@ if sudo pacman -Syyu >/dev/null 2>&1
 then
     echo Installing dependencies on Arch Linux...
 
+    :'
     if ! glxinfo | grep -i vulkan 2>/dev/null
     then
         install_arch vulkan-intel
         install_arch vulkan-radeon
         yay -S amdgpu-pro-vulkan
     fi
+    '
 
     install_cmake "meshoptimizer"
 
@@ -114,6 +116,7 @@ then
     sudo wget -qO /etc/apt/sources.list.d/lunarg-vulkan-bionic.list https://packages.lunarg.com/vulkan/lunarg-vulkan-bionic.list
     sudo apt update >/dev/null
 
+    :'
     if ! vulkaninfo | grep -i vulkan 2>/dev/null
     then
         # AMD GPU
@@ -128,6 +131,7 @@ then
         # sudo apt upgrade
         # install_ubuntu nvidia-graphics-drivers-396 nvidia-settings vulkan vulkan-utils
     fi
+    '
 
     install_ubuntu vulkan-headers libvulkan-dev xorg-dev
     install_ubuntu libx11-dev mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev libxrandr-dev libxi-dev libxmu-dev libblas-dev libxinerama-dev libxcursor-dev
