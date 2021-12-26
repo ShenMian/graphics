@@ -125,11 +125,10 @@ then
         # install_ubuntu nvidia-graphics-drivers-396 nvidia-settings vulkan vulkan-utils
     fi
 
+    install_ubuntu vulkan-headers libvulkan-dev xorg-dev
     install_ubuntu libx11-dev mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev libxrandr-dev libxi-dev libxmu-dev libblas-dev libxinerama-dev libxcursor-dev
     install_ubuntu libassimp-dev
     install_ubuntu libglfw3-dev
-
-    install_cmake "Vulkan-Headers"
     install_cmake "meshoptimizer"
 
     exit
