@@ -93,7 +93,7 @@ if sudo pacman -Syyu >/dev/null 2>&1
 then
     echo Installing dependencies on Arch Linux...
 
-    if ! glxinfo | grep -i vulkan >/dev/null
+    if ! glxinfo | grep -i vulkan 2>/dev/null
     then
         install_arch vulkan-intel
         install_arch vulkan-radeon
@@ -114,7 +114,12 @@ then
     sudo wget -qO /etc/apt/sources.list.d/lunarg-vulkan-bionic.list https://packages.lunarg.com/vulkan/lunarg-vulkan-bionic.list
     sudo apt update >/dev/null
 
-    if ! vulkaninfo | grep -i vulkan
+    if ! vulkaninfo | grep -i vulkan 2>/dev/null
+    then
+        install_ubuntu vulkan-intel
+        install_ubuntu vulkan-radeon
+        sudo apt install -y libvulkan1
+    fi
     then
         # AMD GPU
         sudo add-apt-repository ppa:oibaf/graphics-drivers
