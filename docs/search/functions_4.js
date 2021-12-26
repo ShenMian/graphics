@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['load_223',['load',['../class_model.html#a790d445d79871eaab3208e0410041eb1',1,'Model']]],
-  ['loadasync_224',['loadAsync',['../class_model.html#ac7579596ce6e2af070c0bb8b21acb93b',1,'Model']]],
-  ['loadfromfile_225',['loadFromFile',['../class_image.html#aea76659efa5f8b20764e66bc920cf925',1,'Image']]],
-  ['loadfrommemory_226',['loadFromMemory',['../class_image.html#aa2f61e16727bcf4f30763d2094de0446',1,'Image']]]
+  ['load_224',['load',['../class_model.html#a790d445d79871eaab3208e0410041eb1',1,'Model']]],
+  ['loadasync_225',['loadAsync',['../class_model.html#ac7579596ce6e2af070c0bb8b21acb93b',1,'Model']]],
+  ['loadfromfile_226',['loadFromFile',['../class_image.html#aea76659efa5f8b20764e66bc920cf925',1,'Image']]],
+  ['loadfrommemory_227',['loadFromMemory',['../class_image.html#aa2f61e16727bcf4f30763d2094de0446',1,'Image']]]
 ];

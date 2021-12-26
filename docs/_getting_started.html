@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Graphics: Graphics Documentation</title>
+<title>Graphics: 快速入门</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -64,7 +64,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('index.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('_getting_started.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -84,25 +84,36 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 
 <div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title">Graphics Documentation </div>  </div>
+<div class="title">快速入门 </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1><a class="anchor" id="autotoc_md0"></a>
-Graphics</h1>
-<h2><a class="anchor" id="autotoc_md1"></a>
-概述</h2>
-<p>一个简单的现代图形 API 抽象层.</p>
-<h2><a class="anchor" id="autotoc_md2"></a>
-文档</h2>
+<div class="textblock"><h2><a class="anchor" id="autotoc_md3"></a>
+用法</h2>
+<p>通过 CMake 可以很快速/简单的使用该库.</p>
+<ol type="1">
+<li>将该仓库作为子模块加入你的仓库. 在你的仓库下执行下面的命令. <div class="fragment"><div class="line">git submodule add https://github.com/ShenMian/Graphics --recursive</div>
+</div><!-- fragment --></li>
+<li>在 CMakeLists.txt 里加入下面代码. 请根据具体情况做适当修改. <div class="fragment"><div class="line">add_subdirectory(Graphics)              # 构建 Graphics 并生成静态库</div>
+<div class="line">add_executable(YourApp YourApp.cpp)     # 你的可执行文件, 里面包含了对 Graphics API 的调用</div>
+<div class="line">target_link_libraries(YourApp graphics) # 连接 Graphics 静态库, 也可以使用 graphics::graphics</div>
+</div><!-- fragment --></li>
+</ol>
+<p>通过 Premake 生成你所使用 IDE 的项目文件. </p><div class="fragment"><div class="line">./Scripts/gen_gmake2 # 生成 GNU Makefile</div>
+<div class="line">./Scripts/gen_vs2022 # 生成 Visual Studio 2022 解决方案</div>
+<div class="line">./Scripts/gen_xcode4 # 生成 Xcode4 项目文件</div>
+</div><!-- fragment --><p> 除此之外, 你还可以自行调用 premake5 生成你想要的内容. 详情请查看<a href="https://github.com/premake/premake-core/wiki/Using-Premake#using-premake-to-generate-project-files">相关文档</a>.</p>
+<h2><a class="anchor" id="autotoc_md4"></a>
+示例</h2>
 <ul>
-<li><a class="el" href="_getting_started.html">快速入门</a> </li>
+<li><a href="https://github.com/ShenMian/Graphics/tree/main/Examples/Triangle">Triangle</a> </li>
 </ul>
-</div></div><!-- PageDoc -->
-</div><!-- contents -->
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
+    <li class="navelem"><a class="el" href="index.html">Graphics Documentation</a></li>
     <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
