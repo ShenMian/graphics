@@ -11,7 +11,7 @@ git submodule update --init
 if not exist Graphics.sln set firstGenerate=true
 
 REM 生成VS解决方案
-Deps\premake\bin\premake5.exe vs2019 || pause
+Deps\premake\bin\premake5.exe vs2022 || pause
 
 REM 第一次生成时, 打开解决方案
 if "%firstGenerate%"=="true" start Graphics.sln
