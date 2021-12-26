@@ -14,6 +14,10 @@ option(BUILD_EXAMPLES "Build examples" ON)
 option(BUILD_TESTS    "Build tests"    ON)
 
 # 输出编译器信息
+message(STATUS "OS")
+message(STATUS "|- Name   : ${CMAKE_SYSTEM_NAME}")
+message(STATUS "|- Version: ${CMAKE_SYSTEM_VERSION}")
+message(STATUS "`- Vendor : ${CMAKE_SYSTEM_VENDOR}")
 message(STATUS "Compiler")
 message(STATUS "|- ID     : ${CMAKE_CXX_COMPILER_ID}")
 message(STATUS "`- Version: ${CMAKE_CXX_COMPILER_VERSION}")
@@ -42,6 +46,10 @@ if(MSVC)
 endif()
 
 if(UNIX)
+  cmake_host_system_information(RESULT OS_PRETTY_NAME QUERY DISTRIB_PRETTY_NAME)
+  if(OS_PRETTY_NAME MATCHES "Ubuntu")
+    set(UBUNTU true)
+  endif()
   add_link_options("-ldl" "-lpthread")
 endif()
 

@@ -35,12 +35,15 @@ list(APPEND INCS
     "${DEPS_DIR}/assimp/build/include")
 
 # 添加 Vulkan
-find_package(Vulkan QUIET)
-if(Vulkan_FOUND)
-    list(APPEND LIBS ${Vulkan_LIBRARIES})
-else()
-    add_subdirectory("${DEPS_DIR}/Vulkan-Headers" "Vulkan-Headers")
-    list(APPEND LIBS Vulkan::Headers)
+# 防止 vk-bootstrap 使用早期版本的 Vulkan 头文件, 导致编译失败
+if(UBUNTU)
+    find_package(Vulkan QUIET)
+    if(Vulkan_FOUND)
+        list(APPEND LIBS ${Vulkan_LIBRARIES})
+    else()
+        add_subdirectory("${DEPS_DIR}/Vulkan-Headers" "Vulkan-Headers")
+        list(APPEND LIBS Vulkan::Headers)
+    endif()
 endif()
 
 # 添加 vk-bootstrap
