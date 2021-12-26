@@ -35,7 +35,30 @@ public:
 	 */
 	virtual Type getType() const = 0;
 
+	void setPosition(Vector3f pos);
+	Vector3f getPosition() const;
+
 protected:
-	Matrix4 view;
-	Matrix4 projection;
+	/**
+	 * @brief 更新投影矩阵, 并清除脏标记.
+	 */
+	virtual void updateProjectionMatrix() const = 0;
+
+	mutable Matrix4 projection;
+	mutable bool    projectionDirty = true;
+
+private:
+	/**
+	 * @brief 更新视图矩阵, 并清除脏标记.
+	 */
+	void updateViewMatrix() const;
+
+	Vector3f position;
+	Vector3f direction = Vector3f::front;
+
+	Vector3f up = Vector3f::up;
+	Vector3f front = Vector3f::front;
+
+	mutable Matrix4 view;
+	mutable bool    viewDirty = true;
 };

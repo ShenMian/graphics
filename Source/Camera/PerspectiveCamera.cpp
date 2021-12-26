@@ -16,11 +16,10 @@ PerspectiveCamera::PerspectiveCamera(float vFOV, float aspect, float n, float f)
 void PerspectiveCamera::setProjection(float vFOV, float aspect, float n, float f)
 {
 	this->vFOV = vFOV;
-	this->aspect = aspect;
+	this->aspectRatio = aspect;
 	this->near = n;
 	this->far = f;
-
-	projection = Matrix4::perspective(vFOV, aspect, n, f);
+	projectionDirty = true;
 }
 
 float PerspectiveCamera::getVFOV() const
@@ -30,7 +29,7 @@ float PerspectiveCamera::getVFOV() const
 
 float PerspectiveCamera::getAspect() const
 {
-	return aspect;
+	return aspectRatio;
 }
 
 float PerspectiveCamera::getNearPlane() const
@@ -46,4 +45,10 @@ float PerspectiveCamera::getFarPlane() const
 Camera::Type PerspectiveCamera::getType() const
 {
 	return Type::Perspective;
+}
+
+void PerspectiveCamera::updateProjectionMatrix() const
+{
+	projection = Matrix4::perspective(vFOV, aspectRatio, near, far);
+	projectionDirty = false;
 }

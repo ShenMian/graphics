@@ -56,6 +56,8 @@ public:
 	Type getType() const override;
 
 private:
+	void updateProjectionMatrix() const override;
+
 	float width;
 	float height;
 	float near;

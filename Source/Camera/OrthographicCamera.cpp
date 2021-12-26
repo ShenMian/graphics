@@ -19,8 +19,7 @@ void OrthographicCamera::setProjection(float w, float h, float n, float f)
 	this->height = h;
 	this->near = n;
 	this->far = f;
-
-	projection = Matrix4::orthogonal(w, h, n, f);
+	projectionDirty = true;
 }
 
 float OrthographicCamera::getWidth() const
@@ -46,4 +45,10 @@ float OrthographicCamera::getFarPlane() const
 Camera::Type OrthographicCamera::getType() const
 {
 	return Type::Orthographic;
+}
+
+void OrthographicCamera::updateProjectionMatrix() const
+{
+	projection = Matrix4::orthogonal(width, height, near, far);
+	projectionDirty = false;
 }

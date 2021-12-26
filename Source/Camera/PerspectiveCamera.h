@@ -56,8 +56,10 @@ public:
 	Type getType() const override;
 
 private:
+	void updateProjectionMatrix() const override;
+
 	float vFOV;
-	float aspect;
+	float aspectRatio;
 	float near;
 	float far;
 };

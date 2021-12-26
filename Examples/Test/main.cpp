@@ -34,6 +34,7 @@ int main()
 		});*/
 
 		auto camera = PerspectiveCamera::create(60.f, (float)window->getSize().x / window->getSize().y, 0.1f, 500.0f);
+		camera->setPosition({0, 0, 3});
 
 		auto program = Program::create("Shaders/mesh");
 		auto pipeline = Pipeline::create(program);
@@ -56,6 +57,22 @@ int main()
 				case Key::F11:
 					window->setFullscreen(!window->isFullscreen());
 					break;
+
+				case Key::A:
+					camera->setPosition(camera->getPosition() + Vector3f::left);
+					break;
+
+				case Key::D:
+					camera->setPosition(camera->getPosition() + Vector3f::right);
+					break;
+
+				case Key::W:
+					camera->setPosition(camera->getPosition() + Vector3f::front);
+					break;
+
+				case Key::S:
+					camera->setPosition(camera->getPosition() + Vector3f::back);
+					break;
 				}
 			}
 		};
@@ -67,7 +84,7 @@ int main()
 
 		while(running)
 		{
-			program->setUniform("view", Matrix4::translate({0, 0, 3}));
+			program->setUniform("view", camera->getView());
 			// program->setUniform("view", camera->getView());
 			program->setUniform("projection", camera->getProjection());
 
