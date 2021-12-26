@@ -13,7 +13,7 @@ list(APPEND INCS "${DEPS_DIR}/glad/include")
 # 添加 GLFW3
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/Scripts")
 set(GLFW3_DIR "C:/Program Files (x86)/GLFW/lib/cmake/glfw3")
-find_package(GLFW3)
+find_package(GLFW3 QUIET)
 if(GLFW3_FOUND)
     list(APPEND LIBS ${GLFW3_LIBRARIES})
 else()
@@ -23,7 +23,7 @@ endif()
 list(APPEND INCS "${DEPS_DIR}/glfw/include")
 
 # 添加 assimp
-find_package(assimp CONFIG)
+find_package(assimp CONFIG QUIET)
 if(assimp_FOUND)
     list(APPEND LIBS ${assimp_LIBRARIES})
 else()
@@ -39,7 +39,7 @@ add_subdirectory("${DEPS_DIR}/vk-bootstrap" "vk-bootstrap")
 list(APPEND LIBS vk-bootstrap::vk-bootstrap)
 
 # 添加 meshoptimizer
-find_package(meshoptimizer CONFIG)
+find_package(meshoptimizer CONFIG QUIET)
 if(meshoptimizer_FOUND)
     list(APPEND LIBS ${meshoptimizer_LIBRARIES})
 else()
