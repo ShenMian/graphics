@@ -87,6 +87,11 @@ then
     install_ubuntu libx11-dev mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev libxrandr-dev libxi-dev libxmu-dev libblas-dev libxinerama-dev libxcursor-dev
     install_ubuntu libassimp-dev
     install_ubuntu libglfw3-dev
+
+    wget -qO - http://packages.lunarg.com/lunarg-signing-key-pub.asc | sudo apt-key add -
+    sudo wget -qO /etc/apt/sources.list.d/lunarg-vulkan-focal.list http://packages.lunarg.com/vulkan/lunarg-vulkan-focal.list
+    install_ubuntu vulkan-sdk
+
     install_cmake "meshoptimizer"
 
     exit
