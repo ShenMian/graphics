@@ -118,16 +118,16 @@ then
     # install_ubuntu vulkan-sdk
 
     # AMD GPU
-    # sudo add-apt-repository ppa:oibaf/graphics-drivers
-    # sudo apt update
-    # sudo apt upgrade
-    # install_ubuntu libvulkan1 mesa-vulkan-drivers vulkan-utils
-
-    # Nvidia GPU
-    sudo add-apt-repository ppa:graphics-drivers/ppa
+    sudo add-apt-repository ppa:oibaf/graphics-drivers
     sudo apt update
     sudo apt upgrade
-    install_ubuntu nvidia-graphics-drivers-396 nvidia-settings vulkan vulkan-utils
+    install_ubuntu libvulkan1 mesa-vulkan-drivers vulkan-utils
+
+    # Nvidia GPU
+    # sudo add-apt-repository ppa:graphics-drivers/ppa
+    # sudo apt update
+    # sudo apt upgrade
+    # install_ubuntu nvidia-graphics-drivers-396 nvidia-settings vulkan vulkan-utils
 
     vulkaninfo
 
