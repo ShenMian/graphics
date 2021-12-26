@@ -110,6 +110,10 @@ if sudo apt update >/dev/null 2>&1
 then
     echo Installing dependencies on Ubuntu...
 
+    wget -qO - https://packages.lunarg.com/lunarg-signing-key-pub.asc | sudo apt-key add -
+    sudo wget -qO /etc/apt/sources.list.d/lunarg-vulkan-bionic.list https://packages.lunarg.com/vulkan/lunarg-vulkan-bionic.list
+    sudo apt update >/dev/null
+
     if ! vulkaninfo | grep -i vulkan
     then
         # AMD GPU
