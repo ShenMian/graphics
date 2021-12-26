@@ -12,12 +12,12 @@ jobs:
       - name: Generate documentation
         uses: mattnotmitt/doxygen-action@v1
         with:
-          working-directory: ./docs
+          working-directory: ./Docs
           doxyfile-path: ./Doxyfile
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs/html
+          publish_dir: ./Docs/html
           destination_dir: ./docs
