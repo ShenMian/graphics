@@ -138,6 +138,12 @@ const Matrix4 &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class=
 const Matrix4 &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a90f8ded7af9a5ba9fcabd5b43271be40">getProjection</a> () const</td></tr>
 <tr class="memdesc:a90f8ded7af9a5ba9fcabd5b43271be40 inherit pub_methods_class_camera"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取投影矩阵. <br /></td></tr>
 <tr class="separator:a90f8ded7af9a5ba9fcabd5b43271be40 inherit pub_methods_class_camera"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96467d6b44a96ce9209789fd4980a358 inherit pub_methods_class_camera"><td class="memItemLeft" align="right" valign="top"><a id="a96467d6b44a96ce9209789fd4980a358"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setPosition</b> (Vector3f pos)</td></tr>
+<tr class="separator:a96467d6b44a96ce9209789fd4980a358 inherit pub_methods_class_camera"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e257bcf641d333ce77bac775792a9c3 inherit pub_methods_class_camera"><td class="memItemLeft" align="right" valign="top"><a id="a4e257bcf641d333ce77bac775792a9c3"></a>
+Vector3f&#160;</td><td class="memItemRight" valign="bottom"><b>getPosition</b> () const</td></tr>
+<tr class="separator:a4e257bcf641d333ce77bac775792a9c3 inherit pub_methods_class_camera"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 静态 Public 成员函数</h2></td></tr>
@@ -154,12 +160,12 @@ static std::shared_ptr&lt; <a class="el" href="class_orthographic_camera.html">O
 <tr class="memdesc:a3b0a1f58deca679ac665f61c480d1dcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">投影类型. <br /></td></tr>
 <tr class="separator:a3b0a1f58deca679ac665f61c480d1dcb inherit pub_types_class_camera"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_class_camera"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_camera')"><img src="closed.png" alt="-"/>&#160;Protected 属性 继承自 <a class="el" href="class_camera.html">Camera</a></td></tr>
-<tr class="memitem:aae69ae88f2d9a5599ff3be0f843b190b inherit pro_attribs_class_camera"><td class="memItemLeft" align="right" valign="top"><a id="aae69ae88f2d9a5599ff3be0f843b190b"></a>
-Matrix4&#160;</td><td class="memItemRight" valign="bottom"><b>view</b></td></tr>
-<tr class="separator:aae69ae88f2d9a5599ff3be0f843b190b inherit pro_attribs_class_camera"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:addec5433c63da583b7ad5e826c4ff712 inherit pro_attribs_class_camera"><td class="memItemLeft" align="right" valign="top"><a id="addec5433c63da583b7ad5e826c4ff712"></a>
 Matrix4&#160;</td><td class="memItemRight" valign="bottom"><b>projection</b></td></tr>
 <tr class="separator:addec5433c63da583b7ad5e826c4ff712 inherit pro_attribs_class_camera"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03566fdf6e9ab0637d2052cb6613a50d inherit pro_attribs_class_camera"><td class="memItemLeft" align="right" valign="top"><a id="a03566fdf6e9ab0637d2052cb6613a50d"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>projectionDirty</b> = true</td></tr>
+<tr class="separator:a03566fdf6e9ab0637d2052cb6613a50d inherit pro_attribs_class_camera"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">构造及析构函数说明</h2>
 <a id="a70fdd1313ed5fdb9f906a3c25f82c7fe"></a>

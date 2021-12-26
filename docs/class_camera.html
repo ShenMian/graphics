@@ -86,6 +86,7 @@ $(document).ready(function(){initNavTree('class_camera.html',''); initResizable(
   <div class="summary">
 <a href="#pub-types">Public 类型</a> &#124;
 <a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
 <a href="#pro-attribs">Protected 属性</a> &#124;
 <a href="class_camera-members.html">所有成员列表</a>  </div>
   <div class="headertitle">
@@ -130,15 +131,28 @@ const Matrix4 &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class=
 virtual <a class="el" href="class_camera.html#a3b0a1f58deca679ac665f61c480d1dcb">Type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a6cbc4769bd721ece7e7c91f290d206e3">getType</a> () const =0</td></tr>
 <tr class="memdesc:a6cbc4769bd721ece7e7c91f290d206e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取投影类型. <br /></td></tr>
 <tr class="separator:a6cbc4769bd721ece7e7c91f290d206e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96467d6b44a96ce9209789fd4980a358"><td class="memItemLeft" align="right" valign="top"><a id="a96467d6b44a96ce9209789fd4980a358"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setPosition</b> (Vector3f pos)</td></tr>
+<tr class="separator:a96467d6b44a96ce9209789fd4980a358"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e257bcf641d333ce77bac775792a9c3"><td class="memItemLeft" align="right" valign="top"><a id="a4e257bcf641d333ce77bac775792a9c3"></a>
+Vector3f&#160;</td><td class="memItemRight" valign="bottom"><b>getPosition</b> () const</td></tr>
+<tr class="separator:a4e257bcf641d333ce77bac775792a9c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:a58dd6b97da62cb117eec96929c4c48a7"><td class="memItemLeft" align="right" valign="top"><a id="a58dd6b97da62cb117eec96929c4c48a7"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a58dd6b97da62cb117eec96929c4c48a7">updateProjectionMatrix</a> () const =0</td></tr>
+<tr class="memdesc:a58dd6b97da62cb117eec96929c4c48a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">更新投影矩阵, 并清除脏标记. <br /></td></tr>
+<tr class="separator:a58dd6b97da62cb117eec96929c4c48a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected 属性</h2></td></tr>
-<tr class="memitem:aae69ae88f2d9a5599ff3be0f843b190b"><td class="memItemLeft" align="right" valign="top"><a id="aae69ae88f2d9a5599ff3be0f843b190b"></a>
-Matrix4&#160;</td><td class="memItemRight" valign="bottom"><b>view</b></td></tr>
-<tr class="separator:aae69ae88f2d9a5599ff3be0f843b190b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:addec5433c63da583b7ad5e826c4ff712"><td class="memItemLeft" align="right" valign="top"><a id="addec5433c63da583b7ad5e826c4ff712"></a>
 Matrix4&#160;</td><td class="memItemRight" valign="bottom"><b>projection</b></td></tr>
 <tr class="separator:addec5433c63da583b7ad5e826c4ff712"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03566fdf6e9ab0637d2052cb6613a50d"><td class="memItemLeft" align="right" valign="top"><a id="a03566fdf6e9ab0637d2052cb6613a50d"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>projectionDirty</b> = true</td></tr>
+<tr class="separator:a03566fdf6e9ab0637d2052cb6613a50d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p>摄像机. </p>

@@ -109,15 +109,33 @@ $(document).ready(function(){initNavTree('_camera_8h_source.html',''); initResiz
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
 <div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="class_camera.html#a6cbc4769bd721ece7e7c91f290d206e3">   36</a></span>&#160;    <span class="keyword">virtual</span> <a class="code" href="class_camera.html#a3b0a1f58deca679ac665f61c480d1dcb">Type</a> <a class="code" href="class_camera.html#a6cbc4769bd721ece7e7c91f290d206e3">getType</a>() <span class="keyword">const</span> = 0;</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    Matrix4 view;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    Matrix4 projection;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;};</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">void</span> setPosition(Vector3f pos);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    Vector3f getPosition() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="class_camera.html#a58dd6b97da62cb117eec96929c4c48a7">   45</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_camera.html#a58dd6b97da62cb117eec96929c4c48a7">updateProjectionMatrix</a>() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">mutable</span> Matrix4 projection;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">mutable</span> <span class="keywordtype">bool</span>    projectionDirty = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">void</span> updateViewMatrix() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    Vector3f position;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    Vector3f direction = Vector3f::front;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    Vector3f up = Vector3f::up;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    Vector3f front = Vector3f::front;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keyword">mutable</span> Matrix4 view;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keyword">mutable</span> <span class="keywordtype">bool</span>    viewDirty = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;};</div>
 <div class="ttc" id="aclass_camera_html"><div class="ttname"><a href="class_camera.html">Camera</a></div><div class="ttdoc">摄像机.</div><div class="ttdef"><b>Definition:</b> Camera.h:12</div></div>
-<div class="ttc" id="aclass_camera_html_a26a85543e0caeb0ff79cffeb8d27066c"><div class="ttname"><a href="class_camera.html#a26a85543e0caeb0ff79cffeb8d27066c">Camera::getView</a></div><div class="ttdeci">const Matrix4 &amp; getView() const</div><div class="ttdoc">获取观察矩阵.</div><div class="ttdef"><b>Definition:</b> Camera.cpp:7</div></div>
+<div class="ttc" id="aclass_camera_html_a26a85543e0caeb0ff79cffeb8d27066c"><div class="ttname"><a href="class_camera.html#a26a85543e0caeb0ff79cffeb8d27066c">Camera::getView</a></div><div class="ttdeci">const Matrix4 &amp; getView() const</div><div class="ttdoc">获取观察矩阵.</div><div class="ttdef"><b>Definition:</b> Camera.cpp:25</div></div>
 <div class="ttc" id="aclass_camera_html_a3b0a1f58deca679ac665f61c480d1dcb"><div class="ttname"><a href="class_camera.html#a3b0a1f58deca679ac665f61c480d1dcb">Camera::Type</a></div><div class="ttdeci">Type</div><div class="ttdoc">投影类型.</div><div class="ttdef"><b>Definition:</b> Camera.h:18</div></div>
+<div class="ttc" id="aclass_camera_html_a58dd6b97da62cb117eec96929c4c48a7"><div class="ttname"><a href="class_camera.html#a58dd6b97da62cb117eec96929c4c48a7">Camera::updateProjectionMatrix</a></div><div class="ttdeci">virtual void updateProjectionMatrix() const =0</div><div class="ttdoc">更新投影矩阵, 并清除脏标记.</div></div>
 <div class="ttc" id="aclass_camera_html_a6cbc4769bd721ece7e7c91f290d206e3"><div class="ttname"><a href="class_camera.html#a6cbc4769bd721ece7e7c91f290d206e3">Camera::getType</a></div><div class="ttdeci">virtual Type getType() const =0</div><div class="ttdoc">获取投影类型.</div></div>
-<div class="ttc" id="aclass_camera_html_a90f8ded7af9a5ba9fcabd5b43271be40"><div class="ttname"><a href="class_camera.html#a90f8ded7af9a5ba9fcabd5b43271be40">Camera::getProjection</a></div><div class="ttdeci">const Matrix4 &amp; getProjection() const</div><div class="ttdoc">获取投影矩阵.</div><div class="ttdef"><b>Definition:</b> Camera.cpp:12</div></div>
+<div class="ttc" id="aclass_camera_html_a90f8ded7af9a5ba9fcabd5b43271be40"><div class="ttname"><a href="class_camera.html#a90f8ded7af9a5ba9fcabd5b43271be40">Camera::getProjection</a></div><div class="ttdeci">const Matrix4 &amp; getProjection() const</div><div class="ttdoc">获取投影矩阵.</div><div class="ttdef"><b>Definition:</b> Camera.cpp:32</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
