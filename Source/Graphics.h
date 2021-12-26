@@ -39,9 +39,14 @@
  * ----
  * - @subpage GettingStarted
  *
- * @defgroup core   核心
- * @defgroup model  模型
- * @defgroup shader 渲染器
+ * @defgroup core 核心
+ * @brief 較爲基礎的部分, 包括: 圖像導入/導出/處理, 輸入/輸出等.
+ *
+ * @defgroup model 模型
+ * @brief 3D 模型相關. 包括: 模型導入/導出, 網格處理, 紋理材質組等.
+ *
+ * @defgroup shader 着色器
+ * @brief 着色器相關, 包括: 着色器程序, 着色器階段等.
  */
 
 /**
@@ -71,8 +76,8 @@
  * ```
  * 除此之外, 你还可以自行调用 premake5 生成你想要的内容. 详情请查看[相关文档](https://github.com/premake/premake-core/wiki/Using-Premake#using-premake-to-generate-project-files).
  *
- * 更新克隆倉庫
- * ------------
+ * 更新
+ * ---
  * 因爲該庫對 Git 子模塊的更新較爲頻繁, 請注意將子模塊牽出到相應的提交. 你可以使用下面的命令更新本地克隆倉庫.
  * ```bash
  * git pull                    # 拉取到最新的提交
