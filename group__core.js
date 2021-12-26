@@ -2,7 +2,7 @@ var group__core =
 [
     [ "Gamepad", "class_gamepad.html", [
       [ "用法", "_getting_started.html#autotoc_md3", null ],
-      [ "更新克隆倉庫", "_getting_started.html#autotoc_md4", null ],
+      [ "更新", "_getting_started.html#autotoc_md4", null ],
       [ "示例", "_getting_started.html#autotoc_md5", null ],
       [ "handle_type", "class_gamepad.html#ac43317573656b6ff87c50fe8e8830633", null ],
       [ "Button", "group__core.html#ga0f09c7e25e2059e68148d494ed9449b1", [
