@@ -1,6 +1,7 @@
 var group__core =
 [
     [ "Gamepad", "class_gamepad.html", [
+      [ "handle_type", "class_gamepad.html#ac43317573656b6ff87c50fe8e8830633", null ],
       [ "Button", "group__core.html#ga0f09c7e25e2059e68148d494ed9449b1", [
         [ "A", "group__core.html#gga0f09c7e25e2059e68148d494ed9449b1a7fc56270e7a70fa81a5935b72eacbe29", null ],
         [ "B", "group__core.html#gga0f09c7e25e2059e68148d494ed9449b1a9d5ed678fe57bcca610140957afab571", null ],
@@ -62,7 +63,12 @@ var group__core =
       [ "getSize", "class_monitor.html#a7a46f0acdc341a56e8f2a4c9ca891215", null ],
       [ "isPrimary", "class_monitor.html#abb69747f03e4fed060f16b84052eb3c0", null ]
     ] ],
-    [ "Timer", "class_timer.html", null ],
+    [ "Timer", "class_timer.html", [
+      [ "Timer", "class_timer.html#a5f16e8da27d2a5a5242dead46de05d97", null ],
+      [ "getMilliseconds", "class_timer.html#a5e40e0a7a00dd431599f951212d96190", null ],
+      [ "getSeconds", "class_timer.html#acf104595560599bcc60d5c9066a972e4", null ],
+      [ "restart", "class_timer.html#aa3f7871196bb56202af2bc982bfbfff6", null ]
+    ] ],
     [ "Window", "class_window.html", [
       [ "Window", "class_window.html#a4833e71f6901fa71d1d829b5d551e118", null ],
       [ "~Window", "class_window.html#a245d821e6016fa1f6970ccbbedd635f6", null ],
@@ -89,9 +95,9 @@ var group__core =
       [ "onResize", "class_window.html#a571576b54d53d0dce7a30baa58b6e812", null ],
       [ "onScroll", "class_window.html#ac7ab596ea3d8f1034ce4aba79cb64a5a", null ]
     ] ],
-    [ "Gamepad::Button", "group__core.html#ga0f09c7e25e2059e68148d494ed9449b1", null ],
+    [ "Button", "group__core.html#ga0f09c7e25e2059e68148d494ed9449b1", null ],
     [ "Key", "group__core.html#gab3c7af4820830f9166ede9e5623c4e73", null ],
     [ "Mouse", "group__core.html#ga6823a62e33fc2bc26d3dba7283e65cc9", null ],
-    [ "Gamepad::Thumb", "group__core.html#ga3e2204214f53c8d800b8ef7d4d0fab7c", null ],
-    [ "Gamepad::Trigger", "group__core.html#ga814093b43f211a291b19ccf662096738", null ]
+    [ "Thumb", "group__core.html#ga3e2204214f53c8d800b8ef7d4d0fab7c", null ],
+    [ "Trigger", "group__core.html#ga814093b43f211a291b19ccf662096738", null ]
 ];

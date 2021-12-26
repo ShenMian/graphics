@@ -2,10 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=11"/>
-<meta name="generator" content="Doxygen 1.9.2"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Graphics: C:/Users/sms_s/Desktop/Graphics/Source/Texture.h 源文件</title>
+<title>Graphics: /github/workspace/Source/Texture.h 源文件</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -25,7 +25,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Graphics<span id="projectnumber">&#160;v0.0.0</span>
+   <div id="projectname">Graphics
+   &#160;<span id="projectnumber">v0.0.0</span>
    </div>
    <div id="projectbrief">A simple abstraction layer for the modern graphics APIs.</div>
   </td>
@@ -34,22 +35,21 @@
 </table>
 </div>
 <!-- end header part -->
-<!-- 制作者 Doxygen 1.9.2 -->
+<!-- 制作者 Doxygen 1.9.1 -->
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-var searchBox = new SearchBox("searchBox", "search",'搜索','.html');
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'搜索','.html');
 /* @license-end */
 </script>
 <script type="text/javascript" src="menudata.js"></script>
 <script type="text/javascript" src="menu.js"></script>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
 $(function() {
   initMenu('',true,false,'search.php','搜索');
   $(document).ready(function() { init_search(); });
 });
-/* @license-end */
-</script>
+/* @license-end */</script>
 <div id="main-nav"></div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
@@ -63,7 +63,7 @@ $(function() {
   </div>
 </div>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
 $(document).ready(function(){initNavTree('_texture_8h_source.html',''); initResizable(); });
 /* @license-end */
 </script>
@@ -83,70 +83,71 @@ $(document).ready(function(){initNavTree('_texture_8h_source.html',''); initResi
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">Texture.h</div></div>
+  <div class="headertitle">
+<div class="title">Texture.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright 2021 ShenMian</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// License(Apache-2.0)</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;Format.h&quot;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">class </span><a class="code hl_class" href="class_image.html">Image</a>;</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="class_texture.html">   14</a></span><span class="keyword">class </span><a class="code hl_class" href="class_texture.html">Texture</a></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>{</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="comment">// 纹理过滤方式</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keyword">enum class</span> Filter</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    {</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        Nearest,  <span class="comment">// 最近点采样</span></div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        Bilinear, <span class="comment">// 双线性过滤</span></div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        Trilinear <span class="comment">// 三线性过滤</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    };</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <span class="comment">// 纹理环绕方式</span></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keyword">enum class</span> Warp</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    {</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        Repeat, <span class="comment">// 重复</span></div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        ClampToEdge,</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        MirrorRepeat <span class="comment">// 镜像重复</span></div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    };</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="comment">// 纹理类型</span></div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keyword">enum class</span> Type</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    {</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        _2D,</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        _3D,</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        Cube,</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    };</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keyword">static</span> std::shared_ptr&lt;Texture&gt; <a class="code hl_function" href="class_texture.html#ae6059b9170c98547b68ecad5fae46d3d">create</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_image.html">Image</a>&amp; image, Type type = Type::_2D);</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> bind(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> slot = 0) = 0;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="class_texture.html#a23aaceb94559abb5b9c756c2ec8ac431">   56</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_texture.html#a23aaceb94559abb5b9c756c2ec8ac431">setMinFilter</a>(Filter filter) = 0;</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="class_texture.html#adb2d44c3e35bf0b03be885d1b3d4378f">   63</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_texture.html#adb2d44c3e35bf0b03be885d1b3d4378f">setMagFilter</a>(Filter filter) = 0;</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="class_texture.html#a78ca4624d52f3b74d6af79beaa3ce5c1">   70</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_texture.html#a78ca4624d52f3b74d6af79beaa3ce5c1">setSWarp</a>(Warp warp) = 0;</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="class_texture.html#a3d7fa97316058caeebcdcbfdbcd34a0e">   77</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_texture.html#a3d7fa97316058caeebcdcbfdbcd34a0e">setTWarp</a>(Warp warp) = 0;</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="class_texture.html#a6488dbab409fd08a4731dcb2c921aad7">   84</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_texture.html#a6488dbab409fd08a4731dcb2c921aad7">setRWarp</a>(Warp warp) = 0;</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    Type <a class="code hl_function" href="class_texture.html#a885cf1c026c6227fbc1b99befa842416">getType</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    Format <a class="code hl_function" href="class_texture.html#ab9c343ec4797d5175580d538a2e8c171">getFormat</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <a class="code hl_class" href="class_texture.html">Texture</a>(Type type, Format fmt);</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    Type   type;</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    Format format;</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>};</div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Copyright 2021 ShenMian</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// License(Apache-2.0)</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;Format.h&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">class </span><a class="code" href="class_image.html">Image</a>;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="class_texture.html">   14</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_texture.html">Texture</a></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;{</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="comment">// 纹理过滤方式</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">enum class</span> Filter</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    {</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        Nearest,  <span class="comment">// 最近点采样</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        Bilinear, <span class="comment">// 双线性过滤</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        Trilinear <span class="comment">// 三线性过滤</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    };</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="comment">// 纹理环绕方式</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">enum class</span> Warp</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    {</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        Repeat, <span class="comment">// 重复</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        ClampToEdge,</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        MirrorRepeat <span class="comment">// 镜像重复</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    };</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="comment">// 纹理类型</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">enum class</span> Type</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    {</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        _2D,</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        _3D,</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        Cube,</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    };</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">static</span> std::shared_ptr&lt;Texture&gt; <a class="code" href="class_texture.html#ae6059b9170c98547b68ecad5fae46d3d">create</a>(<span class="keyword">const</span> <a class="code" href="class_image.html">Image</a>&amp; image, Type type = Type::_2D);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> bind(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> slot = 0) = 0;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="class_texture.html#a23aaceb94559abb5b9c756c2ec8ac431">   56</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_texture.html#a23aaceb94559abb5b9c756c2ec8ac431">setMinFilter</a>(Filter filter) = 0;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="class_texture.html#adb2d44c3e35bf0b03be885d1b3d4378f">   63</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_texture.html#adb2d44c3e35bf0b03be885d1b3d4378f">setMagFilter</a>(Filter filter) = 0;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="class_texture.html#a78ca4624d52f3b74d6af79beaa3ce5c1">   70</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_texture.html#a78ca4624d52f3b74d6af79beaa3ce5c1">setSWarp</a>(Warp warp) = 0;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="class_texture.html#a3d7fa97316058caeebcdcbfdbcd34a0e">   77</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_texture.html#a3d7fa97316058caeebcdcbfdbcd34a0e">setTWarp</a>(Warp warp) = 0;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="class_texture.html#a6488dbab409fd08a4731dcb2c921aad7">   84</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_texture.html#a6488dbab409fd08a4731dcb2c921aad7">setRWarp</a>(Warp warp) = 0;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    Type <a class="code" href="class_texture.html#a885cf1c026c6227fbc1b99befa842416">getType</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    Format <a class="code" href="class_texture.html#ab9c343ec4797d5175580d538a2e8c171">getFormat</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <a class="code" href="class_texture.html">Texture</a>(Type type, Format fmt);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    Type   type;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    Format format;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;};</div>
 <div class="ttc" id="aclass_image_html"><div class="ttname"><a href="class_image.html">Image</a></div><div class="ttdoc">图像.</div><div class="ttdef"><b>Definition:</b> Image.h:19</div></div>
 <div class="ttc" id="aclass_texture_html"><div class="ttname"><a href="class_texture.html">Texture</a></div><div class="ttdoc">纹理.</div><div class="ttdef"><b>Definition:</b> Texture.h:15</div></div>
 <div class="ttc" id="aclass_texture_html_a23aaceb94559abb5b9c756c2ec8ac431"><div class="ttname"><a href="class_texture.html#a23aaceb94559abb5b9c756c2ec8ac431">Texture::setMinFilter</a></div><div class="ttdeci">virtual void setMinFilter(Filter filter)=0</div><div class="ttdoc">设置缩小过滤方式.</div></div>
@@ -163,7 +164,7 @@ $(document).ready(function(){initNavTree('_texture_8h_source.html',''); initResi
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_74389ed8173ad57b461b9d623a1f3867.html">Source</a></li><li class="navelem"><b>Texture.h</b></li>
-    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

@@ -1,8 +1,8 @@
 var indexSectionsWithContent =
 {
   0: "abcdfgiklmoprstuvw~核模渲",
-  1: "acdgimprstvw",
-  2: "cfgilrsuw~",
+  1: "acdgimoprstvw",
+  2: "cfgiloprsuw~",
   3: "o",
   4: "bkmt",
   5: "核模渲",

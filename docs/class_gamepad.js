@@ -1,5 +1,6 @@
 var class_gamepad =
 [
+    [ "handle_type", "class_gamepad.html#ac43317573656b6ff87c50fe8e8830633", null ],
     [ "Button", "group__core.html#ga0f09c7e25e2059e68148d494ed9449b1", [
       [ "A", "group__core.html#gga0f09c7e25e2059e68148d494ed9449b1a7fc56270e7a70fa81a5935b72eacbe29", null ],
       [ "B", "group__core.html#gga0f09c7e25e2059e68148d494ed9449b1a9d5ed678fe57bcca610140957afab571", null ],

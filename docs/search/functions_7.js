@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['update_0',['update',['../class_gamepad.html#ae37f83a954aabbf634e9d6f37697ae58',1,'Gamepad::update()'],['../class_window.html#a59515fc5a56e86d5a46d771595daac55',1,'Window::update()']]]
+  ['requestfocus_228',['requestFocus',['../class_window.html#acaf1ae031f7b9196f36f66e37ff3eb0f',1,'Window']]]
 ];

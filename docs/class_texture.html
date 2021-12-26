@@ -2,8 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=11"/>
-<meta name="generator" content="Doxygen 1.9.2"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Graphics: Texture类 参考</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
@@ -25,7 +25,8 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Graphics<span id="projectnumber">&#160;v0.0.0</span>
+   <div id="projectname">Graphics
+   &#160;<span id="projectnumber">v0.0.0</span>
    </div>
    <div id="projectbrief">A simple abstraction layer for the modern graphics APIs.</div>
   </td>
@@ -34,22 +35,21 @@
 </table>
 </div>
 <!-- end header part -->
-<!-- 制作者 Doxygen 1.9.2 -->
+<!-- 制作者 Doxygen 1.9.1 -->
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-var searchBox = new SearchBox("searchBox", "search",'搜索','.html');
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'搜索','.html');
 /* @license-end */
 </script>
 <script type="text/javascript" src="menudata.js"></script>
 <script type="text/javascript" src="menu.js"></script>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
 $(function() {
   initMenu('',true,false,'search.php','搜索');
   $(document).ready(function() { init_search(); });
 });
-/* @license-end */
-</script>
+/* @license-end */</script>
 <div id="main-nav"></div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
@@ -63,7 +63,7 @@ $(function() {
   </div>
 </div>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
 $(document).ready(function(){initNavTree('class_texture.html',''); initResizable(); });
 /* @license-end */
 </script>
@@ -90,7 +90,8 @@ $(document).ready(function(){initNavTree('class_texture.html',''); initResizable
 <a href="#pro-methods">Protected 成员函数</a> &#124;
 <a href="#pro-attribs">Protected 属性</a> &#124;
 <a href="class_texture-members.html">所有成员列表</a>  </div>
-  <div class="headertitle"><div class="title">Texture类 参考<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
+  <div class="headertitle">
+<div class="title">Texture类 参考<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -108,27 +109,27 @@ $(document).ready(function(){initNavTree('class_texture.html',''); initResizable
   </map>
 </div></div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public 类型</h2></td></tr>
-<tr class="memitem:a55341847b37906ddffa803675617da27"><td class="memItemLeft" align="right" valign="top"><a id="a55341847b37906ddffa803675617da27" name="a55341847b37906ddffa803675617da27"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>Filter</b> { <b>Nearest</b>
+<tr class="memitem:a55341847b37906ddffa803675617da27"><td class="memItemLeft" align="right" valign="top"><a id="a55341847b37906ddffa803675617da27"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>Filter</b> { <b>Nearest</b>
 , <b>Bilinear</b>
 , <b>Trilinear</b>
  }</td></tr>
 <tr class="separator:a55341847b37906ddffa803675617da27"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af110c1b8fc58036b94dced17b5399b68"><td class="memItemLeft" align="right" valign="top"><a id="af110c1b8fc58036b94dced17b5399b68" name="af110c1b8fc58036b94dced17b5399b68"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>Warp</b> { <b>Repeat</b>
+<tr class="memitem:af110c1b8fc58036b94dced17b5399b68"><td class="memItemLeft" align="right" valign="top"><a id="af110c1b8fc58036b94dced17b5399b68"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>Warp</b> { <b>Repeat</b>
 , <b>ClampToEdge</b>
 , <b>MirrorRepeat</b>
  }</td></tr>
 <tr class="separator:af110c1b8fc58036b94dced17b5399b68"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d0b09cfb795f9553db6a4eab396bef9"><td class="memItemLeft" align="right" valign="top"><a id="a9d0b09cfb795f9553db6a4eab396bef9" name="a9d0b09cfb795f9553db6a4eab396bef9"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>Type</b> { <b>_2D</b>
+<tr class="memitem:a9d0b09cfb795f9553db6a4eab396bef9"><td class="memItemLeft" align="right" valign="top"><a id="a9d0b09cfb795f9553db6a4eab396bef9"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>Type</b> { <b>_2D</b>
 , <b>_3D</b>
 , <b>Cube</b>
  }</td></tr>
 <tr class="separator:a9d0b09cfb795f9553db6a4eab396bef9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
-<tr class="memitem:afb44f8400c2a3c93d6cb6a84e1fe5e3f"><td class="memItemLeft" align="right" valign="top"><a id="afb44f8400c2a3c93d6cb6a84e1fe5e3f" name="afb44f8400c2a3c93d6cb6a84e1fe5e3f"></a>
+<tr class="memitem:afb44f8400c2a3c93d6cb6a84e1fe5e3f"><td class="memItemLeft" align="right" valign="top"><a id="afb44f8400c2a3c93d6cb6a84e1fe5e3f"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>bind</b> (unsigned int slot=0)=0</td></tr>
 <tr class="separator:afb44f8400c2a3c93d6cb6a84e1fe5e3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a23aaceb94559abb5b9c756c2ec8ac431"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture.html#a23aaceb94559abb5b9c756c2ec8ac431">setMinFilter</a> (Filter filter)=0</td></tr>
@@ -146,40 +147,40 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>bind</b> (uns
 <tr class="memitem:a6488dbab409fd08a4731dcb2c921aad7"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture.html#a6488dbab409fd08a4731dcb2c921aad7">setRWarp</a> (Warp warp)=0</td></tr>
 <tr class="memdesc:a6488dbab409fd08a4731dcb2c921aad7"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置 R 环绕方式.  <a href="class_texture.html#a6488dbab409fd08a4731dcb2c921aad7">更多...</a><br /></td></tr>
 <tr class="separator:a6488dbab409fd08a4731dcb2c921aad7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a885cf1c026c6227fbc1b99befa842416"><td class="memItemLeft" align="right" valign="top"><a id="a885cf1c026c6227fbc1b99befa842416" name="a885cf1c026c6227fbc1b99befa842416"></a>
-Type&#160;</td><td class="memItemRight" valign="bottom"><b>getType</b> () const</td></tr>
+<tr class="memitem:a885cf1c026c6227fbc1b99befa842416"><td class="memItemLeft" align="right" valign="top"><a id="a885cf1c026c6227fbc1b99befa842416"></a>
+Type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture.html#a885cf1c026c6227fbc1b99befa842416">getType</a> () const</td></tr>
 <tr class="memdesc:a885cf1c026c6227fbc1b99befa842416"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取纹理类型. <br /></td></tr>
 <tr class="separator:a885cf1c026c6227fbc1b99befa842416"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab9c343ec4797d5175580d538a2e8c171"><td class="memItemLeft" align="right" valign="top"><a id="ab9c343ec4797d5175580d538a2e8c171" name="ab9c343ec4797d5175580d538a2e8c171"></a>
-Format&#160;</td><td class="memItemRight" valign="bottom"><b>getFormat</b> () const</td></tr>
+<tr class="memitem:ab9c343ec4797d5175580d538a2e8c171"><td class="memItemLeft" align="right" valign="top"><a id="ab9c343ec4797d5175580d538a2e8c171"></a>
+Format&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture.html#ab9c343ec4797d5175580d538a2e8c171">getFormat</a> () const</td></tr>
 <tr class="memdesc:ab9c343ec4797d5175580d538a2e8c171"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取像素格式. <br /></td></tr>
 <tr class="separator:ab9c343ec4797d5175580d538a2e8c171"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 静态 Public 成员函数</h2></td></tr>
 <tr class="memitem:ae6059b9170c98547b68ecad5fae46d3d"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_texture.html">Texture</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture.html#ae6059b9170c98547b68ecad5fae46d3d">create</a> (const <a class="el" href="class_image.html">Image</a> &amp;image, Type type=Type::_2D)</td></tr>
 <tr class="memdesc:ae6059b9170c98547b68ecad5fae46d3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">从图像创建纹理.  <a href="class_texture.html#ae6059b9170c98547b68ecad5fae46d3d">更多...</a><br /></td></tr>
 <tr class="separator:ae6059b9170c98547b68ecad5fae46d3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected 成员函数</h2></td></tr>
-<tr class="memitem:a92552bf3c4180e09e741c3e11da177e9"><td class="memItemLeft" align="right" valign="top"><a id="a92552bf3c4180e09e741c3e11da177e9" name="a92552bf3c4180e09e741c3e11da177e9"></a>
+<tr class="memitem:a92552bf3c4180e09e741c3e11da177e9"><td class="memItemLeft" align="right" valign="top"><a id="a92552bf3c4180e09e741c3e11da177e9"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Texture</b> (Type type, Format fmt)</td></tr>
 <tr class="separator:a92552bf3c4180e09e741c3e11da177e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected 属性</h2></td></tr>
-<tr class="memitem:a8b63545a7a5c639b433c449e254e958b"><td class="memItemLeft" align="right" valign="top"><a id="a8b63545a7a5c639b433c449e254e958b" name="a8b63545a7a5c639b433c449e254e958b"></a>
+<tr class="memitem:a8b63545a7a5c639b433c449e254e958b"><td class="memItemLeft" align="right" valign="top"><a id="a8b63545a7a5c639b433c449e254e958b"></a>
 Type&#160;</td><td class="memItemRight" valign="bottom"><b>type</b></td></tr>
 <tr class="separator:a8b63545a7a5c639b433c449e254e958b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af91eab5343d1799e0895bed87dd12fa1"><td class="memItemLeft" align="right" valign="top"><a id="af91eab5343d1799e0895bed87dd12fa1" name="af91eab5343d1799e0895bed87dd12fa1"></a>
+<tr class="memitem:af91eab5343d1799e0895bed87dd12fa1"><td class="memItemLeft" align="right" valign="top"><a id="af91eab5343d1799e0895bed87dd12fa1"></a>
 Format&#160;</td><td class="memItemRight" valign="bottom"><b>format</b></td></tr>
 <tr class="separator:af91eab5343d1799e0895bed87dd12fa1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
-<div class="textblock"><p >纹理. </p>
+<div class="textblock"><p>纹理. </p>
 </div><h2 class="groupheader">成员函数说明</h2>
-<a id="ae6059b9170c98547b68ecad5fae46d3d" name="ae6059b9170c98547b68ecad5fae46d3d"></a>
+<a id="ae6059b9170c98547b68ecad5fae46d3d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae6059b9170c98547b68ecad5fae46d3d">&#9670;&nbsp;</a></span>create()</h2>
 
 <div class="memitem">
@@ -224,7 +225,7 @@ Format&#160;</td><td class="memItemRight" valign="bottom"><b>format</b></td></tr
 
 </div>
 </div>
-<a id="adb2d44c3e35bf0b03be885d1b3d4378f" name="adb2d44c3e35bf0b03be885d1b3d4378f"></a>
+<a id="adb2d44c3e35bf0b03be885d1b3d4378f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adb2d44c3e35bf0b03be885d1b3d4378f">&#9670;&nbsp;</a></span>setMagFilter()</h2>
 
 <div class="memitem">
@@ -260,7 +261,7 @@ Format&#160;</td><td class="memItemRight" valign="bottom"><b>format</b></td></tr
 
 </div>
 </div>
-<a id="a23aaceb94559abb5b9c756c2ec8ac431" name="a23aaceb94559abb5b9c756c2ec8ac431"></a>
+<a id="a23aaceb94559abb5b9c756c2ec8ac431"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a23aaceb94559abb5b9c756c2ec8ac431">&#9670;&nbsp;</a></span>setMinFilter()</h2>
 
 <div class="memitem">
@@ -296,7 +297,7 @@ Format&#160;</td><td class="memItemRight" valign="bottom"><b>format</b></td></tr
 
 </div>
 </div>
-<a id="a6488dbab409fd08a4731dcb2c921aad7" name="a6488dbab409fd08a4731dcb2c921aad7"></a>
+<a id="a6488dbab409fd08a4731dcb2c921aad7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6488dbab409fd08a4731dcb2c921aad7">&#9670;&nbsp;</a></span>setRWarp()</h2>
 
 <div class="memitem">
@@ -332,7 +333,7 @@ Format&#160;</td><td class="memItemRight" valign="bottom"><b>format</b></td></tr
 
 </div>
 </div>
-<a id="a78ca4624d52f3b74d6af79beaa3ce5c1" name="a78ca4624d52f3b74d6af79beaa3ce5c1"></a>
+<a id="a78ca4624d52f3b74d6af79beaa3ce5c1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a78ca4624d52f3b74d6af79beaa3ce5c1">&#9670;&nbsp;</a></span>setSWarp()</h2>
 
 <div class="memitem">
@@ -368,7 +369,7 @@ Format&#160;</td><td class="memItemRight" valign="bottom"><b>format</b></td></tr
 
 </div>
 </div>
-<a id="a3d7fa97316058caeebcdcbfdbcd34a0e" name="a3d7fa97316058caeebcdcbfdbcd34a0e"></a>
+<a id="a3d7fa97316058caeebcdcbfdbcd34a0e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3d7fa97316058caeebcdcbfdbcd34a0e">&#9670;&nbsp;</a></span>setTWarp()</h2>
 
 <div class="memitem">
@@ -405,8 +406,8 @@ Format&#160;</td><td class="memItemRight" valign="bottom"><b>format</b></td></tr
 </div>
 </div>
 <hr/>该类的文档由以下文件生成:<ul>
-<li>C:/Users/sms_s/Desktop/Graphics/Source/<a class="el" href="_texture_8h_source.html">Texture.h</a></li>
-<li>C:/Users/sms_s/Desktop/Graphics/Source/Texture.cpp</li>
+<li>/github/workspace/Source/<a class="el" href="_texture_8h_source.html">Texture.h</a></li>
+<li>/github/workspace/Source/Texture.cpp</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -414,7 +415,7 @@ Format&#160;</td><td class="memItemRight" valign="bottom"><b>format</b></td></tr
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_texture.html">Texture</a></li>
-    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

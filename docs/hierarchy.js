@@ -1,6 +1,10 @@
 var hierarchy =
 [
     [ "VertexFormat::Attribute", "struct_vertex_format_1_1_attribute.html", null ],
+    [ "Camera", "class_camera.html", [
+      [ "OrthographicCamera", "class_orthographic_camera.html", null ],
+      [ "PerspectiveCamera", "class_perspective_camera.html", null ]
+    ] ],
     [ "ClearFlag", "struct_clear_flag.html", null ],
     [ "CommandBuffer", "class_command_buffer.html", [
       [ "GLCommandBuffer", "class_g_l_command_buffer.html", null ],
@@ -19,6 +23,7 @@ var hierarchy =
     [ "GLCmdSetClearColor", "struct_g_l_cmd_set_clear_color.html", null ],
     [ "GLCmdSetClearDepth", "struct_g_l_cmd_set_clear_depth.html", null ],
     [ "GLCmdSetIndexBuffer", "struct_g_l_cmd_set_index_buffer.html", null ],
+    [ "GLCmdSetPipeline", "struct_g_l_cmd_set_pipeline.html", null ],
     [ "GLCmdSetVertexBuffer", "struct_g_l_cmd_set_vertex_buffer.html", null ],
     [ "GLCmdSetViewport", "struct_g_l_cmd_set_viewport.html", null ],
     [ "GLVertexArray", "class_g_l_vertex_array.html", null ],
@@ -32,13 +37,16 @@ var hierarchy =
     [ "Model", "class_model.html", null ],
     [ "Monitor", "class_monitor.html", null ],
     [ "Material::PBR", "struct_material_1_1_p_b_r.html", null ],
+    [ "Pipeline", "class_pipeline.html", null ],
     [ "Program", "class_program.html", [
-      [ "GLProgram", "class_g_l_program.html", null ]
+      [ "GLProgram", "class_g_l_program.html", null ],
+      [ "VKProgram", "class_v_k_program.html", null ]
     ] ],
     [ "Renderer", "class_renderer.html", [
       [ "GLRenderer", "class_g_l_renderer.html", null ],
       [ "VKRenderer", "class_v_k_renderer.html", null ]
     ] ],
+    [ "RID", "class_r_i_d.html", null ],
     [ "Shader", "class_shader.html", [
       [ "GLShader", "class_g_l_shader.html", null ],
       [ "VKShader", "class_v_k_shader.html", null ]

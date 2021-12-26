@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['requestfocus_0',['requestFocus',['../class_window.html#acaf1ae031f7b9196f36f66e37ff3eb0f',1,'Window']]]
+  ['orthographiccamera_226',['OrthographicCamera',['../class_orthographic_camera.html#a70fdd1313ed5fdb9f906a3c25f82c7fe',1,'OrthographicCamera']]]
 ];
