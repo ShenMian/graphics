@@ -25,7 +25,7 @@
 var NAVTREE =
 [
   [ "Graphics", "index.html", [
-    [ "Graphics Documentation", "index.html", "index" ],
+    [ "Graphics 文檔", "index.html", "index" ],
     [ "模块", "modules.html", "modules" ],
     [ "类", "annotated.html", [
       [ "类列表", "annotated.html", "annotated_dup" ],
@@ -47,7 +47,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_camera_8h_source.html",
-"class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8fa37d01b98065725fe3a1d30acf3a0064a"
+"class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8fa08822b3ae4e2aede0afe08abe600e9c0"
 ];
 
 var SYNCONMSG = '点击 关闭 面板同步';

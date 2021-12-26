@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['graphics_20documentation_270',['Graphics Documentation',['../index.html',1,'']]]
+  ['graphics_20文檔_270',['Graphics 文檔',['../index.html',1,'']]]
 ];
