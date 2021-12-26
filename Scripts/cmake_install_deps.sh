@@ -116,11 +116,6 @@ then
 
     if ! vulkaninfo | grep -i vulkan 2>/dev/null
     then
-        install_ubuntu vulkan-intel
-        install_ubuntu vulkan-radeon
-        sudo apt install -y libvulkan1
-    fi
-    then
         # AMD GPU
         sudo add-apt-repository ppa:oibaf/graphics-drivers
         sudo apt update
