@@ -2,11 +2,11 @@
 # Copyright 2021 ShenMian
 # License(Apache-2.0)
 
-function install_macos() {
+function install_arch() {
     deps=$*
 
-    if ! brew install $deps >/dev/null; then
-        echo "brew install failed"
+    if ! sudo pacman --noconfirm -S $deps >/dev/null; then
+        echo "pacman install failed"
         exit 1
     fi
 }
@@ -20,11 +20,11 @@ function install_ubuntu() {
     fi
 }
 
-function install_arch() {
+function install_macos() {
     deps=$*
 
-    if ! sudo pacman --noconfirm -S $deps >/dev/null; then
-        echo "pacman install failed"
+    if ! brew install $deps >/dev/null; then
+        echo "brew install failed"
         exit 1
     fi
 }
@@ -95,11 +95,12 @@ then
 
     install_cmake "meshoptimizer"
 
-    sudo pacman -S vulkan-intel
-    sudo pacman -S vulkan-radeon
-
+    :'
+    install_arch vulkan-intel
+    install_arch vulkan-radeon
     yay -S amdgpu-pro-vulkan
     glxinfo | grep -i vulkan
+    '
 
     exit
 fi
@@ -113,10 +114,7 @@ then
     install_ubuntu libassimp-dev
     install_ubuntu libglfw3-dev
 
-    # wget -qO - http://packages.lunarg.com/lunarg-signing-key-pub.asc | sudo apt-key add -
-    # sudo wget -qO /etc/apt/sources.list.d/lunarg-vulkan-focal.list http://packages.lunarg.com/vulkan/lunarg-vulkan-focal.list
-    # install_ubuntu vulkan-sdk
-
+    :'
     # AMD GPU
     sudo add-apt-repository ppa:oibaf/graphics-drivers
     sudo apt update
@@ -130,6 +128,7 @@ then
     # install_ubuntu nvidia-graphics-drivers-396 nvidia-settings vulkan vulkan-utils
 
     vulkaninfo
+    '
 
     install_cmake "meshoptimizer"
 
