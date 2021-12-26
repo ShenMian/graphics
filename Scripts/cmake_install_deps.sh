@@ -5,8 +5,8 @@
 function install_macos() {
     deps=$*
 
-    if ! brew install $deps; then
-        echo "apt install failed"
+    if ! brew install $deps >/dev/null; then
+        echo "brew install failed"
         exit 1
     fi
 }
@@ -14,8 +14,17 @@ function install_macos() {
 function install_ubuntu() {
     deps=$*
 
-    if ! sudo apt install -y $deps; then
+    if ! sudo apt install -y $deps >/dev/null; then
         echo "apt install failed"
+        exit 1
+    fi
+}
+
+function install_arch() {
+    deps=$*
+
+    if ! sudo pacman --noconfirm -S $deps >/dev/null; then
+        echo "pacman install failed"
         exit 1
     fi
 }
@@ -79,6 +88,22 @@ fi
 
 echo Installing dependencies...
 
+# Arch Linux
+if sudo pacman -Syyu >/dev/null 2>&1
+then
+    echo Installing dependencies on Arch Linux...
+
+    install_cmake "meshoptimizer"
+
+    sudo pacman -S vulkan-intel
+    sudo pacman -S vulkan-radeon
+
+    yay -S amdgpu-pro-vulkan
+    glxinfo | grep -i vulkan
+
+    exit
+fi
+
 # Ubuntu
 if sudo apt update >/dev/null 2>&1
 then
@@ -88,12 +113,23 @@ then
     install_ubuntu libassimp-dev
     install_ubuntu libglfw3-dev
 
-    install_ubuntu vulkan-utils
-    install_ubuntu libvulkan1 mesa-vulkan-drivers vulkan-utils
-    vulkaninfo
     # wget -qO - http://packages.lunarg.com/lunarg-signing-key-pub.asc | sudo apt-key add -
     # sudo wget -qO /etc/apt/sources.list.d/lunarg-vulkan-focal.list http://packages.lunarg.com/vulkan/lunarg-vulkan-focal.list
     # install_ubuntu vulkan-sdk
+
+    # AMD GPU
+    # sudo add-apt-repository ppa:oibaf/graphics-drivers
+    # sudo apt update
+    # sudo apt upgrade
+    # install_ubuntu libvulkan1 mesa-vulkan-drivers vulkan-utils
+
+    # Nvidia GPU
+    sudo add-apt-repository ppa:graphics-drivers/ppa
+    sudo apt update
+    sudo apt upgrade
+    install_ubuntu nvidia-graphics-drivers-396 nvidia-settings vulkan vulkan-utils
+
+    vulkaninfo
 
     install_cmake "meshoptimizer"
 
