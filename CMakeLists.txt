@@ -13,11 +13,11 @@ project(Graphics
 option(BUILD_EXAMPLES "Build examples" ON)
 option(BUILD_TESTS    "Build tests"    ON)
 
-# 输出编译器信息
+# 输出信息
+cmake_host_system_information(RESULT OS_PRETTY_NAME QUERY DISTRIB_PRETTY_NAME)
 message(STATUS "OS")
-message(STATUS "|- Name   : ${CMAKE_SYSTEM_NAME}")
-message(STATUS "|- Version: ${CMAKE_SYSTEM_VERSION}")
-message(STATUS "`- Vendor : ${CMAKE_SYSTEM_VENDOR}")
+message(STATUS "|- Name   : ${OS_PRETTY_NAME}(${CMAKE_SYSTEM_NAME})")
+message(STATUS "`- Version: ${CMAKE_SYSTEM_VERSION}")
 message(STATUS "Compiler")
 message(STATUS "|- ID     : ${CMAKE_CXX_COMPILER_ID}")
 message(STATUS "`- Version: ${CMAKE_CXX_COMPILER_VERSION}")
@@ -46,7 +46,6 @@ if(MSVC)
 endif()
 
 if(UNIX)
-  cmake_host_system_information(RESULT OS_PRETTY_NAME QUERY DISTRIB_PRETTY_NAME)
   if(OS_PRETTY_NAME MATCHES "Ubuntu")
     set(UBUNTU true)
   endif()
