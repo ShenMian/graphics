@@ -130,6 +130,7 @@ then
     vulkaninfo
     '
 
+    install_cmake "Vulkan-Headers"
     install_cmake "meshoptimizer"
 
     exit
