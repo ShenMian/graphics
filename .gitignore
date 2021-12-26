@@ -1,9 +1,0 @@
-Makefile
-Examples/
-Deps/
-Docs/
-Source/
-build/
-.vs/
-.vscode/
-*.sln
