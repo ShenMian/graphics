@@ -1,6 +1,16 @@
-name: MacOS
+name: macOS
 
-on: [push, pull_request]
+on:
+  push:
+    paths:
+      - '**.cpp'
+      - '**.hpp'
+      - '**.h'
+  pull_request:
+    paths:
+      - '**.cpp'
+      - '**.hpp'
+      - '**.h'
 
 jobs:
   build:
