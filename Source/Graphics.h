@@ -24,6 +24,17 @@
 #include "Core/Timer.hpp"
 #include "Core/RID.hpp"
 
+/**
+ * @defgroup core 核心
+ * @brief 較爲基礎的部分, 包括: 圖像導入/導出/處理, 輸入/輸出等.
+ *
+ * @defgroup model 模型
+ * @brief 3D 模型相關. 包括: 模型導入/導出, 網格處理, 紋理材質組等.
+ *
+ * @defgroup shader 着色器
+ * @brief 着色器相關, 包括: 着色器程序, 着色器階段等.
+ */
+
 // Doxygen main page
 /**
  * @mainpage Graphics 文檔
@@ -38,15 +49,6 @@
  * 文档
  * ----
  * - @subpage GettingStarted
- *
- * @defgroup core 核心
- * @brief 較爲基礎的部分, 包括: 圖像導入/導出/處理, 輸入/輸出等.
- *
- * @defgroup model 模型
- * @brief 3D 模型相關. 包括: 模型導入/導出, 網格處理, 紋理材質組等.
- *
- * @defgroup shader 着色器
- * @brief 着色器相關, 包括: 着色器程序, 着色器階段等.
  */
 
 /**
@@ -78,11 +80,13 @@
  *
  * 更新
  * ---
- * 因爲該庫對 Git 子模塊的更新較爲頻繁, 請注意將子模塊牽出到相應的提交. 你可以使用下面的命令更新本地克隆倉庫.
+ * 因为该库对 Git 子模块的更新较为频繁, 请注意拉取后将子模块签出到相应的提交. 你可以使用下面的命令更新本地克隆仓库/子模块.
  * ```bash
  * git pull                    # 拉取到最新的提交
- * git submodule update --init # 牽出子模塊
+ * git checkout <tag-id>       # 切换到指定的版本
+ * git submodule update --init # 签出子模块
  * ```
+ * **警告**: 不建议直接使用最新提交, 因为这些修改还不稳定, 可能无法正常工作.
  *
  * 示例
  * ----
