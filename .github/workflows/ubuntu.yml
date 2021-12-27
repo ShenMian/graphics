@@ -6,11 +6,13 @@ on:
       - '**.cpp'
       - '**.hpp'
       - '**.h'
+      - '.github/workflows/ubuntu.yml'
   pull_request:
     paths:
       - '**.cpp'
       - '**.hpp'
       - '**.h'
+      - '.github/workflows/ubuntu.yml'
 
 jobs:
   build:
