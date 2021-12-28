@@ -9,41 +9,41 @@ constexpr uint32_t dds_magic_number = 0x20534444; // "DDS "
 
 struct DDSPixelFormat
 {
-	uint32_t    size;
-	uint32_t    flags;
-	uint32_t    fourCC;
-	uint32_t    RGBBitCount;
-	uint32_t    RBitMask;
-	uint32_t    GBitMask;
-	uint32_t    BBitMask;
-	uint32_t    ABitMask;
+	[[maybe_unused]] uint32_t size;
+	[[maybe_unused]] uint32_t flags;
+	[[maybe_unused]] uint32_t fourCC;
+	[[maybe_unused]] uint32_t RGBBitCount;
+	[[maybe_unused]] uint32_t RBitMask;
+	[[maybe_unused]] uint32_t GBitMask;
+	[[maybe_unused]] uint32_t BBitMask;
+	[[maybe_unused]] uint32_t ABitMask;
 };
 
 struct DDSHeader
 {
-	uint32_t        size;
-	uint32_t        flags;
-	uint32_t        height;
-	uint32_t        width;
-	uint32_t        pitchOrLinearSize;
-	uint32_t        depth; // only if DDS_HEADER_FLAGS_VOLUME is set in flags
-	uint32_t        mipMapCount;
-	uint32_t        reserved1[11];
-	DDSPixelFormat ddspf;
-	uint32_t        caps;
-	uint32_t        caps2;
-	uint32_t        caps3;
-	uint32_t        caps4;
-	uint32_t        reserved2;
+	[[maybe_unused]] uint32_t        size;
+	[[maybe_unused]] uint32_t        flags;
+	[[maybe_unused]] uint32_t        height;
+	[[maybe_unused]] uint32_t        width;
+	[[maybe_unused]] uint32_t        pitchOrLinearSize;
+	[[maybe_unused]] uint32_t        depth; // only if DDS_HEADER_FLAGS_VOLUME is set in flags
+	[[maybe_unused]] uint32_t        mipMapCount;
+	[[maybe_unused]] uint32_t        reserved1[11];
+	[[maybe_unused]] DDSPixelFormat ddspf;
+	[[maybe_unused]] uint32_t        caps;
+	[[maybe_unused]] uint32_t        caps2;
+	[[maybe_unused]] uint32_t        caps3;
+	[[maybe_unused]] uint32_t        caps4;
+	[[maybe_unused]] uint32_t        reserved2;
 };
 
 struct DDSHeaderDXT10
 {
-	uint32_t dxgiFormat;
-	uint32_t dimension;
-	uint32_t miscFlag; // see D3D11_RESOURCE_MISC_FLAG
-	uint32_t arraySize;
-	uint32_t miscFlags2;
+	[[maybe_unused]] uint32_t dxgiFormat;
+	[[maybe_unused]] uint32_t dimension;
+	[[maybe_unused]] uint32_t miscFlag; // see D3D11_RESOURCE_MISC_FLAG
+	[[maybe_unused]] uint32_t arraySize;
+	[[maybe_unused]] uint32_t miscFlags2;
 };
 
 namespace DDSFlag
