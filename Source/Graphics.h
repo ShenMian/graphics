@@ -35,7 +35,6 @@
  * @brief 着色器相關, 包括: 着色器程序, 着色器階段等.
  */
 
-// Doxygen main page
 /**
  * @mainpage Graphics 文檔
  *
