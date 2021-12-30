@@ -10,6 +10,7 @@ var annotated_dup =
     [ "Gamepad", "class_gamepad.html", "class_gamepad" ],
     [ "GLCmdClear", "struct_g_l_cmd_clear.html", "struct_g_l_cmd_clear" ],
     [ "GLCmdDraw", "struct_g_l_cmd_draw.html", "struct_g_l_cmd_draw" ],
+    [ "GLCmdDrawIndexed", "struct_g_l_cmd_draw_indexed.html", "struct_g_l_cmd_draw_indexed" ],
     [ "GLCmdSetClearColor", "struct_g_l_cmd_set_clear_color.html", "struct_g_l_cmd_set_clear_color" ],
     [ "GLCmdSetClearDepth", "struct_g_l_cmd_set_clear_depth.html", "struct_g_l_cmd_set_clear_depth" ],
     [ "GLCmdSetIndexBuffer", "struct_g_l_cmd_set_index_buffer.html", "struct_g_l_cmd_set_index_buffer" ],

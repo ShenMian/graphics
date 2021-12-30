@@ -20,6 +20,7 @@ var hierarchy =
     [ "Gamepad", "class_gamepad.html", null ],
     [ "GLCmdClear", "struct_g_l_cmd_clear.html", null ],
     [ "GLCmdDraw", "struct_g_l_cmd_draw.html", null ],
+    [ "GLCmdDrawIndexed", "struct_g_l_cmd_draw_indexed.html", null ],
     [ "GLCmdSetClearColor", "struct_g_l_cmd_set_clear_color.html", null ],
     [ "GLCmdSetClearDepth", "struct_g_l_cmd_set_clear_depth.html", null ],
     [ "GLCmdSetIndexBuffer", "struct_g_l_cmd_set_index_buffer.html", null ],

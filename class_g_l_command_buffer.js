@@ -2,7 +2,8 @@ var class_g_l_command_buffer =
 [
     [ "begin", "class_g_l_command_buffer.html#afd693bfbad068e249eb50309d1a3e288", null ],
     [ "clear", "class_g_l_command_buffer.html#afb2847fd985cc379404cbecd852afa2f", null ],
-    [ "draw", "class_g_l_command_buffer.html#a539a58deeace42480a92593547a10d3c", null ],
+    [ "draw", "class_g_l_command_buffer.html#aab14ae0319950304381c72dff5702307", null ],
+    [ "drawIndexed", "class_g_l_command_buffer.html#a01d6447b4aaa490b37a8afd88b7c2e1b", null ],
     [ "end", "class_g_l_command_buffer.html#aad7125ce4851b649f95d5b14c76b4b8d", null ],
     [ "getData", "class_g_l_command_buffer.html#afb23367b5bdd524888868bd7ae522040", null ],
     [ "setClearColor", "class_g_l_command_buffer.html#ac0055c47b244077d3987503efb0e5915", null ],
