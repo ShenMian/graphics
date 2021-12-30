@@ -41,28 +41,22 @@ template <typename Vertex>
 void loadVertices(std::vector<Vertex>& vertices, const aiMesh* mesh)
 {
 	static_assert(std::same_as<ai_real, float>);
+
 	for(unsigned int i = 0; i < mesh->mNumVertices; i++)
 	{
-		auto v = mesh->mVertices[i];
-
 		Vertex vertex;
 
 		// 获取坐标
 		std::memcpy(&vertex.position, &mesh->mVertices[i], sizeof(vertex.position));
 
-		// TODO: 性能测试.
-		// vertex.position.x = mesh->mVertices[i][0];
-		// vertex.position.x = mesh->mVertices[i][1];
-		// vertex.position.x = mesh->mVertices[i][2];
-
 		// 获取法向量
 		if(mesh->HasNormals())
 			std::memcpy(&vertex.normal, &mesh->mNormals[i], sizeof(vertex.normal));
 
+		// 检查是否存在纹理坐标
 		if(mesh->mTextureCoords[0])
 		{
-			std::memcpy(&vertex.uv, &mesh->mTextureCoords[0][i], sizeof(vertex.uv)); // 获取纹理坐标
-
+			std::memcpy(&vertex.uv, &mesh->mTextureCoords[0][i], sizeof(vertex.uv));         // 获取纹理坐标
 			std::memcpy(&vertex.tangent, &mesh->mTangents[i], sizeof(vertex.tangent));       // 获取 tangent
 			std::memcpy(&vertex.bitangent, &mesh->mBitangents[i], sizeof(vertex.bitangent)); // 获取 bitangent
 		}
@@ -80,6 +74,7 @@ void loadIndices(std::vector<unsigned int>& indices, const aiMesh* mesh)
 	for(unsigned int i = 0; i < mesh->mNumFaces; i++)
 	{
 		const auto& face = mesh->mFaces[i];
+
 		for(unsigned int j = 0; j < face.mNumIndices; j++)
 			indices.push_back(face.mIndices[j]);
 	}
