@@ -57,7 +57,8 @@ public:
 	virtual void setClearDepth(float depth) = 0;
 	virtual void setClearStencil() = 0;
 
-	virtual void draw(size_t first, size_t num) = 0;
+	virtual void draw(size_t firstVertex, size_t VerticesNum) = 0;
+	virtual void drawIndexed(size_t firstIndex, size_t indicesNum) = 0;
 
 private:
 	std::shared_ptr<Program> program;

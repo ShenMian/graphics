@@ -71,11 +71,18 @@ void GLCommandBuffer::setClearStencil()
 {
 }
 
-void GLCommandBuffer::draw(size_t first, size_t num)
+void GLCommandBuffer::draw(size_t firstVertex, size_t verticesNum)
 {
 	auto cmd = addCommand<GLCmdDraw>(GLOpcode::draw);
-	cmd->first = first;
-	cmd->num = num;
+	cmd->firstVertex = firstVertex;
+	cmd->verticesNum = verticesNum;
+}
+
+void GLCommandBuffer::drawIndexed(size_t firstIndex, size_t indicesNum)
+{
+	auto cmd = addCommand<GLCmdDrawIndexed>(GLOpcode::drawIndexed);
+	cmd->firstIndex = firstIndex;
+	cmd->indicesNum = indicesNum;
 }
 
 void GLCommandBuffer::addCommand(GLOpcode opcode)

@@ -45,6 +45,10 @@ void VKCommandBuffer::setClearStencil()
 {
 }
 
-void VKCommandBuffer::draw(size_t first, size_t num)
+void VKCommandBuffer::draw(size_t firstVertex, size_t verticesNum)
+{
+}
+
+void VKCommandBuffer::drawIndexed(size_t firstIndex, size_t indicesNum)
 {
 }

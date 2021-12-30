@@ -23,5 +23,6 @@ public:
 	void setClearDepth(float depth) override;
 	void setClearStencil() override;
 
-	void draw(size_t first, size_t num) override;
+	void draw(size_t firstVertex, size_t verticesNum) override;
+	void drawIndexed(size_t firstIndex, size_t indicesNum) override;
 };

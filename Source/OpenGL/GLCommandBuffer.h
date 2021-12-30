@@ -29,7 +29,8 @@ public:
 	void setClearDepth(float depth) override;
 	void setClearStencil() override;
 
-	void draw(size_t first, size_t num) override;
+	void draw(size_t firstVertex, size_t verticesNum) override;
+	void drawIndexed(size_t firstIndex, size_t indicesNum) override;
 
 	const auto& getData() const;
 
@@ -68,7 +69,8 @@ enum class GLOpcode
 	setClearDepth,
 	setClearStencil,
 
-	draw
+	draw,
+	drawIndexed
 };
 
 struct GLCmdSetViewport
@@ -109,6 +111,12 @@ struct GLCmdSetClearDepth
 
 struct GLCmdDraw
 {
-	size_t first;
-	size_t num;
+	size_t firstVertex;
+	size_t verticesNum;
+};
+
+struct GLCmdDrawIndexed
+{
+	size_t firstIndex;
+	size_t indicesNum;
 };
