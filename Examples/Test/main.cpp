@@ -102,7 +102,7 @@ int main()
 
 					cmdBuffer->setVertexBuffer(vbo);
 					cmdBuffer->setIndexBuffer(ibo);
-					cmdBuffer->draw(0, vbo->getCount());
+					cmdBuffer->drawIndexed(0, ibo->getCount());
 				}
 			}
 			cmdBuffer->end();
