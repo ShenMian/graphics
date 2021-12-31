@@ -22,6 +22,11 @@ else()
 endif()
 list(APPEND INCS "${DEPS_DIR}/glfw/include")
 
+# 添加 ImGui
+include("${DEPS_DIR}/imgui.cmake")
+list(APPEND LIBS imgui)
+list(APPEND INCS "${DEPS_DIR}/imgui")
+
 # 添加 assimp
 find_package(assimp CONFIG QUIET)
 if(assimp_FOUND)

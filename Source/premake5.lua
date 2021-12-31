@@ -19,6 +19,7 @@ project "Graphics"
 		"%{deps_inc.math}",
 		"%{deps_inc.glad}",
 		"%{deps_inc.glfw}",
+		"%{deps_inc.imgui}",
 		"%{deps_inc.assimp}",
 		"%{deps_inc.vulkan}",
 		"%{deps_inc.vk_bootstrap}",
@@ -30,6 +31,7 @@ project "Graphics"
 	links {
 		"glad",
 		"glfw",
+		"imgui",
 		"assimp",
 		"vk_bootstrap",
 		"meshoptimizer",
