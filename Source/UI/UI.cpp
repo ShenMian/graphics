@@ -4,14 +4,53 @@
 #include "UI.h"
 #include "Core/Window.h"
 #include "Renderer.h"
+#include <GLFW/glfw3.h>
 #include <imgui.h>
 #include <backends/imgui_impl_glfw.h>
 #include <backends/imgui_impl_opengl3.h>
 #include <backends/imgui_impl_vulkan.h>
 
-void UI::update()
+void UI::begin()
 {
-	ImGui::ShowDemoWindow();
+	switch(Renderer::getAPI())
+	{
+		using enum Renderer::API;
+
+	case OpenGL:
+		ImGui_ImplOpenGL3_NewFrame();
+		break;
+
+	case Vulkan:
+		// ImGui_ImplVulkan_NewFrame();
+		break;
+	}
+	ImGui_ImplGlfw_NewFrame();
+	ImGui::NewFrame();
+}
+
+void UI::end()
+{
+	ImGui::Render();
+	switch(Renderer::getAPI())
+	{
+		using enum Renderer::API;
+
+	case OpenGL:
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+		break;
+
+	case Vulkan:
+		// ImGui_ImplVulkan_RenderDrawData(ImGui::GetDrawData());
+		break;
+	}
+
+	if(ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+	{
+		const auto context = glfwGetCurrentContext();
+		ImGui::UpdatePlatformWindows();
+		ImGui::RenderPlatformWindowsDefault();
+		glfwMakeContextCurrent(context);
+	}
 }
 
 void UI::init(const Window& win)
@@ -34,7 +73,7 @@ void UI::init(const Window& win)
 		break;
 
 	case Vulkan:
-		ImGui_ImplGlfw_InitForVulkan(reinterpret_cast<GLFWwindow*>(win.getNativeHandle()), true);
+		// ImGui_ImplGlfw_InitForVulkan(reinterpret_cast<GLFWwindow*>(win.getNativeHandle()), true);
 		// ImGui_ImplVulkan_Init();
 		break;
 	}
@@ -51,7 +90,7 @@ void UI::deinit()
 		break;
 
 	case Vulkan:
-		ImGui_ImplVulkan_Shutdown();
+		// ImGui_ImplVulkan_Shutdown();
 		break;
 	}
 

@@ -69,6 +69,8 @@ int main()
 
 		while(running)
 		{
+			UI::begin();
+
 			const float speed = 0.1f;
 			if(Input::isPressed(Key::W))
 				camera->setPosition(camera->getPosition() + camera->getFront() * speed);
@@ -101,6 +103,8 @@ int main()
 			}
 			cmdBuffer->end();
 			cmdQueue->submit(cmdBuffer);
+
+			UI::end();
 
 			window->update();
 		}
