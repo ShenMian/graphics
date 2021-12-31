@@ -15,10 +15,24 @@ Vector3f Camera::getPosition() const
 	return position;
 }
 
+Vector3f Camera::getFront() const
+{
+	return -direction.normalized();
+}
+
+Vector3f Camera::getRight() const
+{
+	return direction.cross(up).normalize();
+}
+
+Vector3f Camera::getUp() const
+{
+	return up;
+}
+
 void Camera::updateViewMatrix() const
 {
-	// TODO
-	view = Matrix4::translate(position);
+	view = Matrix4::lookAt(position, position + direction, up);
 	viewDirty = false;
 }
 

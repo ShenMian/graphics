@@ -38,6 +38,10 @@ public:
 	void setPosition(Vector3f pos);
 	Vector3f getPosition() const;
 
+	Vector3f getFront() const;
+	Vector3f getRight() const;
+	Vector3f getUp() const;
+
 protected:
 	/**
 	 * @brief 更新投影矩阵, 并清除脏标记.
@@ -54,10 +58,8 @@ private:
 	void updateViewMatrix() const;
 
 	Vector3f position;
-	Vector3f direction = Vector3f::front;
-
-	Vector3f up = Vector3f::up;
-	Vector3f front = Vector3f::front;
+	Vector3f direction = -Vector3f::unit_z;
+	Vector3f up = Vector3f::down;
 
 	mutable Matrix4 view;
 	mutable bool    viewDirty = true;

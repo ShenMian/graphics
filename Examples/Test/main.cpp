@@ -24,17 +24,17 @@ int main()
 
 		Model model;
 		model.load("../../../3DModel/basic/cube.obj");
+		// model.load("../../../3DModel/weapon/m4a1/m4a1.gltf");
 		// model.load("../../../3DModel/scene/Crytek_Sponza/sponza.obj");
 		// model.load("../../../3DModel/scene/Amazon_Lumberyard_Bistro/Exterior/exterior.obj");
-		// model.load("../../../3DModel/weapon/m4a1/m4a1.gltf");
 		// model.load("../../../3DModel/scene/SunTemple/SunTemple.fbx"); // 暂不支持 DDS 格式的纹理资源
 		/*model.loadAsync("../../../3DModel/scene/Crytek_Sponza/sponza.obj", [](std::string_view error){
 			if(!error.empty())
 				puts(error.data());
 		});*/
 
-		auto camera = PerspectiveCamera::create(60.f, (float)window->getSize().x / window->getSize().y, 0.1f, 500.0f);
-		camera->setPosition({0, 0, 3});
+		auto camera = PerspectiveCamera::create(radians(60.f), (float)window->getSize().x / window->getSize().y, 0.1f, 500.f);
+		camera->setPosition({0, 0, -3});
 
 		auto program = Program::create("Shaders/mesh");
 		auto pipeline = Pipeline::create(program);
@@ -57,35 +57,28 @@ int main()
 				case Key::F11:
 					window->setFullscreen(!window->isFullscreen());
 					break;
-
-				case Key::A:
-					camera->setPosition(camera->getPosition() + Vector3f::left);
-					break;
-
-				case Key::D:
-					camera->setPosition(camera->getPosition() + Vector3f::right);
-					break;
-
-				case Key::W:
-					camera->setPosition(camera->getPosition() + Vector3f::front);
-					break;
-
-				case Key::S:
-					camera->setPosition(camera->getPosition() + Vector3f::back);
-					break;
 				}
 			}
 		};
 		window->onResize = [&](Vector2i size)
 		{
-			camera->setProjection(60.f, (float)size.x / size.y, 0.1f, 500.0f);
+			camera->setProjection(radians(60.f), (float)size.x / size.y, 0.1f, 500.0f);
 		};
 		window->setVisible(true); // 设置窗口可见
 
 		while(running)
 		{
+			const float speed = 0.1f;
+			if(Input::isPressed(Key::W))
+				camera->setPosition(camera->getPosition() + camera->getFront() * speed);
+			if(Input::isPressed(Key::S))
+				camera->setPosition(camera->getPosition() - camera->getFront() * speed);
+			if(Input::isPressed(Key::A))
+				camera->setPosition(camera->getPosition() - camera->getRight() * speed);
+			if(Input::isPressed(Key::D))
+				camera->setPosition(camera->getPosition() + camera->getRight() * speed);
+
 			program->setUniform("view", camera->getView());
-			// program->setUniform("view", camera->getView());
 			program->setUniform("projection", camera->getProjection());
 
 			cmdBuffer->begin();
