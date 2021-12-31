@@ -59,4 +59,5 @@ add_subdirectory(Source)
 
 if(BUILD_EXAMPLES)
   add_subdirectory(Examples/Triangle)
+  add_subdirectory(Examples/Test)
 endif()
