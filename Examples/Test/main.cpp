@@ -19,6 +19,7 @@ int main()
 
 		Input::setWindow(window);
 		Renderer::init(*window);
+		UI::init(*window);
 
 		PrintInfo();
 
@@ -105,6 +106,7 @@ int main()
 		}
 		delete window;
 
+		UI::deinit();
 		Window::deinit();
 	}
 	catch(std::runtime_error& e)
