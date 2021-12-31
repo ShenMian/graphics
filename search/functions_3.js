@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['image_220',['Image',['../class_image.html#a5502e928122744be1d3b89648298e162',1,'Image::Image()=default'],['../class_image.html#aaf8eb0773fa6f75d832d5f7bb45ec8de',1,'Image::Image(const std::filesystem::path &amp;path)']]],
-  ['isconnected_221',['isConnected',['../class_gamepad.html#a33d4dbd503a8d645885bd19cbc390a91',1,'Gamepad']]],
-  ['isfullscreen_222',['isFullscreen',['../class_window.html#ac3dc6c7f08d4b749b7949149cc6c7dc3',1,'Window']]],
-  ['ispressed_223',['isPressed',['../class_input.html#a77ca3703c1457f69fa12c89f5b08d917',1,'Input::isPressed(Key key)'],['../class_input.html#adfeb39c4544f18847f3b7353fec5ef2d',1,'Input::isPressed(Mouse key)']]],
-  ['isprimary_224',['isPrimary',['../class_monitor.html#abb69747f03e4fed060f16b84052eb3c0',1,'Monitor']]],
-  ['isvisible_225',['isVisible',['../class_window.html#a6be53a737e7dfcc74167962437e93b8f',1,'Window']]]
+  ['image_222',['Image',['../class_image.html#a5502e928122744be1d3b89648298e162',1,'Image::Image()=default'],['../class_image.html#aaf8eb0773fa6f75d832d5f7bb45ec8de',1,'Image::Image(const std::filesystem::path &amp;path)']]],
+  ['isconnected_223',['isConnected',['../class_gamepad.html#a33d4dbd503a8d645885bd19cbc390a91',1,'Gamepad']]],
+  ['isfullscreen_224',['isFullscreen',['../class_window.html#ac3dc6c7f08d4b749b7949149cc6c7dc3',1,'Window']]],
+  ['ispressed_225',['isPressed',['../class_input.html#a77ca3703c1457f69fa12c89f5b08d917',1,'Input::isPressed(Key key)'],['../class_input.html#adfeb39c4544f18847f3b7353fec5ef2d',1,'Input::isPressed(Mouse key)']]],
+  ['isprimary_226',['isPrimary',['../class_monitor.html#abb69747f03e4fed060f16b84052eb3c0',1,'Monitor']]],
+  ['isvisible_227',['isVisible',['../class_window.html#a6be53a737e7dfcc74167962437e93b8f',1,'Window']]]
 ];

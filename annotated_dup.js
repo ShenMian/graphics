@@ -42,6 +42,7 @@ var annotated_dup =
     [ "Shader", "class_shader.html", "class_shader" ],
     [ "Texture", "class_texture.html", "class_texture" ],
     [ "Timer", "class_timer.html", "class_timer" ],
+    [ "UI", "class_u_i.html", null ],
     [ "VertexBuffer", "class_vertex_buffer.html", "class_vertex_buffer" ],
     [ "VertexFormat", "class_vertex_format.html", "class_vertex_format" ],
     [ "VKCommandBuffer", "class_v_k_command_buffer.html", "class_v_k_command_buffer" ],

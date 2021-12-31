@@ -56,6 +56,7 @@ var hierarchy =
       [ "GLTexture", "class_g_l_texture.html", null ]
     ] ],
     [ "Timer", "class_timer.html", null ],
+    [ "UI", "class_u_i.html", null ],
     [ "VertexBuffer", "class_vertex_buffer.html", [
       [ "GLVertexBuffer", "class_g_l_vertex_buffer.html", null ]
     ] ],
