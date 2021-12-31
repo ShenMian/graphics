@@ -65,6 +65,10 @@ else()
 endif()
 list(APPEND INCS "${DEPS_DIR}/meshoptimizer/src")
 
+message(STATUS "INCS: ${INCS}")
+message(STATUS "LIBS: ${LIBS}")
+
+
 file(GLOB_RECURSE SOURCES "*.cpp")
 
 # 添加静态库文件
