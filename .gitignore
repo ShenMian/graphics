@@ -22,6 +22,9 @@ Makefile
 /Docs/man
 /Docs/xml
 
+# ImGui configure files
+imgui.ini
+
 # Prerequisites
 *.d
 
