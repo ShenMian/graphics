@@ -24,6 +24,8 @@
 #include "Core/Timer.hpp"
 #include "Core/RID.hpp"
 
+#include "UI/UI.h"
+
 /**
  * @defgroup core 核心
  * @brief 較爲基礎的部分, 包括: 圖像導入/導出/處理, 輸入/輸出等.
