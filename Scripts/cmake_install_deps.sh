@@ -102,6 +102,7 @@ then
     fi
     '
 
+    install_arch cmake
     install_cmake "meshoptimizer"
 
     exit
@@ -133,8 +134,9 @@ then
     fi
     '
 
-    install_ubuntu vulkan-headers libvulkan-dev xorg-dev
-    install_ubuntu libx11-dev mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev libxrandr-dev libxi-dev libxmu-dev libblas-dev libxinerama-dev libxcursor-dev
+    install_ubuntu cmake
+    install_ubuntu vulkan-headers libvulkan-dev vulkan-tools vulkan-validationlayers-dev spirv-tools
+    install_ubuntu libx11-dev mesa-common-dev libgl1-mesa-dev libglu1-mesa-dev libxrandr-dev libxi-dev libxmu-dev libblas-dev libxinerama-dev libxcursor-dev xorg-dev
     install_ubuntu libassimp-dev
     install_ubuntu libglfw3-dev
     install_cmake "meshoptimizer"
@@ -147,6 +149,7 @@ if brew update >/dev/null 2>&1
 then
     echo Installing dependencies on MacOS...
 
+    install_macos cmake
     install_macos glfw
     install_macos assimp
     install_cmake "meshoptimizer"
