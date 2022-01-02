@@ -25,8 +25,8 @@ int main()
 
 		Model model;
 		model.load("../../../3DModel/basic/cube.obj");
-		// model.load("../../../3DModel/weapon/m4a1/m4a1.gltf");
 		// model.load("../../../3DModel/scene/Crytek_Sponza/sponza.obj");
+		// model.load("../../../3DModel/weapon/m4a1/m4a1.gltf");
 		// model.load("../../../3DModel/scene/Amazon_Lumberyard_Bistro/Exterior/exterior.obj");
 		// model.load("../../../3DModel/scene/SunTemple/SunTemple.fbx"); // 暂不支持 DDS 格式的纹理资源
 		/*model.loadAsync("../../../3DModel/scene/Crytek_Sponza/sponza.obj", [](std::string_view error){
@@ -67,11 +67,17 @@ int main()
 		};
 		window->setVisible(true); // 设置窗口可见
 
+		ui::Window win("Window");
+		ui::Button btn("Button");
+		win.add(btn);
+
 		while(running)
 		{
 			UI::begin();
 
-			const float speed = 0.1f;
+			win.update();
+
+			const float speed = 1.1f;
 			if(Input::isPressed(Key::W))
 				camera->setPosition(camera->getPosition() + camera->getFront() * speed);
 			if(Input::isPressed(Key::S))
@@ -80,6 +86,10 @@ int main()
 				camera->setPosition(camera->getPosition() - camera->getRight() * speed);
 			if(Input::isPressed(Key::D))
 				camera->setPosition(camera->getPosition() + camera->getRight() * speed);
+			if(Input::isPressed(Key::Space))
+				camera->setPosition(camera->getPosition() + camera->getUp() * speed);
+			if(Input::isPressed(Key::LeftShift))
+				camera->setPosition(camera->getPosition() - camera->getUp() * speed);
 
 			program->setUniform("view", camera->getView());
 			program->setUniform("projection", camera->getProjection());
@@ -111,6 +121,7 @@ int main()
 		delete window;
 
 		UI::deinit();
+		Renderer::deinit();
 		Window::deinit();
 	}
 	catch(std::runtime_error& e)
