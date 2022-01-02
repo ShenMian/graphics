@@ -55,3 +55,19 @@ void Renderer::init(const Window& win)
 		break;
 	}
 }
+
+void Renderer::deinit()
+{
+	switch(Renderer::getAPI())
+	{
+		using enum Renderer::API;
+
+	case OpenGL:
+		GLRenderer::deinit();
+		break;
+
+	case Vulkan:
+		VKRenderer::deinit();
+		break;
+	}
+}

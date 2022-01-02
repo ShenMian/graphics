@@ -3,7 +3,6 @@
 
 #include "VKRenderer.h"
 #include <VkBootstrap.h>
-#include <vulkan/vulkan.h>
 
 #include <GLFW/glfw3.h>
 
@@ -11,10 +10,14 @@ namespace
 {
 
 VkInstance                 instance;
+VkSurfaceKHR               surface;
 VkPhysicalDevice           physicalDevice;
 VkPhysicalDeviceProperties physicalDeviceProperties;
 VkDevice                   device;
+VkSwapchainKHR             swapchain;
 VkQueue                    queue;
+uint32_t                   queueIndex;
+VkCommandPool              commandPool;
 
 }
 
@@ -49,6 +52,26 @@ std::string VKRenderer::getVendorName() const
 	return "Unknown";
 }
 
+const VkInstance& VKRenderer::getInstance() const
+{
+	return instance;
+}
+
+const VkDevice& VKRenderer::getDevice() const
+{
+	return device;
+}
+
+const VkQueue& VKRenderer::getQueue() const
+{
+	return queue;
+}
+
+const VkCommandPool& VKRenderer::getCommandPool() const
+{
+	return commandPool;
+}
+
 void VKRenderer::init(const Window& win)
 {
 	vkb::Instance vkbInstance;
@@ -63,11 +86,10 @@ void VKRenderer::init(const Window& win)
 	}
 	instance = vkbInstance;
 
+	glfwCreateWindowSurface(instance, reinterpret_cast<GLFWwindow*>(win.getNativeHandle()), nullptr, &surface);
+
 	vkb::PhysicalDevice vkbPhysicalDevice;
 	{
-		VkSurfaceKHR surface;
-		glfwCreateWindowSurface(instance, reinterpret_cast<GLFWwindow*>(win.getNativeHandle()), nullptr, &surface);
-
 		vkb::PhysicalDeviceSelector selector(vkbInstance);
 		const auto result = selector.set_surface(surface)
 			.require_dedicated_transfer_queue()
@@ -94,5 +116,41 @@ void VKRenderer::init(const Window& win)
 		if(!result)
 			throw std::runtime_error(result.error().message());
 		queue = result.value();
+
 	}
+
+	{
+		const auto result = vkbDevice.get_queue_index(vkb::QueueType::graphics);
+		if(!result)
+			throw std::runtime_error(result.error().message());
+		queueIndex = result.value();
+	}
+
+	vkb::Swapchain vkbSwapchain;
+	{
+		vkb::SwapchainBuilder builder(vkbDevice);
+		const auto result = builder.build();
+		if(!result)
+			throw std::runtime_error(result.error().message());
+		vkbSwapchain = result.value();
+	}
+	swapchain = vkbSwapchain;
+
+	VkCommandPoolCreateInfo info = {};
+	info.sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO;
+	info.pNext = NULL;
+	info.queueFamilyIndex = queueIndex;
+	info.flags = 0;
+	const auto ret = vkCreateCommandPool(device, &info, nullptr, &commandPool);
+	if(ret != VK_SUCCESS)
+		throw std::runtime_error("failed to create command pool");
+}
+
+void VKRenderer::deinit()
+{
+	vkDestroyCommandPool(device, commandPool, nullptr);
+	vkDestroySwapchainKHR(device, swapchain, nullptr);
+	vkDestroyDevice(device, nullptr);
+	vkDestroySurfaceKHR(instance, surface, nullptr);
+	vkDestroyInstance(instance, nullptr);
 }

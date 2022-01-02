@@ -36,6 +36,7 @@ public:
 	virtual std::string getVendorName() const = 0;
 
 	static void init(const Window& win);
+	static void deinit();
 
 private:
 	static API api;

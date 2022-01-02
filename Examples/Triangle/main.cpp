@@ -78,6 +78,7 @@ int main()
 	}
 	delete window;
 
+	Renderer::deinit();
 	Window::deinit();
 
 	return 0;

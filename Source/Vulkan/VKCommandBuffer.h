@@ -4,10 +4,14 @@
 #pragma once
 
 #include "CommandBuffer.h"
+#include <vulkan/vulkan.h>
 
 class VKCommandBuffer : public CommandBuffer
 {
 public:
+	VKCommandBuffer();
+	virtual ~VKCommandBuffer();
+
 	void begin() override;
 	void end() override;
 
@@ -25,4 +29,7 @@ public:
 
 	void draw(size_t firstVertex, size_t verticesNum) override;
 	void drawIndexed(size_t firstIndex, size_t indicesNum) override;
+
+private:
+	VkCommandBuffer handle;
 };
