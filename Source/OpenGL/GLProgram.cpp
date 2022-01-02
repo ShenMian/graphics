@@ -40,7 +40,8 @@ GLProgram::GLProgram(const std::string& name)
 		comp = Shader::create(name, Shader::Stage::Compute);
 		attach(comp);
 	}
-	assert(vert && frag && "program must have vertex shader and fragment shader");
+	if(vert == nullptr || frag == nullptr)
+		throw std::runtime_error("program must have vertex shader and fragment shader");
 
 	link();
 }
@@ -98,6 +99,11 @@ void GLProgram::setUniform(const std::string& name, const Matrix4& value)
 	GLCheckError();
 }
 
+int GLProgram::getUniformBufferLocation(const std::string& name)
+{
+	return glGetUniformBlockIndex(handle, name.c_str());
+}
+
 int GLProgram::getUniformLocation(const std::string& name)
 {
 	const auto it = uniformLocations.find(name);
@@ -132,6 +138,7 @@ void GLProgram::link()
 		glGetProgramiv(handle, GL_INFO_LOG_LENGTH, &size);
 		std::string info(size, '\0');
 		glGetProgramInfoLog(handle, (GLsizei)info.size(), &size, info.data());
+		throw std::runtime_error("program '" + name + "' link failure: " + info);
 		// assert(false && std::format("program '{}' link failure: {}", name, info));
 	}
 }

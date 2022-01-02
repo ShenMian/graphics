@@ -91,7 +91,8 @@ size_t GLCommandQueue::execute(GLOpcode opcode, const uint8_t* pc)
 	case GLOpcode::drawIndexed:
 	{
 		const auto args = reinterpret_cast<const GLCmdDrawIndexed*>(pc);
-		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); // TODO: debug
+		glEnable(GL_DEPTH_TEST);
+		// glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); // TODO: debug
 		// const GLintptr indices = args->firstIndex * sizeof(unsigned int);
 		glDrawElements(GL_TRIANGLES, (GLsizei)args->indicesNum, GL_UNSIGNED_INT, nullptr);
 		return sizeof(*args);

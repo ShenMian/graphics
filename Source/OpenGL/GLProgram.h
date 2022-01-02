@@ -26,6 +26,7 @@ public:
 	void setUniform(const std::string& name, const Matrix4& value) override;
 
 private:
+	int  getUniformBufferLocation(const std::string& name);
 	int  getUniformLocation(const std::string& name);
 	void attach(const std::shared_ptr<Shader> shader);
 	void link();

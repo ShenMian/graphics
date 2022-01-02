@@ -7,6 +7,7 @@
 #include <glad/glad.h>
 #include <unordered_map>
 #include <cassert>
+#include <stdexcept>
 #include <vector>
 // #include <format>
 
@@ -89,7 +90,7 @@ void GLShader::load()
 			glGetShaderiv(handle, GL_INFO_LOG_LENGTH, &size);
 			std::string info(size, '\0');
 			glGetShaderInfoLog(handle, (GLsizei)info.size(), &size, info.data());
-			assert(false);
+			throw std::runtime_error("shader '" + path.string() + "' compile error: " + info);
 		}
 
 		return;

@@ -59,7 +59,4 @@ public:
 
 	virtual void draw(size_t firstVertex, size_t VerticesNum) = 0;
 	virtual void drawIndexed(size_t firstIndex, size_t indicesNum) = 0;
-
-private:
-	std::shared_ptr<Program> program;
 };
