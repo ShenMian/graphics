@@ -25,6 +25,9 @@
 #include "Core/RID.hpp"
 
 #include "UI/UI.h"
+#include "UI/Window.h"
+#include "UI/Button.h"
+#include "UI/Label.h"
 
 /**
  * @defgroup core 核心
