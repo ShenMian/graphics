@@ -1,5 +1,11 @@
 var annotated_dup =
 [
+    [ "ui", null, [
+      [ "Button", "classui_1_1_button.html", "classui_1_1_button" ],
+      [ "Label", "classui_1_1_label.html", "classui_1_1_label" ],
+      [ "Widget", "classui_1_1_widget.html", "classui_1_1_widget" ],
+      [ "Window", "classui_1_1_window.html", "classui_1_1_window" ]
+    ] ],
     [ "Camera", "class_camera.html", "class_camera" ],
     [ "ClearFlag", "struct_clear_flag.html", null ],
     [ "CommandBuffer", "class_command_buffer.html", "class_command_buffer" ],

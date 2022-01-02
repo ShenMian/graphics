@@ -61,5 +61,10 @@ var hierarchy =
       [ "GLVertexBuffer", "class_g_l_vertex_buffer.html", null ]
     ] ],
     [ "VertexFormat", "class_vertex_format.html", null ],
+    [ "ui::Widget", "classui_1_1_widget.html", [
+      [ "ui::Button", "classui_1_1_button.html", null ],
+      [ "ui::Label", "classui_1_1_label.html", null ],
+      [ "ui::Window", "classui_1_1_window.html", null ]
+    ] ],
     [ "Window", "class_window.html", null ]
 ];
