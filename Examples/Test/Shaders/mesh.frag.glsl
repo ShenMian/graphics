@@ -5,6 +5,18 @@
 
 const float PI = 3.141592654;
 
+struct Material
+{
+    sampler2D albedo;
+    sampler2D metallic;
+    sampler2D roughness;
+    sampler2D ao;
+    sampler2D emissive;
+    sampler2D normal;
+};
+
+uniform Material mat;
+
 layout (location = 0) out vec4 frag_color;
 
 in Out
@@ -18,5 +30,6 @@ in Out
 
 void main()
 {
-    frag_color = vec4(1.0);
+    // frag_color = vec4(texture(mat.albedo, vert.uv));
+    frag_color = vec4(vert.uv, 0.0, 0.1);
 }
