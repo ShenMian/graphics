@@ -40,19 +40,18 @@ list(APPEND INCS
     "${DEPS_DIR}/assimp/build/include")
 
 # 添加 Vulkan
-# 防止 vk-bootstrap 使用早期版本的 Vulkan 头文件, 导致编译失败
-# if(UBUNTU)
-    find_package(Vulkan QUIET)
-    if(Vulkan_FOUND)
-        list(APPEND LIBS ${Vulkan_LIBRARIES})
-    else()
-        add_subdirectory("${DEPS_DIR}/Vulkan-Headers" "Vulkan-Headers")
-        list(APPEND LIBS Vulkan::Headers)
-        message("Hi")
-    endif()
-# endif()
+find_package(Vulkan QUIET)
+if(Vulkan_FOUND)
+    list(APPEND LIBS ${Vulkan_LIBRARIES})
+else()
+    list(APPEND LIBS "${DEPS_DIR}/VulkanSDK/Lib/vulkan-1")
+endif()
 
 # 添加 vk-bootstrap
+# 在 Github Action 中, 防止 vk-bootstrap 使用 NV 版本头文件, 导致编译失败
+if(UBUNTU)
+    add_subdirectory("${DEPS_DIR}/Vulkan-Headers" "Vulkan-Headers")
+endif()
 add_subdirectory("${DEPS_DIR}/vk-bootstrap" "vk-bootstrap")
 list(APPEND LIBS vk-bootstrap::vk-bootstrap)
 
