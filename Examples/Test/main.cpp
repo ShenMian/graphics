@@ -34,9 +34,9 @@ int main()
 				puts(error.data());
 		});*/
 
-		// auto camera = OrthographicCamera::create(1920, 1080, 0.1f, 500.f);
+		// auto camera = OrthographicCamera::create(2, 2, 0.1f, 500.f);
 		auto camera = PerspectiveCamera::create(radians(60.f), (float)window->getSize().x / window->getSize().y, 0.1f, 500.f);
-		camera->setPosition({0, 0, -3});
+		camera->setPosition({0, 0, 3});
 
 		auto program = Program::create("Shaders/mesh");
 		auto pipeline = Pipeline::create(program);
