@@ -106,17 +106,17 @@ Public 成员函数</h2></td></tr>
 <tr class="memitem:a92e33647a5013b8aacbe286bd3c0bd76"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_perspective_camera.html#a92e33647a5013b8aacbe286bd3c0bd76">PerspectiveCamera</a> (float vFOV, float aspect, float near, float far)</td></tr>
 <tr class="memdesc:a92e33647a5013b8aacbe286bd3c0bd76"><td class="mdescLeft">&#160;</td><td class="mdescRight">构造函数.  <a href="class_perspective_camera.html#a92e33647a5013b8aacbe286bd3c0bd76">更多...</a><br /></td></tr>
 <tr class="separator:a92e33647a5013b8aacbe286bd3c0bd76"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0015e548cafcc53771342a339cb1918a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_perspective_camera.html#a0015e548cafcc53771342a339cb1918a">setProjection</a> (float vFOV, float aspect, float near, float far)</td></tr>
-<tr class="memdesc:a0015e548cafcc53771342a339cb1918a"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置截头锥体观察体, 用于透视投影.  <a href="class_perspective_camera.html#a0015e548cafcc53771342a339cb1918a">更多...</a><br /></td></tr>
-<tr class="separator:a0015e548cafcc53771342a339cb1918a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae17534c7d487b92366e33b1738c682c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_perspective_camera.html#ae17534c7d487b92366e33b1738c682c4">setProjection</a> (float vFOV, float aspectRatio, float near, float far)</td></tr>
+<tr class="memdesc:ae17534c7d487b92366e33b1738c682c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置截头锥体观察体, 用于透视投影.  <a href="class_perspective_camera.html#ae17534c7d487b92366e33b1738c682c4">更多...</a><br /></td></tr>
+<tr class="separator:ae17534c7d487b92366e33b1738c682c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a94cd276fbeb763641ba38df441e08e27"><td class="memItemLeft" align="right" valign="top"><a id="a94cd276fbeb763641ba38df441e08e27"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_perspective_camera.html#a94cd276fbeb763641ba38df441e08e27">getVFOV</a> () const</td></tr>
 <tr class="memdesc:a94cd276fbeb763641ba38df441e08e27"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取垂直视角范围, 单位: 弧度制. <br /></td></tr>
 <tr class="separator:a94cd276fbeb763641ba38df441e08e27"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e49a9f2d32571f9eb63a7985de9d5ca"><td class="memItemLeft" align="right" valign="top"><a id="a0e49a9f2d32571f9eb63a7985de9d5ca"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_perspective_camera.html#a0e49a9f2d32571f9eb63a7985de9d5ca">getAspect</a> () const</td></tr>
-<tr class="memdesc:a0e49a9f2d32571f9eb63a7985de9d5ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取宽高比. <br /></td></tr>
-<tr class="separator:a0e49a9f2d32571f9eb63a7985de9d5ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1c94e4b4120869e359f875dca685de5"><td class="memItemLeft" align="right" valign="top"><a id="ad1c94e4b4120869e359f875dca685de5"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_perspective_camera.html#ad1c94e4b4120869e359f875dca685de5">getAspectRatio</a> () const</td></tr>
+<tr class="memdesc:ad1c94e4b4120869e359f875dca685de5"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取宽高比. <br /></td></tr>
+<tr class="separator:ad1c94e4b4120869e359f875dca685de5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a07469efa45a2cf376a59589d2b4360c9"><td class="memItemLeft" align="right" valign="top"><a id="a07469efa45a2cf376a59589d2b4360c9"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_perspective_camera.html#a07469efa45a2cf376a59589d2b4360c9">getNearPlane</a> () const</td></tr>
 <tr class="memdesc:a07469efa45a2cf376a59589d2b4360c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取近裁剪平面. <br /></td></tr>
@@ -225,13 +225,13 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>projectionDirty</b> =
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>参见</dt><dd><a class="el" href="class_perspective_camera.html#a0015e548cafcc53771342a339cb1918a" title="设置截头锥体观察体, 用于透视投影.">setProjection</a> </dd></dl>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="class_perspective_camera.html#ae17534c7d487b92366e33b1738c682c4" title="设置截头锥体观察体, 用于透视投影.">setProjection</a> </dd></dl>
 
 </div>
 </div>
 <h2 class="groupheader">成员函数说明</h2>
-<a id="a0015e548cafcc53771342a339cb1918a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0015e548cafcc53771342a339cb1918a">&#9670;&nbsp;</a></span>setProjection()</h2>
+<a id="ae17534c7d487b92366e33b1738c682c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae17534c7d487b92366e33b1738c682c4">&#9670;&nbsp;</a></span>setProjection()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -246,7 +246,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>projectionDirty</b> =
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>aspect</em>, </td>
+          <td class="paramname"><em>aspectRatio</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -272,7 +272,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>projectionDirty</b> =
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
     <tr><td class="paramname">vFOV</td><td>垂直视角范围, 单位: 弧度制. </td></tr>
-    <tr><td class="paramname">aspect</td><td>宽高比. </td></tr>
+    <tr><td class="paramname">aspectRatio</td><td>宽高比. </td></tr>
     <tr><td class="paramname">near</td><td>近裁剪平面距离, 最近可见范围. </td></tr>
     <tr><td class="paramname">far</td><td>远裁剪平面距离, 最远可见范围. </td></tr>
   </table>

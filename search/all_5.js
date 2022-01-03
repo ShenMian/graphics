@@ -4,7 +4,7 @@ var searchData=
   ['get_14',['get',['../class_gamepad.html#a9791f37d4d4a3e8041c6bd309950074d',1,'Gamepad::get(Button button) const'],['../class_gamepad.html#aff13c015ca3a1c720ef8b2a87ff941f7',1,'Gamepad::get(Trigger trigger) const'],['../class_gamepad.html#ac18268a379651541f94f42daad0ea0d7',1,'Gamepad::get(Thumb thumb) const']]],
   ['getaabb_15',['getAABB',['../class_model.html#a8b2bc5e7f945efb88fcd01a7d2af3ca0',1,'Model']]],
   ['getapi_16',['getAPI',['../class_renderer.html#a9f11c63dc16c34489aba73dac51fc58c',1,'Renderer']]],
-  ['getaspect_17',['getAspect',['../class_perspective_camera.html#a0e49a9f2d32571f9eb63a7985de9d5ca',1,'PerspectiveCamera']]],
+  ['getaspectratio_17',['getAspectRatio',['../class_perspective_camera.html#ad1c94e4b4120869e359f875dca685de5',1,'PerspectiveCamera']]],
   ['getchannelcount_18',['getChannelCount',['../class_image.html#a88ff43032808645f35662382d2253e3a',1,'Image']]],
   ['getcommandpool_19',['getCommandPool',['../class_v_k_renderer.html#a2688df65e25180d5b278acd638c26645',1,'VKRenderer']]],
   ['getcount_20',['getCount',['../class_index_buffer.html#a3fef5485aa189c16d572c7ec355d11da',1,'IndexBuffer::getCount()'],['../class_vertex_buffer.html#aeda34db8cce52fd17f4f62fa523bcf99',1,'VertexBuffer::getCount()']]],
