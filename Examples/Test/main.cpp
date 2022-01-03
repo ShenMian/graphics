@@ -24,8 +24,8 @@ int main()
 		PrintInfo();
 
 		Model model;
-		model.load("../../../3DModel/basic/cube.obj");
-		// model.load("../../../3DModel/scene/Crytek_Sponza/sponza.obj");
+		// model.load("../../../3DModel/basic/cube.obj");
+		model.load("../../../3DModel/scene/Crytek_Sponza/sponza.obj");
 		// model.load("../../../3DModel/weapon/m4a1/m4a1.gltf");
 		// model.load("../../../3DModel/scene/Amazon_Lumberyard_Bistro/Exterior/exterior.obj");
 		// model.load("../../../3DModel/scene/SunTemple/SunTemple.fbx"); // 暂不支持 DDS 格式的纹理资源
@@ -34,8 +34,8 @@ int main()
 				puts(error.data());
 		});*/
 
-		// auto camera = OrthographicCamera::create(2, 2, 0.1f, 500.f);
-		auto camera = PerspectiveCamera::create(radians(60.f), (float)window->getSize().x / window->getSize().y, 0.1f, 500.f);
+		// auto camera = OrthographicCamera::create(2, 2, 0.1f, 5000.f);
+		auto camera = PerspectiveCamera::create(radians(60.f), (float)window->getSize().x / window->getSize().y, 0.1f, 5000.f);
 		camera->setPosition({0, 0, 3});
 
 		auto program = Program::create("Shaders/mesh");
@@ -64,7 +64,7 @@ int main()
 		};
 		window->onResize = [&](Vector2i size)
 		{
-			camera->setProjection(radians(60.f), (float)size.x / size.y, 0.1f, 500.0f);
+			camera->setProjection(radians(60.f), (float)size.x / size.y, 0.1f, 5000.0f);
 		};
 		window->setVisible(true); // 设置窗口可见
 
@@ -80,6 +80,7 @@ int main()
 			label.setText("Camera: " + std::to_string(pos.x) + ", " + std::to_string(pos.y) + ", " + std::to_string(pos.z));
 			win.update();
 
+			// FIXME: 向上移动时向下移动
 			const float speed = 1.1f;
 			if(Input::isPressed(Key::W))
 				camera->setPosition(camera->getPosition() + camera->getFront() * speed);
@@ -89,9 +90,9 @@ int main()
 				camera->setPosition(camera->getPosition() - camera->getRight() * speed);
 			if(Input::isPressed(Key::D))
 				camera->setPosition(camera->getPosition() + camera->getRight() * speed);
-			if(Input::isPressed(Key::Space))
+			if(Input::isPressed(Key::E))
 				camera->setPosition(camera->getPosition() + camera->getUp() * speed);
-			if(Input::isPressed(Key::LeftShift))
+			if(Input::isPressed(Key::Q))
 				camera->setPosition(camera->getPosition() - camera->getUp() * speed);
 
 			program->setUniform("view", camera->getView());
