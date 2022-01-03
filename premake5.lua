@@ -47,7 +47,6 @@ workspace "Graphics"
     deps["assimp"]        = "%{wks.location}/Deps/assimp"
     deps["shaderc"]       = "%{wks.location}/Deps/shaderc"
     deps["glslang"]       = "%{wks.location}/Deps/glslang"
-    deps["vulkan"]        = "%{wks.location}/Deps/Vulkan-Headers"
     deps["spirv_tools"]   = "%{wks.location}/Deps/SPIRV-Tools"
     deps["vk_bootstrap"]  = "%{wks.location}/Deps/vk-bootstrap"
     deps["spirv_headers"] = "%{wks.location}/Deps/SPIRV-Headers"
@@ -62,9 +61,12 @@ workspace "Graphics"
     deps_inc["imgui"]         = "%{deps.imgui}"
     deps_inc["assimp"]        = "%{deps.assimp}/include"
     -- deps_inc["shaderc"] = "%{deps.shaderc}/libshaderc/include"
-    deps_inc["vulkan"]        = "%{deps.vulkan}/include"
+    deps_inc["vulkan"]        = "%{wks.location}/Deps/Vulkan-Headers/include"
     deps_inc["vk_bootstrap"]  = "%{deps.vk_bootstrap}/src"
     deps_inc["meshoptimizer"] = "%{deps.meshoptimizer}/src"
+
+    deps_lib = {}
+    deps_lib["vulkan"] = "%{wks.location}/Deps/VulkanSDK/Lib/vulkan-1"
 
     include "Source"
 

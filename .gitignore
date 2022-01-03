@@ -1,9 +1,10 @@
 # Build
-[Bb]uild/
-[Bb]in/
-[Oo]bj/
-[Ll]ib/
-!Deps/premake/bin/
+[Bb]in
+[Oo]bj
+[Ll]ib
+/[Bb]uild
+!/Deps/premake/bin
+!/Deps/VulkanSDK/Lib
 
 # Makefile
 Makefile
@@ -16,6 +17,7 @@ Makefile
 *.user
 /.vs
 /.vscode
+/out
 
 # Doxygen
 /Docs/html
@@ -51,7 +53,7 @@ imgui.ini
 *.lai
 *.la
 *.a
-*.lib
+# *.lib
 
 # Executables
 *.out

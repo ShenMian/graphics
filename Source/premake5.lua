@@ -35,6 +35,6 @@ project "Graphics"
 		"assimp",
 		"vk_bootstrap",
 		"meshoptimizer",
+		"%{deps_lib.vulkan}",
 		-- "shaderc"
-		-- "%{deps.vulkan}/lib/vulkan-1",
 		}
