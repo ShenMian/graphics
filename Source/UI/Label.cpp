@@ -12,6 +12,11 @@ Label::Label(const std::string& label)
 {
 }
 
+void Label::setText(const std::string& text)
+{
+	this->text = text;
+}
+
 void Label::update()
 {
 	ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(color.r, color.g, color.b, 1.f));
