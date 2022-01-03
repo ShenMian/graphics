@@ -17,7 +17,7 @@ Vector3f Camera::getPosition() const
 
 Vector3f Camera::getFront() const
 {
-	return -direction.normalized();
+	return direction.normalized();
 }
 
 Vector3f Camera::getRight() const

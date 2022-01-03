@@ -59,7 +59,7 @@ private:
 
 	Vector3f position;
 	Vector3f direction = -Vector3f::unit_z;
-	Vector3f up = Vector3f::up;
+	Vector3f up = -Vector3f::unit_y;
 
 	mutable Matrix4 view;
 	mutable bool    viewDirty = true;
