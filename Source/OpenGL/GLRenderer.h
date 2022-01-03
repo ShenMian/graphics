@@ -13,4 +13,5 @@ public:
 	std::string getVendorName() const override;
 
 	static void init(const Window& win);
+	static void deinit();
 };

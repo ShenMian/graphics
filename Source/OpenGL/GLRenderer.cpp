@@ -28,3 +28,7 @@ void GLRenderer::init(const Window& win)
 	if(!ret)
 		throw std::runtime_error("glad init failed");
 }
+
+void GLRenderer::deinit()
+{
+}
