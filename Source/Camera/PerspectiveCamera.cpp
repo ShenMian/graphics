@@ -13,10 +13,10 @@ PerspectiveCamera::PerspectiveCamera(float vFOV, float aspect, float n, float f)
 	setProjection(vFOV, aspect, n, f);
 }
 
-void PerspectiveCamera::setProjection(float vFOV, float aspect, float n, float f)
+void PerspectiveCamera::setProjection(float vFOV, float aspectRatio, float n, float f)
 {
 	this->vFOV = vFOV;
-	this->aspectRatio = aspect;
+	this->aspectRatio = aspectRatio;
 	this->near = n;
 	this->far = f;
 	projectionDirty = true;
@@ -27,7 +27,7 @@ float PerspectiveCamera::getVFOV() const
 	return vFOV;
 }
 
-float PerspectiveCamera::getAspect() const
+float PerspectiveCamera::getAspectRatio() const
 {
 	return aspectRatio;
 }
