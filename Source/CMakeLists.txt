@@ -41,15 +41,16 @@ list(APPEND INCS
 
 # 添加 Vulkan
 # 防止 vk-bootstrap 使用早期版本的 Vulkan 头文件, 导致编译失败
-if(UBUNTU)
+# if(UBUNTU)
     find_package(Vulkan QUIET)
     if(Vulkan_FOUND)
         list(APPEND LIBS ${Vulkan_LIBRARIES})
     else()
         add_subdirectory("${DEPS_DIR}/Vulkan-Headers" "Vulkan-Headers")
         list(APPEND LIBS Vulkan::Headers)
+        message("Hi")
     endif()
-endif()
+# endif()
 
 # 添加 vk-bootstrap
 add_subdirectory("${DEPS_DIR}/vk-bootstrap" "vk-bootstrap")
