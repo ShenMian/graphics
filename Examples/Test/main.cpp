@@ -11,7 +11,7 @@ int main()
 {
 	try
 	{
-		// Renderer::setAPI(Renderer::API::OpenGL); // 设置渲染 API 为 OpenGL
+		Renderer::setAPI(Renderer::API::OpenGL); // 设置渲染 API 为 OpenGL
 		
 		Window::init();
 
@@ -34,6 +34,7 @@ int main()
 				puts(error.data());
 		});*/
 
+		// auto camera = OrthographicCamera::create(1920, 1080, 0.1f, 500.f);
 		auto camera = PerspectiveCamera::create(radians(60.f), (float)window->getSize().x / window->getSize().y, 0.1f, 500.f);
 		camera->setPosition({0, 0, -3});
 
@@ -67,14 +68,16 @@ int main()
 		};
 		window->setVisible(true); // 设置窗口可见
 
-		ui::Window win("Window");
-		ui::Button btn("Button");
-		win.add(btn);
+		ui::Window win("Debug");
+		ui::Label label("camera_position");
+		win.add(label);
 
 		while(running)
 		{
 			UI::begin();
 
+			const auto pos = camera->getPosition();
+			label.setText("Camera: " + std::to_string(pos.x) + ", " + std::to_string(pos.y) + ", " + std::to_string(pos.z));
 			win.update();
 
 			const float speed = 1.1f;
