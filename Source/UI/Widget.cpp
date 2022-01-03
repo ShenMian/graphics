@@ -34,7 +34,8 @@ const std::string& Widget::getLabel() const
 
 void Widget::updateHandle()
 {
-	if(label.contains("##"))
+	// if(label.contains("##"))
+	if(label.find("##") != std::string::npos)
 		throw std::runtime_error("widget label cannot contain \"##\".");
 	handle = label + "###" + id;
 }
