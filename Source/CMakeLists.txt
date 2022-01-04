@@ -43,8 +43,10 @@ list(APPEND INCS
 find_package(Vulkan QUIET)
 if(Vulkan_FOUND)
     list(APPEND LIBS ${Vulkan_LIBRARIES})
+elseif(WIN32)
+    list(APPEND LIBS "${DEPS_DIR}/VulkanSDK/Lib/vulkan-1.lib")
 else()
-    list(APPEND LIBS "${DEPS_DIR}/VulkanSDK/Lib/vulkan-1")
+    message(FATAL_ERROR "Vulkan not found")
 endif()
 
 # 添加 vk-bootstrap
