@@ -173,7 +173,10 @@ void loadMesh(const aiMesh* aMesh, const aiScene* aScene, const fs::path& path, 
 #endif
 
 	Material mat;
+
+#if 0 // TODO: debug
 	loadMaterial(mat, aMesh, aScene, path);
+#endif
 
 	mesh.setName(name);
 	mesh.setVertexBuffer(vertexBuffer);
