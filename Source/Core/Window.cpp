@@ -22,7 +22,7 @@ Window::Window(const std::string& title, Vector2i size, bool fullscreen)
 	glfwSetWindowUserPointer(handle, static_cast<void*>(this));
 
 	// 将光标锁定在窗口内
-	// glfwSetInputMode(handle, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	glfwSetInputMode(handle, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
 	// 开启 MASS 抗锯齿
 	// glfwWindowHint(GLFW_SAMPLES, 2);
@@ -154,13 +154,6 @@ void Window::setupCallbacks()
 			handle->onClose();
 	});
 
-	glfwSetCursorPosCallback(handle, [](GLFWwindow* native, double x, double y)
-	{
-		const auto handle = static_cast<Window*>(glfwGetWindowUserPointer(native));
-		if(handle->onMouseMove)
-			handle->onMouseMove(x, y);
-	});
-
 	glfwSetWindowFocusCallback(handle, [](GLFWwindow* native, int focused)
 	{
 		const auto handle = static_cast<Window*>(glfwGetWindowUserPointer(native));
@@ -181,7 +174,14 @@ void Window::setupCallbacks()
 	{
 		const auto handle = static_cast<Window*>(glfwGetWindowUserPointer(native));
 		if(handle->onScroll)
-			handle->onScroll(xOffset, yOffset);
+			handle->onScroll({xOffset, yOffset});
+	});
+
+	glfwSetCursorPosCallback(handle, [](GLFWwindow* native, double x, double y)
+	{
+		const auto handle = static_cast<Window*>(glfwGetWindowUserPointer(native));
+		if(handle->onMouseMove)
+			handle->onMouseMove({x, y});
 	});
 
 	glfwSetMouseButtonCallback(handle, [](GLFWwindow* native, int button, int action, int mods)

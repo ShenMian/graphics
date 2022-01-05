@@ -131,8 +131,8 @@ public:
 	std::function<void(bool)>                     onFocus;     ///< 窗口获取/失去焦点回调
 	std::function<void()>                         onClose;     ///< 窗口关闭按钮按下回调
 	std::function<void(int, Key)>                 onKey;       ///< 键盘按键回调
-	std::function<void(double, double)>           onScroll;    ///< 鼠标滚轮滚动回调
-	std::function<void(double, double)>           onMouseMove; ///< 鼠标移动回调
+	std::function<void(Vector2d)>                 onScroll;    ///< 鼠标滚轮滚动回调
+	std::function<void(Vector2d)>                 onMouseMove; ///< 鼠标移动回调
 	std::function<void(int, Mouse)>               onMouse;     ///< 鼠标按键回调
 	std::function<void(int, const char* paths[])> onDrop;      ///< 路径拽入窗口回调
 
