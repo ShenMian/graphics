@@ -25,10 +25,10 @@ int main()
 
 		Model model;
 		// model.load("../../../3DModel/basic/cube.obj");
-		model.load("../../../3DModel/scene/Crytek_Sponza/sponza.obj");
+		// model.load("../../../3DModel/scene/Crytek_Sponza/sponza.obj");
 		// model.load("../../../3DModel/weapon/m4a1/m4a1.gltf");
 		// model.load("../../../3DModel/scene/Amazon_Lumberyard_Bistro/Exterior/exterior.obj");
-		// model.load("../../../3DModel/scene/SunTemple/SunTemple.fbx"); // 暂不支持 DDS 格式的纹理资源
+		model.load("../../../3DModel/scene/SunTemple/SunTemple.fbx"); // 暂不支持 DDS 格式的纹理资源
 		/*model.loadAsync("../../../3DModel/scene/Crytek_Sponza/sponza.obj", [](std::string_view error){
 			if(!error.empty())
 				puts(error.data());
@@ -37,6 +37,7 @@ int main()
 		// auto camera = OrthographicCamera::create(2, 2, 0.1f, 5000.f);
 		auto camera = PerspectiveCamera::create(radians(60.f), (float)window->getSize().x / window->getSize().y, 0.1f, 5000.f);
 		camera->setPosition({0, 0, 3});
+		// camera->setDirection(Vector3f::right);
 
 		auto program = Program::create("Shaders/mesh");
 		auto pipeline = Pipeline::create(program);
@@ -62,6 +63,26 @@ int main()
 				}
 			}
 		};
+		window->onMouseMove = [&](Vector2d position)
+		{
+			static Vector2f lastPos = window->getSize() / 2;
+
+			const auto pos = static_cast<Vector2f>(position);
+			const Vector2f mouseSensitivity = Vector2f::unit * 0.03f;
+			Vector2f offset = pos - lastPos;
+			lastPos = pos;
+			offset.x *= mouseSensitivity.x;
+			offset.y *= mouseSensitivity.y;
+
+			auto dir = camera->getDirection();
+
+			Vector4f vec(dir, 0.f);
+			vec *= Matrix4f::createRotationY(radians(-offset.x));
+			vec *= Matrix4f::createRotationX(radians(vec.z < 0 ? -offset.y : offset.y));
+			dir = {vec.x, vec.y, vec.z};
+
+			camera->setDirection(dir);
+		};
 		window->onResize = [&](Vector2i size)
 		{
 			camera->setProjection(radians(60.f), (float)size.x / size.y, 0.1f, 5000.0f);
@@ -69,16 +90,16 @@ int main()
 		window->setVisible(true); // 设置窗口可见
 
 		ui::Window win("Debug");
-		ui::Label label("camera_position");
-		win.add(label);
+		ui::Label label0("camera");
+		ui::Label label1("");
+		ui::Label label2("");
+		win.add(label0);
+		win.add(label1);
+		win.add(label2);
 
 		while(running)
 		{
 			UI::begin();
-
-			const auto pos = camera->getPosition();
-			label.setText("Camera: " + std::to_string(pos.x) + ", " + std::to_string(pos.y) + ", " + std::to_string(pos.z));
-			win.update();
 
 			// FIXME: 向上移动时向下移动
 			const float speed = 1.1f;
@@ -94,6 +115,12 @@ int main()
 				camera->setPosition(camera->getPosition() + camera->getUp() * speed);
 			if(Input::isPressed(Key::Q))
 				camera->setPosition(camera->getPosition() - camera->getUp() * speed);
+
+			const auto pos = camera->getPosition();
+			const auto dir = camera->getDirection();
+			label1.setText("  position : " + std::to_string(pos.x) + ", " + std::to_string(pos.y) + ", " + std::to_string(pos.z));
+			label2.setText("  direction: " + std::to_string(dir.x) + ", " + std::to_string(dir.y) + ", " + std::to_string(dir.z));
+			win.update();
 
 			program->setUniform("view", camera->getView());
 			program->setUniform("projection", camera->getProjection());
