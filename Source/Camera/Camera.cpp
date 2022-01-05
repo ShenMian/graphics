@@ -15,6 +15,17 @@ Vector3f Camera::getPosition() const
 	return position;
 }
 
+void Camera::setDirection(Vector3f dir)
+{
+	direction = dir.normalized();
+	viewDirty = true;
+}
+
+Vector3f Camera::getDirection() const
+{
+	return direction;
+}
+
 Vector3f Camera::getFront() const
 {
 	return direction.normalized();

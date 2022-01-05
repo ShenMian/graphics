@@ -38,6 +38,9 @@ public:
 	void setPosition(Vector3f pos);
 	Vector3f getPosition() const;
 
+	void setDirection(Vector3f dir);
+	Vector3f getDirection() const;
+
 	Vector3f getFront() const;
 	Vector3f getRight() const;
 	Vector3f getUp() const;
