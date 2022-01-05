@@ -5,8 +5,8 @@ var searchData=
   ['onfocus_88',['onFocus',['../class_window.html#af2120860368ee5222fd0c793c843efe3',1,'Window']]],
   ['onkey_89',['onKey',['../class_window.html#a87e919a7c80de8abd0e25aedfc118c54',1,'Window']]],
   ['onmouse_90',['onMouse',['../class_window.html#aa01114a03f013eda4288c26692938be6',1,'Window']]],
-  ['onmousemove_91',['onMouseMove',['../class_window.html#aa5c9a766768c5e178991c89701df2744',1,'Window']]],
+  ['onmousemove_91',['onMouseMove',['../class_window.html#aeecee346966a4459acc2e035e44b1ce1',1,'Window']]],
   ['onresize_92',['onResize',['../class_window.html#a571576b54d53d0dce7a30baa58b6e812',1,'Window']]],
-  ['onscroll_93',['onScroll',['../class_window.html#ac7ab596ea3d8f1034ce4aba79cb64a5a',1,'Window']]],
+  ['onscroll_93',['onScroll',['../class_window.html#adcfa42568fc483d6819b0b487f55efbf',1,'Window']]],
   ['orthographiccamera_94',['OrthographicCamera',['../class_orthographic_camera.html',1,'OrthographicCamera'],['../class_orthographic_camera.html#a70fdd1313ed5fdb9f906a3c25f82c7fe',1,'OrthographicCamera::OrthographicCamera()']]]
 ];

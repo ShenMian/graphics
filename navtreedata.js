@@ -47,8 +47,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_button_8h_source.html",
-"class_renderer.html#ab7c8e5ef968041cc425bf46ba7c7c055",
-"struct_d_d_s_pixel_format.html#a505a2d59967185264e49f5473b0f2306"
+"class_renderer.html#a90ca495a655a0ef7a802b067549b01e9aeaa57a9b4248ce3968e718895e1c2f04",
+"struct_d_d_s_pixel_format.html"
 ];
 
 var SYNCONMSG = '点击 关闭 面板同步';

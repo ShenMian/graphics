@@ -21,7 +21,7 @@ var class_window =
     [ "onFocus", "class_window.html#af2120860368ee5222fd0c793c843efe3", null ],
     [ "onKey", "class_window.html#a87e919a7c80de8abd0e25aedfc118c54", null ],
     [ "onMouse", "class_window.html#aa01114a03f013eda4288c26692938be6", null ],
-    [ "onMouseMove", "class_window.html#aa5c9a766768c5e178991c89701df2744", null ],
+    [ "onMouseMove", "class_window.html#aeecee346966a4459acc2e035e44b1ce1", null ],
     [ "onResize", "class_window.html#a571576b54d53d0dce7a30baa58b6e812", null ],
-    [ "onScroll", "class_window.html#ac7ab596ea3d8f1034ce4aba79cb64a5a", null ]
+    [ "onScroll", "class_window.html#adcfa42568fc483d6819b0b487f55efbf", null ]
 ];
