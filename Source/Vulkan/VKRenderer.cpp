@@ -116,7 +116,6 @@ void VKRenderer::init(const Window& win)
 		if(!result)
 			throw std::runtime_error(result.error().message());
 		queue = result.value();
-
 	}
 
 	{
