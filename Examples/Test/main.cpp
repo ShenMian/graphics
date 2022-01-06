@@ -34,16 +34,16 @@ int main()
 				puts(error.data());
 		});*/
 
-		// auto camera = OrthographicCamera::create(2, 2, 0.1f, 5000.f);
-		auto camera = PerspectiveCamera::create(radians(60.f), (float)window->getSize().x / window->getSize().y, 0.1f, 5000.f);
-		camera->setPosition({0, 0, 3});
-		// camera->setDirection(Vector3f::right);
-
 		auto program = Program::create("Shaders/mesh");
 		auto pipeline = Pipeline::create(program);
 
 		auto cmdQueue = CommandQueue::create();
 		auto cmdBuffer = CommandBuffer::create();
+
+		// auto camera = OrthographicCamera::create(2, 2, 0.1f, 5000.f);
+		auto camera = PerspectiveCamera::create(radians(60.f), (float)window->getSize().x / window->getSize().y, 0.1f, 5000.f);
+		camera->setPosition({0, 0, 3});
+		// camera->setDirection(Vector3f::right);
 
 		bool running = true;
 		window->onClose = [&]() { running = false; };
