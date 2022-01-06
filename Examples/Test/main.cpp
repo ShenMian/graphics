@@ -12,10 +12,10 @@ int main()
 	try
 	{
 		Renderer::setAPI(Renderer::API::OpenGL); // 设置渲染 API 为 OpenGL
-		
+
 		Window::init();
 
-		auto window = new Window("Example", Monitor::getPrimary().getSize() / 2);
+		auto window = new Window("Test", Monitor::getPrimary().getSize() / 2);
 
 		Input::setWindow(window);
 		Renderer::init(*window);

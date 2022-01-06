@@ -1,7 +1,7 @@
 ﻿-- Copyright 2021 SMS
 -- License(Apache-2.0)
 
-project "Test"
+project "test"
 	kind "ConsoleApp"
 	language "C++"
 	cppdialect "C++latest"
@@ -13,10 +13,10 @@ project "Test"
 	files {"**.cpp", "**.hpp", "**.h", "**.inl", "CMakeLists.txt", "premake5.lua"}
 
 	includedirs {
-	"%{wks.location}/Source",
-	"%{deps_inc.math}",
-	"%{deps_inc.assimp}",
-	"%{deps_inc.vulkan}"}
+		"%{wks.location}/Source",
+		"%{deps_inc.math}",
+		"%{deps_inc.assimp}",
+		"%{deps_inc.vulkan}"}
 
 	links "Graphics"
 
