@@ -6,3 +6,13 @@
 [![Ubuntu](https://github.com/ShenMian/Graphics/actions/workflows/ubuntu.yml/badge.svg?branch=main)](https://github.com/ShenMian/Graphics/actions/workflows/ubuntu.yml)
 
 A simple abstraction layer for the modern graphics APIs.
+
+## Features
+- Multiple backends: OpenGL, Vulkan, Direct3D, Metal. (only support OpenGL for now)
+- Integrated UI: Using [Dear ImGui](https://github.com/ocornut/imgui).
+
+## Documentation
+- [API Reference](https://shenmian.github.io/Graphics/index.html)
+- [Getting Started](https://shenmian.github.io/Graphics/_getting_started.html)
+- [Examples](https://github.com/ShenMian/Graphics/blob/main/Examples/README.md)
+- [Dependencies](https://github.com/ShenMian/Graphics/blob/main/Deps/README.md)

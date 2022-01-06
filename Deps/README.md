@@ -1,4 +1,4 @@
-# Dependency
+# Dependencies
 
 The following dependencies greatly simplify the development of the this project.
 
