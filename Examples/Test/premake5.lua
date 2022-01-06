@@ -10,7 +10,7 @@ project "test"
 	targetdir("%{wks.location}/build/" .. output_dir .. "/%{prj.name}/bin")
 	objdir("%{wks.location}/build/" .. output_dir .. "/%{prj.name}/obj")
 
-	files {"**.cpp", "**.hpp", "**.h", "**.inl", "CMakeLists.txt", "premake5.lua"}
+	files {"**.cpp", "**.hpp", "**.h", "**.inl", "CMakeLists.txt", "premake5.lua", "Shaders/**"}
 
 	includedirs {
 		"%{wks.location}/Source",
