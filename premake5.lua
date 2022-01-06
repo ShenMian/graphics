@@ -1,4 +1,4 @@
--- Copyright 2021 SMS
+﻿-- Copyright 2021 SMS
 -- License(Apache-2.0)
 
 include "Deps/premake/solution_items.lua"
@@ -33,9 +33,9 @@ workspace "Graphics"
         "premake5.lua"}
 
     -- 启用 OpenMP
-    openmp "On"
-    filter "toolset:not msc*"
-        buildoptions "-fopenmp"
+    -- openmp "On"
+    -- filter "toolset:not msc*"
+    --     buildoptions "-fopenmp"
 
     -- 第三方库路径
     deps = {}
