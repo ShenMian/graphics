@@ -8,7 +8,7 @@
     objdir("%{wks.location}/build/" .. output_dir .. "/%{prj.name}/obj")
 
 	prebuildcommands {"{COPY} \"%{deps.assimp}/contrib/zlib/zconf.h.in\" \"%{deps.assimp}/contrib/zlib/zconf.h\""}
-	prebuildcommands {"{COPY} \"%{deps.assimp}/revision.h.in\" \"%{deps.assimp}/revision.h\""}
+	-- prebuildcommands {"{COPY} \"%{deps.assimp}/revision.h.in\" \"%{deps.assimp}/revision.h\""}
 
 	sysincludedirs {
 		"assimp",
