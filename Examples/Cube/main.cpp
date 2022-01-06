@@ -3,13 +3,17 @@
 
 #include "Graphics.h"
 
-using namespace std::literals::string_literals;
-
 void PrintInfo();
+
+struct Vertex
+{
+	Vector3 position;
+	Vector3 color;
+};
 
 int main()
 {
-	Renderer::setAPI(Renderer::API::OpenGL); // 设置渲染 API 为 OpenGL
+	Renderer::setAPI(Renderer::API::OpenGL);
 
 	Window::init();
 
@@ -20,19 +24,44 @@ int main()
 
 	PrintInfo();
 
-	// 不从文件加载, 使用类似 Triangle 的方式加载顶点
-	Model model;
-	model.load("../../../3DModel/basic/cube.obj");
+	const std::vector<Vertex> vertices = {
+		{{-0.5, -0.5, -0.5}, {1, 0, 0}},
+		{{-0.5, +0.5, -0.5}, {0, 1, 0}},
+		{{+0.5, +0.5, -0.5}, {0, 0, 1}},
+		{{+0.5, -0.5, -0.5}, {1, 1, 1}},
+		{{-0.5, -0.5, +0.5}, {1, 1, 0}},
+		{{-0.5, +0.5, +0.5}, {0, 1, 1}},
+		{{+0.5, +0.5, +0.5}, {1, 0, 1}},
+		{{+0.5, -0.5, +0.5}, {0.2f, 0.2f, 0.2f}}
+	};
 
-	// auto camera = OrthographicCamera::create(2, 2, 0.1f, 5000.f);
-	auto camera = PerspectiveCamera::create(radians(60.f), (float)window->getSize().x / window->getSize().y, 0.1f, 5000.f);
-	camera->setPosition({0, 0, 3});
+	VertexFormat format = {
+		{"position", Format::RGB32F},
+		{"color", Format::RGB32F}
+	};
+	format.setStride(sizeof(Vertex));
+
+	auto vbo = VertexBuffer::create(vertices, format);
+
+	const std::vector<uint32_t> indices = {
+		2,0,1, 2,3,0,
+		4,6,5, 4,7,6,
+		0,7,4, 0,3,7,
+		1,0,4, 1,4,5,
+		1,5,2, 5,6,2,
+		3,6,7, 3,2,6
+	};
+
+	auto ibo = IndexBuffer::create(indices);
 
 	auto program = Program::create("Shaders/mesh");
 	auto pipeline = Pipeline::create(program);
 
 	auto cmdQueue = CommandQueue::create();
 	auto cmdBuffer = CommandBuffer::create();
+
+	auto camera = PerspectiveCamera::create(radians(60.f), (float)window->getSize().x / window->getSize().y, 0.1f, 5000.f);
+	camera->setPosition({0, 0, 3});
 
 	bool running = true;
 	window->onClose = [&]() { running = false; };
@@ -56,10 +85,15 @@ int main()
 	{
 		camera->setProjection(radians(60.f), (float)size.x / size.y, 0.1f, 5000.0f);
 	};
-	window->setVisible(true); // 设置窗口可见
+	window->setVisible(true);
+
+	Matrix4f model = Matrix4f::createRotationX(radians(15.f));
 
 	while(running)
 	{
+		model *= Matrix4f::createRotationY(radians(0.5f));
+
+		program->setUniform("model", model);
 		program->setUniform("view", camera->getView());
 		program->setUniform("projection", camera->getProjection());
 
@@ -69,16 +103,9 @@ int main()
 			cmdBuffer->setClearColor({0, 0, 0, 0});
 			cmdBuffer->clear(ClearFlag::Color | ClearFlag::Depth);
 
-			cmdBuffer->setPipeline(pipeline);
-			for(const auto& mesh : model.getMeshs())
-			{
-				const auto vbo = mesh.getVertexBuffer();
-				const auto ibo = mesh.getIndexBuffer();
-
-				cmdBuffer->setVertexBuffer(vbo);
-				cmdBuffer->setIndexBuffer(ibo);
-				cmdBuffer->drawIndexed(0, ibo->getCount());
-			}
+			cmdBuffer->setVertexBuffer(vbo);
+			cmdBuffer->setIndexBuffer(ibo);
+			cmdBuffer->drawIndexed(0, ibo->getCount());
 		}
 		cmdBuffer->end();
 		cmdQueue->submit(cmdBuffer);

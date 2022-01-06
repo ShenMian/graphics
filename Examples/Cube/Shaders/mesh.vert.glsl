@@ -4,30 +4,22 @@
 #version 450
 
 layout (location = 0) in vec3 position;
-layout (location = 1) in vec3 normal;
-layout (location = 2) in vec2 uv;
-layout (location = 3) in vec3 tangent;
-layout (location = 4) in vec3 bitangent;
+layout (location = 1) in vec3 color;
 
 out Out
 {
     vec3 position;
-    vec3 normal;
-    vec2 uv;
-    vec3 tangent;
-    vec3 bitangent;
+    vec3 color;
 } vert;
 
+uniform mat4 model;
 uniform mat4 view;
 uniform mat4 projection;
 
 void main()
 {
-    vert.position  = position;
-    vert.normal    = normal;
-    vert.uv        = uv;
-    vert.tangent   = tangent;
-    vert.bitangent = bitangent;
+    vert.position = position;
+    vert.color    = color;
 
-    gl_Position = projection * view * vec4(position, 1.0);
+    gl_Position = projection * view * model * vec4(position, 1.0);
 }
