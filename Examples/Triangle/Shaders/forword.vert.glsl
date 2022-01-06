@@ -3,8 +3,6 @@
 
 #version 450
 
-const float PI = 3.141592654;
-
 layout (location = 0) in vec2 position;
 layout (location = 1) in vec3 color;
 

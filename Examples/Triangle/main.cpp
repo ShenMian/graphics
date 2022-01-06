@@ -68,6 +68,7 @@ int main()
 			cmdBuffer->setViewport({0, 0}, window->getSize());
 			cmdBuffer->setClearColor({0, 0, 0, 0});
 			cmdBuffer->clear(ClearFlag::Color);
+
 			cmdBuffer->setVertexBuffer(vbo);
 			cmdBuffer->draw(0, vbo->getCount());
 		}
