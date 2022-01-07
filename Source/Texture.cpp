@@ -3,17 +3,37 @@
 
 #include "Texture.h"
 #include "Renderer.h"
+#include "Core/Image.h"
+#include <stdexcept>
 
 #include "OpenGL/GLTexture.h"
 
 std::shared_ptr<Texture> Texture::create(const Image& image, Type type)
 {
+	if(type == Type::Cube)
+		throw std::runtime_error("cubemap should have 6 images");
+
 	switch(Renderer::getAPI())
 	{
 		using enum Renderer::API;
 
 	case OpenGL:
 		return std::make_shared<GLTexture>(image, type);
+	}
+	return nullptr;
+}
+
+std::shared_ptr<Texture> Texture::create(const std::vector<Image>& images)
+{
+	if(images.size() != 6)
+		throw std::runtime_error("cubemap should have 6 images");
+
+	switch(Renderer::getAPI())
+	{
+		using enum Renderer::API;
+
+	case OpenGL:
+		return std::make_shared<GLTexture>(images);
 	}
 	return nullptr;
 }

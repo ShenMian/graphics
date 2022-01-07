@@ -12,6 +12,7 @@ public:
 	using handle_type = unsigned int;
 
 	GLTexture(const Image& image, Type type);
+	GLTexture(const std::vector<Image>& images);
 	~GLTexture();
 
 	void bind(unsigned int slot = 0) override;

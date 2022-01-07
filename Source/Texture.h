@@ -5,6 +5,7 @@
 
 #include "Format.h"
 #include <memory>
+#include <vector>
 
 class Image;
 
@@ -45,6 +46,14 @@ public:
 	 * @param type  纹理类型.
 	 */
 	static std::shared_ptr<Texture> create(const Image& image, Type type = Type::_2D);
+
+	/**
+	 * @brief 从图像创建立方体纹理.
+	 *
+	 * @param images 图像.
+	 * @param type   纹理类型.
+	 */
+	static std::shared_ptr<Texture> create(const std::vector<Image>& images);
 
 	virtual void bind(unsigned int slot = 0) = 0;
 
