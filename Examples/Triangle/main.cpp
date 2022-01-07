@@ -35,7 +35,8 @@ int main()
 	};
 	format.setStride(sizeof(Vertex));
 
-	auto vbo = VertexBuffer::create(vertices, format);
+	auto vertexBuffer = VertexBuffer::create(vertices, format);
+
 	auto program = Program::create("Shaders/forword");
 	auto cmdQueue = CommandQueue::create();
 	auto cmdBuffer = CommandBuffer::create();
@@ -69,8 +70,8 @@ int main()
 			cmdBuffer->setClearColor({0, 0, 0, 0});
 			cmdBuffer->clear(ClearFlag::Color);
 
-			cmdBuffer->setVertexBuffer(vbo);
-			cmdBuffer->draw(0, vbo->getCount());
+			cmdBuffer->setVertexBuffer(vertexBuffer);
+			cmdBuffer->draw(0, vertexBuffer->getCount());
 		}
 		cmdBuffer->end();
 		cmdQueue->submit(cmdBuffer);

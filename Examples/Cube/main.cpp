@@ -41,7 +41,7 @@ int main()
 	};
 	format.setStride(sizeof(Vertex));
 
-	auto vbo = VertexBuffer::create(vertices, format);
+	auto vertexBuffer = VertexBuffer::create(vertices, format);
 
 	const std::vector<uint32_t> indices = {
 		2,0,1, 2,3,0,
@@ -52,7 +52,7 @@ int main()
 		3,6,7, 3,2,6
 	};
 
-	auto ibo = IndexBuffer::create(indices);
+	auto indexBuffer = IndexBuffer::create(indices);
 
 	auto program = Program::create("Shaders/mesh");
 	auto pipeline = Pipeline::create(program);
@@ -101,11 +101,12 @@ int main()
 		{
 			cmdBuffer->setViewport({0, 0}, window->getSize());
 			cmdBuffer->setClearColor({0, 0, 0, 0});
+			cmdBuffer->setClearDepth(std::numeric_limits<float>::infinity());
 			cmdBuffer->clear(ClearFlag::Color | ClearFlag::Depth);
 
-			cmdBuffer->setVertexBuffer(vbo);
-			cmdBuffer->setIndexBuffer(ibo);
-			cmdBuffer->drawIndexed(0, ibo->getCount());
+			cmdBuffer->setVertexBuffer(vertexBuffer);
+			cmdBuffer->setIndexBuffer(indexBuffer);
+			cmdBuffer->drawIndexed(0, indexBuffer->getCount());
 		}
 		cmdBuffer->end();
 		cmdQueue->submit(cmdBuffer);

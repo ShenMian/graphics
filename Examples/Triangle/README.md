@@ -2,7 +2,12 @@
 
 渲染单个三角形.
 
-<p align="center"><img src="screenshot.png"/></p>
+<p align="center"><img src="Assets/screenshot.png"/></p>
+
+## 你将了解到
+- 窗口的创建.
+- 图形渲染管线的创建.
+- 绘制 2D 图像.
 
 代码大致可以分为一下几个步骤.
 
@@ -26,19 +31,20 @@ struct Vertex
 ```
 
 创建三个顶点, 坐标原点在视口的中心.
+![坐标系](Assets/coordinates.png)
 ```cpp
 const std::vector<Vertex> vertices = {
-    {{0,     0.5}, {1, 0, 0}}, // 第一个顶点, 红色
-    {{0.5,  -0.5}, {0, 1, 0}}, // 第二个顶点, 绿色
-    {{-0.5, -0.5}, {0, 0, 1}}  // 第三个顶点, 蓝色
+    {{0,     0.5}, {1, 0, 0}}, // 第一个顶点, 位于中上方, 红色
+    {{0.5,  -0.5}, {0, 1, 0}}, // 第二个顶点, 位于右下方, 绿色
+    {{-0.5, -0.5}, {0, 0, 1}}  // 第三个顶点, 位于左下方, 蓝色
 };
 ```
 
 创建 VertexFormat, 用于表示顶点数据格式.
 ```cpp
 VertexFormat format = {
-    {"position", Format::RG32F}, // 2D 坐标, 包含两个 float 变量.
-    {"color",    Format::RGB32F} // RGB 颜色, 包含三个 float 变量.
+    {"position", Format::RG32F}, // 2D 坐标, 包含两个 32 位的 float 变量.
+    {"color",    Format::RGB32F} // RGB 颜色, 包含三个 32 位的 float 变量.
 };
 format.setStride(sizeof(Vertex)); // 设置数组中每个顶点的大小.
 ```
@@ -47,7 +53,7 @@ format.setStride(sizeof(Vertex)); // 设置数组中每个顶点的大小.
 
 创建顶点缓冲区.
 ```cpp
-auto vbo = VertexBuffer::create(vertices, format);
+auto vertexBuffer = VertexBuffer::create(vertices, format);
 ```
 
 ## 着色器
@@ -67,19 +73,20 @@ auto cmdQueue  = CommandQueue::create();  // 创建命令队列
 ## 主循环
 循环渲染单个三角形.
 ```cpp
-bool running   = true;
+bool running   = true; // 当该变量值为 false 时主循环退出, 程序结束
 window.onClose = [&]() { running = false; }; // 注册一个窗口关闭按钮按下的回调,
                                              // 当窗口关闭按钮被按下时 running 的值变为 false,
                                              // 主循环在执行完循环体后退出, 程序结束
-while(running) // 当该变量值为 false 时主循环退出, 程序结束
+while(running)
 {
     program->use(); // 使用着色器程序
     cmdBuffer->begin();
     {
-        cmdBuffer->setClearColor({0, 0, 0, 0}); // 设置清空颜色缓冲区的默认值
+        cmdBuffer->setClearColor({0, 0, 0, 0}); // 设置清空颜色缓冲区的默认值为黑色
         cmdBuffer->clear(ClearFlag::Color);     // 清空颜色缓冲区
-        cmdBuffer->setVertexBuffer(vbo);        // 设置顶点缓冲区
-        cmdBuffer->draw(0, vbo->getCount());    // 绘制顶点缓冲区中的全部数据
+
+        cmdBuffer->setVertexBuffer(vertexBuffer);     // 设置顶点缓冲区
+        cmdBuffer->draw(0, vertexBuffer->getCount()); // 绘制顶点缓冲区中的全部数据
     }
     cmdBuffer->end();
     cmdQueue->submit(cmdBuffer); // 提交命令缓冲区给命令队列, 开始渲染操作
