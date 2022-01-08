@@ -116,26 +116,23 @@ $(document).ready(function(){initNavTree('_command_buffer_8h_source.html',''); i
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">static</span> std::shared_ptr&lt;CommandBuffer&gt; create();</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> begin() = 0;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> end() = 0;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="comment">// virtual void execute(std::shared_ptr&lt;CommandBuffer&gt; commandBuffer) = 0;</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> setViewport(<span class="keyword">const</span> Vector2f&amp; origin, <span class="keyword">const</span> Vector2f&amp; size, <span class="keyword">const</span> Vector2f&amp; depth) = 0;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> setPipeline(std::shared_ptr&lt;Pipeline&gt; pipeline) = 0;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> end() = 0;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> setViewport(<span class="keyword">const</span> Vector2f&amp; origin, <span class="keyword">const</span> Vector2f&amp; size, <span class="keyword">const</span> Vector2f&amp; depth = {0.f, 1.f}) = 0;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> setPipeline(std::shared_ptr&lt;Pipeline&gt; pipeline) = 0;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> setVertexBuffer(std::shared_ptr&lt;VertexBuffer&gt; vertexBuffer) = 0;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> setIndexBuffer(std::shared_ptr&lt;IndexBuffer&gt; indexBuffer) = 0;</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> setVertexBuffer(std::shared_ptr&lt;VertexBuffer&gt; vertexBuffer) = 0;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> setIndexBuffer(std::shared_ptr&lt;IndexBuffer&gt; indexBuffer) = 0;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="class_command_buffer.html#accc1761193f40a84dd8e3dd05f18dd0f">   55</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_command_buffer.html#accc1761193f40a84dd8e3dd05f18dd0f">clear</a>(uint8_t flags) = 0;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> setClearColor(<span class="keyword">const</span> Vector4&amp; color) = 0;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> setClearDepth(<span class="keywordtype">float</span> depth) = 0;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> setClearStencil() = 0;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> draw(uint32_t vertexCount, uint32_t firstVertex = 0) = 0;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> drawIndexed(uint32_t indexCount, uint32_t firstIndex = 0) = 0;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;};</div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="class_command_buffer.html#accc1761193f40a84dd8e3dd05f18dd0f">   52</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_command_buffer.html#accc1761193f40a84dd8e3dd05f18dd0f">clear</a>(uint8_t flags) = 0;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> setClearColor(<span class="keyword">const</span> Vector4&amp; color) = 0;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> setClearDepth(<span class="keywordtype">float</span> depth) = 0;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> setClearStencil() = 0;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> draw(uint32_t vertexCount, uint32_t firstVertex = 0) = 0;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> drawIndexed(uint32_t indexCount, uint32_t firstIndex = 0) = 0;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;};</div>
 <div class="ttc" id="aclass_command_buffer_html"><div class="ttname"><a href="class_command_buffer.html">CommandBuffer</a></div><div class="ttdoc">命令缓冲区.</div><div class="ttdef"><b>Definition:</b> CommandBuffer.h:28</div></div>
 <div class="ttc" id="aclass_command_buffer_html_accc1761193f40a84dd8e3dd05f18dd0f"><div class="ttname"><a href="class_command_buffer.html#accc1761193f40a84dd8e3dd05f18dd0f">CommandBuffer::clear</a></div><div class="ttdeci">virtual void clear(uint8_t flags)=0</div><div class="ttdoc">清空缓冲区.</div></div>
 <div class="ttc" id="aclass_index_buffer_html"><div class="ttname"><a href="class_index_buffer.html">IndexBuffer</a></div><div class="ttdoc">索引缓冲区.</div><div class="ttdef"><b>Definition:</b> IndexBuffer.h:13</div></div>
