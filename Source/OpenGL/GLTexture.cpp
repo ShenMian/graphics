@@ -101,7 +101,8 @@ GLTexture::GLTexture(const Image& image, Type type)
 	setSWarp(Warp::Repeat);
 	setTWarp(Warp::Repeat);
 
-	glTexImage2D(glTarget, 0, GLInternalFormat(format), image.getSize().x, image.getSize().y, 0,
+	glTexImage2D(glTarget, 0, GLInternalFormat(format),
+		static_cast<GLsizei>(image.getSize().x), static_cast<GLsizei>(image.getSize().y), 0,
 		GLFormat(format), GL_UNSIGNED_BYTE, image.getData());
 	GLCheckError();
 }
@@ -123,8 +124,8 @@ GLTexture::GLTexture(const std::vector<Image>& images)
 	for(size_t i = 0; i < images.size(); i++)
 	{
 		glTexImage2D(
-			GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0,
-			GLInternalFormat(format), images[i].getSize().x, images[i].getSize().y, 0,
+			static_cast<GLenum>(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i), 0, GLInternalFormat(format),
+			static_cast<GLsizei>(images[i].getSize().x), static_cast<GLsizei>(images[i].getSize().y), 0,
 			GLFormat(format), GL_UNSIGNED_BYTE, images[i].getData());
 		GLCheckError();
 	}
