@@ -5,6 +5,7 @@
 function install_arch() {
     deps=$*
 
+    echo "Installing '$deps'..."
     if ! sudo pacman --noconfirm -S $deps >/dev/null; then
         echo "pacman install failed"
         exit 1
@@ -14,6 +15,7 @@ function install_arch() {
 function install_ubuntu() {
     deps=$*
 
+    echo "Installing '$deps'..."
     if ! sudo apt install -y $deps >/dev/null; then
         echo "apt install failed"
         exit 1
@@ -23,6 +25,7 @@ function install_ubuntu() {
 function install_macos() {
     deps=$*
 
+    echo "Installing '$deps'..."
     if ! brew install $deps >/dev/null; then
         echo "brew install failed"
         exit 1
@@ -32,9 +35,9 @@ function install_macos() {
 function install_cmake() {
     dep=$1
 
-    cd "${dep}" || return 1
+    cd "$dep" || return 1
 
-    echo "|-Installing '${dep}'..."
+    echo "Installing '$dep'..."
 
     # 生成 CMake 緩存
     echo " |-Gerenating CMake cache..."
