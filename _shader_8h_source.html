@@ -116,21 +116,20 @@ $(document).ready(function(){initNavTree('_shader_8h_source.html',''); initResiz
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    Stage <a class="code" href="class_shader.html#a3a91e257350332a3cd3af52d740405d5">getStage</a>() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
-<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="class_shader.html#ac4d7bcb657dc42c70d27d6522ab4fe7e">   58</a></span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">size_t</span> <a class="code" href="class_shader.html#ac4d7bcb657dc42c70d27d6522ab4fe7e">getNativeHandle</a>() <span class="keyword">const</span> = 0;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    std::string name;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    Stage       stage;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="class_shader.html">Shader</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    std::string name;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    Stage       stage;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keyword">static</span> std::unordered_map&lt;Shader::Stage, const char*&gt; extension;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;};</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keyword">static</span> std::unordered_map&lt;Shader::Stage, const char*&gt; extension;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;};</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
 <div class="ttc" id="aclass_shader_html"><div class="ttname"><a href="class_shader.html">Shader</a></div><div class="ttdoc">阶段着色器.</div><div class="ttdef"><b>Definition:</b> Shader.h:18</div></div>
 <div class="ttc" id="aclass_shader_html_a3a91e257350332a3cd3af52d740405d5"><div class="ttname"><a href="class_shader.html#a3a91e257350332a3cd3af52d740405d5">Shader::getStage</a></div><div class="ttdeci">Stage getStage() const</div><div class="ttdoc">获取阶段.</div><div class="ttdef"><b>Definition:</b> Shader.cpp:45</div></div>
 <div class="ttc" id="aclass_shader_html_a6e91ea814d9d8ab826b483e209634393"><div class="ttname"><a href="class_shader.html#a6e91ea814d9d8ab826b483e209634393">Shader::getName</a></div><div class="ttdeci">const std::string &amp; getName() const</div><div class="ttdoc">获取名称.</div><div class="ttdef"><b>Definition:</b> Shader.cpp:40</div></div>
 <div class="ttc" id="aclass_shader_html_a77f2fefe0554b960815aba4857cb6ea4"><div class="ttname"><a href="class_shader.html#a77f2fefe0554b960815aba4857cb6ea4">Shader::create</a></div><div class="ttdeci">static std::shared_ptr&lt; Shader &gt; create(const std::string &amp;name, Stage stage)</div><div class="ttdoc">创建着色器.</div><div class="ttdef"><b>Definition:</b> Shader.cpp:17</div></div>
 <div class="ttc" id="aclass_shader_html_a96696da505f24a4f8e47f58fc2dfb70b"><div class="ttname"><a href="class_shader.html#a96696da505f24a4f8e47f58fc2dfb70b">Shader::Shader</a></div><div class="ttdeci">Shader(const std::string &amp;name, Stage stage)</div><div class="ttdoc">构造函数.</div><div class="ttdef"><b>Definition:</b> Shader.cpp:35</div></div>
-<div class="ttc" id="aclass_shader_html_ac4d7bcb657dc42c70d27d6522ab4fe7e"><div class="ttname"><a href="class_shader.html#ac4d7bcb657dc42c70d27d6522ab4fe7e">Shader::getNativeHandle</a></div><div class="ttdeci">virtual size_t getNativeHandle() const =0</div><div class="ttdoc">获取本地句柄.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

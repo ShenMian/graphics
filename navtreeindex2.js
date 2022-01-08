@@ -1,6 +1,5 @@
 var NAVTREEINDEX2 =
 {
-"struct_clear_flag.html":[2,0,3],
 "struct_d_d_s_header.html":[2,0,6],
 "struct_d_d_s_header.html#a29d8909b36e3337e9a9ab466ad91f7ff":[2,0,6,8],
 "struct_d_d_s_header.html#a329dd36b67a12d1ca36803ca849c021d":[2,0,6,2],
