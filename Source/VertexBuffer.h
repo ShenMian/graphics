@@ -50,7 +50,7 @@ public:
 	/**
 	 * @brief 获取顶点数.
 	 */
-	size_t getCount() const;
+	uint32_t getCount() const;
 
 	/**
 	 * @brief 获取顶格式.
@@ -60,16 +60,16 @@ public:
 	virtual void bind() = 0;
 
 protected:
-	VertexBuffer(size_t size, size_t count, const VertexFormat& fmt);
+	VertexBuffer(size_t size, uint32_t count, const VertexFormat& fmt);
 
 private:
 	size_t       size;
-	size_t       count;
+	uint32_t     count;
 	VertexFormat format;
 };
 
 template <typename T>
 inline std::shared_ptr<VertexBuffer> VertexBuffer::create(const std::vector<T>& data, const VertexFormat& fmt, Usage usage)
 {
-	return create(data.data(), data.size() * sizeof(T), data.size(), fmt, usage);
+	return create(data.data(), data.size() * sizeof(T), static_cast<uint32_t>(data.size()), fmt, usage);
 }

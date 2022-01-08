@@ -23,7 +23,7 @@ size_t VertexBuffer::getSize() const
 	return size;
 }
 
-size_t VertexBuffer::getCount() const
+uint32_t VertexBuffer::getCount() const
 {
 	return count;
 }
@@ -33,7 +33,7 @@ const VertexFormat& VertexBuffer::getFormat() const
 	return format;
 }
 
-VertexBuffer::VertexBuffer(size_t size, size_t count, const VertexFormat& fmt)
+VertexBuffer::VertexBuffer(size_t size, uint32_t count, const VertexFormat& fmt)
 	: size(size), count(count), format(fmt)
 {
 }
