@@ -45,7 +45,11 @@ public:
 
 	void add(Widget& widget);
 
+	void clear();
+
 	void update() override;
+
+	std::function<void(Window&)> hover;
 
 private:
 	Flag                 flags;

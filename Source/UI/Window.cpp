@@ -17,12 +17,20 @@ void Window::add(Widget& widget)
 	widgets.push_back(&widget);
 }
 
+void Window::clear()
+{
+	widgets.clear();
+}
+
 void Window::update()
 {
 	if(ImGui::Begin(handle.c_str(), nullptr, flags))
 	{
 		for(auto& widget : widgets)
 			widget->update();
+		if(ImGui::IsWindowHovered())
+			if(hover)
+				hover(*this);
 		ImGui::End();
 	}
 }
