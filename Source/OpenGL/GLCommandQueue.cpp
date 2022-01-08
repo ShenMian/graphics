@@ -28,7 +28,8 @@ size_t GLCommandQueue::execute(GLOpcode opcode, const uint8_t* pc)
 	case GLOpcode::setViewport:
 	{
 		auto args = reinterpret_cast<const GLCmdSetViewport*>(pc);
-		glViewport(args->origin.x, args->origin.y, args->size.x, args->size.y);
+		glViewport(static_cast<GLint>(args->origin.x), static_cast<GLint>(args->origin.y),
+			static_cast<GLsizei>(args->size.x), static_cast<GLsizei>(args->size.y));
 		return sizeof(*args);
 	}
 
