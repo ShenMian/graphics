@@ -1,5 +1,6 @@
 var NAVTREEINDEX2 =
 {
+"struct_d_d_s_header_d_x_t10.html#acf255aac4e9e69b30c299669e4791605":[2,0,6,0],
 "struct_d_d_s_pixel_format.html":[2,0,7],
 "struct_d_d_s_pixel_format.html#a2bdc3fc76e9d7efc2a8096f1b08b3f9a":[2,0,7,5],
 "struct_d_d_s_pixel_format.html#a505a2d59967185264e49f5473b0f2306":[2,0,7,3],

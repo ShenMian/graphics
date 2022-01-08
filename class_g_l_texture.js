@@ -2,6 +2,7 @@ var class_g_l_texture =
 [
     [ "handle_type", "class_g_l_texture.html#a1861599bb55eff871fd229a58ed57df8", null ],
     [ "GLTexture", "class_g_l_texture.html#a66bf2b0cafbc9d8054031edde9fd90bf", null ],
+    [ "GLTexture", "class_g_l_texture.html#a50faf7f10244c65b26599ccf07e745ef", null ],
     [ "~GLTexture", "class_g_l_texture.html#a7a0f04b3bd68c77588c0aea9b30b08c4", null ],
     [ "bind", "class_g_l_texture.html#aea69db920c03e72b480786e837debba5", null ],
     [ "generateMipmap", "class_g_l_texture.html#aab3a666dba71053f7abe94cbd79bc5c9", null ],

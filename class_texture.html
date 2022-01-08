@@ -161,6 +161,9 @@ Format&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 <tr class="memitem:ae6059b9170c98547b68ecad5fae46d3d"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_texture.html">Texture</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture.html#ae6059b9170c98547b68ecad5fae46d3d">create</a> (const <a class="el" href="class_image.html">Image</a> &amp;image, Type type=Type::_2D)</td></tr>
 <tr class="memdesc:ae6059b9170c98547b68ecad5fae46d3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">从图像创建纹理.  <a href="class_texture.html#ae6059b9170c98547b68ecad5fae46d3d">更多...</a><br /></td></tr>
 <tr class="separator:ae6059b9170c98547b68ecad5fae46d3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09bd077920fa8379b91b34c5b28e6eec"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_texture.html">Texture</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture.html#a09bd077920fa8379b91b34c5b28e6eec">create</a> (const std::vector&lt; <a class="el" href="class_image.html">Image</a> &gt; &amp;images)</td></tr>
+<tr class="memdesc:a09bd077920fa8379b91b34c5b28e6eec"><td class="mdescLeft">&#160;</td><td class="mdescRight">从图像创建立方体纹理.  <a href="class_texture.html#a09bd077920fa8379b91b34c5b28e6eec">更多...</a><br /></td></tr>
+<tr class="separator:a09bd077920fa8379b91b34c5b28e6eec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected 成员函数</h2></td></tr>
@@ -181,7 +184,7 @@ Format&#160;</td><td class="memItemRight" valign="bottom"><b>format</b></td></tr
 <div class="textblock"><p>纹理. </p>
 </div><h2 class="groupheader">成员函数说明</h2>
 <a id="ae6059b9170c98547b68ecad5fae46d3d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae6059b9170c98547b68ecad5fae46d3d">&#9670;&nbsp;</a></span>create()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6059b9170c98547b68ecad5fae46d3d">&#9670;&nbsp;</a></span>create() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -218,6 +221,41 @@ Format&#160;</td><td class="memItemRight" valign="bottom"><b>format</b></td></tr
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
     <tr><td class="paramname">image</td><td>图像. </td></tr>
+    <tr><td class="paramname">type</td><td>纹理类型. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a09bd077920fa8379b91b34c5b28e6eec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09bd077920fa8379b91b34c5b28e6eec">&#9670;&nbsp;</a></span>create() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt; <a class="el" href="class_texture.html">Texture</a> &gt; Texture::create </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="class_image.html">Image</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>images</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>从图像创建立方体纹理. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">images</td><td>图像. </td></tr>
     <tr><td class="paramname">type</td><td>纹理类型. </td></tr>
   </table>
   </dd>
