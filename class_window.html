@@ -149,6 +149,12 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#acaf1ae031f7b9196f36f66e37ff3eb0f">requestFocus</a> ()</td></tr>
 <tr class="memdesc:acaf1ae031f7b9196f36f66e37ff3eb0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">请求聚焦. <br /></td></tr>
 <tr class="separator:acaf1ae031f7b9196f36f66e37ff3eb0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c77b5d3561bf8c150c017a965a55c5f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a1c77b5d3561bf8c150c017a965a55c5f">setCursorLock</a> (bool enable)</td></tr>
+<tr class="memdesc:a1c77b5d3561bf8c150c017a965a55c5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置是否开启光标锁定.  <a href="class_window.html#a1c77b5d3561bf8c150c017a965a55c5f">更多...</a><br /></td></tr>
+<tr class="separator:a1c77b5d3561bf8c150c017a965a55c5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6786f1592fa3da0aa66ebb08436a4355"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a6786f1592fa3da0aa66ebb08436a4355">setRawMouseMotion</a> (bool enable)</td></tr>
+<tr class="memdesc:a6786f1592fa3da0aa66ebb08436a4355"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置是否启用原始鼠标运动.  <a href="class_window.html#a6786f1592fa3da0aa66ebb08436a4355">更多...</a><br /></td></tr>
+<tr class="separator:a6786f1592fa3da0aa66ebb08436a4355"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac2dcba6f351bed84db15e477a39f285d"><td class="memItemLeft" align="right" valign="top"><a id="ac2dcba6f351bed84db15e477a39f285d"></a>
 void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#ac2dcba6f351bed84db15e477a39f285d">getNativeHandle</a> () const</td></tr>
 <tr class="memdesc:ac2dcba6f351bed84db15e477a39f285d"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取本地句柄. <br /></td></tr>
@@ -302,6 +308,33 @@ std::function&lt; void(int, const char *paths[])&gt;&#160;</td><td class="memIte
 
 </div>
 </div>
+<a id="a1c77b5d3561bf8c150c017a965a55c5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c77b5d3561bf8c150c017a965a55c5f">&#9670;&nbsp;</a></span>setCursorLock()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Window::setCursorLock </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>enable</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>设置是否开启光标锁定. </p>
+<p>会将光标隐藏并锁定在窗口中.</p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">enable</td><td>true 为开启, false 为关闭. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="ac44e3bd70572de401dd8cb2a2f164528"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac44e3bd70572de401dd8cb2a2f164528">&#9670;&nbsp;</a></span>setFullscreen()</h2>
 
@@ -377,6 +410,34 @@ std::function&lt; void(int, const char *paths[])&gt;&#160;</td><td class="memIte
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a6786f1592fa3da0aa66ebb08436a4355"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6786f1592fa3da0aa66ebb08436a4355">&#9670;&nbsp;</a></span>setRawMouseMotion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Window::setRawMouseMotion </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>enable</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>设置是否启用原始鼠标运动. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">enable</td><td>true 为开启, false 为关闭.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>原始鼠标运动更接近鼠标在表面上的实际运动. 它不受应用于桌面光标运动的缩放和加速度的影响. 适合控制 3D 相机.</p>
+<dl class="section warning"><dt>警告</dt><dd>仅在禁用光标时有效. </dd></dl>
 
 </div>
 </div>

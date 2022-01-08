@@ -116,6 +116,13 @@ static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input.html#ab8cd307e1a0fe647309da8583a51807b">getMouseY</a> ()</td></tr>
 <tr class="memdesc:ab8cd307e1a0fe647309da8583a51807b"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取光标相对窗口的 Y 坐标. <br /></td></tr>
 <tr class="separator:ab8cd307e1a0fe647309da8583a51807b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba15ec2c1c9163096c94f98e76dcfcdd"><td class="memItemLeft" align="right" valign="top"><a id="aba15ec2c1c9163096c94f98e76dcfcdd"></a>
+static std::string_view&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input.html#aba15ec2c1c9163096c94f98e76dcfcdd">getClipboard</a> ()</td></tr>
+<tr class="memdesc:aba15ec2c1c9163096c94f98e76dcfcdd"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取剪切板内容, UTF-8 编码. <br /></td></tr>
+<tr class="separator:aba15ec2c1c9163096c94f98e76dcfcdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeadfa9fb87399e5094a841769e28b435"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input.html#aeadfa9fb87399e5094a841769e28b435">setClipboard</a> (const std::string &amp;str)</td></tr>
+<tr class="memdesc:aeadfa9fb87399e5094a841769e28b435"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置剪切板内容, UTF-8 编码.  <a href="class_input.html#aeadfa9fb87399e5094a841769e28b435">更多...</a><br /></td></tr>
+<tr class="separator:aeadfa9fb87399e5094a841769e28b435"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a17021ae75c41654187e294622c6edcb5"><td class="memItemLeft" align="right" valign="top"><a id="a17021ae75c41654187e294622c6edcb5"></a>
 static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input.html#a17021ae75c41654187e294622c6edcb5">setWindow</a> (<a class="el" href="class_window.html">Window</a> *win)</td></tr>
 <tr class="memdesc:a17021ae75c41654187e294622c6edcb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置接受输入的窗口. <br /></td></tr>
@@ -195,6 +202,40 @@ false 按键抬起. </dd></dl>
 <dl class="section return"><dt>返回</dt><dd>true 按键按下. </dd>
 <dd>
 false 按键抬起. </dd></dl>
+
+</div>
+</div>
+<a id="aeadfa9fb87399e5094a841769e28b435"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeadfa9fb87399e5094a841769e28b435">&#9670;&nbsp;</a></span>setClipboard()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Input::setClipboard </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>str</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置剪切板内容, UTF-8 编码. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>要设置的内容. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
