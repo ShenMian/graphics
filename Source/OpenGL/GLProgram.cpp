@@ -121,7 +121,8 @@ int GLProgram::getUniformLocation(const std::string& name)
 
 void GLProgram::attach(const std::shared_ptr<Shader> shader)
 {
-	glAttachShader(handle, (GLuint)shader->getNativeHandle());
+	auto glShader = std::dynamic_pointer_cast<GLShader>(shader);
+	glAttachShader(handle, (GLuint)glShader->getNativeHandle());
 }
 
 void GLProgram::link()

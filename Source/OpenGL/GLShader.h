@@ -14,7 +14,10 @@ public:
 
 	void load();
 
-	size_t getNativeHandle() const override;
+	/**
+	 * @brief 获取本地句柄.
+	 */
+	size_t getNativeHandle() const;
 
 private:
 	GLuint handle;
