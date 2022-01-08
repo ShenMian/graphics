@@ -5,6 +5,7 @@
 
 #include "Key.h"
 #include <Math/Math.hpp>
+#include <string_view>
 
 class Window;
 
@@ -50,6 +51,18 @@ public:
 	 * @brief 获取光标相对窗口的 Y 坐标.
 	 */
 	static float getMouseY();
+
+	/**
+	 * @brief 获取剪切板内容, UTF-8 编码.
+	 */
+	static std::string_view getClipboard();
+
+	/**
+	 * @brief 设置剪切板内容, UTF-8 编码.
+	 *
+	 * @param str 要设置的内容.
+	 */
+	static void setClipboard(const std::string& str);
 
 	/**
 	 * @brief 设置接受输入的窗口.

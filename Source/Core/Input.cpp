@@ -37,6 +37,16 @@ float Input::getMouseY()
 	return getMousePosition().y;
 }
 
+std::string_view Input::getClipboard()
+{
+	return glfwGetClipboardString(nullptr);
+}
+
+void Input::setClipboard(const std::string& str)
+{
+	glfwSetClipboardString(nullptr, str.c_str());
+}
+
 void Input::setWindow(Window* win)
 {
 	window = win;
