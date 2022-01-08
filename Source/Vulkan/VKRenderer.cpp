@@ -62,6 +62,11 @@ const VkDevice& VKRenderer::getDevice() const
 	return device;
 }
 
+const VkPhysicalDevice& VKRenderer::getPhysicalDevice() const
+{
+	return physicalDevice;
+}
+
 const VkQueue& VKRenderer::getQueue() const
 {
 	return queue;

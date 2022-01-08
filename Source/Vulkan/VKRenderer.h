@@ -24,6 +24,11 @@ public:
 	const VkDevice& getDevice() const;
 
 	/**
+	 * @brief 获取 VkPhysicalDevice.
+	 */
+	const VkPhysicalDevice& getPhysicalDevice() const;
+
+	/**
 	 * @brief 获取 VkQueue.
 	 */
 	const VkQueue& getQueue() const;

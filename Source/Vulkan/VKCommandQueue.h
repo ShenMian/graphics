@@ -4,9 +4,13 @@
 #pragma once
 
 #include "CommandQueue.h"
+#include <vulkan/vulkan.h>
 
 class VKCommandQueue : public CommandQueue
 {
 public:
 	void submit(std::shared_ptr<CommandBuffer> commandBuffer) override;
+
+private:
+	VkQueue handle;
 };
