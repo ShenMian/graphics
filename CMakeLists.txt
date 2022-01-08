@@ -54,11 +54,7 @@ macro(add_example NAME)
   target_compile_definitions(${NAME} PUBLIC ${GRAPHICS_DEFINES})
 
   set_target_properties(${NAME} PROPERTIES
-        RUNTIME_OUTPUT_DIRECTORY                "${CMAKE_BINARY_DIR}/bin/${NAME}"
-        RUNTIME_OUTPUT_DIRECTORY_DEBUG          "${CMAKE_BINARY_DIR}/bin/${NAME}"
-        RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO "${CMAKE_BINARY_DIR}/bin/${NAME}"
-        RUNTIME_OUTPUT_DIRECTORY_MINSIZEREL     "${CMAKE_BINARY_DIR}/bin/${NAME}"
-        RUNTIME_OUTPUT_DIRECTORY_RELEASE        "${CMAKE_BINARY_DIR}/bin/${NAME}")
+      RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin/${NAME}")
 
   # 指定 C++ 标准
   if(MSVC)
@@ -74,7 +70,7 @@ macro(add_example NAME)
   endif()
 
   # 将 Shader 源文件复制到可执行文件的目录下
-  file(COPY "Shaders" DESTINATION "${EXECUTABLE_OUTPUT_PATH}/${CMAKE_BUILD_TYPE}")
+  file(COPY "Shaders" DESTINATION "${CMAKE_BINARY_DIR}/bin/${NAME}")
 endmacro()
 
 # 指定 Win32 下要定义的宏
@@ -102,5 +98,5 @@ add_subdirectory(Source)
 if(BUILD_EXAMPLES)
   add_subdirectory(Examples/Triangle)
   add_subdirectory(Examples/Cube)
-  # add_subdirectory(Examples/Test)
+  add_subdirectory(Examples/Test)
 endif()
