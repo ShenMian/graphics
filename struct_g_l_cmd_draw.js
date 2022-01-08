@@ -1,5 +1,5 @@
 var struct_g_l_cmd_draw =
 [
-    [ "firstVertex", "struct_g_l_cmd_draw.html#a683e13d4a11110522bd49c27c3d895fc", null ],
-    [ "verticesNum", "struct_g_l_cmd_draw.html#a4ad11b032fb3013735872aaaae085102", null ]
+    [ "firstVertex", "struct_g_l_cmd_draw.html#a02a0300ae912d6f1fd4afb9aabed7c8f", null ],
+    [ "vertexCount", "struct_g_l_cmd_draw.html#a9265383abf3906edc1a810054dd0aa3e", null ]
 ];

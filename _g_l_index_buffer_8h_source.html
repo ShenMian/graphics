@@ -98,16 +98,14 @@ $(document).ready(function(){initNavTree('_g_l_index_buffer_8h_source.html','');
 <div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="class_g_l_index_buffer.html">    9</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_g_l_index_buffer.html">GLIndexBuffer</a> : <span class="keyword">public</span> <a class="code" href="class_index_buffer.html">IndexBuffer</a></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;{</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keyword">using</span> handle_type = <span class="keywordtype">unsigned</span> int;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <a class="code" href="class_g_l_index_buffer.html">GLIndexBuffer</a>(<span class="keyword">const</span> <span class="keywordtype">void</span>* data, <span class="keywordtype">size_t</span> size, <span class="keywordtype">size_t</span> count, Usage usage);</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="class_g_l_index_buffer.html">GLIndexBuffer</a>();</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <a class="code" href="class_g_l_index_buffer.html">GLIndexBuffer</a>(<span class="keyword">const</span> <span class="keywordtype">void</span>* data, <span class="keywordtype">size_t</span> size, <span class="keywordtype">size_t</span> count, Usage usage);</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="class_g_l_index_buffer.html">GLIndexBuffer</a>();</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordtype">void</span> bind() <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keywordtype">void</span> bind() <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    handle_type handle;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;};</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    GLuint handle;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;};</div>
 <div class="ttc" id="aclass_g_l_index_buffer_html"><div class="ttname"><a href="class_g_l_index_buffer.html">GLIndexBuffer</a></div><div class="ttdef"><b>Definition:</b> GLIndexBuffer.h:10</div></div>
 <div class="ttc" id="aclass_index_buffer_html"><div class="ttname"><a href="class_index_buffer.html">IndexBuffer</a></div><div class="ttdoc">索引缓冲区.</div><div class="ttdef"><b>Definition:</b> IndexBuffer.h:13</div></div>
 </div><!-- fragment --></div><!-- contents -->

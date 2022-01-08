@@ -118,8 +118,8 @@ $(document).ready(function(){initNavTree('_g_l_command_buffer_8h_source.html',''
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">void</span> setClearDepth(<span class="keywordtype">float</span> depth) <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">void</span> setClearStencil() <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">void</span> draw(<span class="keywordtype">size_t</span> firstVertex, <span class="keywordtype">size_t</span> verticesNum) <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">void</span> drawIndexed(<span class="keywordtype">size_t</span> firstIndex, <span class="keywordtype">size_t</span> indicesNum) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">void</span> draw(uint32_t vertexCount, uint32_t firstVertex) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">void</span> drawIndexed(uint32_t indexCount, uint32_t firstIndex) <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; getData() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
@@ -200,14 +200,14 @@ $(document).ready(function(){initNavTree('_g_l_command_buffer_8h_source.html',''
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
 <div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="struct_g_l_cmd_draw.html">  112</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_g_l_cmd_draw.html">GLCmdDraw</a></div>
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;{</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keywordtype">size_t</span> firstVertex;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keywordtype">size_t</span> verticesNum;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    uint32_t firstVertex;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    uint32_t vertexCount;</div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;};</div>
 <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160; </div>
 <div class="line"><a name="l00118"></a><span class="lineno"><a class="line" href="struct_g_l_cmd_draw_indexed.html">  118</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_g_l_cmd_draw_indexed.html">GLCmdDrawIndexed</a></div>
 <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;{</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keywordtype">size_t</span> firstIndex;</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="keywordtype">size_t</span> indicesNum;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    uint32_t firstIndex;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    uint32_t indexCount;</div>
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;};</div>
 <div class="ttc" id="aclass_command_buffer_html"><div class="ttname"><a href="class_command_buffer.html">CommandBuffer</a></div><div class="ttdoc">命令缓冲区.</div><div class="ttdef"><b>Definition:</b> CommandBuffer.h:28</div></div>
 <div class="ttc" id="aclass_g_l_command_buffer_html"><div class="ttname"><a href="class_g_l_command_buffer.html">GLCommandBuffer</a></div><div class="ttdef"><b>Definition:</b> GLCommandBuffer.h:15</div></div>

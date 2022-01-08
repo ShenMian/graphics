@@ -1,6 +1,5 @@
 var class_g_l_program =
 [
-    [ "handle_type", "class_g_l_program.html#a16ae0af0901f45f29e6dbf4678c21595", null ],
     [ "GLProgram", "class_g_l_program.html#a604851c6a2e57f8535557b3007372757", null ],
     [ "~GLProgram", "class_g_l_program.html#afbda874ed54a3f71625556083eba8603", null ],
     [ "setUniform", "class_g_l_program.html#a67ee9b61d34e26e904040f88afb2ce4c", null ],

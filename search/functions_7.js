@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['requestfocus_260',['requestFocus',['../class_window.html#acaf1ae031f7b9196f36f66e37ff3eb0f',1,'Window']]]
+  ['perspectivecamera_268',['PerspectiveCamera',['../class_perspective_camera.html#a92e33647a5013b8aacbe286bd3c0bd76',1,'PerspectiveCamera']]]
 ];

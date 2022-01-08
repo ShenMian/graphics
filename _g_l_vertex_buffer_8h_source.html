@@ -99,18 +99,16 @@ $(document).ready(function(){initNavTree('_g_l_vertex_buffer_8h_source.html','')
 <div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="class_g_l_vertex_buffer.html">   10</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_g_l_vertex_buffer.html">GLVertexBuffer</a> : <span class="keyword">public</span> <a class="code" href="class_vertex_buffer.html">VertexBuffer</a></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;{</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keyword">using</span> handle_type = <span class="keywordtype">unsigned</span> int;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <a class="code" href="class_g_l_vertex_buffer.html">GLVertexBuffer</a>(<span class="keyword">const</span> <span class="keywordtype">void</span>* data, <span class="keywordtype">size_t</span> size, <span class="keywordtype">size_t</span> count, <span class="keyword">const</span> <a class="code" href="class_vertex_format.html">VertexFormat</a>&amp; fmt, Usage usage);</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="class_g_l_vertex_buffer.html">GLVertexBuffer</a>();</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="class_g_l_vertex_buffer.html">GLVertexBuffer</a>(<span class="keyword">const</span> <span class="keywordtype">void</span>* data, <span class="keywordtype">size_t</span> size, <span class="keywordtype">size_t</span> count, <span class="keyword">const</span> <a class="code" href="class_vertex_format.html">VertexFormat</a>&amp; fmt, Usage usage);</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="class_g_l_vertex_buffer.html">GLVertexBuffer</a>();</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keywordtype">void</span> bind() <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keywordtype">void</span> bind() <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    handle_type   handle;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="class_g_l_vertex_array.html">GLVertexArray</a> vao;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;};</div>
-<div class="ttc" id="aclass_g_l_vertex_array_html"><div class="ttname"><a href="class_g_l_vertex_array.html">GLVertexArray</a></div><div class="ttdef"><b>Definition:</b> GLVertexArray.h:9</div></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    GLuint        handle;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="class_g_l_vertex_array.html">GLVertexArray</a> vao;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;};</div>
+<div class="ttc" id="aclass_g_l_vertex_array_html"><div class="ttname"><a href="class_g_l_vertex_array.html">GLVertexArray</a></div><div class="ttdef"><b>Definition:</b> GLVertexArray.h:11</div></div>
 <div class="ttc" id="aclass_g_l_vertex_buffer_html"><div class="ttname"><a href="class_g_l_vertex_buffer.html">GLVertexBuffer</a></div><div class="ttdef"><b>Definition:</b> GLVertexBuffer.h:11</div></div>
 <div class="ttc" id="aclass_vertex_buffer_html"><div class="ttname"><a href="class_vertex_buffer.html">VertexBuffer</a></div><div class="ttdoc">顶点缓冲区.</div><div class="ttdef"><b>Definition:</b> VertexBuffer.h:15</div></div>
 <div class="ttc" id="aclass_vertex_format_html"><div class="ttname"><a href="class_vertex_format.html">VertexFormat</a></div><div class="ttdoc">顶点格式.</div><div class="ttdef"><b>Definition:</b> VertexFormat.h:14</div></div>

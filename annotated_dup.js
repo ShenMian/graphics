@@ -55,10 +55,12 @@ var annotated_dup =
     [ "UI", "class_u_i.html", null ],
     [ "VertexBuffer", "class_vertex_buffer.html", "class_vertex_buffer" ],
     [ "VertexFormat", "class_vertex_format.html", "class_vertex_format" ],
+    [ "VKBuffer", "class_v_k_buffer.html", "class_v_k_buffer" ],
     [ "VKCommandBuffer", "class_v_k_command_buffer.html", "class_v_k_command_buffer" ],
     [ "VKCommandQueue", "class_v_k_command_queue.html", "class_v_k_command_queue" ],
     [ "VKProgram", "class_v_k_program.html", "class_v_k_program" ],
     [ "VKRenderer", "class_v_k_renderer.html", "class_v_k_renderer" ],
     [ "VKShader", "class_v_k_shader.html", "class_v_k_shader" ],
+    [ "VKVertexBuffer", "class_v_k_vertex_buffer.html", "class_v_k_vertex_buffer" ],
     [ "Window", "class_window.html", "class_window" ]
 ];

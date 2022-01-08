@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['orthographiccamera_258',['OrthographicCamera',['../class_orthographic_camera.html#a70fdd1313ed5fdb9f906a3c25f82c7fe',1,'OrthographicCamera']]]
+  ['map_266',['map',['../class_v_k_buffer.html#a80d311ee2c979b2063e28ce1e9159de7',1,'VKBuffer']]]
 ];

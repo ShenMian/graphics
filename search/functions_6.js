@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['perspectivecamera_259',['PerspectiveCamera',['../class_perspective_camera.html#a92e33647a5013b8aacbe286bd3c0bd76',1,'PerspectiveCamera']]]
+  ['orthographiccamera_267',['OrthographicCamera',['../class_orthographic_camera.html#a70fdd1313ed5fdb9f906a3c25f82c7fe',1,'OrthographicCamera']]]
 ];
