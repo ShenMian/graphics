@@ -9,13 +9,6 @@
 class VKBuffer
 {
 public:
-	enum class Usage
-	{
-		Static,
-		Dynamic,
-		Stream
-	};
-
 	VKBuffer(size_t size, VkBufferUsageFlags usage, VkMemoryPropertyFlags properties);
 	virtual ~VKBuffer();
 
