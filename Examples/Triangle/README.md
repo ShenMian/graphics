@@ -14,9 +14,13 @@
 ## 初始化
 进行初始化来确保第三方API可以被正常使用.
 ```cpp
-Window::init();                        // 初始化第三方库 GLFW
-Window window("Triangle", {960, 540}); // 创建一个标题为 Triangle, 大小为 960x540 像素的窗口,
-                                       // 并初始化第三方库 GLAD
+// 设置渲染 API 为 OpenGL. 该步骤必须在初始化窗口前调用
+Renderer::setAPI(Renderer::API::OpenGL);
+
+Window::init();                        // 初始化窗口模块
+Window window("Triangle", {960, 540}); // 创建一个标题为 Triangle, 大小为 960x540 像素的窗口
+
+Renderer::init(*window);                 // 初始化渲染器
 ```
 **注意**: 若第三方库 GLAD 没有被初始化, 调用 OpenGL API 时将发生致命错误.
 

@@ -23,18 +23,33 @@ int main()
 
 		PrintInfo();
 
+#if 0
+		const std::vector<Image> images = {
+			{"../../../3DModel/skybox/cube/right.jpg"},
+			{"../../../3DModel/skybox/cube/left.jpg"},
+			{"../../../3DModel/skybox/cube/top.jpg"},
+			{"../../../3DModel/skybox/cube/bottom.jpg"},
+			{"../../../3DModel/skybox/cube/front.jpg"},
+			{"../../../3DModel/skybox/cube/back.jpg"}
+		};
+		auto cubemap = Texture::create(images);
+		auto program = Program::create("Shaders/skybox");
+		cubemap->bind(0);
+		program->setUniform("cubemap", 0);
+#endif
+
 		Model model;
-		// model.load("../../../3DModel/basic/cube.obj");
+		model.load("../../../3DModel/basic/cube.obj");
 		// model.load("../../../3DModel/scene/Crytek_Sponza/sponza.obj");
 		// model.load("../../../3DModel/weapon/m4a1/m4a1.gltf");
 		// model.load("../../../3DModel/scene/Amazon_Lumberyard_Bistro/Exterior/exterior.obj");
-		model.load("../../../3DModel/scene/SunTemple/SunTemple.fbx"); // 暂不支持 DDS 格式的纹理资源
+		// model.load("../../../3DModel/scene/SunTemple/SunTemple.fbx"); // 暂不支持 DDS 格式的纹理资源
 		/*model.loadAsync("../../../3DModel/scene/Crytek_Sponza/sponza.obj", [](std::string_view error){
 			if(!error.empty())
 				puts(error.data());
 		});*/
 
-		auto program = Program::create("Shaders/mesh");
+		auto program = Program::create("Shaders/pbr");
 		auto pipeline = Pipeline::create(program);
 
 		auto cmdQueue = CommandQueue::create();
@@ -65,23 +80,19 @@ int main()
 		};
 		window->onMouseMove = [&](Vector2d position)
 		{
-			static Vector2f lastPos = window->getSize() / 2;
+			static Vector2f lastPos = position;
 
 			const auto pos = static_cast<Vector2f>(position);
-			const Vector2f mouseSensitivity = Vector2f::unit * 0.03f;
+			const Vector2f mouseSensitivity = Vector2f::unit * 0.05f;
 			Vector2f offset = pos - lastPos;
 			lastPos = pos;
 			offset.x *= mouseSensitivity.x;
 			offset.y *= mouseSensitivity.y;
 
-			auto dir = camera->getDirection();
-
-			Vector4f vec(dir, 0.f);
-			vec *= Matrix4f::createRotationY(radians(-offset.x));
-			vec *= Matrix4f::createRotationX(radians(vec.z < 0 ? -offset.y : offset.y));
-			dir = {vec.x, vec.y, vec.z};
-
-			camera->setDirection(dir);
+			auto rot = camera->getRotation();
+			rot.y += offset.x;
+			rot.x += -offset.y;
+			camera->setRotation(rot);
 		};
 		window->onResize = [&](Vector2i size)
 		{
@@ -93,9 +104,13 @@ int main()
 		ui::Label label0("camera");
 		ui::Label label1("");
 		ui::Label label2("");
+		ui::Button btn("Button");
+		ui::Menu menu("File");
 		win.add(label0);
 		win.add(label1);
 		win.add(label2);
+		win.add(btn);
+		win.add(menu);
 
 		while(running)
 		{
@@ -117,11 +132,12 @@ int main()
 				camera->setPosition(camera->getPosition() - camera->getUp() * speed);
 
 			const auto pos = camera->getPosition();
-			const auto dir = camera->getDirection();
-			label1.setText("  position : " + std::to_string(pos.x) + ", " + std::to_string(pos.y) + ", " + std::to_string(pos.z));
-			label2.setText("  direction: " + std::to_string(dir.x) + ", " + std::to_string(dir.y) + ", " + std::to_string(dir.z));
+			const auto dir = camera->getRotation();
+			label1.setText("  position: " + std::to_string(pos.x) + ", " + std::to_string(pos.y) + ", " + std::to_string(pos.z));
+			label2.setText("  rotation: " + std::to_string(dir.x) + ", " + std::to_string(dir.y) + ", " + std::to_string(dir.z));
 			win.update();
 
+			program->setUniform("model", Matrix4f());
 			program->setUniform("view", camera->getView());
 			program->setUniform("projection", camera->getProjection());
 
@@ -134,12 +150,12 @@ int main()
 				cmdBuffer->setPipeline(pipeline);
 				for(const auto& mesh : model.getMeshs())
 				{
-					const auto vbo = mesh.getVertexBuffer();
-					const auto ibo = mesh.getIndexBuffer();
+					const auto vb = mesh.getVertexBuffer();
+					const auto ib = mesh.getIndexBuffer();
 
-					cmdBuffer->setVertexBuffer(vbo);
-					cmdBuffer->setIndexBuffer(ibo);
-					cmdBuffer->drawIndexed(0, ibo->getCount());
+					cmdBuffer->setVertexBuffer(vb);
+					cmdBuffer->setIndexBuffer(ib);
+					cmdBuffer->drawIndexed(0, ib->getCount());
 				}
 			}
 			cmdBuffer->end();
@@ -158,6 +174,7 @@ int main()
 	catch(std::runtime_error& e)
 	{
 		puts(e.what());
+		exit(1);
 	}
 
 	return 0;
