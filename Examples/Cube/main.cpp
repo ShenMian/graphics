@@ -106,7 +106,7 @@ int main()
 
 			cmdBuffer->setVertexBuffer(vertexBuffer);
 			cmdBuffer->setIndexBuffer(indexBuffer);
-			cmdBuffer->drawIndexed(0, indexBuffer->getCount());
+			cmdBuffer->drawIndexed(indexBuffer->getCount());
 		}
 		cmdBuffer->end();
 		cmdQueue->submit(cmdBuffer);

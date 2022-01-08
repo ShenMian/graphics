@@ -27,8 +27,8 @@ public:
 	void setClearDepth(float depth) override;
 	void setClearStencil() override;
 
-	void draw(size_t firstVertex, size_t verticesNum) override;
-	void drawIndexed(size_t firstIndex, size_t indicesNum) override;
+	void draw(uint32_t firstVertex, uint32_t verticesNum) override;
+	void drawIndexed(uint32_t firstIndex, uint32_t indicesNum) override;
 
 private:
 	VkCommandBuffer handle;

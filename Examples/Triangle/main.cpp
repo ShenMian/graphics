@@ -71,7 +71,7 @@ int main()
 			cmdBuffer->clear(ClearFlag::Color);
 
 			cmdBuffer->setVertexBuffer(vertexBuffer);
-			cmdBuffer->draw(0, vertexBuffer->getCount());
+			cmdBuffer->draw(vertexBuffer->getCount());
 		}
 		cmdBuffer->end();
 		cmdQueue->submit(cmdBuffer);

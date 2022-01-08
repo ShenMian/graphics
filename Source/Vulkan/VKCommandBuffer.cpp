@@ -12,13 +12,11 @@ VKCommandBuffer::VKCommandBuffer()
 
 	VkCommandBufferAllocateInfo info = {};
 	info.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
-	info.pNext = NULL;
 	info.commandPool = renderer->getCommandPool();
 	info.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
 	info.commandBufferCount = 1;
-	const auto ret = vkAllocateCommandBuffers(renderer->getDevice(), &info, &handle);
-	if(ret != VK_SUCCESS)
-		throw std::runtime_error("failed to create command buffer");
+	if(vkAllocateCommandBuffers(renderer->getDevice(), &info, &handle) != VK_SUCCESS)
+		throw std::runtime_error("failed to allocate command buffer");
 }
 
 VKCommandBuffer::~VKCommandBuffer()
@@ -31,12 +29,14 @@ void VKCommandBuffer::begin()
 {
 	VkCommandBufferBeginInfo info = {};
 	info.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
-	vkBeginCommandBuffer(handle, &info);
+	if(vkBeginCommandBuffer(handle, &info) != VK_SUCCESS)
+		throw std::runtime_error("failed to begin command buffer");
 }
 
 void VKCommandBuffer::end()
 {
-	vkEndCommandBuffer(handle);
+	if(vkEndCommandBuffer(handle) != VK_SUCCESS)
+		throw std::runtime_error("failed to end command buffer");
 }
 
 void VKCommandBuffer::setViewport(const Vector2i& origin, const Vector2i& size)
@@ -71,10 +71,12 @@ void VKCommandBuffer::setClearStencil()
 {
 }
 
-void VKCommandBuffer::draw(size_t firstVertex, size_t verticesNum)
+void VKCommandBuffer::draw(uint32_t vertexCount, uint32_t firstVertex)
 {
+	vkCmdDraw(handle, vertexCount, 1, firstVertex, 0);
 }
 
-void VKCommandBuffer::drawIndexed(size_t firstIndex, size_t indicesNum)
+void VKCommandBuffer::drawIndexed(uint32_t indexCount, uint32_t firstIndex)
 {
+	vkCmdDrawIndexed(handle, indexCount, 1, firstIndex, 0, 0);
 }

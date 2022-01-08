@@ -29,8 +29,8 @@ public:
 	void setClearDepth(float depth) override;
 	void setClearStencil() override;
 
-	void draw(size_t firstVertex, size_t verticesNum) override;
-	void drawIndexed(size_t firstIndex, size_t indicesNum) override;
+	void draw(uint32_t vertexCount, uint32_t firstVertex) override;
+	void drawIndexed(uint32_t indexCount, uint32_t firstIndex) override;
 
 	const auto& getData() const;
 
@@ -111,12 +111,12 @@ struct GLCmdSetClearDepth
 
 struct GLCmdDraw
 {
-	size_t firstVertex;
-	size_t verticesNum;
+	uint32_t firstVertex;
+	uint32_t vertexCount;
 };
 
 struct GLCmdDrawIndexed
 {
-	size_t firstIndex;
-	size_t indicesNum;
+	uint32_t firstIndex;
+	uint32_t indexCount;
 };

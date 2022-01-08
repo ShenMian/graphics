@@ -57,6 +57,6 @@ public:
 	virtual void setClearDepth(float depth) = 0;
 	virtual void setClearStencil() = 0;
 
-	virtual void draw(size_t firstVertex, size_t VerticesNum) = 0;
-	virtual void drawIndexed(size_t firstIndex, size_t indicesNum) = 0;
+	virtual void draw(uint32_t vertexCount, uint32_t firstVertex = 0) = 0;
+	virtual void drawIndexed(uint32_t indexCount, uint32_t firstIndex = 0) = 0;
 };
