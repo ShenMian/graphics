@@ -17,7 +17,8 @@ std::shared_ptr<Texture> Texture::create(const std::filesystem::path path, Type 
 	if(type == Type::Cube)
 		throw std::runtime_error("cubemap should have 6 file path");
 
-	const auto it = cache.find(path);
+	const auto absPath = fs::absolute(path);
+	const auto it = cache.find(absPath);
 	if(it != cache.end())
 		return it->second;
 
@@ -27,9 +28,9 @@ std::shared_ptr<Texture> Texture::create(const std::filesystem::path path, Type 
 		using enum Renderer::API;
 
 	case OpenGL:
-		ptr = std::make_shared<GLTexture>(path, type);
+		ptr = std::make_shared<GLTexture>(absPath, type);
 	}
-	cache.insert({path, ptr});
+	cache.insert({absPath, ptr});
 	return ptr;
 }
 
