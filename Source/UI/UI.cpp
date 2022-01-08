@@ -55,12 +55,12 @@ void UI::end()
 
 void UI::init(const Window& win)
 {
-    IMGUI_CHECKVERSION();
+	IMGUI_CHECKVERSION();
 
-    ImGui::CreateContext();
-    ImGui::StyleColorsDark();
+	ImGui::CreateContext();
+	ImGui::StyleColorsDark();
 
-    auto& io = ImGui::GetIO();
+	auto& io = ImGui::GetIO();
 	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable; // 启用 Docking
 
 	switch(Renderer::getAPI())
@@ -94,6 +94,6 @@ void UI::deinit()
 		break;
 	}
 
-    ImGui_ImplGlfw_Shutdown();
-    ImGui::DestroyContext();
+	ImGui_ImplGlfw_Shutdown();
+	ImGui::DestroyContext();
 }

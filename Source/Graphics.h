@@ -28,16 +28,17 @@
 #include "UI/Window.h"
 #include "UI/Button.h"
 #include "UI/Label.h"
+#include "UI/Menu.h"
 
 /**
  * @defgroup core 核心
- * @brief 較爲基礎的部分, 包括: 圖像導入/導出/處理, 輸入/輸出等.
+ * @brief 较为基础的部分, 包括: 图像导入/导出/处理, 输入/输出等.
  *
  * @defgroup model 模型
- * @brief 3D 模型相關. 包括: 模型導入/導出, 網格處理, 紋理材質組等.
+ * @brief 3D 模型相关. 包括: 模型导入/导出, 网格处理, 纹理材质組等.
  *
  * @defgroup shader 着色器
- * @brief 着色器相關, 包括: 着色器程序, 着色器階段等.
+ * @brief 着色器相关, 包括: 着色器程序, 着色器阶段等.
  */
 
 /**
@@ -53,6 +54,8 @@
  * 文档
  * ----
  * - @subpage GettingStarted
+ * - [计划表](https://trello.com/b/qpehnqDv/graphics)
+ * - [依赖项](https://github.com/ShenMian/Graphics/blob/main/Deps/README.md)
  */
 
 /**
@@ -82,6 +85,8 @@
  * ```
  * 除此之外, 你还可以自行调用 premake5 生成你想要的内容. 详情请查看[相关文档](https://github.com/premake/premake-core/wiki/Using-Premake#using-premake-to-generate-project-files).
  *
+ * 该项目编译后会生成一个静态库文件, 在生成你的可执行文件时需链接该静态库.
+ *
  * 更新
  * ---
  * 因为该库对 Git 子模块的更新较为频繁, 请注意拉取后将子模块签出到相应的提交. 你可以使用下面的命令更新本地克隆仓库/子模块.
@@ -94,5 +99,6 @@
  *
  * 示例
  * ----
- * - [Triangle](https://github.com/ShenMian/Graphics/tree/main/Examples/Triangle)
+ * 阅读 [示例](https://github.com/ShenMian/Graphics/tree/main/Examples) 是一种快速的入门方式.
+ * 从示例中可以很直观的看到各种常见 API 的使用方式.
  */
