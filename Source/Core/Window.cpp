@@ -21,9 +21,6 @@ Window::Window(const std::string& title, Vector2i size, bool fullscreen)
 
 	glfwSetWindowUserPointer(handle, static_cast<void*>(this));
 
-	// 将光标锁定在窗口内
-	glfwSetInputMode(handle, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-
 	// 开启 MASS 抗锯齿
 	// glfwWindowHint(GLFW_SAMPLES, 2);
 	// glEnable(GL_MULTISAMPLE);
@@ -124,6 +121,17 @@ void Window::setIcon(const Image& image)
 void Window::requestFocus()
 {
 	glfwRequestWindowAttention(handle);
+}
+
+void Window::setCursorLock(bool enable)
+{
+	glfwSetInputMode(handle, GLFW_CURSOR, enable ? GLFW_CURSOR_DISABLED : GLFW_CURSOR_NORMAL);
+}
+
+void Window::setRawMouseMotion(bool enable)
+{
+	if(glfwRawMouseMotionSupported())
+		glfwSetInputMode(handle, GLFW_RAW_MOUSE_MOTION, enable);
 }
 
 void* Window::getNativeHandle() const

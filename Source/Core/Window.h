@@ -123,6 +123,26 @@ public:
 	void requestFocus();
 
 	/**
+	 * @brief 设置是否开启光标锁定.
+	 *
+	 * 会将光标隐藏并锁定在窗口中.
+	 *
+	 * @param enable true 为开启, false 为关闭.
+	 */
+	void setCursorLock(bool enable);
+
+	/**
+	 * @brief 设置是否启用原始鼠标运动.
+	 * 
+	 * @param enable true 为开启, false 为关闭.
+	 *
+	 * 原始鼠标运动更接近鼠标在表面上的实际运动. 它不受应用于桌面光标运动的缩放和加速度的影响. 适合控制 3D 相机.
+	 *
+	 * @warning 仅在禁用光标时有效.
+	 */
+	void setRawMouseMotion(bool enable);
+
+	/**
 	 * @brief 获取本地句柄.
 	 */
 	void* getNativeHandle() const;
