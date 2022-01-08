@@ -39,8 +39,16 @@ void VKCommandBuffer::end()
 		throw std::runtime_error("failed to end command buffer");
 }
 
-void VKCommandBuffer::setViewport(const Vector2i& origin, const Vector2i& size)
+void VKCommandBuffer::setViewport(const Vector2f& origin, const Vector2f& size)
 {
+	VkViewport viewport;
+	viewport.x = origin.x;
+	viewport.y = origin.y;
+	viewport.width = size.x;
+	viewport.height = size.y;
+	viewport.minDepth = 0.f;
+	viewport.maxDepth = 1.f;
+	vkCmdSetViewport(handle, 0, 1, &viewport);
 }
 
 void VKCommandBuffer::setPipeline(std::shared_ptr<Pipeline> pipeline)

@@ -24,7 +24,7 @@ void GLCommandBuffer::end()
 {
 }
 
-void GLCommandBuffer::setViewport(const Vector2i& origin, const Vector2i& size)
+void GLCommandBuffer::setViewport(const Vector2f& origin, const Vector2f& size)
 {
 	auto cmd = addCommand<GLCmdSetViewport>(GLOpcode::setViewport);
 	cmd->origin = origin;
