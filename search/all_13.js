@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['快速入门_140',['快速入门',['../_getting_started.html',1,'index']]]
+  ['_7ewindow_141',['~Window',['../class_window.html#a245d821e6016fa1f6970ccbbedd635f6',1,'Window']]]
 ];

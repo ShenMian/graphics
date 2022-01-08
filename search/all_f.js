@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['ui_126',['UI',['../class_u_i.html',1,'']]],
-  ['update_127',['update',['../class_gamepad.html#ae37f83a954aabbf634e9d6f37697ae58',1,'Gamepad::update()'],['../class_window.html#a59515fc5a56e86d5a46d771595daac55',1,'Window::update()']]],
-  ['updatehandle_128',['updateHandle',['../classui_1_1_widget.html#a00b122fd63f70bbfe501fac5355a6457',1,'ui::Widget']]],
-  ['updateprojectionmatrix_129',['updateProjectionMatrix',['../class_camera.html#a58dd6b97da62cb117eec96929c4c48a7',1,'Camera']]]
+  ['texture_123',['Texture',['../class_texture.html',1,'']]],
+  ['thumb_124',['Thumb',['../group__core.html#ga3e2204214f53c8d800b8ef7d4d0fab7c',1,'Gamepad']]],
+  ['timer_125',['Timer',['../class_timer.html',1,'']]],
+  ['trigger_126',['Trigger',['../group__core.html#ga814093b43f211a291b19ccf662096738',1,'Gamepad']]],
+  ['type_127',['Type',['../class_camera.html#a3b0a1f58deca679ac665f61c480d1dcb',1,'Camera']]]
 ];

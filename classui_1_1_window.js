@@ -29,5 +29,7 @@ var classui_1_1_window =
     ] ],
     [ "Window", "classui_1_1_window.html#a24040defee267924a05870ce66964bf4", null ],
     [ "add", "classui_1_1_window.html#a5898ffa74b3bc969d2e805888971de87", null ],
-    [ "update", "classui_1_1_window.html#aa63a9a2404cebe562174a851f2dc8a01", null ]
+    [ "clear", "classui_1_1_window.html#a38bc43bdd1a97e5de7f346ba4c3957ef", null ],
+    [ "update", "classui_1_1_window.html#aa63a9a2404cebe562174a851f2dc8a01", null ],
+    [ "hover", "classui_1_1_window.html#ac1fc6000854b91f273f65c1fe8bd72ea", null ]
 ];

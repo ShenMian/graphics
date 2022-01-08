@@ -89,6 +89,7 @@ $(document).ready(function(){initNavTree('class_texture.html',''); initResizable
 <a href="#pub-static-methods">静态 Public 成员函数</a> &#124;
 <a href="#pro-methods">Protected 成员函数</a> &#124;
 <a href="#pro-attribs">Protected 属性</a> &#124;
+<a href="#pro-static-attribs">静态 Protected 属性</a> &#124;
 <a href="class_texture-members.html">所有成员列表</a>  </div>
   <div class="headertitle">
 <div class="title">Texture类 参考<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
@@ -158,6 +159,9 @@ Format&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 静态 Public 成员函数</h2></td></tr>
+<tr class="memitem:a3c4f5d136a071105e07310c748c134cf"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_texture.html">Texture</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture.html#a3c4f5d136a071105e07310c748c134cf">create</a> (const std::filesystem::path path, Type type=Type::_2D)</td></tr>
+<tr class="memdesc:a3c4f5d136a071105e07310c748c134cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">从图像文件创建纹理.  <a href="class_texture.html#a3c4f5d136a071105e07310c748c134cf">更多...</a><br /></td></tr>
+<tr class="separator:a3c4f5d136a071105e07310c748c134cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6059b9170c98547b68ecad5fae46d3d"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_texture.html">Texture</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture.html#ae6059b9170c98547b68ecad5fae46d3d">create</a> (const <a class="el" href="class_image.html">Image</a> &amp;image, Type type=Type::_2D)</td></tr>
 <tr class="memdesc:ae6059b9170c98547b68ecad5fae46d3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">从图像创建纹理.  <a href="class_texture.html#ae6059b9170c98547b68ecad5fae46d3d">更多...</a><br /></td></tr>
 <tr class="separator:ae6059b9170c98547b68ecad5fae46d3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -179,12 +183,18 @@ Type&#160;</td><td class="memItemRight" valign="bottom"><b>type</b></td></tr>
 <tr class="memitem:af91eab5343d1799e0895bed87dd12fa1"><td class="memItemLeft" align="right" valign="top"><a id="af91eab5343d1799e0895bed87dd12fa1"></a>
 Format&#160;</td><td class="memItemRight" valign="bottom"><b>format</b></td></tr>
 <tr class="separator:af91eab5343d1799e0895bed87dd12fa1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-static-attribs"></a>
+静态 Protected 属性</h2></td></tr>
+<tr class="memitem:acfdd135f8e40d858e97a1b5b808d8682"><td class="memItemLeft" align="right" valign="top"><a id="acfdd135f8e40d858e97a1b5b808d8682"></a>
+static std::unordered_map&lt; std::filesystem::path, std::shared_ptr&lt; <a class="el" href="class_texture.html">Texture</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>cache</b></td></tr>
+<tr class="separator:acfdd135f8e40d858e97a1b5b808d8682"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p>纹理. </p>
 </div><h2 class="groupheader">成员函数说明</h2>
 <a id="ae6059b9170c98547b68ecad5fae46d3d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae6059b9170c98547b68ecad5fae46d3d">&#9670;&nbsp;</a></span>create() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6059b9170c98547b68ecad5fae46d3d">&#9670;&nbsp;</a></span>create() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -228,8 +238,53 @@ Format&#160;</td><td class="memItemRight" valign="bottom"><b>format</b></td></tr
 
 </div>
 </div>
+<a id="a3c4f5d136a071105e07310c748c134cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c4f5d136a071105e07310c748c134cf">&#9670;&nbsp;</a></span>create() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt; <a class="el" href="class_texture.html">Texture</a> &gt; Texture::create </td>
+          <td>(</td>
+          <td class="paramtype">const std::filesystem::path&#160;</td>
+          <td class="paramname"><em>path</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Type&#160;</td>
+          <td class="paramname"><em>type</em> = <code>Type::_2D</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>从图像文件创建纹理. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>图像文件路径. </td></tr>
+    <tr><td class="paramname">type</td><td>纹理类型. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a09bd077920fa8379b91b34c5b28e6eec"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a09bd077920fa8379b91b34c5b28e6eec">&#9670;&nbsp;</a></span>create() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a09bd077920fa8379b91b34c5b28e6eec">&#9670;&nbsp;</a></span>create() <span class="overload">[3/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">

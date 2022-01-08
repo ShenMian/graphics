@@ -102,6 +102,7 @@ $(document).ready(function(){initNavTree('_getting_started.html',''); initResiza
 <div class="line">./Scripts/gen_vs2022 # 生成 Visual Studio 2022 解决方案</div>
 <div class="line">./Scripts/gen_xcode4 # 生成 Xcode4 项目文件</div>
 </div><!-- fragment --><p> 除此之外, 你还可以自行调用 premake5 生成你想要的内容. 详情请查看<a href="https://github.com/premake/premake-core/wiki/Using-Premake#using-premake-to-generate-project-files">相关文档</a>.</p>
+<p>该项目编译后会生成一个静态库文件, 在生成你的可执行文件时需链接该静态库.</p>
 <h2><a class="anchor" id="autotoc_md4"></a>
 更新</h2>
 <p>因为该库对 Git 子模块的更新较为频繁, 请注意拉取后将子模块签出到相应的提交. 你可以使用下面的命令更新本地克隆仓库/子模块. </p><div class="fragment"><div class="line">git pull                    # 拉取到最新的提交</div>
@@ -110,9 +111,7 @@ $(document).ready(function(){initNavTree('_getting_started.html',''); initResiza
 </div><!-- fragment --><p> <b>警告</b>: 不建议直接使用最新提交, 因为这些修改还不稳定, 可能无法正常工作.</p>
 <h2><a class="anchor" id="autotoc_md5"></a>
 示例</h2>
-<ul>
-<li><a href="https://github.com/ShenMian/Graphics/tree/main/Examples/Triangle">Triangle</a> </li>
-</ul>
+<p>阅读 <a href="https://github.com/ShenMian/Graphics/tree/main/Examples">示例</a> 是一种快速的入门方式. 从示例中可以很直观的看到各种常见 API 的使用方式. </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->

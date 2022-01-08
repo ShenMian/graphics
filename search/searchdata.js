@@ -1,7 +1,7 @@
 var indexSectionsWithContent =
 {
-  0: "abcdfgiklmoprstuvw~快核模着",
-  1: "abcdgilmoprstuvw",
+  0: "abcdfghiklmoprstuvw~快核模着",
+  1: "abcdghilmoprstuvw",
   2: "cfgiloprsuw~",
   3: "o",
   4: "bkmt",

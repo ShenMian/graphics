@@ -28,6 +28,7 @@ var hierarchy =
     [ "GLCmdSetVertexBuffer", "struct_g_l_cmd_set_vertex_buffer.html", null ],
     [ "GLCmdSetViewport", "struct_g_l_cmd_set_viewport.html", null ],
     [ "GLVertexArray", "class_g_l_vertex_array.html", null ],
+    [ "std::hash< std::filesystem::path >", "structstd_1_1hash_3_01std_1_1filesystem_1_1path_01_4.html", null ],
     [ "Image", "class_image.html", null ],
     [ "IndexBuffer", "class_index_buffer.html", [
       [ "GLIndexBuffer", "class_g_l_index_buffer.html", null ]
@@ -64,6 +65,7 @@ var hierarchy =
     [ "ui::Widget", "classui_1_1_widget.html", [
       [ "ui::Button", "classui_1_1_button.html", null ],
       [ "ui::Label", "classui_1_1_label.html", null ],
+      [ "ui::Menu", "classui_1_1_menu.html", null ],
       [ "ui::Window", "classui_1_1_window.html", null ]
     ] ],
     [ "Window", "class_window.html", null ]
