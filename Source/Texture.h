@@ -4,7 +4,9 @@
 #pragma once
 
 #include "Format.h"
+#include <filesystem>
 #include <memory>
+#include <unordered_map>
 #include <vector>
 
 class Image;
@@ -38,6 +40,14 @@ public:
 		_3D,
 		Cube,
 	};
+
+	/**
+	 * @brief 从图像文件创建纹理.
+	 *
+	 * @param path 图像文件路径.
+	 * @param type 纹理类型.
+	 */
+	static std::shared_ptr<Texture> create(const std::filesystem::path path, Type type = Type::_2D);
 
 	/**
 	 * @brief 从图像创建纹理.
@@ -107,4 +117,20 @@ protected:
 
 	Type   type;
 	Format format;
+
+	static std::unordered_map<std::filesystem::path, std::shared_ptr<Texture>> cache;
 };
+
+namespace std
+{
+
+template <>
+struct hash<std::filesystem::path>
+{
+	size_t operator()(const std::filesystem::path& path) const
+	{
+		return std::filesystem::hash_value(path);
+	}
+};
+
+} // namespace std

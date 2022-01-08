@@ -100,7 +100,7 @@ void loadMaterial(Material& mat, const aiMesh* aMesh, const aiScene* scene, cons
 			aMat->GetTexture(type, 0, &aPath);
 			const auto path = dir / aPath.C_Str();
 			// if(fs::exists(path))
-			return Texture::create(Image(path));
+			return Texture::create(path);
 		}
 		return nullptr;
 	};
@@ -174,7 +174,7 @@ void loadMesh(const aiMesh* aMesh, const aiScene* aScene, const fs::path& path, 
 
 	Material mat;
 
-#if 0 // TODO: debug
+#if 1 // TODO: debug
 	loadMaterial(mat, aMesh, aScene, path);
 #endif
 

@@ -8,6 +8,31 @@
 
 #include "OpenGL/GLTexture.h"
 
+namespace fs = std::filesystem;
+
+std::unordered_map<fs::path, std::shared_ptr<Texture>> Texture::cache;
+
+std::shared_ptr<Texture> Texture::create(const std::filesystem::path path, Type type)
+{
+	if(type == Type::Cube)
+		throw std::runtime_error("cubemap should have 6 file path");
+
+	const auto it = cache.find(path);
+	if(it != cache.end())
+		return it->second;
+
+	std::shared_ptr<Texture> ptr;
+	switch(Renderer::getAPI())
+	{
+		using enum Renderer::API;
+
+	case OpenGL:
+		ptr = std::make_shared<GLTexture>(path, type);
+	}
+	cache.insert({path, ptr});
+	return ptr;
+}
+
 std::shared_ptr<Texture> Texture::create(const Image& image, Type type)
 {
 	if(type == Type::Cube)

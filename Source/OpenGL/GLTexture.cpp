@@ -35,7 +35,7 @@ std::unordered_map<int, Format> ChannelsToFormat = {
 	{6, Format::RGB16F},
 	{8, Format::RGBA16F}};
 
-uint32_t GLInternalFormat(Format fmt)
+GLint GLInternalFormat(Format fmt)
 {
 	switch(fmt)
 	{
@@ -62,7 +62,7 @@ uint32_t GLInternalFormat(Format fmt)
 	}
 }
 
-uint32_t GLFormat(Format fmt)
+GLenum GLFormat(Format fmt)
 {
 	switch(fmt)
 	{
