@@ -50,10 +50,10 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: graphics-windows-${{ matrix.arch }}
-          path: build/lib/${{ matrix.config }}
+          path: build/lib
 
       - name: Upload bins
         uses: actions/upload-artifact@v2
         with:
           name: examples-windows-${{ matrix.arch }}
-          path: build/bin/${{ matrix.config }}
+          path: build/bin
