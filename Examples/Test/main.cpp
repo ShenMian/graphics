@@ -145,7 +145,7 @@ int main()
 
 			cmdBuffer->begin();
 			{
-				cmdBuffer->setViewport({0, 0}, window->getSize(), {0, 1});
+				cmdBuffer->setViewport({0, 0}, window->getSize());
 				cmdBuffer->setClearColor({0, 0, 0, 0});
 				cmdBuffer->clear(ClearFlag::Color | ClearFlag::Depth);
 

@@ -30,12 +30,9 @@ public:
 	static std::shared_ptr<CommandBuffer> create();
 
 	virtual void begin() = 0;
-
 	virtual void end() = 0;
 
-	// virtual void execute(std::shared_ptr<CommandBuffer> commandBuffer) = 0;
-
-	virtual void setViewport(const Vector2f& origin, const Vector2f& size, const Vector2f& depth) = 0;
+	virtual void setViewport(const Vector2f& origin, const Vector2f& size, const Vector2f& depth = {0.f, 1.f}) = 0;
 
 	virtual void setPipeline(std::shared_ptr<Pipeline> pipeline) = 0;
 
