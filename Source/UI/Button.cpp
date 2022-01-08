@@ -15,10 +15,11 @@ Button::Button(const std::string& label, const Vector2& size)
 void Button::update()
 {
 	if(ImGui::Button(handle.c_str(), ImVec2(size.x, size.y)))
-	{
 		if(on)
 			on(*this);
-	}
+	if(ImGui::IsItemHovered())
+		if(hover)
+			hover(*this);
 }
 
 } // namespace ui

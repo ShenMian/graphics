@@ -17,6 +17,7 @@ public:
 	void update() override;
 
 	std::function<void(Button&)> on;
+	std::function<void(Button&)> hover;
 
 private:
 	Vector2 size;
