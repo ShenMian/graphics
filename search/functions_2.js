@@ -7,7 +7,7 @@ var searchData=
   ['getchannelcount_218',['getChannelCount',['../class_image.html#a88ff43032808645f35662382d2253e3a',1,'Image']]],
   ['getclipboard_219',['getClipboard',['../class_input.html#aba15ec2c1c9163096c94f98e76dcfcdd',1,'Input']]],
   ['getcommandpool_220',['getCommandPool',['../class_v_k_renderer.html#a2688df65e25180d5b278acd638c26645',1,'VKRenderer']]],
-  ['getcount_221',['getCount',['../class_index_buffer.html#a3fef5485aa189c16d572c7ec355d11da',1,'IndexBuffer::getCount()'],['../class_vertex_buffer.html#aeda34db8cce52fd17f4f62fa523bcf99',1,'VertexBuffer::getCount()']]],
+  ['getcount_221',['getCount',['../class_index_buffer.html#ab8951bdf14cbfded9080cf3ecd334971',1,'IndexBuffer::getCount()'],['../class_vertex_buffer.html#a79cc0539bdc05952dcd225b6c47b0774',1,'VertexBuffer::getCount()']]],
   ['getdata_222',['getData',['../class_image.html#a02a4ac5cb5f42a6afde69af212e557b4',1,'Image::getData() const'],['../class_image.html#a5ca562c1038f55b87239f8773cdce5e3',1,'Image::getData()']]],
   ['getdatasize_223',['getDataSize',['../class_image.html#aae91ac2147c0a923fb7fe7f1cc9bc7ce',1,'Image']]],
   ['getdevice_224',['getDevice',['../class_v_k_renderer.html#aed8b9caf61dc226a73aea400fbb654ae',1,'VKRenderer']]],
