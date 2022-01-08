@@ -104,7 +104,7 @@ void Camera::updateViewMatrix() const
 	auto rot = Matrix4f::identity();
 #if 0
 	rot *= Matrix4f::createRotation(radians(rotation.x), Vector3f::unit_x);
-	rot *= Matrix4f::createRotation(radians(rotation.y), Vector3f::unit_y);
+	rot *= Matrix4f::createRotation(radians(-rotation.y), Vector3f::unit_y);
 	rot *= Matrix4f::createRotation(radians(rotation.z), Vector3f::unit_z);
 #else
 	rot *= Matrix4f::createRotationX(radians(rotation.x));
