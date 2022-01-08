@@ -99,7 +99,8 @@ void loadMaterial(Material& mat, const aiMesh* aMesh, const aiScene* scene, cons
 			aiString aPath;
 			aMat->GetTexture(type, 0, &aPath);
 			const auto path = dir / aPath.C_Str();
-			// if(fs::exists(path))
+			// if(!fs::exists(path))
+			// 	return nullptr;
 			return Texture::create(path);
 		}
 		return nullptr;
