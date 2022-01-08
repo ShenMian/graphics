@@ -23,12 +23,12 @@ size_t IndexBuffer::getSize() const
 	return size;
 }
 
-size_t IndexBuffer::getCount() const
+uint32_t IndexBuffer::getCount() const
 {
 	return count;
 }
 
-IndexBuffer::IndexBuffer(size_t size, size_t count)
+IndexBuffer::IndexBuffer(size_t size, uint32_t count)
 	: size(size), count(count)
 {
 }

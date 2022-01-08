@@ -46,20 +46,20 @@ public:
 	/**
 	 * @brief 获取索引数.
 	 */
-	size_t getCount() const;
+	uint32_t getCount() const;
 
 	virtual void bind() = 0;
 
 protected:
-	IndexBuffer(size_t size, size_t count);
+	IndexBuffer(size_t size, uint32_t count);
 
 private:
-	size_t size;
-	size_t count;
+	size_t   size;
+	uint32_t count;
 };
 
 template <typename T>
 inline std::shared_ptr<IndexBuffer> IndexBuffer::create(const std::vector<T>& data, Usage usage)
 {
-	return create(data.data(), data.size() * sizeof(T), data.size(), usage);
+	return create(data.data(), data.size() * sizeof(T), static_cast<uint32_t>(data.size()), usage);
 }

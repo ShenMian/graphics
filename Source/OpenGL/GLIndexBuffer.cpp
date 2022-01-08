@@ -16,7 +16,7 @@ std::unordered_map<IndexBuffer::Usage, uint32_t> GLusage = {
 
 }
 
-GLIndexBuffer::GLIndexBuffer(const void* data, size_t size, size_t count, Usage usage)
+GLIndexBuffer::GLIndexBuffer(const void* data, size_t size, uint32_t count, Usage usage)
 	: IndexBuffer(size, count)
 {
 	glCreateBuffers(1, &handle);
