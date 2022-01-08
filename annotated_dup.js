@@ -43,8 +43,6 @@ var annotated_dup =
     [ "Mesh", "class_mesh.html", "class_mesh" ],
     [ "Model", "class_model.html", "class_model" ],
     [ "Monitor", "class_monitor.html", "class_monitor" ],
-    [ "OrthographicCamera", "class_orthographic_camera.html", "class_orthographic_camera" ],
-    [ "PerspectiveCamera", "class_perspective_camera.html", "class_perspective_camera" ],
     [ "Pipeline", "class_pipeline.html", "class_pipeline" ],
     [ "Program", "class_program.html", "class_program" ],
     [ "Renderer", "class_renderer.html", "class_renderer" ],

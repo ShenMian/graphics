@@ -1,10 +1,7 @@
 var hierarchy =
 [
     [ "VertexFormat::Attribute", "struct_vertex_format_1_1_attribute.html", null ],
-    [ "Camera", "class_camera.html", [
-      [ "OrthographicCamera", "class_orthographic_camera.html", null ],
-      [ "PerspectiveCamera", "class_perspective_camera.html", null ]
-    ] ],
+    [ "Camera", "class_camera.html", null ],
     [ "ClearFlag", "struct_clear_flag.html", null ],
     [ "CommandBuffer", "class_command_buffer.html", [
       [ "GLCommandBuffer", "class_g_l_command_buffer.html", null ],
@@ -38,7 +35,9 @@ var hierarchy =
     [ "Mesh", "class_mesh.html", null ],
     [ "Model", "class_model.html", null ],
     [ "Monitor", "class_monitor.html", null ],
+    [ "Camera::Orthographic", "struct_camera_1_1_orthographic.html", null ],
     [ "Material::PBR", "struct_material_1_1_p_b_r.html", null ],
+    [ "Camera::Perspective", "struct_camera_1_1_perspective.html", null ],
     [ "Pipeline", "class_pipeline.html", null ],
     [ "Program", "class_program.html", [
       [ "GLProgram", "class_g_l_program.html", null ],

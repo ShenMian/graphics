@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['orthographiccamera_193',['OrthographicCamera',['../class_orthographic_camera.html',1,'']]]
+  ['orthographic_187',['Orthographic',['../struct_camera_1_1_orthographic.html',1,'Camera']]]
 ];

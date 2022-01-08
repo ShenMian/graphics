@@ -84,13 +84,14 @@ $(document).ready(function(){initNavTree('class_camera.html',''); initResizable(
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">类</a> &#124;
 <a href="#pub-types">Public 类型</a> &#124;
 <a href="#pub-methods">Public 成员函数</a> &#124;
 <a href="#pro-methods">Protected 成员函数</a> &#124;
 <a href="#pro-attribs">Protected 属性</a> &#124;
 <a href="class_camera-members.html">所有成员列表</a>  </div>
   <div class="headertitle">
-<div class="title">Camera类 参考<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
+<div class="title">Camera类 参考</div>  </div>
 </div><!--header-->
 <div class="contents">
 
@@ -98,17 +99,14 @@ $(document).ready(function(){initNavTree('class_camera.html',''); initResizable(
  <a href="class_camera.html#details">更多...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_camera_8h_source.html">Camera.h</a>&gt;</code></p>
-<div class="dynheader">
-类 Camera 继承关系图:</div>
-<div class="dyncontent">
- <div class="center">
-  <img src="class_camera.png" usemap="#Camera_map" alt=""/>
-  <map id="Camera_map" name="Camera_map">
-<area href="class_orthographic_camera.html" alt="OrthographicCamera" shape="rect" coords="0,56,131,80"/>
-<area href="class_perspective_camera.html" alt="PerspectiveCamera" shape="rect" coords="141,56,272,80"/>
-  </map>
-</div></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+类</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_camera_1_1_orthographic.html">Orthographic</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_camera_1_1_perspective.html">Perspective</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public 类型</h2></td></tr>
 <tr class="memitem:a3b0a1f58deca679ac665f61c480d1dcb"><td class="memItemLeft" align="right" valign="top"><a id="a3b0a1f58deca679ac665f61c480d1dcb"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a3b0a1f58deca679ac665f61c480d1dcb">Type</a> { <b>Perspective</b>
@@ -119,6 +117,15 @@ Public 类型</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
+<tr class="memitem:aa8ec068be0051d9f01ff3f19ae37cddb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#aa8ec068be0051d9f01ff3f19ae37cddb">Camera</a> (<a class="el" href="class_camera.html#a3b0a1f58deca679ac665f61c480d1dcb">Type</a> type)</td></tr>
+<tr class="memdesc:aa8ec068be0051d9f01ff3f19ae37cddb"><td class="mdescLeft">&#160;</td><td class="mdescRight">默认构造函数.  <a href="class_camera.html#aa8ec068be0051d9f01ff3f19ae37cddb">更多...</a><br /></td></tr>
+<tr class="separator:aa8ec068be0051d9f01ff3f19ae37cddb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd5431a9a5ad4ae881c0a95fc62eb4aa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#abd5431a9a5ad4ae881c0a95fc62eb4aa">setPerspective</a> (float vFOV, float aspectRatio, float near, float far)</td></tr>
+<tr class="memdesc:abd5431a9a5ad4ae881c0a95fc62eb4aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置截头锥体观察体, 用于透视投影.  <a href="class_camera.html#abd5431a9a5ad4ae881c0a95fc62eb4aa">更多...</a><br /></td></tr>
+<tr class="separator:abd5431a9a5ad4ae881c0a95fc62eb4aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58fa647dd4e285efa42da0e1fea31c16"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a58fa647dd4e285efa42da0e1fea31c16">setOrthographic</a> (float width, float height, float near, float far)</td></tr>
+<tr class="memdesc:a58fa647dd4e285efa42da0e1fea31c16"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置正投影观观察体, 用于正交投影.  <a href="class_camera.html#a58fa647dd4e285efa42da0e1fea31c16">更多...</a><br /></td></tr>
+<tr class="separator:a58fa647dd4e285efa42da0e1fea31c16"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a26a85543e0caeb0ff79cffeb8d27066c"><td class="memItemLeft" align="right" valign="top"><a id="a26a85543e0caeb0ff79cffeb8d27066c"></a>
 const Matrix4 &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a26a85543e0caeb0ff79cffeb8d27066c">getView</a> () const</td></tr>
 <tr class="memdesc:a26a85543e0caeb0ff79cffeb8d27066c"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取观察矩阵. <br /></td></tr>
@@ -127,22 +134,22 @@ const Matrix4 &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class=
 const Matrix4 &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a90f8ded7af9a5ba9fcabd5b43271be40">getProjection</a> () const</td></tr>
 <tr class="memdesc:a90f8ded7af9a5ba9fcabd5b43271be40"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取投影矩阵. <br /></td></tr>
 <tr class="separator:a90f8ded7af9a5ba9fcabd5b43271be40"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6cbc4769bd721ece7e7c91f290d206e3"><td class="memItemLeft" align="right" valign="top"><a id="a6cbc4769bd721ece7e7c91f290d206e3"></a>
-virtual <a class="el" href="class_camera.html#a3b0a1f58deca679ac665f61c480d1dcb">Type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a6cbc4769bd721ece7e7c91f290d206e3">getType</a> () const =0</td></tr>
-<tr class="memdesc:a6cbc4769bd721ece7e7c91f290d206e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取投影类型. <br /></td></tr>
-<tr class="separator:a6cbc4769bd721ece7e7c91f290d206e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8f514578aa54023476ad541b167a1e0"><td class="memItemLeft" align="right" valign="top"><a id="ae8f514578aa54023476ad541b167a1e0"></a>
+<a class="el" href="class_camera.html#a3b0a1f58deca679ac665f61c480d1dcb">Type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#ae8f514578aa54023476ad541b167a1e0">getType</a> () const</td></tr>
+<tr class="memdesc:ae8f514578aa54023476ad541b167a1e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取投影类型. <br /></td></tr>
+<tr class="separator:ae8f514578aa54023476ad541b167a1e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a96467d6b44a96ce9209789fd4980a358"><td class="memItemLeft" align="right" valign="top"><a id="a96467d6b44a96ce9209789fd4980a358"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setPosition</b> (Vector3f pos)</td></tr>
 <tr class="separator:a96467d6b44a96ce9209789fd4980a358"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4e257bcf641d333ce77bac775792a9c3"><td class="memItemLeft" align="right" valign="top"><a id="a4e257bcf641d333ce77bac775792a9c3"></a>
 Vector3f&#160;</td><td class="memItemRight" valign="bottom"><b>getPosition</b> () const</td></tr>
 <tr class="separator:a4e257bcf641d333ce77bac775792a9c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2892eed77a2e78f292a4bb07f1f6368"><td class="memItemLeft" align="right" valign="top"><a id="ae2892eed77a2e78f292a4bb07f1f6368"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setDirection</b> (Vector3f dir)</td></tr>
-<tr class="separator:ae2892eed77a2e78f292a4bb07f1f6368"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad28f4c7b4ee77d2837c20beeb94d00c2"><td class="memItemLeft" align="right" valign="top"><a id="ad28f4c7b4ee77d2837c20beeb94d00c2"></a>
-Vector3f&#160;</td><td class="memItemRight" valign="bottom"><b>getDirection</b> () const</td></tr>
-<tr class="separator:ad28f4c7b4ee77d2837c20beeb94d00c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72ca4306650cfa192d22e04f2a0f8eb6"><td class="memItemLeft" align="right" valign="top"><a id="a72ca4306650cfa192d22e04f2a0f8eb6"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setRotation</b> (Vector3f rot)</td></tr>
+<tr class="separator:a72ca4306650cfa192d22e04f2a0f8eb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a331c5a436aa34ec9a5db5145f34338e6"><td class="memItemLeft" align="right" valign="top"><a id="a331c5a436aa34ec9a5db5145f34338e6"></a>
+Vector3f&#160;</td><td class="memItemRight" valign="bottom"><b>getRotation</b> () const</td></tr>
+<tr class="separator:a331c5a436aa34ec9a5db5145f34338e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2987d42029847dac4ee9e921d5f02de8"><td class="memItemLeft" align="right" valign="top"><a id="a2987d42029847dac4ee9e921d5f02de8"></a>
 Vector3f&#160;</td><td class="memItemRight" valign="bottom"><b>getFront</b> () const</td></tr>
 <tr class="separator:a2987d42029847dac4ee9e921d5f02de8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -155,25 +162,185 @@ Vector3f&#160;</td><td class="memItemRight" valign="bottom"><b>getUp</b> () cons
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected 成员函数</h2></td></tr>
-<tr class="memitem:a58dd6b97da62cb117eec96929c4c48a7"><td class="memItemLeft" align="right" valign="top"><a id="a58dd6b97da62cb117eec96929c4c48a7"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a58dd6b97da62cb117eec96929c4c48a7">updateProjectionMatrix</a> () const =0</td></tr>
-<tr class="memdesc:a58dd6b97da62cb117eec96929c4c48a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">更新投影矩阵, 并清除脏标记. <br /></td></tr>
-<tr class="separator:a58dd6b97da62cb117eec96929c4c48a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27db4d90a765984a3e4e4a4bf72bd6ac"><td class="memItemLeft" align="right" valign="top"><a id="a27db4d90a765984a3e4e4a4bf72bd6ac"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>updateProjectionMatrix</b> () const</td></tr>
+<tr class="separator:a27db4d90a765984a3e4e4a4bf72bd6ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b381ff945f574dbb006d5c926a00e80"><td class="memItemLeft" align="right" valign="top"><a id="a4b381ff945f574dbb006d5c926a00e80"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>updateViewMatrix</b> () const</td></tr>
+<tr class="separator:a4b381ff945f574dbb006d5c926a00e80"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected 属性</h2></td></tr>
+<tr class="memitem:ab8966ec7b94d3686a92df3a0759d1f51"><td class="memItemLeft" ><a id="ab8966ec7b94d3686a92df3a0759d1f51"></a>
+union {</td></tr>
+<tr class="memitem:ab74efc78b7910bbf79d7eb4c39432963"><td class="memItemLeft" >
+&#160;&#160;&#160;<a class="el" href="struct_camera_1_1_perspective.html">Perspective</a>&#160;&#160;&#160;<b>perspective</b></td></tr>
+<tr class="separator:ab74efc78b7910bbf79d7eb4c39432963"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a320f2dbab2c5c7bee1ca48dd39f5b58e"><td class="memItemLeft" >
+&#160;&#160;&#160;<a class="el" href="struct_camera_1_1_orthographic.html">Orthographic</a>&#160;&#160;&#160;<b>orthographic</b></td></tr>
+<tr class="separator:a320f2dbab2c5c7bee1ca48dd39f5b58e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8966ec7b94d3686a92df3a0759d1f51"><td class="memItemLeft" valign="top">};&#160;</td><td class="memItemRight" valign="bottom"></td></tr>
+<tr class="separator:ab8966ec7b94d3686a92df3a0759d1f51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e0e55d8931a6cb4cd715b9034acb367"><td class="memItemLeft" align="right" valign="top"><a id="a1e0e55d8931a6cb4cd715b9034acb367"></a>
+<a class="el" href="class_camera.html#a3b0a1f58deca679ac665f61c480d1dcb">Type</a>&#160;</td><td class="memItemRight" valign="bottom"><b>type</b></td></tr>
+<tr class="separator:a1e0e55d8931a6cb4cd715b9034acb367"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5563c818c9274c40dd7faba3650598a2"><td class="memItemLeft" align="right" valign="top"><a id="a5563c818c9274c40dd7faba3650598a2"></a>
+Vector3f&#160;</td><td class="memItemRight" valign="bottom"><b>position</b></td></tr>
+<tr class="separator:a5563c818c9274c40dd7faba3650598a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a274d99af0b052e9070b95a1eafeaa6cb"><td class="memItemLeft" align="right" valign="top"><a id="a274d99af0b052e9070b95a1eafeaa6cb"></a>
+Vector3f&#160;</td><td class="memItemRight" valign="bottom"><b>rotation</b></td></tr>
+<tr class="separator:a274d99af0b052e9070b95a1eafeaa6cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9e43673a0a12fe7f2a79c964fda302b"><td class="memItemLeft" align="right" valign="top"><a id="aa9e43673a0a12fe7f2a79c964fda302b"></a>
+Vector3f&#160;</td><td class="memItemRight" valign="bottom"><b>up</b> = -Vector3f::unit_y</td></tr>
+<tr class="separator:aa9e43673a0a12fe7f2a79c964fda302b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:addec5433c63da583b7ad5e826c4ff712"><td class="memItemLeft" align="right" valign="top"><a id="addec5433c63da583b7ad5e826c4ff712"></a>
 Matrix4&#160;</td><td class="memItemRight" valign="bottom"><b>projection</b></td></tr>
 <tr class="separator:addec5433c63da583b7ad5e826c4ff712"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a03566fdf6e9ab0637d2052cb6613a50d"><td class="memItemLeft" align="right" valign="top"><a id="a03566fdf6e9ab0637d2052cb6613a50d"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>projectionDirty</b> = true</td></tr>
 <tr class="separator:a03566fdf6e9ab0637d2052cb6613a50d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae69ae88f2d9a5599ff3be0f843b190b"><td class="memItemLeft" align="right" valign="top"><a id="aae69ae88f2d9a5599ff3be0f843b190b"></a>
+Matrix4&#160;</td><td class="memItemRight" valign="bottom"><b>view</b></td></tr>
+<tr class="separator:aae69ae88f2d9a5599ff3be0f843b190b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae879cc3955c68a3d9e0fb30adfbfd35e"><td class="memItemLeft" align="right" valign="top"><a id="ae879cc3955c68a3d9e0fb30adfbfd35e"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>viewDirty</b> = true</td></tr>
+<tr class="separator:ae879cc3955c68a3d9e0fb30adfbfd35e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p>摄像机. </p>
-</div><hr/>该类的文档由以下文件生成:<ul>
-<li>/github/workspace/Source/Camera/<a class="el" href="_camera_8h_source.html">Camera.h</a></li>
-<li>/github/workspace/Source/Camera/Camera.cpp</li>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="aa8ec068be0051d9f01ff3f19ae37cddb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8ec068be0051d9f01ff3f19ae37cddb">&#9670;&nbsp;</a></span>Camera()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Camera::Camera </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_camera.html#a3b0a1f58deca679ac665f61c480d1dcb">Type</a>&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>默认构造函数. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>投影类型. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a58fa647dd4e285efa42da0e1fea31c16"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58fa647dd4e285efa42da0e1fea31c16">&#9670;&nbsp;</a></span>setOrthographic()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Camera::setOrthographic </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>width</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>near</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>far</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>设置正投影观观察体, 用于正交投影. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">width</td><td>宽度. </td></tr>
+    <tr><td class="paramname">height</td><td>高度. </td></tr>
+    <tr><td class="paramname">near</td><td>近裁剪平面距离, 最近可见范围. </td></tr>
+    <tr><td class="paramname">far</td><td>远裁剪平面距离, 最远可见范围. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="abd5431a9a5ad4ae881c0a95fc62eb4aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd5431a9a5ad4ae881c0a95fc62eb4aa">&#9670;&nbsp;</a></span>setPerspective()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Camera::setPerspective </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>vFOV</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>aspectRatio</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>near</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>far</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>设置截头锥体观察体, 用于透视投影. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vFOV</td><td>垂直视角范围, 单位: 弧度制. </td></tr>
+    <tr><td class="paramname">aspectRatio</td><td>宽高比. </td></tr>
+    <tr><td class="paramname">near</td><td>近裁剪平面距离, 最近可见范围. </td></tr>
+    <tr><td class="paramname">far</td><td>远裁剪平面距离, 最远可见范围. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/github/workspace/Source/<a class="el" href="_camera_8h_source.html">Camera.h</a></li>
+<li>/github/workspace/Source/Camera.cpp</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

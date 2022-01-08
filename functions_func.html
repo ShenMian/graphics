@@ -86,6 +86,9 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 &#160;
 
 <h3><a id="index_c"></a>- c -</h3><ul>
+<li>Camera()
+: <a class="el" href="class_camera.html#aa8ec068be0051d9f01ff3f19ae37cddb">Camera</a>
+</li>
 <li>clear()
 : <a class="el" href="class_command_buffer.html#accc1761193f40a84dd8e3dd05f18dd0f">CommandBuffer</a>
 , <a class="el" href="class_g_l_command_buffer.html#afb2847fd985cc379404cbecd852afa2f">GLCommandBuffer</a>
@@ -124,9 +127,6 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 <li>getAPI()
 : <a class="el" href="class_renderer.html#a9f11c63dc16c34489aba73dac51fc58c">Renderer</a>
 </li>
-<li>getAspectRatio()
-: <a class="el" href="class_perspective_camera.html#ad1c94e4b4120869e359f875dca685de5">PerspectiveCamera</a>
-</li>
 <li>getChannelCount()
 : <a class="el" href="class_image.html#a88ff43032808645f35662382d2253e3a">Image</a>
 </li>
@@ -149,16 +149,9 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 <li>getDevice()
 : <a class="el" href="class_v_k_renderer.html#aed8b9caf61dc226a73aea400fbb654ae">VKRenderer</a>
 </li>
-<li>getFarPlane()
-: <a class="el" href="class_orthographic_camera.html#aa77136e11d97f817ca855979cfd70d25">OrthographicCamera</a>
-, <a class="el" href="class_perspective_camera.html#adcd03f6810a03bb752f509056f3d707a">PerspectiveCamera</a>
-</li>
 <li>getFormat()
 : <a class="el" href="class_texture.html#ab9c343ec4797d5175580d538a2e8c171">Texture</a>
 , <a class="el" href="class_vertex_buffer.html#a362c0ef76280b73f68e71bf78b603a77">VertexBuffer</a>
-</li>
-<li>getHeight()
-: <a class="el" href="class_orthographic_camera.html#aa9f56d406f5afbbbae0700d2a788e510">OrthographicCamera</a>
 </li>
 <li>getInstance()
 : <a class="el" href="class_v_k_renderer.html#ae14c7e5a3d799a51f3f8cde4087f0f9b">VKRenderer</a>
@@ -189,10 +182,6 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 , <a class="el" href="class_shader.html#ac4d7bcb657dc42c70d27d6522ab4fe7e">Shader</a>
 , <a class="el" href="class_v_k_shader.html#a20dac334d0a5aea2be11c75a1a4e71eb">VKShader</a>
 , <a class="el" href="class_window.html#ac2dcba6f351bed84db15e477a39f285d">Window</a>
-</li>
-<li>getNearPlane()
-: <a class="el" href="class_orthographic_camera.html#a77773a0944914ce71784bb907001c358">OrthographicCamera</a>
-, <a class="el" href="class_perspective_camera.html#a07469efa45a2cf376a59589d2b4360c9">PerspectiveCamera</a>
 </li>
 <li>getPhysicalDevice()
 : <a class="el" href="class_v_k_renderer.html#a61c7c59b6a6afd2ba082a26e7b109bb3">VKRenderer</a>
@@ -226,19 +215,11 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 : <a class="el" href="class_shader.html#a3a91e257350332a3cd3af52d740405d5">Shader</a>
 </li>
 <li>getType()
-: <a class="el" href="class_camera.html#a6cbc4769bd721ece7e7c91f290d206e3">Camera</a>
-, <a class="el" href="class_orthographic_camera.html#a7b8cecd02541d97890015be1e5ec09b8">OrthographicCamera</a>
-, <a class="el" href="class_perspective_camera.html#a3183cbf47103a8205bae03bdb67a6ac5">PerspectiveCamera</a>
+: <a class="el" href="class_camera.html#ae8f514578aa54023476ad541b167a1e0">Camera</a>
 , <a class="el" href="class_texture.html#a885cf1c026c6227fbc1b99befa842416">Texture</a>
-</li>
-<li>getVFOV()
-: <a class="el" href="class_perspective_camera.html#a94cd276fbeb763641ba38df441e08e27">PerspectiveCamera</a>
 </li>
 <li>getView()
 : <a class="el" href="class_camera.html#a26a85543e0caeb0ff79cffeb8d27066c">Camera</a>
-</li>
-<li>getWidth()
-: <a class="el" href="class_orthographic_camera.html#a435c4153ad416c4dce1634eac9a6d027">OrthographicCamera</a>
 </li>
 </ul>
 
@@ -288,20 +269,6 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 </ul>
 
 
-<h3><a id="index_o"></a>- o -</h3><ul>
-<li>OrthographicCamera()
-: <a class="el" href="class_orthographic_camera.html#a70fdd1313ed5fdb9f906a3c25f82c7fe">OrthographicCamera</a>
-</li>
-</ul>
-
-
-<h3><a id="index_p"></a>- p -</h3><ul>
-<li>PerspectiveCamera()
-: <a class="el" href="class_perspective_camera.html#a92e33647a5013b8aacbe286bd3c0bd76">PerspectiveCamera</a>
-</li>
-</ul>
-
-
 <h3><a id="index_r"></a>- r -</h3><ul>
 <li>requestFocus()
 : <a class="el" href="class_window.html#acaf1ae031f7b9196f36f66e37ff3eb0f">Window</a>
@@ -339,15 +306,17 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 : <a class="el" href="class_g_l_texture.html#ab6dbf1736f0b47c7696d3f0271495b8c">GLTexture</a>
 , <a class="el" href="class_texture.html#a23aaceb94559abb5b9c756c2ec8ac431">Texture</a>
 </li>
+<li>setOrthographic()
+: <a class="el" href="class_camera.html#a58fa647dd4e285efa42da0e1fea31c16">Camera</a>
+</li>
+<li>setPerspective()
+: <a class="el" href="class_camera.html#abd5431a9a5ad4ae881c0a95fc62eb4aa">Camera</a>
+</li>
 <li>setPixel()
 : <a class="el" href="class_image.html#a5c4bc51e491be5f0ba98f42269f5fe86">Image</a>
 </li>
 <li>setPosition()
 : <a class="el" href="class_window.html#a868bf9978fed1d7bf87574158dc9a60d">Window</a>
-</li>
-<li>setProjection()
-: <a class="el" href="class_orthographic_camera.html#a2ad5e969ee67705848d841263237c6a9">OrthographicCamera</a>
-, <a class="el" href="class_perspective_camera.html#ae17534c7d487b92366e33b1738c682c4">PerspectiveCamera</a>
 </li>
 <li>setRawMouseMotion()
 : <a class="el" href="class_window.html#a6786f1592fa3da0aa66ebb08436a4355">Window</a>
@@ -395,9 +364,6 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 </li>
 <li>updateHandle()
 : <a class="el" href="classui_1_1_widget.html#a00b122fd63f70bbfe501fac5355a6457">ui::Widget</a>
-</li>
-<li>updateProjectionMatrix()
-: <a class="el" href="class_camera.html#a58dd6b97da62cb117eec96929c4c48a7">Camera</a>
 </li>
 </ul>
 

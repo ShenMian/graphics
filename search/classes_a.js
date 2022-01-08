@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['pbr_194',['PBR',['../struct_material_1_1_p_b_r.html',1,'Material']]],
-  ['perspectivecamera_195',['PerspectiveCamera',['../class_perspective_camera.html',1,'']]],
-  ['pipeline_196',['Pipeline',['../class_pipeline.html',1,'']]],
-  ['program_197',['Program',['../class_program.html',1,'']]]
+  ['pbr_188',['PBR',['../struct_material_1_1_p_b_r.html',1,'Material']]],
+  ['perspective_189',['Perspective',['../struct_camera_1_1_perspective.html',1,'Camera']]],
+  ['pipeline_190',['Pipeline',['../class_pipeline.html',1,'']]],
+  ['program_191',['Program',['../class_program.html',1,'']]]
 ];
