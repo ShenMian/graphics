@@ -6,12 +6,14 @@ on:
       - '**.cpp'
       - '**.hpp'
       - '**.h'
+      - '**.txt' # CMakeLists.txt
       - '.github/workflows/windows.yml'
   pull_request:
     paths:
       - '**.cpp'
       - '**.hpp'
       - '**.h'
+      - '**.txt' # CMakeLists.txt
       - '.github/workflows/windows.yml'
 
 jobs:
