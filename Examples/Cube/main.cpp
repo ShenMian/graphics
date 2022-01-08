@@ -60,8 +60,9 @@ int main()
 	auto cmdQueue = CommandQueue::create();
 	auto cmdBuffer = CommandBuffer::create();
 
-	auto camera = PerspectiveCamera::create(radians(60.f), (float)window->getSize().x / window->getSize().y, 0.1f, 5000.f);
-	camera->setPosition({0, 0, 3});
+	Camera camera(Camera::Type::Perspective);
+	camera.setPerspective(radians(60.f), (float)window->getSize().x / window->getSize().y, 0.1f, 5000.f);
+	camera.setPosition({0, 0, 3});
 
 	bool running = true;
 	window->onClose = [&]() { running = false; };
@@ -83,19 +84,19 @@ int main()
 	};
 	window->onResize = [&](Vector2i size)
 	{
-		camera->setProjection(radians(60.f), (float)size.x / size.y, 0.1f, 5000.0f);
+		camera.setPerspective(radians(60.f), (float)size.x / size.y, 0.1f, 5000.0f);
 	};
 	window->setVisible(true);
 
-	Matrix4f model = Matrix4f::createRotationX(radians(15.f));
+	Matrix4f model = Matrix4f::createRotationX(radians(-15.f));
 
 	while(running)
 	{
 		model *= Matrix4f::createRotationY(radians(0.5f));
 
 		program->setUniform("model", model);
-		program->setUniform("view", camera->getView());
-		program->setUniform("projection", camera->getProjection());
+		program->setUniform("view", camera.getView());
+		program->setUniform("projection", camera.getProjection());
 
 		cmdBuffer->begin();
 		{

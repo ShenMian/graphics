@@ -11,7 +11,7 @@ int main()
 {
 	try
 	{
-		Renderer::setAPI(Renderer::API::OpenGL); // 设置渲染 API 为 OpenGL
+		Renderer::setAPI(Renderer::API::OpenGL);
 
 		Window::init();
 
@@ -39,8 +39,8 @@ int main()
 #endif
 
 		Model model;
-		model.load("../../../3DModel/basic/cube.obj");
-		// model.load("../../../3DModel/scene/Crytek_Sponza/sponza.obj");
+		// model.load("../../../3DModel/basic/cube.obj");
+		model.load("../../../3DModel/scene/Crytek_Sponza/sponza.obj");
 		// model.load("../../../3DModel/weapon/m4a1/m4a1.gltf");
 		// model.load("../../../3DModel/scene/Amazon_Lumberyard_Bistro/Exterior/exterior.obj");
 		// model.load("../../../3DModel/scene/SunTemple/SunTemple.fbx"); // 暂不支持 DDS 格式的纹理资源
@@ -55,10 +55,9 @@ int main()
 		auto cmdQueue = CommandQueue::create();
 		auto cmdBuffer = CommandBuffer::create();
 
-		// auto camera = OrthographicCamera::create(2, 2, 0.1f, 5000.f);
-		auto camera = PerspectiveCamera::create(radians(60.f), (float)window->getSize().x / window->getSize().y, 0.1f, 5000.f);
-		camera->setPosition({0, 0, 3});
-		// camera->setDirection(Vector3f::right);
+		Camera camera(Camera::Type::Perspective);
+		camera.setPerspective(radians(60.f), (float)window->getSize().x / window->getSize().y, 0.1f, 5000.f);
+		camera.setPosition({0, 0, 3});
 
 		bool running = true;
 		window->onClose = [&]() { running = false; };
@@ -89,16 +88,19 @@ int main()
 			offset.x *= mouseSensitivity.x;
 			offset.y *= mouseSensitivity.y;
 
-			auto rot = camera->getRotation();
+			auto rot = camera.getRotation();
 			rot.y += offset.x;
 			rot.x += -offset.y;
-			camera->setRotation(rot);
+			camera.setRotation(rot);
 		};
 		window->onResize = [&](Vector2i size)
 		{
-			camera->setProjection(radians(60.f), (float)size.x / size.y, 0.1f, 5000.0f);
+			camera.setPerspective(radians(60.f), (float)size.x / size.y, 0.1f, 5000.0f);
 		};
-		window->setVisible(true); // 设置窗口可见
+		window->setVisible(true);
+
+		window->setCursorLock(true);
+		window->setRawMouseMotion(true);
 
 		ui::Window win("Debug");
 		ui::Label label0("camera");
@@ -119,27 +121,27 @@ int main()
 			// FIXME: 向上移动时向下移动
 			const float speed = 1.1f;
 			if(Input::isPressed(Key::W))
-				camera->setPosition(camera->getPosition() + camera->getFront() * speed);
+				camera.setPosition(camera.getPosition() + camera.getFront() * speed);
 			if(Input::isPressed(Key::S))
-				camera->setPosition(camera->getPosition() - camera->getFront() * speed);
+				camera.setPosition(camera.getPosition() - camera.getFront() * speed);
 			if(Input::isPressed(Key::A))
-				camera->setPosition(camera->getPosition() - camera->getRight() * speed);
+				camera.setPosition(camera.getPosition() - camera.getRight() * speed);
 			if(Input::isPressed(Key::D))
-				camera->setPosition(camera->getPosition() + camera->getRight() * speed);
+				camera.setPosition(camera.getPosition() + camera.getRight() * speed);
 			if(Input::isPressed(Key::E))
-				camera->setPosition(camera->getPosition() + camera->getUp() * speed);
+				camera.setPosition(camera.getPosition() + camera.getUp() * speed);
 			if(Input::isPressed(Key::Q))
-				camera->setPosition(camera->getPosition() - camera->getUp() * speed);
+				camera.setPosition(camera.getPosition() - camera.getUp() * speed);
 
-			const auto pos = camera->getPosition();
-			const auto dir = camera->getRotation();
+			const auto pos = camera.getPosition();
+			const auto dir = camera.getRotation();
 			label1.setText("  position: " + std::to_string(pos.x) + ", " + std::to_string(pos.y) + ", " + std::to_string(pos.z));
 			label2.setText("  rotation: " + std::to_string(dir.x) + ", " + std::to_string(dir.y) + ", " + std::to_string(dir.z));
 			win.update();
 
 			program->setUniform("model", Matrix4f());
-			program->setUniform("view", camera->getView());
-			program->setUniform("projection", camera->getProjection());
+			program->setUniform("view", camera.getView());
+			program->setUniform("projection", camera.getProjection());
 
 			cmdBuffer->begin();
 			{
@@ -155,7 +157,7 @@ int main()
 
 					cmdBuffer->setVertexBuffer(vb);
 					cmdBuffer->setIndexBuffer(ib);
-					cmdBuffer->drawIndexed(0, ib->getCount());
+					cmdBuffer->drawIndexed(ib->getCount());
 				}
 			}
 			cmdBuffer->end();

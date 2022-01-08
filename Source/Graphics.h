@@ -12,9 +12,7 @@
 #include "Shader.h"
 
 #include "Model.h"
-#include "Camera/Camera.h"
-#include "Camera/PerspectiveCamera.h"
-#include "Camera/OrthographicCamera.h"
+#include "Camera.h"
 
 #include "Core/Window.h"
 #include "Core/Input.h"
