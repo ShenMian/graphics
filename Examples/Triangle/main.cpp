@@ -13,7 +13,7 @@ struct Vertex
 
 int main()
 {
-	Renderer::setAPI(Renderer::API::OpenGL); // 设置渲染 API 为 OpenGL
+	Renderer::setAPI(Renderer::API::OpenGL);
 
 	Window::init();
 
@@ -66,7 +66,7 @@ int main()
 		program->use();
 		cmdBuffer->begin();
 		{
-			cmdBuffer->setViewport({0, 0}, window->getSize());
+			cmdBuffer->setViewport({0, 0}, window->getSize(), {0, 1});
 			cmdBuffer->setClearColor({0, 0, 0, 0});
 			cmdBuffer->clear(ClearFlag::Color);
 

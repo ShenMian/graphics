@@ -24,11 +24,15 @@ void GLCommandBuffer::end()
 {
 }
 
-void GLCommandBuffer::setViewport(const Vector2f& origin, const Vector2f& size)
+void GLCommandBuffer::setViewport(const Vector2f& origin, const Vector2f& size, const Vector2f& depth)
 {
 	auto cmd = addCommand<GLCmdSetViewport>(GLOpcode::setViewport);
-	cmd->origin = origin;
-	cmd->size = size;
+	cmd->x = static_cast<GLint>(origin.x);
+	cmd->y = static_cast<GLint>(origin.x);
+	cmd->width = static_cast<GLsizei>(size.x);
+	cmd->height = static_cast<GLsizei>(size.y);
+	cmd->n = static_cast<GLdouble>(depth.x);
+	cmd->f = static_cast<GLdouble>(depth.y);
 }
 
 void GLCommandBuffer::setPipeline(std::shared_ptr<Pipeline> pipeline)

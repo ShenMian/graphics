@@ -15,7 +15,7 @@ public:
 	void begin() override;
 	void end() override;
 
-	void setViewport(const Vector2f& origin, const Vector2f& size) override;
+	void setViewport(const Vector2f& origin, const Vector2f& size, const Vector2f& depth) override;
 
 	void setPipeline(std::shared_ptr<Pipeline> pipeline) override;
 

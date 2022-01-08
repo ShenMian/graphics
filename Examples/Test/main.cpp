@@ -82,7 +82,7 @@ int main()
 			static Vector2f lastPos = position;
 
 			const auto pos = static_cast<Vector2f>(position);
-			const Vector2f mouseSensitivity = Vector2f::unit * 0.05f;
+			const Vector2f mouseSensitivity = Vector2f::unit * 0.07f;
 			Vector2f offset = pos - lastPos;
 			lastPos = pos;
 			offset.x *= mouseSensitivity.x;
@@ -145,7 +145,7 @@ int main()
 
 			cmdBuffer->begin();
 			{
-				cmdBuffer->setViewport({0, 0}, window->getSize());
+				cmdBuffer->setViewport({0, 0}, window->getSize(), {0, 1});
 				cmdBuffer->setClearColor({0, 0, 0, 0});
 				cmdBuffer->clear(ClearFlag::Color | ClearFlag::Depth);
 

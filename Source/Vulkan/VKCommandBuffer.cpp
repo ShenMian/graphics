@@ -39,15 +39,15 @@ void VKCommandBuffer::end()
 		throw std::runtime_error("failed to end command buffer");
 }
 
-void VKCommandBuffer::setViewport(const Vector2f& origin, const Vector2f& size)
+void VKCommandBuffer::setViewport(const Vector2f& origin, const Vector2f& size, const Vector2f& depth)
 {
 	VkViewport viewport;
 	viewport.x = origin.x;
 	viewport.y = origin.y;
 	viewport.width = size.x;
 	viewport.height = size.y;
-	viewport.minDepth = 0.f;
-	viewport.maxDepth = 1.f;
+	viewport.minDepth = depth.x;
+	viewport.maxDepth = depth.y;
 	vkCmdSetViewport(handle, 0, 1, &viewport);
 }
 
@@ -65,6 +65,7 @@ void VKCommandBuffer::setIndexBuffer(std::shared_ptr<IndexBuffer> indexBuffer)
 
 void VKCommandBuffer::clear(uint8_t flags)
 {
+	// vkCmdClearColorImage(handle, );
 }
 
 void VKCommandBuffer::setClearColor(const Vector4& color)
