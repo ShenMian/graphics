@@ -5,14 +5,13 @@
 
 #include "Program.h"
 #include <unordered_map>
+#include <glad/glad.h>
 
 class Shader;
 
 class GLProgram : public Program
 {
 public:
-	using handle_type = unsigned int;
-
 	explicit GLProgram(const std::string& name);
 	virtual ~GLProgram();
 
@@ -31,6 +30,6 @@ private:
 	void attach(const std::shared_ptr<Shader> shader);
 	void link();
 
-	handle_type                          handle;
+	GLuint                               handle;
 	std::unordered_map<std::string, int> uniformLocations;
 };

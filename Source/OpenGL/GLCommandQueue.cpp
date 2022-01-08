@@ -84,7 +84,7 @@ size_t GLCommandQueue::execute(GLOpcode opcode, const uint8_t* pc)
 	case GLOpcode::draw:
 	{
 		const auto args = reinterpret_cast<const GLCmdDraw*>(pc);
-		glDrawArrays(GL_TRIANGLES, (GLsizei)args->firstVertex, (GLsizei)args->verticesNum);
+		glDrawArrays(GL_TRIANGLES, (GLsizei)args->firstVertex, (GLsizei)args->vertexCount);
 		return sizeof(*args);
 	}
 
@@ -94,7 +94,7 @@ size_t GLCommandQueue::execute(GLOpcode opcode, const uint8_t* pc)
 		glEnable(GL_DEPTH_TEST);
 		// glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); // TODO: debug
 		// const GLintptr indices = args->firstIndex * sizeof(unsigned int);
-		glDrawElements(GL_TRIANGLES, (GLsizei)args->indicesNum, GL_UNSIGNED_INT, nullptr);
+		glDrawElements(GL_TRIANGLES, (GLsizei)args->indexCount, GL_UNSIGNED_INT, nullptr);
 		return sizeof(*args);
 	}
 

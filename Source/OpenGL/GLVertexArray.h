@@ -3,13 +3,13 @@
 
 #pragma once
 
+#include <glad/glad.h>
+
 class VertexFormat;
 
 class GLVertexArray
 {
 public:
-	using handle_type = unsigned int;
-
 	GLVertexArray();
 	virtual ~GLVertexArray();
 
@@ -21,6 +21,6 @@ public:
 	// void setIndexBuffer(std::shared_ptr<IndexBuffer> indexBuffer);
 
 private:
-	handle_type handle;
-	handle_type attribIndex = 0;
+	GLuint handle;
+	GLuint attribIndex = 0;
 };

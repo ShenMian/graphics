@@ -9,8 +9,6 @@
 class GLTexture : public Texture
 {
 public:
-	using handle_type = unsigned int;
-
 	GLTexture(const Image& image, Type type);
 	GLTexture(const std::vector<Image>& images);
 	~GLTexture();
@@ -24,6 +22,6 @@ public:
 	void generateMipmap();
 
 private:
-	handle_type handle;
-	GLenum      glTarget;
+	GLuint handle;
+	GLenum glTarget;
 };
