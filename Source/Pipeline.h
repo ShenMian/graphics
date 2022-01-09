@@ -3,17 +3,26 @@
 
 #pragma once
 
+#include "PipelineLayout.h"
 #include <memory>
 
 class Program;
 
+/**
+ * @brief 图形管线.
+ */
 class Pipeline
 {
 public:
-	static std::shared_ptr<Pipeline> create(std::shared_ptr<Program> program);
+	struct Descriptor
+	{
+		PipelineLayout           layout;
+		std::shared_ptr<Program> program;
+	};
+
+	static std::shared_ptr<Pipeline> create(const Descriptor& desc);
 
 	Pipeline(std::shared_ptr<Program> program);
 
-// private:
 	std::shared_ptr<Program> program;
 };

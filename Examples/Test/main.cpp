@@ -40,17 +40,16 @@ int main()
 
 		Model model;
 		// model.load("../../../3DModel/basic/cube.obj");
-		model.load("../../../3DModel/scene/Crytek_Sponza/sponza.obj");
-		// model.load("../../../3DModel/weapon/m4a1/m4a1.gltf");
+		// model.load("../../../3DModel/scene/Crytek_Sponza/sponza.obj");
+		model.load("../../../3DModel/weapon/m4a1/m4a1.gltf");
 		// model.load("../../../3DModel/scene/Amazon_Lumberyard_Bistro/Exterior/exterior.obj");
 		// model.load("../../../3DModel/scene/SunTemple/SunTemple.fbx"); // 暂不支持 DDS 格式的纹理资源
-		/*model.loadAsync("../../../3DModel/scene/Crytek_Sponza/sponza.obj", [](std::string_view error){
-			if(!error.empty())
-				puts(error.data());
-		});*/
 
 		auto program = Program::create("Shaders/pbr");
-		auto pipeline = Pipeline::create(program);
+		PipelineLayout layout = {
+			{PipelineLayout::Type::Texture, 0, PipelineLayout::StageFlags::Fragment}
+		};
+		auto pipeline = Pipeline::create({layout, program});
 
 		auto cmdQueue = CommandQueue::create();
 		auto cmdBuffer = CommandBuffer::create();
@@ -79,6 +78,7 @@ int main()
 		};
 		window->onMouseMove = [&](Vector2d position)
 		{
+			// 视角控制
 			static Vector2f lastPos = position;
 
 			const auto pos = static_cast<Vector2f>(position);
@@ -92,6 +92,15 @@ int main()
 			rot.y += offset.x;
 			rot.x += -offset.y;
 			camera.setRotation(rot);
+		};
+		window->onScroll = [&](Vector2d offset)
+		{
+			// 缩放
+			static float fov = 60;
+			if(1.f <= fov && fov <= 60.f)
+				fov -= (float)offset.y;
+			fov = std::clamp(fov, 1.f, 60.f);
+			camera.setPerspective(radians(fov), (float)window->getSize().x / window->getSize().y, 0.03f, 10000.f);
 		};
 		window->onResize = [&](Vector2i size)
 		{

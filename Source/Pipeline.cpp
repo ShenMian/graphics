@@ -3,9 +3,9 @@
 
 #include "Pipeline.h"
 
-std::shared_ptr<Pipeline> Pipeline::create(std::shared_ptr<Program> program)
+std::shared_ptr<Pipeline> Pipeline::create(const Descriptor& desc)
 {
-	return std::make_shared<Pipeline>(program);
+	return std::make_shared<Pipeline>(desc.program);
 }
 
 Pipeline::Pipeline(std::shared_ptr<Program> program)
