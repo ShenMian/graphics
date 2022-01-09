@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "VertexFormat.h"
+#include "VertexLayout.h"
 #include <Math/Math.hpp>
 #include <memory>
 #include <vector>
@@ -24,23 +24,23 @@ public:
 	/**
 	 * @brief 创建 VertexBuffer.
 	 *
-	 * @param data  顶点缓冲区.
-	 * @param fmt   顶点格式.
-	 * @param usage 使用方式.
+	 * @param data   顶点缓冲区.
+	 * @param layout 顶点格式.
+	 * @param usage  使用方式.
 	 */
 	template <typename T>
-	static std::shared_ptr<VertexBuffer> create(const std::vector<T>& data, const VertexFormat& fmt, Usage usage = Usage::Static);
+	static std::shared_ptr<VertexBuffer> create(const std::vector<T>& data, const VertexLayout& layout, Usage usage = Usage::Static);
 
 	/**
 	 * @brief 创建 VertexBuffer.
 	 *
-	 * @param data  顶点缓冲区指针.
-	 * @param size  顶点缓冲区大小, 单位: 字节.
-	 * @param count 顶点数量.
-	 * @param fmt   顶点格式.
-	 * @param usage 使用方式.
+	 * @param data   顶点缓冲区指针.
+	 * @param size   顶点缓冲区大小, 单位: 字节.
+	 * @param count  顶点数量.
+	 * @param layout 顶点格式.
+	 * @param usage  使用方式.
 	 */
-	static std::shared_ptr<VertexBuffer> create(const void* data, size_t size, size_t count, const VertexFormat& fmt, Usage usage = Usage::Static);
+	static std::shared_ptr<VertexBuffer> create(const void* data, size_t size, size_t count, const VertexLayout& layout, Usage usage = Usage::Static);
 
 	/**
 	 * @brief 获取缓冲区大小, 单位: 字节.
@@ -55,21 +55,21 @@ public:
 	/**
 	 * @brief 获取顶格式.
 	 */
-	const VertexFormat& getFormat() const;
+	const VertexLayout& getFormat() const;
 
 	virtual void bind() = 0;
 
 protected:
-	VertexBuffer(size_t size, uint32_t count, const VertexFormat& fmt);
+	VertexBuffer(size_t size, uint32_t count, const VertexLayout& layout);
 
 private:
 	size_t       size;
 	uint32_t     count;
-	VertexFormat format;
+	VertexLayout format;
 };
 
 template <typename T>
-inline std::shared_ptr<VertexBuffer> VertexBuffer::create(const std::vector<T>& data, const VertexFormat& fmt, Usage usage)
+inline std::shared_ptr<VertexBuffer> VertexBuffer::create(const std::vector<T>& data, const VertexLayout& layout, Usage usage)
 {
-	return create(data.data(), data.size() * sizeof(T), static_cast<uint32_t>(data.size()), fmt, usage);
+	return create(data.data(), data.size() * sizeof(T), static_cast<uint32_t>(data.size()), layout, usage);
 }

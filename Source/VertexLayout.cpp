@@ -1,7 +1,7 @@
 ﻿// Copyright 2021 ShenMian
 // License(Apache-2.0)
 
-#include "VertexFormat.h"
+#include "VertexLayout.h"
 #include <unordered_map>
 #include <cassert>
 
@@ -17,13 +17,13 @@ std::unordered_map<Format, size_t> sizeOf = {
 
 }
 
-size_t VertexFormat::Attribute::getSize() const
+size_t VertexLayout::Attribute::getSize() const
 {
 	assert(sizeOf.contains(format));
 	return sizeOf[format];
 }
 
-VertexFormat::VertexFormat(const std::initializer_list<Attribute>& list)
+VertexLayout::VertexLayout(const std::initializer_list<Attribute>& list)
 	: attribs(list)
 {
 	for(auto& attr : attribs)
@@ -33,17 +33,17 @@ VertexFormat::VertexFormat(const std::initializer_list<Attribute>& list)
 	}
 }
 
-const std::vector<VertexFormat::Attribute> VertexFormat::getAttributes() const
+const std::vector<VertexLayout::Attribute> VertexLayout::getAttributes() const
 {
 	return attribs;
 }
 
-void VertexFormat::setStride(size_t stride)
+void VertexLayout::setStride(size_t stride)
 {
 	this->stride = stride;
 }
 
-size_t VertexFormat::getStride() const
+size_t VertexLayout::getStride() const
 {
 	return stride;
 }

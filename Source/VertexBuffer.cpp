@@ -6,7 +6,7 @@
 
 #include "OpenGL/GLVertexBuffer.h"
 
-std::shared_ptr<VertexBuffer> VertexBuffer::create(const void* data, size_t size, size_t count, const VertexFormat& fmt, Usage usage)
+std::shared_ptr<VertexBuffer> VertexBuffer::create(const void* data, size_t size, size_t count, const VertexLayout& fmt, Usage usage)
 {
 	switch(Renderer::getAPI())
 	{
@@ -28,12 +28,12 @@ uint32_t VertexBuffer::getCount() const
 	return count;
 }
 
-const VertexFormat& VertexBuffer::getFormat() const
+const VertexLayout& VertexBuffer::getFormat() const
 {
 	return format;
 }
 
-VertexBuffer::VertexBuffer(size_t size, uint32_t count, const VertexFormat& fmt)
-	: size(size), count(count), format(fmt)
+VertexBuffer::VertexBuffer(size_t size, uint32_t count, const VertexLayout& layout)
+	: size(size), count(count), format(layout)
 {
 }

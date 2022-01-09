@@ -14,7 +14,7 @@ std::unordered_map<VertexBuffer::Usage, uint32_t> GLusage = {
 
 }
 
-GLVertexBuffer::GLVertexBuffer(const void* data, size_t size, uint32_t count, const VertexFormat& fmt, Usage usage)
+GLVertexBuffer::GLVertexBuffer(const void* data, size_t size, uint32_t count, const VertexLayout& fmt, Usage usage)
 	: VertexBuffer(size, count, fmt)
 {
 	glCreateBuffers(1, &handle);

@@ -5,7 +5,7 @@
 
 #include <glad/glad.h>
 
-class VertexFormat;
+class VertexLayout;
 
 class GLVertexArray
 {
@@ -15,7 +15,7 @@ public:
 
 	void bind();
 
-	void build(const VertexFormat& fmt);
+	void build(const VertexLayout& fmt);
 
 	// void setVertexBuffer(std::shared_ptr<VertexBuffer> vertexBuffer);
 	// void setIndexBuffer(std::shared_ptr<IndexBuffer> indexBuffer);

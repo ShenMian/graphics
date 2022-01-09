@@ -8,9 +8,9 @@
 #include <vector>
 
 /**
- * @brief 顶点格式.
+ * @brief 顶点格式布局.
  */
-class VertexFormat
+class VertexLayout
 {
 public:
 	struct Attribute
@@ -28,7 +28,7 @@ public:
 		size_t      offset = 0;
 	};
 
-	VertexFormat(const std::initializer_list<Attribute>& list);
+	VertexLayout(const std::initializer_list<Attribute>& list);
 
 	const std::vector<Attribute> getAttributes() const;
 

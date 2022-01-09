@@ -151,7 +151,7 @@ void loadMesh(const aiMesh* aMesh, const aiScene* aScene, const fs::path& path, 
 
 	optimize(indices, vertices);
 
-	VertexFormat format = {
+	VertexLayout format = {
 		{"position", Format::RGB32F},
 		{"normal", Format::RGB32F},
 		{"uv", Format::RG32F},

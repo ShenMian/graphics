@@ -4,8 +4,8 @@
 #include "VKVertexBuffer.h"
 #include "VKRenderer.h"
 
-VKVertexBuffer::VKVertexBuffer(const void* data, size_t size, uint32_t count, const VertexFormat& fmt, Usage usage)
-	: VertexBuffer(size, count, fmt)
+VKVertexBuffer::VKVertexBuffer(const void* data, size_t size, uint32_t count, const VertexLayout& layout, Usage usage)
+	: VertexBuffer(size, count, layout)
 {
 }
 

@@ -29,13 +29,13 @@ int main()
 		{{-0.5, -0.5}, {0, 0, 1}}
 	};
 
-	VertexFormat format = {
+	VertexLayout layout = {
 		{"position", Format::RG32F},
 		{"color", Format::RGB32F}
 	};
-	format.setStride(sizeof(Vertex));
+	layout.setStride(sizeof(Vertex));
 
-	auto vertexBuffer = VertexBuffer::create(vertices, format);
+	auto vertexBuffer = VertexBuffer::create(vertices, layout);
 
 	auto program = Program::create("Shaders/forword");
 	auto cmdQueue = CommandQueue::create();

@@ -2,7 +2,7 @@
 // License(Apache-2.0)
 
 #include "GLVertexArray.h"
-#include "../VertexFormat.h"
+#include "../VertexLayout.h"
 #include "GLCheck.h"
 #include <glad/glad.h>
 #include <unordered_map>
@@ -50,7 +50,7 @@ void GLVertexArray::bind()
 	glBindVertexArray(handle);
 }
 
-void GLVertexArray::build(const VertexFormat& fmt)
+void GLVertexArray::build(const VertexLayout& fmt)
 {
 	bind();
 	for(const auto& attr : fmt.getAttributes())

@@ -11,7 +11,7 @@ class VKVertexBuffer : public VertexBuffer
 public:
 	using handle_type = VkBuffer;
 
-	VKVertexBuffer(const void* data, size_t size, uint32_t count, const VertexFormat& fmt, Usage usage);
+	VKVertexBuffer(const void* data, size_t size, uint32_t count, const VertexLayout& layout, Usage usage);
 	virtual ~VKVertexBuffer();
 
 	void bind() override;
