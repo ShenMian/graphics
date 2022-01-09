@@ -46,8 +46,6 @@ public:
 		MaxQuality
 	};
 
-	Model();
-
 	/**
 	 * @brief 从文件载入场景.
 	 *
@@ -85,8 +83,6 @@ private:
 	AABB3                 aabb;
 
 	const aiScene* aScene = nullptr;
-	std::shared_ptr<Assimp::Importer> importer;
-	std::shared_ptr<Assimp::Exporter> exporter;
 };
 
 /*

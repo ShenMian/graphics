@@ -208,12 +208,6 @@ void loadNode(const aiNode* aNode, const aiScene* aScene, const fs::path& path, 
 
 }
 
-Model::Model()
-	: importer(std::make_shared<Assimp::Importer>()),
-	exporter(std::make_shared<Assimp::Exporter>())
-{
-}
-
 void Model::load(const fs::path& path, Type type)
 {
 	if(!fs::exists(path) && !fs::is_regular_file(path))
@@ -247,10 +241,11 @@ void Model::load(const fs::path& path, Type type)
 	}
 
 	// 从文件导入场景数据
-	aScene = importer->ReadFile(path.string(), flags);
+	Assimp::Importer importer;
+	aScene = importer.ReadFile(path.string(), flags);
 
 	if(aScene == nullptr || aScene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || aScene->mRootNode == nullptr)
-		throw std::runtime_error(importer->GetErrorString());
+		throw std::runtime_error(importer.GetErrorString());
 
 	name = aScene->mName.C_Str();
 
@@ -258,7 +253,7 @@ void Model::load(const fs::path& path, Type type)
 
 	timer.restart(); // TODO: debug
 	loadNode(aScene->mRootNode, aScene, path, meshs, aabb);
-	printf("Meshes processed: %.2lfs    \n", timer.getSeconds()); // TODO: debug
+	printf("Meshes processed: %.2lfs     \n", timer.getSeconds()); // TODO: debug
 }
 
 void Model::loadAsync(const fs::path& path, Type type, std::function<void(std::string_view)> callback) noexcept
@@ -301,9 +296,10 @@ const std::vector<Mesh>& Model::getMeshs() const
 	assert(scene != nullptr);
 
 	// 导出场景数据到文件
-	auto ret = importer->Export(scene, path.extension().string(), path.string());
+	Assimp::Exporter exporter;
+	auto ret = exporter.Export(scene, path.extension().string(), path.string());
 	if(ret == aiReturn_FAILURE)
-		throw std::runtime_error(importer->GetErrorString());
+		throw std::runtime_error(importer.GetErrorString());
 }
 
 void Model::saveAsync(const fs::path& path, std::function<void(std::string_view)> callback) noexcept
