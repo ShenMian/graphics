@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Graphics: 成员列表</title>
+<title>Graphics: PipelineLayout类 参考</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -64,7 +64,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('struct_vertex_format_1_1_attribute.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('class_pipeline_layout.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -83,24 +83,56 @@ $(document).ready(function(){initNavTree('struct_vertex_format_1_1_attribute.htm
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#nested-classes">类</a> &#124;
+<a href="#pub-types">Public 类型</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="class_pipeline_layout-members.html">所有成员列表</a>  </div>
   <div class="headertitle">
-<div class="title">VertexFormat::Attribute 成员列表</div>  </div>
+<div class="title">PipelineLayout类 参考</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>成员的完整列表，这些成员属于 <a class="el" href="struct_vertex_format_1_1_attribute.html">VertexFormat::Attribute</a>,包括所有继承而来的类成员</p>
-<table class="directory">
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>Attribute</b>(const char *name, Format fmt, bool normalized=false) (定义于 <a class="el" href="struct_vertex_format_1_1_attribute.html">VertexFormat::Attribute</a>)</td><td class="entry"><a class="el" href="struct_vertex_format_1_1_attribute.html">VertexFormat::Attribute</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>format</b> (定义于 <a class="el" href="struct_vertex_format_1_1_attribute.html">VertexFormat::Attribute</a>)</td><td class="entry"><a class="el" href="struct_vertex_format_1_1_attribute.html">VertexFormat::Attribute</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>getSize</b>() const (定义于 <a class="el" href="struct_vertex_format_1_1_attribute.html">VertexFormat::Attribute</a>)</td><td class="entry"><a class="el" href="struct_vertex_format_1_1_attribute.html">VertexFormat::Attribute</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>name</b> (定义于 <a class="el" href="struct_vertex_format_1_1_attribute.html">VertexFormat::Attribute</a>)</td><td class="entry"><a class="el" href="struct_vertex_format_1_1_attribute.html">VertexFormat::Attribute</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>normalized</b> (定义于 <a class="el" href="struct_vertex_format_1_1_attribute.html">VertexFormat::Attribute</a>)</td><td class="entry"><a class="el" href="struct_vertex_format_1_1_attribute.html">VertexFormat::Attribute</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>offset</b> (定义于 <a class="el" href="struct_vertex_format_1_1_attribute.html">VertexFormat::Attribute</a>)</td><td class="entry"><a class="el" href="struct_vertex_format_1_1_attribute.html">VertexFormat::Attribute</a></td><td class="entry"></td></tr>
-</table></div><!-- contents -->
+<p>图形管线绑定布局.  
+ <a href="class_pipeline_layout.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_pipeline_layout_8h_source.html">PipelineLayout.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+类</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_pipeline_layout_1_1_attribute.html">Attribute</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_pipeline_layout_1_1_stage_flags.html">StageFlags</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public 类型</h2></td></tr>
+<tr class="memitem:ac956e1dd602c3ce619d2eebf1d7ff7e1"><td class="memItemLeft" align="right" valign="top"><a id="ac956e1dd602c3ce619d2eebf1d7ff7e1"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>Type</b> { <b>Sampler</b>
+, <b>Texture</b>
+ }</td></tr>
+<tr class="separator:ac956e1dd602c3ce619d2eebf1d7ff7e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:aec07d11294a8ef466ae6dd36ab8e8e0a"><td class="memItemLeft" align="right" valign="top"><a id="aec07d11294a8ef466ae6dd36ab8e8e0a"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>PipelineLayout</b> (const std::initializer_list&lt; <a class="el" href="struct_pipeline_layout_1_1_attribute.html">Attribute</a> &gt; &amp;list)</td></tr>
+<tr class="separator:aec07d11294a8ef466ae6dd36ab8e8e0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab533a0945e887581ff6a0f69a87457d8"><td class="memItemLeft" align="right" valign="top"><a id="ab533a0945e887581ff6a0f69a87457d8"></a>
+const std::vector&lt; <a class="el" href="struct_pipeline_layout_1_1_attribute.html">Attribute</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getAttributes</b> () const</td></tr>
+<tr class="separator:ab533a0945e887581ff6a0f69a87457d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>图形管线绑定布局. </p>
+</div><hr/>该类的文档由以下文件生成:<ul>
+<li>/github/workspace/Source/<a class="el" href="_pipeline_layout_8h_source.html">PipelineLayout.h</a></li>
+<li>/github/workspace/Source/PipelineLayout.cpp</li>
+</ul>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
+    <li class="navelem"><a class="el" href="class_pipeline_layout.html">PipelineLayout</a></li>
     <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>

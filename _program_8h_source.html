@@ -113,12 +113,15 @@ $(document).ready(function(){initNavTree('_program_8h_source.html',''); initResi
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> setUniform(<span class="keyword">const</span> std::string&amp; name, <span class="keyword">const</span> Vector4&amp; value) = 0;</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> setUniform(<span class="keyword">const</span> std::string&amp; name, <span class="keyword">const</span> Matrix4&amp; value) = 0;</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    std::string name;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">inline</span> <span class="keyword">static</span> std::unordered_map&lt;std::string, std::shared_ptr&lt;Program&gt;&gt; cache;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;};</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordtype">int</span> getStageCount() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    std::string name;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordtype">int</span> stageCount = 0;</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">inline</span> <span class="keyword">static</span> std::unordered_map&lt;std::string, std::shared_ptr&lt;Program&gt;&gt; cache;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;};</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
 <div class="ttc" id="aclass_program_html"><div class="ttname"><a href="class_program.html">Program</a></div><div class="ttdoc">着色器程序.</div><div class="ttdef"><b>Definition:</b> Program.h:19</div></div>
 <div class="ttc" id="aclass_program_html_a33deea9af82d84cc64cc89dcb9e242b4"><div class="ttname"><a href="class_program.html#a33deea9af82d84cc64cc89dcb9e242b4">Program::create</a></div><div class="ttdeci">static std::shared_ptr&lt; Program &gt; create(const std::string &amp;name)</div><div class="ttdoc">创建着色器程序.</div><div class="ttdef"><b>Definition:</b> Program.cpp:11</div></div>
 </div><!-- fragment --></div><!-- contents -->

@@ -8,6 +8,7 @@ var dir_b45e4cf940d5a0df58026f031e97f341 =
     [ "GLRenderer.h", "_g_l_renderer_8h_source.html", null ],
     [ "GLShader.h", "_g_l_shader_8h_source.html", null ],
     [ "GLTexture.h", "_g_l_texture_8h_source.html", null ],
+    [ "GLUniformBuffer.h", "_g_l_uniform_buffer_8h_source.html", null ],
     [ "GLVertexArray.h", "_g_l_vertex_array_8h_source.html", null ],
     [ "GLVertexBuffer.h", "_g_l_vertex_buffer_8h_source.html", null ]
 ];
