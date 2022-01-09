@@ -7,5 +7,6 @@ var class_pipeline_layout =
       [ "Texture", "class_pipeline_layout.html#ac956e1dd602c3ce619d2eebf1d7ff7e1aa3e8ae43188ae76d38f414b2bdb0077b", null ]
     ] ],
     [ "PipelineLayout", "class_pipeline_layout.html#aec07d11294a8ef466ae6dd36ab8e8e0a", null ],
+    [ "addAttribute", "class_pipeline_layout.html#a095c103e8401c0c4f55bbd2da8f8d0bd", null ],
     [ "getAttributes", "class_pipeline_layout.html#ab533a0945e887581ff6a0f69a87457d8", null ]
 ];

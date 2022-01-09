@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['gamepad_14',['Gamepad',['../class_gamepad.html',1,'Gamepad'],['../class_gamepad.html#a766fe5c4b0971cd755f7c930ede3c068',1,'Gamepad::Gamepad()']]],
+  ['gamepad_14',['Gamepad',['../class_gamepad.html',1,'Gamepad'],['../class_gamepad.html#a0153d72ca3f7dfb816a872191fa5a651',1,'Gamepad::Gamepad(handle_type handle=0)']]],
   ['get_15',['get',['../class_gamepad.html#a9791f37d4d4a3e8041c6bd309950074d',1,'Gamepad::get(Button button) const'],['../class_gamepad.html#aff13c015ca3a1c720ef8b2a87ff941f7',1,'Gamepad::get(Trigger trigger) const'],['../class_gamepad.html#ac18268a379651541f94f42daad0ea0d7',1,'Gamepad::get(Thumb thumb) const']]],
   ['getaabb_16',['getAABB',['../class_model.html#a8b2bc5e7f945efb88fcd01a7d2af3ca0',1,'Model']]],
   ['getapi_17',['getAPI',['../class_renderer.html#a9f11c63dc16c34489aba73dac51fc58c',1,'Renderer']]],

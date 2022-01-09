@@ -84,6 +84,7 @@ $(document).ready(function(){initNavTree('class_model.html',''); initResizable()
 
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public 类型</a> &#124;
 <a href="#pub-methods">Public 成员函数</a> &#124;
 <a href="class_model-members.html">所有成员列表</a>  </div>
   <div class="headertitle">
@@ -96,20 +97,28 @@ $(document).ready(function(){initNavTree('class_model.html',''); initResizable()
 
 <p><code>#include &lt;<a class="el" href="_model_8h_source.html">Model.h</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public 类型</h2></td></tr>
+<tr class="memitem:a704990bea21287d993439d3bdf1755bf"><td class="memItemLeft" align="right" valign="top"><a id="a704990bea21287d993439d3bdf1755bf"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>Type</b> { <b>Fast</b>
+, <b>Quality</b>
+, <b>MaxQuality</b>
+ }</td></tr>
+<tr class="separator:a704990bea21287d993439d3bdf1755bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
-<tr class="memitem:a790d445d79871eaab3208e0410041eb1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#a790d445d79871eaab3208e0410041eb1">load</a> (const std::filesystem::path &amp;path)</td></tr>
-<tr class="memdesc:a790d445d79871eaab3208e0410041eb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">从文件载入场景.  <a href="class_model.html#a790d445d79871eaab3208e0410041eb1">更多...</a><br /></td></tr>
-<tr class="separator:a790d445d79871eaab3208e0410041eb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac7579596ce6e2af070c0bb8b21acb93b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#ac7579596ce6e2af070c0bb8b21acb93b">loadAsync</a> (const std::filesystem::path &amp;path, std::function&lt; void(std::string_view)&gt; callback=nullptr) noexcept</td></tr>
-<tr class="memdesc:ac7579596ce6e2af070c0bb8b21acb93b"><td class="mdescLeft">&#160;</td><td class="mdescRight">从文件载入场景, 异步.  <a href="class_model.html#ac7579596ce6e2af070c0bb8b21acb93b">更多...</a><br /></td></tr>
-<tr class="separator:ac7579596ce6e2af070c0bb8b21acb93b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51d68a584352c90065f592093a6ad2f6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#a51d68a584352c90065f592093a6ad2f6">load</a> (const std::filesystem::path &amp;path, Type type=Type::Quality)</td></tr>
+<tr class="memdesc:a51d68a584352c90065f592093a6ad2f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">从文件载入场景.  <a href="class_model.html#a51d68a584352c90065f592093a6ad2f6">更多...</a><br /></td></tr>
+<tr class="separator:a51d68a584352c90065f592093a6ad2f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d6be4be37d06c9c8f1d301119fb93b7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#a0d6be4be37d06c9c8f1d301119fb93b7">loadAsync</a> (const std::filesystem::path &amp;path, Type type=Type::MaxQuality, std::function&lt; void(std::string_view)&gt; callback=nullptr) noexcept</td></tr>
+<tr class="memdesc:a0d6be4be37d06c9c8f1d301119fb93b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">从文件载入场景, 异步.  <a href="class_model.html#a0d6be4be37d06c9c8f1d301119fb93b7">更多...</a><br /></td></tr>
+<tr class="separator:a0d6be4be37d06c9c8f1d301119fb93b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8b2bc5e7f945efb88fcd01a7d2af3ca0"><td class="memItemLeft" align="right" valign="top">const AABB3 &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#a8b2bc5e7f945efb88fcd01a7d2af3ca0">getAABB</a> () const</td></tr>
 <tr class="memdesc:a8b2bc5e7f945efb88fcd01a7d2af3ca0"><td class="mdescLeft">&#160;</td><td class="mdescRight">保存场景到文件.  <a href="class_model.html#a8b2bc5e7f945efb88fcd01a7d2af3ca0">更多...</a><br /></td></tr>
 <tr class="separator:a8b2bc5e7f945efb88fcd01a7d2af3ca0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf56f7c252b348fef73814f11620c648"><td class="memItemLeft" align="right" valign="top"><a id="abf56f7c252b348fef73814f11620c648"></a>
-const std::vector&lt; <a class="el" href="class_mesh.html">Mesh</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getMeshs</b> () const</td></tr>
-<tr class="separator:abf56f7c252b348fef73814f11620c648"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a001f7c158a94e80fa8fa2bd631ef40c3"><td class="memItemLeft" align="right" valign="top"><a id="a001f7c158a94e80fa8fa2bd631ef40c3"></a>
+const std::vector&lt; <a class="el" href="class_mesh.html">Mesh</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getMeshs</b> () const</td></tr>
+<tr class="separator:a001f7c158a94e80fa8fa2bd631ef40c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p>3D 模型. </p>
@@ -139,8 +148,8 @@ const std::vector&lt; <a class="el" href="class_mesh.html">Mesh</a> &gt;&#160;</
 
 </div>
 </div>
-<a id="a790d445d79871eaab3208e0410041eb1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a790d445d79871eaab3208e0410041eb1">&#9670;&nbsp;</a></span>load()</h2>
+<a id="a51d68a584352c90065f592093a6ad2f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51d68a584352c90065f592093a6ad2f6">&#9670;&nbsp;</a></span>load()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -149,8 +158,18 @@ const std::vector&lt; <a class="el" href="class_mesh.html">Mesh</a> &gt;&#160;</
           <td class="memname">void Model::load </td>
           <td>(</td>
           <td class="paramtype">const std::filesystem::path &amp;&#160;</td>
-          <td class="paramname"><em>path</em></td><td>)</td>
+          <td class="paramname"><em>path</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">Type&#160;</td>
+          <td class="paramname"><em>type</em> = <code>Type::Quality</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -162,12 +181,12 @@ const std::vector&lt; <a class="el" href="class_mesh.html">Mesh</a> &gt;&#160;</
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>参见</dt><dd><a class="el" href="class_model.html#ac7579596ce6e2af070c0bb8b21acb93b" title="从文件载入场景, 异步.">loadAsync</a> </dd></dl>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="class_model.html#a0d6be4be37d06c9c8f1d301119fb93b7" title="从文件载入场景, 异步.">loadAsync</a> </dd></dl>
 
 </div>
 </div>
-<a id="ac7579596ce6e2af070c0bb8b21acb93b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac7579596ce6e2af070c0bb8b21acb93b">&#9670;&nbsp;</a></span>loadAsync()</h2>
+<a id="a0d6be4be37d06c9c8f1d301119fb93b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d6be4be37d06c9c8f1d301119fb93b7">&#9670;&nbsp;</a></span>loadAsync()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -180,6 +199,12 @@ const std::vector&lt; <a class="el" href="class_mesh.html">Mesh</a> &gt;&#160;</
           <td>(</td>
           <td class="paramtype">const std::filesystem::path &amp;&#160;</td>
           <td class="paramname"><em>path</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Type&#160;</td>
+          <td class="paramname"><em>type</em> = <code>Type::MaxQuality</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -207,7 +232,7 @@ const std::vector&lt; <a class="el" href="class_mesh.html">Mesh</a> &gt;&#160;</
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>参见</dt><dd><a class="el" href="class_model.html#a790d445d79871eaab3208e0410041eb1" title="从文件载入场景.">load</a> </dd></dl>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="class_model.html#a51d68a584352c90065f592093a6ad2f6" title="从文件载入场景.">load</a> </dd></dl>
 
 </div>
 </div>

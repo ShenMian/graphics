@@ -86,6 +86,7 @@ $(document).ready(function(){initNavTree('class_gamepad.html',''); initResizable
   <div class="summary">
 <a href="#pub-types">Public 类型</a> &#124;
 <a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-static-methods">静态 Public 成员函数</a> &#124;
 <a href="class_gamepad-members.html">所有成员列表</a>  </div>
   <div class="headertitle">
 <div class="title">Gamepad类 参考<div class="ingroups"><a class="el" href="group__core.html">核心</a></div></div>  </div>
@@ -143,10 +144,10 @@ using&#160;</td><td class="memItemRight" valign="bottom"><b>handle_type</b> = un
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
-<tr class="memitem:a766fe5c4b0971cd755f7c930ede3c068"><td class="memItemLeft" align="right" valign="top"><a id="a766fe5c4b0971cd755f7c930ede3c068"></a>
-enum <a class="el" href="group__core.html#ga0f09c7e25e2059e68148d494ed9449b1">Button</a> uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gamepad.html#a766fe5c4b0971cd755f7c930ede3c068">Gamepad</a> ()</td></tr>
-<tr class="memdesc:a766fe5c4b0971cd755f7c930ede3c068"><td class="mdescLeft">&#160;</td><td class="mdescRight">默认构造函数. <br /></td></tr>
-<tr class="separator:a766fe5c4b0971cd755f7c930ede3c068"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0153d72ca3f7dfb816a872191fa5a651"><td class="memItemLeft" align="right" valign="top"><a id="a0153d72ca3f7dfb816a872191fa5a651"></a>
+enum <a class="el" href="group__core.html#ga0f09c7e25e2059e68148d494ed9449b1">Button</a> uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gamepad.html#a0153d72ca3f7dfb816a872191fa5a651">Gamepad</a> (handle_type handle=0)</td></tr>
+<tr class="memdesc:a0153d72ca3f7dfb816a872191fa5a651"><td class="mdescLeft">&#160;</td><td class="mdescRight">默认构造函数. <br /></td></tr>
+<tr class="separator:a0153d72ca3f7dfb816a872191fa5a651"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae37f83a954aabbf634e9d6f37697ae58"><td class="memItemLeft" align="right" valign="top"><a id="ae37f83a954aabbf634e9d6f37697ae58"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gamepad.html#ae37f83a954aabbf634e9d6f37697ae58">update</a> ()</td></tr>
 <tr class="memdesc:ae37f83a954aabbf634e9d6f37697ae58"><td class="mdescLeft">&#160;</td><td class="mdescRight">更新数据. <br /></td></tr>
@@ -167,6 +168,18 @@ std::string_view&#160;</td><td class="memItemRight" valign="bottom"><a class="el
 <tr class="memitem:a33d4dbd503a8d645885bd19cbc390a91"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gamepad.html#a33d4dbd503a8d645885bd19cbc390a91">isConnected</a> () const</td></tr>
 <tr class="memdesc:a33d4dbd503a8d645885bd19cbc390a91"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查手柄是否处于连接状态.  <a href="class_gamepad.html#a33d4dbd503a8d645885bd19cbc390a91">更多...</a><br /></td></tr>
 <tr class="separator:a33d4dbd503a8d645885bd19cbc390a91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af06515dbccf048df41bfcddc17460ee8"><td class="memItemLeft" align="right" valign="top"><a id="af06515dbccf048df41bfcddc17460ee8"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="class_gamepad.html">Gamepad</a> &amp;) const</td></tr>
+<tr class="separator:af06515dbccf048df41bfcddc17460ee8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+静态 Public 成员函数</h2></td></tr>
+<tr class="memitem:a2e62a945159cb11e9a15ac283f5a24d5"><td class="memItemLeft" align="right" valign="top"><a id="a2e62a945159cb11e9a15ac283f5a24d5"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>init</b> ()</td></tr>
+<tr class="separator:a2e62a945159cb11e9a15ac283f5a24d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58a5cc2413c8ed7cfcca0b5c3a9b8ac9"><td class="memItemLeft" align="right" valign="top"><a id="a58a5cc2413c8ed7cfcca0b5c3a9b8ac9"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>deinit</b> ()</td></tr>
+<tr class="separator:a58a5cc2413c8ed7cfcca0b5c3a9b8ac9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p>游戏手柄. </p>

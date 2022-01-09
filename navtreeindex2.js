@@ -1,5 +1,12 @@
 var NAVTREEINDEX2 =
 {
+"group__core.html#gga0f09c7e25e2059e68148d494ed9449b1ad895fe90306900af15c9c73e01df10c8":[1,0,0,4,14],
+"group__core.html#gga0f09c7e25e2059e68148d494ed9449b1ae499bf8bc6e897455b94cabc7a5c2da7":[1,0,0,4,10],
+"group__core.html#gga0f09c7e25e2059e68148d494ed9449b1ae76b449b9fc8536af7557ffa6321d269":[1,0,0,4,15],
+"group__core.html#gga0f09c7e25e2059e68148d494ed9449b1aea7a8478c70f00339285eefd9cea2a4c":[1,0,0,4,12],
+"group__core.html#gga3e2204214f53c8d800b8ef7d4d0fab7ca7c4f29407893c334a6cb7a87bf045c0d":[1,0,0,5,1],
+"group__core.html#gga3e2204214f53c8d800b8ef7d4d0fab7ca811882fecd5c7618d7099ebbd39ea254":[1,0,0,5,0],
+"group__core.html#gga814093b43f211a291b19ccf662096738a7c4f29407893c334a6cb7a87bf045c0d":[1,0,0,6,1],
 "group__core.html#gga814093b43f211a291b19ccf662096738a811882fecd5c7618d7099ebbd39ea254":[1,0,0,6,0],
 "group__model.html":[1,1],
 "group__shader.html":[1,2],
@@ -95,8 +102,8 @@ var NAVTREEINDEX2 =
 "struct_pipeline_layout_1_1_attribute.html#ae383141f999ae57a3121d274edc15c9d":[2,0,37,0,4],
 "struct_pipeline_layout_1_1_stage_flags.html":[2,0,37,1],
 "struct_vertex_layout_1_1_attribute.html":[2,0,46,0],
-"struct_vertex_layout_1_1_attribute.html#a003bca91bbad74519d7bd303207ee99a":[2,0,46,0,0],
-"struct_vertex_layout_1_1_attribute.html#a36562cd737b4781160d1ebac5e4277bb":[2,0,46,0,3],
+"struct_vertex_layout_1_1_attribute.html#a16f9444064bd2d5bbfcc5f8102ec45fc":[2,0,46,0,0],
+"struct_vertex_layout_1_1_attribute.html#a7747e585b5c047793903e858496de99a":[2,0,46,0,3],
 "struct_vertex_layout_1_1_attribute.html#a8d9c741cb60fe6821ec2290b663e32c8":[2,0,46,0,2],
 "struct_vertex_layout_1_1_attribute.html#a910dca068d286932ee4a9259e90c2a1e":[2,0,46,0,4],
 "struct_vertex_layout_1_1_attribute.html#ad5176b9f3d49e423bdf4a117eb9d31f6":[2,0,46,0,1],
