@@ -55,7 +55,6 @@ int main()
 	auto indexBuffer = IndexBuffer::create(indices);
 
 	auto program = Program::create("Shaders/mesh");
-	auto pipeline = Pipeline::create(program);
 
 	auto cmdQueue = CommandQueue::create();
 	auto cmdBuffer = CommandBuffer::create();
