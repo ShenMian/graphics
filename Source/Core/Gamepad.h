@@ -3,6 +3,7 @@
 
 #pragma once
 
+#include <functional>
 #include <string_view>
 #include <Math/Math.hpp>
 
@@ -25,7 +26,7 @@ public:
 	/**
 	 * @brief 默认构造函数.
 	 */
-	Gamepad();
+	Gamepad(handle_type handle = 0);
 
 	/**
 	 * @brief 更新数据.
@@ -70,13 +71,16 @@ public:
 	 */
 	bool isConnected() const;
 
-private:
-	handle_type handle = 0;
+	bool operator==(const Gamepad&) const;
 
-	int          axisCount = 0;
-	const float* axes = nullptr;
-	int                  buttonCount = 0;
-	const unsigned char* buttons = nullptr;
+	static void init();
+	static void deinit();
+
+private:
+	handle_type handle;
+
+	unsigned char buttons[15];
+	float axes[6];
 };
 
 /**

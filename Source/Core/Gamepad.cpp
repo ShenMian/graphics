@@ -3,26 +3,29 @@
 
 #include "Gamepad.h"
 #include <cassert>
+#include <cstring>
 #include <GLFW/glfw3.h>
 
-Gamepad::Gamepad()
+Gamepad::Gamepad(handle_type handle)
+	: handle(handle)
 {
-	assert(glfwJoystickIsGamepad(handle));
-
-	glfwSetJoystickCallback([](int handle, int event) {
-		if(event == GLFW_CONNECTED)
-			;
-		else if(event == GLFW_DISCONNECTED)
-			;
-	});
 }
 
 void Gamepad::update()
 {
+	assert(glfwJoystickIsGamepad(handle));
+
+	GLFWgamepadstate state;
+	glfwGetGamepadState(handle, &state);
+	std::memcpy(buttons, state.buttons, sizeof(buttons));
+	std::memcpy(axes, state.axes, sizeof(axes));
+
+	/*
+	int axisCount, buttonCount;
 	axes = glfwGetJoystickAxes(handle, &axisCount);
 	buttons = glfwGetJoystickButtons(handle, &buttonCount);
-
 	assert(axisCount > GLFW_GAMEPAD_AXIS_LAST && buttonCount > GLFW_GAMEPAD_BUTTON_LAST);
+	*/
 }
 
 bool Gamepad::get(Button button) const
@@ -68,10 +71,32 @@ float Gamepad::get(Trigger trigger) const
 
 std::string_view Gamepad::getName() const
 {
-	return glfwGetGamepadName(handle);
+	return glfwGetJoystickName(handle);
 }
 
 bool Gamepad::isConnected() const
 {
 	return glfwJoystickPresent(handle);
+}
+
+bool Gamepad::operator==(const Gamepad& rhs) const
+{
+	return handle == rhs.handle;
+}
+
+void Gamepad::init()
+{
+	glfwSetJoystickCallback([](int handle, int event) {
+		if(event == GLFW_CONNECTED)
+		{
+		}
+		else if(event == GLFW_DISCONNECTED)
+		{
+		}
+	});
+}
+
+void Gamepad::deinit()
+{
+	glfwSetJoystickCallback(nullptr);
 }
