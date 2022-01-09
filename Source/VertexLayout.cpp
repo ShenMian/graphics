@@ -2,8 +2,8 @@
 // License(Apache-2.0)
 
 #include "VertexLayout.h"
-#include <unordered_map>
 #include <cassert>
+#include <unordered_map>
 
 namespace
 {
@@ -24,13 +24,18 @@ size_t VertexLayout::Attribute::getSize() const
 }
 
 VertexLayout::VertexLayout(const std::initializer_list<Attribute>& list)
-	: attribs(list)
 {
-	for(auto& attr : attribs)
-	{
-		attr.offset = stride;
-		stride += attr.getSize();
-	}
+	for(const auto& attr : list)
+		addAttribute(attr);
+}
+
+void VertexLayout::addAttribute(Attribute attr)
+{
+	assert(std::find_if(attribs.begin(), attribs.end(), [&](auto v) { return v.name == attr.name; }) == attribs.end());
+
+	attr.offset = stride;
+	stride += attr.getSize();
+	attribs.push_back(attr);
 }
 
 const std::vector<VertexLayout::Attribute> VertexLayout::getAttributes() const

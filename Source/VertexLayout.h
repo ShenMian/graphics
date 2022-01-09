@@ -4,6 +4,7 @@
 #pragma once
 
 #include "Format.h"
+#include <string_view>
 #include <initializer_list>
 #include <vector>
 
@@ -15,20 +16,22 @@ class VertexLayout
 public:
 	struct Attribute
 	{
-		Attribute(const char* name, Format fmt, bool normalized = false)
+		Attribute(std::string_view name, Format fmt, bool normalized = false)
 			: name(name), format(fmt), normalized(normalized)
 		{
 		}
 
 		size_t getSize() const;
 
-		const char* name;
-		Format      format;
-		bool        normalized = false;
-		size_t      offset = 0;
+		std::string_view name;
+		Format           format;
+		bool             normalized = false;
+		size_t           offset = 0;
 	};
 
 	VertexLayout(const std::initializer_list<Attribute>& list);
+
+	void addAttribute(Attribute attr);
 
 	const std::vector<Attribute> getAttributes() const;
 
