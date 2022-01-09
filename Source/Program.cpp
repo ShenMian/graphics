@@ -43,3 +43,8 @@ Program::Program(const std::string& name)
 	: name(name)
 {
 }
+
+int Program::getStageCount() const
+{
+	return stageCount;
+}

@@ -36,8 +36,11 @@ public:
 	virtual void setUniform(const std::string& name, const Vector4& value) = 0;
 	virtual void setUniform(const std::string& name, const Matrix4& value) = 0;
 
+	int getStageCount() const;
+
 protected:
 	std::string name;
+	int stageCount = 0;
 
 	inline static std::unordered_map<std::string, std::shared_ptr<Program>> cache;
 };

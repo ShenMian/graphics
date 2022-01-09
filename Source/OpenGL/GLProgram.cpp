@@ -121,6 +121,7 @@ int GLProgram::getUniformLocation(const std::string& name)
 
 void GLProgram::attach(const std::shared_ptr<Shader> shader)
 {
+	stageCount++;
 	auto glShader = std::dynamic_pointer_cast<GLShader>(shader);
 	glAttachShader(handle, (GLuint)glShader->getNativeHandle());
 }

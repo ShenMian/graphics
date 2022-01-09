@@ -81,6 +81,7 @@ int VKProgram::getUniformLocation(const std::string& name)
 
 void VKProgram::attach(const std::shared_ptr<Shader> shader)
 {
+	stageCount++;
 }
 
 void VKProgram::link()
