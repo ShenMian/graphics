@@ -7,6 +7,102 @@ using namespace std::literals::string_literals;
 
 void PrintInfo();
 
+void moveForward(Camera& cam, float step)
+{
+	cam.setPosition(cam.getPosition() + cam.getFront() * step);
+}
+
+void moveRight(Camera& cam, float step)
+{
+	cam.setPosition(cam.getPosition() + cam.getRight() * step);
+}
+
+void moveUp(Camera& cam, float step)
+{
+	cam.setPosition(cam.getPosition() + cam.getUp() * step);
+}
+
+void lookUp(Camera& cam, float step)
+{
+	auto rot = cam.getRotation();
+	rot.x += step;
+	cam.setRotation(rot);
+}
+
+void turnRight(Camera& cam, float step)
+{
+	auto rot = cam.getRotation();
+	rot.y += step;
+	cam.setRotation(rot);
+}
+
+void processGamepad(Camera& cam, Gamepad& gamepad)
+{
+	if(!gamepad.isConnected())
+		return;
+
+	gamepad.update();
+
+	float speed = 1.0f;
+	if(gamepad.get(Gamepad::Button::LeftThumb))
+		speed *= 3;
+	
+	auto leftThumb = gamepad.get(Gamepad::Thumb::left);
+	const float deadZone = 0.1f;
+	if(std::abs(leftThumb.y) > deadZone)
+		moveForward(cam, -leftThumb.y * speed);
+	if(std::abs(leftThumb.x) > deadZone)
+		moveRight(cam, leftThumb.x * speed);
+
+	auto rightThumb = gamepad.get(Gamepad::Thumb::right);
+	lookUp(cam, -rightThumb.y);
+	turnRight(cam, rightThumb.x);
+}
+
+void processKeyboard(Camera& cam)
+{
+	float speed = 1.0f;
+	if(Input::isPressed(Key::LeftShift))
+		speed *= 3;
+
+	if(Input::isPressed(Key::W))
+		moveForward(cam, speed);
+	if(Input::isPressed(Key::S))
+		moveForward(cam, -speed);
+	if(Input::isPressed(Key::A))
+		moveRight(cam, -speed);
+	if(Input::isPressed(Key::D))
+		moveRight(cam, speed);
+	if(Input::isPressed(Key::E))
+		moveUp(cam, speed);
+	if(Input::isPressed(Key::Q))
+		moveUp(cam, -speed);
+}
+
+void processMouse(Camera& cam)
+{
+	auto position = Input::getMousePosition();
+
+	static Vector2f lastPos = position;
+
+	const auto pos = static_cast<Vector2f>(position);
+	const Vector2f mouseSensitivity = Vector2f::unit * 0.07f;
+	Vector2f offset = pos - lastPos;
+	lastPos = pos;
+	offset.x *= mouseSensitivity.x;
+	offset.y *= mouseSensitivity.y;
+
+	lookUp(cam, -offset.y);
+	turnRight(cam, offset.x);
+}
+
+void processInput(Camera& cam, Gamepad& gamepad)
+{
+	processGamepad(cam, gamepad);
+	processKeyboard(cam);
+	processMouse(cam);
+}
+
 int main()
 {
 	try
@@ -40,8 +136,8 @@ int main()
 
 		Model model;
 		// model.load("../../../3DModel/basic/cube.obj");
-		// model.load("../../../3DModel/scene/Crytek_Sponza/sponza.obj");
-		model.load("../../../3DModel/weapon/m4a1/m4a1.gltf");
+		model.load("../../../3DModel/scene/Crytek_Sponza/sponza.obj");
+		// model.load("../../../3DModel/weapon/m4a1/m4a1.gltf");
 		// model.load("../../../3DModel/scene/Amazon_Lumberyard_Bistro/Exterior/exterior.obj");
 		// model.load("../../../3DModel/scene/SunTemple/SunTemple.fbx"); // 暂不支持 DDS 格式的纹理资源
 
@@ -76,29 +172,11 @@ int main()
 				}
 			}
 		};
-		window->onMouseMove = [&](Vector2d position)
-		{
-			// 视角控制
-			static Vector2f lastPos = position;
-
-			const auto pos = static_cast<Vector2f>(position);
-			const Vector2f mouseSensitivity = Vector2f::unit * 0.07f;
-			Vector2f offset = pos - lastPos;
-			lastPos = pos;
-			offset.x *= mouseSensitivity.x;
-			offset.y *= mouseSensitivity.y;
-
-			auto rot = camera.getRotation();
-			rot.y += offset.x;
-			rot.x += -offset.y;
-			camera.setRotation(rot);
-		};
 		window->onScroll = [&](Vector2d offset)
 		{
-			// 缩放
 			static float fov = 60;
 			if(1.f <= fov && fov <= 60.f)
-				fov -= (float)offset.y;
+				fov -= (float)offset.y * 3 * (fov / 60);
 			fov = std::clamp(fov, 1.f, 60.f);
 			camera.setPerspective(radians(fov), (float)window->getSize().x / window->getSize().y, 0.03f, 10000.f);
 		};
@@ -123,24 +201,13 @@ int main()
 		win.add(btn);
 		win.add(menu);
 
+		Gamepad gamepad(0);
+
 		while(running)
 		{
 			UI::begin();
 
-			// FIXME: 向上移动时向下移动
-			const float speed = 1.1f;
-			if(Input::isPressed(Key::W))
-				camera.setPosition(camera.getPosition() + camera.getFront() * speed);
-			if(Input::isPressed(Key::S))
-				camera.setPosition(camera.getPosition() - camera.getFront() * speed);
-			if(Input::isPressed(Key::A))
-				camera.setPosition(camera.getPosition() - camera.getRight() * speed);
-			if(Input::isPressed(Key::D))
-				camera.setPosition(camera.getPosition() + camera.getRight() * speed);
-			if(Input::isPressed(Key::E))
-				camera.setPosition(camera.getPosition() + camera.getUp() * speed);
-			if(Input::isPressed(Key::Q))
-				camera.setPosition(camera.getPosition() - camera.getUp() * speed);
+			processInput(camera, gamepad);
 
 			const auto pos = camera.getPosition();
 			const auto dir = camera.getRotation();
