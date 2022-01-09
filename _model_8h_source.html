@@ -128,42 +128,38 @@ $(document).ready(function(){initNavTree('_model_8h_source.html',''); initResiza
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        MaxQuality</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    };</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <a class="code" href="class_model.html">Model</a>();</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_model.html#a51d68a584352c90065f592093a6ad2f6">load</a>(<span class="keyword">const</span> std::filesystem::path&amp; path, Type type = Type::Quality);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_model.html#a0d6be4be37d06c9c8f1d301119fb93b7">loadAsync</a>(<span class="keyword">const</span> std::filesystem::path&amp; path, Type type = Type::MaxQuality, std::function&lt;<span class="keywordtype">void</span>(std::string_view)&gt; callback = <span class="keyword">nullptr</span>) noexcept;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;     <span class="comment">// void save(const std::filesystem::path&amp; path);</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;     <span class="comment">// void saveAsync(const std::filesystem::path&amp; path, std::function&lt;void(std::error_code)&gt; callback = nullptr) noexcept;</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_model.html#a51d68a584352c90065f592093a6ad2f6">load</a>(<span class="keyword">const</span> std::filesystem::path&amp; path, Type type = Type::Quality);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_model.html#a0d6be4be37d06c9c8f1d301119fb93b7">loadAsync</a>(<span class="keyword">const</span> std::filesystem::path&amp; path, Type type = Type::MaxQuality, std::function&lt;<span class="keywordtype">void</span>(std::string_view)&gt; callback = <span class="keyword">nullptr</span>) noexcept;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;     <span class="comment">// void save(const std::filesystem::path&amp; path);</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;     <span class="comment">// void saveAsync(const std::filesystem::path&amp; path, std::function&lt;void(std::error_code)&gt; callback = nullptr) noexcept;</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keyword">const</span> AABB3&amp; <a class="code" href="class_model.html#a8b2bc5e7f945efb88fcd01a7d2af3ca0">getAABB</a>() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keyword">const</span> AABB3&amp; <a class="code" href="class_model.html#a8b2bc5e7f945efb88fcd01a7d2af3ca0">getAABB</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keyword">const</span> std::vector&lt;Mesh&gt;&amp; getMeshs() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keyword">const</span> std::vector&lt;Mesh&gt;&amp; getMeshs() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    std::string           name;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    std::vector&lt;Mesh&gt;     meshs;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    std::filesystem::path path;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    AABB3                 aabb;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keyword">const</span> aiScene* aScene = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    std::shared_ptr&lt;Assimp::Importer&gt; importer;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    std::shared_ptr&lt;Assimp::Exporter&gt; exporter;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;};</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="comment">inline static std::vector&lt;std::string&gt; extensions = {</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment">    &quot;collada&quot;, &quot;x&quot;, &quot;stp&quot;, &quot;obj&quot;, &quot;objnomtl&quot;, &quot;stl&quot;, &quot;stlb&quot;, &quot;ply&quot;, &quot;plyb&quot;, &quot;3ds&quot;,</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">    &quot;gltf2&quot;, &quot;glb2&quot;, &quot;gltf&quot;, &quot;glb&quot;, &quot;assbin&quot;, &quot;assxml&quot;, &quot;x3d&quot;, &quot;3mf&quot;, &quot;pbrt&quot;, &quot;assjson&quot;};</span></div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment">*/</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    std::string           name;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    std::vector&lt;Mesh&gt;     meshs;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    std::filesystem::path path;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    AABB3                 aabb;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keyword">const</span> aiScene* aScene = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;};</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="comment">inline static std::vector&lt;std::string&gt; extensions = {</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment">    &quot;collada&quot;, &quot;x&quot;, &quot;stp&quot;, &quot;obj&quot;, &quot;objnomtl&quot;, &quot;stl&quot;, &quot;stlb&quot;, &quot;ply&quot;, &quot;plyb&quot;, &quot;3ds&quot;,</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment">    &quot;gltf2&quot;, &quot;glb2&quot;, &quot;gltf&quot;, &quot;glb&quot;, &quot;assbin&quot;, &quot;assxml&quot;, &quot;x3d&quot;, &quot;3mf&quot;, &quot;pbrt&quot;, &quot;assjson&quot;};</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="comment">*/</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
 <div class="ttc" id="aclass_material_html"><div class="ttname"><a href="class_material.html">Material</a></div><div class="ttdoc">材质.</div><div class="ttdef"><b>Definition:</b> Material.h:17</div></div>
 <div class="ttc" id="aclass_mesh_html"><div class="ttname"><a href="class_mesh.html">Mesh</a></div><div class="ttdoc">网格.</div><div class="ttdef"><b>Definition:</b> Mesh.h:21</div></div>
 <div class="ttc" id="aclass_model_html"><div class="ttname"><a href="class_model.html">Model</a></div><div class="ttdoc">3D 模型.</div><div class="ttdef"><b>Definition:</b> Model.h:40</div></div>
-<div class="ttc" id="aclass_model_html_a0d6be4be37d06c9c8f1d301119fb93b7"><div class="ttname"><a href="class_model.html#a0d6be4be37d06c9c8f1d301119fb93b7">Model::loadAsync</a></div><div class="ttdeci">void loadAsync(const std::filesystem::path &amp;path, Type type=Type::MaxQuality, std::function&lt; void(std::string_view)&gt; callback=nullptr) noexcept</div><div class="ttdoc">从文件载入场景, 异步.</div><div class="ttdef"><b>Definition:</b> Model.cpp:264</div></div>
-<div class="ttc" id="aclass_model_html_a51d68a584352c90065f592093a6ad2f6"><div class="ttname"><a href="class_model.html#a51d68a584352c90065f592093a6ad2f6">Model::load</a></div><div class="ttdeci">void load(const std::filesystem::path &amp;path, Type type=Type::Quality)</div><div class="ttdoc">从文件载入场景.</div><div class="ttdef"><b>Definition:</b> Model.cpp:217</div></div>
-<div class="ttc" id="aclass_model_html_a8b2bc5e7f945efb88fcd01a7d2af3ca0"><div class="ttname"><a href="class_model.html#a8b2bc5e7f945efb88fcd01a7d2af3ca0">Model::getAABB</a></div><div class="ttdeci">const AABB3 &amp; getAABB() const</div><div class="ttdoc">保存场景到文件.</div><div class="ttdef"><b>Definition:</b> Model.cpp:289</div></div>
+<div class="ttc" id="aclass_model_html_a0d6be4be37d06c9c8f1d301119fb93b7"><div class="ttname"><a href="class_model.html#a0d6be4be37d06c9c8f1d301119fb93b7">Model::loadAsync</a></div><div class="ttdeci">void loadAsync(const std::filesystem::path &amp;path, Type type=Type::MaxQuality, std::function&lt; void(std::string_view)&gt; callback=nullptr) noexcept</div><div class="ttdoc">从文件载入场景, 异步.</div><div class="ttdef"><b>Definition:</b> Model.cpp:259</div></div>
+<div class="ttc" id="aclass_model_html_a51d68a584352c90065f592093a6ad2f6"><div class="ttname"><a href="class_model.html#a51d68a584352c90065f592093a6ad2f6">Model::load</a></div><div class="ttdeci">void load(const std::filesystem::path &amp;path, Type type=Type::Quality)</div><div class="ttdoc">从文件载入场景.</div><div class="ttdef"><b>Definition:</b> Model.cpp:211</div></div>
+<div class="ttc" id="aclass_model_html_a8b2bc5e7f945efb88fcd01a7d2af3ca0"><div class="ttname"><a href="class_model.html#a8b2bc5e7f945efb88fcd01a7d2af3ca0">Model::getAABB</a></div><div class="ttdeci">const AABB3 &amp; getAABB() const</div><div class="ttdoc">保存场景到文件.</div><div class="ttdef"><b>Definition:</b> Model.cpp:284</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
