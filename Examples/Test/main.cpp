@@ -3,6 +3,8 @@
 
 #include "Graphics.h"
 
+#include <thread>
+
 using namespace std::literals::string_literals;
 
 void PrintInfo();
@@ -46,17 +48,22 @@ void processGamepad(Camera& cam, Gamepad& gamepad)
 	float speed = 1.0f;
 	if(gamepad.get(Gamepad::Button::LeftThumb))
 		speed *= 3;
+
+	const float deadZone = 0.1f;
 	
 	auto leftThumb = gamepad.get(Gamepad::Thumb::left);
-	const float deadZone = 0.1f;
-	if(std::abs(leftThumb.y) > deadZone)
+	if(leftThumb.norm() > deadZone)
+	{
 		moveForward(cam, -leftThumb.y * speed);
-	if(std::abs(leftThumb.x) > deadZone)
 		moveRight(cam, leftThumb.x * speed);
+	}
 
 	auto rightThumb = gamepad.get(Gamepad::Thumb::right);
-	lookUp(cam, -rightThumb.y);
-	turnRight(cam, rightThumb.x);
+	if(rightThumb.norm() > deadZone)
+	{
+		lookUp(cam, -rightThumb.y);
+		turnRight(cam, rightThumb.x);
+	}
 }
 
 void processKeyboard(Camera& cam)
@@ -81,16 +88,16 @@ void processKeyboard(Camera& cam)
 
 void processMouse(Camera& cam)
 {
-	auto position = Input::getMousePosition();
+	const auto position = Input::getMousePosition();
 
 	static Vector2f lastPos = position;
 
 	const auto pos = static_cast<Vector2f>(position);
-	const Vector2f mouseSensitivity = Vector2f::unit * 0.07f;
+	const Vector2f speed = Vector2f::unit * 0.07f;
 	Vector2f offset = pos - lastPos;
 	lastPos = pos;
-	offset.x *= mouseSensitivity.x;
-	offset.y *= mouseSensitivity.y;
+	offset.x *= speed.x;
+	offset.y *= speed.y;
 
 	lookUp(cam, -offset.y);
 	turnRight(cam, offset.x);
@@ -136,9 +143,9 @@ int main()
 
 		Model model;
 		// model.load("../../../3DModel/basic/cube.obj");
-		model.load("../../../3DModel/scene/Crytek_Sponza/sponza.obj");
-		// model.load("../../../3DModel/weapon/m4a1/m4a1.gltf");
-		// model.load("../../../3DModel/scene/Amazon_Lumberyard_Bistro/Exterior/exterior.obj");
+		model.load("../../../3DModel/scene/Crytek_Sponza/sponza.obj", Model::Type::Fast);
+		// model.load("../../../3DModel/weapon/m4a1/m4a1.gltf", Model::Type::Fast);
+		// model.load("../../../3DModel/scene/Amazon_Lumberyard_Bistro/Exterior/exterior.obj", Model::Type::Fast);
 		// model.load("../../../3DModel/scene/SunTemple/SunTemple.fbx"); // 暂不支持 DDS 格式的纹理资源
 
 		auto program = Program::create("Shaders/pbr");
@@ -152,7 +159,6 @@ int main()
 
 		Camera camera(Camera::Type::Perspective);
 		camera.setPerspective(radians(60.f), (float)window->getSize().x / window->getSize().y, 0.1f, 5000.f);
-		camera.setPosition({0, 0, 3});
 
 		bool running = true;
 		window->onClose = [&]() { running = false; };
