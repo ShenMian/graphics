@@ -175,7 +175,7 @@ void loadMesh(const aiMesh* aMesh, const aiScene* aScene, const fs::path& path, 
 
 	Material mat;
 
-#if 1 // TODO: debug
+#if 0 // TODO: debug
 	loadMaterial(mat, aMesh, aScene, path);
 #endif
 
@@ -214,7 +214,7 @@ Model::Model()
 {
 }
 
-void Model::load(const fs::path& path)
+void Model::load(const fs::path& path, Type type)
 {
 	if(!fs::exists(path) && !fs::is_regular_file(path))
 		throw std::runtime_error("no such file or directory");
@@ -223,13 +223,31 @@ void Model::load(const fs::path& path)
 
 	Timer timer; // TODO: debug
 
+	unsigned int flags;
+	switch(type)
+	{
+	case Type::Fast:
+		flags = aiProcessPreset_TargetRealtime_Fast;
+		break;
+
+	case Type::Quality:
+		flags = aiProcessPreset_TargetRealtime_Quality;
+		break;
+
+	case Type::MaxQuality:
+		flags = aiProcessPreset_TargetRealtime_MaxQuality;
+		break;
+
+	default:
+		flags = aiProcess_CalcTangentSpace |
+			aiProcess_JoinIdenticalVertices |
+			aiProcess_Triangulate |
+			aiProcess_SortByPType;
+		break;
+	}
+
 	// 从文件导入场景数据
-	aScene = importer->ReadFile(path.string(),
-		aiProcess_CalcTangentSpace |
-		aiProcess_Triangulate |
-		aiProcess_JoinIdenticalVertices |
-		aiProcess_SortByPType |
-		aiProcess_OptimizeMeshes);
+	aScene = importer->ReadFile(path.string(), flags);
 
 	if(aScene == nullptr || aScene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || aScene->mRootNode == nullptr)
 		throw std::runtime_error(importer->GetErrorString());
@@ -240,10 +258,10 @@ void Model::load(const fs::path& path)
 
 	timer.restart(); // TODO: debug
 	loadNode(aScene->mRootNode, aScene, path, meshs, aabb);
-	printf("Meshes processed: %.2lfs\n", timer.getSeconds()); // TODO: debug
+	printf("Meshes processed: %.2lfs    \n", timer.getSeconds()); // TODO: debug
 }
 
-void Model::loadAsync(const fs::path& path, std::function<void(std::string_view)> callback) noexcept
+void Model::loadAsync(const fs::path& path, Type type, std::function<void(std::string_view)> callback) noexcept
 {
 	try
 	{
@@ -251,7 +269,7 @@ void Model::loadAsync(const fs::path& path, std::function<void(std::string_view)
 		{
 			try
 			{
-				load(path);
+				load(path, type);
 				if(callback)
 					callback("");
 			}
@@ -273,7 +291,7 @@ const AABB3& Model::getAABB() const
 	return aabb;
 }
 
-const std::vector<Mesh> Model::getMeshs() const
+const std::vector<Mesh>& Model::getMeshs() const
 {
 	return meshs;
 }

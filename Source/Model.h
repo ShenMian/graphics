@@ -39,6 +39,13 @@ class Material;
 class Model
 {
 public:
+	enum class Type
+	{
+		Fast,
+		Quality,
+		MaxQuality
+	};
+
 	Model();
 
 	/**
@@ -48,7 +55,7 @@ public:
 	 *
 	 * @see loadAsync
 	 */
-	void load(const std::filesystem::path& path);
+	void load(const std::filesystem::path& path, Type type = Type::Quality);
 
 	/**
 	 * @brief 从文件载入场景, 异步.
@@ -57,7 +64,7 @@ public:
 	 *
 	 * @see load
 	 */
-	void loadAsync(const std::filesystem::path& path, std::function<void(std::string_view)> callback = nullptr) noexcept;
+	void loadAsync(const std::filesystem::path& path, Type type = Type::MaxQuality, std::function<void(std::string_view)> callback = nullptr) noexcept;
 
 	/**
 	 * @brief 保存场景到文件.
@@ -69,7 +76,7 @@ public:
 
 	const AABB3& getAABB() const;
 
-	const std::vector<Mesh> getMeshs() const;
+	const std::vector<Mesh>& getMeshs() const;
 
 private:
 	std::string           name;
