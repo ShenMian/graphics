@@ -3,8 +3,9 @@
 
 #pragma once
 
-#include <cstdint>
 #include <glad/glad.h>
+#include <cstdint>
+#include <cstdint>
 
 class GLUniformBuffer
 {
