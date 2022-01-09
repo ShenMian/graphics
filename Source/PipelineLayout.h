@@ -46,6 +46,8 @@ public:
 
 	PipelineLayout(const std::initializer_list<Attribute>& list);
 
+	void addAttribute(Attribute attr);
+
 	const std::vector<Attribute> getAttributes() const;
 
 private:
