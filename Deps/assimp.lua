@@ -7,9 +7,6 @@
     targetdir("%{wks.location}/build/" .. output_dir .. "/%{prj.name}/lib")
     objdir("%{wks.location}/build/" .. output_dir .. "/%{prj.name}/obj")
 
-	prebuildcommands {"{COPY} \"%{deps.assimp}/contrib/zlib/zconf.h.in\" \"%{deps.assimp}/contrib/zlib/zconf.h\""}
-	-- prebuildcommands {"{COPY} \"%{deps.assimp}/revision.h.in\" \"%{deps.assimp}/revision.h\""}
-
 	sysincludedirs {
 		"assimp",
 		"assimp/code",
@@ -19,7 +16,10 @@
 		"assimp/contrib/unzip",
 		"assimp/contrib/irrXML",
 		"assimp/contrib/pugixml/src",
-		"assimp/contrib/rapidjson/include"}
+		"assimp/contrib/rapidjson/include",
+
+		"assimp/build",
+		"assimp/build/contrib/zlib"}
 
 	includedirs {
 		"assimp",
@@ -30,9 +30,15 @@
 		"assimp/contrib/unzip",
 		"assimp/contrib/irrXML",
 		"assimp/contrib/pugixml/src",
-		"assimp/contrib/rapidjson/include"}
+		"assimp/contrib/rapidjson/include",
+
+		"assimp/build",
+		"assimp/build/contrib/zlib"}
 
 	defines {
+		-- RapidJSON
+		"RAPIDJSON_HAS_STDSTRING=1",
+
 		-- Importers
 		"ASSIMP_BUILD_NO_3D_IMPORTER",
 		"ASSIMP_BUILD_NO_3DS_IMPORTER",
@@ -50,7 +56,7 @@
 		"ASSIMP_BUILD_NO_CSM_IMPORTER",
 		"ASSIMP_BUILD_NO_DXF_IMPORTER",
 		-- "ASSIMP_BUILD_NO_FBX_IMPORTER",
-		"ASSIMP_BUILD_NO_GLTF_IMPORTER",
+		-- "ASSIMP_BUILD_NO_GLTF_IMPORTER",
 		"ASSIMP_BUILD_NO_HMP_IMPORTER",
 		"ASSIMP_BUILD_NO_IFC_IMPORTER",
 		"ASSIMP_BUILD_NO_IRR_IMPORTER",
@@ -92,7 +98,7 @@
 		"ASSIMP_BUILD_NO_STL_EXPORTER",
 		"ASSIMP_BUILD_NO_PLY_EXPORTER",
 		"ASSIMP_BUILD_NO_3DS_EXPORTER",
-		"ASSIMP_BUILD_NO_GLTF_EXPORTER",
+		-- "ASSIMP_BUILD_NO_GLTF_EXPORTER",
 		-- "ASSIMP_BUILD_NO_ASSBIN_EXPORTER",
 		"ASSIMP_BUILD_NO_ASSXML_EXPORTER",
 		"ASSIMP_BUILD_NO_X3D_EXPORTER",
@@ -119,8 +125,8 @@
 		"assimp/code/AssetLib/Collada/**",
 		"assimp/code/AssetLib/Obj/**",
 		"assimp/code/AssetLib/FBX/**",
-		-- "assimp/code/AssetLib/glTF2/**",
-		-- "assimp/code/AssetLib/glTF/**",
+		"assimp/code/AssetLib/glTF2/**",
+		"assimp/code/AssetLib/glTF/**",
 		-- "assimp/code/AssetLib/Blender/**",
 		-- "assimp/contrib/poly2tri/poly2tri/**",
 		"assimp/code/AssetLib/Assbin/**"}
