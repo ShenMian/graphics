@@ -28,6 +28,13 @@ Vector2i Monitor::getSize() const
 	return {videoMode->width, videoMode->height};
 }
 
+Vector2i Monitor::getPosition() const
+{
+	int x, y;
+	glfwGetMonitorPos(handle, &x, &y);
+	return {x, y};
+}
+
 int Monitor::getRefreshRate() const
 {
 	const auto videoMode = glfwGetVideoMode(handle);

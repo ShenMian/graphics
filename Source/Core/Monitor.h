@@ -40,6 +40,11 @@ public:
 	Vector2i getSize() const;
 
 	/**
+	 * @brief 获取显示器位置.
+	 */
+	Vector2i getPosition() const;
+
+	/**
 	 * @brief 获取显示器刷新率, 单位: Hz.
 	 */
 	int getRefreshRate() const;
