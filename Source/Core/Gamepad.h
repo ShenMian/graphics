@@ -37,17 +37,33 @@ public:
 	 * @brief 获取摇杆数据.
 	 *
 	 * @param thumb 摇杆.
-	 * @return Vector2 范围: [-1, 1]
+	 * @return Vector2f 范围: [-1, 1]
 	 */
-	Vector2 get(Thumb thumb) const;
+	Vector2f get(Thumb thumb) const;
+
+	/**
+	 * @brief 获取原始摇杆数据.
+	 *
+	 * @param thumb 摇杆.
+	 * @return Vector2f 范围: [-1, 1]
+	 */
+	Vector2f getRaw(Thumb thumb) const;
 
 	/**
 	 * @brief 获取线性按键数据.
 	 *
 	 * @param trigger 线性按键.
-	 * @return float 范围: [-1, 1]
+	 * @return float 范围: [0, 1]
 	 */
 	float get(Trigger trigger) const;
+
+	/**
+	 * @brief 获取原始线性按键数据.
+	 *
+	 * @param trigger 线性按键.
+	 * @return float 范围: [0, 1]
+	 */
+	float getRaw(Trigger trigger) const;
 
 	/**
 	 * @brief 获取按键状态.
@@ -78,6 +94,10 @@ public:
 
 private:
 	handle_type handle;
+
+	float leftThumbDeadzone = 0.1f;
+	float rightThumbDeadzone = 0.1f;
+	float triggerThreshold = 0.01f;
 
 	unsigned char buttons[15];
 	float axes[6];

@@ -33,17 +33,31 @@ bool Gamepad::get(Button button) const
 	return buttons[static_cast<uint8_t>(button)] == GLFW_PRESS;
 }
 
-Vector2 Gamepad::get(Thumb thumb) const
+Vector2f Gamepad::get(Thumb thumb) const
+{
+	Vector2f value = getRaw(thumb);
+
+	float deadzone;
+	if(thumb == Thumb::left)
+		deadzone = leftThumbDeadzone;
+	else
+		deadzone = rightThumbDeadzone;
+
+	if(value.normSquared() > deadzone * deadzone)
+		return value.normalized() * (value.norm() - deadzone);
+	else
+		return Vector2f::zero;
+}
+
+Vector2f Gamepad::getRaw(Thumb thumb) const
 {
 	switch(thumb)
 	{
 	case Thumb::left:
 		return {axes[GLFW_GAMEPAD_AXIS_LEFT_X], axes[GLFW_GAMEPAD_AXIS_LEFT_Y]};
-		break;
 
 	case Thumb::right:
 		return {axes[GLFW_GAMEPAD_AXIS_RIGHT_X], axes[GLFW_GAMEPAD_AXIS_RIGHT_Y]};
-		break;
 
 	default:
 		assert(false);
@@ -53,15 +67,23 @@ Vector2 Gamepad::get(Thumb thumb) const
 
 float Gamepad::get(Trigger trigger) const
 {
+	float value = getRaw(trigger);
+
+	if(value > triggerThreshold)
+		return value - triggerThreshold;
+	else
+		return 0;
+}
+
+float Gamepad::getRaw(Trigger trigger) const
+{
 	switch(trigger)
 	{
 	case Trigger::left:
 		return axes[GLFW_GAMEPAD_AXIS_LEFT_TRIGGER];
-		break;
 
 	case Trigger::right:
 		return axes[GLFW_GAMEPAD_AXIS_RIGHT_TRIGGER];
-		break;
 
 	default:
 		assert(false);

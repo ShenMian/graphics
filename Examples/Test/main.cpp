@@ -49,21 +49,18 @@ void processGamepad(Camera& cam, Gamepad& gamepad)
 	if(gamepad.get(Gamepad::Button::LeftThumb))
 		speed *= 3;
 
-	const float deadZone = 0.1f;
-	
-	auto leftThumb = gamepad.get(Gamepad::Thumb::left);
-	if(leftThumb.norm() > deadZone)
-	{
-		moveForward(cam, -leftThumb.y * speed);
-		moveRight(cam, leftThumb.x * speed);
-	}
+	const auto leftThumb = gamepad.get(Gamepad::Thumb::left);
+	const auto rightThumb = gamepad.get(Gamepad::Thumb::right);
+	const auto rightTrigger = gamepad.get(Gamepad::Trigger::right);
+	const auto leftTrigger = gamepad.get(Gamepad::Trigger::left);
 
-	auto rightThumb = gamepad.get(Gamepad::Thumb::right);
-	if(rightThumb.norm() > deadZone)
-	{
-		lookUp(cam, -rightThumb.y);
-		turnRight(cam, rightThumb.x);
-	}
+	moveForward(cam, -leftThumb.y * speed);
+	moveRight(cam, leftThumb.x * speed);
+
+	lookUp(cam, -rightThumb.y * 1.5f);
+	turnRight(cam, rightThumb.x * 1.5f);
+
+	moveUp(cam, rightTrigger + (-leftTrigger));
 }
 
 void processKeyboard(Camera& cam)
@@ -89,9 +86,7 @@ void processKeyboard(Camera& cam)
 void processMouse(Camera& cam)
 {
 	const auto position = Input::getMousePosition();
-
 	static Vector2f lastPos = position;
-
 	const auto pos = static_cast<Vector2f>(position);
 	const Vector2f speed = Vector2f::unit * 0.07f;
 	Vector2f offset = pos - lastPos;
