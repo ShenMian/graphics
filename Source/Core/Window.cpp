@@ -213,9 +213,6 @@ void Window::init()
 	if(!ret)
 		throw std::runtime_error("GLFW init failed");
 
-	if(!glfwPlatformSupported(glfwGetPlatform()))
-		throw std::runtime_error("GLFW does not support current platform");
-
 	Monitor::init();
 
 	if(Renderer::get()->getAPI() == Renderer::API::Vulkan)
