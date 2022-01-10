@@ -36,9 +36,11 @@ var group__core =
       ] ],
       [ "Gamepad", "class_gamepad.html#a0153d72ca3f7dfb816a872191fa5a651", null ],
       [ "get", "class_gamepad.html#a9791f37d4d4a3e8041c6bd309950074d", null ],
-      [ "get", "class_gamepad.html#ac18268a379651541f94f42daad0ea0d7", null ],
+      [ "get", "class_gamepad.html#aace04775bce81c450f0096793f6fd199", null ],
       [ "get", "class_gamepad.html#aff13c015ca3a1c720ef8b2a87ff941f7", null ],
       [ "getName", "class_gamepad.html#ab0fd07c0c3c1ac1f0ab997000061bd80", null ],
+      [ "getRaw", "class_gamepad.html#aaf38c3534ec0ee1751b47e031bcccea1", null ],
+      [ "getRaw", "class_gamepad.html#a9d1249f8947d85c23843c2dc934c9e70", null ],
       [ "isConnected", "class_gamepad.html#a33d4dbd503a8d645885bd19cbc390a91", null ],
       [ "operator==", "class_gamepad.html#af06515dbccf048df41bfcddc17460ee8", null ],
       [ "update", "class_gamepad.html#ae37f83a954aabbf634e9d6f37697ae58", null ]
