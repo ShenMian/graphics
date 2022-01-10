@@ -89,8 +89,8 @@ void Window::setFullscreen(bool fullscreen)
 		position = getPosition();
 	}
 
-	auto monitor = glfwGetPrimaryMonitor();
-	glfwSetWindowMonitor(handle, fullscreen ? monitor : nullptr, position.x, position.y, size.x, size.y, 0);
+	const auto& monitor = Monitor::getPrimary();
+	glfwSetWindowMonitor(handle, fullscreen ? static_cast<GLFWmonitor*>(monitor.getNativeHandle()) : nullptr, position.x, position.y, size.x, size.y, GLFW_DONT_CARE);
 }
 
 bool Window::isFullscreen() const noexcept
@@ -213,11 +213,25 @@ void Window::init()
 	if(!ret)
 		throw std::runtime_error("GLFW init failed");
 
-	if(Renderer::get()->getAPI() == Renderer::API::Vulkan)
-		glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
-	glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE); // 创建新窗口默认不可见
+	if(!glfwPlatformSupported(glfwGetPlatform()))
+		throw std::runtime_error("GLFW does not support current platform");
 
 	Monitor::init();
+
+	if(Renderer::get()->getAPI() == Renderer::API::Vulkan)
+		glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
+
+	glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE); // 创建新窗口默认不可见
+	// glfwWindowHint(GLFW_DECORATED, GLFW_FALSE); // 启用无边框
+
+	/*
+	const auto& monitor = Monitor::getPrimary();
+	auto mode = glfwGetVideoMode(static_cast<GLFWmonitor*>(monitor.getNativeHandle()));
+	glfwWindowHint(GLFW_RED_BITS, mode->redBits);
+	glfwWindowHint(GLFW_GREEN_BITS, mode->greenBits);
+	glfwWindowHint(GLFW_BLUE_BITS, mode->blueBits);
+	glfwWindowHint(GLFW_REFRESH_RATE, mode->refreshRate);
+	*/
 }
 
 void Window::deinit()
