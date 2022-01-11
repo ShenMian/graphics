@@ -2,6 +2,8 @@
 // License(Apache-2.0)
 
 #include "GLIndexBuffer.h"
+#include "GLCheck.h"
+#include <cstring>
 #include <unordered_map>
 
 #include "../Renderer.h"
@@ -16,8 +18,8 @@ std::unordered_map<IndexBuffer::Usage, uint32_t> GLusage = {
 
 }
 
-GLIndexBuffer::GLIndexBuffer(const void* data, size_t size, uint32_t count, Usage usage)
-	: IndexBuffer(size, count)
+GLIndexBuffer::GLIndexBuffer(const unsigned int* data, size_t size, Usage usage)
+	: IndexBuffer(data, size)
 {
 	glCreateBuffers(1, &handle);
 	bind();
@@ -27,6 +29,29 @@ GLIndexBuffer::GLIndexBuffer(const void* data, size_t size, uint32_t count, Usag
 GLIndexBuffer::~GLIndexBuffer()
 {
 	glDeleteBuffers(1, &handle);
+}
+
+void GLIndexBuffer::map()
+{
+	bind();
+	mapped = glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
+	GLCheckError();
+}
+
+void GLIndexBuffer::unmap()
+{
+	bind();
+	glUnmapBuffer(GL_ARRAY_BUFFER);
+	mapped = nullptr;
+	GLCheckError();
+}
+
+void GLIndexBuffer::write(const void* data, size_t size)
+{
+	bind();
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, size, data, GLusage[Usage::Static]);
+	glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, size, data);
+	GLCheckError();
 }
 
 void GLIndexBuffer::bind()

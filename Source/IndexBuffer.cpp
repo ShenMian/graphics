@@ -3,17 +3,23 @@
 
 #include "IndexBuffer.h"
 #include "Renderer.h"
+#include <cstring>
 
 #include "OpenGL/GLIndexBuffer.h"
 
-std::shared_ptr<IndexBuffer> IndexBuffer::create(const void* data, size_t size, size_t count, Usage usage)
+std::shared_ptr<IndexBuffer> IndexBuffer::create(const std::vector<unsigned int>& data, Usage usage)
+{
+	return create(data.data(), data.size() * sizeof(unsigned int), usage);
+}
+
+std::shared_ptr<IndexBuffer> IndexBuffer::create(const unsigned int* data, size_t size, Usage usage)
 {
 	switch(Renderer::getAPI())
 	{
 		using enum Renderer::API;
 
 	case OpenGL:
-		return std::make_shared<GLIndexBuffer>(data, size, count, usage);
+		return std::make_shared<GLIndexBuffer>(data, size, usage);
 	}
 	return nullptr;
 }
@@ -28,7 +34,26 @@ uint32_t IndexBuffer::getCount() const
 	return count;
 }
 
-IndexBuffer::IndexBuffer(size_t size, uint32_t count)
-	: size(size), count(count)
+std::vector<uint8_t>& IndexBuffer::getData()
 {
+	return buffer;
+}
+
+const std::vector<uint8_t>& IndexBuffer::getData() const
+{
+	return buffer;
+}
+
+void IndexBuffer::flash()
+{
+	// map();
+	write(buffer.data(), buffer.size());
+	// unmap();
+}
+
+IndexBuffer::IndexBuffer(const void* data, size_t size)
+	: size(size), count(static_cast<uint32_t>(size / sizeof(unsigned int)))
+{
+	buffer.resize(size);
+	std::memcpy(buffer.data(), data, buffer.size());
 }

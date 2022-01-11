@@ -25,8 +25,7 @@ public:
 	 * @param data  索引缓冲区.
 	 * @param usage 使用方式.
 	 */
-	template <typename T>
-	static std::shared_ptr<IndexBuffer> create(const std::vector<T>& data, Usage usage = Usage::Static);
+	static std::shared_ptr<IndexBuffer> create(const std::vector<unsigned int>& data, Usage usage = Usage::Static);
 
 	/**
 	 * @brief 创建 IndexBuffer.
@@ -36,7 +35,7 @@ public:
 	 * @param count 索引数量.
 	 * @param usage 使用方式.
 	 */
-	static std::shared_ptr<IndexBuffer> create(const void* data, size_t size, size_t count, Usage usage = Usage::Static);
+	static std::shared_ptr<IndexBuffer> create(const unsigned int* data, size_t size, Usage usage = Usage::Static);
 
 	/**
 	 * @brief 获取缓冲区大小, 单位: 字节.
@@ -48,18 +47,21 @@ public:
 	 */
 	uint32_t getCount() const;
 
+	std::vector<uint8_t>& getData();
+	const std::vector<uint8_t>& getData() const;
+
+	void flash();
+
+	virtual void map() = 0;
+	virtual void unmap() = 0;
+	virtual void write(const void* data, size_t size) = 0;
 	virtual void bind() = 0;
 
 protected:
-	IndexBuffer(size_t size, uint32_t count);
+	IndexBuffer(const void* data, size_t size);
 
 private:
-	size_t   size;
-	uint32_t count;
+	size_t               size;
+	uint32_t             count;
+	std::vector<uint8_t> buffer;
 };
-
-template <typename T>
-inline std::shared_ptr<IndexBuffer> IndexBuffer::create(const std::vector<T>& data, Usage usage)
-{
-	return create(data.data(), data.size() * sizeof(T), static_cast<uint32_t>(data.size()), usage);
-}

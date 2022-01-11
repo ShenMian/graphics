@@ -9,11 +9,16 @@
 class GLIndexBuffer : public IndexBuffer
 {
 public:
-	GLIndexBuffer(const void* data, size_t size, uint32_t count, Usage usage);
+	GLIndexBuffer(const unsigned int* data, size_t size, Usage usage);
 	virtual ~GLIndexBuffer();
 
+	void map() override;
+	void unmap() override;
+
+	void write(const void* data, size_t size) override;
 	void bind() override;
 
 private:
 	GLuint handle;
+	void*  mapped = nullptr;
 };
