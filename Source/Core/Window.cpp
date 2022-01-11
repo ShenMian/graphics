@@ -35,7 +35,8 @@ Window::~Window()
 
 void Window::update()
 {
-	glfwSwapBuffers(handle);
+	if(Renderer::getAPI() == Renderer::API::OpenGL)
+		glfwSwapBuffers(handle);
 	glfwPollEvents();
 }
 
