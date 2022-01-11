@@ -131,6 +131,24 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 const <a class="el" href="class_vertex_layout.html">VertexLayout</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vertex_buffer.html#aba42fcdc0620dc88842f036c19bfce2d">getFormat</a> () const</td></tr>
 <tr class="memdesc:aba42fcdc0620dc88842f036c19bfce2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取顶格式. <br /></td></tr>
 <tr class="separator:aba42fcdc0620dc88842f036c19bfce2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10b1bb60daadb7994702360d46b7f446"><td class="memItemLeft" align="right" valign="top"><a id="a10b1bb60daadb7994702360d46b7f446"></a>
+std::vector&lt; uint8_t &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getData</b> ()</td></tr>
+<tr class="separator:a10b1bb60daadb7994702360d46b7f446"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af694b8cac65d6b661ba56b30dd0ef811"><td class="memItemLeft" align="right" valign="top"><a id="af694b8cac65d6b661ba56b30dd0ef811"></a>
+const std::vector&lt; uint8_t &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getData</b> () const</td></tr>
+<tr class="separator:af694b8cac65d6b661ba56b30dd0ef811"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d7a74d9350eec4c23a25b6290bcc555"><td class="memItemLeft" align="right" valign="top"><a id="a8d7a74d9350eec4c23a25b6290bcc555"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>flash</b> ()</td></tr>
+<tr class="separator:a8d7a74d9350eec4c23a25b6290bcc555"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabe1784dac15ae497bf11993bd73a62c"><td class="memItemLeft" align="right" valign="top"><a id="aabe1784dac15ae497bf11993bd73a62c"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>map</b> ()=0</td></tr>
+<tr class="separator:aabe1784dac15ae497bf11993bd73a62c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9ad884635a4edea7b2f124370130af7"><td class="memItemLeft" align="right" valign="top"><a id="ac9ad884635a4edea7b2f124370130af7"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>unmap</b> ()=0</td></tr>
+<tr class="separator:ac9ad884635a4edea7b2f124370130af7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83665d309090e9cd087e894c0e2a074a"><td class="memItemLeft" align="right" valign="top"><a id="a83665d309090e9cd087e894c0e2a074a"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>write</b> (const void *data, size_t size)=0</td></tr>
+<tr class="separator:a83665d309090e9cd087e894c0e2a074a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa9faf8bf10a97a3754f4019c924afc50"><td class="memItemLeft" align="right" valign="top"><a id="aa9faf8bf10a97a3754f4019c924afc50"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>bind</b> ()=0</td></tr>
 <tr class="separator:aa9faf8bf10a97a3754f4019c924afc50"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -141,15 +159,15 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>bind</b> ()=0
 <tr class="memitem:ac418e3f688b1df204b464598e51fb625"><td class="memTemplItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_vertex_buffer.html">VertexBuffer</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_vertex_buffer.html#ac418e3f688b1df204b464598e51fb625">create</a> (const std::vector&lt; T &gt; &amp;data, const <a class="el" href="class_vertex_layout.html">VertexLayout</a> &amp;layout, Usage usage=Usage::Static)</td></tr>
 <tr class="memdesc:ac418e3f688b1df204b464598e51fb625"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建 <a class="el" href="class_vertex_buffer.html" title="顶点缓冲区.">VertexBuffer</a>.  <a href="class_vertex_buffer.html#ac418e3f688b1df204b464598e51fb625">更多...</a><br /></td></tr>
 <tr class="separator:ac418e3f688b1df204b464598e51fb625"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf52355da07e50e1430ebbff13ce2234"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_vertex_buffer.html">VertexBuffer</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vertex_buffer.html#abf52355da07e50e1430ebbff13ce2234">create</a> (const void *data, size_t size, size_t count, const <a class="el" href="class_vertex_layout.html">VertexLayout</a> &amp;layout, Usage usage=Usage::Static)</td></tr>
-<tr class="memdesc:abf52355da07e50e1430ebbff13ce2234"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建 <a class="el" href="class_vertex_buffer.html" title="顶点缓冲区.">VertexBuffer</a>.  <a href="class_vertex_buffer.html#abf52355da07e50e1430ebbff13ce2234">更多...</a><br /></td></tr>
-<tr class="separator:abf52355da07e50e1430ebbff13ce2234"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0011887f36a1733e9cb7bf6addae702c"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_vertex_buffer.html">VertexBuffer</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vertex_buffer.html#a0011887f36a1733e9cb7bf6addae702c">create</a> (const void *data, size_t size, const <a class="el" href="class_vertex_layout.html">VertexLayout</a> &amp;layout, Usage usage=Usage::Static)</td></tr>
+<tr class="memdesc:a0011887f36a1733e9cb7bf6addae702c"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建 <a class="el" href="class_vertex_buffer.html" title="顶点缓冲区.">VertexBuffer</a>.  <a href="class_vertex_buffer.html#a0011887f36a1733e9cb7bf6addae702c">更多...</a><br /></td></tr>
+<tr class="separator:a0011887f36a1733e9cb7bf6addae702c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected 成员函数</h2></td></tr>
-<tr class="memitem:ad743e8539257bb53b3bf1a4c8e72709e"><td class="memItemLeft" align="right" valign="top"><a id="ad743e8539257bb53b3bf1a4c8e72709e"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>VertexBuffer</b> (size_t size, uint32_t count, const <a class="el" href="class_vertex_layout.html">VertexLayout</a> &amp;layout)</td></tr>
-<tr class="separator:ad743e8539257bb53b3bf1a4c8e72709e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37cb2ad76791e37cb38bcdd74b8333e3"><td class="memItemLeft" align="right" valign="top"><a id="a37cb2ad76791e37cb38bcdd74b8333e3"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>VertexBuffer</b> (const void *data, size_t size, const <a class="el" href="class_vertex_layout.html">VertexLayout</a> &amp;layout)</td></tr>
+<tr class="separator:a37cb2ad76791e37cb38bcdd74b8333e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p>顶点缓冲区. </p>
@@ -208,8 +226,8 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="abf52355da07e50e1430ebbff13ce2234"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abf52355da07e50e1430ebbff13ce2234">&#9670;&nbsp;</a></span>create() <span class="overload">[2/2]</span></h2>
+<a id="a0011887f36a1733e9cb7bf6addae702c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0011887f36a1733e9cb7bf6addae702c">&#9670;&nbsp;</a></span>create() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -228,12 +246,6 @@ template&lt;typename T &gt; </div>
           <td></td>
           <td class="paramtype">size_t&#160;</td>
           <td class="paramname"><em>size</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>count</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>

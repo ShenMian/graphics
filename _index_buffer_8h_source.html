@@ -105,34 +105,36 @@ $(document).ready(function(){initNavTree('_index_buffer_8h_source.html',''); ini
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        Stream</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    };</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">static</span> std::shared_ptr&lt;IndexBuffer&gt; <a class="code" href="class_index_buffer.html#ada5d4b39c6c8f5416f8ddeb8f6c52f6f">create</a>(<span class="keyword">const</span> std::vector&lt;T&gt;&amp; data, Usage usage = Usage::Static);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">static</span> std::shared_ptr&lt;IndexBuffer&gt; <a class="code" href="class_index_buffer.html#ada5d4b39c6c8f5416f8ddeb8f6c52f6f">create</a>(<span class="keyword">const</span> <span class="keywordtype">void</span>* data, <span class="keywordtype">size_t</span> size, <span class="keywordtype">size_t</span> count, Usage usage = Usage::Static);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">size_t</span> <a class="code" href="class_index_buffer.html#a9d45b662917b2b43e7e4d470515e0c91">getSize</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    uint32_t <a class="code" href="class_index_buffer.html#ab8951bdf14cbfded9080cf3ecd334971">getCount</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> bind() = 0;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">static</span> std::shared_ptr&lt;IndexBuffer&gt; <a class="code" href="class_index_buffer.html#a9c76ed1a5f019bca013977a3268d695c">create</a>(<span class="keyword">const</span> std::vector&lt;unsigned int&gt;&amp; data, Usage usage = Usage::Static);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keyword">static</span> std::shared_ptr&lt;IndexBuffer&gt; <a class="code" href="class_index_buffer.html#a9c76ed1a5f019bca013977a3268d695c">create</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>* data, <span class="keywordtype">size_t</span> size, Usage usage = Usage::Static);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordtype">size_t</span> <a class="code" href="class_index_buffer.html#a9d45b662917b2b43e7e4d470515e0c91">getSize</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    uint32_t <a class="code" href="class_index_buffer.html#ab8951bdf14cbfded9080cf3ecd334971">getCount</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    std::vector&lt;uint8_t&gt;&amp; getData();</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keyword">const</span> std::vector&lt;uint8_t&gt;&amp; getData() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <a class="code" href="class_index_buffer.html">IndexBuffer</a>(<span class="keywordtype">size_t</span> size, uint32_t count);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">size_t</span>   size;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    uint32_t count;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;};</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="class_index_buffer.html#ada5d4b39c6c8f5416f8ddeb8f6c52f6f">   62</a></span>&#160;<span class="keyword">inline</span> std::shared_ptr&lt;IndexBuffer&gt; <a class="code" href="class_index_buffer.html#ada5d4b39c6c8f5416f8ddeb8f6c52f6f">IndexBuffer::create</a>(<span class="keyword">const</span> std::vector&lt;T&gt;&amp; data, Usage usage)</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;{</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="class_index_buffer.html#ada5d4b39c6c8f5416f8ddeb8f6c52f6f">create</a>(data.data(), data.size() * <span class="keyword">sizeof</span>(T), <span class="keyword">static_cast&lt;</span>uint32_t<span class="keyword">&gt;</span>(data.size()), usage);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;}</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">void</span> flash();</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> map() = 0;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> unmap() = 0;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> write(<span class="keyword">const</span> <span class="keywordtype">void</span>* data, <span class="keywordtype">size_t</span> size) = 0;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> bind() = 0;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <a class="code" href="class_index_buffer.html">IndexBuffer</a>(<span class="keyword">const</span> <span class="keywordtype">void</span>* data, <span class="keywordtype">size_t</span> size);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordtype">size_t</span>               size;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    uint32_t             count;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    std::vector&lt;uint8_t&gt; buffer;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;};</div>
 <div class="ttc" id="aclass_index_buffer_html"><div class="ttname"><a href="class_index_buffer.html">IndexBuffer</a></div><div class="ttdoc">索引缓冲区.</div><div class="ttdef"><b>Definition:</b> IndexBuffer.h:13</div></div>
-<div class="ttc" id="aclass_index_buffer_html_a9d45b662917b2b43e7e4d470515e0c91"><div class="ttname"><a href="class_index_buffer.html#a9d45b662917b2b43e7e4d470515e0c91">IndexBuffer::getSize</a></div><div class="ttdeci">size_t getSize() const</div><div class="ttdoc">获取缓冲区大小, 单位: 字节.</div><div class="ttdef"><b>Definition:</b> IndexBuffer.cpp:21</div></div>
-<div class="ttc" id="aclass_index_buffer_html_ab8951bdf14cbfded9080cf3ecd334971"><div class="ttname"><a href="class_index_buffer.html#ab8951bdf14cbfded9080cf3ecd334971">IndexBuffer::getCount</a></div><div class="ttdeci">uint32_t getCount() const</div><div class="ttdoc">获取索引数.</div><div class="ttdef"><b>Definition:</b> IndexBuffer.cpp:26</div></div>
-<div class="ttc" id="aclass_index_buffer_html_ada5d4b39c6c8f5416f8ddeb8f6c52f6f"><div class="ttname"><a href="class_index_buffer.html#ada5d4b39c6c8f5416f8ddeb8f6c52f6f">IndexBuffer::create</a></div><div class="ttdeci">static std::shared_ptr&lt; IndexBuffer &gt; create(const std::vector&lt; T &gt; &amp;data, Usage usage=Usage::Static)</div><div class="ttdoc">创建 IndexBuffer.</div><div class="ttdef"><b>Definition:</b> IndexBuffer.h:62</div></div>
+<div class="ttc" id="aclass_index_buffer_html_a9c76ed1a5f019bca013977a3268d695c"><div class="ttname"><a href="class_index_buffer.html#a9c76ed1a5f019bca013977a3268d695c">IndexBuffer::create</a></div><div class="ttdeci">static std::shared_ptr&lt; IndexBuffer &gt; create(const std::vector&lt; unsigned int &gt; &amp;data, Usage usage=Usage::Static)</div><div class="ttdoc">创建 IndexBuffer.</div><div class="ttdef"><b>Definition:</b> IndexBuffer.cpp:10</div></div>
+<div class="ttc" id="aclass_index_buffer_html_a9d45b662917b2b43e7e4d470515e0c91"><div class="ttname"><a href="class_index_buffer.html#a9d45b662917b2b43e7e4d470515e0c91">IndexBuffer::getSize</a></div><div class="ttdeci">size_t getSize() const</div><div class="ttdoc">获取缓冲区大小, 单位: 字节.</div><div class="ttdef"><b>Definition:</b> IndexBuffer.cpp:27</div></div>
+<div class="ttc" id="aclass_index_buffer_html_ab8951bdf14cbfded9080cf3ecd334971"><div class="ttname"><a href="class_index_buffer.html#ab8951bdf14cbfded9080cf3ecd334971">IndexBuffer::getCount</a></div><div class="ttdeci">uint32_t getCount() const</div><div class="ttdoc">获取索引数.</div><div class="ttdef"><b>Definition:</b> IndexBuffer.cpp:32</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

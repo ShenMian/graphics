@@ -126,36 +126,51 @@ size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_index_buffer.html#ab8951bdf14cbfded9080cf3ecd334971">getCount</a> () const</td></tr>
 <tr class="memdesc:ab8951bdf14cbfded9080cf3ecd334971"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取索引数. <br /></td></tr>
 <tr class="separator:ab8951bdf14cbfded9080cf3ecd334971"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b2a7cf60c63cf70049053bdd4b16334"><td class="memItemLeft" align="right" valign="top"><a id="a4b2a7cf60c63cf70049053bdd4b16334"></a>
+std::vector&lt; uint8_t &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getData</b> ()</td></tr>
+<tr class="separator:a4b2a7cf60c63cf70049053bdd4b16334"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e10b3f3150c8f92388ec6c06ea7ccaf"><td class="memItemLeft" align="right" valign="top"><a id="a5e10b3f3150c8f92388ec6c06ea7ccaf"></a>
+const std::vector&lt; uint8_t &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getData</b> () const</td></tr>
+<tr class="separator:a5e10b3f3150c8f92388ec6c06ea7ccaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98a82e182204a94c50fdee46842ec7ab"><td class="memItemLeft" align="right" valign="top"><a id="a98a82e182204a94c50fdee46842ec7ab"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>flash</b> ()</td></tr>
+<tr class="separator:a98a82e182204a94c50fdee46842ec7ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af608fe0d8f48b4ae38cf6e840ad5746b"><td class="memItemLeft" align="right" valign="top"><a id="af608fe0d8f48b4ae38cf6e840ad5746b"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>map</b> ()=0</td></tr>
+<tr class="separator:af608fe0d8f48b4ae38cf6e840ad5746b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a449941d0a23c670e9fe5ea7a79030ba5"><td class="memItemLeft" align="right" valign="top"><a id="a449941d0a23c670e9fe5ea7a79030ba5"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>unmap</b> ()=0</td></tr>
+<tr class="separator:a449941d0a23c670e9fe5ea7a79030ba5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba1ac67bd9490247583c4e06b7b609f5"><td class="memItemLeft" align="right" valign="top"><a id="aba1ac67bd9490247583c4e06b7b609f5"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>write</b> (const void *data, size_t size)=0</td></tr>
+<tr class="separator:aba1ac67bd9490247583c4e06b7b609f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab135541f1643fb9361217d406e56852a"><td class="memItemLeft" align="right" valign="top"><a id="ab135541f1643fb9361217d406e56852a"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>bind</b> ()=0</td></tr>
 <tr class="separator:ab135541f1643fb9361217d406e56852a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 静态 Public 成员函数</h2></td></tr>
-<tr class="memitem:ada5d4b39c6c8f5416f8ddeb8f6c52f6f"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:ada5d4b39c6c8f5416f8ddeb8f6c52f6f"><td class="memTemplItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_index_buffer.html">IndexBuffer</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_index_buffer.html#ada5d4b39c6c8f5416f8ddeb8f6c52f6f">create</a> (const std::vector&lt; T &gt; &amp;data, Usage usage=Usage::Static)</td></tr>
-<tr class="memdesc:ada5d4b39c6c8f5416f8ddeb8f6c52f6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建 <a class="el" href="class_index_buffer.html" title="索引缓冲区.">IndexBuffer</a>.  <a href="class_index_buffer.html#ada5d4b39c6c8f5416f8ddeb8f6c52f6f">更多...</a><br /></td></tr>
-<tr class="separator:ada5d4b39c6c8f5416f8ddeb8f6c52f6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4b78ac0c8e560af141acd449e52af587"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_index_buffer.html">IndexBuffer</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_index_buffer.html#a4b78ac0c8e560af141acd449e52af587">create</a> (const void *data, size_t size, size_t count, Usage usage=Usage::Static)</td></tr>
-<tr class="memdesc:a4b78ac0c8e560af141acd449e52af587"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建 <a class="el" href="class_index_buffer.html" title="索引缓冲区.">IndexBuffer</a>.  <a href="class_index_buffer.html#a4b78ac0c8e560af141acd449e52af587">更多...</a><br /></td></tr>
-<tr class="separator:a4b78ac0c8e560af141acd449e52af587"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c76ed1a5f019bca013977a3268d695c"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_index_buffer.html">IndexBuffer</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_index_buffer.html#a9c76ed1a5f019bca013977a3268d695c">create</a> (const std::vector&lt; unsigned int &gt; &amp;data, Usage usage=Usage::Static)</td></tr>
+<tr class="memdesc:a9c76ed1a5f019bca013977a3268d695c"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建 <a class="el" href="class_index_buffer.html" title="索引缓冲区.">IndexBuffer</a>.  <a href="class_index_buffer.html#a9c76ed1a5f019bca013977a3268d695c">更多...</a><br /></td></tr>
+<tr class="separator:a9c76ed1a5f019bca013977a3268d695c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad89f14753e7531c2a132fbe17adbe7ff"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_index_buffer.html">IndexBuffer</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_index_buffer.html#ad89f14753e7531c2a132fbe17adbe7ff">create</a> (const unsigned int *data, size_t size, Usage usage=Usage::Static)</td></tr>
+<tr class="memdesc:ad89f14753e7531c2a132fbe17adbe7ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建 <a class="el" href="class_index_buffer.html" title="索引缓冲区.">IndexBuffer</a>.  <a href="class_index_buffer.html#ad89f14753e7531c2a132fbe17adbe7ff">更多...</a><br /></td></tr>
+<tr class="separator:ad89f14753e7531c2a132fbe17adbe7ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected 成员函数</h2></td></tr>
-<tr class="memitem:a3e35b2ec74f1fa62877660140866d526"><td class="memItemLeft" align="right" valign="top"><a id="a3e35b2ec74f1fa62877660140866d526"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>IndexBuffer</b> (size_t size, uint32_t count)</td></tr>
-<tr class="separator:a3e35b2ec74f1fa62877660140866d526"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fc9cd3f5786247ee7d9c7e6bba76a90"><td class="memItemLeft" align="right" valign="top"><a id="a5fc9cd3f5786247ee7d9c7e6bba76a90"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>IndexBuffer</b> (const void *data, size_t size)</td></tr>
+<tr class="separator:a5fc9cd3f5786247ee7d9c7e6bba76a90"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p>索引缓冲区. </p>
 </div><h2 class="groupheader">成员函数说明</h2>
-<a id="ada5d4b39c6c8f5416f8ddeb8f6c52f6f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ada5d4b39c6c8f5416f8ddeb8f6c52f6f">&#9670;&nbsp;</a></span>create() <span class="overload">[1/2]</span></h2>
+<a id="a9c76ed1a5f019bca013977a3268d695c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c76ed1a5f019bca013977a3268d695c">&#9670;&nbsp;</a></span>create() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
-<div class="memtemplate">
-template&lt;typename T &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -163,7 +178,7 @@ template&lt;typename T &gt; </div>
         <tr>
           <td class="memname">std::shared_ptr&lt; <a class="el" href="class_index_buffer.html">IndexBuffer</a> &gt; IndexBuffer::create </td>
           <td>(</td>
-          <td class="paramtype">const std::vector&lt; T &gt; &amp;&#160;</td>
+          <td class="paramtype">const std::vector&lt; unsigned int &gt; &amp;&#160;</td>
           <td class="paramname"><em>data</em>, </td>
         </tr>
         <tr>
@@ -180,7 +195,7 @@ template&lt;typename T &gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -196,8 +211,8 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a id="a4b78ac0c8e560af141acd449e52af587"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4b78ac0c8e560af141acd449e52af587">&#9670;&nbsp;</a></span>create() <span class="overload">[2/2]</span></h2>
+<a id="ad89f14753e7531c2a132fbe17adbe7ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad89f14753e7531c2a132fbe17adbe7ff">&#9670;&nbsp;</a></span>create() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -208,7 +223,7 @@ template&lt;typename T &gt; </div>
         <tr>
           <td class="memname">std::shared_ptr&lt; <a class="el" href="class_index_buffer.html">IndexBuffer</a> &gt; IndexBuffer::create </td>
           <td>(</td>
-          <td class="paramtype">const void *&#160;</td>
+          <td class="paramtype">const unsigned int *&#160;</td>
           <td class="paramname"><em>data</em>, </td>
         </tr>
         <tr>
@@ -216,12 +231,6 @@ template&lt;typename T &gt; </div>
           <td></td>
           <td class="paramtype">size_t&#160;</td>
           <td class="paramname"><em>size</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>count</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>

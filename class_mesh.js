@@ -1,6 +1,8 @@
 var class_mesh =
 [
     [ "Mesh", "class_mesh.html#ae6b6c56f0ebfa2f6b2b10d25a835c865", null ],
+    [ "compress", "class_mesh.html#a1bf2769511b83ed0d0395932b0065fcd", null ],
+    [ "decompress", "class_mesh.html#a8f9b5776987d94db7ac1eaa591340f1e", null ],
     [ "getIndexBuffer", "class_mesh.html#abefb61c0e5d80fb0a2135550276bc1e0", null ],
     [ "getMaterial", "class_mesh.html#ad815a1af67f85776d41961f44e27a5e7", null ],
     [ "getName", "class_mesh.html#a5db6e4320ba53bfd030ca231d0544a2a", null ],
