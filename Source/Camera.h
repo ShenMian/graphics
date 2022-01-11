@@ -5,6 +5,8 @@
 
 #include <Math/Math.hpp>
 
+// TODO: up 不会变, 导致不能正确的绕 z 轴旋转, 旋转后 getRight 会使用不正确的 up 进行计算
+
 /**
  * @brief 摄像机.
  */
