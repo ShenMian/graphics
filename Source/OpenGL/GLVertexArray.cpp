@@ -5,6 +5,7 @@
 #include "../VertexLayout.h"
 #include "GLCheck.h"
 #include <glad/glad.h>
+#include <stdexcept>
 #include <unordered_map>
 
 namespace
@@ -52,6 +53,11 @@ void GLVertexArray::bind()
 
 void GLVertexArray::build(const VertexLayout& fmt)
 {
+	int maxAttribs;
+	glGetIntegerv(GL_MAX_VERTEX_ATTRIBS, &maxAttribs);
+	if(fmt.getAttributes().size() > maxAttribs)
+		throw std::runtime_error("too many vertex attributes");
+
 	bind();
 	for(const auto& attr : fmt.getAttributes())
 	{

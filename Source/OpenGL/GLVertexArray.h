@@ -17,9 +17,6 @@ public:
 
 	void build(const VertexLayout& fmt);
 
-	// void setVertexBuffer(std::shared_ptr<VertexBuffer> vertexBuffer);
-	// void setIndexBuffer(std::shared_ptr<IndexBuffer> indexBuffer);
-
 private:
 	GLuint handle;
 	GLuint attribIndex = 0;
