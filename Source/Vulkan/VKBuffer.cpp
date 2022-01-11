@@ -51,7 +51,7 @@ void VKBuffer::unmap()
 	mapped = nullptr;
 }
 
-void* VKBuffer::getMappedMemory()
+void* VKBuffer::getData()
 {
 	return mapped;
 }

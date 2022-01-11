@@ -13,5 +13,5 @@ VKUniformBuffer::VKUniformBuffer(size_t size)
 
 void VKUniformBuffer::write(const void* data, size_t size, size_t offset)
 {
-	std::memcpy(buffer.getMappedMemory(), reinterpret_cast<const uint8_t*>(data) + offset, size);
+	std::memcpy(buffer.getData(), reinterpret_cast<const uint8_t*>(data) + offset, size);
 }

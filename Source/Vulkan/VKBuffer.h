@@ -26,7 +26,7 @@ public:
 	 */
 	void unmap();
 
-	void* getMappedMemory();
+	void* getData();
 
 private:
 	uint32_t findMemoryType(uint32_t type, VkMemoryPropertyFlags properties);
