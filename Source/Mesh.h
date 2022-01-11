@@ -38,6 +38,9 @@ public:
 
 	const Material& getMaterial() const;
 
+	void compress();
+	void decompress();
+
 private:
 	std::string                   name;
 	std::shared_ptr<VertexBuffer> vertexBuffer;
