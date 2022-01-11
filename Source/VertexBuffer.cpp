@@ -3,17 +3,18 @@
 
 #include "VertexBuffer.h"
 #include "Renderer.h"
+#include <cstring>
 
 #include "OpenGL/GLVertexBuffer.h"
 
-std::shared_ptr<VertexBuffer> VertexBuffer::create(const void* data, size_t size, size_t count, const VertexLayout& fmt, Usage usage)
+std::shared_ptr<VertexBuffer> VertexBuffer::create(const void* data, size_t size, const VertexLayout& layout, Usage usage)
 {
 	switch(Renderer::getAPI())
 	{
 		using enum Renderer::API;
 
 	case OpenGL:
-		return std::make_shared<GLVertexBuffer>(data, size, count, fmt, usage);
+		return std::make_shared<GLVertexBuffer>(data, size, layout, usage);
 	}
 	return nullptr;
 }
@@ -33,7 +34,26 @@ const VertexLayout& VertexBuffer::getFormat() const
 	return format;
 }
 
-VertexBuffer::VertexBuffer(size_t size, uint32_t count, const VertexLayout& layout)
-	: size(size), count(count), format(layout)
+std::vector<uint8_t>& VertexBuffer::getData()
 {
+	return buffer;
+}
+
+const std::vector<uint8_t>& VertexBuffer::getData() const
+{
+	return buffer;
+}
+
+void VertexBuffer::flash()
+{
+	// map();
+	write(buffer.data(), buffer.size());
+	// unmap();
+}
+
+VertexBuffer::VertexBuffer(const void* data, size_t size, const VertexLayout& layout)
+	: size(size), count(static_cast<uint32_t>(size / layout.getStride())), format(layout)
+{
+	buffer.resize(size);
+	std::memcpy(buffer.data(), data, buffer.size());
 }

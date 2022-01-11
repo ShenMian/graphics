@@ -2,6 +2,8 @@
 // License(Apache-2.0)
 
 #include "GLVertexBuffer.h"
+#include "GLCheck.h"
+#include <cstring>
 #include <unordered_map>
 
 namespace
@@ -14,8 +16,8 @@ std::unordered_map<VertexBuffer::Usage, uint32_t> GLusage = {
 
 }
 
-GLVertexBuffer::GLVertexBuffer(const void* data, size_t size, uint32_t count, const VertexLayout& fmt, Usage usage)
-	: VertexBuffer(size, count, fmt)
+GLVertexBuffer::GLVertexBuffer(const void* data, size_t size, const VertexLayout& fmt, Usage usage)
+	: VertexBuffer(data, size, fmt)
 {
 	glCreateBuffers(1, &handle);
 	bind();
@@ -27,6 +29,29 @@ GLVertexBuffer::GLVertexBuffer(const void* data, size_t size, uint32_t count, co
 GLVertexBuffer::~GLVertexBuffer()
 {
 	glDeleteBuffers(1, &handle);
+}
+
+void GLVertexBuffer::map()
+{
+	bind();
+	mapped = glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
+	GLCheckError();
+}
+
+void GLVertexBuffer::unmap()
+{
+	bind();
+	glUnmapBuffer(GL_ARRAY_BUFFER);
+	mapped = nullptr;
+	GLCheckError();
+}
+
+void GLVertexBuffer::write(const void* data, size_t size)
+{
+	bind();
+	glBufferData(GL_ARRAY_BUFFER, size, data, GLusage[Usage::Static]);
+	glBufferSubData(GL_ARRAY_BUFFER, 0, size, data);
+	GLCheckError();
 }
 
 void GLVertexBuffer::bind()

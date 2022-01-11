@@ -40,7 +40,7 @@ public:
 	 * @param layout 顶点格式.
 	 * @param usage  使用方式.
 	 */
-	static std::shared_ptr<VertexBuffer> create(const void* data, size_t size, size_t count, const VertexLayout& layout, Usage usage = Usage::Static);
+	static std::shared_ptr<VertexBuffer> create(const void* data, size_t size, const VertexLayout& layout, Usage usage = Usage::Static);
 
 	/**
 	 * @brief 获取缓冲区大小, 单位: 字节.
@@ -57,19 +57,28 @@ public:
 	 */
 	const VertexLayout& getFormat() const;
 
+	std::vector<uint8_t>& getData();
+	const std::vector<uint8_t>& getData() const;
+
+	void flash();
+	
+	virtual void map() = 0;
+	virtual void unmap() = 0;
+	virtual void write(const void* data, size_t size) = 0;
 	virtual void bind() = 0;
 
 protected:
-	VertexBuffer(size_t size, uint32_t count, const VertexLayout& layout);
+	VertexBuffer(const void* data, size_t size, const VertexLayout& layout);
 
 private:
-	size_t       size;
-	uint32_t     count;
-	VertexLayout format;
+	size_t               size;
+	uint32_t             count;
+	VertexLayout         format;
+	std::vector<uint8_t> buffer;
 };
 
 template <typename T>
 inline std::shared_ptr<VertexBuffer> VertexBuffer::create(const std::vector<T>& data, const VertexLayout& layout, Usage usage)
 {
-	return create(data.data(), data.size() * sizeof(T), static_cast<uint32_t>(data.size()), layout, usage);
+	return create(data.data(), data.size() * sizeof(T), layout, usage);
 }

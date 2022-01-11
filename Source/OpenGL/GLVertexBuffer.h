@@ -10,12 +10,17 @@
 class GLVertexBuffer : public VertexBuffer
 {
 public:
-	GLVertexBuffer(const void* data, size_t size, uint32_t count, const VertexLayout& fmt, Usage usage);
+	GLVertexBuffer(const void* data, size_t size, const VertexLayout& fmt, Usage usage);
 	virtual ~GLVertexBuffer();
 
+	void map() override;
+	void unmap() override;
+
+	void write(const void* data, size_t size) override;
 	void bind() override;
 
 private:
 	GLuint        handle;
+	void*         mapped = nullptr;
 	GLVertexArray vao;
 };

@@ -14,6 +14,8 @@ public:
 	VKVertexBuffer(const void* data, size_t size, uint32_t count, const VertexLayout& layout, Usage usage);
 	virtual ~VKVertexBuffer();
 
+	void write(const void* data, size_t size) override;
+
 	void bind() override;
 
 private:
