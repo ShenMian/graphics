@@ -20,4 +20,7 @@ public:
 
 private:
 	handle_type handle;
+
+	std::vector<VkVertexInputBindingDescription>   bindings;
+	std::vector<VkVertexInputAttributeDescription> attribs;
 };
