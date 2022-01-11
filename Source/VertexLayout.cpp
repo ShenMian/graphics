@@ -8,7 +8,7 @@
 namespace
 {
 
-std::unordered_map<Format, size_t> sizeOf = {
+std::unordered_map<Format, uint32_t> sizeOf = {
 	{Format::R32F, 4},
 	{Format::RG32F, 4 * 2},
 	{Format::RGB32F, 4 * 3},
@@ -17,7 +17,7 @@ std::unordered_map<Format, size_t> sizeOf = {
 
 }
 
-size_t VertexLayout::Attribute::getSize() const
+uint32_t VertexLayout::Attribute::getSize() const
 {
 	assert(sizeOf.contains(format));
 	return sizeOf[format];
@@ -32,7 +32,7 @@ VertexLayout::VertexLayout(const std::initializer_list<Attribute>& list)
 void VertexLayout::addAttribute(Attribute attr)
 {
 	if(attr.location == -1)
-		attr.location = attribs.size();
+		attr.location = static_cast<uint32_t>(attribs.size());
 	attr.offset = stride;
 	stride += attr.getSize();
 
@@ -45,12 +45,12 @@ const std::vector<VertexLayout::Attribute> VertexLayout::getAttributes() const
 	return attribs;
 }
 
-void VertexLayout::setStride(size_t stride)
+void VertexLayout::setStride(uint32_t stride)
 {
 	this->stride = stride;
 }
 
-size_t VertexLayout::getStride() const
+uint32_t VertexLayout::getStride() const
 {
 	return stride;
 }

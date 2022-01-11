@@ -26,7 +26,7 @@ public:
 		{
 		}
 
-		size_t getSize() const;
+		uint32_t getSize() const;
 
 		uint32_t         location;
 		std::string_view name;
@@ -41,10 +41,10 @@ public:
 
 	const std::vector<Attribute> getAttributes() const;
 
-	void   setStride(size_t stride);
-	size_t getStride() const;
+	void     setStride(uint32_t stride);
+	uint32_t getStride() const;
 
 private:
 	std::vector<Attribute> attribs;
-	size_t                 stride = 0;
+	uint32_t               stride = 0;
 };
