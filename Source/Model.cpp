@@ -10,6 +10,7 @@
 #include <assimp/scene.h>
 #include <assimp/Exporter.hpp>
 #include <assimp/Importer.hpp>
+#include <assimp/ProgressHandler.hpp>
 #include <algorithm>
 #include <cassert>
 #include <concepts>
@@ -53,11 +54,10 @@ void loadVertices(std::vector<Vertex>& vertices, const aiMesh* mesh)
 		if(mesh->HasNormals())
 			std::memcpy(&vertex.normal, &mesh->mNormals[i], sizeof(vertex.normal));
 
-		// 检查是否存在纹理坐标
 		if(mesh->mTextureCoords[0])
 		{
-			std::memcpy(&vertex.uv, &mesh->mTextureCoords[0][i], sizeof(vertex.uv));         // 获取纹理坐标
-			std::memcpy(&vertex.tangent, &mesh->mTangents[i], sizeof(vertex.tangent));       // 获取 tangent
+			std::memcpy(&vertex.uv, &mesh->mTextureCoords[0][i], sizeof(vertex.uv)); // 获取纹理坐标
+			std::memcpy(&vertex.tangent, &mesh->mTangents[i], sizeof(vertex.tangent)); // 获取 tangent
 			std::memcpy(&vertex.bitangent, &mesh->mBitangents[i], sizeof(vertex.bitangent)); // 获取 bitangent
 		}
 
@@ -141,8 +141,6 @@ void loadMesh(const aiMesh* aMesh, const aiScene* aScene, const fs::path& path, 
 		currScene = aScene, i = 0;
 	printf("Processing Mesh: %3u/%-3u\r", ++i, aScene->mNumMeshes);
 
-	Mesh mesh;
-
 	std::vector<Vertex> vertices;
 	std::vector<unsigned int> indices;
 
@@ -174,11 +172,11 @@ void loadMesh(const aiMesh* aMesh, const aiScene* aScene, const fs::path& path, 
 #endif
 
 	Material mat;
-
 #if 0 // TODO: debug
 	loadMaterial(mat, aMesh, aScene, path);
 #endif
 
+	Mesh mesh;
 	mesh.setName(name);
 	mesh.setVertexBuffer(vertexBuffer);
 	mesh.setIndexBuffer(indexBuffer);
@@ -208,7 +206,7 @@ void loadNode(const aiNode* aNode, const aiScene* aScene, const fs::path& path, 
 
 }
 
-void Model::load(const fs::path& path, Type type)
+void Model::load(const fs::path& path, Process type)
 {
 	if(!fs::exists(path) && !fs::is_regular_file(path))
 		throw std::runtime_error("no such file or directory");
@@ -220,15 +218,15 @@ void Model::load(const fs::path& path, Type type)
 	unsigned int flags;
 	switch(type)
 	{
-	case Type::Fast:
+	case Process::Fast:
 		flags = aiProcessPreset_TargetRealtime_Fast;
 		break;
 
-	case Type::Quality:
+	case Process::Quality:
 		flags = aiProcessPreset_TargetRealtime_Quality;
 		break;
 
-	case Type::MaxQuality:
+	case Process::MaxQuality:
 		flags = aiProcessPreset_TargetRealtime_MaxQuality;
 		break;
 
@@ -242,6 +240,21 @@ void Model::load(const fs::path& path, Type type)
 
 	// 从文件导入场景数据
 	Assimp::Importer importer;
+
+	// TODO: debug
+	///
+	class Progress : public Assimp::ProgressHandler
+	{
+	public:
+		bool Update(float percentage) override
+		{
+			printf("Meshes loading: %d%%  \r", static_cast<int>(percentage * 100));
+			return true;
+		}
+	};
+	importer.SetProgressHandler(new Progress);
+	///
+
 	aScene = importer.ReadFile(path.string(), flags);
 
 	if(aScene == nullptr || aScene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || aScene->mRootNode == nullptr)
@@ -256,7 +269,7 @@ void Model::load(const fs::path& path, Type type)
 	printf("Meshes processed: %.2lfs     \n", timer.getSeconds()); // TODO: debug
 }
 
-void Model::loadAsync(const fs::path& path, Type type, std::function<void(std::string_view)> callback) noexcept
+void Model::loadAsync(const fs::path& path, Process type, std::function<void(std::string_view)> callback) noexcept
 {
 	try
 	{
@@ -289,6 +302,18 @@ const AABB3& Model::getAABB() const
 const std::vector<Mesh>& Model::getMeshs() const
 {
 	return meshs;
+}
+
+void Model::compress()
+{
+	for(auto& mesh : meshs)
+		mesh.compress();
+}
+
+void Model::decompress()
+{
+	for(auto& mesh : meshs)
+		mesh.decompress();
 }
 
 /*void Model::save(const fs::path& path)
