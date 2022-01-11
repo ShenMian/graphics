@@ -61,11 +61,10 @@ void GLVertexArray::build(const VertexLayout& fmt)
 	bind();
 	for(const auto& attr : fmt.getAttributes())
 	{
-		glEnableVertexAttribArray(attribIndex);
-		glVertexAttribPointer(attribIndex, Components[attr.format], GLType[attr.format], attr.normalized,
+		glEnableVertexAttribArray(attr.location);
+		glVertexAttribPointer(attr.location, Components[attr.format], GLType[attr.format], attr.normalized,
 			static_cast<GLsizei>(fmt.getStride()),
 			reinterpret_cast<const void*>(attr.offset));
-		attribIndex++;
 		GLCheckError();
 	}
 	// glVertexAttribDivisor

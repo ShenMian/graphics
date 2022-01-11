@@ -31,10 +31,12 @@ VertexLayout::VertexLayout(const std::initializer_list<Attribute>& list)
 
 void VertexLayout::addAttribute(Attribute attr)
 {
-	assert(std::find_if(attribs.begin(), attribs.end(), [&](auto v) { return v.name == attr.name; }) == attribs.end());
-
+	if(attr.location == -1)
+		attr.location = attribs.size();
 	attr.offset = stride;
 	stride += attr.getSize();
+
+	assert(std::find_if(attribs.begin(), attribs.end(), [&](auto v) { return v.location == attr.location && v.name == attr.name; }) == attribs.end());
 	attribs.push_back(attr);
 }
 

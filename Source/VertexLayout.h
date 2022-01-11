@@ -17,16 +17,22 @@ public:
 	struct Attribute
 	{
 		Attribute(std::string_view name, Format fmt, bool normalized = false)
-			: name(name), format(fmt), normalized(normalized)
+			: location(-1), name(name), format(fmt), normalized(normalized)
+		{
+		}
+
+		Attribute(uint32_t location, std::string_view name, Format fmt, bool normalized = false)
+			: location(location), name(name), format(fmt), normalized(normalized)
 		{
 		}
 
 		size_t getSize() const;
 
+		uint32_t         location;
 		std::string_view name;
 		Format           format;
 		bool             normalized = false;
-		size_t           offset = 0;
+		uint32_t         offset = 0;
 	};
 
 	VertexLayout(const std::initializer_list<Attribute>& list);

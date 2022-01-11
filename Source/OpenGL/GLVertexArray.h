@@ -19,5 +19,4 @@ public:
 
 private:
 	GLuint handle;
-	GLuint attribIndex = 0;
 };
