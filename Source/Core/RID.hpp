@@ -3,6 +3,7 @@
 
 #pragma once
 
+#include <atomic>
 #include <cassert>
 #include <set>
 #include <random>
@@ -10,6 +11,13 @@
 class RID
 {
 public:
+	enum class State
+	{
+		Unloaded,
+		Loading,
+		Loaded
+	};
+
 	RID();
 
 	// RID(const RID&) = delete;
@@ -17,7 +25,8 @@ public:
 	operator uint32_t() const;
 
 private:
-	uint32_t id;
+	uint32_t           id;
+	std::atomic<State> state = State::Unloaded;
 
 	inline static std::set<uint32_t> usedIds;
 
