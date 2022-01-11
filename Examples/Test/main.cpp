@@ -49,6 +49,8 @@ void processGamepad(Camera& cam, Gamepad& gamepad)
 	if(gamepad.get(Gamepad::Button::LeftThumb))
 		speed *= 3;
 
+	const Vector2f sensitivity = Vector2f::unit * 1.5f;
+
 	const auto leftThumb = gamepad.get(Gamepad::Thumb::left);
 	const auto rightThumb = gamepad.get(Gamepad::Thumb::right);
 	const auto rightTrigger = gamepad.get(Gamepad::Trigger::right);
@@ -57,8 +59,8 @@ void processGamepad(Camera& cam, Gamepad& gamepad)
 	moveForward(cam, -leftThumb.y * speed);
 	moveRight(cam, leftThumb.x * speed);
 
-	lookUp(cam, -rightThumb.y * 1.5f);
-	turnRight(cam, rightThumb.x * 1.5f);
+	lookUp(cam, -rightThumb.y * sensitivity.x);
+	turnRight(cam, rightThumb.x * sensitivity.y);
 
 	moveUp(cam, rightTrigger + (-leftTrigger));
 }
@@ -85,14 +87,15 @@ void processKeyboard(Camera& cam)
 
 void processMouse(Camera& cam)
 {
+	const Vector2f sensitivity = Vector2f::unit * 0.07f;
+
 	const auto position = Input::getMousePosition();
 	static Vector2f lastPos = position;
 	const auto pos = static_cast<Vector2f>(position);
-	const Vector2f speed = Vector2f::unit * 0.07f;
 	Vector2f offset = pos - lastPos;
 	lastPos = pos;
-	offset.x *= speed.x;
-	offset.y *= speed.y;
+	offset.x *= sensitivity.x;
+	offset.y *= sensitivity.y;
 
 	lookUp(cam, -offset.y);
 	turnRight(cam, offset.x);
@@ -138,14 +141,15 @@ int main()
 
 		Model model;
 		// model.load("../../../3DModel/basic/cube.obj");
-		model.load("../../../3DModel/scene/Crytek_Sponza/sponza.obj", Model::Type::Fast);
-		// model.load("../../../3DModel/weapon/m4a1/m4a1.gltf", Model::Type::Fast);
-		// model.load("../../../3DModel/scene/Amazon_Lumberyard_Bistro/Exterior/exterior.obj", Model::Type::Fast);
-		// model.load("../../../3DModel/scene/SunTemple/SunTemple.fbx"); // 暂不支持 DDS 格式的纹理资源
+		// model.load("../../../3DModel/scene/Crytek_Sponza/sponza.obj", Model::Process::Fast);
+		// model.load("../../../3DModel/weapon/m4a1/m4a1.gltf", Model::Process::Fast);
+		model.load("../../../3DModel/scene/Amazon_Lumberyard_Bistro/Exterior/exterior.obj", Model::Process::Fast);
+		// model.load("../../../3DModel/scene/San_Miguel/san-miguel-low-poly.obj", Model::Process::Fast);
+		// model.load("../../../3DModel/scene/SunTemple/SunTemple.fbx", Model::Process::Fast); // 暂不支持 DDS 格式的纹理资源
 
 		auto program = Program::create("Shaders/pbr");
 		PipelineLayout layout = {
-			{PipelineLayout::Type::Texture, 0, PipelineLayout::StageFlags::Fragment}
+			{"albedo", PipelineLayout::Type::Texture, 0, PipelineLayout::StageFlags::Fragment}
 		};
 		auto pipeline = Pipeline::create({layout, program});
 
@@ -169,6 +173,14 @@ int main()
 
 				case Key::F11:
 					window->setFullscreen(!window->isFullscreen());
+					break;
+
+				case Key::P:
+					model.compress();
+					break;
+
+				case Key::O:
+					model.decompress();
 					break;
 				}
 			}
