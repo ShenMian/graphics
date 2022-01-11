@@ -82,7 +82,8 @@ void VKRenderer::init(const Window& win)
 	vkb::Instance vkbInstance;
 	{
 		vkb::InstanceBuilder builder;
-		const auto result = builder.request_validation_layers()
+		const auto result = builder.set_engine_name("graphics")
+			.request_validation_layers()
 			// .use_default_debug_messenger()
 			.build();
 		if(!result)
@@ -142,9 +143,8 @@ void VKRenderer::init(const Window& win)
 
 	VkCommandPoolCreateInfo info = {};
 	info.sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO;
-	info.pNext = NULL;
 	info.queueFamilyIndex = queueIndex;
-	info.flags = 0;
+	info.flags = VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT; // TODO: 很多项目貌似没有 flags
 	const auto ret = vkCreateCommandPool(device, &info, nullptr, &commandPool);
 	if(ret != VK_SUCCESS)
 		throw std::runtime_error("failed to create command pool");

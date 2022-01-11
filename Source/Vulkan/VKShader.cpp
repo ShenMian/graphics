@@ -13,9 +13,9 @@ namespace fs = std::filesystem;
 VKShader::VKShader(const std::string& name, Stage stage)
 	: Shader(name, stage)
 {
-	if(fs::exists(name + "." + extension[stage] + ".glsl"))
+	if(fs::exists(name + "." + extension[stage] + ".spv"))
 	{
-		const fs::path path = name + "." + extension[stage] + ".glsl";
+		const fs::path path = name + "." + extension[stage] + ".spv";
 		const auto     size = fs::file_size(path);
 
 		std::ifstream file(path, std::ios::binary);
