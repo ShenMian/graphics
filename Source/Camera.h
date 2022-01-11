@@ -5,8 +5,6 @@
 
 #include <Math/Math.hpp>
 
-// TODO: up 不会变, 导致不能正确的绕 z 轴旋转, 旋转后 getRight 会使用不正确的 up 进行计算
-
 /**
  * @brief 摄像机.
  */
@@ -32,7 +30,7 @@ public:
 	/**
 	 * @brief 设置截头锥体观察体, 用于透视投影.
 	 *
-	 * @param vFOV        垂直视角范围, 单位: 弧度制.
+	 * @param vFOV        垂直视角范围, 单位: 弧度.
 	 * @param aspectRatio 宽高比.
 	 * @param near        近裁剪平面距离, 最近可见范围.
 	 * @param far         远裁剪平面距离, 最远可见范围.
@@ -63,6 +61,31 @@ public:
 	 * @brief 获取投影类型.
 	 */
 	Type getType() const;
+
+	/**
+	 * @brief 获取垂直视角范围, 单位: 弧度.
+	 */
+	float getVFOV() const;
+
+	/**
+	 * @brief 获取水平视角范围, 单位: 弧度.
+	 */
+	float getHFOV() const;
+
+	/**
+	 * @brief 获取宽高比.
+	 */
+	float getAspectRatio() const;
+
+	/**
+	 * @brief 获取近裁剪平面距离.
+	 */
+	float getNear() const;
+
+	/**
+	 * @brief 获取远裁剪平面距离.
+	 */
+	float getFar() const;
 
 	void setPosition(Vector3f pos);
 	Vector3f getPosition() const;

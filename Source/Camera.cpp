@@ -84,7 +84,38 @@ Vector3f Camera::getRight() const
 
 Vector3f Camera::getUp() const
 {
-	return up;
+	return getFront().cross(getRight());
+}
+
+float Camera::getVFOV() const
+{
+	if(type == Type::Perspective)
+		return perspective.vFOV;
+	else
+		return std::atan(orthographic.height / (orthographic.far - orthographic.near)) * 2.f;
+}
+
+float Camera::getHFOV() const
+{
+	return std::atan(std::tan(getVFOV() / 2.f) * getAspectRatio()) * 2.f;;
+}
+
+float Camera::getAspectRatio() const
+{
+	if(type == Type::Perspective)
+		return perspective.aspectRatio;
+	else
+		return orthographic.width / orthographic.height;
+}
+
+float Camera::getNear() const
+{
+	return perspective.near;
+}
+
+float Camera::getFar() const
+{
+	return perspective.near;
 }
 
 void Camera::updateProjectionMatrix() const
