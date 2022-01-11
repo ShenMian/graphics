@@ -24,6 +24,9 @@ Makefile
 /Docs/man
 /Docs/xml
 
+# SPIR-V
+*.spv
+
 # ImGui configure files
 imgui.ini
 
