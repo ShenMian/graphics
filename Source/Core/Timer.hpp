@@ -16,8 +16,8 @@ class Timer
 {
 public:
 	Timer()
-		: start(std::chrono::high_resolution_clock::now())
 	{
+		restart();
 	}
 
 	void restart()
