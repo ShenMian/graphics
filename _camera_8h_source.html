@@ -94,86 +94,99 @@ $(document).ready(function(){initNavTree('_camera_8h_source.html',''); initResiz
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;Math/Math.hpp&gt;</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">// TODO: up 不会变, 导致不能正确的绕 z 轴旋转, 旋转后 getRight 会使用不正确的 up 进行计算</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="class_camera.html">   13</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_camera.html">Camera</a></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;{</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="class_camera.html#a3b0a1f58deca679ac665f61c480d1dcb">   19</a></span>&#160;    <span class="keyword">enum class</span> <a class="code" href="class_camera.html#a3b0a1f58deca679ac665f61c480d1dcb">Type</a></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    {</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <a class="code" href="struct_camera_1_1_perspective.html">Perspective</a>, <span class="comment">// 透视投影</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <a class="code" href="struct_camera_1_1_orthographic.html">Orthographic</a> <span class="comment">// 正交投影</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    };</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <a class="code" href="class_camera.html#aa8ec068be0051d9f01ff3f19ae37cddb">Camera</a>(<a class="code" href="class_camera.html#a3b0a1f58deca679ac665f61c480d1dcb">Type</a> type);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_camera.html#abd5431a9a5ad4ae881c0a95fc62eb4aa">setPerspective</a>(<span class="keywordtype">float</span> vFOV, <span class="keywordtype">float</span> aspectRatio, <span class="keywordtype">float</span> near, <span class="keywordtype">float</span> far);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_camera.html#a58fa647dd4e285efa42da0e1fea31c16">setOrthographic</a>(<span class="keywordtype">float</span> width, <span class="keywordtype">float</span> height, <span class="keywordtype">float</span> near, <span class="keywordtype">float</span> far);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keyword">const</span> Matrix4&amp; <a class="code" href="class_camera.html#a26a85543e0caeb0ff79cffeb8d27066c">getView</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keyword">const</span> Matrix4&amp; <a class="code" href="class_camera.html#a90f8ded7af9a5ba9fcabd5b43271be40">getProjection</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <a class="code" href="class_camera.html#a3b0a1f58deca679ac665f61c480d1dcb">Type</a> <a class="code" href="class_camera.html#ae8f514578aa54023476ad541b167a1e0">getType</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordtype">void</span> setPosition(Vector3f pos);</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    Vector3f getPosition() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="class_camera.html">   11</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_camera.html">Camera</a></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="class_camera.html#a3b0a1f58deca679ac665f61c480d1dcb">   17</a></span>&#160;    <span class="keyword">enum class</span> <a class="code" href="class_camera.html#a3b0a1f58deca679ac665f61c480d1dcb">Type</a></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    {</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <a class="code" href="struct_camera_1_1_perspective.html">Perspective</a>, <span class="comment">// 透视投影</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <a class="code" href="struct_camera_1_1_orthographic.html">Orthographic</a> <span class="comment">// 正交投影</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    };</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="class_camera.html#aa8ec068be0051d9f01ff3f19ae37cddb">Camera</a>(<a class="code" href="class_camera.html#a3b0a1f58deca679ac665f61c480d1dcb">Type</a> type);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_camera.html#abd5431a9a5ad4ae881c0a95fc62eb4aa">setPerspective</a>(<span class="keywordtype">float</span> vFOV, <span class="keywordtype">float</span> aspectRatio, <span class="keywordtype">float</span> near, <span class="keywordtype">float</span> far);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_camera.html#a58fa647dd4e285efa42da0e1fea31c16">setOrthographic</a>(<span class="keywordtype">float</span> width, <span class="keywordtype">float</span> height, <span class="keywordtype">float</span> near, <span class="keywordtype">float</span> far);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keyword">const</span> Matrix4&amp; <a class="code" href="class_camera.html#a26a85543e0caeb0ff79cffeb8d27066c">getView</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keyword">const</span> Matrix4&amp; <a class="code" href="class_camera.html#a90f8ded7af9a5ba9fcabd5b43271be40">getProjection</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <a class="code" href="class_camera.html#a3b0a1f58deca679ac665f61c480d1dcb">Type</a> <a class="code" href="class_camera.html#ae8f514578aa54023476ad541b167a1e0">getType</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_camera.html#ae7caf7ede968e6f6eb38df6066f5b3d9">getVFOV</a>() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordtype">void</span> setRotation(Vector3f rot);</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    Vector3f getRotation() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    Vector3f getFront() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    Vector3f getRight() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    Vector3f getUp() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">void</span> updateProjectionMatrix() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordtype">void</span> updateViewMatrix() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
-<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="struct_camera_1_1_perspective.html">   81</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="struct_camera_1_1_perspective.html">Perspective</a></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    {</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keywordtype">float</span> vFOV;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="keywordtype">float</span> aspectRatio;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <span class="keywordtype">float</span> near;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <span class="keywordtype">float</span> far;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    };</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
-<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="struct_camera_1_1_orthographic.html">   89</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="struct_camera_1_1_orthographic.html">Orthographic</a></div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    {</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="keywordtype">float</span> width;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="keywordtype">float</span> height;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="keywordtype">float</span> near;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <span class="keywordtype">float</span> far;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    };</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keyword">union</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    {</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <a class="code" href="struct_camera_1_1_perspective.html">Perspective</a>  perspective;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <a class="code" href="struct_camera_1_1_orthographic.html">Orthographic</a> orthographic;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    };</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <a class="code" href="class_camera.html#a3b0a1f58deca679ac665f61c480d1dcb">Type</a> type;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    Vector3f position;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    Vector3f rotation;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    Vector3f up = -Vector3f::unit_y;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keyword">mutable</span> Matrix4 projection;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keyword">mutable</span> <span class="keywordtype">bool</span>    projectionDirty = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keyword">mutable</span> Matrix4 view;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="keyword">mutable</span> <span class="keywordtype">bool</span>    viewDirty = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;};</div>
-<div class="ttc" id="aclass_camera_html"><div class="ttname"><a href="class_camera.html">Camera</a></div><div class="ttdoc">摄像机.</div><div class="ttdef"><b>Definition:</b> Camera.h:14</div></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_camera.html#aefe543b1ae789c85b07cbae64c87f3f4">getHFOV</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_camera.html#ae293133e02172fd477f821dd0d065f2b">getAspectRatio</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_camera.html#ac8e964aa5463f7dd3d3555398685df52">getNear</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordtype">float</span> <a class="code" href="class_camera.html#a57b2e9d52389abc67e5b5049b150408e">getFar</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keywordtype">void</span> setPosition(Vector3f pos);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    Vector3f getPosition() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordtype">void</span> setRotation(Vector3f rot);</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    Vector3f getRotation() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    Vector3f getFront() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    Vector3f getRight() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    Vector3f getUp() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keywordtype">void</span> updateProjectionMatrix() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="keywordtype">void</span> updateViewMatrix() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
+<div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="struct_camera_1_1_perspective.html">  104</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="struct_camera_1_1_perspective.html">Perspective</a></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    {</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        <span class="keywordtype">float</span> vFOV;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        <span class="keywordtype">float</span> aspectRatio;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        <span class="keywordtype">float</span> near;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        <span class="keywordtype">float</span> far;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    };</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
+<div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="struct_camera_1_1_orthographic.html">  112</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="struct_camera_1_1_orthographic.html">Orthographic</a></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    {</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        <span class="keywordtype">float</span> width;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        <span class="keywordtype">float</span> height;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        <span class="keywordtype">float</span> near;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        <span class="keywordtype">float</span> far;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    };</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keyword">union</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    {</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        <a class="code" href="struct_camera_1_1_perspective.html">Perspective</a>  perspective;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        <a class="code" href="struct_camera_1_1_orthographic.html">Orthographic</a> orthographic;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    };</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160; </div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <a class="code" href="class_camera.html#a3b0a1f58deca679ac665f61c480d1dcb">Type</a> type;</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160; </div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    Vector3f position;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    Vector3f rotation;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    Vector3f up = -Vector3f::unit_y;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <span class="keyword">mutable</span> Matrix4 projection;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    <span class="keyword">mutable</span> <span class="keywordtype">bool</span>    projectionDirty = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    <span class="keyword">mutable</span> Matrix4 view;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    <span class="keyword">mutable</span> <span class="keywordtype">bool</span>    viewDirty = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;};</div>
+<div class="ttc" id="aclass_camera_html"><div class="ttname"><a href="class_camera.html">Camera</a></div><div class="ttdoc">摄像机.</div><div class="ttdef"><b>Definition:</b> Camera.h:12</div></div>
 <div class="ttc" id="aclass_camera_html_a26a85543e0caeb0ff79cffeb8d27066c"><div class="ttname"><a href="class_camera.html#a26a85543e0caeb0ff79cffeb8d27066c">Camera::getView</a></div><div class="ttdeci">const Matrix4 &amp; getView() const</div><div class="ttdoc">获取观察矩阵.</div><div class="ttdef"><b>Definition:</b> Camera.cpp:31</div></div>
-<div class="ttc" id="aclass_camera_html_a3b0a1f58deca679ac665f61c480d1dcb"><div class="ttname"><a href="class_camera.html#a3b0a1f58deca679ac665f61c480d1dcb">Camera::Type</a></div><div class="ttdeci">Type</div><div class="ttdoc">投影类型.</div><div class="ttdef"><b>Definition:</b> Camera.h:20</div></div>
+<div class="ttc" id="aclass_camera_html_a3b0a1f58deca679ac665f61c480d1dcb"><div class="ttname"><a href="class_camera.html#a3b0a1f58deca679ac665f61c480d1dcb">Camera::Type</a></div><div class="ttdeci">Type</div><div class="ttdoc">投影类型.</div><div class="ttdef"><b>Definition:</b> Camera.h:18</div></div>
+<div class="ttc" id="aclass_camera_html_a57b2e9d52389abc67e5b5049b150408e"><div class="ttname"><a href="class_camera.html#a57b2e9d52389abc67e5b5049b150408e">Camera::getFar</a></div><div class="ttdeci">float getFar() const</div><div class="ttdoc">获取远裁剪平面距离.</div><div class="ttdef"><b>Definition:</b> Camera.cpp:116</div></div>
 <div class="ttc" id="aclass_camera_html_a58fa647dd4e285efa42da0e1fea31c16"><div class="ttname"><a href="class_camera.html#a58fa647dd4e285efa42da0e1fea31c16">Camera::setOrthographic</a></div><div class="ttdeci">void setOrthographic(float width, float height, float near, float far)</div><div class="ttdoc">设置正投影观观察体, 用于正交投影.</div><div class="ttdef"><b>Definition:</b> Camera.cpp:21</div></div>
 <div class="ttc" id="aclass_camera_html_a90f8ded7af9a5ba9fcabd5b43271be40"><div class="ttname"><a href="class_camera.html#a90f8ded7af9a5ba9fcabd5b43271be40">Camera::getProjection</a></div><div class="ttdeci">const Matrix4 &amp; getProjection() const</div><div class="ttdoc">获取投影矩阵.</div><div class="ttdef"><b>Definition:</b> Camera.cpp:37</div></div>
 <div class="ttc" id="aclass_camera_html_aa8ec068be0051d9f01ff3f19ae37cddb"><div class="ttname"><a href="class_camera.html#aa8ec068be0051d9f01ff3f19ae37cddb">Camera::Camera</a></div><div class="ttdeci">Camera(Type type)</div><div class="ttdoc">默认构造函数.</div><div class="ttdef"><b>Definition:</b> Camera.cpp:6</div></div>
 <div class="ttc" id="aclass_camera_html_abd5431a9a5ad4ae881c0a95fc62eb4aa"><div class="ttname"><a href="class_camera.html#abd5431a9a5ad4ae881c0a95fc62eb4aa">Camera::setPerspective</a></div><div class="ttdeci">void setPerspective(float vFOV, float aspectRatio, float near, float far)</div><div class="ttdoc">设置截头锥体观察体, 用于透视投影.</div><div class="ttdef"><b>Definition:</b> Camera.cpp:11</div></div>
+<div class="ttc" id="aclass_camera_html_ac8e964aa5463f7dd3d3555398685df52"><div class="ttname"><a href="class_camera.html#ac8e964aa5463f7dd3d3555398685df52">Camera::getNear</a></div><div class="ttdeci">float getNear() const</div><div class="ttdoc">获取近裁剪平面距离.</div><div class="ttdef"><b>Definition:</b> Camera.cpp:111</div></div>
+<div class="ttc" id="aclass_camera_html_ae293133e02172fd477f821dd0d065f2b"><div class="ttname"><a href="class_camera.html#ae293133e02172fd477f821dd0d065f2b">Camera::getAspectRatio</a></div><div class="ttdeci">float getAspectRatio() const</div><div class="ttdoc">获取宽高比.</div><div class="ttdef"><b>Definition:</b> Camera.cpp:103</div></div>
+<div class="ttc" id="aclass_camera_html_ae7caf7ede968e6f6eb38df6066f5b3d9"><div class="ttname"><a href="class_camera.html#ae7caf7ede968e6f6eb38df6066f5b3d9">Camera::getVFOV</a></div><div class="ttdeci">float getVFOV() const</div><div class="ttdoc">获取垂直视角范围, 单位: 弧度.</div><div class="ttdef"><b>Definition:</b> Camera.cpp:90</div></div>
 <div class="ttc" id="aclass_camera_html_ae8f514578aa54023476ad541b167a1e0"><div class="ttname"><a href="class_camera.html#ae8f514578aa54023476ad541b167a1e0">Camera::getType</a></div><div class="ttdeci">Type getType() const</div><div class="ttdoc">获取投影类型.</div><div class="ttdef"><b>Definition:</b> Camera.cpp:43</div></div>
-<div class="ttc" id="astruct_camera_1_1_orthographic_html"><div class="ttname"><a href="struct_camera_1_1_orthographic.html">Camera::Orthographic</a></div><div class="ttdef"><b>Definition:</b> Camera.h:90</div></div>
-<div class="ttc" id="astruct_camera_1_1_perspective_html"><div class="ttname"><a href="struct_camera_1_1_perspective.html">Camera::Perspective</a></div><div class="ttdef"><b>Definition:</b> Camera.h:82</div></div>
+<div class="ttc" id="aclass_camera_html_aefe543b1ae789c85b07cbae64c87f3f4"><div class="ttname"><a href="class_camera.html#aefe543b1ae789c85b07cbae64c87f3f4">Camera::getHFOV</a></div><div class="ttdeci">float getHFOV() const</div><div class="ttdoc">获取水平视角范围, 单位: 弧度.</div><div class="ttdef"><b>Definition:</b> Camera.cpp:98</div></div>
+<div class="ttc" id="astruct_camera_1_1_orthographic_html"><div class="ttname"><a href="struct_camera_1_1_orthographic.html">Camera::Orthographic</a></div><div class="ttdef"><b>Definition:</b> Camera.h:113</div></div>
+<div class="ttc" id="astruct_camera_1_1_perspective_html"><div class="ttname"><a href="struct_camera_1_1_perspective.html">Camera::Perspective</a></div><div class="ttdef"><b>Definition:</b> Camera.h:105</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

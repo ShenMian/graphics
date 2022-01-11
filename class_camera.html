@@ -138,6 +138,26 @@ const Matrix4 &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class=
 <a class="el" href="class_camera.html#a3b0a1f58deca679ac665f61c480d1dcb">Type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#ae8f514578aa54023476ad541b167a1e0">getType</a> () const</td></tr>
 <tr class="memdesc:ae8f514578aa54023476ad541b167a1e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取投影类型. <br /></td></tr>
 <tr class="separator:ae8f514578aa54023476ad541b167a1e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7caf7ede968e6f6eb38df6066f5b3d9"><td class="memItemLeft" align="right" valign="top"><a id="ae7caf7ede968e6f6eb38df6066f5b3d9"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#ae7caf7ede968e6f6eb38df6066f5b3d9">getVFOV</a> () const</td></tr>
+<tr class="memdesc:ae7caf7ede968e6f6eb38df6066f5b3d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取垂直视角范围, 单位: 弧度. <br /></td></tr>
+<tr class="separator:ae7caf7ede968e6f6eb38df6066f5b3d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aefe543b1ae789c85b07cbae64c87f3f4"><td class="memItemLeft" align="right" valign="top"><a id="aefe543b1ae789c85b07cbae64c87f3f4"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#aefe543b1ae789c85b07cbae64c87f3f4">getHFOV</a> () const</td></tr>
+<tr class="memdesc:aefe543b1ae789c85b07cbae64c87f3f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取水平视角范围, 单位: 弧度. <br /></td></tr>
+<tr class="separator:aefe543b1ae789c85b07cbae64c87f3f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae293133e02172fd477f821dd0d065f2b"><td class="memItemLeft" align="right" valign="top"><a id="ae293133e02172fd477f821dd0d065f2b"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#ae293133e02172fd477f821dd0d065f2b">getAspectRatio</a> () const</td></tr>
+<tr class="memdesc:ae293133e02172fd477f821dd0d065f2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取宽高比. <br /></td></tr>
+<tr class="separator:ae293133e02172fd477f821dd0d065f2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8e964aa5463f7dd3d3555398685df52"><td class="memItemLeft" align="right" valign="top"><a id="ac8e964aa5463f7dd3d3555398685df52"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#ac8e964aa5463f7dd3d3555398685df52">getNear</a> () const</td></tr>
+<tr class="memdesc:ac8e964aa5463f7dd3d3555398685df52"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取近裁剪平面距离. <br /></td></tr>
+<tr class="separator:ac8e964aa5463f7dd3d3555398685df52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57b2e9d52389abc67e5b5049b150408e"><td class="memItemLeft" align="right" valign="top"><a id="a57b2e9d52389abc67e5b5049b150408e"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a57b2e9d52389abc67e5b5049b150408e">getFar</a> () const</td></tr>
+<tr class="memdesc:a57b2e9d52389abc67e5b5049b150408e"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取远裁剪平面距离. <br /></td></tr>
+<tr class="separator:a57b2e9d52389abc67e5b5049b150408e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a96467d6b44a96ce9209789fd4980a358"><td class="memItemLeft" align="right" valign="top"><a id="a96467d6b44a96ce9209789fd4980a358"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setPosition</b> (Vector3f pos)</td></tr>
 <tr class="separator:a96467d6b44a96ce9209789fd4980a358"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -328,7 +348,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>viewDirty</b> = true<
 <p>设置截头锥体观察体, 用于透视投影. </p>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">vFOV</td><td>垂直视角范围, 单位: 弧度制. </td></tr>
+    <tr><td class="paramname">vFOV</td><td>垂直视角范围, 单位: 弧度. </td></tr>
     <tr><td class="paramname">aspectRatio</td><td>宽高比. </td></tr>
     <tr><td class="paramname">near</td><td>近裁剪平面距离, 最近可见范围. </td></tr>
     <tr><td class="paramname">far</td><td>远裁剪平面距离, 最远可见范围. </td></tr>
