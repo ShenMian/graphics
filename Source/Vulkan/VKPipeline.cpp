@@ -2,7 +2,8 @@
 // License(Apache-2.0)
 
 #include "VKPipeline.h"
-#include "../Program.h"
+#include "VKProgram.h"
+#include "VKVertexBuffer.h"
 #include "../PipelineLayout.h"
 #include <stdexcept>
 
@@ -39,11 +40,21 @@ VkShaderStageFlags VKStageFlags(int flags)
 
 }
 
-VKPipeline::VKPipeline(std::shared_ptr<Program> program, const PipelineLayout& layout)
+VKPipeline::VKPipeline(const Descriptor& desc)
+	: Pipeline(desc)
 {
 	auto renderer = reinterpret_cast<VKRenderer*>(Renderer::get());
 
+	auto& layout = desc.layout;
+	auto vertexBuffer = std::dynamic_pointer_cast<VKVertexBuffer>(desc.vertexBuffer);
+	auto program = std::dynamic_pointer_cast<VKProgram>(desc.program);
+
 	createLayout(layout);
+
+	VkPipelineInputAssemblyStateCreateInfo inputAssemblyState = {};
+	inputAssemblyState.sType = VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO;
+	inputAssemblyState.topology = VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST;
+	inputAssemblyState.primitiveRestartEnable = VK_FALSE;
 
 	VkPipelineViewportStateCreateInfo viewportState = {};
 	createViewportState(viewportState);
@@ -52,26 +63,27 @@ VKPipeline::VKPipeline(std::shared_ptr<Program> program, const PipelineLayout& l
 	createRasterizerState(rasterizerState);
 
 	VkPipelineMultisampleStateCreateInfo multisampleState = {};
+	createMultisampleState(multisampleState);
 
 	VkPipelineDepthStencilStateCreateInfo depthStencilState = {};
+
+	auto vertexInputState = vertexBuffer->getInfo();
 
 	VkGraphicsPipelineCreateInfo pipelineInfo = {};
 	pipelineInfo.sType = VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO;
 	pipelineInfo.stageCount = program->getStageCount();
-	/*
-	pipelineInfo.pStages = shaderStageCreateInfos;
-	pipelineInfo.pVertexInputState = &vertexInputCreateInfo;
-	pipelineInfo.pInputAssemblyState = &inputAssembly;
-	pipelineInfo.pTessellationState = (inputAssembly.topology == VK_PRIMITIVE_TOPOLOGY_PATCH_LIST ? &tessellationState : nullptr);
+	pipelineInfo.pStages = program->getInfos().data();
+	pipelineInfo.pVertexInputState = &vertexInputState;
+	pipelineInfo.pInputAssemblyState = &inputAssemblyState;
+	// pipelineInfo.pTessellationState = (inputAssembly.topology == VK_PRIMITIVE_TOPOLOGY_PATCH_LIST ? &tessellationState : nullptr);
 	pipelineInfo.pViewportState = &viewportState;
 	pipelineInfo.pRasterizationState = &rasterizerState;
 	pipelineInfo.pMultisampleState = &multisampleState;
 	pipelineInfo.pDepthStencilState = &depthStencilState;
-	pipelineInfo.pColorBlendState = &colorBlendState;
-	pipelineInfo.pDynamicState = (!dynamicStatesVK.empty() ? &dynamicState : nullptr);
+	// pipelineInfo.pColorBlendState = &colorBlendState;
+	// pipelineInfo.pDynamicState = (!dynamicStatesVK.empty() ? &dynamicState : nullptr);
 	pipelineInfo.layout = pipelineLayout;
-	pipelineInfo.renderPass = ;
-	*/
+	// pipelineInfo.renderPass = ;
 	if(vkCreateGraphicsPipelines(renderer->getDevice(), nullptr, 1, &pipelineInfo, nullptr, &pipeline) != VK_SUCCESS)
 		throw std::runtime_error("failed to create graphics pipeline");
 }
@@ -111,12 +123,15 @@ void VKPipeline::createLayout(const PipelineLayout& layout)
 
 void VKPipeline::createViewportState(VkPipelineViewportStateCreateInfo& info)
 {
+	info.sType = VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;
 }
 
-void VKPipeline::createRasterizerState(VkPipelineRasterizationStateCreateInfo&)
+void VKPipeline::createRasterizerState(VkPipelineRasterizationStateCreateInfo& info)
 {
+	info.sType = VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO;
 }
 
 void VKPipeline::createMultisampleState(VkPipelineMultisampleStateCreateInfo& info)
 {
+	info.sType = VK_STRUCTURE_TYPE_PIPELINE_MULTISAMPLE_STATE_CREATE_INFO;
 }

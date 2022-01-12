@@ -7,6 +7,7 @@
 #include <memory>
 
 class Program;
+class VertexBuffer;
 
 /**
  * @brief 图形管线.
@@ -16,13 +17,14 @@ class Pipeline
 public:
 	struct Descriptor
 	{
-		PipelineLayout           layout;
-		std::shared_ptr<Program> program;
+		PipelineLayout                layout;
+		std::shared_ptr<VertexBuffer> vertexBuffer;
+		std::shared_ptr<Program>      program;
 	};
 
 	static std::shared_ptr<Pipeline> create(const Descriptor& desc);
 
-	Pipeline(std::shared_ptr<Program> program);
+	Pipeline(const Descriptor& desc);
 
 	std::shared_ptr<Program> program;
 };

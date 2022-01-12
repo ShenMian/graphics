@@ -7,10 +7,10 @@
 #include "../Pipeline.h"
 #include <vulkan/vulkan.h>
 
-class VKPipeline
+class VKPipeline : public Pipeline
 {
 public:
-	VKPipeline(std::shared_ptr<Program> program, const PipelineLayout& layout);
+	VKPipeline(const Descriptor& desc);
 
 private:
 	void createLayout(const PipelineLayout& layout);
