@@ -111,14 +111,30 @@ $(document).ready(function(){initNavTree('_getting_started.html',''); initResiza
 </div><!-- fragment --><p> <b>警告</b>: 不建议直接使用最新提交, 因为这些修改还不稳定, 可能无法正常工作.</p>
 <h2><a class="anchor" id="autotoc_md5"></a>
 示例</h2>
-<p>阅读 <a href="https://github.com/ShenMian/Graphics/tree/main/Examples">示例</a> 是一种快速的入门方式. 从示例中可以很直观的看到各种常见 API 的使用方式. </p>
-</div></div><!-- contents -->
+<p>阅读 <a href="https://github.com/ShenMian/Graphics/tree/main/Examples">示例</a> 是一种快速的入门方式. 从示例中可以很直观的看到各种常见 API 的使用方式.</p>
+<h2><a class="anchor" id="autotoc_md6"></a>
+应用骨架</h2>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;Graphics/Graphics.h&gt;</span> <span class="comment">// 引入 Graphics 头文件</span></div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// 初始化</span></div>
+<div class="line"><a class="code" href="class_renderer.html#a04003283aef7694ae68fe9a63bbca592">Renderer::setAPI</a>(Renderer::API::OpenGL); <span class="comment">// 选择将要使用的渲染后端 API.</span></div>
+<div class="line">                                         <span class="comment">// 该步骤必须在初始化窗口前执行, 因为窗口实现依赖于渲染后端 API</span></div>
+<div class="line">Window::init();   <span class="comment">// 初始化窗口, 之后才可以调用窗口/显示器/输入相关的 API</span></div>
+<div class="line">Renderer::init(); <span class="comment">// 初始化渲染 API, 之后才可以使用渲染相关的 API</span></div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// ... 应用代码 ...</span></div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// 清理, 顺序与初始化相反</span></div>
+<div class="line">Renderer::deinit();</div>
+<div class="line">Window::deinit();</div>
+<div class="ttc" id="aclass_renderer_html_a04003283aef7694ae68fe9a63bbca592"><div class="ttname"><a href="class_renderer.html#a04003283aef7694ae68fe9a63bbca592">Renderer::setAPI</a></div><div class="ttdeci">static void setAPI(API api)</div><div class="ttdoc">设置图形 API.</div><div class="ttdef"><b>Definition:</b> Renderer.cpp:33</div></div>
+</div><!-- fragment --> </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="index.html">Graphics 文檔</a></li>
+    <li class="navelem"><a class="el" href="index.html">Graphics 文档</a></li>
     <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>

@@ -57,5 +57,5 @@ var searchData=
   ['gluniformbuffer_69',['GLUniformBuffer',['../class_g_l_uniform_buffer.html',1,'']]],
   ['glvertexarray_70',['GLVertexArray',['../class_g_l_vertex_array.html',1,'']]],
   ['glvertexbuffer_71',['GLVertexBuffer',['../class_g_l_vertex_buffer.html',1,'']]],
-  ['graphics_20文檔_72',['Graphics 文檔',['../index.html',1,'']]]
+  ['graphics_20文档_72',['Graphics 文档',['../index.html',1,'']]]
 ];

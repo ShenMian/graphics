@@ -25,7 +25,7 @@
 var NAVTREE =
 [
   [ "Graphics", "index.html", [
-    [ "Graphics 文檔", "index.html", "index" ],
+    [ "Graphics 文档", "index.html", "index" ],
     [ "模块", "modules.html", "modules" ],
     [ "类", "annotated.html", [
       [ "类列表", "annotated.html", "annotated_dup" ],
@@ -47,8 +47,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_button_8h_source.html",
-"class_mesh.html#a305b2fb16bddc7dbb175044d30c2656d",
-"classui_1_1_window.html#acbdd3bbb5f6467b9d941637e3df7ef7da285f9db7b96b775fbb5ccdff10a2ffb0"
+"class_mesh.html#a24eb1e67f64f6588e5faeab66c61138d",
+"classui_1_1_window.html#acbdd3bbb5f6467b9d941637e3df7ef7da18c6371a740ca191895196c8eb5bde14"
 ];
 
 var SYNCONMSG = '点击 关闭 面板同步';
