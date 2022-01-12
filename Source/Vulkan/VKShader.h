@@ -12,6 +12,8 @@ public:
 	VKShader(const std::string& name, Stage stage);
 	virtual ~VKShader();
 
+	VkShaderModule getNativeHandle();
+
 private:
 	VkShaderModule handle;
 };

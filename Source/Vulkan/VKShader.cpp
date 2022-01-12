@@ -45,3 +45,8 @@ VKShader::~VKShader()
 	auto renderer = reinterpret_cast<VKRenderer*>(Renderer::get());
 	vkDestroyShaderModule(renderer->getDevice(), handle, nullptr);
 }
+
+VkShaderModule VKShader::getNativeHandle()
+{
+	return handle;
+}

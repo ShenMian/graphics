@@ -20,9 +20,9 @@ public:
 	enum class Stage
 	{
 		Vertex,
-		Geometry,
 		Fragment,
 		Pixel = Fragment,
+		Geometry,
 		Compute
 	};
 
