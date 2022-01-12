@@ -52,7 +52,10 @@ int main()
 		PipelineLayout layout = {
 			{"albedo", PipelineLayout::Type::Texture, 0, PipelineLayout::StageFlags::Fragment}
 		};
-		auto pipeline = Pipeline::create({layout, program});
+		Pipeline::Descriptor desc;
+		desc.layout = layout;
+		desc.program = program;
+		auto pipeline = Pipeline::create(desc);
 
 		auto cmdQueue = CommandQueue::create();
 		auto cmdBuffer = CommandBuffer::create();
