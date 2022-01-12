@@ -6,6 +6,7 @@
 #include <cstring>
 
 #include "OpenGL/GLVertexBuffer.h"
+#include "Vulkan/VKVertexBuffer.h"
 
 std::shared_ptr<VertexBuffer> VertexBuffer::create(const void* data, size_t size, const VertexLayout& layout, Usage usage)
 {
@@ -15,6 +16,9 @@ std::shared_ptr<VertexBuffer> VertexBuffer::create(const void* data, size_t size
 
 	case OpenGL:
 		return std::make_shared<GLVertexBuffer>(data, size, layout, usage);
+
+	case Vulkan:
+		return std::make_shared<VKVertexBuffer>(data, size, layout, usage);
 	}
 	return nullptr;
 }

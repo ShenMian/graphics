@@ -16,9 +16,11 @@ std::unordered_map<Format, VkFormat> VKFormat = {
 	{Format::RGBA32F, VK_FORMAT_R32G32B32A32_SFLOAT},
 };
 
-VKVertexBuffer::VKVertexBuffer(const void* data, size_t size, uint32_t count, const VertexLayout& layout, Usage usage)
-	: VertexBuffer(data, size, layout)
+VKVertexBuffer::VKVertexBuffer(const void* data, size_t size, const VertexLayout& layout, Usage usage)
+	: VertexBuffer(data, size, layout),
+	handle(size, VK_BUFFER_USAGE_VERTEX_BUFFER_BIT, VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT)
 {
+
 	VkVertexInputBindingDescription binding = {};
 	binding.binding = 0;
 	binding.inputRate = VK_VERTEX_INPUT_RATE_VERTEX;
@@ -33,21 +35,35 @@ VKVertexBuffer::VKVertexBuffer(const void* data, size_t size, uint32_t count, co
 		vkAttr.offset = attr.offset;
 		attribs.push_back(vkAttr);
 	}
-
-	VkPipelineVertexInputStateCreateInfo info = {};
-	info.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
-	info.vertexBindingDescriptionCount = static_cast<uint32_t>(bindings.size());
-	info.pVertexBindingDescriptions = bindings.data();
-	info.vertexAttributeDescriptionCount = static_cast<uint32_t>(attribs.size());
-	info.pVertexAttributeDescriptions = attribs.data();
 }
 
 VKVertexBuffer::~VKVertexBuffer()
 {
 }
 
+void VKVertexBuffer::map()
+{
+	handle.map();
+}
+
+void VKVertexBuffer::unmap()
+{
+	handle.unmap();
+}
+
 void VKVertexBuffer::write(const void* data, size_t size)
 {
+}
+
+VkPipelineVertexInputStateCreateInfo VKVertexBuffer::getInfo()
+{
+	VkPipelineVertexInputStateCreateInfo info = {};
+	info.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
+	info.vertexBindingDescriptionCount = static_cast<uint32_t>(bindings.size());
+	info.pVertexBindingDescriptions = bindings.data();
+	info.vertexAttributeDescriptionCount = static_cast<uint32_t>(attribs.size());
+	info.pVertexAttributeDescriptions = attribs.data();
+	return info;
 }
 
 void VKVertexBuffer::bind()
