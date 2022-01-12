@@ -42,7 +42,7 @@
  */
 
 /**
- * @mainpage Graphics 文檔
+ * @mainpage Graphics 文档
  *
  * Graphics
  * ========
@@ -101,4 +101,22 @@
  * ----
  * 阅读 [示例](https://github.com/ShenMian/Graphics/tree/main/Examples) 是一种快速的入门方式.
  * 从示例中可以很直观的看到各种常见 API 的使用方式.
+ *
+ * 应用骨架
+ * -------
+ * ```cpp
+ * #include <Graphics/Graphics.h> // 引入 Graphics 头文件
+ *
+ * // 初始化
+ * Renderer::setAPI(Renderer::API::OpenGL); // 选择将要使用的渲染后端 API.
+ *                                          // 该步骤必须在初始化窗口前执行, 因为窗口实现依赖于渲染后端 API
+ * Window::init();   // 初始化窗口, 之后才可以调用窗口/显示器/输入相关的 API
+ * Renderer::init(); // 初始化渲染 API, 之后才可以使用渲染相关的 API
+ *
+ * // ... 应用代码 ...
+ *
+ * // 清理, 顺序与初始化相反
+ * Renderer::deinit();
+ * Window::deinit();
+ * ```
  */
