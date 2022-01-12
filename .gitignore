@@ -1,4 +1,4 @@
-# Build
+﻿# Build
 [Bb]in
 [Oo]bj
 [Ll]ib
@@ -9,6 +9,9 @@
 # Makefile
 Makefile
 *.make
+
+# CMake
+.cache
 
 # Visual Studio
 *.sln
