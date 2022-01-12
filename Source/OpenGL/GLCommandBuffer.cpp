@@ -2,6 +2,7 @@
 // License(Apache-2.0)
 
 #include "GLCommandBuffer.h"
+#include "../Viewport.hpp"
 #include <glad/glad.h>
 
 namespace
@@ -24,15 +25,15 @@ void GLCommandBuffer::end()
 {
 }
 
-void GLCommandBuffer::setViewport(const Vector2f& origin, const Vector2f& size, const Vector2f& depth)
+void GLCommandBuffer::setViewport(const Viewport& viewport)
 {
 	auto cmd = addCommand<GLCmdSetViewport>(GLOpcode::setViewport);
-	cmd->x = static_cast<GLint>(origin.x);
-	cmd->y = static_cast<GLint>(origin.x);
-	cmd->width = static_cast<GLsizei>(size.x);
-	cmd->height = static_cast<GLsizei>(size.y);
-	cmd->n = static_cast<GLdouble>(depth.x);
-	cmd->f = static_cast<GLdouble>(depth.y);
+	cmd->x = static_cast<GLint>(viewport.x);
+	cmd->y = static_cast<GLint>(viewport.x);
+	cmd->width = static_cast<GLsizei>(viewport.width);
+	cmd->height = static_cast<GLsizei>(viewport.height);
+	cmd->n = static_cast<GLdouble>(viewport.minDepth);
+	cmd->f = static_cast<GLdouble>(viewport.maxDepth);
 }
 
 void GLCommandBuffer::setPipeline(std::shared_ptr<Pipeline> pipeline)

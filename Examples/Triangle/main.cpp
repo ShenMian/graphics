@@ -41,6 +41,11 @@ int main()
 	auto cmdQueue = CommandQueue::create();
 	auto cmdBuffer = CommandBuffer::create();
 
+	Pipeline::Descriptor desc;
+	desc.program = program;
+	desc.vertexBuffer = vertexBuffer;
+	auto pipeline = Pipeline::create(desc);
+
 	bool running = true;
 	window->onClose = [&]() { running = false; };
 	window->onKey = [&](int action, Key key)
@@ -66,7 +71,7 @@ int main()
 		program->use();
 		cmdBuffer->begin();
 		{
-			cmdBuffer->setViewport({0, 0}, window->getSize());
+			cmdBuffer->setViewport({window->getSize()});
 			cmdBuffer->setClearColor({0, 0, 0, 0});
 			cmdBuffer->clear(ClearFlag::Color);
 

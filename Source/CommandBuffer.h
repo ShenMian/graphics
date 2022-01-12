@@ -10,6 +10,7 @@
 class Pipeline;
 class VertexBuffer;
 class IndexBuffer;
+struct Viewport;
 
 struct ClearFlag
 {
@@ -32,7 +33,7 @@ public:
 	virtual void begin() = 0;
 	virtual void end() = 0;
 
-	virtual void setViewport(const Vector2f& origin, const Vector2f& size, const Vector2f& depth = {0.f, 1.f}) = 0;
+	virtual void setViewport(const Viewport& viewport) = 0;
 
 	virtual void setPipeline(std::shared_ptr<Pipeline> pipeline) = 0;
 

@@ -4,6 +4,7 @@
 
 #include "VKCommandBuffer.h"
 #include "../CommandBuffer.h"
+#include "../Viewport.hpp"
 #include "VKRenderer.h"
 
 VKCommandBuffer::VKCommandBuffer()
@@ -39,16 +40,16 @@ void VKCommandBuffer::end()
 		throw std::runtime_error("failed to end command buffer");
 }
 
-void VKCommandBuffer::setViewport(const Vector2f& origin, const Vector2f& size, const Vector2f& depth)
+void VKCommandBuffer::setViewport(const Viewport& viewport)
 {
-	VkViewport viewport;
-	viewport.x = origin.x;
-	viewport.y = origin.y;
-	viewport.width = size.x;
-	viewport.height = size.y;
-	viewport.minDepth = depth.x;
-	viewport.maxDepth = depth.y;
-	vkCmdSetViewport(handle, 0, 1, &viewport);
+	VkViewport vkViewport;
+	vkViewport.x = viewport.x;
+	vkViewport.y = viewport.y;
+	vkViewport.width = viewport.width;
+	vkViewport.height = viewport.height;
+	vkViewport.minDepth = viewport.minDepth;
+	vkViewport.maxDepth = viewport.maxDepth;
+	vkCmdSetViewport(handle, 0, 1, &vkViewport);
 }
 
 void VKCommandBuffer::setPipeline(std::shared_ptr<Pipeline> pipeline)
@@ -57,10 +58,12 @@ void VKCommandBuffer::setPipeline(std::shared_ptr<Pipeline> pipeline)
 
 void VKCommandBuffer::setVertexBuffer(std::shared_ptr<VertexBuffer> vertexBuffer)
 {
+	// vkCmdBindVertexBuffers(handle, );
 }
 
 void VKCommandBuffer::setIndexBuffer(std::shared_ptr<IndexBuffer> indexBuffer)
 {
+	// vkCmdBindIndexBuffer(handle, );
 }
 
 void VKCommandBuffer::clear(uint8_t flags)
