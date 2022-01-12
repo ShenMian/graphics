@@ -14,6 +14,7 @@ var annotated_dup =
     [ "ClearFlag", "struct_clear_flag.html", null ],
     [ "CommandBuffer", "class_command_buffer.html", "class_command_buffer" ],
     [ "CommandQueue", "class_command_queue.html", "class_command_queue" ],
+    [ "Controller", "class_controller.html", "class_controller" ],
     [ "DDSHeader", "struct_d_d_s_header.html", "struct_d_d_s_header" ],
     [ "DDSHeaderDXT10", "struct_d_d_s_header_d_x_t10.html", "struct_d_d_s_header_d_x_t10" ],
     [ "DDSPixelFormat", "struct_d_d_s_pixel_format.html", "struct_d_d_s_pixel_format" ],

@@ -12,6 +12,7 @@ var hierarchy =
       [ "GLCommandQueue", "class_g_l_command_queue.html", null ],
       [ "VKCommandQueue", "class_v_k_command_queue.html", null ]
     ] ],
+    [ "Controller", "class_controller.html", null ],
     [ "DDSHeader", "struct_d_d_s_header.html", null ],
     [ "DDSHeaderDXT10", "struct_d_d_s_header_d_x_t10.html", null ],
     [ "DDSPixelFormat", "struct_d_d_s_pixel_format.html", null ],
