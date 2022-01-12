@@ -1,4 +1,4 @@
-// Copyright 2021 ShenMian
+﻿// Copyright 2021 ShenMian
 // License(Apache-2.0)
 
 #pragma once
@@ -83,11 +83,11 @@ private:
 	 */
 	void processGamepad(float dt);
 
-	Camera* camera;
+	Camera* camera = nullptr;
 	float   speed = 200.f;
 
 	float    smoothness = 9;
 	Vector3f target;
 
-	Gamepad* gamepad;
+	Gamepad* gamepad = nullptr;
 };
