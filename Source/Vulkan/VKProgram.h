@@ -4,17 +4,21 @@
 #pragma once
 
 #include "Program.h"
+#include "Shader.h"
+#include <vulkan/vulkan.h>
 #include <unordered_map>
+#include <vector>
 
 class Shader;
+class VKShader;
 
 class VKProgram : public Program
 {
 public:
-	using handle_type = unsigned int;
-
 	explicit VKProgram(const std::string& name);
 	virtual ~VKProgram();
+
+	std::vector<VkPipelineShaderStageCreateInfo>& getInfos();
 
 	void use() override;
 
@@ -26,10 +30,8 @@ public:
 	void setUniform(const std::string& name, const Matrix4& value) override;
 
 private:
-	int  getUniformLocation(const std::string& name);
-	void attach(const std::shared_ptr<Shader> shader);
-	void link();
+	void addShader(std::shared_ptr<Shader> shader);
 
-	handle_type                          handle;
-	std::unordered_map<std::string, int> uniformLocations;
+	std::unordered_map<Shader::Stage, std::shared_ptr<VKShader>> shaders;
+	std::vector<VkPipelineShaderStageCreateInfo> infos;
 };
