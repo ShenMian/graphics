@@ -42,7 +42,9 @@ var hierarchy =
     [ "Camera::Orthographic", "struct_camera_1_1_orthographic.html", null ],
     [ "Material::PBR", "struct_material_1_1_p_b_r.html", null ],
     [ "Camera::Perspective", "struct_camera_1_1_perspective.html", null ],
-    [ "Pipeline", "class_pipeline.html", null ],
+    [ "Pipeline", "class_pipeline.html", [
+      [ "VKPipeline", "class_v_k_pipeline.html", null ]
+    ] ],
     [ "PipelineLayout", "class_pipeline_layout.html", null ],
     [ "Program", "class_program.html", [
       [ "GLProgram", "class_g_l_program.html", null ],
@@ -69,7 +71,6 @@ var hierarchy =
     ] ],
     [ "VertexLayout", "class_vertex_layout.html", null ],
     [ "VKBuffer", "class_v_k_buffer.html", null ],
-    [ "VKPipeline", "class_v_k_pipeline.html", null ],
     [ "VKUniformBuffer", "class_v_k_uniform_buffer.html", null ],
     [ "ui::Widget", "classui_1_1_widget.html", [
       [ "ui::Button", "classui_1_1_button.html", null ],
