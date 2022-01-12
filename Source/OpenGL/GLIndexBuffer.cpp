@@ -34,7 +34,7 @@ GLIndexBuffer::~GLIndexBuffer()
 void GLIndexBuffer::map()
 {
 	bind();
-	mapped = glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
+	data = glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
 	GLCheckError();
 }
 
@@ -42,7 +42,7 @@ void GLIndexBuffer::unmap()
 {
 	bind();
 	glUnmapBuffer(GL_ARRAY_BUFFER);
-	mapped = nullptr;
+	data = nullptr;
 	GLCheckError();
 }
 

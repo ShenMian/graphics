@@ -39,21 +39,21 @@ VKBuffer::~VKBuffer()
 VkResult VKBuffer::map(VkDeviceSize size, VkDeviceSize offset)
 {
 	auto& device = renderer->getDevice();
-	return vkMapMemory(device, memory, offset, size, 0, &mapped);
+	return vkMapMemory(device, memory, offset, size, 0, &data);
 }
 
 void VKBuffer::unmap()
 {
 	auto& device = renderer->getDevice();
-	if(mapped == nullptr)
+	if(data == nullptr)
 		return;
 	vkUnmapMemory(device, memory);
-	mapped = nullptr;
+	data = nullptr;
 }
 
 void* VKBuffer::getData()
 {
-	return mapped;
+	return data;
 }
 
 uint32_t VKBuffer::findMemoryType(uint32_t type, VkMemoryPropertyFlags properties)

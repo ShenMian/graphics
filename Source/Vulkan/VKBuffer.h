@@ -33,7 +33,7 @@ private:
 
 	VkBuffer       buffer;
 	VkDeviceMemory memory;
-	void*          mapped = nullptr;
+	void*          data = nullptr;
 
 	VKRenderer* renderer;
 };

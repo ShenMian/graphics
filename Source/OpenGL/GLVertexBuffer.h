@@ -21,6 +21,6 @@ public:
 
 private:
 	GLuint        handle;
-	void*         mapped = nullptr;
+	void*         data = nullptr;
 	GLVertexArray vao;
 };
