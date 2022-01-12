@@ -36,9 +36,9 @@ VKVertexBuffer::VKVertexBuffer(const void* data, size_t size, uint32_t count, co
 
 	VkPipelineVertexInputStateCreateInfo info = {};
 	info.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
-	info.vertexBindingDescriptionCount = bindings.size();
+	info.vertexBindingDescriptionCount = static_cast<uint32_t>(bindings.size());
 	info.pVertexBindingDescriptions = bindings.data();
-	info.vertexAttributeDescriptionCount = attribs.size();
+	info.vertexAttributeDescriptionCount = static_cast<uint32_t>(attribs.size());
 	info.pVertexAttributeDescriptions = attribs.data();
 }
 
