@@ -45,6 +45,7 @@ public:
 		uint32_t   arraySize;
 	};
 
+	PipelineLayout() = default;
 	PipelineLayout(const std::initializer_list<Attribute>& list);
 
 	void addAttribute(Attribute attr);
