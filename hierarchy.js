@@ -43,6 +43,7 @@ var hierarchy =
     [ "Material::PBR", "struct_material_1_1_p_b_r.html", null ],
     [ "Camera::Perspective", "struct_camera_1_1_perspective.html", null ],
     [ "Pipeline", "class_pipeline.html", [
+      [ "GLPipeline", "class_g_l_pipeline.html", null ],
       [ "VKPipeline", "class_v_k_pipeline.html", null ]
     ] ],
     [ "PipelineLayout", "class_pipeline_layout.html", null ],
@@ -50,6 +51,7 @@ var hierarchy =
       [ "GLProgram", "class_g_l_program.html", null ],
       [ "VKProgram", "class_v_k_program.html", null ]
     ] ],
+    [ "RasterizerDescriptor", "struct_rasterizer_descriptor.html", null ],
     [ "Renderer", "class_renderer.html", [
       [ "GLRenderer", "class_g_l_renderer.html", null ],
       [ "VKRenderer", "class_v_k_renderer.html", null ]
@@ -70,6 +72,7 @@ var hierarchy =
       [ "VKVertexBuffer", "class_v_k_vertex_buffer.html", null ]
     ] ],
     [ "VertexLayout", "class_vertex_layout.html", null ],
+    [ "Viewport", "struct_viewport.html", null ],
     [ "VKBuffer", "class_v_k_buffer.html", null ],
     [ "VKUniformBuffer", "class_v_k_uniform_buffer.html", null ],
     [ "ui::Widget", "classui_1_1_widget.html", [
