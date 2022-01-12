@@ -68,22 +68,26 @@ void processGamepad(Camera& cam, Gamepad& gamepad, float dt)
 
 void processKeyboard(Camera& cam, float dt)
 {
-	float speed = 100.0f * dt;
+	float speed = 500.0f * dt;
 	if(Input::isPressed(Key::LeftShift))
 		speed *= 3;
 
+	static Vector3f pos = cam.getPosition();
+
 	if(Input::isPressed(Key::W))
-		moveForward(cam, speed);
+		pos += cam.getFront() * speed;
 	if(Input::isPressed(Key::S))
-		moveForward(cam, -speed);
+		pos -= cam.getFront() * speed;
 	if(Input::isPressed(Key::A))
-		moveRight(cam, -speed);
+		pos -= cam.getRight() * speed;
 	if(Input::isPressed(Key::D))
-		moveRight(cam, speed);
+		pos += cam.getRight() * speed;
 	if(Input::isPressed(Key::E))
-		moveUp(cam, speed);
+		pos += -Vector3f::unit_y * speed;
 	if(Input::isPressed(Key::Q))
-		moveUp(cam, -speed);
+		pos -= -Vector3f::unit_y * speed;
+
+	cam.setPosition(Vector3f::lerp(cam.getPosition(), pos, dt * 9));
 }
 
 void processMouse(Camera& cam, float dt)
@@ -177,18 +181,14 @@ int main()
 					break;
 
 				case Key::P:
-					model.compress();
-					break;
-
-				case Key::O:
-					model.decompress();
+					window->setCursorLock(false);
 					break;
 				}
 			}
 		};
 		window->onScroll = [&](Vector2d offset)
 		{
-			static float fov = 45.f;
+			static float fov = camera.getVFOV();
 			if(1.f <= fov && fov <= 60.f)
 				fov -= (float)offset.y * 3 * (fov / 60);
 			fov = std::clamp(fov, 1.f, 60.f);
@@ -207,12 +207,26 @@ int main()
 		ui::Label label0("camera");
 		ui::Label label1("");
 		ui::Label label2("");
-		ui::Button btn("Button");
+		ui::Button compress("Compress");
+		compress.on = [&](ui::Button& btn) {
+			static bool compressed = false;
+			if(!compressed)
+			{
+				model.compress();
+				btn.setLabel("Decompress");
+			}
+			else
+			{
+				model.decompress();
+				btn.setLabel("Compress");
+			}
+		};
+
 		ui::Menu menu("File");
 		win.add(label0);
 		win.add(label1);
 		win.add(label2);
-		win.add(btn);
+		win.add(compress);
 		win.add(menu);
 
 		Gamepad gamepad(0);
@@ -220,8 +234,8 @@ int main()
 		Timer timer;
 		while(running)
 		{
-			processInput(camera, gamepad);
-			// processInput(camera, gamepad, timer.getSeconds());
+			const float dt = timer.getSeconds();
+			processInput(camera, gamepad, dt);
 			timer.restart();
 
 			UI::begin();
