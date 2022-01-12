@@ -17,9 +17,9 @@ project "shaderc"
 	includedirs {
 		"shaderc/libshaderc/include",
 		"shaderc/libshaderc_util/include",
-		"%{thirdparty.glslang}",
-		"%{thirdparty.spirv_tools}/include",
-		"%{thirdparty.spirv_headers}/include"}
+		"%{deps.glslang}",
+		"%{deps.spirv_tools}/include",
+		"%{deps.spirv_headers}/include"}
 
 	filter "configurations:Debug"
 		runtime "Debug"

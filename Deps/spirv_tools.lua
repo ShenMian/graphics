@@ -12,7 +12,7 @@ project "spirv_tools"
 	includedirs {
 		"SPIRV-Tools",
 		"SPIRV-Tools/include",
-		"%{thirdparty.spirv_headers}/include"}
+		"%{deps.spirv_headers}/include"}
 
 	filter "configurations:Debug"
 		runtime "Debug"
