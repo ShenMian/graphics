@@ -1,11 +1,11 @@
-﻿// Copyright 2021 SMS
-// License(Apache-2.0)
-
 #version 450
+
+// Copyright 2021 SMS
+// License(Apache-2.0)
 
 layout (location = 0) out vec4 frag_color;
 
-in Out
+layout (location = 0) in Out
 {
     vec3 position;
     vec3 color;
