@@ -9,110 +9,6 @@ using namespace std::literals::string_literals;
 
 void PrintInfo();
 
-void moveForward(Camera& cam, float step)
-{
-	cam.setPosition(cam.getPosition() + cam.getFront() * step);
-}
-
-void moveRight(Camera& cam, float step)
-{
-	cam.setPosition(cam.getPosition() + cam.getRight() * step);
-}
-
-void moveUp(Camera& cam, float step)
-{
-	cam.setPosition(cam.getPosition() + -Vector3f::unit_y * step);
-}
-
-void lookUp(Camera& cam, float step)
-{
-	auto rot = cam.getRotation();
-	rot.x += step;
-	rot.x = std::clamp(rot.x, -89.f, 89.f);
-	cam.setRotation(rot);
-}
-
-void turnRight(Camera& cam, float step)
-{
-	auto rot = cam.getRotation();
-	rot.y += step;
-	cam.setRotation(rot);
-}
-
-void processGamepad(Camera& cam, Gamepad& gamepad, float dt)
-{
-	if(!gamepad.isConnected())
-		return;
-
-	gamepad.update();
-
-	float speed = 100.0f * dt;
-	if(gamepad.get(Gamepad::Button::LeftThumb))
-		speed *= 3;
-
-	const Vector2f sensitivity = Vector2f::unit * 150.f * dt;
-
-	const auto leftThumb = gamepad.get(Gamepad::Thumb::left);
-	const auto rightThumb = gamepad.get(Gamepad::Thumb::right);
-	const auto rightTrigger = gamepad.get(Gamepad::Trigger::right);
-	const auto leftTrigger = gamepad.get(Gamepad::Trigger::left);
-
-	moveForward(cam, -leftThumb.y * speed);
-	moveRight(cam, leftThumb.x * speed);
-
-	lookUp(cam, -rightThumb.y * sensitivity.x);
-	turnRight(cam, rightThumb.x * sensitivity.y);
-
-	moveUp(cam, (rightTrigger + (-leftTrigger)) * speed);
-}
-
-void processKeyboard(Camera& cam, float dt)
-{
-	float speed = 500.0f * dt;
-	if(Input::isPressed(Key::LeftShift))
-		speed *= 3;
-
-	static Vector3f pos = cam.getPosition();
-
-	if(Input::isPressed(Key::W))
-		pos += cam.getFront() * speed;
-	if(Input::isPressed(Key::S))
-		pos -= cam.getFront() * speed;
-	if(Input::isPressed(Key::A))
-		pos -= cam.getRight() * speed;
-	if(Input::isPressed(Key::D))
-		pos += cam.getRight() * speed;
-	if(Input::isPressed(Key::E))
-		pos += -Vector3f::unit_y * speed;
-	if(Input::isPressed(Key::Q))
-		pos -= -Vector3f::unit_y * speed;
-
-	cam.setPosition(Vector3f::lerp(cam.getPosition(), pos, dt * 9));
-}
-
-void processMouse(Camera& cam, float dt)
-{
-	const Vector2f sensitivity = Vector2f::unit * 8.f * dt;
-
-	const auto position = Input::getMousePosition();
-	static Vector2f lastPos = position;
-	const auto pos = static_cast<Vector2f>(position);
-	Vector2f offset = pos - lastPos;
-	lastPos = pos;
-	offset.x *= sensitivity.x;
-	offset.y *= sensitivity.y;
-
-	lookUp(cam, -offset.y);
-	turnRight(cam, offset.x);
-}
-
-void processInput(Camera& cam, Gamepad& gamepad, float dt = 0.01f)
-{
-	processGamepad(cam, gamepad, dt);
-	processKeyboard(cam, dt);
-	processMouse(cam, dt);
-}
-
 int main()
 {
 	try
@@ -129,7 +25,7 @@ int main()
 
 		PrintInfo();
 
-#if 0
+		/*
 		const std::vector<Image> images = {
 			{"../../../3DModel/skybox/cube/right.jpg"},
 			{"../../../3DModel/skybox/cube/left.jpg"},
@@ -142,12 +38,12 @@ int main()
 		auto program = Program::create("Shaders/skybox");
 		cubemap->bind(0);
 		program->setUniform("cubemap", 0);
-#endif
+		*/
 
 		Model model;
 		// model.load("../../../3DModel/basic/cube.obj");
-		model.load("../../../3DModel/scene/Crytek_Sponza/sponza.obj", Model::Process::Fast);
-		// model.load("../../../3DModel/weapon/m4a1/m4a1.gltf", Model::Process::Fast);
+		// model.load("../../../3DModel/scene/Crytek_Sponza/sponza.obj", Model::Process::Fast);
+		model.load("../../../3DModel/weapon/m4a1/m4a1.gltf", Model::Process::Fast);
 		// model.load("../../../3DModel/scene/Amazon_Lumberyard_Bistro/Exterior/exterior.obj", Model::Process::Fast);
 		// model.load("../../../3DModel/scene/San_Miguel/san-miguel-low-poly.obj", Model::Process::Fast);
 		// model.load("../../../3DModel/scene/SunTemple/SunTemple.fbx", Model::Process::Fast); // 暂不支持 DDS 格式的纹理资源
@@ -163,6 +59,11 @@ int main()
 
 		Camera camera(Camera::Type::Perspective);
 		camera.setPerspective(radians(45.f), (float)window->getSize().x / window->getSize().y, 0.1f, 5000.f);
+
+		Controller controller;
+		controller.setCamera(camera);
+		Gamepad gamepad(0);
+		controller.setGamepad(gamepad);
 
 		bool running = true;
 		window->onClose = [&]() { running = false; };
@@ -229,13 +130,11 @@ int main()
 		win.add(compress);
 		win.add(menu);
 
-		Gamepad gamepad(0);
-
 		Timer timer;
 		while(running)
 		{
 			const float dt = timer.getSeconds();
-			processInput(camera, gamepad, dt);
+			controller.update(dt);
 			timer.restart();
 
 			UI::begin();
@@ -246,7 +145,7 @@ int main()
 			label2.setText("  rotation: " + std::to_string(dir.x) + ", " + std::to_string(dir.y) + ", " + std::to_string(dir.z));
 			win.update();
 
-			program->setUniform("model", Matrix4f::createTranslate({0, 0, 0}));
+			program->setUniform("model", Matrix4f());
 			program->setUniform("view", camera.getView());
 			program->setUniform("projection", camera.getProjection());
 

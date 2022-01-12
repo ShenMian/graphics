@@ -22,6 +22,7 @@
 #include "Core/Image.h"
 #include "Core/Timer.hpp"
 #include "Core/RID.hpp"
+#include "Core/Controller.h"
 
 #include "UI/UI.h"
 #include "UI/Window.h"
