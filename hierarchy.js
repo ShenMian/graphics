@@ -18,6 +18,7 @@ var hierarchy =
     [ "DDSPixelFormat", "struct_d_d_s_pixel_format.html", null ],
     [ "Pipeline::Descriptor", "struct_pipeline_1_1_descriptor.html", null ],
     [ "Gamepad", "class_gamepad.html", null ],
+    [ "GLBuffer", "class_g_l_buffer.html", null ],
     [ "GLCmdClear", "struct_g_l_cmd_clear.html", null ],
     [ "GLCmdDraw", "struct_g_l_cmd_draw.html", null ],
     [ "GLCmdDrawIndexed", "struct_g_l_cmd_draw_indexed.html", null ],

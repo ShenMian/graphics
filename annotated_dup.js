@@ -19,6 +19,7 @@ var annotated_dup =
     [ "DDSHeaderDXT10", "struct_d_d_s_header_d_x_t10.html", "struct_d_d_s_header_d_x_t10" ],
     [ "DDSPixelFormat", "struct_d_d_s_pixel_format.html", "struct_d_d_s_pixel_format" ],
     [ "Gamepad", "class_gamepad.html", "class_gamepad" ],
+    [ "GLBuffer", "class_g_l_buffer.html", "class_g_l_buffer" ],
     [ "GLCmdClear", "struct_g_l_cmd_clear.html", "struct_g_l_cmd_clear" ],
     [ "GLCmdDraw", "struct_g_l_cmd_draw.html", "struct_g_l_cmd_draw" ],
     [ "GLCmdDrawIndexed", "struct_g_l_cmd_draw_indexed.html", "struct_g_l_cmd_draw_indexed" ],

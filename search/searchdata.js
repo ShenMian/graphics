@@ -1,13 +1,13 @@
 var indexSectionsWithContent =
 {
-  0: "abcdfghiklmoprstuvw~主快摄核模着",
+  0: "abcdfghiklmnoprstuvw~主快核模着",
   1: "abcdghilmoprstuvw",
   2: "cfgilmrsuw~",
   3: "o",
-  4: "bkmt",
-  5: "lr",
+  4: "bfkmstw",
+  5: "bcfglmnprtv",
   6: "核模着",
-  7: "主快摄模"
+  7: "主快"
 };
 
 var indexSectionNames =

@@ -28,7 +28,8 @@ var NAVTREE =
     [ "主页", "index.html", [
       [ "概述", "index.html#autotoc_md5", null ],
       [ "特性", "index.html#autotoc_md6", null ],
-      [ "文档", "index.html#autotoc_md7", null ]
+      [ "文档", "index.html#autotoc_md7", null ],
+      [ "联系", "index.html#autotoc_md8", null ]
     ] ],
     [ "快速入门", "_getting_started.html", [
       [ "用法", "_getting_started.html#autotoc_md0", null ],
@@ -36,13 +37,6 @@ var NAVTREE =
       [ "应用骨架", "_getting_started.html#autotoc_md2", null ],
       [ "输入", "_getting_started.html#autotoc_md3", null ],
       [ "示例", "_getting_started.html#autotoc_md4", null ]
-    ] ],
-    [ "摄像机(Camera)", "md__manual__camera.html", [
-      [ "例子", "md__manual__camera.html#autotoc_md9", null ]
-    ] ],
-    [ "模型(Model)", "md__manual__model.html", [
-      [ "例子", "md__manual__model.html#autotoc_md11", null ],
-      [ "支持的模型格式", "md__manual__model.html#autotoc_md12", null ]
     ] ],
     [ "模块", "modules.html", "modules" ],
     [ "类", "annotated.html", [
@@ -65,8 +59,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_button_8h_source.html",
-"class_mesh.html#a1de6ddafe5332dc72cacdf891c0fd29a",
-"classui_1_1_window.html#acbdd3bbb5f6467b9d941637e3df7ef7da152773a0eed26614acadbce728387f6e"
+"class_material.html#aaf9dcab77aa45218b0b426a01ef68e0c",
+"classui_1_1_widget.html#aef6ac0b590baf53654ebbdedc3c38882"
 ];
 
 var SYNCONMSG = '点击 关闭 面板同步';

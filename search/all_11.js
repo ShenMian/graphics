@@ -1,15 +1,7 @@
 var searchData=
 [
-  ['vertexbuffer_151',['VertexBuffer',['../class_vertex_buffer.html',1,'']]],
-  ['vertexlayout_152',['VertexLayout',['../class_vertex_layout.html',1,'']]],
-  ['viewport_153',['Viewport',['../struct_viewport.html',1,'']]],
-  ['vkbuffer_154',['VKBuffer',['../class_v_k_buffer.html',1,'']]],
-  ['vkcommandbuffer_155',['VKCommandBuffer',['../class_v_k_command_buffer.html',1,'']]],
-  ['vkcommandqueue_156',['VKCommandQueue',['../class_v_k_command_queue.html',1,'']]],
-  ['vkpipeline_157',['VKPipeline',['../class_v_k_pipeline.html',1,'']]],
-  ['vkprogram_158',['VKProgram',['../class_v_k_program.html',1,'']]],
-  ['vkrenderer_159',['VKRenderer',['../class_v_k_renderer.html',1,'']]],
-  ['vkshader_160',['VKShader',['../class_v_k_shader.html',1,'']]],
-  ['vkuniformbuffer_161',['VKUniformBuffer',['../class_v_k_uniform_buffer.html',1,'']]],
-  ['vkvertexbuffer_162',['VKVertexBuffer',['../class_v_k_vertex_buffer.html',1,'']]]
+  ['ui_160',['UI',['../class_u_i.html',1,'']]],
+  ['unmap_161',['unmap',['../class_v_k_buffer.html#aafb4b7d87600c31cb095e20719572472',1,'VKBuffer']]],
+  ['update_162',['update',['../class_controller.html#abff8d731f04eccd93049041c7ee142ce',1,'Controller::update()'],['../class_gamepad.html#ae37f83a954aabbf634e9d6f37697ae58',1,'Gamepad::update()'],['../class_window.html#a59515fc5a56e86d5a46d771595daac55',1,'Window::update()']]],
+  ['updatehandle_163',['updateHandle',['../classui_1_1_widget.html#a00b122fd63f70bbfe501fac5355a6457',1,'ui::Widget']]]
 ];
