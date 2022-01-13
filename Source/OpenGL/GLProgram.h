@@ -12,6 +12,7 @@ class Shader;
 class GLProgram : public Program
 {
 public:
+	GLProgram(const Descriptor& desc);
 	explicit GLProgram(const std::string& name);
 	virtual ~GLProgram();
 

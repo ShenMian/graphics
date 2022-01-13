@@ -8,6 +8,8 @@
 #include <string>
 #include <unordered_map>
 
+class Shader;
+
 /** @addtogroup shader
  *  @{
  */
@@ -18,6 +20,15 @@
 class Program
 {
 public:
+	struct Descriptor;
+
+	/**
+	 * @brief 创建着色器阶段.
+	 *
+	 * @param desc 描述符.
+	 */
+	static std::shared_ptr<Program> create(const Descriptor& desc);
+
 	/**
 	 * @brief 创建着色器程序.
 	 *
@@ -39,10 +50,21 @@ public:
 	int getStageCount() const;
 
 protected:
+	Program(const Descriptor& desc);
+
 	std::string name;
 	int stageCount = 0;
 
 	inline static std::unordered_map<std::string, std::shared_ptr<Program>> cache;
+};
+
+struct Program::Descriptor
+{
+	std::string             name;
+	std::shared_ptr<Shader> vertex;
+	std::shared_ptr<Shader> fragment;
+	std::shared_ptr<Shader> geometry;
+	std::shared_ptr<Shader> compute;
 };
 
 /** @}*/

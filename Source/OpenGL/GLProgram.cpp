@@ -13,6 +13,21 @@
 
 namespace fs = std::filesystem;
 
+GLProgram::GLProgram(const Descriptor& desc)
+	: Program(desc)
+{
+	handle = glCreateProgram();
+
+	if(desc.vertex == nullptr || desc.fragment == nullptr)
+		throw std::runtime_error("program must have vertex shader and fragment shader");
+
+	attach(desc.vertex);
+	attach(desc.fragment);
+	attach(desc.geometry);
+	attach(desc.compute);
+	link();
+}
+
 GLProgram::GLProgram(const std::string& name)
 	: Program(name)
 {
@@ -120,6 +135,8 @@ int GLProgram::getUniformLocation(const std::string& name)
 
 void GLProgram::attach(const std::shared_ptr<Shader> shader)
 {
+	if(shader == nullptr)
+		return;
 	stageCount++;
 	auto glShader = std::dynamic_pointer_cast<GLShader>(shader);
 	glAttachShader(handle, (GLuint)glShader->getNativeHandle());

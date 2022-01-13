@@ -22,6 +22,28 @@ std::unordered_map<Shader::Stage, VkShaderStageFlagBits> VKStage = {
 
 }
 
+VKProgram::VKProgram(const Descriptor& desc)
+	: Program(desc)
+{
+	if(desc.vertex == nullptr || desc.fragment == nullptr)
+		throw std::runtime_error("program must have vertex shader and fragment shader");
+
+	addShader(desc.vertex);
+	addShader(desc.fragment);
+	addShader(desc.geometry);
+	addShader(desc.compute);
+
+	for(auto& [stage, shader] : shaders)
+	{
+		VkPipelineShaderStageCreateInfo info = {};
+		info.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
+		info.stage = VKStage[stage];
+		info.module = shader->getNativeHandle();
+		info.pName = "main";
+		infos.push_back(info);
+	}
+}
+
 VKProgram::VKProgram(const std::string& name)
 	: Program(name)
 {
@@ -58,6 +80,8 @@ std::vector<VkPipelineShaderStageCreateInfo>& VKProgram::getInfos()
 
 void VKProgram::addShader(std::shared_ptr<Shader> shader)
 {
+	if(shader == nullptr)
+		return;
 	shaders.emplace(shader->getStage(), std::dynamic_pointer_cast<VKShader>(shader));
 	stageCount++;
 }
