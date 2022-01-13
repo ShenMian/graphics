@@ -98,17 +98,20 @@ $(document).ready(function(){initNavTree('_v_k_shader_8h_source.html',''); initR
 <div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="class_v_k_shader.html">    9</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_v_k_shader.html">VKShader</a> : <span class="keyword">public</span> <a class="code" href="class_shader.html">Shader</a></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;{</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <a class="code" href="class_v_k_shader.html">VKShader</a>(<span class="keyword">const</span> std::string&amp; name, <a class="code" href="class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8f">Stage</a> stage);</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="class_v_k_shader.html">VKShader</a>();</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    VkShaderModule getNativeHandle();</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <a class="code" href="class_v_k_shader.html">VKShader</a>(<span class="keyword">const</span> <a class="code" href="struct_shader_1_1_descriptor.html">Descriptor</a>&amp; desc);</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="class_v_k_shader.html">VKShader</a>(<span class="keyword">const</span> std::filesystem::path&amp; path, <a class="code" href="class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8f">Stage</a> stage);</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <a class="code" href="class_v_k_shader.html">VKShader</a>(<span class="keyword">const</span> std::string&amp; name, <a class="code" href="class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8f">Stage</a> stage);</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="class_v_k_shader.html">VKShader</a>();</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    VkShaderModule handle;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;};</div>
-<div class="ttc" id="aclass_shader_html"><div class="ttname"><a href="class_shader.html">Shader</a></div><div class="ttdoc">着色器阶段.</div><div class="ttdef"><b>Definition:</b> Shader.h:18</div></div>
-<div class="ttc" id="aclass_shader_html_aa09ca98027dbafd5d37c71f53a6efe8f"><div class="ttname"><a href="class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8f">Shader::Stage</a></div><div class="ttdeci">Stage</div><div class="ttdoc">着色器阶段.</div><div class="ttdef"><b>Definition:</b> Shader.h:24</div></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    VkShaderModule getNativeHandle();</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    VkShaderModule handle;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;};</div>
+<div class="ttc" id="aclass_shader_html"><div class="ttname"><a href="class_shader.html">Shader</a></div><div class="ttdoc">着色器阶段.</div><div class="ttdef"><b>Definition:</b> Shader.h:19</div></div>
+<div class="ttc" id="aclass_shader_html_aa09ca98027dbafd5d37c71f53a6efe8f"><div class="ttname"><a href="class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8f">Shader::Stage</a></div><div class="ttdeci">Stage</div><div class="ttdoc">着色器阶段.</div><div class="ttdef"><b>Definition:</b> Shader.h:25</div></div>
 <div class="ttc" id="aclass_v_k_shader_html"><div class="ttname"><a href="class_v_k_shader.html">VKShader</a></div><div class="ttdef"><b>Definition:</b> VKShader.h:10</div></div>
+<div class="ttc" id="astruct_shader_1_1_descriptor_html"><div class="ttname"><a href="struct_shader_1_1_descriptor.html">Shader::Descriptor</a></div><div class="ttdef"><b>Definition:</b> Shader.h:87</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

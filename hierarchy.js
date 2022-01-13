@@ -17,6 +17,8 @@ var hierarchy =
     [ "DDSHeaderDXT10", "struct_d_d_s_header_d_x_t10.html", null ],
     [ "DDSPixelFormat", "struct_d_d_s_pixel_format.html", null ],
     [ "Pipeline::Descriptor", "struct_pipeline_1_1_descriptor.html", null ],
+    [ "Program::Descriptor", "struct_program_1_1_descriptor.html", null ],
+    [ "Shader::Descriptor", "struct_shader_1_1_descriptor.html", null ],
     [ "Gamepad", "class_gamepad.html", null ],
     [ "GLBuffer", "class_g_l_buffer.html", null ],
     [ "GLCmdClear", "struct_g_l_cmd_clear.html", null ],

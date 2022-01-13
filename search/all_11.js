@@ -1,7 +1,9 @@
 var searchData=
 [
-  ['ui_160',['UI',['../class_u_i.html',1,'']]],
-  ['unmap_161',['unmap',['../class_v_k_buffer.html#aafb4b7d87600c31cb095e20719572472',1,'VKBuffer']]],
-  ['update_162',['update',['../class_controller.html#abff8d731f04eccd93049041c7ee142ce',1,'Controller::update()'],['../class_gamepad.html#ae37f83a954aabbf634e9d6f37697ae58',1,'Gamepad::update()'],['../class_window.html#a59515fc5a56e86d5a46d771595daac55',1,'Window::update()']]],
-  ['updatehandle_163',['updateHandle',['../classui_1_1_widget.html#a00b122fd63f70bbfe501fac5355a6457',1,'ui::Widget']]]
+  ['texture_155',['Texture',['../class_texture.html',1,'']]],
+  ['thumb_156',['Thumb',['../group__core.html#ga3e2204214f53c8d800b8ef7d4d0fab7c',1,'Gamepad']]],
+  ['timer_157',['Timer',['../class_timer.html',1,'']]],
+  ['trigger_158',['Trigger',['../group__core.html#ga814093b43f211a291b19ccf662096738',1,'Gamepad']]],
+  ['trilinear_159',['Trilinear',['../class_texture.html#a55341847b37906ddffa803675617da27a969a7b6f1f3951ef293b3ff281dc293d',1,'Texture']]],
+  ['type_160',['Type',['../class_camera.html#a3b0a1f58deca679ac665f61c480d1dcb',1,'Camera']]]
 ];
