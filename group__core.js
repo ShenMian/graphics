@@ -97,6 +97,7 @@ var group__core =
       [ "onFocus", "class_window.html#af2120860368ee5222fd0c793c843efe3", null ],
       [ "onKey", "class_window.html#a87e919a7c80de8abd0e25aedfc118c54", null ],
       [ "onMouse", "class_window.html#aa01114a03f013eda4288c26692938be6", null ],
+      [ "onMouseEnter", "class_window.html#a1a63223e6c0b5c0ce7660cfa970cae6b", null ],
       [ "onMouseMove", "class_window.html#aeecee346966a4459acc2e035e44b1ce1", null ],
       [ "onResize", "class_window.html#a571576b54d53d0dce7a30baa58b6e812", null ],
       [ "onScroll", "class_window.html#adcfa42568fc483d6819b0b487f55efbf", null ]
@@ -105,5 +106,8 @@ var group__core =
     [ "Key", "group__core.html#gab3c7af4820830f9166ede9e5623c4e73", null ],
     [ "Mouse", "group__core.html#ga6823a62e33fc2bc26d3dba7283e65cc9", null ],
     [ "Thumb", "group__core.html#ga3e2204214f53c8d800b8ef7d4d0fab7c", null ],
-    [ "Trigger", "group__core.html#ga814093b43f211a291b19ccf662096738", null ]
+    [ "Trigger", "group__core.html#ga814093b43f211a291b19ccf662096738", [
+      [ "left", "group__core.html#gga814093b43f211a291b19ccf662096738a811882fecd5c7618d7099ebbd39ea254", null ],
+      [ "right", "group__core.html#gga814093b43f211a291b19ccf662096738a7c4f29407893c334a6cb7a87bf045c0d", null ]
+    ] ]
 ];

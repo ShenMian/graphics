@@ -105,10 +105,10 @@ Public 类型</h2></td></tr>
  }</td></tr>
 <tr class="memdesc:ga3e2204214f53c8d800b8ef7d4d0fab7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">手柄摇杆. <br /></td></tr>
 <tr class="separator:ga3e2204214f53c8d800b8ef7d4d0fab7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga814093b43f211a291b19ccf662096738"><td class="memItemLeft" align="right" valign="top"><a id="ga814093b43f211a291b19ccf662096738"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__core.html#ga814093b43f211a291b19ccf662096738">Trigger</a> { <b>left</b>
-, <b>right</b>
+<tr class="memitem:ga814093b43f211a291b19ccf662096738"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__core.html#ga814093b43f211a291b19ccf662096738">Trigger</a> { <a class="el" href="group__core.html#gga814093b43f211a291b19ccf662096738a811882fecd5c7618d7099ebbd39ea254">left</a>
+, <a class="el" href="group__core.html#gga814093b43f211a291b19ccf662096738a7c4f29407893c334a6cb7a87bf045c0d">right</a>
  }</td></tr>
-<tr class="memdesc:ga814093b43f211a291b19ccf662096738"><td class="mdescLeft">&#160;</td><td class="mdescRight">手柄线性按键. <br /></td></tr>
+<tr class="memdesc:ga814093b43f211a291b19ccf662096738"><td class="mdescLeft">&#160;</td><td class="mdescRight">手柄线性按键.  <a href="group__core.html#ga814093b43f211a291b19ccf662096738">更多...</a><br /></td></tr>
 <tr class="separator:ga814093b43f211a291b19ccf662096738"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga0f09c7e25e2059e68148d494ed9449b1"><td class="memItemLeft" align="right" valign="top"><a id="ga0f09c7e25e2059e68148d494ed9449b1"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__core.html#ga0f09c7e25e2059e68148d494ed9449b1">Button</a> : uint8_t { <br />
 &#160;&#160;<b>A</b> = 0
@@ -159,7 +159,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memdesc:aaf38c3534ec0ee1751b47e031bcccea1"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取原始摇杆数据.  <a href="class_gamepad.html#aaf38c3534ec0ee1751b47e031bcccea1">更多...</a><br /></td></tr>
 <tr class="separator:aaf38c3534ec0ee1751b47e031bcccea1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff13c015ca3a1c720ef8b2a87ff941f7"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gamepad.html#aff13c015ca3a1c720ef8b2a87ff941f7">get</a> (<a class="el" href="group__core.html#ga814093b43f211a291b19ccf662096738">Trigger</a> trigger) const</td></tr>
-<tr class="memdesc:aff13c015ca3a1c720ef8b2a87ff941f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取线性按键数据.  <a href="class_gamepad.html#aff13c015ca3a1c720ef8b2a87ff941f7">更多...</a><br /></td></tr>
+<tr class="memdesc:aff13c015ca3a1c720ef8b2a87ff941f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取线性按键力度.  <a href="class_gamepad.html#aff13c015ca3a1c720ef8b2a87ff941f7">更多...</a><br /></td></tr>
 <tr class="separator:aff13c015ca3a1c720ef8b2a87ff941f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9d1249f8947d85c23843c2dc934c9e70"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gamepad.html#a9d1249f8947d85c23843c2dc934c9e70">getRaw</a> (<a class="el" href="group__core.html#ga814093b43f211a291b19ccf662096738">Trigger</a> trigger) const</td></tr>
 <tr class="memdesc:a9d1249f8947d85c23843c2dc934c9e70"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取原始线性按键数据.  <a href="class_gamepad.html#a9d1249f8947d85c23843c2dc934c9e70">更多...</a><br /></td></tr>
@@ -189,7 +189,24 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>deinit</b> ()<
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p>游戏手柄. </p>
-</div><h2 class="groupheader">成员函数说明</h2>
+<p>获取手柄的按键状态, 摇杆数据和设备名称.</p>
+<div class="fragment"><div class="line"><a class="code" href="class_gamepad.html">Gamepad</a> gamepad; <span class="comment">// 如果使用一个手柄, 可以直接使用默认构造函数</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keywordflow">if</span>(!gamepad.<a class="code" href="class_gamepad.html#a33d4dbd503a8d645885bd19cbc390a91">isConnected</a>()) <span class="comment">// 检测手柄是否处于连接状态</span></div>
+<div class="line">    <span class="keywordflow">return</span>;</div>
+<div class="line"> </div>
+<div class="line">gamepad.<a class="code" href="class_gamepad.html#ae37f83a954aabbf634e9d6f37697ae58">update</a>(); <span class="comment">// 更新手柄数据, 获取按键/摇杆数据前需要先更新</span></div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// 获取手柄按键/摇杆数据的成员函数名称是 get, 但是它们的返回值是不一样的.</span></div>
+<div class="line"><span class="keywordtype">bool</span>     pressed   = gamepad.<a class="code" href="class_gamepad.html#aace04775bce81c450f0096793f6fd199">get</a>(Gamepad::Button::A))     <span class="comment">// 获取按键 A 是否按下</span></div>
+<div class="line"><span class="keywordtype">float</span>    magnitude = gamepad.<a class="code" href="class_gamepad.html#aace04775bce81c450f0096793f6fd199">get</a>(<a class="code" href="group__core.html#gga814093b43f211a291b19ccf662096738a811882fecd5c7618d7099ebbd39ea254">Gamepad::Trigger::left</a>); <span class="comment">// 获取左侧线性按键(LT)按力度</span></div>
+<div class="line">Vector2f position  = gamepad.<a class="code" href="class_gamepad.html#aace04775bce81c450f0096793f6fd199">get</a>(Gamepad::Thumb::left);   <span class="comment">// 获取左侧摇杆数据</span></div>
+<div class="ttc" id="aclass_gamepad_html"><div class="ttname"><a href="class_gamepad.html">Gamepad</a></div><div class="ttdoc">游戏手柄.</div><div class="ttdef"><b>Definition:</b> Gamepad.h:18</div></div>
+<div class="ttc" id="aclass_gamepad_html_a33d4dbd503a8d645885bd19cbc390a91"><div class="ttname"><a href="class_gamepad.html#a33d4dbd503a8d645885bd19cbc390a91">Gamepad::isConnected</a></div><div class="ttdeci">bool isConnected() const</div><div class="ttdoc">检查手柄是否处于连接状态.</div><div class="ttdef"><b>Definition:</b> Gamepad.cpp:99</div></div>
+<div class="ttc" id="aclass_gamepad_html_aace04775bce81c450f0096793f6fd199"><div class="ttname"><a href="class_gamepad.html#aace04775bce81c450f0096793f6fd199">Gamepad::get</a></div><div class="ttdeci">Vector2f get(Thumb thumb) const</div><div class="ttdoc">获取摇杆数据.</div><div class="ttdef"><b>Definition:</b> Gamepad.cpp:36</div></div>
+<div class="ttc" id="aclass_gamepad_html_ae37f83a954aabbf634e9d6f37697ae58"><div class="ttname"><a href="class_gamepad.html#ae37f83a954aabbf634e9d6f37697ae58">Gamepad::update</a></div><div class="ttdeci">void update()</div><div class="ttdoc">更新数据.</div><div class="ttdef"><b>Definition:</b> Gamepad.cpp:14</div></div>
+<div class="ttc" id="agroup__core_html_gga814093b43f211a291b19ccf662096738a811882fecd5c7618d7099ebbd39ea254"><div class="ttname"><a href="group__core.html#gga814093b43f211a291b19ccf662096738a811882fecd5c7618d7099ebbd39ea254">Gamepad::Trigger::left</a></div><div class="ttdeci">@ left</div><div class="ttdoc">左侧线性按键, 即 LT.</div></div>
+</div><!-- fragment --> </div><h2 class="groupheader">成员函数说明</h2>
 <a id="a9791f37d4d4a3e8041c6bd309950074d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9791f37d4d4a3e8041c6bd309950074d">&#9670;&nbsp;</a></span>get() <span class="overload">[1/3]</span></h2>
 
@@ -262,14 +279,14 @@ false 按键抬起. </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>获取线性按键数据. </p>
+<p>获取线性按键力度. </p>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
     <tr><td class="paramname">trigger</td><td>线性按键. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>返回</dt><dd>float 范围: [0, 1] </dd></dl>
+<dl class="section return"><dt>返回</dt><dd>float 0 表示没有按下, 范围: [0, 1] </dd></dl>
 
 </div>
 </div>
@@ -297,6 +314,7 @@ false 按键抬起. </dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>返回</dt><dd>Vector2f 范围: [-1, 1] </dd></dl>
+<dl class="section warning"><dt>警告</dt><dd>不建议使用. </dd></dl>
 
 </div>
 </div>
@@ -323,7 +341,8 @@ false 按键抬起. </dd></dl>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>返回</dt><dd>float 范围: [0, 1] </dd></dl>
+<dl class="section return"><dt>返回</dt><dd>float 0 表示没有按下, 范围: [0, 1] </dd></dl>
+<dl class="section warning"><dt>警告</dt><dd>不建议使用. </dd></dl>
 
 </div>
 </div>
