@@ -46,3 +46,8 @@ protected:
 };
 
 /** @}*/
+
+/**
+ * @class Program
+ * @details 包含若干着色器阶段.
+ */

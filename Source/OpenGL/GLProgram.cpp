@@ -111,8 +111,7 @@ int GLProgram::getUniformLocation(const std::string& name)
 	{
 		const auto location = glGetUniformLocation(handle, name.c_str());
 		if(location == -1)
-			// std::format("uniform '{}' doesn't exist", name)
-			throw std::runtime_error("uniform doesn't exist:" + name);
+			throw std::invalid_argument("uniform name");
 		uniformLocations[name] = location;
 		return location;
 	}

@@ -17,6 +17,9 @@ public:
 		Metal
 	};
 
+	/**
+	 * @brief 获取单例.
+	 */
 	static Renderer* get();
 
 	/**
