@@ -4,26 +4,24 @@
 #include "GLUniformBuffer.h"
 
 GLUniformBuffer::GLUniformBuffer(size_t size)
+	: buffer(size, GL_UNIFORM_BUFFER)
 {
-	glCreateBuffers(1, &handle);
-	bind();
-	glBufferData(GL_UNIFORM_BUFFER, size, nullptr, GL_STATIC_DRAW);
+	auto blockIndex = glGetUniformBlockIndex();
+	if(blockIndex == GL_INVALID_INDEX)
+		;
+	glUniformBlockBinding(program, blockIndex, binding);
 
-	glBindBufferRange(GL_UNIFORM_BUFFER, 0, handle, 0, size);
-}
-
-GLUniformBuffer::~GLUniformBuffer()
-{
-	glDeleteBuffers(1, &handle);
+	glBindBufferBase(GL_UNIFORM_BUFFER, blockIndex, buffer);
 }
 
 void GLUniformBuffer::write(const void* data, size_t size, size_t offset)
 {
-	bind();
-	glBufferSubData(GL_UNIFORM_BUFFER, offset, size, data);
+	buffer.map();
+	buffer.write(data, size, offset);
+	buffer.unmap();
 }
 
 void GLUniformBuffer::bind()
 {
-	glBindBuffer(GL_UNIFORM_BUFFER, handle);
+	buffer.bind();
 }
