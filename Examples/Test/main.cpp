@@ -92,7 +92,7 @@ int main()
 		};
 		window->onScroll = [&](Vector2d offset)
 		{
-			static float fov = camera.getVFOV();
+			static float fov = degrees(camera.getVFOV());
 			if(1.f <= fov && fov <= 60.f)
 				fov -= (float)offset.y * 3 * (fov / 60);
 			fov = std::clamp(fov, 1.f, 60.f);
