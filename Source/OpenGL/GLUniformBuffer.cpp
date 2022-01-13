@@ -6,12 +6,14 @@
 GLUniformBuffer::GLUniformBuffer(size_t size)
 	: buffer(size, GL_UNIFORM_BUFFER)
 {
+	/*
 	auto blockIndex = glGetUniformBlockIndex();
 	if(blockIndex == GL_INVALID_INDEX)
 		;
 	glUniformBlockBinding(program, blockIndex, binding);
 
 	glBindBufferBase(GL_UNIFORM_BUFFER, blockIndex, buffer);
+	*/
 }
 
 void GLUniformBuffer::write(const void* data, size_t size, size_t offset)
