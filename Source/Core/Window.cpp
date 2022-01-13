@@ -193,6 +193,13 @@ void Window::setupCallbacks()
 			handle->onMouseMove({x, y});
 	});
 
+	glfwSetCursorEnterCallback(handle, [](GLFWwindow* native, int entered)
+	{
+		const auto handle = static_cast<Window*>(glfwGetWindowUserPointer(native));
+		if(handle->onMouseEnter)
+			handle->onMouseEnter(entered);
+	});
+
 	glfwSetMouseButtonCallback(handle, [](GLFWwindow* native, int button, int action, int mods)
 	{
 		const auto handle = static_cast<Window*>(glfwGetWindowUserPointer(native));
