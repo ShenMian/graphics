@@ -40,15 +40,34 @@ int main()
 		program->setUniform("cubemap", 0);
 		*/
 
-		Model model;
-		// model.load("../../../3DModel/basic/cube.obj");
-		// model.load("../../../3DModel/scene/Crytek_Sponza/sponza.obj", Model::Process::Fast);
-		model.load("../../../3DModel/weapon/m4a1/m4a1.gltf", Model::Process::Fast);
-		// model.load("../../../3DModel/scene/Amazon_Lumberyard_Bistro/Exterior/exterior.obj", Model::Process::Fast);
-		// model.load("../../../3DModel/scene/San_Miguel/san-miguel-low-poly.obj", Model::Process::Fast);
-		// model.load("../../../3DModel/scene/SunTemple/SunTemple.fbx", Model::Process::Fast); // 暂不支持 DDS 格式的纹理资源
+		const std::filesystem::path path = "../../../3DModel";
 
-		auto program = Program::create("Shaders/pbr");
+		Model model;
+		// model.load(path / "pbr/MetalRoughSpheres/MetalRoughSpheres.gltf");
+		// model.load(path / "pbr/DamagedHelmet/DamagedHelmet.gltf");
+		// model.load(path / "basic/cube.obj");
+		// model.load(path / "scene/Crytek_Sponza/sponza.obj", Model::Process::Fast);
+		model.load(path / "weapon/m4a1/m4a1.gltf", Model::Process::Fast);
+		// model.load(path / "scene/Amazon_Lumberyard_Bistro/Exterior/exterior.obj", Model::Process::Fast);
+		// model.load(path / "3DModel/scene/San_Miguel/san-miguel-low-poly.obj", Model::Process::Fast);
+		// model.load(path / "3DModel/scene/SunTemple/SunTemple.fbx", Model::Process::Fast); // 暂不支持 DDS 格式的纹理资源
+
+		Program::Descriptor programDesc;
+		{
+			Shader::Descriptor vertShaderDesc;
+			vertShaderDesc.stage = Shader::Stage::Vertex;
+			vertShaderDesc.path = "Shaders/pbr.vert.glsl";
+			programDesc.vertex = Shader::create(vertShaderDesc);
+
+			Shader::Descriptor fragShaderDesc;
+			fragShaderDesc.stage = Shader::Stage::Fragment;
+			fragShaderDesc.path = "Shaders/pbr.frag.glsl";
+			programDesc.fragment = Shader::create(fragShaderDesc);
+		}
+		auto program = Program::create(programDesc);
+
+		// auto program = Program::create("Shaders/pbr");
+
 		PipelineLayout layout = {
 			{"albedo", PipelineLayout::Type::Texture, 0, PipelineLayout::StageFlags::Fragment}
 		};
