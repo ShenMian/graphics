@@ -46,14 +46,15 @@ public:
 	 *
 	 * @param thumb 摇杆.
 	 * @return Vector2f 范围: [-1, 1]
+	 * @warning 不建议使用.
 	 */
 	Vector2f getRaw(Thumb thumb) const;
 
 	/**
-	 * @brief 获取线性按键数据.
+	 * @brief 获取线性按键力度.
 	 *
 	 * @param trigger 线性按键.
-	 * @return float 范围: [0, 1]
+	 * @return float 0 表示没有按下, 范围: [0, 1]
 	 */
 	float get(Trigger trigger) const;
 
@@ -61,7 +62,8 @@ public:
 	 * @brief 获取原始线性按键数据.
 	 *
 	 * @param trigger 线性按键.
-	 * @return float 范围: [0, 1]
+	 * @return float 0 表示没有按下, 范围: [0, 1]
+	 * @warning 不建议使用.
 	 */
 	float getRaw(Trigger trigger) const;
 
@@ -117,8 +119,8 @@ enum class Gamepad::Thumb
  */
 enum class Gamepad::Trigger
 {
-	left,
-	right
+	left,  ///< 左侧线性按键, 即 LT.
+	right  ///< 右侧线性按键, 即 RT.
 };
 
 /**
@@ -153,3 +155,23 @@ enum class Gamepad::Button : uint8_t
 };
 
 /** @}*/
+
+/**
+ * @class Gamepad
+ *
+ * @details 获取手柄的按键状态, 摇杆数据和设备名称.
+ *
+ * ```cpp
+ * Gamepad gamepad; // 如果使用一个手柄, 可以直接使用默认构造函数
+ *
+ * if(!gamepad.isConnected()) // 检测手柄是否处于连接状态
+ * 	return;
+ *
+ * gamepad.update(); // 更新手柄数据, 获取按键/摇杆数据前需要先更新
+ *
+ * // 获取手柄按键/摇杆数据的成员函数名称是 get, 但是它们的返回值是不一样的.
+ * bool     pressed   = gamepad.get(Gamepad::Button::A))     // 获取按键 A 是否按下
+ * float    magnitude = gamepad.get(Gamepad::Trigger::left); // 获取左侧线性按键(LT)按力度
+ * Vector2f position  = gamepad.get(Gamepad::Thumb::left);   // 获取左侧摇杆数据
+ * ```
+ */
