@@ -10,6 +10,64 @@
 
 namespace fs = std::filesystem;
 
+VKShader::VKShader(const Descriptor& desc)
+	: Shader(desc)
+{
+	auto renderer = reinterpret_cast<VKRenderer*>(Renderer::get());
+
+	if(!fs::exists(desc.path))
+		throw std::runtime_error("file not found: " + desc.path.string());
+
+	// 读取文件内容
+	const auto fileSize = fs::file_size(desc.path);
+	std::ifstream file(desc.path, std::ios::binary);
+	if(!file.is_open())
+		throw std::runtime_error("failed to open file: " + desc.path.string());
+
+	std::vector<char> buffer(fileSize);
+	file.read(buffer.data(), fileSize);
+	if(!file.good() || file.gcount() != fileSize)
+		throw std::runtime_error("failed to read file: " + desc.path.string());
+	file.close();
+
+	VkShaderModuleCreateInfo info = {};
+	info.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
+	info.codeSize = buffer.size();
+	info.pCode = reinterpret_cast<const uint32_t*>(buffer.data());
+
+	if(vkCreateShaderModule(renderer->getDevice(), &info, nullptr, &handle) != VK_SUCCESS)
+		throw std::runtime_error("failed to create shader module");
+}
+
+VKShader::VKShader(const fs::path& path, Stage stage)
+	: Shader(path.string(), stage)
+{
+	auto renderer = reinterpret_cast<VKRenderer*>(Renderer::get());
+
+	if(!fs::exists(path))
+		throw std::runtime_error("file not found: " + path.string());
+
+	// 读取文件内容
+	const auto fileSize = fs::file_size(path);
+	std::ifstream file(path, std::ios::binary);
+	if(!file.is_open())
+		throw std::runtime_error("failed to open file: " + path.string());
+
+	std::vector<char> buffer(fileSize);
+	file.read(buffer.data(), fileSize);
+	if(!file.good() || file.gcount() != fileSize)
+		throw std::runtime_error("failed to read file: " + path.string());
+	file.close();
+
+	VkShaderModuleCreateInfo info = {};
+	info.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
+	info.codeSize = buffer.size();
+	info.pCode = reinterpret_cast<const uint32_t*>(buffer.data());
+	
+	if(vkCreateShaderModule(renderer->getDevice(), &info, nullptr, &handle) != VK_SUCCESS)
+		throw std::runtime_error("failed to create shader module");
+}
+
 VKShader::VKShader(const std::string& name, Stage stage)
 	: Shader(name, stage)
 {
@@ -21,7 +79,6 @@ VKShader::VKShader(const std::string& name, Stage stage)
 		std::ifstream file(path, std::ios::binary);
 		assert(file.is_open());
 
-		// 读取源代码
 		std::string buffer;
 		buffer.resize(size);
 		file.read(reinterpret_cast<char*>(buffer.data()), size);

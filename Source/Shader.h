@@ -4,6 +4,7 @@
 #pragma once
 
 #include <memory>
+#include <filesystem>
 #include <string>
 #include <unordered_map>
 
@@ -28,6 +29,23 @@ public:
 		Geometry,         ///< 几何着色器.
 		Compute           ///< 计算着色器.
 	};
+
+	struct Descriptor;
+
+	/**
+	 * @brief 创建着色器阶段.
+	 *
+	 * @param desc 描述符.
+	 */
+	static std::shared_ptr<Shader> create(const Descriptor& desc);
+
+	/**
+	 * @brief 创建着色器阶段.
+	 *
+	 * @param path  着色器路径.
+	 * @param stage 着色器阶段.
+	 */
+	static std::shared_ptr<Shader> create(const std::filesystem::path& path, Stage stage);
 
 	/**
 	 * @brief 创建着色器阶段.
@@ -56,12 +74,20 @@ public:
 	Stage getStage() const;
 
 protected:
+	Shader(const Descriptor& desc);
 	virtual ~Shader() = default;
 
 	std::string name;
 	Stage       stage;
 
 	static std::unordered_map<Shader::Stage, const char*> extension;
+};
+
+struct Shader::Descriptor
+{
+	Stage                 stage;
+	std::filesystem::path path;
+	std::string_view      entryPoint = "main"; ///< 入口点.
 };
 
 /** @}*/

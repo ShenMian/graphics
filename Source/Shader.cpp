@@ -14,6 +14,42 @@ std::unordered_map<Shader::Stage, const char*> Shader::extension = {
 	{Shader::Stage::Fragment, "frag"},
 	{Shader::Stage::Compute, "comp"}};
 
+std::shared_ptr<Shader> Shader::create(const Descriptor& desc)
+{
+	switch(Renderer::getAPI())
+	{
+		using enum Renderer::API;
+
+	case OpenGL:
+		return std::make_shared<GLShader>(desc);
+
+	case Vulkan:
+		return std::make_shared<VKShader>(desc);
+
+	default:
+		assert(false);
+	}
+	return nullptr;
+}
+
+std::shared_ptr<Shader> Shader::create(const std::filesystem::path& path, Stage stage)
+{
+	switch(Renderer::getAPI())
+	{
+		using enum Renderer::API;
+
+	case OpenGL:
+		return std::make_shared<GLShader>(path, stage);
+
+	case Vulkan:
+		return std::make_shared<VKShader>(path, stage);
+
+	default:
+		assert(false);
+	}
+	return nullptr;
+}
+
 std::shared_ptr<Shader> Shader::create(const std::string& name, Stage stage)
 {
 	switch(Renderer::getAPI())
@@ -45,4 +81,10 @@ const std::string& Shader::getName() const
 Shader::Stage Shader::getStage() const
 {
 	return stage;
+}
+
+Shader::Shader(const Descriptor& desc)
+{
+	name = desc.path.filename().string();
+	stage = desc.stage;
 }
