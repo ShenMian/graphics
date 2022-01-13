@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Graphics: 主页</title>
+<title>Graphics: 模型(Model)</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -64,7 +64,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('index.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('md__manual__model.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -84,22 +84,73 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 
 <div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title">主页 </div>  </div>
+<div class="title">模型(Model) </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="mainpage"></a> </p>
-<h1><a class="anchor" id="autotoc_md4"></a>
-概述</h1>
-<p>一个简单的现代图形 API 抽象层.</p>
-<h1><a class="anchor" id="autotoc_md5"></a>
-文档</h1>
+<div class="textblock"><p>通过指定 3D 模型文件路径来加载其网格数据和纹理材质.</p>
+<h1><a class="anchor" id="autotoc_md9"></a>
+例子</h1>
+<div class="fragment"><div class="line"><a class="code" href="class_model.html">Model</a> model;</div>
+<div class="line">model.<a class="code" href="class_model.html#a78330419d61ff78f5de051ad3d5533bb">load</a>(<span class="stringliteral">&quot;path/to/model.gltf&quot;</span>); <span class="comment">// 同步加载模型</span></div>
+<div class="ttc" id="aclass_model_html"><div class="ttname"><a href="class_model.html">Model</a></div><div class="ttdoc">3D 模型.</div><div class="ttdef"><b>Definition:</b> Model.h:40</div></div>
+<div class="ttc" id="aclass_model_html_a78330419d61ff78f5de051ad3d5533bb"><div class="ttname"><a href="class_model.html#a78330419d61ff78f5de051ad3d5533bb">Model::load</a></div><div class="ttdeci">void load(const std::filesystem::path &amp;path, Process type=Process::Quality)</div><div class="ttdoc">从文件载入场景.</div><div class="ttdef"><b>Definition:</b> Model.cpp:209</div></div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md10"></a>
+支持的模型格式</h1>
 <ul>
-<li><a class="el" href="_getting_started.html">快速入门</a></li>
-<li><a href="https://trello.com/b/qpehnqDv/graphics">计划表</a></li>
-<li><a href="https://github.com/ShenMian/Graphics/blob/main/Deps/README.md">依赖项</a> </li>
+<li>3D Manufacturing Format (.3mf)</li>
+<li>Collada (.dae, .xml)</li>
+<li>Blender (.blend)</li>
+<li>Biovision BVH (.bvh)</li>
+<li>3D Studio Max 3DS (.3ds)</li>
+<li>3D Studio Max ASE (.ase)</li>
+<li>glTF (.glTF)</li>
+<li>glTF2.0 (.glTF)<ul>
+<li>KHR_lights_punctual (5.0)</li>
+<li>KHR_materials_pbrSpecularGlossiness (5.0)</li>
+<li>KHR_materials_unlit (5.0)</li>
+<li>KHR_texture_transform (5.1 under test)</li>
 </ul>
-</div></div><!-- PageDoc -->
-</div><!-- contents -->
+</li>
+<li>FBX-Format, as ASCII and binary (.fbx)</li>
+<li>Stanford Polygon Library (.ply)</li>
+<li>AutoCAD DXF (.dxf)</li>
+<li>IFC-STEP (.ifc)</li>
+<li>Neutral File Format (.nff)</li>
+<li>Sense8 WorldToolkit (.nff)</li>
+<li>Valve <a class="el" href="class_model.html" title="3D 模型.">Model</a> (.smd, .vta)</li>
+<li>Quake I (.mdl)</li>
+<li>Quake II (.md2)</li>
+<li>Quake III (.md3)</li>
+<li>Quake 3 BSP (.pk3)</li>
+<li>RtCW (.mdc)</li>
+<li>Doom 3 (.md5mesh, .md5anim, .md5camera)</li>
+<li>DirectX X (.x)</li>
+<li>Quick3D (.q3o, .q3s)</li>
+<li>Raw Triangles (.raw)</li>
+<li>AC3D (.ac, .ac3d)</li>
+<li>Stereolithography (.stl)</li>
+<li>Autodesk DXF (.dxf)</li>
+<li>Irrlicht <a class="el" href="class_mesh.html" title="网格.">Mesh</a> (.irrmesh, .xml)</li>
+<li>Irrlicht Scene (.irr, .xml)</li>
+<li>Object File Format (.off)</li>
+<li>Wavefront Object (.obj)</li>
+<li>Terragen Terrain (.ter)</li>
+<li>3D GameStudio <a class="el" href="class_model.html" title="3D 模型.">Model</a> (.mdl)</li>
+<li>3D GameStudio Terrain (.hmp)</li>
+<li>Ogre (.mesh.xml, .skeleton.xml, .material)</li>
+<li>OpenGEX-Fomat (.ogex)</li>
+<li>Milkshape 3D (.ms3d)</li>
+<li>LightWave <a class="el" href="class_model.html" title="3D 模型.">Model</a> (.lwo)</li>
+<li>LightWave Scene (.lws)</li>
+<li>Modo <a class="el" href="class_model.html" title="3D 模型.">Model</a> (.lxo)</li>
+<li>CharacterStudio Motion (.csm)</li>
+<li>Stanford Ply (.ply)</li>
+<li>TrueSpace (.cob, .scn)</li>
+<li>XGL-3D-Format (.xgl)</li>
+</ul>
+<p>利用第三方 <a href="https://github.com/assimp/assimp">assimp</a> 加载若干格式的 3D 模型. </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

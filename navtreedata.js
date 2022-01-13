@@ -25,7 +25,14 @@
 var NAVTREE =
 [
   [ "Graphics", "index.html", [
-    [ "Graphics 文档", "index.html", "index" ],
+    [ "主页", "index.html", "index" ],
+    [ "摄像机(Camera)", "md__manual__camera.html", [
+      [ "例子", "md__manual__camera.html#autotoc_md7", null ]
+    ] ],
+    [ "模型(Model)", "md__manual__model.html", [
+      [ "例子", "md__manual__model.html#autotoc_md9", null ],
+      [ "支持的模型格式", "md__manual__model.html#autotoc_md10", null ]
+    ] ],
     [ "模块", "modules.html", "modules" ],
     [ "类", "annotated.html", [
       [ "类列表", "annotated.html", "annotated_dup" ],

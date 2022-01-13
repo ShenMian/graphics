@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['核心_165',['核心',['../group__core.html',1,'']]]
+  ['快速入门_164',['快速入门',['../_getting_started.html',1,'index']]]
 ];
