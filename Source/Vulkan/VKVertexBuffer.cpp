@@ -20,7 +20,6 @@ VKVertexBuffer::VKVertexBuffer(const void* data, size_t size, const VertexLayout
 	: VertexBuffer(data, size, layout),
 	handle(size, VK_BUFFER_USAGE_VERTEX_BUFFER_BIT, VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT)
 {
-
 	VkVertexInputBindingDescription binding = {};
 	binding.binding = 0;
 	binding.inputRate = VK_VERTEX_INPUT_RATE_VERTEX;
