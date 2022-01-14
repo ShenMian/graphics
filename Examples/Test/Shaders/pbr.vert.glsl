@@ -1,4 +1,4 @@
-﻿// Copyright 2021 SMS
+// Copyright 2021 SMS
 // License(Apache-2.0)
 
 #version 450
@@ -19,9 +19,18 @@ out Out
     mat3 TBN;
 } vert;
 
-uniform mat4 model;
+/*
+layout (std140, binding = 0) uniform Camera
+{
+    mat4 view; // 视图矩阵
+    mat4 proj; // 投影矩阵
+} camera;
+*/
+
 uniform mat4 view;
 uniform mat4 projection;
+
+uniform mat4 model;
 
 // FIXME: 其他物体的 z 坐标和摄像机的 z 坐标相反
 
