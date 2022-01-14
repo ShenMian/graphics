@@ -26,7 +26,7 @@ VkDescriptorType VKType(PipelineLayout::Type type)
 
 VkShaderStageFlags VKStageFlags(int flags)
 {
-	VkShaderStageFlags vkFlags = {};
+	VkShaderStageFlags vkFlags = 0;
 	if(flags & PipelineLayout::StageFlags::Vertex)
 		vkFlags |= VK_SHADER_STAGE_VERTEX_BIT;
 	if(flags & PipelineLayout::StageFlags::Geometry)
@@ -45,7 +45,7 @@ VKPipeline::VKPipeline(const Descriptor& desc)
 {
 	auto renderer = reinterpret_cast<VKRenderer*>(Renderer::get());
 
-	auto& layout = desc.layout;
+	const auto& layout = desc.layout;
 	auto vertexBuffer = std::dynamic_pointer_cast<VKVertexBuffer>(desc.vertexBuffer);
 	auto program = std::dynamic_pointer_cast<VKProgram>(desc.program);
 

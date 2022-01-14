@@ -1,4 +1,4 @@
-// Copyright 2021 ShenMian
+﻿// Copyright 2021 ShenMian
 // License(Apache-2.0)
 
 #pragma once
@@ -18,6 +18,7 @@ public:
 	void write(const void* data, size_t size, size_t offset = 0);
 
 	void* getData();
+	size_t getSize() const;
 
 	void bind();
 

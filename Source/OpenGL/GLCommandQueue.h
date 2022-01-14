@@ -10,7 +10,7 @@ enum class GLOpcode;
 class GLCommandQueue : public CommandQueue
 {
 public:
-	void submit(std::shared_ptr<CommandBuffer> commandBuffer);
+	void submit(std::shared_ptr<CommandBuffer> commandBuffer) override;
 
 private:
 	size_t execute(GLOpcode opcode, const uint8_t* pc);

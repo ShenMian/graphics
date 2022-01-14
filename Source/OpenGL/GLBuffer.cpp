@@ -1,4 +1,4 @@
-// Copyright 2021 ShenMian
+﻿// Copyright 2021 ShenMian
 // License(Apache-2.0)
 
 #include "GLBuffer.h"
@@ -39,6 +39,16 @@ void GLBuffer::unmap()
 void GLBuffer::write(const void* data, size_t size, size_t offset)
 {
 	std::memcpy(static_cast<unsigned char*>(this->data) + offset, data, size);
+}
+
+void* GLBuffer::getData()
+{
+	return data;
+}
+
+size_t GLBuffer::getSize() const
+{
+	return size;
 }
 
 void GLBuffer::allocate(size_t size)

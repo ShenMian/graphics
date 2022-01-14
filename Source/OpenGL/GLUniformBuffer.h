@@ -18,5 +18,4 @@ public:
 
 private:
 	GLBuffer buffer;
-	size_t   size;
 };

@@ -101,8 +101,8 @@ private:
 	float rightThumbDeadzone = 0.1f;
 	float triggerThreshold = 0.01f;
 
-	unsigned char buttons[15];
-	float axes[6];
+	unsigned char buttons[15] = {};
+	float axes[6] = {};
 };
 
 /**

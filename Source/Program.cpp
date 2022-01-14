@@ -20,6 +20,7 @@ std::shared_ptr<Program> Program::create(const Descriptor& desc)
 	case Vulkan:
 		return std::make_shared<VKProgram>(desc);
 	}
+	return nullptr;
 }
 
 std::shared_ptr<Program> Program::create(const std::string& name)
@@ -64,6 +65,6 @@ int Program::getStageCount() const
 }
 
 Program::Program(const Descriptor& desc)
+	: name(desc.name)
 {
-	name = desc.name;
 }

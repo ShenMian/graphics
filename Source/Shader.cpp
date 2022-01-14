@@ -84,7 +84,7 @@ Shader::Stage Shader::getStage() const
 }
 
 Shader::Shader(const Descriptor& desc)
+	: name(desc.path.filename().string()),
+	stage(desc.stage)
 {
-	name = desc.path.filename().string();
-	stage = desc.stage;
 }
