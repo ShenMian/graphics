@@ -110,41 +110,44 @@ $(document).ready(function(){initNavTree('_pipeline_layout_8h_source.html',''); 
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    {</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <span class="keyword">enum</span></div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        {</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            Vertex,</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            Geometry,</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            Fragment,</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            Pixel = Fragment,</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            Compute</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        };</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    };</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="struct_pipeline_layout_1_1_attribute.html">   35</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="struct_pipeline_layout_1_1_attribute.html">Attribute</a></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    {</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <a class="code" href="struct_pipeline_layout_1_1_attribute.html">Attribute</a>(std::string_view name, Type type, uint32_t slot, <span class="keywordtype">int</span> stageFlags, uint32_t arraySize = 1)</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            : type(type), slot(slot), stageFlags(stageFlags), arraySize(arraySize)</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        {</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        }</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        Type       type;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        uint32_t   slot;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keywordtype">int</span>        stageFlags;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        uint32_t   arraySize;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    };</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="class_pipeline_layout.html">PipelineLayout</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <a class="code" href="class_pipeline_layout.html">PipelineLayout</a>(<span class="keyword">const</span> std::initializer_list&lt;Attribute&gt;&amp; list);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">void</span> addAttribute(<a class="code" href="struct_pipeline_layout_1_1_attribute.html">Attribute</a> attr);</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keyword">const</span> std::vector&lt;Attribute&gt; getAttributes() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    std::vector&lt;Attribute&gt; attribs;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;};</div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="struct_pipeline_layout_1_1_stage_flags.html#a29f719ba28c9c5d1aad311d52e7cfbcdae820a6ac4dd34d05f6607e6dfe12ce5b">   27</a></span>&#160;            <a class="code" href="struct_pipeline_layout_1_1_stage_flags.html#a29f719ba28c9c5d1aad311d52e7cfbcdae820a6ac4dd34d05f6607e6dfe12ce5b">Vertex</a>   = (1 &lt;&lt; 0), </div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="struct_pipeline_layout_1_1_stage_flags.html#a29f719ba28c9c5d1aad311d52e7cfbcda149afe1cc4fb70e43ef1d0f485920960">   28</a></span>&#160;            <a class="code" href="struct_pipeline_layout_1_1_stage_flags.html#a29f719ba28c9c5d1aad311d52e7cfbcda149afe1cc4fb70e43ef1d0f485920960">Geometry</a> = (1 &lt;&lt; 1), </div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="struct_pipeline_layout_1_1_stage_flags.html#a29f719ba28c9c5d1aad311d52e7cfbcdaa9cd37577ec3fd1aac666d52889bea40">   29</a></span>&#160;            <a class="code" href="struct_pipeline_layout_1_1_stage_flags.html#a29f719ba28c9c5d1aad311d52e7cfbcdaa9cd37577ec3fd1aac666d52889bea40">Fragment</a> = (1 &lt;&lt; 2), </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <a class="code" href="struct_pipeline_layout_1_1_stage_flags.html#a29f719ba28c9c5d1aad311d52e7cfbcda99d7cd69ab5493b69405b0a0a1118239">Compute</a>  = (1 &lt;&lt; 3)  </div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="struct_pipeline_layout_1_1_stage_flags.html#a29f719ba28c9c5d1aad311d52e7cfbcda99d7cd69ab5493b69405b0a0a1118239">   31</a></span>&#160;        };</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    };</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="struct_pipeline_layout_1_1_attribute.html">   34</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="struct_pipeline_layout_1_1_attribute.html">Attribute</a></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    {</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <a class="code" href="struct_pipeline_layout_1_1_attribute.html">Attribute</a>(std::string_view name, Type type, uint32_t slot, <span class="keywordtype">int</span> stageFlags, uint32_t arraySize = 1)</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            : type(type), slot(slot), stageFlags(stageFlags), arraySize(arraySize)</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        {</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        }</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        Type       type;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        uint32_t   slot;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordtype">int</span>        stageFlags;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        uint32_t   arraySize;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    };</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <a class="code" href="class_pipeline_layout.html">PipelineLayout</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="class_pipeline_layout.html">PipelineLayout</a>(<span class="keyword">const</span> std::initializer_list&lt;Attribute&gt;&amp; list);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">void</span> addAttribute(<a class="code" href="struct_pipeline_layout_1_1_attribute.html">Attribute</a> attr);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">const</span> std::vector&lt;Attribute&gt; getAttributes() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    std::vector&lt;Attribute&gt; attribs;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;};</div>
 <div class="ttc" id="aclass_pipeline_layout_html"><div class="ttname"><a href="class_pipeline_layout.html">PipelineLayout</a></div><div class="ttdoc">图形管线绑定布局.</div><div class="ttdef"><b>Definition:</b> PipelineLayout.h:15</div></div>
 <div class="ttc" id="aclass_texture_html"><div class="ttname"><a href="class_texture.html">Texture</a></div><div class="ttdoc">纹理.</div><div class="ttdef"><b>Definition:</b> Texture.h:18</div></div>
-<div class="ttc" id="astruct_pipeline_layout_1_1_attribute_html"><div class="ttname"><a href="struct_pipeline_layout_1_1_attribute.html">PipelineLayout::Attribute</a></div><div class="ttdef"><b>Definition:</b> PipelineLayout.h:36</div></div>
+<div class="ttc" id="astruct_pipeline_layout_1_1_attribute_html"><div class="ttname"><a href="struct_pipeline_layout_1_1_attribute.html">PipelineLayout::Attribute</a></div><div class="ttdef"><b>Definition:</b> PipelineLayout.h:35</div></div>
 <div class="ttc" id="astruct_pipeline_layout_1_1_stage_flags_html"><div class="ttname"><a href="struct_pipeline_layout_1_1_stage_flags.html">PipelineLayout::StageFlags</a></div><div class="ttdef"><b>Definition:</b> PipelineLayout.h:24</div></div>
+<div class="ttc" id="astruct_pipeline_layout_1_1_stage_flags_html_a29f719ba28c9c5d1aad311d52e7cfbcda149afe1cc4fb70e43ef1d0f485920960"><div class="ttname"><a href="struct_pipeline_layout_1_1_stage_flags.html#a29f719ba28c9c5d1aad311d52e7cfbcda149afe1cc4fb70e43ef1d0f485920960">PipelineLayout::StageFlags::Geometry</a></div><div class="ttdeci">@ Geometry</div><div class="ttdef"><b>Definition:</b> PipelineLayout.h:28</div></div>
+<div class="ttc" id="astruct_pipeline_layout_1_1_stage_flags_html_a29f719ba28c9c5d1aad311d52e7cfbcda99d7cd69ab5493b69405b0a0a1118239"><div class="ttname"><a href="struct_pipeline_layout_1_1_stage_flags.html#a29f719ba28c9c5d1aad311d52e7cfbcda99d7cd69ab5493b69405b0a0a1118239">PipelineLayout::StageFlags::Compute</a></div><div class="ttdeci">@ Compute</div><div class="ttdef"><b>Definition:</b> PipelineLayout.h:30</div></div>
+<div class="ttc" id="astruct_pipeline_layout_1_1_stage_flags_html_a29f719ba28c9c5d1aad311d52e7cfbcdaa9cd37577ec3fd1aac666d52889bea40"><div class="ttname"><a href="struct_pipeline_layout_1_1_stage_flags.html#a29f719ba28c9c5d1aad311d52e7cfbcdaa9cd37577ec3fd1aac666d52889bea40">PipelineLayout::StageFlags::Fragment</a></div><div class="ttdeci">@ Fragment</div><div class="ttdef"><b>Definition:</b> PipelineLayout.h:29</div></div>
+<div class="ttc" id="astruct_pipeline_layout_1_1_stage_flags_html_a29f719ba28c9c5d1aad311d52e7cfbcdae820a6ac4dd34d05f6607e6dfe12ce5b"><div class="ttname"><a href="struct_pipeline_layout_1_1_stage_flags.html#a29f719ba28c9c5d1aad311d52e7cfbcdae820a6ac4dd34d05f6607e6dfe12ce5b">PipelineLayout::StageFlags::Vertex</a></div><div class="ttdeci">@ Vertex</div><div class="ttdef"><b>Definition:</b> PipelineLayout.h:27</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

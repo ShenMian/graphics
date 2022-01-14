@@ -1,7 +1,7 @@
 var searchData=
 [
   ['gamepad_21',['Gamepad',['../class_gamepad.html',1,'Gamepad'],['../class_gamepad.html#a0153d72ca3f7dfb816a872191fa5a651',1,'Gamepad::Gamepad()']]],
-  ['geometry_22',['Geometry',['../class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8fad9c6333623e6357515fcbf17be806273',1,'Shader']]],
+  ['geometry_22',['Geometry',['../class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8fad9c6333623e6357515fcbf17be806273',1,'Shader::Geometry()'],['../struct_pipeline_layout_1_1_stage_flags.html#a29f719ba28c9c5d1aad311d52e7cfbcda149afe1cc4fb70e43ef1d0f485920960',1,'PipelineLayout::StageFlags::Geometry()']]],
   ['get_23',['get',['../class_renderer.html#a9f5e294852455a98d519f4bc03708323',1,'Renderer::get()'],['../class_gamepad.html#a9791f37d4d4a3e8041c6bd309950074d',1,'Gamepad::get(Button button) const'],['../class_gamepad.html#aff13c015ca3a1c720ef8b2a87ff941f7',1,'Gamepad::get(Trigger trigger) const'],['../class_gamepad.html#aace04775bce81c450f0096793f6fd199',1,'Gamepad::get(Thumb thumb) const']]],
   ['getaabb_24',['getAABB',['../class_model.html#a8b2bc5e7f945efb88fcd01a7d2af3ca0',1,'Model']]],
   ['getapi_25',['getAPI',['../class_renderer.html#a9f11c63dc16c34489aba73dac51fc58c',1,'Renderer']]],
@@ -14,7 +14,7 @@ var searchData=
   ['getdatasize_32',['getDataSize',['../class_image.html#aae91ac2147c0a923fb7fe7f1cc9bc7ce',1,'Image']]],
   ['getdevice_33',['getDevice',['../class_v_k_renderer.html#aed8b9caf61dc226a73aea400fbb654ae',1,'VKRenderer']]],
   ['getfar_34',['getFar',['../class_camera.html#a57b2e9d52389abc67e5b5049b150408e',1,'Camera']]],
-  ['getformat_35',['getFormat',['../class_vertex_buffer.html#aba42fcdc0620dc88842f036c19bfce2d',1,'VertexBuffer::getFormat()'],['../class_texture.html#ab9c343ec4797d5175580d538a2e8c171',1,'Texture::getFormat()']]],
+  ['getformat_35',['getFormat',['../class_texture.html#ab9c343ec4797d5175580d538a2e8c171',1,'Texture::getFormat()'],['../class_vertex_buffer.html#aba42fcdc0620dc88842f036c19bfce2d',1,'VertexBuffer::getFormat()']]],
   ['gethfov_36',['getHFOV',['../class_camera.html#aefe543b1ae789c85b07cbae64c87f3f4',1,'Camera']]],
   ['getinstance_37',['getInstance',['../class_v_k_renderer.html#ae14c7e5a3d799a51f3f8cde4087f0f9b',1,'VKRenderer']]],
   ['getlabel_38',['getLabel',['../classui_1_1_widget.html#ade291c6b569ac877857296a27da03e28',1,'ui::Widget']]],

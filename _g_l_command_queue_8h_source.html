@@ -99,7 +99,7 @@ $(document).ready(function(){initNavTree('_g_l_command_queue_8h_source.html','')
 <div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="class_g_l_command_queue.html">   10</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_g_l_command_queue.html">GLCommandQueue</a> : <span class="keyword">public</span> <a class="code" href="class_command_queue.html">CommandQueue</a></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;{</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keywordtype">void</span> submit(std::shared_ptr&lt;CommandBuffer&gt; commandBuffer);</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keywordtype">void</span> submit(std::shared_ptr&lt;CommandBuffer&gt; commandBuffer) <span class="keyword">override</span>;</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">private</span>:</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keywordtype">size_t</span> execute(GLOpcode opcode, <span class="keyword">const</span> uint8_t* pc);</div>
