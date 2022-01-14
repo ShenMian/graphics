@@ -37,7 +37,20 @@ int main()
 
 	auto vertexBuffer = VertexBuffer::create(vertices, layout);
 
-	auto program = Program::create("Shaders/forword");
+	Program::Descriptor programDesc;
+	{
+		Shader::Descriptor vertShaderDesc;
+		vertShaderDesc.stage = Shader::Stage::Vertex;
+		vertShaderDesc.path = "Shaders/forward.vert.glsl";
+		programDesc.vertex = Shader::create(vertShaderDesc);
+
+		Shader::Descriptor fragShaderDesc;
+		fragShaderDesc.stage = Shader::Stage::Fragment;
+		fragShaderDesc.path = "Shaders/forward.frag.glsl";
+		programDesc.fragment = Shader::create(fragShaderDesc);
+	}
+	auto program = Program::create(programDesc);
+
 	auto cmdQueue = CommandQueue::create();
 	auto cmdBuffer = CommandBuffer::create();
 
