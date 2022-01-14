@@ -12,14 +12,23 @@ layout (location = 0) out Out
     vec3 color;
 } vert;
 
+/*
+layout (std140, binding = 0) uniform Uniform
+{
+    mat4 model;
+    mat4 view;
+    mat4 projection;
+};
+*/
+
 out gl_PerVertex
 {
     vec4 gl_Position;
 };
 
-layout (binding = 0) uniform mat4 model;
-layout (binding = 0) uniform mat4 view;
-layout (binding = 0) uniform mat4 projection;
+uniform mat4 model;
+uniform mat4 view;
+uniform mat4 projection;
 
 void main()
 {
