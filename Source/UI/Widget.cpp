@@ -9,14 +9,19 @@ namespace ui
 
 uint64_t Widget::nextId = 0;
 
+Widget::Widget()
+	: id(nextId++)
+{
+}
+
 Widget::Widget(const std::string& label)
-	: label(label), id(std::to_string(nextId++))
+	: label(label), id(nextId++)
 {
 	updateHandle();
 }
 
 Widget::Widget(const std::string& label, const std::string& id)
-	: label(label)
+	: label(label), id(std::stoull(id))
 {
 	updateHandle();
 }
@@ -37,7 +42,7 @@ void Widget::updateHandle()
 	// if(label.contains("##"))
 	if(label.find("##") != std::string::npos)
 		throw std::runtime_error("widget label cannot contain \"##\".");
-	handle = label + "###" + id;
+	handle = label + "###" + std::to_string(id);
 }
 
 } // namespace ui

@@ -13,6 +13,7 @@ namespace ui
 class Widget
 {
 public:
+	Widget();
 	Widget(const std::string& label);
 	Widget(const std::string& label, const std::string& id);
 
@@ -40,10 +41,10 @@ protected:
 
 	std::string handle;
 
-private:
 	std::string label;
-	std::string id;
+	uint64_t id;
 
+private:
 	static uint64_t nextId;
 };
 
