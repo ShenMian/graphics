@@ -15,19 +15,21 @@ VKShader::VKShader(const Descriptor& desc)
 {
 	auto renderer = reinterpret_cast<VKRenderer*>(Renderer::get());
 
-	if(!fs::exists(desc.path))
-		throw std::runtime_error("file not found: " + desc.path.string());
+	const auto path = fs::absolute(desc.path);
+
+	if(!fs::exists(path))
+		throw std::runtime_error("file not found: " + path.string());
 
 	// 读取文件内容
-	const auto fileSize = fs::file_size(desc.path);
-	std::ifstream file(desc.path, std::ios::binary);
+	const auto fileSize = fs::file_size(path);
+	std::ifstream file(path, std::ios::binary);
 	if(!file.is_open())
-		throw std::runtime_error("failed to open file: " + desc.path.string());
+		throw std::runtime_error("failed to open file: " + path.string());
 
 	std::vector<char> buffer(fileSize);
 	file.read(buffer.data(), fileSize);
 	if(!file.good() || file.gcount() != fileSize)
-		throw std::runtime_error("failed to read file: " + desc.path.string());
+		throw std::runtime_error("failed to read file: " + path.string());
 	file.close();
 
 	VkShaderModuleCreateInfo info = {};
