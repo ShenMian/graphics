@@ -5,10 +5,22 @@
 #include "VKProgram.h"
 #include "VKVertexBuffer.h"
 #include "../PipelineLayout.h"
+#include <unordered_map>
 #include <stdexcept>
 
 namespace
 {
+
+std::unordered_map<PolygonMode, VkPolygonMode> VKPolygonMode = {
+	{PolygonMode::Fill, VK_POLYGON_MODE_FILL},
+	{PolygonMode::Wireframe, VK_POLYGON_MODE_LINE}
+};
+
+std::unordered_map<CullMode, VkCullModeFlags> VKCullMode = {
+	{CullMode::Disabled, VK_CULL_MODE_NONE},
+	{CullMode::Front, VK_CULL_MODE_FRONT_BIT},
+	{CullMode::Back, VK_CULL_MODE_BACK_BIT},
+};
 
 VkDescriptorType VKType(PipelineLayout::Type type)
 {
@@ -45,27 +57,58 @@ VKPipeline::VKPipeline(const Descriptor& desc)
 {
 	auto renderer = reinterpret_cast<VKRenderer*>(Renderer::get());
 
-	const auto& layout = desc.layout;
 	auto vertexBuffer = std::dynamic_pointer_cast<VKVertexBuffer>(desc.vertexBuffer);
 	auto program = std::dynamic_pointer_cast<VKProgram>(desc.program);
 
-	createLayout(layout);
+	createLayout(desc);
 
 	VkPipelineInputAssemblyStateCreateInfo inputAssemblyState = {};
-	inputAssemblyState.sType = VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO;
-	inputAssemblyState.topology = VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST;
-	inputAssemblyState.primitiveRestartEnable = VK_FALSE;
+	createInputAssemblyState(inputAssemblyState, desc);
 
+	std::vector<VkViewport> vkViewports;
+	std::vector<VkRect2D> vkScissors(1);
 	VkPipelineViewportStateCreateInfo viewportState = {};
-	createViewportState(viewportState);
+	createViewportState(viewportState, desc, vkViewports, vkScissors);
 
 	VkPipelineRasterizationStateCreateInfo rasterizerState = {};
-	createRasterizerState(rasterizerState);
+	createRasterizerState(rasterizerState, desc);
 
 	VkPipelineMultisampleStateCreateInfo multisampleState = {};
-	createMultisampleState(multisampleState);
+	createMultisampleState(multisampleState, desc);
 
 	VkPipelineDepthStencilStateCreateInfo depthStencilState = {};
+	createDepthStencilState(depthStencilState, desc);
+
+	std::vector<VkPipelineColorBlendAttachmentState> colorBlendAttachments = {};
+	VkPipelineColorBlendStateCreateInfo colorBlendState = {};
+	createColorBlendState(colorBlendState, desc, colorBlendAttachments);
+
+	// 创建 Render Pass
+	std::vector<VkAttachmentDescription> colorAttachments;
+	std::vector<VkSubpassDescription> subpasses;
+
+	VkAttachmentDescription colorAttachment = {};
+	colorAttachment.samples = VK_SAMPLE_COUNT_1_BIT;
+	colorAttachment.stencilLoadOp = VK_ATTACHMENT_LOAD_OP_DONT_CARE;
+	colorAttachment.stencilStoreOp = VK_ATTACHMENT_STORE_OP_DONT_CARE;
+	colorAttachment.initialLayout = VK_IMAGE_LAYOUT_UNDEFINED;
+	colorAttachment.finalLayout = VK_IMAGE_LAYOUT_PRESENT_SRC_KHR;
+	colorAttachments.push_back(colorAttachment);
+
+	VkSubpassDescription subpass = {};
+	subpass.pipelineBindPoint = VK_PIPELINE_BIND_POINT_GRAPHICS;
+	subpasses.push_back(subpass);
+
+	VkRenderPassCreateInfo renderPassInfo{};
+	renderPassInfo.sType = VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO;
+	renderPassInfo.attachmentCount = static_cast<uint32_t>(colorAttachments.size());
+	renderPassInfo.pAttachments = colorAttachments.data();
+	renderPassInfo.subpassCount = static_cast<uint32_t>(subpasses.size());
+	renderPassInfo.pSubpasses = subpasses.data();
+
+	VkRenderPass renderPass;
+	if(vkCreateRenderPass(renderer->getDevice(), &renderPassInfo, nullptr, &renderPass) != VK_SUCCESS)
+		throw std::runtime_error("failed to create render pass");
 
 	auto vertexInputState = vertexBuffer->getInfo();
 
@@ -83,18 +126,23 @@ VKPipeline::VKPipeline(const Descriptor& desc)
 	// pipelineInfo.pColorBlendState = &colorBlendState;
 	// pipelineInfo.pDynamicState = (!dynamicStatesVK.empty() ? &dynamicState : nullptr);
 	pipelineInfo.layout = pipelineLayout;
-	// pipelineInfo.renderPass = ;
+	pipelineInfo.renderPass = renderPass;
 	if(vkCreateGraphicsPipelines(renderer->getDevice(), nullptr, 1, &pipelineInfo, nullptr, &pipeline) != VK_SUCCESS)
 		throw std::runtime_error("failed to create graphics pipeline");
 }
 
-void VKPipeline::createLayout(const PipelineLayout& layout)
+VkPipeline& VKPipeline::getNativeHandle()
+{
+	return pipeline;
+}
+
+void VKPipeline::createLayout(const Descriptor& desc)
 {
 	auto renderer = reinterpret_cast<VKRenderer*>(Renderer::get());
 
 	std::vector<VkDescriptorSetLayoutBinding> bindings;
 
-	for(const auto& attr : layout.getAttributes())
+	for(const auto& attr : desc.layout.getAttributes())
 	{
 		VkDescriptorSetLayoutBinding layoutBinding = {};
 		layoutBinding.binding = attr.slot;
@@ -121,17 +169,73 @@ void VKPipeline::createLayout(const PipelineLayout& layout)
 		throw std::runtime_error("failed to create pipeline layout");
 }
 
-void VKPipeline::createViewportState(VkPipelineViewportStateCreateInfo& info)
+void VKPipeline::createInputAssemblyState(VkPipelineInputAssemblyStateCreateInfo& info, const Descriptor& desc)
 {
-	info.sType = VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;
+	info.sType = VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO;
+	info.topology = VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST;
+	info.primitiveRestartEnable = VK_FALSE;
 }
 
-void VKPipeline::createRasterizerState(VkPipelineRasterizationStateCreateInfo& info)
+void VKPipeline::createViewportState(VkPipelineViewportStateCreateInfo& info, const Descriptor& desc, std::vector<VkViewport>& vkViewports, std::vector<VkRect2D>& vkScissors)
+{
+	for(const auto& viewport : desc.viewports)
+	{
+		VkViewport vkViewport;
+		vkViewport.x = viewport.x;
+		vkViewport.y = viewport.y;
+		vkViewport.width = viewport.width;
+		vkViewport.height = viewport.height;
+		vkViewport.minDepth = viewport.minDepth;
+		vkViewport.maxDepth = viewport.maxDepth;
+		vkViewports.push_back(vkViewport);
+	}
+
+	info.sType = VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;
+	info.viewportCount = static_cast<uint32_t>(vkViewports.size());
+	info.pViewports = vkViewports.data();
+	info.scissorCount = static_cast<uint32_t>(vkScissors.size());
+	info.pScissors = vkScissors.data();
+}
+
+void VKPipeline::createRasterizerState(VkPipelineRasterizationStateCreateInfo& info, const Descriptor& desc)
 {
 	info.sType = VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO;
+	info.depthClampEnable = VK_FALSE;
+	info.rasterizerDiscardEnable = VK_FALSE;
+	info.lineWidth = 1.0f;
+	info.polygonMode = VKPolygonMode[desc.rasterizer.polygonMode];
+	info.cullMode = VKCullMode[desc.rasterizer.cullMode];
+	info.depthBiasEnable = VK_FALSE;
+	info.depthBiasConstantFactor = 0.0f; // Optional
+	info.depthBiasClamp = 0.0f; // Optional
+	info.depthBiasSlopeFactor = 0.0f; // Optional
 }
 
-void VKPipeline::createMultisampleState(VkPipelineMultisampleStateCreateInfo& info)
+void VKPipeline::createMultisampleState(VkPipelineMultisampleStateCreateInfo& info, const Descriptor& desc)
 {
 	info.sType = VK_STRUCTURE_TYPE_PIPELINE_MULTISAMPLE_STATE_CREATE_INFO;
+	info.sampleShadingEnable = VK_FALSE;
+	info.rasterizationSamples = VK_SAMPLE_COUNT_1_BIT;
+	info.minSampleShading = 1.0f; // Optional
+	info.pSampleMask = nullptr; // Optional
+	info.alphaToCoverageEnable = VK_FALSE; // Optional
+	info.alphaToOneEnable = VK_FALSE; // Optional
+}
+
+void VKPipeline::createDepthStencilState(VkPipelineDepthStencilStateCreateInfo& info, const Descriptor& desc)
+{
+	info.sType = VK_STRUCTURE_TYPE_PIPELINE_DEPTH_STENCIL_STATE_CREATE_INFO;
+}
+
+void VKPipeline::createColorBlendState(VkPipelineColorBlendStateCreateInfo& info, const Descriptor& desc, std::vector<VkPipelineColorBlendAttachmentState>& attachments)
+{
+	info.sType = VK_STRUCTURE_TYPE_PIPELINE_COLOR_BLEND_STATE_CREATE_INFO;
+	info.logicOpEnable = VK_FALSE;
+	info.logicOp = VK_LOGIC_OP_COPY; // Optional
+	info.attachmentCount = static_cast<uint32_t>(attachments.size());
+	info.pAttachments = attachments.data();
+	info.blendConstants[0] = 0.0f; // Optional
+	info.blendConstants[1] = 0.0f; // Optional
+	info.blendConstants[2] = 0.0f; // Optional
+	info.blendConstants[3] = 0.0f; // Optional
 }
