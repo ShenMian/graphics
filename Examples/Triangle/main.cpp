@@ -13,7 +13,7 @@ struct Vertex
 
 int main()
 {
-	Renderer::setAPI(Renderer::API::OpenGL);
+	Renderer::setAPI(Renderer::API::Vulkan);
 
 	Window::init();
 
@@ -24,14 +24,14 @@ int main()
 	PrintInfo();
 
 	const std::vector<Vertex> vertices = {
-		{{0, 0.5}, {1, 0, 0}},
-		{{0.5, -0.5}, {0, 1, 0}},
+		{{0,     0.5}, {1, 0, 0}},
+		{{0.5,  -0.5}, {0, 1, 0}},
 		{{-0.5, -0.5}, {0, 0, 1}}
 	};
 
 	VertexLayout layout = {
 		{"position", Format::RG32F},
-		{"color", Format::RGB32F}
+		{"color",    Format::RGB32F}
 	};
 	layout.setStride(sizeof(Vertex));
 
@@ -39,15 +39,31 @@ int main()
 
 	Program::Descriptor programDesc;
 	{
-		Shader::Descriptor vertShaderDesc;
-		vertShaderDesc.stage = Shader::Stage::Vertex;
-		vertShaderDesc.path = "Shaders/forward.vert.glsl";
-		programDesc.vertex = Shader::create(vertShaderDesc);
+		// TODO
+		if(Renderer::getAPI() == Renderer::API::OpenGL)
+		{
+			Shader::Descriptor vertShaderDesc;
+			vertShaderDesc.stage = Shader::Stage::Vertex;
+			vertShaderDesc.path = "Shaders/forward.vert.glsl";
+			programDesc.vertex = Shader::create(vertShaderDesc);
 
-		Shader::Descriptor fragShaderDesc;
-		fragShaderDesc.stage = Shader::Stage::Fragment;
-		fragShaderDesc.path = "Shaders/forward.frag.glsl";
-		programDesc.fragment = Shader::create(fragShaderDesc);
+			Shader::Descriptor fragShaderDesc;
+			fragShaderDesc.stage = Shader::Stage::Fragment;
+			fragShaderDesc.path = "Shaders/forward.frag.glsl";
+			programDesc.fragment = Shader::create(fragShaderDesc);
+		}
+		else
+		{
+			Shader::Descriptor vertShaderDesc;
+			vertShaderDesc.stage = Shader::Stage::Vertex;
+			vertShaderDesc.path = "Shaders/forword.vert.spv";
+			programDesc.vertex = Shader::create(vertShaderDesc);
+
+			Shader::Descriptor fragShaderDesc;
+			fragShaderDesc.stage = Shader::Stage::Fragment;
+			fragShaderDesc.path = "Shaders/forword.frag.spv";
+			programDesc.fragment = Shader::create(fragShaderDesc);
+		}
 	}
 	auto program = Program::create(programDesc);
 
@@ -57,6 +73,7 @@ int main()
 	Pipeline::Descriptor desc;
 	desc.program = program;
 	desc.vertexBuffer = vertexBuffer;
+	desc.viewports = {Viewport(Monitor::getPrimary().getSize())};
 	auto pipeline = Pipeline::create(desc);
 
 	bool running = true;
@@ -84,6 +101,7 @@ int main()
 		program->use();
 		cmdBuffer->begin();
 		{
+			cmdBuffer->setPipeline(pipeline);
 			cmdBuffer->setViewport({window->getSize()});
 			cmdBuffer->setClearColor({0, 0, 0, 0});
 			cmdBuffer->clear(ClearFlag::Color);
