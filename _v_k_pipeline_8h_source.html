@@ -101,17 +101,21 @@ $(document).ready(function(){initNavTree('_v_k_pipeline_8h_source.html',''); ini
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="class_v_k_pipeline.html">VKPipeline</a>(<span class="keyword">const</span> <a class="code" href="struct_pipeline_1_1_descriptor.html">Descriptor</a>&amp; desc);</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keywordtype">void</span> createLayout(<span class="keyword">const</span> <a class="code" href="class_pipeline_layout.html">PipelineLayout</a>&amp; layout);</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keywordtype">void</span> createViewportState(VkPipelineViewportStateCreateInfo&amp; info);</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keywordtype">void</span> createRasterizerState(VkPipelineRasterizationStateCreateInfo&amp;);</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordtype">void</span> createMultisampleState(VkPipelineMultisampleStateCreateInfo&amp; info);</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    VkPipeline       pipeline;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    VkPipelineLayout pipelineLayout;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;};</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    VkPipeline&amp; getNativeHandle();</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keywordtype">void</span> createLayout(<span class="keyword">const</span> <a class="code" href="struct_pipeline_1_1_descriptor.html">Descriptor</a>&amp; desc);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordtype">void</span> createInputAssemblyState(VkPipelineInputAssemblyStateCreateInfo&amp;, <span class="keyword">const</span> <a class="code" href="struct_pipeline_1_1_descriptor.html">Descriptor</a>&amp; desc);</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keywordtype">void</span> createViewportState(VkPipelineViewportStateCreateInfo&amp; info, <span class="keyword">const</span> <a class="code" href="struct_pipeline_1_1_descriptor.html">Descriptor</a>&amp; desc, std::vector&lt;VkViewport&gt;&amp; vkViewports, std::vector&lt;VkRect2D&gt;&amp; vkScissors);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordtype">void</span> createRasterizerState(VkPipelineRasterizationStateCreateInfo&amp; info, <span class="keyword">const</span> <a class="code" href="struct_pipeline_1_1_descriptor.html">Descriptor</a>&amp; desc);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordtype">void</span> createMultisampleState(VkPipelineMultisampleStateCreateInfo&amp; info, <span class="keyword">const</span> <a class="code" href="struct_pipeline_1_1_descriptor.html">Descriptor</a>&amp; desc);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordtype">void</span> createDepthStencilState(VkPipelineDepthStencilStateCreateInfo&amp; info, <span class="keyword">const</span> <a class="code" href="struct_pipeline_1_1_descriptor.html">Descriptor</a>&amp; desc);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordtype">void</span> createColorBlendState(VkPipelineColorBlendStateCreateInfo&amp; info, <span class="keyword">const</span> <a class="code" href="struct_pipeline_1_1_descriptor.html">Descriptor</a>&amp; desc, std::vector&lt;VkPipelineColorBlendAttachmentState&gt;&amp; colorBlendAttachments);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    VkPipeline       pipeline;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    VkPipelineLayout pipelineLayout;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;};</div>
 <div class="ttc" id="aclass_pipeline_html"><div class="ttname"><a href="class_pipeline.html">Pipeline</a></div><div class="ttdoc">图形管线.</div><div class="ttdef"><b>Definition:</b> Pipeline.h:17</div></div>
-<div class="ttc" id="aclass_pipeline_layout_html"><div class="ttname"><a href="class_pipeline_layout.html">PipelineLayout</a></div><div class="ttdoc">图形管线绑定布局.</div><div class="ttdef"><b>Definition:</b> PipelineLayout.h:15</div></div>
 <div class="ttc" id="aclass_v_k_pipeline_html"><div class="ttname"><a href="class_v_k_pipeline.html">VKPipeline</a></div><div class="ttdef"><b>Definition:</b> VKPipeline.h:11</div></div>
 <div class="ttc" id="astruct_pipeline_1_1_descriptor_html"><div class="ttname"><a href="struct_pipeline_1_1_descriptor.html">Pipeline::Descriptor</a></div><div class="ttdef"><b>Definition:</b> Pipeline.h:54</div></div>
 </div><!-- fragment --></div><!-- contents -->

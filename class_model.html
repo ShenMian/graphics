@@ -84,7 +84,7 @@ $(document).ready(function(){initNavTree('class_model.html',''); initResizable()
 
 <div class="header">
   <div class="summary">
-<a href="#pub-types">Public 类型</a> &#124;
+<a href="#nested-classes">类</a> &#124;
 <a href="#pub-methods">Public 成员函数</a> &#124;
 <a href="class_model-members.html">所有成员列表</a>  </div>
   <div class="headertitle">
@@ -97,22 +97,19 @@ $(document).ready(function(){initNavTree('class_model.html',''); initResizable()
 
 <p><code>#include &lt;<a class="el" href="_model_8h_source.html">Model.h</a>&gt;</code></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
-Public 类型</h2></td></tr>
-<tr class="memitem:aaf9612340436f9a2bed8d15133f1d046"><td class="memItemLeft" align="right" valign="top"><a id="aaf9612340436f9a2bed8d15133f1d046"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>Process</b> { <b>Fast</b>
-, <b>Quality</b>
-, <b>MaxQuality</b>
- }</td></tr>
-<tr class="separator:aaf9612340436f9a2bed8d15133f1d046"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+类</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_model_1_1_process_flags.html">ProcessFlags</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
-<tr class="memitem:a78330419d61ff78f5de051ad3d5533bb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#a78330419d61ff78f5de051ad3d5533bb">load</a> (const std::filesystem::path &amp;path, Process type=Process::Quality)</td></tr>
-<tr class="memdesc:a78330419d61ff78f5de051ad3d5533bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">从文件载入场景.  <a href="class_model.html#a78330419d61ff78f5de051ad3d5533bb">更多...</a><br /></td></tr>
-<tr class="separator:a78330419d61ff78f5de051ad3d5533bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a92d8cc9bfd435004168dd1918650fff8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#a92d8cc9bfd435004168dd1918650fff8">loadAsync</a> (const std::filesystem::path &amp;path, Process type=Process::MaxQuality, std::function&lt; void(std::string_view)&gt; callback=nullptr) noexcept</td></tr>
-<tr class="memdesc:a92d8cc9bfd435004168dd1918650fff8"><td class="mdescLeft">&#160;</td><td class="mdescRight">从文件载入场景, 异步.  <a href="class_model.html#a92d8cc9bfd435004168dd1918650fff8">更多...</a><br /></td></tr>
-<tr class="separator:a92d8cc9bfd435004168dd1918650fff8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d5ce96bb0ce54b4a526c58e7a247cd0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#a6d5ce96bb0ce54b4a526c58e7a247cd0">load</a> (const std::filesystem::path &amp;path, unsigned int process=<a class="el" href="struct_model_1_1_process_flags.html#a2022078b156bd53704d6a9d9c62d268ea519d899563530cfa614845490d19426a">ProcessFlags::Fast</a>)</td></tr>
+<tr class="memdesc:a6d5ce96bb0ce54b4a526c58e7a247cd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">从文件载入场景.  <a href="class_model.html#a6d5ce96bb0ce54b4a526c58e7a247cd0">更多...</a><br /></td></tr>
+<tr class="separator:a6d5ce96bb0ce54b4a526c58e7a247cd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb58f05b208fd32928caa2648341caf1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#abb58f05b208fd32928caa2648341caf1">loadAsync</a> (const std::filesystem::path &amp;path, unsigned int process=<a class="el" href="struct_model_1_1_process_flags.html#a2022078b156bd53704d6a9d9c62d268ea519d899563530cfa614845490d19426a">ProcessFlags::Fast</a>, std::function&lt; void(std::string_view)&gt; callback=nullptr) noexcept</td></tr>
+<tr class="memdesc:abb58f05b208fd32928caa2648341caf1"><td class="mdescLeft">&#160;</td><td class="mdescRight">从文件载入场景, 异步.  <a href="class_model.html#abb58f05b208fd32928caa2648341caf1">更多...</a><br /></td></tr>
+<tr class="separator:abb58f05b208fd32928caa2648341caf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8b2bc5e7f945efb88fcd01a7d2af3ca0"><td class="memItemLeft" align="right" valign="top">const AABB3 &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#a8b2bc5e7f945efb88fcd01a7d2af3ca0">getAABB</a> () const</td></tr>
 <tr class="memdesc:a8b2bc5e7f945efb88fcd01a7d2af3ca0"><td class="mdescLeft">&#160;</td><td class="mdescRight">保存场景到文件.  <a href="class_model.html#a8b2bc5e7f945efb88fcd01a7d2af3ca0">更多...</a><br /></td></tr>
 <tr class="separator:a8b2bc5e7f945efb88fcd01a7d2af3ca0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -154,8 +151,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>decompress</b> ()</td
 
 </div>
 </div>
-<a id="a78330419d61ff78f5de051ad3d5533bb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a78330419d61ff78f5de051ad3d5533bb">&#9670;&nbsp;</a></span>load()</h2>
+<a id="a6d5ce96bb0ce54b4a526c58e7a247cd0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d5ce96bb0ce54b4a526c58e7a247cd0">&#9670;&nbsp;</a></span>load()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -169,8 +166,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>decompress</b> ()</td
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Process&#160;</td>
-          <td class="paramname"><em>type</em> = <code>Process::Quality</code>&#160;</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>process</em> = <code><a class="el" href="struct_model_1_1_process_flags.html#a2022078b156bd53704d6a9d9c62d268ea519d899563530cfa614845490d19426a">ProcessFlags::Fast</a></code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -187,12 +184,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>decompress</b> ()</td
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>参见</dt><dd><a class="el" href="class_model.html#a92d8cc9bfd435004168dd1918650fff8" title="从文件载入场景, 异步.">loadAsync</a> </dd></dl>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="class_model.html#abb58f05b208fd32928caa2648341caf1" title="从文件载入场景, 异步.">loadAsync</a> </dd></dl>
 
 </div>
 </div>
-<a id="a92d8cc9bfd435004168dd1918650fff8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a92d8cc9bfd435004168dd1918650fff8">&#9670;&nbsp;</a></span>loadAsync()</h2>
+<a id="abb58f05b208fd32928caa2648341caf1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb58f05b208fd32928caa2648341caf1">&#9670;&nbsp;</a></span>loadAsync()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -209,8 +206,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>decompress</b> ()</td
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Process&#160;</td>
-          <td class="paramname"><em>type</em> = <code>Process::MaxQuality</code>, </td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>process</em> = <code><a class="el" href="struct_model_1_1_process_flags.html#a2022078b156bd53704d6a9d9c62d268ea519d899563530cfa614845490d19426a">ProcessFlags::Fast</a></code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -238,7 +235,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>decompress</b> ()</td
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>参见</dt><dd><a class="el" href="class_model.html#a78330419d61ff78f5de051ad3d5533bb" title="从文件载入场景.">load</a> </dd></dl>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="class_model.html#a6d5ce96bb0ce54b4a526c58e7a247cd0" title="从文件载入场景.">load</a> </dd></dl>
 
 </div>
 </div>
