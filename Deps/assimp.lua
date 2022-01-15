@@ -36,6 +36,8 @@
 		"assimp/build/contrib/zlib"}
 
 	defines {
+		"AI_CONFIG_IMPORT_SCHEMA_DOCUMENT_PROVIDER=\"IMPORT_SCHEMA_DOCUMENT_PROVIDER\"",
+
 		-- RapidJSON
 		"RAPIDJSON_HAS_STDSTRING=1",
 
