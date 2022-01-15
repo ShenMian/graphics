@@ -206,7 +206,7 @@ void loadNode(const aiNode* aNode, const aiScene* aScene, const fs::path& path, 
 
 }
 
-void Model::load(const fs::path& path, Process type)
+void Model::load(const fs::path& path, unsigned int process)
 {
 	if(!fs::exists(path) && !fs::is_regular_file(path))
 		throw std::runtime_error("no such file or directory");
@@ -215,34 +215,35 @@ void Model::load(const fs::path& path, Process type)
 
 	Timer timer; // TODO: debug
 
-	unsigned int flags;
-	switch(type)
-	{
-	case Process::Fast:
-		flags = aiProcessPreset_TargetRealtime_Fast;
-		break;
+	if(process & ProcessFlags::GenNormals & ProcessFlags::GenSmoothNormals)
+		throw std::runtime_error("flag GenNormals can not be specified together with GenSmoothNormals");
 
-	case Process::Quality:
-		flags = aiProcessPreset_TargetRealtime_Quality;
-		break;
+	unsigned int flags = aiProcess_CalcTangentSpace |
+		aiProcess_JoinIdenticalVertices |
+		aiProcess_Triangulate |
+		aiProcess_SortByPType;
 
-	case Process::MaxQuality:
-		flags = aiProcessPreset_TargetRealtime_MaxQuality;
-		break;
+	if(process & ProcessFlags::GenNormals)
+		flags |= aiProcess_GenNormals;
+	if(process & ProcessFlags::GenSmoothNormals)
+		flags |= aiProcess_GenSmoothNormals;
+	if(process & ProcessFlags::GenTexCoords)
+		flags |= aiProcess_GenUVCoords;
 
-	default:
-		flags = aiProcess_CalcTangentSpace |
-			aiProcess_JoinIdenticalVertices |
-			aiProcess_Triangulate |
-			aiProcess_SortByPType;
-		break;
-	}
+	if(process & ProcessFlags::RemoveRedundantMaterials)
+		flags |= aiProcess_RemoveRedundantMaterials;
+	if(process & ProcessFlags::SplitLargeMeshes)
+		flags |= aiProcess_SplitLargeMeshes;
+	if(process & ProcessFlags::OptimizeMeshes)
+		flags |= aiProcess_OptimizeMeshes;
+	if(process & ProcessFlags::ImproveCacheLocality)
+		flags |= aiProcess_ImproveCacheLocality;
 
-	// 从文件导入场景数据
-	Assimp::Importer importer;
+	if(process & ProcessFlags::FixInfacingNormals)
+		flags |= aiProcess_FixInfacingNormals;
 
 	// TODO: debug
-	///
+	// 文件加载进度回调
 	class Progress : public Assimp::ProgressHandler
 	{
 	public:
@@ -252,10 +253,10 @@ void Model::load(const fs::path& path, Process type)
 			return true;
 		}
 	};
-	importer.SetProgressHandler(new Progress);
-	///
 
-	aScene = importer.ReadFile(path.string(), flags);
+	Assimp::Importer importer;
+	importer.SetProgressHandler(new Progress);
+	aScene = importer.ReadFile(path.string(), flags); // 从文件导入场景数据
 
 	if(aScene == nullptr || aScene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || aScene->mRootNode == nullptr)
 		throw std::runtime_error(importer.GetErrorString());
@@ -269,7 +270,7 @@ void Model::load(const fs::path& path, Process type)
 	printf("Meshes processed: %.2lfs     \n", timer.getSeconds()); // TODO: debug
 }
 
-void Model::loadAsync(const fs::path& path, Process type, std::function<void(std::string_view)> callback) noexcept
+void Model::loadAsync(const fs::path& path, unsigned int process, std::function<void(std::string_view)> callback) noexcept
 {
 	try
 	{
@@ -277,12 +278,13 @@ void Model::loadAsync(const fs::path& path, Process type, std::function<void(std
 		{
 			try
 			{
-				load(path, type);
+				load(path, process);
 				if(callback)
 					callback("");
 			}
 			catch(std::runtime_error& e)
 			{
+				puts(e.what());
 				if(callback)
 					callback(e.what());
 			}
