@@ -47,9 +47,10 @@ macro(add_example NAME)
       "${DEPS_DIR}/glad/include"
       "${DEPS_DIR}/glfw/include"
       "${DEPS_DIR}/assimp/include"
+      "${DEPS_DIR}/meshoptimizer/src"
+      "${DEPS_DIR}/imgui-node-editor"
       "${DEPS_DIR}/assimp/build/include"
-      "${DEPS_DIR}/Vulkan-Headers/include"
-      "${DEPS_DIR}/meshoptimizer/src")
+      "${DEPS_DIR}/Vulkan-Headers/include")
   target_link_libraries(${NAME} PRIVATE graphics glad)
   target_compile_definitions(${NAME} PUBLIC ${GRAPHICS_DEFINES})
 
