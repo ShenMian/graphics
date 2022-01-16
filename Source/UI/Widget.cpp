@@ -26,6 +26,12 @@ Widget::Widget(const std::string& label, const std::string& id)
 	updateHandle();
 }
 
+Widget::Widget(const Widget& rhs)
+	: label(rhs.label), id(nextId++)
+{
+	updateHandle();
+}
+
 void Widget::setLabel(const std::string& label)
 {
 	this->label = label;

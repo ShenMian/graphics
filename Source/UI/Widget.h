@@ -17,6 +17,8 @@ public:
 	Widget(const std::string& label);
 	Widget(const std::string& label, const std::string& id);
 
+	Widget(const Widget&);
+
 	/**
 	 * @brief 设置组件标签.
 	 *
