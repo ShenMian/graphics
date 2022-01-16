@@ -82,7 +82,11 @@ var hierarchy =
     [ "ui::Widget", "classui_1_1_widget.html", [
       [ "ui::Button", "classui_1_1_button.html", null ],
       [ "ui::Label", "classui_1_1_label.html", null ],
+      [ "ui::Link", "classui_1_1_link.html", null ],
       [ "ui::Menu", "classui_1_1_menu.html", null ],
+      [ "ui::Node", "classui_1_1_node.html", null ],
+      [ "ui::NodeEditor", "classui_1_1_node_editor.html", null ],
+      [ "ui::Pin", "classui_1_1_pin.html", null ],
       [ "ui::Window", "classui_1_1_window.html", null ]
     ] ],
     [ "Window", "class_window.html", null ]

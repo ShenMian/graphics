@@ -6,7 +6,11 @@ var annotated_dup =
     [ "ui", null, [
       [ "Button", "classui_1_1_button.html", "classui_1_1_button" ],
       [ "Label", "classui_1_1_label.html", "classui_1_1_label" ],
+      [ "Link", "classui_1_1_link.html", "classui_1_1_link" ],
       [ "Menu", "classui_1_1_menu.html", "classui_1_1_menu" ],
+      [ "Node", "classui_1_1_node.html", "classui_1_1_node" ],
+      [ "NodeEditor", "classui_1_1_node_editor.html", "classui_1_1_node_editor" ],
+      [ "Pin", "classui_1_1_pin.html", "classui_1_1_pin" ],
       [ "Widget", "classui_1_1_widget.html", "classui_1_1_widget" ],
       [ "Window", "classui_1_1_window.html", "classui_1_1_window" ]
     ] ],
