@@ -15,8 +15,9 @@ project "test"
 	includedirs {
 		"%{wks.location}/Source",
 		"%{deps_inc.math}",
-		"%{deps_inc.assimp}",
+		"%{deps_inc.imgui}",
 		"%{deps_inc.vulkan}"}
+		-- "%{deps_inc.imgui_node_editor}",
 
 	links "Graphics"
 

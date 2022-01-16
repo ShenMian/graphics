@@ -34,3 +34,6 @@
 [submodule "Deps/imgui"]
 	path = Deps/imgui
 	url = https://github.com/ocornut/imgui
+[submodule "Deps/imgui-node-editor"]
+	path = Deps/imgui-node-editor
+	url = https://github.com/thedmd/imgui-node-editor.git

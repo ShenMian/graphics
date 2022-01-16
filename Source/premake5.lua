@@ -24,6 +24,7 @@ project "Graphics"
 		"%{deps_inc.vulkan}",
 		"%{deps_inc.vk_bootstrap}",
 		"%{deps_inc.meshoptimizer}"}
+		-- "%{deps_inc.imgui_node_editor}"
 
 	includedirs {
 		"%{wks.location}/Source"}
@@ -35,6 +36,6 @@ project "Graphics"
 		"assimp",
 		"vk_bootstrap",
 		"meshoptimizer",
-		"%{deps_lib.vulkan}",
+		"%{deps_lib.vulkan}"}
+		-- "imgui_node_editor",
 		-- "shaderc"
-		}

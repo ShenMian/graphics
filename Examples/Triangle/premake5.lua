@@ -15,7 +15,7 @@ project "triangle"
 	includedirs {
 		"%{wks.location}/Source",
 		"%{deps_inc.math}",
-		"%{deps_inc.assimp}",
+		"%{deps_inc.imgui}",
 		"%{deps_inc.vulkan}"}
 
 	links "Graphics"
