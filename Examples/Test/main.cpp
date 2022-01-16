@@ -43,14 +43,14 @@ int main()
 		const std::filesystem::path path = "../../../3DModel";
 
 		Model model;
-		// model.load(path / "pbr/MetalRoughSpheres/MetalRoughSpheres.gltf");
+		// model.load(path / "scene/Crytek_Sponza/sponza.obj", Model::ProcessFlags::Fast);
+		// model.load(path / "weapon/m4a1/m4a1.gltf", Model::ProcessFlags::Fast);
 		// model.load(path / "pbr/DamagedHelmet/DamagedHelmet.gltf");
 		// model.load(path / "basic/cube.obj");
-		// model.load(path / "scene/Crytek_Sponza/sponza.obj", Model::Process::Fast);
-		model.load(path / "weapon/m4a1/m4a1.gltf", Model::Process::Fast);
-		// model.load(path / "scene/Amazon_Lumberyard_Bistro/Exterior/exterior.obj", Model::Process::Fast);
-		// model.load(path / "3DModel/scene/San_Miguel/san-miguel-low-poly.obj", Model::Process::Fast);
-		// model.load(path / "3DModel/scene/SunTemple/SunTemple.fbx", Model::Process::Fast); // 暂不支持 DDS 格式的纹理资源
+		// model.load(path / "scene/Amazon_Lumberyard_Bistro/Exterior/exterior.obj", Model::ProcessFlags::Fast);
+		// model.load(path / "3DModel/scene/San_Miguel/san-miguel-low-poly.obj", Model::ProcessFlags::Fast);
+		// model.load(path / "pbr/MetalRoughSpheres/MetalRoughSpheres.gltf");
+		// model.load(path / "3DModel/scene/SunTemple/SunTemple.fbx", Model::ProcessFlags::Fast); // 暂不支持 DDS 格式的纹理资源
 
 		Program::Descriptor programDesc;
 		{
@@ -66,10 +66,12 @@ int main()
 		}
 		auto program = Program::create(programDesc);
 
-		// auto program = Program::create("Shaders/pbr");
-
 		PipelineLayout layout = {
-			{"albedo", PipelineLayout::Type::Texture, 0, PipelineLayout::StageFlags::Fragment}
+			{"albedo",    PipelineLayout::Type::Texture, 0, PipelineLayout::StageFlags::Fragment},
+			{"roughness", PipelineLayout::Type::Texture, 1, PipelineLayout::StageFlags::Fragment},
+			{"ao",        PipelineLayout::Type::Texture, 2, PipelineLayout::StageFlags::Fragment},
+			{"emissive",  PipelineLayout::Type::Texture, 3, PipelineLayout::StageFlags::Fragment},
+			{"normal",    PipelineLayout::Type::Texture, 4, PipelineLayout::StageFlags::Fragment}
 		};
 		Pipeline::Descriptor desc;
 		desc.layout = layout;
@@ -91,22 +93,22 @@ int main()
 		window->onClose = [&]() { running = false; };
 		window->onKey = [&](int action, Key key)
 		{
-			if(action == 1)
+			if(!action)
+				return;
+
+			switch(key)
 			{
-				switch(key)
-				{
-				case Key::Escape:
-					running = false;
-					break;
+			case Key::Escape:
+				running = false;
+				break;
 
-				case Key::F11:
-					window->setFullscreen(!window->isFullscreen());
-					break;
+			case Key::F11:
+				window->setFullscreen(!window->isFullscreen());
+				break;
 
-				case Key::P:
-					window->setCursorLock(false);
-					break;
-				}
+			case Key::P:
+				window->setCursorLock(false);
+				break;
 			}
 		};
 		window->onScroll = [&](Vector2d offset)
@@ -144,18 +146,22 @@ int main()
 				btn.setLabel("Compress");
 			}
 		};
-
-		ui::Menu menu("File");
 		win.add(label0);
 		win.add(label1);
 		win.add(label2);
 		win.add(compress);
-		win.add(menu);
 
 		Timer timer;
 		while(running)
 		{
 			const float dt = timer.getSeconds();
+			/*static float elapse = 0;
+			elapse += dt;
+			while(elapse >= 0.002f)
+			{
+				controller.update(0.002f);
+				elapse -= 0.002f;
+			}*/
 			controller.update(dt);
 			timer.restart();
 
