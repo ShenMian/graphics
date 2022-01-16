@@ -43,17 +43,17 @@ public:
 	{
 		enum
 		{
-			GenNormals = (1 << 0),       ///< 生成法向量.
-			GenSmoothNormals = (1 << 1), ///< 生成平滑的法向量
-			GenTexCoords = (1 << 2),     ///< 生成纹理坐标.
+			GenNormals = 1 << 0,       ///< 生成法向量.
+			GenSmoothNormals = 1 << 1, ///< 生成平滑的法向量
+			GenTexCoords = 1 << 2,     ///< 生成纹理坐标.
 
-			RemoveRedundantMaterials = (1 << 3), ///< 移除冗余的材质.
-			SplitLargeMeshes = (1 << 4),         ///< 分割大的网格数据为若干子网格.
-			OptimizeMeshes = (1 << 5),           ///< 减少网格数量.
-			ImproveCacheLocality = (1 << 6),     ///< 重新排序三角形以获得更好的顶点缓存数据局部性.
+			RemoveRedundantMaterials = 1 << 3, ///< 移除冗余的材质.
+			SplitLargeMeshes = 1 << 4,         ///< 分割大的网格数据为若干子网格.
+			OptimizeMeshes = 1 << 5,           ///< 减少网格数量.
+			ImproveCacheLocality = 1 << 6,     ///< 重新排序三角形以获得更好的顶点缓存数据局部性.
 
-			FixInfacingNormals = (1 << 7), ///< 查找指向内部的法向量, 并反转他们.
-			FindInvalidData = (1 << 8),    ///< 查找无效的数据.
+			FixInfacingNormals = 1 << 7, ///< 查找指向内部的法向量, 并反转他们.
+			FindInvalidData = 1 << 8,    ///< 查找无效的数据.
 
 			/// 快速.
 			Fast = GenNormals | GenTexCoords,
