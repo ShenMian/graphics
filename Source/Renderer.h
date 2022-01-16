@@ -13,8 +13,8 @@ public:
 	{
 		OpenGL,
 		Vulkan,
-		D3D12,
-		Metal
+		// D3D12,
+		// Metal
 	};
 
 	/**
