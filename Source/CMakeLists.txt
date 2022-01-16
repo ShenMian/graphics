@@ -22,10 +22,15 @@ else()
 endif()
 list(APPEND INCS "${DEPS_DIR}/glfw/include")
 
-# 添加 ImGui
+# 添加 imgui
 include("${DEPS_DIR}/imgui.cmake")
 list(APPEND LIBS imgui)
 list(APPEND INCS "${DEPS_DIR}/imgui")
+
+# 添加 imgui-node-editor
+include("${DEPS_DIR}/imgui_node_editor.cmake")
+list(APPEND LIBS imgui_node_editor)
+list(APPEND INCS "${DEPS_DIR}/imgui-node-editor")
 
 # 添加 assimp
 find_package(assimp CONFIG QUIET)
