@@ -23,11 +23,10 @@ project "Graphics"
 		"%{deps_inc.assimp}",
 		"%{deps_inc.vulkan}",
 		"%{deps_inc.vk_bootstrap}",
-		"%{deps_inc.meshoptimizer}"}
-		-- "%{deps_inc.imgui_node_editor}"
+		"%{deps_inc.meshoptimizer}",
+		"%{deps_inc.imgui_node_editor}"}
 
-	includedirs {
-		"%{wks.location}/Source"}
+	includedirs "%{wks.location}/Source"
 
 	links {
 		"glad",
@@ -36,6 +35,6 @@ project "Graphics"
 		"assimp",
 		"vk_bootstrap",
 		"meshoptimizer",
-		"%{deps_lib.vulkan}"}
-		-- "imgui_node_editor",
+		"%{deps_lib.vulkan}",
+		"imgui_node_editor"}
 		-- "shaderc"

@@ -16,6 +16,7 @@ project "cube"
 		"%{wks.location}/Source",
 		"%{deps_inc.math}",
 		"%{deps_inc.imgui}",
+		"%{deps_inc.imgui_node_editor}",
 		"%{deps_inc.vulkan}"}
 
 	links "Graphics"

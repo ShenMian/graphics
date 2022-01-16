@@ -51,7 +51,7 @@ workspace "Graphics"
     deps["vk_bootstrap"]      = "%{wks.location}/Deps/vk-bootstrap"
     deps["spirv_headers"]     = "%{wks.location}/Deps/SPIRV-Headers"
     deps["meshoptimizer"]     = "%{wks.location}/Deps/meshoptimizer"
-    -- deps["imgui_node_editor"] = "%{wks.location}/Deps/imgui-node-editor"
+    deps["imgui_node_editor"] = "%{wks.location}/Deps/imgui-node-editor"
 
     -- 第三方库头文件路径
     deps_inc = {}
@@ -64,8 +64,8 @@ workspace "Graphics"
     deps_inc["vulkan"]            = "%{wks.location}/Deps/Vulkan-Headers/include"
     deps_inc["vk_bootstrap"]      = "%{deps.vk_bootstrap}/src"
     deps_inc["meshoptimizer"]     = "%{deps.meshoptimizer}/src"
+    deps_inc["imgui_node_editor"] = "%{deps.imgui_node_editor}"
     -- deps_inc["shaderc"] = "%{deps.shaderc}/libshaderc/include"
-    -- deps_inc["imgui_node_editor"] = "%{deps.imgui_node_editor}"
 
     deps_lib = {}
     deps_lib["vulkan"] = "%{wks.location}/Deps/VulkanSDK/Lib/vulkan-1"
