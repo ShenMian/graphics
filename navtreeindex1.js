@@ -249,5 +249,5 @@ var NAVTREEINDEX1 =
 "classui_1_1_menu.html#a82d16324433e939bfd01bb84af480629":[3,0,1,2,0],
 "classui_1_1_menu.html#ad2ac75901c166165f5bc56b41883e795":[3,0,1,2,1],
 "classui_1_1_widget.html":[3,0,1,3],
-"classui_1_1_widget.html#a00b122fd63f70bbfe501fac5355a6457":[3,0,1,3,6]
+"classui_1_1_widget.html#a00b122fd63f70bbfe501fac5355a6457":[3,0,1,3,7]
 };
