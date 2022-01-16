@@ -56,12 +56,12 @@ int main()
 		{
 			Shader::Descriptor vertShaderDesc;
 			vertShaderDesc.stage = Shader::Stage::Vertex;
-			vertShaderDesc.path = "Shaders/forword.vert.spv";
+			vertShaderDesc.path = "Shaders/forward.vert.spv";
 			programDesc.vertex = Shader::create(vertShaderDesc);
 
 			Shader::Descriptor fragShaderDesc;
 			fragShaderDesc.stage = Shader::Stage::Fragment;
-			fragShaderDesc.path = "Shaders/forword.frag.spv";
+			fragShaderDesc.path = "Shaders/forward.frag.spv";
 			programDesc.fragment = Shader::create(fragShaderDesc);
 		}
 	}
