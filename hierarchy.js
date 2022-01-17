@@ -2,6 +2,9 @@ var hierarchy =
 [
     [ "PipelineLayout::Attribute", "struct_pipeline_layout_1_1_attribute.html", null ],
     [ "VertexLayout::Attribute", "struct_vertex_layout_1_1_attribute.html", null ],
+    [ "Buffer", "class_buffer.html", [
+      [ "GLBuffer", "class_g_l_buffer.html", null ]
+    ] ],
     [ "Camera", "class_camera.html", null ],
     [ "ClearFlag", "struct_clear_flag.html", null ],
     [ "CommandBuffer", "class_command_buffer.html", [
@@ -20,7 +23,6 @@ var hierarchy =
     [ "Program::Descriptor", "struct_program_1_1_descriptor.html", null ],
     [ "Shader::Descriptor", "struct_shader_1_1_descriptor.html", null ],
     [ "Gamepad", "class_gamepad.html", null ],
-    [ "GLBuffer", "class_g_l_buffer.html", null ],
     [ "GLCmdClear", "struct_g_l_cmd_clear.html", null ],
     [ "GLCmdDraw", "struct_g_l_cmd_draw.html", null ],
     [ "GLCmdDrawIndexed", "struct_g_l_cmd_draw_indexed.html", null ],

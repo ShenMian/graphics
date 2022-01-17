@@ -102,9 +102,9 @@ $(document).ready(function(){initNavTree('class_g_l_vertex_buffer.html',''); ini
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
-<tr class="memitem:a3e130ce5d3d263feb874094989c42259"><td class="memItemLeft" align="right" valign="top"><a id="a3e130ce5d3d263feb874094989c42259"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>GLVertexBuffer</b> (const void *data, size_t size, const <a class="el" href="class_vertex_layout.html">VertexLayout</a> &amp;fmt, Usage usage)</td></tr>
-<tr class="separator:a3e130ce5d3d263feb874094989c42259"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa541b5db4ff7e897c174f11f22828c7"><td class="memItemLeft" align="right" valign="top"><a id="afa541b5db4ff7e897c174f11f22828c7"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>GLVertexBuffer</b> (const void *data, size_t size, const <a class="el" href="class_vertex_layout.html">VertexLayout</a> &amp;fmt, Buffer::Usage usage)</td></tr>
+<tr class="separator:afa541b5db4ff7e897c174f11f22828c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae82ea0fe7e855ca8235cfd5ef9e0d1c0"><td class="memItemLeft" align="right" valign="top"><a id="ae82ea0fe7e855ca8235cfd5ef9e0d1c0"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>map</b> () override</td></tr>
 <tr class="separator:ae82ea0fe7e855ca8235cfd5ef9e0d1c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -142,20 +142,14 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>flash</b> ()</td></tr
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 额外继承的成员函数</h2></td></tr>
-<tr class="inherit_header pub_types_class_vertex_buffer"><td colspan="2" onclick="javascript:toggleInherit('pub_types_class_vertex_buffer')"><img src="closed.png" alt="-"/>&#160;Public 类型 继承自 <a class="el" href="class_vertex_buffer.html">VertexBuffer</a></td></tr>
-<tr class="memitem:a8babb1b67ce6f4304667b59e767f1b5a inherit pub_types_class_vertex_buffer"><td class="memItemLeft" align="right" valign="top"><a id="a8babb1b67ce6f4304667b59e767f1b5a"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>Usage</b> { <b>Static</b>
-, <b>Dynamic</b>
-, <b>Stream</b>
- }</td></tr>
-<tr class="separator:a8babb1b67ce6f4304667b59e767f1b5a inherit pub_types_class_vertex_buffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_static_methods_class_vertex_buffer"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_class_vertex_buffer')"><img src="closed.png" alt="-"/>&#160;静态 Public 成员函数 继承自 <a class="el" href="class_vertex_buffer.html">VertexBuffer</a></td></tr>
-<tr class="memitem:ac418e3f688b1df204b464598e51fb625 inherit pub_static_methods_class_vertex_buffer"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
-<tr class="memitem:ac418e3f688b1df204b464598e51fb625 inherit pub_static_methods_class_vertex_buffer"><td class="memTemplItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_vertex_buffer.html">VertexBuffer</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_vertex_buffer.html#ac418e3f688b1df204b464598e51fb625">create</a> (const std::vector&lt; T &gt; &amp;data, const <a class="el" href="class_vertex_layout.html">VertexLayout</a> &amp;layout, Usage usage=Usage::Static)</td></tr>
-<tr class="memdesc:ac418e3f688b1df204b464598e51fb625 inherit pub_static_methods_class_vertex_buffer"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建 <a class="el" href="class_vertex_buffer.html" title="顶点缓冲区.">VertexBuffer</a>.  <a href="class_vertex_buffer.html#ac418e3f688b1df204b464598e51fb625">更多...</a><br /></td></tr>
-<tr class="separator:ac418e3f688b1df204b464598e51fb625 inherit pub_static_methods_class_vertex_buffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0011887f36a1733e9cb7bf6addae702c inherit pub_static_methods_class_vertex_buffer"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_vertex_buffer.html">VertexBuffer</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vertex_buffer.html#a0011887f36a1733e9cb7bf6addae702c">create</a> (const void *data, size_t size, const <a class="el" href="class_vertex_layout.html">VertexLayout</a> &amp;layout, Usage usage=Usage::Static)</td></tr>
-<tr class="memdesc:a0011887f36a1733e9cb7bf6addae702c inherit pub_static_methods_class_vertex_buffer"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建 <a class="el" href="class_vertex_buffer.html" title="顶点缓冲区.">VertexBuffer</a>.  <a href="class_vertex_buffer.html#a0011887f36a1733e9cb7bf6addae702c">更多...</a><br /></td></tr>
-<tr class="separator:a0011887f36a1733e9cb7bf6addae702c inherit pub_static_methods_class_vertex_buffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac958ec6e2061c4c0426e9a7f0a097312 inherit pub_static_methods_class_vertex_buffer"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:ac958ec6e2061c4c0426e9a7f0a097312 inherit pub_static_methods_class_vertex_buffer"><td class="memTemplItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_vertex_buffer.html">VertexBuffer</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="class_vertex_buffer.html#ac958ec6e2061c4c0426e9a7f0a097312">create</a> (const std::vector&lt; T &gt; &amp;data, const <a class="el" href="class_vertex_layout.html">VertexLayout</a> &amp;layout, Buffer::Usage usage=Buffer::Usage::Static)</td></tr>
+<tr class="memdesc:ac958ec6e2061c4c0426e9a7f0a097312 inherit pub_static_methods_class_vertex_buffer"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建 <a class="el" href="class_vertex_buffer.html" title="顶点缓冲区.">VertexBuffer</a>.  <a href="class_vertex_buffer.html#ac958ec6e2061c4c0426e9a7f0a097312">更多...</a><br /></td></tr>
+<tr class="separator:ac958ec6e2061c4c0426e9a7f0a097312 inherit pub_static_methods_class_vertex_buffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21b829cfad6ea56034cd63493653f7ad inherit pub_static_methods_class_vertex_buffer"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_vertex_buffer.html">VertexBuffer</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vertex_buffer.html#a21b829cfad6ea56034cd63493653f7ad">create</a> (const void *data, size_t size, const <a class="el" href="class_vertex_layout.html">VertexLayout</a> &amp;layout, Buffer::Usage usage=Buffer::Usage::Static)</td></tr>
+<tr class="memdesc:a21b829cfad6ea56034cd63493653f7ad inherit pub_static_methods_class_vertex_buffer"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建 <a class="el" href="class_vertex_buffer.html" title="顶点缓冲区.">VertexBuffer</a>.  <a href="class_vertex_buffer.html#a21b829cfad6ea56034cd63493653f7ad">更多...</a><br /></td></tr>
+<tr class="separator:a21b829cfad6ea56034cd63493653f7ad inherit pub_static_methods_class_vertex_buffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_class_vertex_buffer"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_vertex_buffer')"><img src="closed.png" alt="-"/>&#160;Protected 成员函数 继承自 <a class="el" href="class_vertex_buffer.html">VertexBuffer</a></td></tr>
 <tr class="memitem:a37cb2ad76791e37cb38bcdd74b8333e3 inherit pro_methods_class_vertex_buffer"><td class="memItemLeft" align="right" valign="top"><a id="a37cb2ad76791e37cb38bcdd74b8333e3"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>VertexBuffer</b> (const void *data, size_t size, const <a class="el" href="class_vertex_layout.html">VertexLayout</a> &amp;layout)</td></tr>

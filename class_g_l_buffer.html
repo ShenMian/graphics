@@ -90,33 +90,79 @@ $(document).ready(function(){initNavTree('class_g_l_buffer.html',''); initResiza
 <div class="title">GLBuffer类 参考</div>  </div>
 </div><!--header-->
 <div class="contents">
+<div class="dynheader">
+类 GLBuffer 继承关系图:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_g_l_buffer.png" usemap="#GLBuffer_map" alt=""/>
+  <map id="GLBuffer_map" name="GLBuffer_map">
+<area href="class_buffer.html" alt="Buffer" shape="rect" coords="0,0,63,24"/>
+  </map>
+</div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
-<tr class="memitem:ae213acb57977f5e3a8de3879b5a526b7"><td class="memItemLeft" align="right" valign="top"><a id="ae213acb57977f5e3a8de3879b5a526b7"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>GLBuffer</b> (size_t size, GLenum type)</td></tr>
-<tr class="separator:ae213acb57977f5e3a8de3879b5a526b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af3cd82e2f49a4e6c88d4bb335a98c3f4"><td class="memItemLeft" align="right" valign="top"><a id="af3cd82e2f49a4e6c88d4bb335a98c3f4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>map</b> (size_t size=-1, size_t offset=0)</td></tr>
-<tr class="separator:af3cd82e2f49a4e6c88d4bb335a98c3f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5d8c5fd53d9ae53b3468f4795555fb57"><td class="memItemLeft" align="right" valign="top"><a id="a5d8c5fd53d9ae53b3468f4795555fb57"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>unmap</b> ()</td></tr>
-<tr class="separator:a5d8c5fd53d9ae53b3468f4795555fb57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afcc7a7e2b36f032019cb48dab3420281"><td class="memItemLeft" align="right" valign="top"><a id="afcc7a7e2b36f032019cb48dab3420281"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>GLBuffer</b> (size_t size, Type type, Usage usage)</td></tr>
+<tr class="separator:afcc7a7e2b36f032019cb48dab3420281"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad402ea789c05a62fc95b6d35017f2f97"><td class="memItemLeft" align="right" valign="top"><a id="ad402ea789c05a62fc95b6d35017f2f97"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>map</b> (size_t size=-1, size_t offset=0) override</td></tr>
+<tr class="separator:ad402ea789c05a62fc95b6d35017f2f97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85c80dfaa3d5d59fe53a82a6a83cd7fb"><td class="memItemLeft" align="right" valign="top"><a id="a85c80dfaa3d5d59fe53a82a6a83cd7fb"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>unmap</b> () override</td></tr>
+<tr class="separator:a85c80dfaa3d5d59fe53a82a6a83cd7fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7a8d09306b234fdd4fbffe4c1cb2c04a"><td class="memItemLeft" align="right" valign="top"><a id="a7a8d09306b234fdd4fbffe4c1cb2c04a"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>write</b> (const void *data, size_t size, size_t offset=0)</td></tr>
 <tr class="separator:a7a8d09306b234fdd4fbffe4c1cb2c04a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a377cc1506e8e1c12275aa0d92a839191"><td class="memItemLeft" align="right" valign="top"><a id="a377cc1506e8e1c12275aa0d92a839191"></a>
-void *&#160;</td><td class="memItemRight" valign="bottom"><b>getData</b> ()</td></tr>
-<tr class="separator:a377cc1506e8e1c12275aa0d92a839191"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a30f911b73b6724145d90b1b6a74051e7"><td class="memItemLeft" align="right" valign="top"><a id="a30f911b73b6724145d90b1b6a74051e7"></a>
-size_t&#160;</td><td class="memItemRight" valign="bottom"><b>getSize</b> () const</td></tr>
-<tr class="separator:a30f911b73b6724145d90b1b6a74051e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8781382ead064acb42fdb80392e6b378"><td class="memItemLeft" align="right" valign="top"><a id="a8781382ead064acb42fdb80392e6b378"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>bind</b> ()</td></tr>
 <tr class="separator:a8781382ead064acb42fdb80392e6b378"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6fa830095512fdc6ebaf09872903b074"><td class="memItemLeft" align="right" valign="top"><a id="a6fa830095512fdc6ebaf09872903b074"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>operator GLuint</b> () const</td></tr>
 <tr class="separator:a6fa830095512fdc6ebaf09872903b074"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_buffer"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_buffer')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="class_buffer.html">Buffer</a></td></tr>
+<tr class="memitem:a366ff84ddb5fe0e098bde020deb3df4c inherit pub_methods_class_buffer"><td class="memItemLeft" align="right" valign="top"><a id="a366ff84ddb5fe0e098bde020deb3df4c"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Buffer</b> (size_t size, Type type, Usage usage)</td></tr>
+<tr class="separator:a366ff84ddb5fe0e098bde020deb3df4c inherit pub_methods_class_buffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32a87a0644536d10c637581022283854 inherit pub_methods_class_buffer"><td class="memItemLeft" align="right" valign="top"><a id="a32a87a0644536d10c637581022283854"></a>
+void *&#160;</td><td class="memItemRight" valign="bottom"><b>getData</b> ()</td></tr>
+<tr class="separator:a32a87a0644536d10c637581022283854 inherit pub_methods_class_buffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a996ac8bec0aaccf19776c45b55b27dd2 inherit pub_methods_class_buffer"><td class="memItemLeft" align="right" valign="top"><a id="a996ac8bec0aaccf19776c45b55b27dd2"></a>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><b>getSize</b> () const</td></tr>
+<tr class="separator:a996ac8bec0aaccf19776c45b55b27dd2 inherit pub_methods_class_buffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8df11718cac1d3d4321bbc9a8410ad01 inherit pub_methods_class_buffer"><td class="memItemLeft" align="right" valign="top"><a id="a8df11718cac1d3d4321bbc9a8410ad01"></a>
+Type&#160;</td><td class="memItemRight" valign="bottom"><b>getType</b> () const</td></tr>
+<tr class="separator:a8df11718cac1d3d4321bbc9a8410ad01 inherit pub_methods_class_buffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35f7d79ac4e9d02a86aad038d525a8df inherit pub_methods_class_buffer"><td class="memItemLeft" align="right" valign="top"><a id="a35f7d79ac4e9d02a86aad038d525a8df"></a>
+Usage&#160;</td><td class="memItemRight" valign="bottom"><b>getUsage</b> () const</td></tr>
+<tr class="separator:a35f7d79ac4e9d02a86aad038d525a8df inherit pub_methods_class_buffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header pub_types_class_buffer"><td colspan="2" onclick="javascript:toggleInherit('pub_types_class_buffer')"><img src="closed.png" alt="-"/>&#160;Public 类型 继承自 <a class="el" href="class_buffer.html">Buffer</a></td></tr>
+<tr class="memitem:a758eb2b0cc5aac56e3879407933fd3cc inherit pub_types_class_buffer"><td class="memItemLeft" align="right" valign="top"><a id="a758eb2b0cc5aac56e3879407933fd3cc"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>Type</b> { <b>Vertex</b>
+, <b>Index</b>
+, <b>Uniform</b>
+ }</td></tr>
+<tr class="separator:a758eb2b0cc5aac56e3879407933fd3cc inherit pub_types_class_buffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1c6312f90d7b17d923a5ac01ccd2c21 inherit pub_types_class_buffer"><td class="memItemLeft" align="right" valign="top"><a id="aa1c6312f90d7b17d923a5ac01ccd2c21"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>Usage</b> { <b>Static</b>
+, <b>Dynamic</b>
+, <b>Stream</b>
+ }</td></tr>
+<tr class="separator:aa1c6312f90d7b17d923a5ac01ccd2c21 inherit pub_types_class_buffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_class_buffer"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_buffer')"><img src="closed.png" alt="-"/>&#160;Protected 属性 继承自 <a class="el" href="class_buffer.html">Buffer</a></td></tr>
+<tr class="memitem:a24e94f119f4b386771c78cf37aaff41b inherit pro_attribs_class_buffer"><td class="memItemLeft" align="right" valign="top"><a id="a24e94f119f4b386771c78cf37aaff41b"></a>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><b>size</b></td></tr>
+<tr class="separator:a24e94f119f4b386771c78cf37aaff41b inherit pro_attribs_class_buffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ff4210441bce9a41ef90b8fd8f02f7e inherit pro_attribs_class_buffer"><td class="memItemLeft" align="right" valign="top"><a id="a2ff4210441bce9a41ef90b8fd8f02f7e"></a>
+Type&#160;</td><td class="memItemRight" valign="bottom"><b>type</b></td></tr>
+<tr class="separator:a2ff4210441bce9a41ef90b8fd8f02f7e inherit pro_attribs_class_buffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a630960540a4e5a7f7cc5758e0a6d9bee inherit pro_attribs_class_buffer"><td class="memItemLeft" align="right" valign="top"><a id="a630960540a4e5a7f7cc5758e0a6d9bee"></a>
+Usage&#160;</td><td class="memItemRight" valign="bottom"><b>usage</b></td></tr>
+<tr class="separator:a630960540a4e5a7f7cc5758e0a6d9bee inherit pro_attribs_class_buffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae615518349c1a6f24d7b3b565f740dc0 inherit pro_attribs_class_buffer"><td class="memItemLeft" align="right" valign="top"><a id="ae615518349c1a6f24d7b3b565f740dc0"></a>
+void *&#160;</td><td class="memItemRight" valign="bottom"><b>data</b> = nullptr</td></tr>
+<tr class="separator:ae615518349c1a6f24d7b3b565f740dc0 inherit pro_attribs_class_buffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>该类的文档由以下文件生成:<ul>
 <li>/github/workspace/Source/OpenGL/<a class="el" href="_g_l_buffer_8h_source.html">GLBuffer.h</a></li>
