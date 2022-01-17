@@ -114,6 +114,11 @@ void GLProgram::setUniform(const std::string& name, const Matrix4& value)
 	GLCheckError();
 }
 
+GLProgram::operator GLuint() const
+{
+	return handle;
+}
+
 int GLProgram::getUniformBufferLocation(const std::string& name)
 {
 	return glGetUniformBlockIndex(handle, name.c_str());

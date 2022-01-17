@@ -19,16 +19,11 @@ out Out
     mat3 TBN;
 } vert;
 
-/*
 layout (std140, binding = 0) uniform Camera
 {
     mat4 view; // 视图矩阵
     mat4 proj; // 投影矩阵
 } camera;
-*/
-
-uniform mat4 view;
-uniform mat4 projection;
 
 uniform mat4 model;
 
@@ -52,5 +47,5 @@ void main()
     // vert.position.x = -vert.position.x;
     // vert.position.z = -vert.position.z;
 
-    gl_Position = projection * view * vec4(vert.position, 1.0);
+    gl_Position = camera.proj * camera.view * vec4(vert.position, 1.0);
 }

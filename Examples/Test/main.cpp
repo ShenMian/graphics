@@ -3,7 +3,7 @@
 
 #include "Graphics.h"
 
-#include <thread>
+#include "OpenGL/GLUniformBuffer.h"
 
 using namespace std::literals::string_literals;
 
@@ -27,8 +27,8 @@ int main()
 		const std::filesystem::path path = "../../../3DModel";
 
 		Model model;
-		model.load(path / "scene/Crytek_Sponza/sponza.obj", Model::ProcessFlags::Fast);
-		// model.load(path / "weapon/m4a1/m4a1.gltf", Model::ProcessFlags::Fast);
+		// model.load(path / "scene/Crytek_Sponza/sponza.obj", Model::ProcessFlags::Fast);
+		model.load(path / "weapon/m4a1/m4a1.gltf", Model::ProcessFlags::Fast);
 		// model.load(path / "pbr/DamagedHelmet/DamagedHelmet.gltf");
 		// model.load(path / "basic/cube.obj");
 		// model.load(path / "scene/Amazon_Lumberyard_Bistro/Exterior/exterior.obj", Model::ProcessFlags::Fast);
@@ -137,10 +137,13 @@ int main()
 		win.add(label2);
 		win.add(compress);
 
+		GLUniformBuffer uniformBuffer("Camera", 0, 2 * sizeof(Matrix4f));
+		uniformBuffer.bind(reinterpret_cast<GLProgram*>(program.get()));
+
 		Timer timer;
 		while(running)
 		{
-			const float dt = timer.getSeconds();
+			const float dt = (float)timer.getSeconds();
 			/*static float elapse = 0;
 			elapse += dt;
 			while(elapse >= 0.002f)
@@ -159,9 +162,10 @@ int main()
 			label2.setText("  rotation: " + std::to_string((int)dir.x) + ", " + std::to_string((int)dir.y) + ", " + std::to_string((int)dir.z));
 			win.update();
 
+			uniformBuffer.write(camera.getView().data(), sizeof(Matrix4f));
+			uniformBuffer.write(camera.getProjection().data(), sizeof(Matrix4f), sizeof(Matrix4f));
+
 			program->setUniform("model", Matrix4f());
-			program->setUniform("view", camera.getView());
-			program->setUniform("projection", camera.getProjection());
 
 			cmdBuffer->begin();
 			{

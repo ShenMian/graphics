@@ -25,6 +25,8 @@ public:
 	void setUniform(const std::string& name, const Vector4& value) override;
 	void setUniform(const std::string& name, const Matrix4& value) override;
 
+	operator GLuint() const;
+
 private:
 	/**
 	 * @brief 获取 uniform 缓冲块地址.

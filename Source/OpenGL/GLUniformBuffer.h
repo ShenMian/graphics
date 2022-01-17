@@ -3,17 +3,21 @@
 
 #pragma once
 
+#include "UniformBuffer.h"
 #include "GLBuffer.h"
 #include <glad/glad.h>
 #include <cstddef>
 
-class GLUniformBuffer
+class GLProgram;
+
+class GLUniformBuffer : public UniformBuffer
 {
 public:
-	GLUniformBuffer(size_t size);
+	GLUniformBuffer(const std::string& name, int slot, size_t size);
 
 	void write(const void* data, size_t size, size_t offset = 0);
 
+	void bind(GLProgram* program);
 	void bind();
 
 private:
