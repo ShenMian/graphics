@@ -27,8 +27,8 @@ int main()
 		const std::filesystem::path path = "../../../3DModel";
 
 		Model model;
-		// model.load(path / "scene/Crytek_Sponza/sponza.obj", Model::ProcessFlags::Fast);
-		model.load(path / "weapon/m4a1/m4a1.gltf", Model::ProcessFlags::Fast);
+		model.load(path / "scene/Crytek_Sponza/sponza.obj", Model::ProcessFlags::Fast);
+		// model.load(path / "weapon/m4a1/m4a1.gltf", Model::ProcessFlags::Fast);
 		// model.load(path / "pbr/DamagedHelmet/DamagedHelmet.gltf");
 		// model.load(path / "basic/cube.obj");
 		// model.load(path / "scene/Amazon_Lumberyard_Bistro/Exterior/exterior.obj", Model::ProcessFlags::Fast);
@@ -122,11 +122,13 @@ int main()
 			if(!compressed)
 			{
 				model.compress();
+				compressed = true;
 				btn.setLabel("Decompress");
 			}
 			else
 			{
 				model.decompress();
+				compressed = false;
 				btn.setLabel("Compress");
 			}
 		};
