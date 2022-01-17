@@ -62,6 +62,7 @@ var annotated_dup =
     [ "Texture", "class_texture.html", "class_texture" ],
     [ "Timer", "class_timer.html", "class_timer" ],
     [ "UI", "class_u_i.html", null ],
+    [ "UniformBuffer", "class_uniform_buffer.html", "class_uniform_buffer" ],
     [ "VertexBuffer", "class_vertex_buffer.html", "class_vertex_buffer" ],
     [ "VertexLayout", "class_vertex_layout.html", "class_vertex_layout" ],
     [ "Viewport", "struct_viewport.html", "struct_viewport" ],

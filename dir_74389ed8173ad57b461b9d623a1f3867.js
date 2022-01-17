@@ -20,6 +20,7 @@ var dir_74389ed8173ad57b461b9d623a1f3867 =
     [ "Renderer.h", "_renderer_8h_source.html", null ],
     [ "Shader.h", "_shader_8h_source.html", null ],
     [ "Texture.h", "_texture_8h_source.html", null ],
+    [ "UniformBuffer.h", "_uniform_buffer_8h_source.html", null ],
     [ "VertexBuffer.h", "_vertex_buffer_8h_source.html", null ],
     [ "VertexLayout.h", "_vertex_layout_8h_source.html", null ],
     [ "Viewport.hpp", "_viewport_8hpp_source.html", null ]
