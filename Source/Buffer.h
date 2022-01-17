@@ -3,6 +3,8 @@
 
 #pragma once
 
+#include <cstddef>
+
 class Buffer
 {
 public:
