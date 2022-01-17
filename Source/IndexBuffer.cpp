@@ -7,12 +7,12 @@
 
 #include "OpenGL/GLIndexBuffer.h"
 
-std::shared_ptr<IndexBuffer> IndexBuffer::create(const std::vector<unsigned int>& data, Usage usage)
+std::shared_ptr<IndexBuffer> IndexBuffer::create(const std::vector<unsigned int>& data, Buffer::Usage usage)
 {
 	return create(data.data(), data.size() * sizeof(unsigned int), usage);
 }
 
-std::shared_ptr<IndexBuffer> IndexBuffer::create(const unsigned int* data, size_t size, Usage usage)
+std::shared_ptr<IndexBuffer> IndexBuffer::create(const unsigned int* data, size_t size, Buffer::Usage usage)
 {
 	switch(Renderer::getAPI())
 	{

@@ -2,6 +2,18 @@
 // License(Apache-2.0)
 
 #include "VKBuffer.h"
+#include <unordered_map>
+
+namespace
+{
+
+std::unordered_map<Buffer::Type, VkBufferUsageFlags> VKUsage = {
+	{Buffer::Type::Vertex, VK_BUFFER_USAGE_VERTEX_BUFFER_BIT},
+	{Buffer::Type::Index, VK_BUFFER_USAGE_INDEX_BUFFER_BIT},
+	{Buffer::Type::Uniform, VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT}
+};
+
+}
 
 VKBuffer::VKBuffer(size_t size, VkBufferUsageFlags usage, VkMemoryPropertyFlags properties)
 {

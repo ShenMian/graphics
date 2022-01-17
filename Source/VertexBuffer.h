@@ -3,6 +3,7 @@
 
 #pragma once
 
+#include "Buffer.h"
 #include "VertexLayout.h"
 #include <Math/Math.hpp>
 #include <memory>
@@ -14,13 +15,6 @@
 class VertexBuffer
 {
 public:
-	enum class Usage
-	{
-		Static,
-		Dynamic,
-		Stream
-	};
-
 	/**
 	 * @brief 创建 VertexBuffer.
 	 *
@@ -29,7 +23,7 @@ public:
 	 * @param usage  使用方式.
 	 */
 	template <typename T>
-	static std::shared_ptr<VertexBuffer> create(const std::vector<T>& data, const VertexLayout& layout, Usage usage = Usage::Static);
+	static std::shared_ptr<VertexBuffer> create(const std::vector<T>& data, const VertexLayout& layout, Buffer::Usage usage = Buffer::Usage::Static);
 
 	/**
 	 * @brief 创建 VertexBuffer.
@@ -40,7 +34,7 @@ public:
 	 * @param layout 顶点格式.
 	 * @param usage  使用方式.
 	 */
-	static std::shared_ptr<VertexBuffer> create(const void* data, size_t size, const VertexLayout& layout, Usage usage = Usage::Static);
+	static std::shared_ptr<VertexBuffer> create(const void* data, size_t size, const VertexLayout& layout, Buffer::Usage usage = Buffer::Usage::Static);
 
 	/**
 	 * @brief 获取缓冲区大小, 单位: 字节.
@@ -78,7 +72,7 @@ private:
 };
 
 template <typename T>
-inline std::shared_ptr<VertexBuffer> VertexBuffer::create(const std::vector<T>& data, const VertexLayout& layout, Usage usage)
+inline std::shared_ptr<VertexBuffer> VertexBuffer::create(const std::vector<T>& data, const VertexLayout& layout, Buffer::Usage usage)
 {
 	return create(data.data(), data.size() * sizeof(T), layout, usage);
 }

@@ -4,13 +4,13 @@
 #pragma once
 
 #include "IndexBuffer.h"
+#include "GLBuffer.h"
 #include <glad/glad.h>
 
 class GLIndexBuffer : public IndexBuffer
 {
 public:
-	GLIndexBuffer(const unsigned int* data, size_t size, Usage usage);
-	virtual ~GLIndexBuffer();
+	GLIndexBuffer(const unsigned int* data, size_t size, Buffer::Usage usage);
 
 	void map() override;
 	void unmap() override;
@@ -19,6 +19,5 @@ public:
 	void bind() override;
 
 private:
-	GLuint handle;
-	void*  data = nullptr;
+	GLBuffer buffer;
 };

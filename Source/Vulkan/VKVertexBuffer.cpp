@@ -16,9 +16,9 @@ std::unordered_map<Format, VkFormat> VKFormat = {
 	{Format::RGBA32F, VK_FORMAT_R32G32B32A32_SFLOAT},
 };
 
-VKVertexBuffer::VKVertexBuffer(const void* data, size_t size, const VertexLayout& layout, Usage usage)
+VKVertexBuffer::VKVertexBuffer(const void* data, size_t size, const VertexLayout& layout, Buffer::Usage usage)
 	: VertexBuffer(data, size, layout),
-	handle(size, VK_BUFFER_USAGE_VERTEX_BUFFER_BIT, VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT)
+	buffer(size, VK_BUFFER_USAGE_VERTEX_BUFFER_BIT, VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT)
 {
 	VkVertexInputBindingDescription binding = {};
 	binding.binding = 0;
@@ -36,18 +36,14 @@ VKVertexBuffer::VKVertexBuffer(const void* data, size_t size, const VertexLayout
 	}
 }
 
-VKVertexBuffer::~VKVertexBuffer()
-{
-}
-
 void VKVertexBuffer::map()
 {
-	handle.map();
+	buffer.map();
 }
 
 void VKVertexBuffer::unmap()
 {
-	handle.unmap();
+	buffer.unmap();
 }
 
 void VKVertexBuffer::write(const void* data, size_t size)

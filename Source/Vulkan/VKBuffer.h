@@ -3,6 +3,7 @@
 
 #pragma once
 
+#include "Buffer.h"
 #include "VKRenderer.h"
 #include <vulkan/vulkan.h>
 

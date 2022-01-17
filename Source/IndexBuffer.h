@@ -3,6 +3,7 @@
 
 #pragma once
 
+#include "Buffer.h"
 #include <memory>
 #include <vector>
 
@@ -12,20 +13,13 @@
 class IndexBuffer
 {
 public:
-	enum class Usage
-	{
-		Static,
-		Dynamic,
-		Stream
-	};
-
 	/**
 	 * @brief 创建 IndexBuffer.
 	 *
 	 * @param data  索引缓冲区.
 	 * @param usage 使用方式.
 	 */
-	static std::shared_ptr<IndexBuffer> create(const std::vector<unsigned int>& data, Usage usage = Usage::Static);
+	static std::shared_ptr<IndexBuffer> create(const std::vector<unsigned int>& data, Buffer::Usage usage = Buffer::Usage::Static);
 
 	/**
 	 * @brief 创建 IndexBuffer.
@@ -35,7 +29,7 @@ public:
 	 * @param count 索引数量.
 	 * @param usage 使用方式.
 	 */
-	static std::shared_ptr<IndexBuffer> create(const unsigned int* data, size_t size, Usage usage = Usage::Static);
+	static std::shared_ptr<IndexBuffer> create(const unsigned int* data, size_t size, Buffer::Usage usage = Buffer::Usage::Static);
 
 	/**
 	 * @brief 获取缓冲区大小, 单位: 字节.

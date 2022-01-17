@@ -3,32 +3,25 @@
 
 #pragma once
 
+#include "Buffer.h"
 #include <glad/glad.h>
 #include <cstddef>
 
-class GLBuffer
+class GLBuffer : public Buffer
 {
 public:
-	GLBuffer(size_t size, GLenum type);
+	GLBuffer(size_t size, Type type, Usage usage);
 	virtual ~GLBuffer();
 
-	void map(size_t size = -1, size_t offset = 0);
-	void unmap();
+	void map(size_t size = -1, size_t offset = 0) override;
+	void unmap() override;
 
 	void write(const void* data, size_t size, size_t offset = 0);
 
-	void* getData();
-	size_t getSize() const;
-
 	void bind();
-
 	operator GLuint() const;
 
 private:
-	void allocate(size_t size);
-
 	GLuint handle;
-	size_t size;
-	GLenum type;
-	void*  data = nullptr;
+	GLenum glType;
 };

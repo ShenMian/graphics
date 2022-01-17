@@ -10,8 +10,7 @@
 class VKVertexBuffer : public VertexBuffer
 {
 public:
-	VKVertexBuffer(const void* data, size_t size, const VertexLayout& layout, Usage usage);
-	virtual ~VKVertexBuffer();
+	VKVertexBuffer(const void* data, size_t size, const VertexLayout& layout, Buffer::Usage usage);
 
 	void map() override;
 	void unmap() override;
@@ -23,7 +22,7 @@ public:
 	void bind() override;
 
 private:
-	VKBuffer handle;
+	VKBuffer buffer;
 
 	std::vector<VkVertexInputBindingDescription>   bindings;
 	std::vector<VkVertexInputAttributeDescription> attribs;

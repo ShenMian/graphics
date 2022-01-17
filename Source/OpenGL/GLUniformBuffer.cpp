@@ -4,7 +4,7 @@
 #include "GLUniformBuffer.h"
 
 GLUniformBuffer::GLUniformBuffer(size_t size)
-	: buffer(size, GL_UNIFORM_BUFFER)
+	: buffer(size, Buffer::Type::Uniform, Buffer::Usage::Dynamic)
 {
 	/*
 	auto blockIndex = glGetUniformBlockIndex();

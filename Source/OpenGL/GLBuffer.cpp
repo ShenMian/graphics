@@ -4,12 +4,32 @@
 #include "GLBuffer.h"
 #include "GLCheck.h"
 #include <cstring>
+#include <unordered_map>
 
-GLBuffer::GLBuffer(size_t size, GLenum type)
-	: size(size), type(type)
+namespace
+{
+
+std::unordered_map<Buffer::Type, uint32_t> GLType = {
+	{Buffer::Type::Vertex, GL_ARRAY_BUFFER},
+	{Buffer::Type::Index, GL_ELEMENT_ARRAY_BUFFER},
+	{Buffer::Type::Uniform, GL_UNIFORM_BUFFER}
+};
+
+std::unordered_map<Buffer::Usage, uint32_t> GLUsage = {
+	{Buffer::Usage::Static, GL_STATIC_DRAW},
+	{Buffer::Usage::Dynamic, GL_DYNAMIC_DRAW},
+	{Buffer::Usage::Stream, GL_STREAM_DRAW}
+};
+
+}
+
+GLBuffer::GLBuffer(size_t size, Type type, Usage usage)
+	: Buffer(size, type, usage), glType(GLType[type])
 {
 	glCreateBuffers(1, &handle);
-	allocate(size);
+	bind();
+	glBufferData(glType, size, nullptr, GLUsage[usage]);
+	GLCheckError();
 }
 
 GLBuffer::~GLBuffer()
@@ -24,14 +44,14 @@ void GLBuffer::map(size_t size, size_t offset)
 		size = this->size;
 
 	bind();
-	data = glMapBufferRange(type, offset, size, access);
+	data = glMapBufferRange(glType, offset, size, access);
 	GLCheckError();
 }
 
 void GLBuffer::unmap()
 {
 	bind();
-	glUnmapBuffer(type);
+	glUnmapBuffer(glType);
 	data = nullptr;
 	GLCheckError();
 }
@@ -41,26 +61,9 @@ void GLBuffer::write(const void* data, size_t size, size_t offset)
 	std::memcpy(static_cast<unsigned char*>(this->data) + offset, data, size);
 }
 
-void* GLBuffer::getData()
-{
-	return data;
-}
-
-size_t GLBuffer::getSize() const
-{
-	return size;
-}
-
-void GLBuffer::allocate(size_t size)
-{
-	bind();
-	glBufferData(type, size, nullptr, GL_DYNAMIC_DRAW);
-	GLCheckError();
-}
-
 void GLBuffer::bind()
 {
-	glBindBuffer(type, handle);
+	glBindBuffer(glType, handle);
 }
 
 GLBuffer::operator GLuint() const

@@ -4,14 +4,14 @@
 #pragma once
 
 #include "VertexBuffer.h"
+#include "GLBuffer.h"
 #include "GLVertexArray.h"
 #include <glad/glad.h>
 
 class GLVertexBuffer : public VertexBuffer
 {
 public:
-	GLVertexBuffer(const void* data, size_t size, const VertexLayout& fmt, Usage usage);
-	virtual ~GLVertexBuffer();
+	GLVertexBuffer(const void* data, size_t size, const VertexLayout& fmt, Buffer::Usage usage);
 
 	void map() override;
 	void unmap() override;
@@ -20,7 +20,6 @@ public:
 	void bind() override;
 
 private:
-	GLuint        handle;
-	void*         data = nullptr;
+	GLBuffer      buffer;
 	GLVertexArray vao;
 };

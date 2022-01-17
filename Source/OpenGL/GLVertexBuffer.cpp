@@ -9,54 +9,43 @@
 namespace
 {
 
-std::unordered_map<VertexBuffer::Usage, uint32_t> GLusage = {
-	{VertexBuffer::Usage::Static, GL_STATIC_DRAW},
-	{VertexBuffer::Usage::Dynamic, GL_DYNAMIC_DRAW},
-	{VertexBuffer::Usage::Stream, GL_STREAM_DRAW}};
+std::unordered_map<Buffer::Usage, uint32_t> GLUsage = {
+	{Buffer::Usage::Static, GL_STATIC_DRAW},
+	{Buffer::Usage::Dynamic, GL_DYNAMIC_DRAW},
+	{Buffer::Usage::Stream, GL_STREAM_DRAW}
+};
 
 }
 
-GLVertexBuffer::GLVertexBuffer(const void* data, size_t size, const VertexLayout& fmt, Usage usage)
-	: VertexBuffer(data, size, fmt)
+GLVertexBuffer::GLVertexBuffer(const void* data, size_t size, const VertexLayout& fmt, Buffer::Usage usage)
+	: VertexBuffer(data, size, fmt), buffer(size, Buffer::Type::Vertex, usage)
 {
-	glCreateBuffers(1, &handle);
 	bind();
-	glBufferData(GL_ARRAY_BUFFER, size, data, GLusage[usage]);
+	glBufferData(GL_ARRAY_BUFFER, size, data, GLUsage[usage]);
 
 	vao.build(fmt);
 }
 
-GLVertexBuffer::~GLVertexBuffer()
-{
-	glDeleteBuffers(1, &handle);
-}
-
 void GLVertexBuffer::map()
 {
-	bind();
-	data = glMapBuffer(GL_ARRAY_BUFFER, GL_WRITE_ONLY);
-	GLCheckError();
+	buffer.map();
 }
 
 void GLVertexBuffer::unmap()
 {
-	bind();
-	glUnmapBuffer(GL_ARRAY_BUFFER);
-	data = nullptr;
-	GLCheckError();
+	buffer.unmap();
 }
 
 void GLVertexBuffer::write(const void* data, size_t size)
 {
 	bind();
-	glBufferData(GL_ARRAY_BUFFER, size, data, GLusage[Usage::Static]);
+	glBufferData(GL_ARRAY_BUFFER, size, data, GLUsage[Buffer::Usage::Static]);
 	glBufferSubData(GL_ARRAY_BUFFER, 0, size, data);
 	GLCheckError();
 }
 
 void GLVertexBuffer::bind()
 {
-	glBindBuffer(GL_ARRAY_BUFFER, handle);
-
+	buffer.bind();
 	vao.bind();
 }
