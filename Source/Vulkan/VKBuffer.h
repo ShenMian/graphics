@@ -10,7 +10,7 @@
 class VKBuffer
 {
 public:
-	VKBuffer(size_t size, VkBufferUsageFlags usage, VkMemoryPropertyFlags properties);
+	VKBuffer(size_t size, Buffer::Type type, VkMemoryPropertyFlags properties);
 	virtual ~VKBuffer();
 
 	/**

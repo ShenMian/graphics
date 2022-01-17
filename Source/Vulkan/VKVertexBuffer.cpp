@@ -18,7 +18,7 @@ std::unordered_map<Format, VkFormat> VKFormat = {
 
 VKVertexBuffer::VKVertexBuffer(const void* data, size_t size, const VertexLayout& layout, Buffer::Usage usage)
 	: VertexBuffer(data, size, layout),
-	buffer(size, VK_BUFFER_USAGE_VERTEX_BUFFER_BIT, VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT)
+	buffer(size, Buffer::Type::Vertex, VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT)
 {
 	VkVertexInputBindingDescription binding = {};
 	binding.binding = 0;

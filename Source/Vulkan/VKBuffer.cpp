@@ -15,7 +15,7 @@ std::unordered_map<Buffer::Type, VkBufferUsageFlags> VKUsage = {
 
 }
 
-VKBuffer::VKBuffer(size_t size, VkBufferUsageFlags usage, VkMemoryPropertyFlags properties)
+VKBuffer::VKBuffer(size_t size, Buffer::Type type, VkMemoryPropertyFlags properties)
 {
 	renderer = reinterpret_cast<VKRenderer*>(Renderer::get());
 	auto& device = renderer->getDevice();
@@ -23,7 +23,7 @@ VKBuffer::VKBuffer(size_t size, VkBufferUsageFlags usage, VkMemoryPropertyFlags 
 	VkBufferCreateInfo bufInfo = {};
 	bufInfo.sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO;
 	bufInfo.size = size;
-	bufInfo.usage = usage;
+	bufInfo.usage = VKUsage[type];
 	bufInfo.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
 	if(vkCreateBuffer(device, &bufInfo, nullptr, &buffer) != VK_SUCCESS)
 		throw std::runtime_error("failed to create buffer");
