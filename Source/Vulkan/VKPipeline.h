@@ -12,7 +12,8 @@ class VKPipeline : public Pipeline
 public:
 	VKPipeline(const Descriptor& desc);
 
-	VkPipeline& getNativeHandle();
+	VkRenderPass getRendererPass();
+	VkPipeline getNativeHandle();
 
 private:
 	void createLayout(const Descriptor& desc);
@@ -25,4 +26,5 @@ private:
 
 	VkPipeline       pipeline;
 	VkPipelineLayout pipelineLayout;
+	VkRenderPass     renderPass;
 };

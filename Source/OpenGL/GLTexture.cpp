@@ -14,18 +14,20 @@ namespace
 std::unordered_map<Texture::Type, GLenum> GLType = {
 	{Texture::Type::_2D, GL_TEXTURE_2D},
 	{Texture::Type::_3D, GL_TEXTURE_3D},
-	{Texture::Type::Cube, GL_TEXTURE_CUBE_MAP},
+	{Texture::Type::Cube, GL_TEXTURE_CUBE_MAP}
 };
 
 std::unordered_map<Texture::Filter, GLenum> GLFilter = {
 	{Texture::Filter::Nearest, GL_NEAREST},
 	{Texture::Filter::Bilinear, GL_LINEAR},
-	{Texture::Filter::Trilinear, GL_LINEAR_MIPMAP_LINEAR}};
+	{Texture::Filter::Trilinear, GL_LINEAR_MIPMAP_LINEAR}
+};
 
 std::unordered_map<Texture::Warp, GLenum> GLWarp = {
 	{Texture::Warp::Repeat, GL_REPEAT},
 	{Texture::Warp::MirrorRepeat, GL_MIRRORED_REPEAT},
-	{Texture::Warp::ClampToEdge, GL_CLAMP_TO_EDGE}};
+	{Texture::Warp::ClampToEdge, GL_CLAMP_TO_EDGE}
+};
 
 std::unordered_map<int, Format> ChannelsToFormat = {
 	{1, Format::R8F},
@@ -33,7 +35,8 @@ std::unordered_map<int, Format> ChannelsToFormat = {
 	{3, Format::RGB8F},
 	{4, Format::RGBA8F},
 	{6, Format::RGB16F},
-	{8, Format::RGBA16F}};
+	{8, Format::RGBA16F}
+};
 
 GLint GLInternalFormat(Format fmt)
 {
@@ -89,10 +92,8 @@ GLenum GLFormat(Format fmt)
 }
 
 GLTexture::GLTexture(const Image& image, Type type)
-	: Texture(type, ChannelsToFormat[image.getChannelCount()])
+	: Texture(type, ChannelsToFormat[image.getChannelCount()]), glTarget(GLType[type])
 {
-	glTarget = GLType[type];
-
 	glCreateTextures(glTarget, 1, &handle);
 	bind();
 
@@ -108,10 +109,8 @@ GLTexture::GLTexture(const Image& image, Type type)
 }
 
 GLTexture::GLTexture(const std::vector<Image>& images)
-	: Texture(Type::Cube, ChannelsToFormat[images[0].getChannelCount()])
+	: Texture(Type::Cube, ChannelsToFormat[images[0].getChannelCount()]), glTarget(GLType[type])
 {
-	glTarget = GLType[type];
-
 	glCreateTextures(glTarget, 1, &handle);
 	bind();
 

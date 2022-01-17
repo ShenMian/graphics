@@ -14,7 +14,6 @@ struct Vertex
 int main()
 {
 	Renderer::setAPI(Renderer::API::Vulkan);
-
 	Window::init();
 
 	auto window = new Window("Triangle", Monitor::getPrimary().getSize() / 2);

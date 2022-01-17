@@ -14,7 +14,6 @@ int main()
 	try
 	{
 		Renderer::setAPI(Renderer::API::OpenGL);
-
 		Window::init();
 
 		auto window = new Window("Test", Monitor::getPrimary().getSize() / 2);
@@ -25,26 +24,11 @@ int main()
 
 		PrintInfo();
 
-		/*
-		const std::vector<Image> images = {
-			{"../../../3DModel/skybox/cube/right.jpg"},
-			{"../../../3DModel/skybox/cube/left.jpg"},
-			{"../../../3DModel/skybox/cube/top.jpg"},
-			{"../../../3DModel/skybox/cube/bottom.jpg"},
-			{"../../../3DModel/skybox/cube/front.jpg"},
-			{"../../../3DModel/skybox/cube/back.jpg"}
-		};
-		auto cubemap = Texture::create(images);
-		auto program = Program::create("Shaders/skybox");
-		cubemap->bind(0);
-		program->setUniform("cubemap", 0);
-		*/
-
 		const std::filesystem::path path = "../../../3DModel";
 
 		Model model;
 		// model.load(path / "scene/Crytek_Sponza/sponza.obj", Model::ProcessFlags::Fast);
-		// model.load(path / "weapon/m4a1/m4a1.gltf", Model::ProcessFlags::Fast);
+		model.load(path / "weapon/m4a1/m4a1.gltf", Model::ProcessFlags::Fast);
 		// model.load(path / "pbr/DamagedHelmet/DamagedHelmet.gltf");
 		// model.load(path / "basic/cube.obj");
 		// model.load(path / "scene/Amazon_Lumberyard_Bistro/Exterior/exterior.obj", Model::ProcessFlags::Fast);
@@ -169,8 +153,8 @@ int main()
 
 			const auto pos = camera.getPosition();
 			const auto dir = camera.getRotation();
-			label1.setText("  position: " + std::to_string(pos.x) + ", " + std::to_string(pos.y) + ", " + std::to_string(pos.z));
-			label2.setText("  rotation: " + std::to_string(dir.x) + ", " + std::to_string(dir.y) + ", " + std::to_string(dir.z));
+			label1.setText("  position: " + std::to_string((int)pos.x) + ", " + std::to_string((int)pos.y) + ", " + std::to_string((int)pos.z));
+			label2.setText("  rotation: " + std::to_string((int)dir.x) + ", " + std::to_string((int)dir.y) + ", " + std::to_string((int)dir.z));
 			win.update();
 
 			program->setUniform("model", Matrix4f());
@@ -252,3 +236,18 @@ void PrintInfo()
 		renderer->getRendererName().c_str(),
 		renderer->getVendorName().c_str());
 }
+
+/*
+const std::vector<Image> images = {
+	{"../../../3DModel/skybox/cube/right.jpg"},
+	{"../../../3DModel/skybox/cube/left.jpg"},
+	{"../../../3DModel/skybox/cube/top.jpg"},
+	{"../../../3DModel/skybox/cube/bottom.jpg"},
+	{"../../../3DModel/skybox/cube/front.jpg"},
+	{"../../../3DModel/skybox/cube/back.jpg"}
+};
+auto cubemap = Texture::create(images);
+auto program = Program::create("Shaders/skybox");
+cubemap->bind(0);
+program->setUniform("cubemap", 0);
+*/

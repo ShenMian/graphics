@@ -19,7 +19,6 @@ int main()
 
 	auto window = new Window("Cube", Monitor::getPrimary().getSize() / 2);
 
-	Input::setWindow(window);
 	Renderer::init(*window);
 
 	PrintInfo();

@@ -57,6 +57,11 @@ void VKCommandBuffer::setPipeline(std::shared_ptr<Pipeline> pipeline)
 {
 	auto vkPipeline = reinterpret_cast<VKPipeline*>(pipeline.get());
 	vkCmdBindPipeline(handle, VK_PIPELINE_BIND_POINT_GRAPHICS, vkPipeline->getNativeHandle());
+
+	VkRenderPassBeginInfo info = {};
+	info.sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
+	info.renderPass = vkPipeline->getRendererPass();
+	vkCmdBeginRenderPass(handle, &info, VK_SUBPASS_CONTENTS_INLINE);
 }
 
 void VKCommandBuffer::setVertexBuffer(std::shared_ptr<VertexBuffer> vertexBuffer)

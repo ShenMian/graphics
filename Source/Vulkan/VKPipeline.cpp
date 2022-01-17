@@ -106,7 +106,6 @@ VKPipeline::VKPipeline(const Descriptor& desc)
 	renderPassInfo.subpassCount = static_cast<uint32_t>(subpasses.size());
 	renderPassInfo.pSubpasses = subpasses.data();
 
-	VkRenderPass renderPass;
 	if(vkCreateRenderPass(renderer->getDevice(), &renderPassInfo, nullptr, &renderPass) != VK_SUCCESS)
 		throw std::runtime_error("failed to create render pass");
 
@@ -131,7 +130,12 @@ VKPipeline::VKPipeline(const Descriptor& desc)
 		throw std::runtime_error("failed to create graphics pipeline");
 }
 
-VkPipeline& VKPipeline::getNativeHandle()
+VkRenderPass VKPipeline::getRendererPass()
+{
+	return renderPass;
+}
+
+VkPipeline VKPipeline::getNativeHandle()
 {
 	return pipeline;
 }

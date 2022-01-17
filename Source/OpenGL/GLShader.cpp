@@ -19,7 +19,8 @@ std::unordered_map<Shader::Stage, GLenum> GLStage = {
 	{Shader::Stage::Vertex, GL_VERTEX_SHADER},
 	{Shader::Stage::Fragment, GL_FRAGMENT_SHADER},
 	{Shader::Stage::Geometry, GL_GEOMETRY_SHADER},
-	{Shader::Stage::Compute, GL_COMPUTE_SHADER}};
+	{Shader::Stage::Compute, GL_COMPUTE_SHADER}
+};
 
 }
 

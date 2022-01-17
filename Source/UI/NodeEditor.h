@@ -27,6 +27,8 @@ public:
 	std::vector<Link> links;
 
 private:
+	void updateCreate();
+	void updateDelete();
 	Pin* getPin(PinId id);
 
 	EditorContext* context;

@@ -11,7 +11,8 @@ namespace
 std::unordered_map<uint8_t, GLbitfield> GLClearFlag = {
 	{ClearFlag::Color, GL_COLOR_BUFFER_BIT},
 	{ClearFlag::Depth, GL_DEPTH_BUFFER_BIT},
-	{ClearFlag::Stencil, GL_STENCIL_BUFFER_BIT}};
+	{ClearFlag::Stencil, GL_STENCIL_BUFFER_BIT}
+};
 
 }
 

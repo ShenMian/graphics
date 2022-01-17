@@ -12,7 +12,8 @@ std::unordered_map<Shader::Stage, const char*> Shader::extension = {
 	{Shader::Stage::Vertex, "vert"},
 	{Shader::Stage::Geometry, "geom"},
 	{Shader::Stage::Fragment, "frag"},
-	{Shader::Stage::Compute, "comp"}};
+	{Shader::Stage::Compute, "comp"}
+};
 
 std::shared_ptr<Shader> Shader::create(const Descriptor& desc)
 {
