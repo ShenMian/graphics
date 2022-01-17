@@ -3,6 +3,7 @@
 
 #include "GLBuffer.h"
 #include "GLCheck.h"
+#include <cassert>
 #include <cstring>
 #include <unordered_map>
 
@@ -39,9 +40,12 @@ GLBuffer::~GLBuffer()
 
 void GLBuffer::map(size_t size, size_t offset)
 {
-	const GLenum access = GL_READ_WRITE;
+	const GLenum access = GL_MAP_READ_BIT | GL_MAP_WRITE_BIT;
+	if(data)
+		return; // 缓冲区已处于映射状态
 	if(size == -1)
 		size = this->size;
+	assert(size <= this->size);
 
 	bind();
 	data = glMapBufferRange(glType, offset, size, access);
@@ -59,6 +63,7 @@ void GLBuffer::unmap()
 void GLBuffer::write(const void* data, size_t size, size_t offset)
 {
 	std::memcpy(static_cast<unsigned char*>(this->data) + offset, data, size);
+	// glBufferSubData(glType, offset, size, data);
 }
 
 void GLBuffer::bind()

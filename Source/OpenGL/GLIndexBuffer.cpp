@@ -38,10 +38,9 @@ void GLIndexBuffer::unmap()
 
 void GLIndexBuffer::write(const void* data, size_t size)
 {
-	bind();
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, size, data, GLUsage[Buffer::Usage::Static]);
-	glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, size, data);
-	GLCheckError();
+	buffer.map();
+	buffer.write(data, size);
+	buffer.unmap();
 }
 
 void GLIndexBuffer::bind()

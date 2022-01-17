@@ -38,10 +38,9 @@ void GLVertexBuffer::unmap()
 
 void GLVertexBuffer::write(const void* data, size_t size)
 {
-	bind();
-	glBufferData(GL_ARRAY_BUFFER, size, data, GLUsage[Buffer::Usage::Static]);
-	glBufferSubData(GL_ARRAY_BUFFER, 0, size, data);
-	GLCheckError();
+	buffer.map();
+	buffer.write(data, size);
+	buffer.unmap();
 }
 
 void GLVertexBuffer::bind()
