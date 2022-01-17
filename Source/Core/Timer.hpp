@@ -32,7 +32,7 @@ public:
 
 	auto getSeconds() const
 	{
-		return getMilliseconds() / 1000.0;
+		return static_cast<double>(getMilliseconds()) / 1000.0;
 	}
 
 private:
