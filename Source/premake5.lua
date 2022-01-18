@@ -22,6 +22,7 @@ project "Graphics"
 		"%{deps_inc.imgui}",
 		"%{deps_inc.assimp}",
 		"%{deps_inc.vulkan}",
+		"%{deps_inc.imguizmo}",
 		"%{deps_inc.vk_bootstrap}",
 		"%{deps_inc.meshoptimizer}",
 		"%{deps_inc.imgui_node_editor}"}
@@ -33,6 +34,7 @@ project "Graphics"
 		"glfw",
 		"imgui",
 		"assimp",
+		"imguizmo",
 		"vk_bootstrap",
 		"meshoptimizer",
 		"%{deps_lib.vulkan}",

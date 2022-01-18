@@ -27,6 +27,11 @@ include("${DEPS_DIR}/imgui.cmake")
 list(APPEND LIBS imgui)
 list(APPEND INCS "${DEPS_DIR}/imgui")
 
+# 添加 ImGuizmo
+include("${DEPS_DIR}/imguizmo.cmake")
+list(APPEND LIBS imguizmo)
+list(APPEND INCS "${DEPS_DIR}/ImGuizmo")
+
 # 添加 imgui-node-editor
 include("${DEPS_DIR}/imgui_node_editor.cmake")
 list(APPEND LIBS imgui_node_editor)
