@@ -22,7 +22,7 @@ void UI::begin()
 		break;
 
 	case Vulkan:
-		// ImGui_ImplVulkan_NewFrame();
+		ImGui_ImplVulkan_NewFrame();
 		break;
 	}
 	ImGui_ImplGlfw_NewFrame();
@@ -75,8 +75,8 @@ void UI::init(const Window& win)
 		break;
 
 	case Vulkan:
-		// ImGui_ImplGlfw_InitForVulkan(reinterpret_cast<GLFWwindow*>(win.getNativeHandle()), true);
-		// ImGui_ImplVulkan_Init();
+		ImGui_ImplGlfw_InitForVulkan(reinterpret_cast<GLFWwindow*>(win.getNativeHandle()), true);
+		// ImGui_ImplVulkan_Init(ImGui_ImplVulkan_InitInfo);
 		break;
 	}
 }
@@ -92,7 +92,7 @@ void UI::deinit()
 		break;
 
 	case Vulkan:
-		// ImGui_ImplVulkan_Shutdown();
+		ImGui_ImplVulkan_Shutdown();
 		break;
 	}
 

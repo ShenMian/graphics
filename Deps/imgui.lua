@@ -9,8 +9,8 @@ project "imgui"
         "imgui/*.cpp",
 
         "imgui/backends/imgui_impl_glfw.cpp",
-        "imgui/backends/imgui_impl_opengl3.cpp",
-        }-- "imgui/backends/imgui_impl_vulkan.cpp"}
+        "imgui/backends/imgui_impl_vulkan.cpp",
+        "imgui/backends/imgui_impl_opengl3.cpp"}
 
 	includedirs {
         "imgui",
