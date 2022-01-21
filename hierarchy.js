@@ -22,6 +22,7 @@ var hierarchy =
     [ "Pipeline::Descriptor", "struct_pipeline_1_1_descriptor.html", null ],
     [ "Program::Descriptor", "struct_program_1_1_descriptor.html", null ],
     [ "Shader::Descriptor", "struct_shader_1_1_descriptor.html", null ],
+    [ "DeviceBuilder", "class_device_builder.html", null ],
     [ "Gamepad", "class_gamepad.html", null ],
     [ "GLCmdClear", "struct_g_l_cmd_clear.html", null ],
     [ "GLCmdDraw", "struct_g_l_cmd_draw.html", null ],
@@ -39,6 +40,7 @@ var hierarchy =
       [ "GLIndexBuffer", "class_g_l_index_buffer.html", null ]
     ] ],
     [ "Input", "class_input.html", null ],
+    [ "InstanceBuilder", "class_instance_builder.html", null ],
     [ "Material", "class_material.html", null ],
     [ "Mesh", "class_mesh.html", null ],
     [ "Model", "class_model.html", null ],
@@ -46,6 +48,7 @@ var hierarchy =
     [ "Camera::Orthographic", "struct_camera_1_1_orthographic.html", null ],
     [ "Material::PBR", "struct_material_1_1_p_b_r.html", null ],
     [ "Camera::Perspective", "struct_camera_1_1_perspective.html", null ],
+    [ "PhysicalDeviceSelector", "class_physical_device_selector.html", null ],
     [ "Pipeline", "class_pipeline.html", [
       [ "GLPipeline", "class_g_l_pipeline.html", null ],
       [ "VKPipeline", "class_v_k_pipeline.html", null ]
@@ -67,6 +70,7 @@ var hierarchy =
       [ "VKShader", "class_v_k_shader.html", null ]
     ] ],
     [ "PipelineLayout::StageFlags", "struct_pipeline_layout_1_1_stage_flags.html", null ],
+    [ "Swapchain", "class_swapchain.html", null ],
     [ "Texture", "class_texture.html", [
       [ "GLTexture", "class_g_l_texture.html", null ]
     ] ],
@@ -83,6 +87,9 @@ var hierarchy =
     [ "VertexLayout", "class_vertex_layout.html", null ],
     [ "Viewport", "struct_viewport.html", null ],
     [ "VKBuffer", "class_v_k_buffer.html", null ],
+    [ "VKDevice", "class_v_k_device.html", null ],
+    [ "VKInstance", "class_v_k_instance.html", null ],
+    [ "VKPhysicalDevice", "class_v_k_physical_device.html", null ],
     [ "ui::Widget", "classui_1_1_widget.html", [
       [ "ui::Button", "classui_1_1_button.html", null ],
       [ "ui::Label", "classui_1_1_label.html", null ],

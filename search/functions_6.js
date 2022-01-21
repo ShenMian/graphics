@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['requestfocus_338',['requestFocus',['../class_window.html#acaf1ae031f7b9196f36f66e37ff3eb0f',1,'Window']]]
+  ['map_359',['map',['../class_v_k_buffer.html#a80d311ee2c979b2063e28ce1e9159de7',1,'VKBuffer']]]
 ];

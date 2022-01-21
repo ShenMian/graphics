@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['fliphorizontally_288',['flipHorizontally',['../class_image.html#a670aa8908444da5e54a864204a09ec01',1,'Image']]],
-  ['flipvertically_289',['flipVertically',['../class_image.html#a7e5594ca0d776f1dcc8eb9662401b21b',1,'Image']]]
+  ['enableextension_308',['enableExtension',['../class_instance_builder.html#a0c832424d8b56ff50f66b0c96c801912',1,'InstanceBuilder']]],
+  ['enablelayer_309',['enableLayer',['../class_instance_builder.html#a35caa59a89108e38049f843ba5c0a9a5',1,'InstanceBuilder']]]
 ];
