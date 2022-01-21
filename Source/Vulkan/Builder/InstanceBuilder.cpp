@@ -35,6 +35,36 @@ VKInstance InstanceBuilder::build()
 	if(vkCreateInstance(&instanceInfo, nullptr, &instance) != VK_SUCCESS)
 		throw std::runtime_error("failed to create instance");
 
+	if(info.useDebugMessager)
+	{
+		if(!info.enableValidationLayers)
+			throw std::runtime_error("must enable validation layers");
+
+		auto VkCreateDebugUtilsMessager = (PFN_vkCreateDebugUtilsMessengerEXT)vkGetInstanceProcAddr(instance, "vkCreateDebugUtilsMessengerEXT");
+		if(VkCreateDebugUtilsMessager == nullptr)
+			throw std::runtime_error("failed to locate function");
+
+		const auto callback = [](
+			VkDebugUtilsMessageSeverityFlagBitsEXT severity,
+			VkDebugUtilsMessageTypeFlagsEXT type,
+			const VkDebugUtilsMessengerCallbackDataEXT* data,
+			void* pUserData)
+		{
+			puts(data->pMessage);
+			return VK_FALSE;
+		};
+
+		VkDebugUtilsMessengerCreateInfoEXT messagerInfo = {};
+		messagerInfo.sType = VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT;
+		messagerInfo.messageSeverity = VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT;
+		messagerInfo.messageType = VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT;
+		messagerInfo.pfnUserCallback = callback;
+
+		VkDebugUtilsMessengerEXT debugMessager;
+		if(VkCreateDebugUtilsMessager(instance, &messagerInfo, nullptr, &debugMessager) != VK_SUCCESS)
+			throw std::runtime_error("failed to create debug utils messager");
+	}
+
 	return instance;
 }
 
@@ -76,7 +106,21 @@ InstanceBuilder& InstanceBuilder::enableExtension(std::string_view name)
 	return *this;
 }
 
-bool InstanceBuilder::isLayerAvailable(std::string_view name)
+InstanceBuilder& InstanceBuilder::enableValidationLayers()
+{
+	info.enableValidationLayers = true;
+	enableLayer("VK_LAYER_KHRONOS_validation");
+	return *this;
+}
+
+InstanceBuilder& InstanceBuilder::useDebugMessager()
+{
+	info.useDebugMessager = true;
+	enableLayer(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
+	return *this;
+}
+
+bool InstanceBuilder::isLayerAvailable(std::string_view name) const
 {
 	for(const auto& layer : availableLayers)
 		if(layer.layerName == name)
@@ -84,7 +128,7 @@ bool InstanceBuilder::isLayerAvailable(std::string_view name)
 	return false;
 }
 
-bool InstanceBuilder::isExtensionAvailable(std::string_view name)
+bool InstanceBuilder::isExtensionAvailable(std::string_view name) const
 {
 	for(const auto& ext : availableExtensions)
 		if(ext.extensionName == name)

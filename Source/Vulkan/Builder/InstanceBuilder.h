@@ -60,9 +60,19 @@ public:
 	 */
 	InstanceBuilder& enableExtension(std::string_view name);
 
+	/**
+	 * @brief 启用验证层.
+	 */
+	InstanceBuilder& enableValidationLayers();
+
+	/**
+	 * @brief 启用调试消息.
+	 */
+	InstanceBuilder& useDebugMessager();
+
 private:
-	bool isLayerAvailable(std::string_view name);
-	bool isExtensionAvailable(std::string_view name);
+	bool isLayerAvailable(std::string_view name) const;
+	bool isExtensionAvailable(std::string_view name) const;
 
 	VkApplicationInfo appInfo = {};
 	VkInstanceCreateInfo instanceInfo = {};
@@ -72,4 +82,10 @@ private:
 
 	std::vector<VkLayerProperties> availableLayers;
 	std::vector<VkExtensionProperties> availableExtensions;
+
+	struct
+	{
+		bool enableValidationLayers = false;
+		bool useDebugMessager = false;
+	} info;
 };
