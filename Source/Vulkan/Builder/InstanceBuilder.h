@@ -68,14 +68,27 @@ public:
 	/**
 	 * @brief 启用调试消息.
 	 */
-	InstanceBuilder& useDebugMessager();
+	InstanceBuilder& enableDebugMessager();
+
+	/**
+	 * @brief 设置调试消息回调函数.
+	 *
+	 * @param callback 回调函数.
+	 */
+	InstanceBuilder& setDebugCallback(PFN_vkDebugUtilsMessengerCallbackEXT callback);
 
 private:
 	bool isLayerAvailable(std::string_view name) const;
 	bool isExtensionAvailable(std::string_view name) const;
 
+	void enableWindowExtensions();
+	void createDebugMessager(VkInstance instance);
+	void destroyDebugMessager(VkInstance instance);
+
 	VkApplicationInfo appInfo = {};
 	VkInstanceCreateInfo instanceInfo = {};
+
+	VkDebugUtilsMessengerEXT debugMessenger;
 
 	std::vector<const char*> enabledLayers;
 	std::vector<const char*> enabledExtensions;
@@ -86,6 +99,10 @@ private:
 	struct
 	{
 		bool enableValidationLayers = false;
-		bool useDebugMessager = false;
+
+		bool enableDebugMessager = false;
+		VkDebugUtilsMessageSeverityFlagsEXT debugMessageSeverity = VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT;
+		VkDebugUtilsMessageTypeFlagsEXT debugMessageType = VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT;
+		PFN_vkDebugUtilsMessengerCallbackEXT debugMessageCallback = nullptr;
 	} info;
 };

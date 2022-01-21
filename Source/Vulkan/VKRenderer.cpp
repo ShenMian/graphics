@@ -84,6 +84,9 @@ void VKRenderer::init(const Window& win)
 	if(vkCreateCommandPool(device, &info, nullptr, &commandPool) != VK_SUCCESS)
 		throw std::runtime_error("failed to create command pool");
 
+	vkb::InstanceBuilder builder;
+	builder.build();
+
 	/*
 	vkb::Instance vkbInstance;
 	{
@@ -162,6 +165,7 @@ void VKRenderer::createInstance()
 {
 	InstanceBuilder builder;
 	instance = builder.enableValidationLayers()
+		.enableDebugMessager()
 		.build();
 }
 
