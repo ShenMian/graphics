@@ -5,6 +5,7 @@
 #include "../VertexLayout.h"
 #include "GLCheck.h"
 #include <glad/glad.h>
+#include <cstddef>
 #include <stdexcept>
 #include <unordered_map>
 
@@ -64,7 +65,7 @@ void GLVertexArray::build(const VertexLayout& fmt)
 		glEnableVertexAttribArray(attr.location);
 		glVertexAttribPointer(attr.location, Components[attr.format], GLType[attr.format], attr.normalized,
 			static_cast<GLsizei>(fmt.getStride()),
-			reinterpret_cast<const void*>(attr.offset));
+			reinterpret_cast<const void*>(static_cast<size_t>(attr.offset)));
 		GLCheckError();
 	}
 	// glVertexAttribDivisor
