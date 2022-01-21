@@ -18,6 +18,16 @@ public:
 
 	VkSurfaceKHR getSurface() const;
 
+	/**
+	 * @brief 获取设备名称.
+	 */
+	std::string_view getName() const;
+
+	/**
+	 * @brief 获取设备供应商名称.
+	 */
+	std::string_view getVendorName() const;
+
 	bool isExtensionAvailable(std::string_view name) const;
 
 	uint32_t graphics = -1;
