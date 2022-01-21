@@ -130,7 +130,7 @@ InstanceBuilder& InstanceBuilder::enableValidationLayers()
 	return *this;
 }
 
-InstanceBuilder& InstanceBuilder::enableDebugMessager()
+InstanceBuilder& InstanceBuilder::enableDebugMessenger()
 {
 	info.enableDebugMessager = true;
 	enableExtension(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);

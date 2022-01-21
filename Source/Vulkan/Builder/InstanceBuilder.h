@@ -68,7 +68,7 @@ public:
 	/**
 	 * @brief 启用调试消息.
 	 */
-	InstanceBuilder& enableDebugMessager();
+	InstanceBuilder& enableDebugMessenger();
 
 	/**
 	 * @brief 设置调试消息回调函数.
