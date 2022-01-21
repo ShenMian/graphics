@@ -52,6 +52,7 @@ var NAVTREEINDEX0 =
 "_r_i_d_8hpp_source.html":[4,0,0,0,6],
 "_renderer_8h_source.html":[4,0,0,17],
 "_shader_8h_source.html":[4,0,0,18],
+"_swapchain_builder_8h_source.html":[4,0,0,3,0,3],
 "_texture_8h_source.html":[4,0,0,19],
 "_timer_8hpp_source.html":[4,0,0,0,7],
 "_u_i_2_window_8h_source.html":[4,0,0,2,9],
@@ -248,6 +249,5 @@ var NAVTREEINDEX0 =
 "class_gamepad.html#aace04775bce81c450f0096793f6fd199":[2,0,0,6],
 "class_gamepad.html#aaf38c3534ec0ee1751b47e031bcccea1":[2,0,0,9],
 "class_gamepad.html#ab0fd07c0c3c1ac1f0ab997000061bd80":[2,0,0,8],
-"class_gamepad.html#ac43317573656b6ff87c50fe8e8830633":[2,0,0,0],
-"class_gamepad.html#ae37f83a954aabbf634e9d6f37697ae58":[2,0,0,13]
+"class_gamepad.html#ac43317573656b6ff87c50fe8e8830633":[2,0,0,0]
 };

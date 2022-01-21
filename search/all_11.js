@@ -34,5 +34,5 @@ var searchData=
   ['splitlargemeshes_185',['SplitLargeMeshes',['../struct_model_1_1_process_flags.html#a2022078b156bd53704d6a9d9c62d268eac0369ece8db851dd4d2695459ab6dc9b',1,'Model::ProcessFlags']]],
   ['stage_186',['Stage',['../class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8f',1,'Shader']]],
   ['stageflags_187',['StageFlags',['../struct_pipeline_layout_1_1_stage_flags.html',1,'PipelineLayout']]],
-  ['swapchain_188',['Swapchain',['../class_swapchain.html',1,'']]]
+  ['swapchainbuilder_188',['SwapchainBuilder',['../class_swapchain_builder.html',1,'']]]
 ];

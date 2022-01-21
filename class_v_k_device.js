@@ -10,6 +10,7 @@ var class_v_k_device =
     [ "VKDevice", "class_v_k_device.html#ab730fcaa4eadfd8718944eaf88ae5940", null ],
     [ "VKDevice", "class_v_k_device.html#aff462237f68ac2a80e33c0adca2df279", null ],
     [ "~VKDevice", "class_v_k_device.html#a39aa7ad964d59224ee4836ebf383f4b9", null ],
+    [ "getPhysicalDevice", "class_v_k_device.html#aae9fd0833bf7ddff9b185fc9d3943416", null ],
     [ "getQueue", "class_v_k_device.html#ab9a1f3885fed4a385a311f6ac8abdcf0", null ],
     [ "getQueueIndex", "class_v_k_device.html#a80953af4c4d080ec0778c35483ed0027", null ],
     [ "operator VkDevice", "class_v_k_device.html#a23d87f02eb75ac84aa55931ecebb417a", null ],

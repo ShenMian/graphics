@@ -62,7 +62,7 @@ var annotated_dup =
     [ "Renderer", "class_renderer.html", "class_renderer" ],
     [ "RID", "class_r_i_d.html", "class_r_i_d" ],
     [ "Shader", "class_shader.html", "class_shader" ],
-    [ "Swapchain", "class_swapchain.html", "class_swapchain" ],
+    [ "SwapchainBuilder", "class_swapchain_builder.html", "class_swapchain_builder" ],
     [ "Texture", "class_texture.html", "class_texture" ],
     [ "Timer", "class_timer.html", "class_timer" ],
     [ "UI", "class_u_i.html", null ],
@@ -80,6 +80,7 @@ var annotated_dup =
     [ "VKProgram", "class_v_k_program.html", "class_v_k_program" ],
     [ "VKRenderer", "class_v_k_renderer.html", "class_v_k_renderer" ],
     [ "VKShader", "class_v_k_shader.html", "class_v_k_shader" ],
+    [ "VKSwapchain", "class_v_k_swapchain.html", "class_v_k_swapchain" ],
     [ "VKUniformBuffer", "class_v_k_uniform_buffer.html", "class_v_k_uniform_buffer" ],
     [ "VKVertexBuffer", "class_v_k_vertex_buffer.html", "class_v_k_vertex_buffer" ],
     [ "Window", "class_window.html", "class_window" ]

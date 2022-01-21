@@ -70,7 +70,7 @@ var hierarchy =
       [ "VKShader", "class_v_k_shader.html", null ]
     ] ],
     [ "PipelineLayout::StageFlags", "struct_pipeline_layout_1_1_stage_flags.html", null ],
-    [ "Swapchain", "class_swapchain.html", null ],
+    [ "SwapchainBuilder", "class_swapchain_builder.html", null ],
     [ "Texture", "class_texture.html", [
       [ "GLTexture", "class_g_l_texture.html", null ]
     ] ],
@@ -90,6 +90,7 @@ var hierarchy =
     [ "VKDevice", "class_v_k_device.html", null ],
     [ "VKInstance", "class_v_k_instance.html", null ],
     [ "VKPhysicalDevice", "class_v_k_physical_device.html", null ],
+    [ "VKSwapchain", "class_v_k_swapchain.html", null ],
     [ "ui::Widget", "classui_1_1_widget.html", [
       [ "ui::Button", "classui_1_1_button.html", null ],
       [ "ui::Label", "classui_1_1_label.html", null ],

@@ -14,6 +14,7 @@ var searchData=
   ['vkprogram_211',['VKProgram',['../class_v_k_program.html',1,'']]],
   ['vkrenderer_212',['VKRenderer',['../class_v_k_renderer.html',1,'']]],
   ['vkshader_213',['VKShader',['../class_v_k_shader.html',1,'']]],
-  ['vkuniformbuffer_214',['VKUniformBuffer',['../class_v_k_uniform_buffer.html',1,'']]],
-  ['vkvertexbuffer_215',['VKVertexBuffer',['../class_v_k_vertex_buffer.html',1,'']]]
+  ['vkswapchain_214',['VKSwapchain',['../class_v_k_swapchain.html',1,'']]],
+  ['vkuniformbuffer_215',['VKUniformBuffer',['../class_v_k_uniform_buffer.html',1,'']]],
+  ['vkvertexbuffer_216',['VKVertexBuffer',['../class_v_k_vertex_buffer.html',1,'']]]
 ];
