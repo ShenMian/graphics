@@ -100,6 +100,11 @@ std::string_view VKPhysicalDevice::getVendorName() const
 	return "Unknown";
 }
 
+VKPhysicalDevice::operator VkPhysicalDevice()
+{
+	return handle;
+}
+
 VKPhysicalDevice::operator VkPhysicalDevice() const
 {
 	return handle;

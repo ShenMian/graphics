@@ -10,6 +10,8 @@
 class VKPhysicalDevice final
 {
 public:
+	VKPhysicalDevice() = default;
+
 	VKPhysicalDevice(VkPhysicalDevice device, VkSurfaceKHR surface);
 
 	const VkPhysicalDeviceProperties& getProperties() const;
@@ -35,6 +37,7 @@ public:
 	uint32_t transfer = -1;
 	uint32_t present = -1;
 
+	operator VkPhysicalDevice();
 	operator VkPhysicalDevice() const;
 
 private:
