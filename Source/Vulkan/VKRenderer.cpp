@@ -2,6 +2,8 @@
 // License(Apache-2.0)
 
 #include "Builder/InstanceBuilder.h"
+#include "Builder/PhysicalDeviceSelector.h"
+#include "Builder/DeviceBuilder.h"
 
 #include "VKRenderer.h"
 #include <VkBootstrap.h>
@@ -81,9 +83,13 @@ const VkCommandPool& VKRenderer::getCommandPool() const
 
 void VKRenderer::init(const Window& win)
 {
+#if 1
 	InstanceBuilder builder;
-	builder.enableValidationLayers().build();
-
+	auto i = builder.enableValidationLayers().build();
+	glfwCreateWindowSurface(i, reinterpret_cast<GLFWwindow*>(win.getNativeHandle()), nullptr, &surface);
+	PhysicalDeviceSelector selector(i, surface);
+	auto pd = selector.requireGraphicsQueue().requirePresentQueue().requireTransferQueue().select();
+#else
 	vkb::Instance vkbInstance;
 	{
 		vkb::InstanceBuilder builder;
@@ -153,6 +159,7 @@ void VKRenderer::init(const Window& win)
 	const auto ret = vkCreateCommandPool(device, &info, nullptr, &commandPool);
 	if(ret != VK_SUCCESS)
 		throw std::runtime_error("failed to create command pool");
+#endif
 }
 
 void VKRenderer::deinit()
