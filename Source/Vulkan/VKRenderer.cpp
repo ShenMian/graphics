@@ -1,8 +1,7 @@
 ﻿// Copyright 2021 ShenMian
 // License(Apache-2.0)
 
-#include "VKInstance.h"
-#include "VKDevice.h"
+#include "Builder/InstanceBuilder.h"
 
 #include "VKRenderer.h"
 #include <VkBootstrap.h>
@@ -82,6 +81,9 @@ const VkCommandPool& VKRenderer::getCommandPool() const
 
 void VKRenderer::init(const Window& win)
 {
+	InstanceBuilder builder;
+	builder.enableValidationLayers().build();
+
 	vkb::Instance vkbInstance;
 	{
 		vkb::InstanceBuilder builder;
