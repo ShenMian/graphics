@@ -5,6 +5,7 @@
 #include "Builder/InstanceBuilder.h"
 #include "Builder/PhysicalDeviceSelector.h"
 #include "Builder/DeviceBuilder.h"
+#include "Builder/SwapchainBuilder.h"
 
 #include <VkBootstrap.h>
 #include <GLFW/glfw3.h>
@@ -18,7 +19,7 @@ VKPhysicalDevice physicalDevice;
 VKDevice         device;
 VkQueue          queue;
 uint32_t         queueIndex;
-VkSwapchainKHR   swapchain;
+VKSwapchain      swapchain;
 VkCommandPool    commandPool;
 
 }
@@ -73,6 +74,7 @@ void VKRenderer::init(const Window& win)
 	createSurface(win);
 	selectPhysicalDevice();
 	createDevice();
+	createSwapchain();
 
 	queue = device.getQueue(VKDevice::QueueType::Graphics);
 	queueIndex = device.getQueueIndex(VKDevice::QueueType::Graphics);
@@ -185,4 +187,10 @@ void VKRenderer::createDevice()
 {
 	DeviceBuilder builder(physicalDevice);
 	device = builder.build();
+}
+
+void VKRenderer::createSwapchain()
+{
+	SwapchainBuilder builder(device);
+	swapchain = builder.build();
 }

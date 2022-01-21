@@ -49,4 +49,5 @@ private:
 	static void createSurface(const Window& win);
 	static void selectPhysicalDevice();
 	static void createDevice();
+	static void createSwapchain();
 };
