@@ -84,9 +84,6 @@ void VKRenderer::init(const Window& win)
 	if(vkCreateCommandPool(device, &info, nullptr, &commandPool) != VK_SUCCESS)
 		throw std::runtime_error("failed to create command pool");
 
-	vkb::InstanceBuilder builder;
-	builder.build();
-
 	/*
 	vkb::Instance vkbInstance;
 	{
@@ -99,7 +96,7 @@ void VKRenderer::init(const Window& win)
 			throw std::runtime_error(result.error().message());
 		vkbInstance = result.value();
 	}
-	instance = vkbInstance;
+	instance = VkInstance(vkbInstance);
 
 	glfwCreateWindowSurface(instance, reinterpret_cast<GLFWwindow*>(win.getNativeHandle()), nullptr, &surface);
 
@@ -165,13 +162,14 @@ void VKRenderer::createInstance()
 {
 	InstanceBuilder builder;
 	instance = builder.enableValidationLayers()
-		.enableDebugMessager()
+		.enableDebugMessenger()
 		.build();
 }
 
 void VKRenderer::createSurface(const Window& win)
 {
-	glfwCreateWindowSurface(instance, reinterpret_cast<GLFWwindow*>(win.getNativeHandle()), nullptr, &surface);
+	if(glfwCreateWindowSurface(instance, reinterpret_cast<GLFWwindow*>(win.getNativeHandle()), nullptr, &surface) != VK_SUCCESS)
+		throw std::runtime_error("failed to create window surface");
 }
 
 void VKRenderer::selectPhysicalDevice()
