@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['stage_414',['Stage',['../class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8f',1,'Shader']]]
+  ['queuetype_419',['QueueType',['../class_v_k_device.html#a06fa199b3117acdfe766d967a560f799',1,'VKDevice']]]
 ];

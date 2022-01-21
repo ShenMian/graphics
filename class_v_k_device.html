@@ -94,11 +94,12 @@ $(document).ready(function(){initNavTree('class_v_k_device.html',''); initResiza
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public 类型</h2></td></tr>
-<tr class="memitem:a06fa199b3117acdfe766d967a560f799"><td class="memItemLeft" align="right" valign="top"><a id="a06fa199b3117acdfe766d967a560f799"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>QueueType</b> { <b>Graphics</b>
+<tr class="memitem:a06fa199b3117acdfe766d967a560f799"><td class="memItemLeft" align="right" valign="top"><a id="a06fa199b3117acdfe766d967a560f799"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_v_k_device.html#a06fa199b3117acdfe766d967a560f799">QueueType</a> { <b>Graphics</b>
 , <b>Compute</b>
 , <b>Transfer</b>
 , <b>Present</b>
  }</td></tr>
+<tr class="memdesc:a06fa199b3117acdfe766d967a560f799"><td class="mdescLeft">&#160;</td><td class="mdescRight">队列类型. <br /></td></tr>
 <tr class="separator:a06fa199b3117acdfe766d967a560f799"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -106,16 +107,69 @@ Public 成员函数</h2></td></tr>
 <tr class="memitem:a4ce4fdfcd635667ed5aab0d4845cb4de"><td class="memItemLeft" align="right" valign="top"><a id="a4ce4fdfcd635667ed5aab0d4845cb4de"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>VKDevice</b> (VkDevice device, <a class="el" href="class_v_k_physical_device.html">VKPhysicalDevice</a> physicalDevice)</td></tr>
 <tr class="separator:a4ce4fdfcd635667ed5aab0d4845cb4de"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab9a1f3885fed4a385a311f6ac8abdcf0"><td class="memItemLeft" align="right" valign="top"><a id="ab9a1f3885fed4a385a311f6ac8abdcf0"></a>
-VkQueue&#160;</td><td class="memItemRight" valign="bottom"><b>getQueue</b> (QueueType type) const</td></tr>
+<tr class="memitem:ab9a1f3885fed4a385a311f6ac8abdcf0"><td class="memItemLeft" align="right" valign="top">VkQueue&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_v_k_device.html#ab9a1f3885fed4a385a311f6ac8abdcf0">getQueue</a> (<a class="el" href="class_v_k_device.html#a06fa199b3117acdfe766d967a560f799">QueueType</a> type) const</td></tr>
+<tr class="memdesc:ab9a1f3885fed4a385a311f6ac8abdcf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取队列.  <a href="class_v_k_device.html#ab9a1f3885fed4a385a311f6ac8abdcf0">更多...</a><br /></td></tr>
 <tr class="separator:ab9a1f3885fed4a385a311f6ac8abdcf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a80953af4c4d080ec0778c35483ed0027"><td class="memItemLeft" align="right" valign="top"><a id="a80953af4c4d080ec0778c35483ed0027"></a>
-uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>getQueueIndex</b> (QueueType type) const</td></tr>
+<tr class="memitem:a80953af4c4d080ec0778c35483ed0027"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_v_k_device.html#a80953af4c4d080ec0778c35483ed0027">getQueueIndex</a> (<a class="el" href="class_v_k_device.html#a06fa199b3117acdfe766d967a560f799">QueueType</a> type) const</td></tr>
+<tr class="memdesc:a80953af4c4d080ec0778c35483ed0027"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取队列索引.  <a href="class_v_k_device.html#a80953af4c4d080ec0778c35483ed0027">更多...</a><br /></td></tr>
 <tr class="separator:a80953af4c4d080ec0778c35483ed0027"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abf81d170170106c99fff3aaf78bbe11d"><td class="memItemLeft" align="right" valign="top"><a id="abf81d170170106c99fff3aaf78bbe11d"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>operator VkDevice</b> () const</td></tr>
 <tr class="separator:abf81d170170106c99fff3aaf78bbe11d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="ab9a1f3885fed4a385a311f6ac8abdcf0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9a1f3885fed4a385a311f6ac8abdcf0">&#9670;&nbsp;</a></span>getQueue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">VkQueue VKDevice::getQueue </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_v_k_device.html#a06fa199b3117acdfe766d967a560f799">QueueType</a>&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取队列. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>队列类型. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a80953af4c4d080ec0778c35483ed0027"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80953af4c4d080ec0778c35483ed0027">&#9670;&nbsp;</a></span>getQueueIndex()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t VKDevice::getQueueIndex </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_v_k_device.html#a06fa199b3117acdfe766d967a560f799">QueueType</a>&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>获取队列索引. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>队列类型. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>该类的文档由以下文件生成:<ul>
 <li>/github/workspace/Source/Vulkan/<a class="el" href="_v_k_device_8h_source.html">VKDevice.h</a></li>
 <li>/github/workspace/Source/Vulkan/VKDevice.cpp</li>

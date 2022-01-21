@@ -61,8 +61,8 @@ var NAVTREEINDEX =
 [
 "_buffer_8h_source.html",
 "class_gamepad.html#af06515dbccf048df41bfcddc17460ee8",
-"class_v_k_renderer.html#a61c7c59b6a6afd2ba082a26e7b109bb3",
-"struct_d_d_s_pixel_format.html"
+"class_v_k_renderer.html#a2bcb592d4650278c0bc1cb0c68a344f8",
+"struct_d_d_s_header_d_x_t10.html#acabdb895c6681518da7c7741ff2e573c"
 ];
 
 var SYNCONMSG = '点击 关闭 面板同步';
