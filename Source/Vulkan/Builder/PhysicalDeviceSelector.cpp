@@ -42,7 +42,7 @@ VKPhysicalDevice PhysicalDeviceSelector::select()
 			if(device.present == -1)
 				continue;
 
-		if(device.isExtensionAvailable(VK_KHR_SWAPCHAIN_EXTENSION_NAME))
+		if(!device.isExtensionAvailable(VK_KHR_SWAPCHAIN_EXTENSION_NAME))
 			continue;
 
 		return device;
