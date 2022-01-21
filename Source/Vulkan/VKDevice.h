@@ -39,6 +39,8 @@ public:
 	 */
 	uint32_t getQueueIndex(QueueType type) const;
 
+	VKPhysicalDevice& getPhysicalDevice();
+
 	operator VkDevice();
 	operator VkDevice() const;
 

@@ -65,3 +65,8 @@ uint32_t VKDevice::getQueueIndex(QueueType type) const
 	}
 	return index;
 }
+
+VKPhysicalDevice& VKDevice::getPhysicalDevice()
+{
+	return physicalDevice;
+}
