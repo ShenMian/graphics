@@ -105,29 +105,29 @@ $(document).ready(function(){initNavTree('_instance_builder_8h_source.html','');
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="class_instance_builder.html">InstanceBuilder</a>&amp; <a class="code" href="class_instance_builder.html#a7b463fb857ba7158ee45f41a476e1a0f">setEngineName</a>(std::string_view name);</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="class_instance_builder.html">InstanceBuilder</a>&amp; <a class="code" href="class_instance_builder.html#ada513d3466d9e63e17d0d3081fe6d3e7">setEngineVersion</a>(uint32_t major, uint32_t minor, uint32_t patch);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <a class="code" href="class_instance_builder.html">InstanceBuilder</a>&amp; <a class="code" href="class_instance_builder.html#a267231a3bc831f940fe434b11a928a54">setAppName</a>(std::string_view name);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="class_instance_builder.html">InstanceBuilder</a>&amp; <a class="code" href="class_instance_builder.html#a1ee02bb474f421e842fa44398f043e52">setAppVersion</a>(uint32_t major, uint32_t minor, uint32_t patch);</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <a class="code" href="class_instance_builder.html">InstanceBuilder</a>&amp; <a class="code" href="class_instance_builder.html#a35caa59a89108e38049f843ba5c0a9a5">enableLayer</a>(std::string_view name);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <a class="code" href="class_instance_builder.html">InstanceBuilder</a>&amp; <a class="code" href="class_instance_builder.html#a0c832424d8b56ff50f66b0c96c801912">enableExtension</a>(std::string_view name);</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">bool</span> isLayerAvailable(std::string_view name);</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordtype">bool</span> isExtensionAvailable(std::string_view name);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="class_instance_builder.html">InstanceBuilder</a>&amp; <a class="code" href="class_instance_builder.html#ada513d3466d9e63e17d0d3081fe6d3e7">setEngineVersion</a>(uint32_t major, uint32_t minor, uint32_t patch);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <a class="code" href="class_instance_builder.html">InstanceBuilder</a>&amp; <a class="code" href="class_instance_builder.html#a267231a3bc831f940fe434b11a928a54">setAppName</a>(std::string_view name);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <a class="code" href="class_instance_builder.html">InstanceBuilder</a>&amp; <a class="code" href="class_instance_builder.html#a1ee02bb474f421e842fa44398f043e52">setAppVersion</a>(uint32_t major, uint32_t minor, uint32_t patch);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <a class="code" href="class_instance_builder.html">InstanceBuilder</a>&amp; <a class="code" href="class_instance_builder.html#a35caa59a89108e38049f843ba5c0a9a5">enableLayer</a>(std::string_view name);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <a class="code" href="class_instance_builder.html">InstanceBuilder</a>&amp; <a class="code" href="class_instance_builder.html#a0c832424d8b56ff50f66b0c96c801912">enableExtension</a>(std::string_view name);</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    VkApplicationInfo appInfo = {};</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    VkInstanceCreateInfo instanceInfo = {};</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    std::vector&lt;const char*&gt; enabledLayers;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    std::vector&lt;const char*&gt; enabledExtensions;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    std::vector&lt;VkLayerProperties&gt; availableLayers;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    std::vector&lt;VkExtensionProperties&gt; availableExtensions;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;};</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordtype">bool</span> isLayerAvailable(std::string_view name);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordtype">bool</span> isExtensionAvailable(std::string_view name);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    VkApplicationInfo appInfo = {};</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    VkInstanceCreateInfo instanceInfo = {};</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    std::vector&lt;const char*&gt; enabledLayers;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    std::vector&lt;const char*&gt; enabledExtensions;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    std::vector&lt;VkLayerProperties&gt; availableLayers;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    std::vector&lt;VkExtensionProperties&gt; availableExtensions;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;};</div>
 <div class="ttc" id="aclass_instance_builder_html"><div class="ttname"><a href="class_instance_builder.html">InstanceBuilder</a></div><div class="ttdef"><b>Definition:</b> InstanceBuilder.h:11</div></div>
 <div class="ttc" id="aclass_instance_builder_html_a0c832424d8b56ff50f66b0c96c801912"><div class="ttname"><a href="class_instance_builder.html#a0c832424d8b56ff50f66b0c96c801912">InstanceBuilder::enableExtension</a></div><div class="ttdeci">InstanceBuilder &amp; enableExtension(std::string_view name)</div><div class="ttdoc">启用拓展.</div><div class="ttdef"><b>Definition:</b> InstanceBuilder.cpp:72</div></div>
 <div class="ttc" id="aclass_instance_builder_html_a1ee02bb474f421e842fa44398f043e52"><div class="ttname"><a href="class_instance_builder.html#a1ee02bb474f421e842fa44398f043e52">InstanceBuilder::setAppVersion</a></div><div class="ttdeci">InstanceBuilder &amp; setAppVersion(uint32_t major, uint32_t minor, uint32_t patch)</div><div class="ttdoc">设置应用程序版本. (可选)</div><div class="ttdef"><b>Definition:</b> InstanceBuilder.cpp:59</div></div>
