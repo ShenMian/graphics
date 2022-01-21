@@ -21,14 +21,9 @@ VKPhysicalDevice PhysicalDeviceSelector::select()
 {
 	for(const auto& device : devices)
 	{
-		VkPhysicalDeviceProperties properties;
-		vkGetPhysicalDeviceProperties(device, &properties);
 
-		VkPhysicalDeviceFeatures features;
-		vkGetPhysicalDeviceFeatures(device, &features);
-
-		if(!(properties.deviceType == VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU &&
-			features.geometryShader))
+		if(!(device.getProperties().deviceType == VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU &&
+			device.getFeatures().geometryShader))
 			continue;
 
 		if(info.requireGraphicsQueue)
@@ -47,8 +42,12 @@ VKPhysicalDevice PhysicalDeviceSelector::select()
 			if(device.present == -1)
 				continue;
 
+		if(device.isExtensionAvailable(VK_KHR_SWAPCHAIN_EXTENSION_NAME))
+			continue;
+
 		return device;
 	}
+	throw std::runtime_error("failed to select suitable physical device");
 }
 
 PhysicalDeviceSelector& PhysicalDeviceSelector::requireGraphicsQueue()

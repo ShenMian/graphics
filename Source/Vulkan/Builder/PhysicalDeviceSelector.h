@@ -25,14 +25,13 @@ public:
 	PhysicalDeviceSelector& requirePresentQueue();
 
 private:
-	struct Info
+	std::vector<VKPhysicalDevice> devices;
+
+	struct
 	{
 		bool requireGraphicsQueue = false;
 		bool requireComputeQueue = false;
 		bool requireTransferQueue = false;
 		bool requirePresentQueue = false;
-	};
-
-	std::vector<VKPhysicalDevice> devices;
-	Info info;
+	} info;
 };
