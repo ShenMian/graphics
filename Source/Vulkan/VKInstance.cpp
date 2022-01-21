@@ -10,7 +10,7 @@ VKInstance::VKInstance(VkInstance instance)
 
 VKInstance::~VKInstance()
 {
-	vkDestroyInstance(handle, nullptr);
+	// vkDestroyInstance(handle, nullptr);
 }
 
 VKInstance::operator VkInstance()
