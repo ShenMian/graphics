@@ -44,5 +44,5 @@ VKDevice DeviceBuilder::build()
 	if(vkCreateDevice(physicalDevice, &deviceInfo, nullptr, &device) != VK_SUCCESS)
 		throw std::runtime_error("failed to create logical device");
 
-	return device;
+	return {device, physicalDevice};
 }
