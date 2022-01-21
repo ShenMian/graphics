@@ -1,38 +1,36 @@
 ﻿// Copyright 2021 ShenMian
 // License(Apache-2.0)
 
+#include "VKRenderer.h"
 #include "Builder/InstanceBuilder.h"
 #include "Builder/PhysicalDeviceSelector.h"
 #include "Builder/DeviceBuilder.h"
 
-#include "VKRenderer.h"
 #include <VkBootstrap.h>
-
 #include <GLFW/glfw3.h>
 
 namespace
 {
 
-VkInstance                 instance;
-VkSurfaceKHR               surface;
-VkPhysicalDevice           physicalDevice;
-VkPhysicalDeviceProperties physicalDeviceProperties;
-VkDevice                   device;
-VkSwapchainKHR             swapchain;
-VkQueue                    queue;
-uint32_t                   queueIndex;
-VkCommandPool              commandPool;
+VKInstance       instance;
+VkSurfaceKHR     surface;
+VKPhysicalDevice physicalDevice;
+VKDevice         device;
+VkQueue          queue;
+uint32_t         queueIndex;
+VkSwapchainKHR   swapchain;
+VkCommandPool    commandPool;
 
 }
 
 std::string VKRenderer::getDeviceName() const
 {
-	return physicalDeviceProperties.deviceName;
+	return std::string(physicalDevice.getName());
 }
 
 std::string VKRenderer::getRendererName() const
 {
-	const auto version = physicalDeviceProperties.apiVersion;
+	const auto version = physicalDevice.getProperties().apiVersion;
 	return "Vulkan " +
 		std::to_string(VK_VERSION_MAJOR(version)) + '.' +
 		std::to_string(VK_VERSION_MINOR(version)) + '.' +
@@ -41,34 +39,22 @@ std::string VKRenderer::getRendererName() const
 
 std::string VKRenderer::getVendorName() const
 {
-	const auto id = physicalDeviceProperties.vendorID;
-	switch(id)
-	{
-	case 0x1002: return "Advanced Micro Devices, Inc.";
-	case 0x10de: return "NVIDIA Corporation";
-	case 0x102b: return "Matrox Electronic Systems Ltd.";
-	case 0x1414: return "Microsoft Corporation";
-	case 0x5333: return "S3 Graphics Co., Ltd.";
-	case 0x8086: return "Intel Corporation";
-	case 0x80ee: return "Oracle Corporation";
-	case 0x15ad: return "VMware Inc.";
-	}
-	return "Unknown";
+	return std::string(physicalDevice.getVendorName());
 }
 
-const VkInstance& VKRenderer::getInstance() const
+const VKInstance& VKRenderer::getInstance() const
 {
 	return instance;
 }
 
-const VkDevice& VKRenderer::getDevice() const
-{
-	return device;
-}
-
-const VkPhysicalDevice& VKRenderer::getPhysicalDevice() const
+const VKPhysicalDevice& VKRenderer::getPhysicalDevice() const
 {
 	return physicalDevice;
+}
+
+const VKDevice& VKRenderer::getDevice() const
+{
+	return device;
 }
 
 const VkQueue& VKRenderer::getQueue() const
@@ -83,13 +69,22 @@ const VkCommandPool& VKRenderer::getCommandPool() const
 
 void VKRenderer::init(const Window& win)
 {
-#if 1
-	InstanceBuilder builder;
-	auto i = builder.enableValidationLayers().build();
-	glfwCreateWindowSurface(i, reinterpret_cast<GLFWwindow*>(win.getNativeHandle()), nullptr, &surface);
-	PhysicalDeviceSelector selector(i, surface);
-	auto pd = selector.requireGraphicsQueue().requirePresentQueue().requireTransferQueue().select();
-#else
+	createInstance();
+	createSurface(win);
+	selectPhysicalDevice();
+	createDevice();
+
+	queue = device.getQueue(VKDevice::QueueType::Graphics);
+	queueIndex = device.getQueueIndex(VKDevice::QueueType::Graphics);
+
+	VkCommandPoolCreateInfo info = {};
+	info.sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO;
+	info.queueFamilyIndex = queueIndex;
+	info.flags = VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT;
+	if(vkCreateCommandPool(device, &info, nullptr, &commandPool) != VK_SUCCESS)
+		throw std::runtime_error("failed to create command pool");
+
+	/*
 	vkb::Instance vkbInstance;
 	{
 		vkb::InstanceBuilder builder;
@@ -151,15 +146,7 @@ void VKRenderer::init(const Window& win)
 		vkbSwapchain = result.value();
 	}
 	swapchain = vkbSwapchain;
-
-	VkCommandPoolCreateInfo info = {};
-	info.sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO;
-	info.queueFamilyIndex = queueIndex;
-	info.flags = VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT; // TODO: 很多项目貌似没有 flags
-	const auto ret = vkCreateCommandPool(device, &info, nullptr, &commandPool);
-	if(ret != VK_SUCCESS)
-		throw std::runtime_error("failed to create command pool");
-#endif
+	*/
 }
 
 void VKRenderer::deinit()
@@ -169,4 +156,31 @@ void VKRenderer::deinit()
 	vkDestroyDevice(device, nullptr);
 	vkDestroySurfaceKHR(instance, surface, nullptr);
 	vkDestroyInstance(instance, nullptr);
+}
+
+void VKRenderer::createInstance()
+{
+	InstanceBuilder builder;
+	instance = builder.enableValidationLayers()
+		.build();
+}
+
+void VKRenderer::createSurface(const Window& win)
+{
+	glfwCreateWindowSurface(instance, reinterpret_cast<GLFWwindow*>(win.getNativeHandle()), nullptr, &surface);
+}
+
+void VKRenderer::selectPhysicalDevice()
+{
+	PhysicalDeviceSelector selector(instance, surface);
+	physicalDevice = selector.requireGraphicsQueue()
+		.requirePresentQueue()
+		.requireTransferQueue()
+		.select();
+}
+
+void VKRenderer::createDevice()
+{
+	DeviceBuilder builder(physicalDevice);
+	device = builder.build();
 }

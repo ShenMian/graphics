@@ -4,6 +4,9 @@
 #pragma once
 
 #include "Renderer.h"
+#include "VKDevice.h"
+#include "VKInstance.h"
+#include "VKPhysicalDevice.h"
 #include <vulkan/vulkan.h>
 
 class VKRenderer : public Renderer
@@ -16,17 +19,17 @@ public:
 	/**
 	 * @brief 获取 VkInstance.
 	 */
-	const VkInstance& getInstance() const;
-
-	/**
-	 * @brief 获取 VkDevice.
-	 */
-	const VkDevice& getDevice() const;
+	const VKInstance& getInstance() const;
 
 	/**
 	 * @brief 获取 VkPhysicalDevice.
 	 */
-	const VkPhysicalDevice& getPhysicalDevice() const;
+	const VKPhysicalDevice& getPhysicalDevice() const;
+
+	/**
+	 * @brief 获取 VkDevice.
+	 */
+	const VKDevice& getDevice() const;
 
 	/**
 	 * @brief 获取 VkQueue.
@@ -40,4 +43,10 @@ public:
 
 	static void init(const Window& win);
 	static void deinit();
+
+private:
+	static void createInstance();
+	static void createSurface(const Window& win);
+	static void selectPhysicalDevice();
+	static void createDevice();
 };
