@@ -60,6 +60,8 @@ VKPipeline::VKPipeline(const Descriptor& desc)
 	auto vertexBuffer = std::dynamic_pointer_cast<VKVertexBuffer>(desc.vertexBuffer);
 	auto program = std::dynamic_pointer_cast<VKProgram>(desc.program);
 
+	createRenderPass();
+
 	createLayout(desc);
 
 	VkPipelineInputAssemblyStateCreateInfo inputAssemblyState = {};
@@ -83,32 +85,6 @@ VKPipeline::VKPipeline(const Descriptor& desc)
 	VkPipelineColorBlendStateCreateInfo colorBlendState = {};
 	createColorBlendState(colorBlendState, desc, colorBlendAttachments);
 
-	// 创建 Render Pass
-	std::vector<VkAttachmentDescription> colorAttachments;
-	std::vector<VkSubpassDescription> subpasses;
-
-	VkAttachmentDescription colorAttachment = {};
-	colorAttachment.samples = VK_SAMPLE_COUNT_1_BIT;
-	colorAttachment.stencilLoadOp = VK_ATTACHMENT_LOAD_OP_DONT_CARE;
-	colorAttachment.stencilStoreOp = VK_ATTACHMENT_STORE_OP_DONT_CARE;
-	colorAttachment.initialLayout = VK_IMAGE_LAYOUT_UNDEFINED;
-	colorAttachment.finalLayout = VK_IMAGE_LAYOUT_PRESENT_SRC_KHR;
-	colorAttachments.push_back(colorAttachment);
-
-	VkSubpassDescription subpass = {};
-	subpass.pipelineBindPoint = VK_PIPELINE_BIND_POINT_GRAPHICS;
-	subpasses.push_back(subpass);
-
-	VkRenderPassCreateInfo renderPassInfo{};
-	renderPassInfo.sType = VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO;
-	renderPassInfo.attachmentCount = static_cast<uint32_t>(colorAttachments.size());
-	renderPassInfo.pAttachments = colorAttachments.data();
-	renderPassInfo.subpassCount = static_cast<uint32_t>(subpasses.size());
-	renderPassInfo.pSubpasses = subpasses.data();
-
-	if(vkCreateRenderPass(renderer->getDevice(), &renderPassInfo, nullptr, &renderPass) != VK_SUCCESS)
-		throw std::runtime_error("failed to create render pass");
-
 	auto vertexInputState = vertexBuffer->getInfo();
 
 	VkGraphicsPipelineCreateInfo pipelineInfo = {};
@@ -122,7 +98,7 @@ VKPipeline::VKPipeline(const Descriptor& desc)
 	pipelineInfo.pRasterizationState = &rasterizerState;
 	pipelineInfo.pMultisampleState = &multisampleState;
 	pipelineInfo.pDepthStencilState = &depthStencilState;
-	// pipelineInfo.pColorBlendState = &colorBlendState;
+	pipelineInfo.pColorBlendState = &colorBlendState;
 	// pipelineInfo.pDynamicState = (!dynamicStatesVK.empty() ? &dynamicState : nullptr);
 	pipelineInfo.layout = pipelineLayout;
 	pipelineInfo.renderPass = renderPass;
@@ -138,6 +114,77 @@ VkRenderPass VKPipeline::getRendererPass()
 VkPipeline VKPipeline::getNativeHandle()
 {
 	return pipeline;
+}
+
+void VKPipeline::createRenderPass()
+{
+	auto renderer = reinterpret_cast<VKRenderer*>(Renderer::get());
+
+	VkAttachmentDescription depthAttachment = {};
+
+	std::vector<VkAttachmentDescription> colorAttachments;
+	VkAttachmentDescription colorAttachment = {};
+	colorAttachment.format = VK_FORMAT_B8G8R8A8_SRGB;
+	colorAttachment.samples = VK_SAMPLE_COUNT_1_BIT;
+	colorAttachment.stencilLoadOp = VK_ATTACHMENT_LOAD_OP_DONT_CARE;
+	colorAttachment.stencilStoreOp = VK_ATTACHMENT_STORE_OP_DONT_CARE;
+	colorAttachment.initialLayout = VK_IMAGE_LAYOUT_UNDEFINED;
+	colorAttachment.finalLayout = VK_IMAGE_LAYOUT_PRESENT_SRC_KHR;
+	colorAttachments.push_back(colorAttachment);
+
+	std::vector<VkAttachmentReference> colorAttachmentRefs;
+	VkAttachmentReference colorAttachmentRef = {};
+	colorAttachmentRef.attachment = 0;
+	colorAttachmentRef.layout = VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL;
+	colorAttachmentRefs.push_back(colorAttachmentRef);
+
+	std::vector<VkSubpassDescription> subpasses;
+	VkSubpassDescription subpass = {};
+	subpass.pipelineBindPoint = VK_PIPELINE_BIND_POINT_GRAPHICS;
+	subpass.colorAttachmentCount = static_cast<uint32_t>(colorAttachmentRefs.size());
+	subpass.pColorAttachments = &colorAttachmentRef;
+	subpasses.push_back(subpass);
+
+	std::vector<VkSubpassDependency> dependencies;
+	VkSubpassDependency dependency = {};
+	dependency.dstSubpass = 0;
+	dependency.dstAccessMask =
+		VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT | VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT;
+	dependency.dstStageMask =
+		VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT | VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT;
+	dependency.srcSubpass = VK_SUBPASS_EXTERNAL;
+	dependency.srcAccessMask = 0;
+	dependency.srcStageMask =
+		VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT | VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT;
+	dependencies.push_back(dependency);
+
+	VkRenderPassCreateInfo renderPassInfo{};
+	renderPassInfo.sType = VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO;
+	renderPassInfo.attachmentCount = static_cast<uint32_t>(colorAttachments.size());
+	renderPassInfo.pAttachments = colorAttachments.data();
+	renderPassInfo.subpassCount = static_cast<uint32_t>(subpasses.size());
+	renderPassInfo.pSubpasses = subpasses.data();
+	renderPassInfo.dependencyCount = static_cast<uint32_t>(dependencies.size());
+	renderPassInfo.pDependencies = dependencies.data();
+
+	if(vkCreateRenderPass(renderer->getDevice(), &renderPassInfo, nullptr, &renderPass) != VK_SUCCESS)
+		throw std::runtime_error("failed to create render pass");
+
+
+
+	std::vector<VkImageView> attachments;
+
+	VkFramebufferCreateInfo framebufferInfo{};
+	framebufferInfo.sType = VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO;
+	framebufferInfo.renderPass = renderPass;
+	framebufferInfo.attachmentCount = static_cast<uint32_t>(attachments.size());
+	framebufferInfo.pAttachments = attachments.data();
+	framebufferInfo.width = 1920; // TODO
+	framebufferInfo.height = 1080; // TODO
+	framebufferInfo.layers = 1;
+
+	if(vkCreateFramebuffer(renderer->getDevice(), &framebufferInfo, nullptr, &framebuffer) != VK_SUCCESS)
+		throw std::runtime_error("failed to create framebuffer");
 }
 
 void VKPipeline::createLayout(const Descriptor& desc)
@@ -233,6 +280,17 @@ void VKPipeline::createDepthStencilState(VkPipelineDepthStencilStateCreateInfo& 
 
 void VKPipeline::createColorBlendState(VkPipelineColorBlendStateCreateInfo& info, const Descriptor& desc, std::vector<VkPipelineColorBlendAttachmentState>& attachments)
 {
+	VkPipelineColorBlendAttachmentState attachement = {};
+	attachement.colorWriteMask = VK_COLOR_COMPONENT_R_BIT | VK_COLOR_COMPONENT_G_BIT | VK_COLOR_COMPONENT_B_BIT | VK_COLOR_COMPONENT_A_BIT;
+	attachement.blendEnable = VK_FALSE;
+	attachement.srcColorBlendFactor = VK_BLEND_FACTOR_ONE; // Optional
+	attachement.dstColorBlendFactor = VK_BLEND_FACTOR_ZERO; // Optional
+	attachement.colorBlendOp = VK_BLEND_OP_ADD; // Optional
+	attachement.srcAlphaBlendFactor = VK_BLEND_FACTOR_ONE; // Optional
+	attachement.dstAlphaBlendFactor = VK_BLEND_FACTOR_ZERO; // Optional
+	attachement.alphaBlendOp = VK_BLEND_OP_ADD; // Optional
+	attachments.push_back(attachement);
+
 	info.sType = VK_STRUCTURE_TYPE_PIPELINE_COLOR_BLEND_STATE_CREATE_INFO;
 	info.logicOpEnable = VK_FALSE;
 	info.logicOp = VK_LOGIC_OP_COPY; // Optional

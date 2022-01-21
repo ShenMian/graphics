@@ -15,7 +15,12 @@ public:
 	VkRenderPass getRendererPass();
 	VkPipeline getNativeHandle();
 
+	VkFramebuffer framebuffer;
+	VkRenderPass  renderPass;
+
 private:
+	void createRenderPass();
+
 	void createLayout(const Descriptor& desc);
 	void createInputAssemblyState(VkPipelineInputAssemblyStateCreateInfo&, const Descriptor& desc);
 	void createViewportState(VkPipelineViewportStateCreateInfo& info, const Descriptor& desc, std::vector<VkViewport>& vkViewports, std::vector<VkRect2D>& vkScissors);
@@ -26,5 +31,4 @@ private:
 
 	VkPipeline       pipeline;
 	VkPipelineLayout pipelineLayout;
-	VkRenderPass     renderPass;
 };

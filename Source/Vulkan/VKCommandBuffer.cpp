@@ -61,6 +61,9 @@ void VKCommandBuffer::setPipeline(std::shared_ptr<Pipeline> pipeline)
 	VkRenderPassBeginInfo info = {};
 	info.sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
 	info.renderPass = vkPipeline->getRendererPass();
+	info.framebuffer = vkPipeline->framebuffer;
+	info.renderArea.offset = {0, 0};
+	info.renderArea.extent = {1920, 1080}; // TODO
 	vkCmdBeginRenderPass(handle, &info, VK_SUBPASS_CONTENTS_INLINE);
 }
 
