@@ -24,7 +24,9 @@ public:
 	/**
 	 * @brief 设置引擎版本. (可选)
 	 *
-	 * @param name 引擎版本.
+	 * @param major 引擎主版本.
+	 * @param minor 引擎子版本.
+	 * @param patch 引擎阶段版本.
 	 */
 	InstanceBuilder& setEngineVersion(uint32_t major, uint32_t minor, uint32_t patch);
 
@@ -38,7 +40,9 @@ public:
 	/**
 	 * @brief 设置应用程序版本. (可选)
 	 *
-	 * @param name 应用程序版本.
+	 * @param major 应用程序主版本.
+	 * @param minor 应用程序子版本.
+	 * @param patch 应用程序阶段版本.
 	 */
 	InstanceBuilder& setAppVersion(uint32_t major, uint32_t minor, uint32_t patch);
 
