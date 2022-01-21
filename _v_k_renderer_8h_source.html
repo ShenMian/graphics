@@ -93,35 +93,47 @@ $(document).ready(function(){initNavTree('_v_k_renderer_8h_source.html',''); ini
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;Renderer.h&quot;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;vulkan/vulkan.h&gt;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="class_v_k_renderer.html">    9</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_v_k_renderer.html">VKRenderer</a> : <span class="keyword">public</span> <a class="code" href="class_renderer.html">Renderer</a></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;{</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    std::string getDeviceName() <span class="keyword">const override</span>;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    std::string getRendererName() <span class="keyword">const override</span>;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    std::string getVendorName() <span class="keyword">const override</span>;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keyword">const</span> VkInstance&amp; <a class="code" href="class_v_k_renderer.html#ae14c7e5a3d799a51f3f8cde4087f0f9b">getInstance</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">const</span> VkDevice&amp; <a class="code" href="class_v_k_renderer.html#aed8b9caf61dc226a73aea400fbb654ae">getDevice</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">const</span> VkPhysicalDevice&amp; <a class="code" href="class_v_k_renderer.html#a61c7c59b6a6afd2ba082a26e7b109bb3">getPhysicalDevice</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">const</span> VkQueue&amp; <a class="code" href="class_v_k_renderer.html#ae5c00d0e3e545ab83392828fd06cb4e7">getQueue</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">const</span> VkCommandPool&amp; <a class="code" href="class_v_k_renderer.html#a2688df65e25180d5b278acd638c26645">getCommandPool</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> init(<span class="keyword">const</span> <a class="code" href="class_window.html">Window</a>&amp; win);</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> deinit();</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;};</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;VKDevice.h&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;VKInstance.h&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;VKPhysicalDevice.h&quot;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;vulkan/vulkan.h&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="class_v_k_renderer.html">   12</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_v_k_renderer.html">VKRenderer</a> : <span class="keyword">public</span> <a class="code" href="class_renderer.html">Renderer</a></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;{</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    std::string getDeviceName() <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    std::string getRendererName() <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    std::string getVendorName() <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">const</span> <a class="code" href="class_v_k_instance.html">VKInstance</a>&amp; <a class="code" href="class_v_k_renderer.html#a7ba13c5bead768bb16789ed02c54865c">getInstance</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">const</span> <a class="code" href="class_v_k_physical_device.html">VKPhysicalDevice</a>&amp; <a class="code" href="class_v_k_renderer.html#aa738911381876b0b264d3a0cbc6d89a2">getPhysicalDevice</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">const</span> <a class="code" href="class_v_k_device.html">VKDevice</a>&amp; <a class="code" href="class_v_k_renderer.html#ae94ac18315d26db579d64fa9eba9c980">getDevice</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keyword">const</span> VkQueue&amp; <a class="code" href="class_v_k_renderer.html#ae5c00d0e3e545ab83392828fd06cb4e7">getQueue</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">const</span> VkCommandPool&amp; <a class="code" href="class_v_k_renderer.html#a2688df65e25180d5b278acd638c26645">getCommandPool</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> init(<span class="keyword">const</span> <a class="code" href="class_window.html">Window</a>&amp; win);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> deinit();</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> createInstance();</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> createSurface(<span class="keyword">const</span> <a class="code" href="class_window.html">Window</a>&amp; win);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> selectPhysicalDevice();</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> createDevice();</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;};</div>
 <div class="ttc" id="aclass_renderer_html"><div class="ttname"><a href="class_renderer.html">Renderer</a></div><div class="ttdef"><b>Definition:</b> Renderer.h:10</div></div>
-<div class="ttc" id="aclass_v_k_renderer_html"><div class="ttname"><a href="class_v_k_renderer.html">VKRenderer</a></div><div class="ttdef"><b>Definition:</b> VKRenderer.h:10</div></div>
-<div class="ttc" id="aclass_v_k_renderer_html_a2688df65e25180d5b278acd638c26645"><div class="ttname"><a href="class_v_k_renderer.html#a2688df65e25180d5b278acd638c26645">VKRenderer::getCommandPool</a></div><div class="ttdeci">const VkCommandPool &amp; getCommandPool() const</div><div class="ttdoc">获取命令缓冲区池.</div><div class="ttdef"><b>Definition:</b> VKRenderer.cpp:79</div></div>
-<div class="ttc" id="aclass_v_k_renderer_html_a61c7c59b6a6afd2ba082a26e7b109bb3"><div class="ttname"><a href="class_v_k_renderer.html#a61c7c59b6a6afd2ba082a26e7b109bb3">VKRenderer::getPhysicalDevice</a></div><div class="ttdeci">const VkPhysicalDevice &amp; getPhysicalDevice() const</div><div class="ttdoc">获取 VkPhysicalDevice.</div><div class="ttdef"><b>Definition:</b> VKRenderer.cpp:69</div></div>
-<div class="ttc" id="aclass_v_k_renderer_html_ae14c7e5a3d799a51f3f8cde4087f0f9b"><div class="ttname"><a href="class_v_k_renderer.html#ae14c7e5a3d799a51f3f8cde4087f0f9b">VKRenderer::getInstance</a></div><div class="ttdeci">const VkInstance &amp; getInstance() const</div><div class="ttdoc">获取 VkInstance.</div><div class="ttdef"><b>Definition:</b> VKRenderer.cpp:59</div></div>
-<div class="ttc" id="aclass_v_k_renderer_html_ae5c00d0e3e545ab83392828fd06cb4e7"><div class="ttname"><a href="class_v_k_renderer.html#ae5c00d0e3e545ab83392828fd06cb4e7">VKRenderer::getQueue</a></div><div class="ttdeci">const VkQueue &amp; getQueue() const</div><div class="ttdoc">获取 VkQueue.</div><div class="ttdef"><b>Definition:</b> VKRenderer.cpp:74</div></div>
-<div class="ttc" id="aclass_v_k_renderer_html_aed8b9caf61dc226a73aea400fbb654ae"><div class="ttname"><a href="class_v_k_renderer.html#aed8b9caf61dc226a73aea400fbb654ae">VKRenderer::getDevice</a></div><div class="ttdeci">const VkDevice &amp; getDevice() const</div><div class="ttdoc">获取 VkDevice.</div><div class="ttdef"><b>Definition:</b> VKRenderer.cpp:64</div></div>
+<div class="ttc" id="aclass_v_k_device_html"><div class="ttname"><a href="class_v_k_device.html">VKDevice</a></div><div class="ttdef"><b>Definition:</b> VKDevice.h:10</div></div>
+<div class="ttc" id="aclass_v_k_instance_html"><div class="ttname"><a href="class_v_k_instance.html">VKInstance</a></div><div class="ttdef"><b>Definition:</b> VKInstance.h:9</div></div>
+<div class="ttc" id="aclass_v_k_physical_device_html"><div class="ttname"><a href="class_v_k_physical_device.html">VKPhysicalDevice</a></div><div class="ttdef"><b>Definition:</b> VKPhysicalDevice.h:11</div></div>
+<div class="ttc" id="aclass_v_k_renderer_html"><div class="ttname"><a href="class_v_k_renderer.html">VKRenderer</a></div><div class="ttdef"><b>Definition:</b> VKRenderer.h:13</div></div>
+<div class="ttc" id="aclass_v_k_renderer_html_a2688df65e25180d5b278acd638c26645"><div class="ttname"><a href="class_v_k_renderer.html#a2688df65e25180d5b278acd638c26645">VKRenderer::getCommandPool</a></div><div class="ttdeci">const VkCommandPool &amp; getCommandPool() const</div><div class="ttdoc">获取命令缓冲区池.</div><div class="ttdef"><b>Definition:</b> VKRenderer.cpp:65</div></div>
+<div class="ttc" id="aclass_v_k_renderer_html_a7ba13c5bead768bb16789ed02c54865c"><div class="ttname"><a href="class_v_k_renderer.html#a7ba13c5bead768bb16789ed02c54865c">VKRenderer::getInstance</a></div><div class="ttdeci">const VKInstance &amp; getInstance() const</div><div class="ttdoc">获取 VkInstance.</div><div class="ttdef"><b>Definition:</b> VKRenderer.cpp:45</div></div>
+<div class="ttc" id="aclass_v_k_renderer_html_aa738911381876b0b264d3a0cbc6d89a2"><div class="ttname"><a href="class_v_k_renderer.html#aa738911381876b0b264d3a0cbc6d89a2">VKRenderer::getPhysicalDevice</a></div><div class="ttdeci">const VKPhysicalDevice &amp; getPhysicalDevice() const</div><div class="ttdoc">获取 VkPhysicalDevice.</div><div class="ttdef"><b>Definition:</b> VKRenderer.cpp:50</div></div>
+<div class="ttc" id="aclass_v_k_renderer_html_ae5c00d0e3e545ab83392828fd06cb4e7"><div class="ttname"><a href="class_v_k_renderer.html#ae5c00d0e3e545ab83392828fd06cb4e7">VKRenderer::getQueue</a></div><div class="ttdeci">const VkQueue &amp; getQueue() const</div><div class="ttdoc">获取 VkQueue.</div><div class="ttdef"><b>Definition:</b> VKRenderer.cpp:60</div></div>
+<div class="ttc" id="aclass_v_k_renderer_html_ae94ac18315d26db579d64fa9eba9c980"><div class="ttname"><a href="class_v_k_renderer.html#ae94ac18315d26db579d64fa9eba9c980">VKRenderer::getDevice</a></div><div class="ttdeci">const VKDevice &amp; getDevice() const</div><div class="ttdoc">获取 VkDevice.</div><div class="ttdef"><b>Definition:</b> VKRenderer.cpp:55</div></div>
 <div class="ttc" id="aclass_window_html"><div class="ttname"><a href="class_window.html">Window</a></div><div class="ttdoc">窗体.</div><div class="ttdef"><b>Definition:</b> Window.h:24</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

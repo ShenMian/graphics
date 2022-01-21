@@ -158,7 +158,7 @@ var NAVTREEINDEX0 =
 "class_controller.html#afc531dfa6848b37e89e6f22a0240953f":[3,0,7,2],
 "class_device_builder.html":[3,0,11],
 "class_device_builder.html#a0cf792e91fd0e4f3d19deec0a00f5918":[3,0,11,0],
-"class_device_builder.html#a569d7d76b403d7445e6b456d875aa500":[3,0,11,1],
+"class_device_builder.html#aa424a7be8b9be10101bd9f1d9791176b":[3,0,11,1],
 "class_g_l_buffer.html":[3,0,13],
 "class_g_l_buffer.html#a6fa830095512fdc6ebaf09872903b074":[3,0,13,4],
 "class_g_l_buffer.html#a7a8d09306b234fdd4fbffe4c1cb2c04a":[3,0,13,6],

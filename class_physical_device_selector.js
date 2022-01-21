@@ -1,6 +1,6 @@
 var class_physical_device_selector =
 [
-    [ "PhysicalDeviceSelector", "class_physical_device_selector.html#a0db0b9de5379f83061fc55cf81073ab7", null ],
+    [ "PhysicalDeviceSelector", "class_physical_device_selector.html#abb34ddfc4c624c4dcd5cf384ed9df182", null ],
     [ "requireComputeQueue", "class_physical_device_selector.html#a4bdca33d70e5a31f69bb751e47f91813", null ],
     [ "requireGraphicsQueue", "class_physical_device_selector.html#ab8e230657f7a6ac9937f1548611fdd6f", null ],
     [ "requirePresentQueue", "class_physical_device_selector.html#a39c237e73e8d38acbf5eecf3fe72da52", null ],
