@@ -1,9 +1,13 @@
 var class_physical_device_selector =
 [
     [ "PhysicalDeviceSelector", "class_physical_device_selector.html#a0db0b9de5379f83061fc55cf81073ab7", null ],
-    [ "requireComputeQueue", "class_physical_device_selector.html#a86941be4ba3793137f31ae0e8082fe52", null ],
-    [ "requireGraphicsQueue", "class_physical_device_selector.html#a6e57a8d0815558d10bd14a74accb4175", null ],
-    [ "requirePresentQueue", "class_physical_device_selector.html#ad7837179eb6eab717c5835d78efdeb32", null ],
-    [ "requireTransferQueue", "class_physical_device_selector.html#acd7f57cc2fff68cf4db548406a488ee6", null ],
-    [ "select", "class_physical_device_selector.html#a74e5047e7c8d027f80eeb312b103a88b", null ]
+    [ "requireComputeQueue", "class_physical_device_selector.html#a4bdca33d70e5a31f69bb751e47f91813", null ],
+    [ "requireGraphicsQueue", "class_physical_device_selector.html#ab8e230657f7a6ac9937f1548611fdd6f", null ],
+    [ "requirePresentQueue", "class_physical_device_selector.html#a39c237e73e8d38acbf5eecf3fe72da52", null ],
+    [ "requireTransferQueue", "class_physical_device_selector.html#a01bd6ae8b9304283d05cf0e540aef15b", null ],
+    [ "select", "class_physical_device_selector.html#a74e5047e7c8d027f80eeb312b103a88b", null ],
+    [ "requireComputeQueue", "class_physical_device_selector.html#a7c08c9d1cb572ec5de99c2305c252dd5", null ],
+    [ "requireGraphicsQueue", "class_physical_device_selector.html#ab261c047973c94b4f76040c36ca2e657", null ],
+    [ "requirePresentQueue", "class_physical_device_selector.html#a70ffddc951bb4cee14cdba8a3c18e95b", null ],
+    [ "requireTransferQueue", "class_physical_device_selector.html#a5f7510f2e69fc65e0c1dccb2e05e4343", null ]
 ];
