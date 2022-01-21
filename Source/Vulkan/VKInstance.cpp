@@ -13,6 +13,11 @@ VKInstance::~VKInstance()
 	vkDestroyInstance(handle, nullptr);
 }
 
+VKInstance::operator VkInstance()
+{
+	return handle;
+}
+
 VKInstance::operator VkInstance() const
 {
 	return handle;

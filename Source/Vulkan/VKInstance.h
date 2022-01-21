@@ -8,9 +8,11 @@
 class VKInstance final
 {
 public:
+	VKInstance() = default;
 	VKInstance(VkInstance instance);
 	~VKInstance();
 
+	operator VkInstance();
 	operator VkInstance() const;
 
 private:
