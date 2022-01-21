@@ -4,6 +4,7 @@
 #pragma once
 
 #include "../VKPhysicalDevice.h"
+#include "../VKDevice.h"
 #include <vulkan/vulkan.h>
 #include <vector>
 
@@ -12,7 +13,7 @@ class DeviceBuilder final
 public:
 	DeviceBuilder(VKPhysicalDevice& physcialDevice);
 
-	VkDevice build();
+	VKDevice build();
 
 private:
 	std::vector<VkDeviceQueueCreateInfo> queueInfos;

@@ -10,7 +10,7 @@ DeviceBuilder::DeviceBuilder(VKPhysicalDevice& physicalDevice)
 {
 }
 
-VkDevice DeviceBuilder::build()
+VKDevice DeviceBuilder::build()
 {
 	VkPhysicalDeviceFeatures deviceFeatures = {};
 
