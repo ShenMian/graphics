@@ -20,7 +20,9 @@ public:
 		Present
 	};
 
-	VKDevice(VkDevice device, VKPhysicalDevice physicalDevice);
+	VKDevice() = default;
+	VKDevice(VkDevice device);
+	VKDevice(VkDevice device, VKPhysicalDevice& physicalDevice);
 	~VKDevice();
 
 	/**
@@ -37,10 +39,10 @@ public:
 	 */
 	uint32_t getQueueIndex(QueueType type) const;
 
+	operator VkDevice();
 	operator VkDevice() const;
 
 private:
 	VkDevice         handle;
 	VKPhysicalDevice physicalDevice;
-	VkSurfaceKHR     surface;
 };

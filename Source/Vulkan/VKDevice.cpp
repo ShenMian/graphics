@@ -3,7 +3,12 @@
 
 #include "VKDevice.h"
 
-VKDevice::VKDevice(VkDevice device, VKPhysicalDevice physicalDevice)
+VKDevice::VKDevice(VkDevice device)
+	: handle(device)
+{
+}
+
+VKDevice::VKDevice(VkDevice device, VKPhysicalDevice& physicalDevice)
 	: handle(device), physicalDevice(physicalDevice)
 {
 }
@@ -18,6 +23,11 @@ VkQueue VKDevice::getQueue(QueueType type) const
 	VkQueue queue;
 	vkGetDeviceQueue(handle, getQueueIndex(type), 0, &queue);
 	return VkQueue();
+}
+
+VKDevice::operator VkDevice()
+{
+	return handle;
 }
 
 VKDevice::operator VkDevice() const
