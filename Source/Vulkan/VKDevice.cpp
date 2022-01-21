@@ -2,6 +2,7 @@
 // License(Apache-2.0)
 
 #include "VKDevice.h"
+#include <stdexcept>
 
 VKDevice::VKDevice(VkDevice device)
 	: handle(device)
@@ -15,13 +16,17 @@ VKDevice::VKDevice(VkDevice device, VKPhysicalDevice& physicalDevice)
 
 VKDevice::~VKDevice()
 {
-	vkDestroyDevice(handle, nullptr);
+	// vkDestroyDevice(handle, nullptr);
 }
 
 VkQueue VKDevice::getQueue(QueueType type) const
 {
+	const auto index = getQueueIndex(type);
+	if(index == -1)
+		throw std::runtime_error("requested queue do not exist");
+
 	VkQueue queue;
-	vkGetDeviceQueue(handle, getQueueIndex(type), 0, &queue);
+	vkGetDeviceQueue(handle, index, 0, &queue);
 	return VkQueue();
 }
 
