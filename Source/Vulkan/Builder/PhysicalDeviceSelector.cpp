@@ -4,7 +4,7 @@
 #include "PhysicalDeviceSelector.h"
 #include <stdexcept>
 
-PhysicalDeviceSelector::PhysicalDeviceSelector(const VKInstance& instance, VkSurfaceKHR surface)
+PhysicalDeviceSelector::PhysicalDeviceSelector(VKInstance& instance, VkSurfaceKHR surface)
 {
 	uint32_t deviceCount;
 	vkEnumeratePhysicalDevices(instance, &deviceCount, nullptr);

@@ -12,7 +12,7 @@ class VKPhysicalDevice;
 class PhysicalDeviceSelector final
 {
 public:
-	PhysicalDeviceSelector(const VKInstance& instance, VkSurfaceKHR surface);
+	PhysicalDeviceSelector(VKInstance& instance, VkSurfaceKHR surface);
 
 	VKPhysicalDevice select();
 
