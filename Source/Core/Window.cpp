@@ -145,7 +145,7 @@ void Window::setupCallbacks()
 	glfwSetErrorCallback([](int error, const char* desc)
 	{
 		if(error == 65537)
-			throw std::runtime_error("GLFW error: ensure that all windows created on the stack are destroyed");
+			throw std::runtime_error("GLFW error: some windows has not been destroyed");
 		throw std::runtime_error("GLFW error: "s + desc);
 	});
 
