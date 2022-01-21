@@ -22,6 +22,21 @@ InstanceBuilder::InstanceBuilder()
 
 VKInstance InstanceBuilder::build()
 {
+	enableExtension("VK_KHR_surface");
+#if defined(_WIN32)
+	enableExtension("VK_KHR_win32_surface");
+#elif defined(__ANDROID__)
+	enableExtension("VK_KHR_android_surface");
+#elif defined(_DIRECT2DISPLAY)
+	enableExtension("VK_KHR_display");
+#elif defined(__linux__)
+	enableExtension("VK_KHR_xcb_surface");
+	enableExtension("VK_KHR_xlib_surface");
+	enableExtension("VK_KHR_wayland_surface");
+#elif defined(__APPLE__)
+	enableExtension("VK_EXT_metal_surface");
+#endif
+
 	appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
 
 	instanceInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
