@@ -30,6 +30,10 @@ public:
 	 */
 	std::string_view getVendorName() const;
 
+	VkSurfaceCapabilitiesKHR getSurfaceCapabilities() const;
+	std::vector<VkSurfaceFormatKHR> getSurfaceFormats() const;
+	std::vector<VkPresentModeKHR> getSurfacePresentModes() const;
+
 	bool isExtensionAvailable(std::string_view name) const;
 
 	uint32_t graphics = -1;
@@ -47,6 +51,5 @@ private:
 
 	VkSurfaceKHR surface;
 
-	VkSurfaceCapabilitiesKHR capabilities;
 	std::vector<VkExtensionProperties> availableExtensions;
 };

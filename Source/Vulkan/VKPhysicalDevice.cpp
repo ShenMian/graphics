@@ -31,29 +31,9 @@ VKPhysicalDevice::VKPhysicalDevice(VkPhysicalDevice device, VkSurfaceKHR surface
 	}
 
 	uint32_t extensionCount;
-	vkEnumerateDeviceExtensionProperties(device, nullptr, &extensionCount, nullptr);
+	vkEnumerateDeviceExtensionProperties(handle, nullptr, &extensionCount, nullptr);
 	availableExtensions.resize(extensionCount);
-	vkEnumerateDeviceExtensionProperties(device, nullptr, &extensionCount, availableExtensions.data());
-
-	vkGetPhysicalDeviceSurfaceCapabilitiesKHR(device, surface, &capabilities);
-
-	std::vector<VkSurfaceFormatKHR> formats;
-	uint32_t formatCount;
-	vkGetPhysicalDeviceSurfaceFormatsKHR(device, surface, &formatCount, nullptr);
-	if(formatCount != 0)
-	{
-		formats.resize(formatCount);
-		vkGetPhysicalDeviceSurfaceFormatsKHR(device, surface, &formatCount, formats.data());
-	}
-
-	std::vector<VkPresentModeKHR> presentModes;
-	uint32_t presentModeCount;
-	vkGetPhysicalDeviceSurfacePresentModesKHR(device, surface, &presentModeCount, nullptr);
-	if(presentModeCount != 0)
-	{
-		presentModes.resize(presentModeCount);
-		vkGetPhysicalDeviceSurfacePresentModesKHR(device, surface, &presentModeCount, presentModes.data());
-	}
+	vkEnumerateDeviceExtensionProperties(handle, nullptr, &extensionCount, availableExtensions.data());
 }
 
 const VkPhysicalDeviceProperties& VKPhysicalDevice::getProperties() const
@@ -98,6 +78,33 @@ std::string_view VKPhysicalDevice::getVendorName() const
 	case 0x15ad: return "VMware Inc.";
 	}
 	return "Unknown";
+}
+
+VkSurfaceCapabilitiesKHR VKPhysicalDevice::getSurfaceCapabilities() const
+{
+	VkSurfaceCapabilitiesKHR capabilities;
+	vkGetPhysicalDeviceSurfaceCapabilitiesKHR(handle, surface, &capabilities);
+	return capabilities;
+}
+
+std::vector<VkSurfaceFormatKHR> VKPhysicalDevice::getSurfaceFormats() const
+{
+	std::vector<VkSurfaceFormatKHR> formats;
+	uint32_t formatCount;
+	vkGetPhysicalDeviceSurfaceFormatsKHR(handle, surface, &formatCount, nullptr);
+	formats.resize(formatCount);
+	vkGetPhysicalDeviceSurfaceFormatsKHR(handle, surface, &formatCount, formats.data());
+	return formats;
+}
+
+std::vector<VkPresentModeKHR> VKPhysicalDevice::getSurfacePresentModes() const
+{
+	std::vector<VkPresentModeKHR> presentModes;
+	uint32_t presentModeCount;
+	vkGetPhysicalDeviceSurfacePresentModesKHR(handle, surface, &presentModeCount, nullptr);
+	presentModes.resize(presentModeCount);
+	vkGetPhysicalDeviceSurfacePresentModesKHR(handle, surface, &presentModeCount, presentModes.data());
+	return presentModes;
 }
 
 VKPhysicalDevice::operator VkPhysicalDevice()
