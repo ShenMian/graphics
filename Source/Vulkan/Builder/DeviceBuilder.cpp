@@ -5,7 +5,7 @@
 #include <set>
 #include <stdexcept>
 
-DeviceBuilder::DeviceBuilder(const VKPhysicalDevice& physicalDevice)
+DeviceBuilder::DeviceBuilder(VKPhysicalDevice& physicalDevice)
 	: physicalDevice(physicalDevice)
 {
 }

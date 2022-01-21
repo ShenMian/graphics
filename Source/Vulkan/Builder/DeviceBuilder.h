@@ -10,7 +10,7 @@
 class DeviceBuilder final
 {
 public:
-	DeviceBuilder(const VKPhysicalDevice& physcialDevice);
+	DeviceBuilder(VKPhysicalDevice& physcialDevice);
 
 	VkDevice build();
 
@@ -18,5 +18,5 @@ private:
 	std::vector<VkDeviceQueueCreateInfo> queueInfos;
 	VkDeviceCreateInfo deviceInfo = {};
 
-	const VKPhysicalDevice& physicalDevice;
+	VKPhysicalDevice& physicalDevice;
 };
