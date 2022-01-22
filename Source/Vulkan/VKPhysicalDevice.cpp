@@ -2,6 +2,7 @@
 // License(Apache-2.0)
 
 #include "VKPhysicalDevice.h"
+#include <stdexcept>
 #include <vector>
 
 VKPhysicalDevice::VKPhysicalDevice(VkPhysicalDevice device, VkSurfaceKHR surface)
@@ -83,7 +84,8 @@ std::string_view VKPhysicalDevice::getVendorName() const
 VkSurfaceCapabilitiesKHR VKPhysicalDevice::getSurfaceCapabilities() const
 {
 	VkSurfaceCapabilitiesKHR capabilities;
-	vkGetPhysicalDeviceSurfaceCapabilitiesKHR(handle, surface, &capabilities);
+	if(vkGetPhysicalDeviceSurfaceCapabilitiesKHR(handle, surface, &capabilities) != VK_SUCCESS)
+		throw std::runtime_error("failed to get surface capabilities");
 	return capabilities;
 }
 
@@ -91,7 +93,8 @@ std::vector<VkSurfaceFormatKHR> VKPhysicalDevice::getSurfaceFormats() const
 {
 	std::vector<VkSurfaceFormatKHR> formats;
 	uint32_t formatCount;
-	vkGetPhysicalDeviceSurfaceFormatsKHR(handle, surface, &formatCount, nullptr);
+	if(vkGetPhysicalDeviceSurfaceFormatsKHR(handle, surface, &formatCount, nullptr) != VK_SUCCESS)
+		throw std::runtime_error("failed to get surface formats");
 	formats.resize(formatCount);
 	vkGetPhysicalDeviceSurfaceFormatsKHR(handle, surface, &formatCount, formats.data());
 	return formats;
@@ -101,7 +104,8 @@ std::vector<VkPresentModeKHR> VKPhysicalDevice::getSurfacePresentModes() const
 {
 	std::vector<VkPresentModeKHR> presentModes;
 	uint32_t presentModeCount;
-	vkGetPhysicalDeviceSurfacePresentModesKHR(handle, surface, &presentModeCount, nullptr);
+	if(vkGetPhysicalDeviceSurfacePresentModesKHR(handle, surface, &presentModeCount, nullptr) != VK_SUCCESS)
+		throw std::runtime_error("failed to get surface present modes");
 	presentModes.resize(presentModeCount);
 	vkGetPhysicalDeviceSurfacePresentModesKHR(handle, surface, &presentModeCount, presentModes.data());
 	return presentModes;
