@@ -5,7 +5,7 @@
 [![Windows](https://github.com/ShenMian/Graphics/actions/workflows/windows.yml/badge.svg?branch=main)](https://github.com/ShenMian/Graphics/actions/workflows/windows.yml)
 [![Ubuntu](https://github.com/ShenMian/Graphics/actions/workflows/ubuntu.yml/badge.svg?branch=main)](https://github.com/ShenMian/Graphics/actions/workflows/ubuntu.yml)
 
-<sub>(The project is still in the early stages of development)</sub>
+<sub>(This project is still in the early stages of development)</sub>
 
 A simple abstraction layer for the modern graphics APIs.
 
