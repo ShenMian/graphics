@@ -8,6 +8,8 @@
 DeviceBuilder::DeviceBuilder(VKPhysicalDevice& physicalDevice)
 	: physicalDevice(physicalDevice)
 {
+	if(!physicalDevice.isExtensionAvailable(VK_KHR_SWAPCHAIN_EXTENSION_NAME))
+		throw std::runtime_error("physical device do not support swapchain extension");
 }
 
 VKDevice DeviceBuilder::build()
@@ -25,7 +27,7 @@ VKDevice DeviceBuilder::build()
 		uniqueQueueIndices.insert(physicalDevice.present);
 
 	float queuePriority = 1.0f;
-	for(auto index : uniqueQueueIndices)
+	for(const auto index : uniqueQueueIndices)
 	{
 		VkDeviceQueueCreateInfo info = {};
 		info.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
@@ -35,9 +37,18 @@ VKDevice DeviceBuilder::build()
 		queueInfos.emplace_back(info);
 	}
 
+	std::vector<const char*> layers;
+
+	std::vector<const char*> extensions;
+	extensions.push_back(VK_KHR_SWAPCHAIN_EXTENSION_NAME);
+
 	deviceInfo.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
 	deviceInfo.queueCreateInfoCount = static_cast<uint32_t>(queueInfos.size());
 	deviceInfo.pQueueCreateInfos = queueInfos.data();
+	deviceInfo.enabledLayerCount = static_cast<uint32_t>(layers.size());
+	deviceInfo.ppEnabledLayerNames = layers.data();
+	deviceInfo.enabledExtensionCount = static_cast<uint32_t>(extensions.size());
+	deviceInfo.ppEnabledExtensionNames = extensions.data();
 	deviceInfo.pEnabledFeatures = &deviceFeatures;
 
 	VkDevice device;
