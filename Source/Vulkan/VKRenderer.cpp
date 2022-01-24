@@ -17,8 +17,6 @@ VKInstance       instance;
 VkSurfaceKHR     surface;
 VKPhysicalDevice physicalDevice;
 VKDevice         device;
-VkQueue          queue;
-uint32_t         queueIndex;
 VKSwapchain      swapchain;
 VkCommandPool    commandPool;
 
@@ -63,11 +61,6 @@ const VKSwapchain& VKRenderer::getSwapchain() const
 	return swapchain;
 }
 
-const VkQueue& VKRenderer::getQueue() const
-{
-	return queue;
-}
-
 const VkCommandPool& VKRenderer::getCommandPool() const
 {
 	return commandPool;
@@ -80,10 +73,6 @@ void VKRenderer::init(const Window& win)
 	selectPhysicalDevice();
 	createDevice();
 	createSwapchain();
-
-	queue = device.getQueue(VKDevice::QueueType::Graphics);
-	queueIndex = device.getQueueIndex(VKDevice::QueueType::Graphics);
-
 	createCommandPool();
 	createSemaphores();
 
@@ -202,7 +191,7 @@ void VKRenderer::createCommandPool()
 {
 	VkCommandPoolCreateInfo commandPoolInfo = {};
 	commandPoolInfo.sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO;
-	commandPoolInfo.queueFamilyIndex = queueIndex;
+	commandPoolInfo.queueFamilyIndex = device.getQueueIndex(VKDevice::QueueType::Graphics);;
 	commandPoolInfo.flags = VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT;
 	if(vkCreateCommandPool(device, &commandPoolInfo, nullptr, &commandPool) != VK_SUCCESS)
 		throw std::runtime_error("failed to create command pool");

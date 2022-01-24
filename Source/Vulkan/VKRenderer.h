@@ -38,11 +38,6 @@ public:
 	const VKSwapchain& getSwapchain() const;
 
 	/**
-	 * @brief 获取 VkQueue.
-	 */
-	const VkQueue& getQueue() const;
-
-	/**
 	 * @brief 获取命令缓冲区池.
 	 */
 	const VkCommandPool& getCommandPool() const;
