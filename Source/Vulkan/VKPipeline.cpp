@@ -175,18 +175,21 @@ void VKPipeline::createRenderPass()
 
 
 	auto& swapchain = renderer->getSwapchain();
-	for(const auto& view : swapchain.getImageViews())
+	auto& imageViews = swapchain.getImageViews();
+
+	framebuffers.resize(imageViews.size());
+	for(size_t i = 0; i < imageViews.size(); i++)
 	{
 		VkFramebufferCreateInfo framebufferInfo = {};
 		framebufferInfo.sType = VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO;
 		framebufferInfo.renderPass = renderPass;
 		framebufferInfo.attachmentCount = 1;
-		framebufferInfo.pAttachments = &view;
-		framebufferInfo.width = 1920 / 2; // TODO
-		framebufferInfo.height = 1080 / 2; // TODO
+		framebufferInfo.pAttachments = &imageViews[i];
+		framebufferInfo.width = swapchain.getExtent().width;
+		framebufferInfo.height = swapchain.getExtent().height;
 		framebufferInfo.layers = 1;
 
-		if(vkCreateFramebuffer(renderer->getDevice(), &framebufferInfo, nullptr, &framebuffer) != VK_SUCCESS)
+		if(vkCreateFramebuffer(renderer->getDevice(), &framebufferInfo, nullptr, &framebuffers[i]) != VK_SUCCESS)
 			throw std::runtime_error("failed to create framebuffer");
 	}
 }
@@ -204,7 +207,6 @@ void VKPipeline::createLayout(const Descriptor& desc)
 		layoutBinding.descriptorType = VKType(attr.type);
 		layoutBinding.descriptorCount = attr.arraySize;
 		layoutBinding.stageFlags = VKStageFlags(attr.stageFlags);
-
 		bindings.emplace_back(layoutBinding);
 	}
 

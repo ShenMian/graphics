@@ -5,6 +5,7 @@
 
 #include "VKBuffer.h"
 #include "../Pipeline.h"
+#include <vector>
 #include <vulkan/vulkan.h>
 
 class VKPipeline : public Pipeline
@@ -15,8 +16,8 @@ public:
 	VkRenderPass getRendererPass();
 	VkPipeline getNativeHandle();
 
-	VkFramebuffer framebuffer;
-	VkRenderPass  renderPass;
+	VkRenderPass renderPass;
+	std::vector<VkFramebuffer> framebuffers;
 
 private:
 	void createRenderPass();

@@ -4,6 +4,7 @@
 #pragma once
 
 #include "CommandBuffer.h"
+#include <vector>
 #include <vulkan/vulkan.h>
 
 class VKCommandBuffer : public CommandBuffer
@@ -36,6 +37,6 @@ public:
 	operator VkCommandBuffer() const;
 
 private:
-	VkCommandBuffer handle;
+	std::vector<VkCommandBuffer> handles;
 	VkPipeline pipeline;
 };
