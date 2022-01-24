@@ -1,7 +1,6 @@
 var class_v_k_program =
 [
     [ "VKProgram", "class_v_k_program.html#aa1d8b50b5b220d771bb4f9e655aa06a8", null ],
-    [ "VKProgram", "class_v_k_program.html#a28b9ef53678aeaef8ef7c11a8fd07b7a", null ],
     [ "~VKProgram", "class_v_k_program.html#a1961c934b8b2867afa7b02ef589695f9", null ],
     [ "getInfos", "class_v_k_program.html#ada35ac95033564f9ff2e851f6fc7330d", null ],
     [ "setUniform", "class_v_k_program.html#a350d6d20536405c83f30e2d0b98acea9", null ],

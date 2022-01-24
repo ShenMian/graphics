@@ -102,36 +102,35 @@ $(document).ready(function(){initNavTree('_g_l_program_8h_source.html',''); init
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;{</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <a class="code" href="class_g_l_program.html">GLProgram</a>(<span class="keyword">const</span> <a class="code" href="struct_program_1_1_descriptor.html">Descriptor</a>&amp; desc);</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="class_g_l_program.html">GLProgram</a>(<span class="keyword">const</span> std::string&amp; name);</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="class_g_l_program.html">GLProgram</a>();</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordtype">void</span> use() <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordtype">void</span> setUniform(<span class="keyword">const</span> std::string&amp; name, <span class="keywordtype">int</span> value) <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordtype">void</span> setUniform(<span class="keyword">const</span> std::string&amp; name, <span class="keywordtype">float</span> value) <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordtype">void</span> setUniform(<span class="keyword">const</span> std::string&amp; name, <span class="keyword">const</span> Vector2&amp; value) <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordtype">void</span> setUniform(<span class="keyword">const</span> std::string&amp; name, <span class="keyword">const</span> Vector3&amp; value) <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordtype">void</span> setUniform(<span class="keyword">const</span> std::string&amp; name, <span class="keyword">const</span> Vector4&amp; value) <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordtype">void</span> setUniform(<span class="keyword">const</span> std::string&amp; name, <span class="keyword">const</span> Matrix4&amp; value) <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">operator</span> GLuint() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordtype">int</span> getUniformBufferLocation(<span class="keyword">const</span> std::string&amp; name);</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">int</span> getUniformLocation(<span class="keyword">const</span> std::string&amp; name);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">void</span> attach(<span class="keyword">const</span> std::shared_ptr&lt;Shader&gt; shader);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordtype">void</span> link();</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    GLuint                               handle;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    std::unordered_map&lt;std::string, int&gt; uniformLocations;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;};</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="class_g_l_program.html">GLProgram</a>();</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keywordtype">void</span> use() <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keywordtype">void</span> setUniform(<span class="keyword">const</span> std::string&amp; name, <span class="keywordtype">int</span> value) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordtype">void</span> setUniform(<span class="keyword">const</span> std::string&amp; name, <span class="keywordtype">float</span> value) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordtype">void</span> setUniform(<span class="keyword">const</span> std::string&amp; name, <span class="keyword">const</span> Vector2&amp; value) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordtype">void</span> setUniform(<span class="keyword">const</span> std::string&amp; name, <span class="keyword">const</span> Vector3&amp; value) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordtype">void</span> setUniform(<span class="keyword">const</span> std::string&amp; name, <span class="keyword">const</span> Vector4&amp; value) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordtype">void</span> setUniform(<span class="keyword">const</span> std::string&amp; name, <span class="keyword">const</span> Matrix4&amp; value) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">operator</span> GLuint() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordtype">int</span> getUniformBufferLocation(<span class="keyword">const</span> std::string&amp; name);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordtype">int</span> getUniformLocation(<span class="keyword">const</span> std::string&amp; name);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">void</span> attach(<span class="keyword">const</span> std::shared_ptr&lt;Shader&gt; shader);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">void</span> link();</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    GLuint                               handle;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    std::unordered_map&lt;std::string, int&gt; uniformLocations;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;};</div>
 <div class="ttc" id="aclass_g_l_program_html"><div class="ttname"><a href="class_g_l_program.html">GLProgram</a></div><div class="ttdef"><b>Definition:</b> GLProgram.h:13</div></div>
 <div class="ttc" id="aclass_program_html"><div class="ttname"><a href="class_program.html">Program</a></div><div class="ttdoc">着色器程序.</div><div class="ttdef"><b>Definition:</b> Program.h:21</div></div>
 <div class="ttc" id="aclass_shader_html"><div class="ttname"><a href="class_shader.html">Shader</a></div><div class="ttdoc">着色器阶段.</div><div class="ttdef"><b>Definition:</b> Shader.h:19</div></div>
-<div class="ttc" id="astruct_program_1_1_descriptor_html"><div class="ttname"><a href="struct_program_1_1_descriptor.html">Program::Descriptor</a></div><div class="ttdef"><b>Definition:</b> Program.h:62</div></div>
+<div class="ttc" id="astruct_program_1_1_descriptor_html"><div class="ttname"><a href="struct_program_1_1_descriptor.html">Program::Descriptor</a></div><div class="ttdef"><b>Definition:</b> Program.h:55</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

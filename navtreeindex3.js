@@ -1,8 +1,5 @@
 var NAVTREEINDEX3 =
 {
-"struct_camera_1_1_orthographic.html#a8f1c745be25b31d1216773a8b448e229":[3,0,3,0,0],
-"struct_camera_1_1_orthographic.html#adc1c860e18cd957845d24af77693df3e":[3,0,3,0,3],
-"struct_camera_1_1_orthographic.html#afa0afc85284b63c002b0bd6064f89e95":[3,0,3,0,2],
 "struct_camera_1_1_perspective.html":[3,0,3,1],
 "struct_camera_1_1_perspective.html#a5f86118fb478d87dea3328f8895ab349":[3,0,3,1,2],
 "struct_camera_1_1_perspective.html#a7661a199c3a0a4c086dee11f5ea81a16":[3,0,3,1,1],

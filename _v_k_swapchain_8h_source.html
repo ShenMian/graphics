@@ -96,24 +96,28 @@ $(document).ready(function(){initNavTree('_v_k_swapchain_8h_source.html',''); in
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;vulkan/vulkan.h&gt;</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
-<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="class_v_k_swapchain.html">   10</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_v_k_swapchain.html">VKSwapchain</a></div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="class_v_k_swapchain.html">   10</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_v_k_swapchain.html">VKSwapchain</a> final</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;{</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <a class="code" href="class_v_k_swapchain.html">VKSwapchain</a>() = <span class="keywordflow">default</span>;</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <a class="code" href="class_v_k_swapchain.html">VKSwapchain</a>(VkSwapchainKHR swapchain, <a class="code" href="class_v_k_device.html">VKDevice</a>&amp; device, VkFormat imageFormat, VkExtent2D extent);</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keyword">operator</span> VkSwapchainKHR();</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keyword">operator</span> VkSwapchainKHR() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    VkSwapchainKHR handle;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="class_v_k_device.html">VKDevice</a>       device;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    VkFormat       imageFormat;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    VkExtent2D     extent;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    std::vector&lt;VkImage&gt;     images;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    std::vector&lt;VkImageView&gt; imageViews;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;};</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    ~<a class="code" href="class_v_k_swapchain.html">VKSwapchain</a>();</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keyword">const</span> std::vector&lt;VkImage&gt;&amp; getImages() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">const</span> std::vector&lt;VkImageView&gt;&amp; getImageViews() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">operator</span> VkSwapchainKHR();</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">operator</span> VkSwapchainKHR() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    VkSwapchainKHR handle;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="class_v_k_device.html">VKDevice</a>       device;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    VkFormat       imageFormat;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    VkExtent2D     extent;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    std::vector&lt;VkImage&gt;     images;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    std::vector&lt;VkImageView&gt; imageViews;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;};</div>
 <div class="ttc" id="aclass_v_k_device_html"><div class="ttname"><a href="class_v_k_device.html">VKDevice</a></div><div class="ttdef"><b>Definition:</b> VKDevice.h:10</div></div>
 <div class="ttc" id="aclass_v_k_swapchain_html"><div class="ttname"><a href="class_v_k_swapchain.html">VKSwapchain</a></div><div class="ttdef"><b>Definition:</b> VKSwapchain.h:11</div></div>
 </div><!-- fragment --></div><!-- contents -->

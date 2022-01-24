@@ -150,12 +150,6 @@ const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a cl
 <tr class="memitem:ab70cd02a421203fa41756adb7a8a3b23"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_shader.html">Shader</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_shader.html#ab70cd02a421203fa41756adb7a8a3b23">create</a> (const <a class="el" href="struct_shader_1_1_descriptor.html">Descriptor</a> &amp;desc)</td></tr>
 <tr class="memdesc:ab70cd02a421203fa41756adb7a8a3b23"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建着色器阶段.  <a href="class_shader.html#ab70cd02a421203fa41756adb7a8a3b23">更多...</a><br /></td></tr>
 <tr class="separator:ab70cd02a421203fa41756adb7a8a3b23"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7bf2081b87087a0a1e3869c5961043d4"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_shader.html">Shader</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_shader.html#a7bf2081b87087a0a1e3869c5961043d4">create</a> (const std::filesystem::path &amp;path, <a class="el" href="class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8f">Stage</a> stage)</td></tr>
-<tr class="memdesc:a7bf2081b87087a0a1e3869c5961043d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建着色器阶段.  <a href="class_shader.html#a7bf2081b87087a0a1e3869c5961043d4">更多...</a><br /></td></tr>
-<tr class="separator:a7bf2081b87087a0a1e3869c5961043d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a77f2fefe0554b960815aba4857cb6ea4"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_shader.html">Shader</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_shader.html#a77f2fefe0554b960815aba4857cb6ea4">create</a> (const std::string &amp;name, <a class="el" href="class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8f">Stage</a> stage)</td></tr>
-<tr class="memdesc:a77f2fefe0554b960815aba4857cb6ea4"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建着色器阶段.  <a href="class_shader.html#a77f2fefe0554b960815aba4857cb6ea4">更多...</a><br /></td></tr>
-<tr class="separator:a77f2fefe0554b960815aba4857cb6ea4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected 成员函数</h2></td></tr>
@@ -256,7 +250,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b></td><
 </div>
 <h2 class="groupheader">成员函数说明</h2>
 <a id="ab70cd02a421203fa41756adb7a8a3b23"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab70cd02a421203fa41756adb7a8a3b23">&#9670;&nbsp;</a></span>create() <span class="overload">[1/3]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ab70cd02a421203fa41756adb7a8a3b23">&#9670;&nbsp;</a></span>create()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -283,96 +277,6 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b></td><
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
     <tr><td class="paramname">desc</td><td>描述符. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a7bf2081b87087a0a1e3869c5961043d4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7bf2081b87087a0a1e3869c5961043d4">&#9670;&nbsp;</a></span>create() <span class="overload">[2/3]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::shared_ptr&lt; <a class="el" href="class_shader.html">Shader</a> &gt; Shader::create </td>
-          <td>(</td>
-          <td class="paramtype">const std::filesystem::path &amp;&#160;</td>
-          <td class="paramname"><em>path</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8f">Stage</a>&#160;</td>
-          <td class="paramname"><em>stage</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>创建着色器阶段. </p>
-<dl class="params"><dt>参数</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">path</td><td>着色器路径. </td></tr>
-    <tr><td class="paramname">stage</td><td>着色器阶段. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a77f2fefe0554b960815aba4857cb6ea4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a77f2fefe0554b960815aba4857cb6ea4">&#9670;&nbsp;</a></span>create() <span class="overload">[3/3]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::shared_ptr&lt; <a class="el" href="class_shader.html">Shader</a> &gt; Shader::create </td>
-          <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8f">Stage</a>&#160;</td>
-          <td class="paramname"><em>stage</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>创建着色器阶段. </p>
-<dl class="params"><dt>参数</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">name</td><td>着色器名称. </td></tr>
-    <tr><td class="paramname">stage</td><td>着色器阶段. </td></tr>
   </table>
   </dd>
 </dl>

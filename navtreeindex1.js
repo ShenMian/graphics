@@ -1,8 +1,5 @@
 var NAVTREEINDEX1 =
 {
-"class_gamepad.html#ae37f83a954aabbf634e9d6f37697ae58":[2,0,0,13],
-"class_gamepad.html#af06515dbccf048df41bfcddc17460ee8":[2,0,0,12],
-"class_gamepad.html#aff13c015ca3a1c720ef8b2a87ff941f7":[2,0,0,7],
 "class_image.html":[2,0,1],
 "class_image.html#a02a4ac5cb5f42a6afde69af212e557b4":[2,0,1,6],
 "class_image.html#a11449ef48be752526f0537173b1d94e7":[2,0,1,9],
@@ -249,5 +246,8 @@ var NAVTREEINDEX1 =
 "class_v_k_physical_device.html#ab6843cc0919bc295430428190e0f8ca9":[3,0,63,10],
 "class_v_k_physical_device.html#abb1d0294ca2d6c462085a7b46b4bb766":[3,0,63,7],
 "class_v_k_physical_device.html#ac7c7db24a2c8dc86a46aa835845cc172":[3,0,63,1],
-"class_v_k_physical_device.html#ad37c05f07542ee73a21b9a1bad8828d6":[3,0,63,2]
+"class_v_k_physical_device.html#ad37c05f07542ee73a21b9a1bad8828d6":[3,0,63,2],
+"class_v_k_physical_device.html#ae376c82c805615362398f7a249a41eae":[3,0,63,6],
+"class_v_k_physical_device.html#aebaab2eab6791de6a146001c7e5d03bb":[3,0,63,14],
+"class_v_k_pipeline.html":[3,0,64]
 };
