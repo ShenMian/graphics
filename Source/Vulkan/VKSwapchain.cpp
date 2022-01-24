@@ -56,6 +56,11 @@ const std::vector<VkImageView>& VKSwapchain::getImageViews() const
 	return imageViews;
 }
 
+const VkExtent2D& VKSwapchain::getExtent() const
+{
+	return extent;
+}
+
 VKSwapchain::operator VkSwapchainKHR()
 {
 	return handle;

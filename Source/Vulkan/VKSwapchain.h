@@ -17,6 +17,8 @@ public:
 	const std::vector<VkImage>& getImages() const;
 	const std::vector<VkImageView>& getImageViews() const;
 
+	const VkExtent2D& getExtent() const;
+
 	operator VkSwapchainKHR();
 	operator VkSwapchainKHR() const;
 
