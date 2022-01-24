@@ -86,6 +86,7 @@ $(document).ready(function(){initNavTree('class_v_k_renderer.html',''); initResi
   <div class="summary">
 <a href="#pub-methods">Public 成员函数</a> &#124;
 <a href="#pub-static-methods">静态 Public 成员函数</a> &#124;
+<a href="#pub-static-attribs">静态 Public 属性</a> &#124;
 <a href="class_v_k_renderer-members.html">所有成员列表</a>  </div>
   <div class="headertitle">
 <div class="title">VKRenderer类 参考</div>  </div>
@@ -114,16 +115,20 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>getVendorName<
 <tr class="separator:a1677b665b7f42551a0e28ccbd2d2c75c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7ba13c5bead768bb16789ed02c54865c"><td class="memItemLeft" align="right" valign="top"><a id="a7ba13c5bead768bb16789ed02c54865c"></a>
 const <a class="el" href="class_v_k_instance.html">VKInstance</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_v_k_renderer.html#a7ba13c5bead768bb16789ed02c54865c">getInstance</a> () const</td></tr>
-<tr class="memdesc:a7ba13c5bead768bb16789ed02c54865c"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取 VkInstance. <br /></td></tr>
+<tr class="memdesc:a7ba13c5bead768bb16789ed02c54865c"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取 <a class="el" href="class_v_k_instance.html">VKInstance</a>. <br /></td></tr>
 <tr class="separator:a7ba13c5bead768bb16789ed02c54865c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa738911381876b0b264d3a0cbc6d89a2"><td class="memItemLeft" align="right" valign="top"><a id="aa738911381876b0b264d3a0cbc6d89a2"></a>
 const <a class="el" href="class_v_k_physical_device.html">VKPhysicalDevice</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_v_k_renderer.html#aa738911381876b0b264d3a0cbc6d89a2">getPhysicalDevice</a> () const</td></tr>
-<tr class="memdesc:aa738911381876b0b264d3a0cbc6d89a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取 VkPhysicalDevice. <br /></td></tr>
+<tr class="memdesc:aa738911381876b0b264d3a0cbc6d89a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取 <a class="el" href="class_v_k_physical_device.html">VKPhysicalDevice</a>. <br /></td></tr>
 <tr class="separator:aa738911381876b0b264d3a0cbc6d89a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae94ac18315d26db579d64fa9eba9c980"><td class="memItemLeft" align="right" valign="top"><a id="ae94ac18315d26db579d64fa9eba9c980"></a>
 const <a class="el" href="class_v_k_device.html">VKDevice</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_v_k_renderer.html#ae94ac18315d26db579d64fa9eba9c980">getDevice</a> () const</td></tr>
-<tr class="memdesc:ae94ac18315d26db579d64fa9eba9c980"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取 VkDevice. <br /></td></tr>
+<tr class="memdesc:ae94ac18315d26db579d64fa9eba9c980"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取 <a class="el" href="class_v_k_device.html">VKDevice</a>. <br /></td></tr>
 <tr class="separator:ae94ac18315d26db579d64fa9eba9c980"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0556e23b419b82a6cc229fdeb5fdf51"><td class="memItemLeft" align="right" valign="top"><a id="af0556e23b419b82a6cc229fdeb5fdf51"></a>
+const <a class="el" href="class_v_k_swapchain.html">VKSwapchain</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_v_k_renderer.html#af0556e23b419b82a6cc229fdeb5fdf51">getSwapchain</a> () const</td></tr>
+<tr class="memdesc:af0556e23b419b82a6cc229fdeb5fdf51"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取 <a class="el" href="class_v_k_swapchain.html">VKSwapchain</a>. <br /></td></tr>
+<tr class="separator:af0556e23b419b82a6cc229fdeb5fdf51"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae5c00d0e3e545ab83392828fd06cb4e7"><td class="memItemLeft" align="right" valign="top"><a id="ae5c00d0e3e545ab83392828fd06cb4e7"></a>
 const VkQueue &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_v_k_renderer.html#ae5c00d0e3e545ab83392828fd06cb4e7">getQueue</a> () const</td></tr>
 <tr class="memdesc:ae5c00d0e3e545ab83392828fd06cb4e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取 VkQueue. <br /></td></tr>
@@ -159,6 +164,15 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>init</b> (cons
 <tr class="memitem:a573844900d315590dcb333b2b539416e inherit pub_static_methods_class_renderer"><td class="memItemLeft" align="right" valign="top"><a id="a573844900d315590dcb333b2b539416e"></a>
 static void&#160;</td><td class="memItemRight" valign="bottom"><b>deinit</b> ()</td></tr>
 <tr class="separator:a573844900d315590dcb333b2b539416e inherit pub_static_methods_class_renderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+静态 Public 属性</h2></td></tr>
+<tr class="memitem:a0309477b6349a6547bef60efb01b43d9"><td class="memItemLeft" align="right" valign="top"><a id="a0309477b6349a6547bef60efb01b43d9"></a>
+static VkSemaphore&#160;</td><td class="memItemRight" valign="bottom"><b>imageAvailableSemaphore</b></td></tr>
+<tr class="separator:a0309477b6349a6547bef60efb01b43d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7521c5f1805f75f032541c1c6b37d62f"><td class="memItemLeft" align="right" valign="top"><a id="a7521c5f1805f75f032541c1c6b37d62f"></a>
+static VkSemaphore&#160;</td><td class="memItemRight" valign="bottom"><b>renderFinishedSemaphore</b></td></tr>
+<tr class="separator:a7521c5f1805f75f032541c1c6b37d62f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 额外继承的成员函数</h2></td></tr>

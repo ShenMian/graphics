@@ -108,19 +108,22 @@ $(document).ready(function(){initNavTree('_v_k_buffer_8h_source.html',''); initR
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">void</span>* getData();</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    uint32_t findMemoryType(uint32_t type, VkMemoryPropertyFlags properties);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">operator</span> VkBuffer();</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">operator</span> VkBuffer() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    VkBuffer       buffer;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    VkDeviceMemory memory;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordtype">void</span>*          data = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <a class="code" href="class_v_k_renderer.html">VKRenderer</a>* renderer;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;};</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    uint32_t findMemoryType(uint32_t type, VkMemoryPropertyFlags properties);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    VkBuffer       handle;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    VkDeviceMemory memory;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordtype">void</span>*          data = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="class_v_k_renderer.html">VKRenderer</a>* renderer;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;};</div>
 <div class="ttc" id="aclass_v_k_buffer_html"><div class="ttname"><a href="class_v_k_buffer.html">VKBuffer</a></div><div class="ttdef"><b>Definition:</b> VKBuffer.h:11</div></div>
 <div class="ttc" id="aclass_v_k_buffer_html_a80d311ee2c979b2063e28ce1e9159de7"><div class="ttname"><a href="class_v_k_buffer.html#a80d311ee2c979b2063e28ce1e9159de7">VKBuffer::map</a></div><div class="ttdeci">VkResult map(VkDeviceSize size=VK_WHOLE_SIZE, VkDeviceSize offset=0)</div><div class="ttdoc">映射缓冲区到内存.</div><div class="ttdef"><b>Definition:</b> VKBuffer.cpp:51</div></div>
 <div class="ttc" id="aclass_v_k_buffer_html_aafb4b7d87600c31cb095e20719572472"><div class="ttname"><a href="class_v_k_buffer.html#aafb4b7d87600c31cb095e20719572472">VKBuffer::unmap</a></div><div class="ttdeci">void unmap()</div><div class="ttdoc">取消映射.</div><div class="ttdef"><b>Definition:</b> VKBuffer.cpp:57</div></div>
-<div class="ttc" id="aclass_v_k_renderer_html"><div class="ttname"><a href="class_v_k_renderer.html">VKRenderer</a></div><div class="ttdef"><b>Definition:</b> VKRenderer.h:13</div></div>
+<div class="ttc" id="aclass_v_k_renderer_html"><div class="ttname"><a href="class_v_k_renderer.html">VKRenderer</a></div><div class="ttdef"><b>Definition:</b> VKRenderer.h:14</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

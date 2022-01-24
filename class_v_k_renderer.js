@@ -7,5 +7,6 @@ var class_v_k_renderer =
     [ "getPhysicalDevice", "class_v_k_renderer.html#aa738911381876b0b264d3a0cbc6d89a2", null ],
     [ "getQueue", "class_v_k_renderer.html#ae5c00d0e3e545ab83392828fd06cb4e7", null ],
     [ "getRendererName", "class_v_k_renderer.html#a58c2884711f2abd608028a449d4f37cc", null ],
+    [ "getSwapchain", "class_v_k_renderer.html#af0556e23b419b82a6cc229fdeb5fdf51", null ],
     [ "getVendorName", "class_v_k_renderer.html#a1677b665b7f42551a0e28ccbd2d2c75c", null ]
 ];

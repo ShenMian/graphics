@@ -4,6 +4,8 @@ var class_v_k_vertex_buffer =
     [ "bind", "class_v_k_vertex_buffer.html#a225adc2c00ff4e1ff751c3e0e640d5bf", null ],
     [ "getInfo", "class_v_k_vertex_buffer.html#ae70e79cb7af805361f727be2a7972787", null ],
     [ "map", "class_v_k_vertex_buffer.html#aee120d929aa9459d738825d69edb9849", null ],
+    [ "operator VkBuffer", "class_v_k_vertex_buffer.html#a0f38bffbb7f1f577c22e7c7b08962022", null ],
+    [ "operator VkBuffer", "class_v_k_vertex_buffer.html#ad8308c135f40652431b245bdbcb8f7a5", null ],
     [ "unmap", "class_v_k_vertex_buffer.html#aa1fc815c20ce282868805f2631e4e9c1", null ],
     [ "write", "class_v_k_vertex_buffer.html#a7e91425425a55b05bd550b05a5017bae", null ]
 ];
