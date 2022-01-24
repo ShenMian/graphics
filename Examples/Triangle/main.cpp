@@ -101,12 +101,17 @@ int main()
 		cmdBuffer->begin();
 		{
 			cmdBuffer->setPipeline(pipeline);
-			cmdBuffer->setViewport({window->getSize()});
-			cmdBuffer->setClearColor({0, 0, 0, 0});
-			cmdBuffer->clear(ClearFlag::Color);
 
-			cmdBuffer->setVertexBuffer(vertexBuffer);
-			cmdBuffer->draw(vertexBuffer->getCount());
+			cmdBuffer->beginRenderPass(pipeline);
+			{
+				// cmdBuffer->setViewport({window->getSize()});
+				cmdBuffer->setClearColor({0, 0, 0, 0});
+				cmdBuffer->clear(ClearFlag::Color);
+
+				cmdBuffer->setVertexBuffer(vertexBuffer);
+				cmdBuffer->draw(vertexBuffer->getCount());
+			}
+			cmdBuffer->endRenderPass();
 		}
 		cmdBuffer->end();
 		cmdQueue->submit(cmdBuffer);
