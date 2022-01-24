@@ -29,7 +29,7 @@ var searchData=
   ['getposition_352',['getPosition',['../class_monitor.html#a74335cdd01ee7b14ecf5302e61218862',1,'Monitor::getPosition()'],['../class_window.html#a415b9a3166cc91d5db11bc2062dd461c',1,'Window::getPosition()']]],
   ['getprimary_353',['getPrimary',['../class_monitor.html#a022ad400f75d700488c657069e4d6993',1,'Monitor']]],
   ['getprojection_354',['getProjection',['../class_camera.html#a90f8ded7af9a5ba9fcabd5b43271be40',1,'Camera']]],
-  ['getqueue_355',['getQueue',['../class_v_k_device.html#ab9a1f3885fed4a385a311f6ac8abdcf0',1,'VKDevice::getQueue()'],['../class_v_k_renderer.html#ae5c00d0e3e545ab83392828fd06cb4e7',1,'VKRenderer::getQueue()']]],
+  ['getqueue_355',['getQueue',['../class_v_k_device.html#ab9a1f3885fed4a385a311f6ac8abdcf0',1,'VKDevice']]],
   ['getqueueindex_356',['getQueueIndex',['../class_v_k_device.html#a80953af4c4d080ec0778c35483ed0027',1,'VKDevice']]],
   ['getraw_357',['getRaw',['../class_gamepad.html#aaf38c3534ec0ee1751b47e031bcccea1',1,'Gamepad::getRaw(Thumb thumb) const'],['../class_gamepad.html#a9d1249f8947d85c23843c2dc934c9e70',1,'Gamepad::getRaw(Trigger trigger) const']]],
   ['getrefreshrate_358',['getRefreshRate',['../class_monitor.html#a4e1e52b23525c876c8981564e657a7af',1,'Monitor']]],
