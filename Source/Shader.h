@@ -40,14 +40,6 @@ public:
 	static std::shared_ptr<Shader> create(const Descriptor& desc);
 
 	/**
-	 * @brief 构造函数.
-	 *
-	 * @param name  着色器名称.
-	 * @param stage 着色器阶段.
-	 */
-	Shader(const std::string& name, Stage stage);
-
-	/**
 	 * @brief 获取名称.
 	 */
 	const std::string& getName() const;

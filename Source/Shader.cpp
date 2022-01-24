@@ -33,11 +33,6 @@ std::shared_ptr<Shader> Shader::create(const Descriptor& desc)
 	return nullptr;
 }
 
-Shader::Shader(const std::string& name, Stage stage)
-	: name(name), stage(stage)
-{
-}
-
 const std::string& Shader::getName() const
 {
 	return name;
