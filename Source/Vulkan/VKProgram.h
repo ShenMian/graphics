@@ -16,7 +16,6 @@ class VKProgram : public Program
 {
 public:
 	VKProgram(const Descriptor& desc);
-	explicit VKProgram(const std::string& name);
 	virtual ~VKProgram();
 
 	std::vector<VkPipelineShaderStageCreateInfo>& getInfos();

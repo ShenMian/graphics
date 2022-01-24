@@ -33,42 +33,6 @@ std::shared_ptr<Shader> Shader::create(const Descriptor& desc)
 	return nullptr;
 }
 
-std::shared_ptr<Shader> Shader::create(const std::filesystem::path& path, Stage stage)
-{
-	switch(Renderer::getAPI())
-	{
-		using enum Renderer::API;
-
-	case OpenGL:
-		return std::make_shared<GLShader>(path, stage);
-
-	case Vulkan:
-		return std::make_shared<VKShader>(path, stage);
-
-	default:
-		assert(false);
-	}
-	return nullptr;
-}
-
-std::shared_ptr<Shader> Shader::create(const std::string& name, Stage stage)
-{
-	switch(Renderer::getAPI())
-	{
-		using enum Renderer::API;
-
-	case OpenGL:
-		return std::make_shared<GLShader>(name, stage);
-
-	case Vulkan:
-		return std::make_shared<VKShader>(name, stage);
-
-	default:
-		assert(false);
-	}
-	return nullptr;
-}
-
 Shader::Shader(const std::string& name, Stage stage)
 	: name(name), stage(stage)
 {

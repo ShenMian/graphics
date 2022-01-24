@@ -10,8 +10,6 @@ class GLShader : public Shader
 {
 public:
 	GLShader(const Descriptor& desc);
-	GLShader(const std::filesystem::path& path, Stage stage);
-	GLShader(const std::string& name, Stage stage);
 	virtual ~GLShader();
 
 	/**
@@ -20,7 +18,5 @@ public:
 	size_t getNativeHandle() const;
 
 private:
-	[[deprecated]] void load();
-
 	GLuint handle;
 };

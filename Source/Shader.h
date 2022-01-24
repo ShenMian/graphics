@@ -40,22 +40,6 @@ public:
 	static std::shared_ptr<Shader> create(const Descriptor& desc);
 
 	/**
-	 * @brief 创建着色器阶段.
-	 *
-	 * @param path  着色器路径.
-	 * @param stage 着色器阶段.
-	 */
-	static std::shared_ptr<Shader> create(const std::filesystem::path& path, Stage stage);
-
-	/**
-	 * @brief 创建着色器阶段.
-	 *
-	 * @param name  着色器名称.
-	 * @param stage 着色器阶段.
-	 */
-	static std::shared_ptr<Shader> create(const std::string& name, Stage stage);
-
-	/**
 	 * @brief 构造函数.
 	 *
 	 * @param name  着色器名称.
