@@ -20,9 +20,11 @@ public:
 
 	static std::shared_ptr<Pipeline> create(const Descriptor& desc);
 
-	Pipeline(const Descriptor& desc);
-
 	std::shared_ptr<Program> program;
+
+protected:
+	Pipeline(const Descriptor& desc);
+	virtual ~Pipeline() = default;
 };
 
 /**
