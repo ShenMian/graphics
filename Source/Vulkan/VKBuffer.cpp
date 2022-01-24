@@ -25,11 +25,11 @@ VKBuffer::VKBuffer(size_t size, Buffer::Type type, VkMemoryPropertyFlags propert
 	bufInfo.size = size;
 	bufInfo.usage = VKUsage[type];
 	bufInfo.sharingMode = VK_SHARING_MODE_EXCLUSIVE;
-	if(vkCreateBuffer(device, &bufInfo, nullptr, &buffer) != VK_SUCCESS)
+	if(vkCreateBuffer(device, &bufInfo, nullptr, &handle) != VK_SUCCESS)
 		throw std::runtime_error("failed to create buffer");
 
 	VkMemoryRequirements memRequirements;
-	vkGetBufferMemoryRequirements(device, buffer, &memRequirements);
+	vkGetBufferMemoryRequirements(device, handle, &memRequirements);
 
 	VkMemoryAllocateInfo allocInfo = {};
 	allocInfo.sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
@@ -38,13 +38,13 @@ VKBuffer::VKBuffer(size_t size, Buffer::Type type, VkMemoryPropertyFlags propert
 	if(vkAllocateMemory(device, &allocInfo, nullptr, &memory) != VK_SUCCESS)
 		throw std::runtime_error("failed to allocate buffer memory");
 
-	vkBindBufferMemory(device, buffer, memory, 0);
+	vkBindBufferMemory(device, handle, memory, 0);
 }
 
 VKBuffer::~VKBuffer()
 {
 	auto& device = renderer->getDevice();
-	vkDestroyBuffer(device, buffer, nullptr);
+	vkDestroyBuffer(device, handle, nullptr);
 	vkFreeMemory(device, memory, nullptr);
 }
 
@@ -66,6 +66,16 @@ void VKBuffer::unmap()
 void* VKBuffer::getData()
 {
 	return data;
+}
+
+VKBuffer::operator VkBuffer()
+{
+	return handle;
+}
+
+VKBuffer::operator VkBuffer() const
+{
+	return handle;
 }
 
 uint32_t VKBuffer::findMemoryType(uint32_t type, VkMemoryPropertyFlags properties)

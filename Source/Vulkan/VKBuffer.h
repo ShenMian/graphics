@@ -29,10 +29,13 @@ public:
 
 	void* getData();
 
+	operator VkBuffer();
+	operator VkBuffer() const;
+
 private:
 	uint32_t findMemoryType(uint32_t type, VkMemoryPropertyFlags properties);
 
-	VkBuffer       buffer;
+	VkBuffer       handle;
 	VkDeviceMemory memory;
 	void*          data = nullptr;
 
