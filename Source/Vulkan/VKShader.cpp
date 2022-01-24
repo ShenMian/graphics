@@ -79,12 +79,14 @@ VKShader::VKShader(const std::string& name, Stage stage)
 		const auto     size = fs::file_size(path);
 
 		std::ifstream file(path, std::ios::binary);
-		assert(file.is_open());
+		if(!file.is_open())
+			throw std::runtime_error("failed to open file: " + path.string());
 
 		std::string buffer;
 		buffer.resize(size);
 		file.read(reinterpret_cast<char*>(buffer.data()), size);
-		assert(file.good() && file.gcount() == size);
+		if(!file.good() || file.gcount() != size)
+			throw std::runtime_error("failed to read file: " + path.string());
 		buffer += "\0";
 
 		VkShaderModuleCreateInfo info = {};

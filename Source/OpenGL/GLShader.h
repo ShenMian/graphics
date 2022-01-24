@@ -20,7 +20,7 @@ public:
 	size_t getNativeHandle() const;
 
 private:
-	void load();
+	[[deprecated]] void load();
 
 	GLuint handle;
 };
