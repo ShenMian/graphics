@@ -126,6 +126,8 @@ void VKPipeline::createRenderPass()
 	VkAttachmentDescription colorAttachment = {};
 	colorAttachment.format = VK_FORMAT_B8G8R8A8_SRGB;
 	colorAttachment.samples = VK_SAMPLE_COUNT_1_BIT;
+	colorAttachment.loadOp = VK_ATTACHMENT_LOAD_OP_CLEAR;
+	colorAttachment.storeOp = VK_ATTACHMENT_STORE_OP_STORE;
 	colorAttachment.stencilLoadOp = VK_ATTACHMENT_LOAD_OP_DONT_CARE;
 	colorAttachment.stencilStoreOp = VK_ATTACHMENT_STORE_OP_DONT_CARE;
 	colorAttachment.initialLayout = VK_IMAGE_LAYOUT_UNDEFINED;
@@ -172,19 +174,21 @@ void VKPipeline::createRenderPass()
 
 
 
-	std::vector<VkImageView> attachments;
+	auto& swapchain = renderer->getSwapchain();
+	for(const auto& view : swapchain.getImageViews())
+	{
+		VkFramebufferCreateInfo framebufferInfo = {};
+		framebufferInfo.sType = VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO;
+		framebufferInfo.renderPass = renderPass;
+		framebufferInfo.attachmentCount = 1;
+		framebufferInfo.pAttachments = &view;
+		framebufferInfo.width = 1920 / 2; // TODO
+		framebufferInfo.height = 1080 / 2; // TODO
+		framebufferInfo.layers = 1;
 
-	VkFramebufferCreateInfo framebufferInfo{};
-	framebufferInfo.sType = VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO;
-	framebufferInfo.renderPass = renderPass;
-	framebufferInfo.attachmentCount = static_cast<uint32_t>(attachments.size());
-	framebufferInfo.pAttachments = attachments.data();
-	framebufferInfo.width = 1920; // TODO
-	framebufferInfo.height = 1080; // TODO
-	framebufferInfo.layers = 1;
-
-	if(vkCreateFramebuffer(renderer->getDevice(), &framebufferInfo, nullptr, &framebuffer) != VK_SUCCESS)
-		throw std::runtime_error("failed to create framebuffer");
+		if(vkCreateFramebuffer(renderer->getDevice(), &framebufferInfo, nullptr, &framebuffer) != VK_SUCCESS)
+			throw std::runtime_error("failed to create framebuffer");
+	}
 }
 
 void VKPipeline::createLayout(const Descriptor& desc)
