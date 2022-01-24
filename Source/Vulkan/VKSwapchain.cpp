@@ -36,6 +36,26 @@ VKSwapchain::VKSwapchain(VkSwapchainKHR swapchain, VKDevice& device, VkFormat im
 	}
 }
 
+VKSwapchain::~VKSwapchain()
+{
+	/*
+	for(auto view : imageViews) {
+		vkDestroyImageView(device, view, nullptr);
+	}
+	vkDestroySwapchainKHR(device, handle, nullptr);
+	*/
+}
+
+const std::vector<VkImage>& VKSwapchain::getImages() const
+{
+	return images;
+}
+
+const std::vector<VkImageView>& VKSwapchain::getImageViews() const
+{
+	return imageViews;
+}
+
 VKSwapchain::operator VkSwapchainKHR()
 {
 	return handle;

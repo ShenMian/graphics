@@ -7,11 +7,15 @@
 #include <vulkan/vulkan.h>
 #include <vector>
 
-class VKSwapchain
+class VKSwapchain final
 {
 public:
 	VKSwapchain() = default;
 	VKSwapchain(VkSwapchainKHR swapchain, VKDevice& device, VkFormat imageFormat, VkExtent2D extent);
+	~VKSwapchain();
+
+	const std::vector<VkImage>& getImages() const;
+	const std::vector<VkImageView>& getImageViews() const;
 
 	operator VkSwapchainKHR();
 	operator VkSwapchainKHR() const;
