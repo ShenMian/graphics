@@ -27,7 +27,7 @@ VkQueue VKDevice::getQueue(QueueType type) const
 
 	VkQueue queue;
 	vkGetDeviceQueue(handle, index, 0, &queue);
-	return VkQueue();
+	return queue;
 }
 
 VKDevice::operator VkDevice()
