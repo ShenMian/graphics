@@ -19,7 +19,7 @@ std::unordered_map<Buffer::Usage, uint32_t> GLUsage = {
 
 }
 
-GLIndexBuffer::GLIndexBuffer(const unsigned int* data, size_t size, Buffer::Usage usage)
+GLIndexBuffer::GLIndexBuffer(const uint32_t* data, size_t size, Buffer::Usage usage)
 	: IndexBuffer(data, size), buffer(size, Buffer::Type::Index, usage)
 {
 	bind();

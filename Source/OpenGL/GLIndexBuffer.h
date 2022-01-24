@@ -10,7 +10,7 @@
 class GLIndexBuffer : public IndexBuffer
 {
 public:
-	GLIndexBuffer(const unsigned int* data, size_t size, Buffer::Usage usage);
+	GLIndexBuffer(const uint32_t* data, size_t size, Buffer::Usage usage);
 
 	void map() override;
 	void unmap() override;
