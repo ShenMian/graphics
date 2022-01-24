@@ -1,5 +1,6 @@
 var NAVTREEINDEX3 =
 {
+"hierarchy.html":[3,2],
 "index.html":[0],
 "index.html":[],
 "index.html#autotoc_md5":[0,0],
