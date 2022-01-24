@@ -13,13 +13,33 @@ public:
 
 	VKSwapchain build();
 
+	/**
+	 * @brief 设置期望的格式.
+	 *
+	 * @param format 期望的格式.
+	 */
 	SwapchainBuilder& setDesiredFormat(VkSurfaceFormatKHR format);
 
+	/**
+	 * @brief 设置期望的呈现模式.
+	 *
+	 * @param presentMode 期望的呈现模式.
+	 */
 	SwapchainBuilder& setDesiredPresentMode(VkPresentModeKHR presentMode);
 
+	/**
+	 * @brief 设置期望的面积, 即帧缓冲区大小.
+	 *
+	 * @param extent 期望的面积.
+	 */
 	SwapchainBuilder& setDesiredExtent(VkExtent2D extent);
 
 private:
+	uint32_t getImageCount();
+	VkSurfaceFormatKHR getSurfaceFormat();
+	VkPresentModeKHR getPresentMode();
+	VkExtent2D getExtent();
+
 	VkSwapchainCreateInfoKHR swapchainInfo = {};
 
 	VKDevice& device;
