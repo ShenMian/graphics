@@ -85,13 +85,7 @@ void VKRenderer::init(const Window& win)
 	queueIndex = device.getQueueIndex(VKDevice::QueueType::Graphics);
 
 	createCommandPool();
-
-	VkSemaphoreCreateInfo semaphoreInfo = {};
-	semaphoreInfo.sType = VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO;
-	if(vkCreateSemaphore(device, &semaphoreInfo, nullptr, &imageAvailableSemaphore) != VK_SUCCESS)
-		throw std::runtime_error("failed to create semaphored");
-	if(vkCreateSemaphore(device, &semaphoreInfo, nullptr, &renderFinishedSemaphore) != VK_SUCCESS)
-		throw std::runtime_error("failed to create semaphored");
+	createSemaphores();
 
 	/*
 	vkb::Instance vkbInstance;
@@ -206,10 +200,20 @@ void VKRenderer::createSwapchain()
 
 void VKRenderer::createCommandPool()
 {
-	VkCommandPoolCreateInfo info = {};
-	info.sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO;
-	info.queueFamilyIndex = queueIndex;
-	info.flags = VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT;
-	if(vkCreateCommandPool(device, &info, nullptr, &commandPool) != VK_SUCCESS)
+	VkCommandPoolCreateInfo commandPoolInfo = {};
+	commandPoolInfo.sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO;
+	commandPoolInfo.queueFamilyIndex = queueIndex;
+	commandPoolInfo.flags = VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT;
+	if(vkCreateCommandPool(device, &commandPoolInfo, nullptr, &commandPool) != VK_SUCCESS)
 		throw std::runtime_error("failed to create command pool");
+}
+
+void VKRenderer::createSemaphores()
+{
+	VkSemaphoreCreateInfo semaphoreInfo = {};
+	semaphoreInfo.sType = VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO;
+	if(vkCreateSemaphore(device, &semaphoreInfo, nullptr, &imageAvailableSemaphore) != VK_SUCCESS)
+		throw std::runtime_error("failed to create semaphored");
+	if(vkCreateSemaphore(device, &semaphoreInfo, nullptr, &renderFinishedSemaphore) != VK_SUCCESS)
+		throw std::runtime_error("failed to create semaphored");
 }

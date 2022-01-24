@@ -60,4 +60,5 @@ private:
 	static void createDevice();
 	static void createSwapchain();
 	static void createCommandPool();
+	static void createSemaphores();
 };
