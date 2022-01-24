@@ -65,3 +65,13 @@ VkPipelineVertexInputStateCreateInfo VKVertexBuffer::getInfo()
 void VKVertexBuffer::bind()
 {
 }
+
+VKVertexBuffer::operator VkBuffer()
+{
+	return buffer;
+}
+
+VKVertexBuffer::operator VkBuffer() const
+{
+	return buffer;
+}

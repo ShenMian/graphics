@@ -21,6 +21,9 @@ public:
 
 	void bind() override;
 
+	operator VkBuffer();
+	operator VkBuffer() const;
+
 private:
 	VKBuffer buffer;
 
