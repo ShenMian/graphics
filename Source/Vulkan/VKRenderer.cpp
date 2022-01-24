@@ -58,6 +58,11 @@ const VKDevice& VKRenderer::getDevice() const
 	return device;
 }
 
+const VKSwapchain& VKRenderer::getSwapchain() const
+{
+	return swapchain;
+}
+
 const VkQueue& VKRenderer::getQueue() const
 {
 	return queue;
@@ -79,12 +84,14 @@ void VKRenderer::init(const Window& win)
 	queue = device.getQueue(VKDevice::QueueType::Graphics);
 	queueIndex = device.getQueueIndex(VKDevice::QueueType::Graphics);
 
-	VkCommandPoolCreateInfo info = {};
-	info.sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO;
-	info.queueFamilyIndex = queueIndex;
-	info.flags = VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT;
-	if(vkCreateCommandPool(device, &info, nullptr, &commandPool) != VK_SUCCESS)
-		throw std::runtime_error("failed to create command pool");
+	createCommandPool();
+
+	VkSemaphoreCreateInfo semaphoreInfo = {};
+	semaphoreInfo.sType = VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO;
+	if(vkCreateSemaphore(device, &semaphoreInfo, nullptr, &imageAvailableSemaphore) != VK_SUCCESS)
+		throw std::runtime_error("failed to create semaphored");
+	if(vkCreateSemaphore(device, &semaphoreInfo, nullptr, &renderFinishedSemaphore) != VK_SUCCESS)
+		throw std::runtime_error("failed to create semaphored");
 
 	/*
 	vkb::Instance vkbInstance;
@@ -153,6 +160,8 @@ void VKRenderer::init(const Window& win)
 
 void VKRenderer::deinit()
 {
+	vkDestroySemaphore(device, renderFinishedSemaphore, nullptr);
+	vkDestroySemaphore(device, imageAvailableSemaphore, nullptr);
 	vkDestroyCommandPool(device, commandPool, nullptr);
 	vkDestroySwapchainKHR(device, swapchain, nullptr);
 	vkDestroyDevice(device, nullptr);
@@ -193,4 +202,14 @@ void VKRenderer::createSwapchain()
 {
 	SwapchainBuilder builder(device);
 	swapchain = builder.build();
+}
+
+void VKRenderer::createCommandPool()
+{
+	VkCommandPoolCreateInfo info = {};
+	info.sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO;
+	info.queueFamilyIndex = queueIndex;
+	info.flags = VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT;
+	if(vkCreateCommandPool(device, &info, nullptr, &commandPool) != VK_SUCCESS)
+		throw std::runtime_error("failed to create command pool");
 }
