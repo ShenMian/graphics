@@ -26,6 +26,14 @@ void GLCommandBuffer::end()
 {
 }
 
+void GLCommandBuffer::beginRenderPass(std::shared_ptr<Pipeline> pipeline)
+{
+}
+
+void GLCommandBuffer::endRenderPass()
+{
+}
+
 void GLCommandBuffer::setViewport(const Viewport& viewport)
 {
 	auto cmd = addCommand<GLCmdSetViewport>(GLOpcode::setViewport);

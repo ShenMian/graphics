@@ -15,6 +15,9 @@ public:
 	void begin() override;
 	void end() override;
 
+	void beginRenderPass(std::shared_ptr<Pipeline> pipeline) override;
+	void endRenderPass() override;
+
 	void setViewport(const Viewport& viewport) override;
 
 	void setPipeline(std::shared_ptr<Pipeline> pipeline) override;
@@ -30,6 +33,9 @@ public:
 	void draw(uint32_t vertexCount, uint32_t firstVertex) override;
 	void drawIndexed(uint32_t indexCount, uint32_t firstIndex) override;
 
+	operator VkCommandBuffer() const;
+
 private:
 	VkCommandBuffer handle;
+	VkPipeline pipeline;
 };

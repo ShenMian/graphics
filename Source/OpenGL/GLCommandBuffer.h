@@ -17,6 +17,9 @@ public:
 	void begin() override;
 	void end() override;
 
+	void beginRenderPass(std::shared_ptr<Pipeline> pipeline) override;
+	void endRenderPass() override;
+
 	void setViewport(const Viewport& viewport) override;
 
 	void setPipeline(std::shared_ptr<Pipeline> pipeline) override;

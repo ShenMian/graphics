@@ -4,6 +4,7 @@
 
 #include "VKCommandBuffer.h"
 #include "VKPipeline.h"
+#include "VKVertexBuffer.h"
 #include "../CommandBuffer.h"
 #include "../Viewport.hpp"
 #include "VKRenderer.h"
@@ -41,6 +42,28 @@ void VKCommandBuffer::end()
 		throw std::runtime_error("failed to end command buffer");
 }
 
+void VKCommandBuffer::beginRenderPass(std::shared_ptr<Pipeline> pipeline)
+{
+	auto vkPipeline = reinterpret_cast<VKPipeline*>(pipeline.get());
+
+	VkClearValue clearColor = {0.0f, 0.0f, 0.0f, 1.0f};
+
+	VkRenderPassBeginInfo info = {};
+	info.sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
+	info.renderPass = vkPipeline->getRendererPass();
+	info.framebuffer = vkPipeline->framebuffer;
+	info.renderArea.offset = {0, 0};
+	info.renderArea.extent = {1920 / 2, 1080 / 2}; // TODO
+	info.clearValueCount = 1;
+	info.pClearValues = &clearColor;
+	vkCmdBeginRenderPass(handle, &info, VK_SUBPASS_CONTENTS_INLINE);
+}
+
+void VKCommandBuffer::endRenderPass()
+{
+	vkCmdEndRenderPass(handle);
+}
+
 void VKCommandBuffer::setViewport(const Viewport& viewport)
 {
 	VkViewport vkViewport;
@@ -55,21 +78,16 @@ void VKCommandBuffer::setViewport(const Viewport& viewport)
 
 void VKCommandBuffer::setPipeline(std::shared_ptr<Pipeline> pipeline)
 {
-	auto vkPipeline = reinterpret_cast<VKPipeline*>(pipeline.get());
+	auto vkPipeline = std::dynamic_pointer_cast<VKPipeline>(pipeline);
 	vkCmdBindPipeline(handle, VK_PIPELINE_BIND_POINT_GRAPHICS, vkPipeline->getNativeHandle());
-
-	VkRenderPassBeginInfo info = {};
-	info.sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
-	info.renderPass = vkPipeline->getRendererPass();
-	info.framebuffer = vkPipeline->framebuffer;
-	info.renderArea.offset = {0, 0};
-	info.renderArea.extent = {1920, 1080}; // TODO
-	vkCmdBeginRenderPass(handle, &info, VK_SUBPASS_CONTENTS_INLINE);
 }
 
 void VKCommandBuffer::setVertexBuffer(std::shared_ptr<VertexBuffer> vertexBuffer)
 {
-	// vkCmdBindVertexBuffers(handle, );
+	auto vkBuffer = std::dynamic_pointer_cast<VKVertexBuffer>(vertexBuffer);
+	VkBuffer buffers = {*vkBuffer};
+	VkDeviceSize size = 0;
+	vkCmdBindVertexBuffers(handle, 0, 1, &buffers, &size);
 }
 
 void VKCommandBuffer::setIndexBuffer(std::shared_ptr<IndexBuffer> indexBuffer)
@@ -102,4 +120,9 @@ void VKCommandBuffer::draw(uint32_t vertexCount, uint32_t firstVertex)
 void VKCommandBuffer::drawIndexed(uint32_t indexCount, uint32_t firstIndex)
 {
 	vkCmdDrawIndexed(handle, indexCount, 1, firstIndex, 0, 0);
+}
+
+VKCommandBuffer::operator VkCommandBuffer() const
+{
+	return handle;
 }
