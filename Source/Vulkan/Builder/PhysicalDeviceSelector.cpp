@@ -21,7 +21,6 @@ VKPhysicalDevice PhysicalDeviceSelector::select()
 {
 	for(const auto& device : devices)
 	{
-
 		if(!(device.getProperties().deviceType == VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU &&
 			device.getFeatures().geometryShader))
 			continue;
