@@ -20,7 +20,7 @@ void Node::update()
 	BeginNode(nodeId);
 	{
 		ImGui::TextUnformatted(label.c_str());
-		
+
 		if(ImGui::BeginTable(handle.c_str(), 2, 0, ImVec2(120, 40)))
 		{
 			for(size_t i = 0; i < inputs.size() || i < outputs.size(); i++)

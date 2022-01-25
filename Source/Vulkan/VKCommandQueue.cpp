@@ -40,7 +40,7 @@ void VKCommandQueue::submit(std::shared_ptr<CommandBuffer> commandBuffer)
 	submitInfo.pCommandBuffers = commandBuffers;
 	submitInfo.signalSemaphoreCount = 1;
 	submitInfo.pSignalSemaphores = signalSemaphores;
-	
+
 	if(vkQueueSubmit(handle, 1, &submitInfo, nullptr) != VK_SUCCESS)
 		throw std::runtime_error("failed to submit command buffer");
 

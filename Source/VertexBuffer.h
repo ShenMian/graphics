@@ -55,7 +55,7 @@ public:
 	const std::vector<uint8_t>& getData() const;
 
 	void flash();
-	
+
 	virtual void map() = 0;
 	virtual void unmap() = 0;
 	virtual void write(const void* data, size_t size) = 0;

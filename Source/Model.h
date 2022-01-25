@@ -59,7 +59,7 @@ public:
 			Fast = GenNormals | GenTexCoords,
 
 			/// 质量.
-			Quality = GenSmoothNormals | GenTexCoords | SplitLargeMeshes  | ImproveCacheLocality | FindInvalidData,
+			Quality = GenSmoothNormals | GenTexCoords | SplitLargeMeshes | ImproveCacheLocality | FindInvalidData,
 
 			/// 最高质量.
 			MaxQuality = Quality | OptimizeMeshes

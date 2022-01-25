@@ -85,5 +85,5 @@ protected:
 	size_t size;
 	Type   type;
 	Usage  usage;
-	void*  data = nullptr;
+	void* data = nullptr;
 };

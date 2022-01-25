@@ -48,8 +48,8 @@ enum class CullMode
 
 struct RasterizerDescriptor
 {
-    PolygonMode polygonMode = PolygonMode::Fill;
-    CullMode    cullMode    = CullMode::Disabled;
+	PolygonMode polygonMode = PolygonMode::Fill;
+	CullMode    cullMode = CullMode::Disabled;
 };
 
 struct Pipeline::Descriptor
