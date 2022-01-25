@@ -8,6 +8,7 @@
 #include "../CommandBuffer.h"
 #include "../Viewport.hpp"
 #include "VKRenderer.h"
+#include <array>
 
 VKCommandBuffer::VKCommandBuffer()
 {
@@ -52,7 +53,10 @@ void VKCommandBuffer::beginRenderPass(std::shared_ptr<Pipeline> pipeline)
 
 	auto vkPipeline = std::dynamic_pointer_cast<VKPipeline>(pipeline);
 
-	VkClearValue clearColor = {0.0f, 0.0f, 0.0f, 1.0f};
+	std::array<VkClearValue, 2> clearValues = {};
+	// clearValues[0].color = {0.01f, 0.01f, 0.01f, 1.0f};
+	clearValues[0].color = {0.0f, 0.0f, 0.0f, 1.0f};
+	clearValues[1].depthStencil = {1.0f, 0};
 
 	VkRenderPassBeginInfo beginInfo = {};
 	beginInfo.sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
@@ -60,8 +64,8 @@ void VKCommandBuffer::beginRenderPass(std::shared_ptr<Pipeline> pipeline)
 	beginInfo.framebuffer = swapchain.getFramebuffers()[0];
 	beginInfo.renderArea.offset = {0, 0};
 	beginInfo.renderArea.extent = swapchain.getSize();
-	beginInfo.clearValueCount = 1;
-	beginInfo.pClearValues = &clearColor;
+	beginInfo.clearValueCount = static_cast<uint32_t>(clearValues.size());
+	beginInfo.pClearValues = clearValues.data();
 	vkCmdBeginRenderPass(handles[0], &beginInfo, VK_SUBPASS_CONTENTS_INLINE);
 }
 
