@@ -41,6 +41,10 @@ VKPhysicalDevice PhysicalDeviceSelector::select()
 			if(device.present == -1)
 				continue;
 
+		if(info.requireMultiViewport)
+			if(!device.getFeatures().multiViewport)
+				continue;
+
 		if(!device.isExtensionAvailable(VK_KHR_SWAPCHAIN_EXTENSION_NAME))
 			continue;
 

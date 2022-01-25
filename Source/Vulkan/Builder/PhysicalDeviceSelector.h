@@ -33,5 +33,7 @@ private:
 		bool requireComputeQueue = false;
 		bool requireTransferQueue = false;
 		bool requirePresentQueue = false;
+
+		bool requireMultiViewport = false;
 	} info;
 };
