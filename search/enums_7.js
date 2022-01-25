@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['warp_435',['Warp',['../class_texture.html#af110c1b8fc58036b94dced17b5399b68',1,'Texture']]]
+  ['usage_441',['Usage',['../class_buffer.html#aa1c6312f90d7b17d923a5ac01ccd2c21',1,'Buffer']]]
 ];

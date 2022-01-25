@@ -94,15 +94,17 @@ $(document).ready(function(){initNavTree('class_v_k_buffer.html',''); initResiza
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
 <tr class="memitem:a82c3fa383094bf5cf1673c1eb84db83e"><td class="memItemLeft" align="right" valign="top"><a id="a82c3fa383094bf5cf1673c1eb84db83e"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>VKBuffer</b> (size_t size, Buffer::Type type, VkMemoryPropertyFlags properties)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><b>VKBuffer</b> (size_t size, <a class="el" href="class_buffer.html#a758eb2b0cc5aac56e3879407933fd3cc">Buffer::Type</a> type, VkMemoryPropertyFlags properties)</td></tr>
 <tr class="separator:a82c3fa383094bf5cf1673c1eb84db83e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a80d311ee2c979b2063e28ce1e9159de7"><td class="memItemLeft" align="right" valign="top">VkResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_v_k_buffer.html#a80d311ee2c979b2063e28ce1e9159de7">map</a> (VkDeviceSize size=VK_WHOLE_SIZE, VkDeviceSize offset=0)</td></tr>
-<tr class="memdesc:a80d311ee2c979b2063e28ce1e9159de7"><td class="mdescLeft">&#160;</td><td class="mdescRight">映射缓冲区到内存.  <a href="class_v_k_buffer.html#a80d311ee2c979b2063e28ce1e9159de7">更多...</a><br /></td></tr>
-<tr class="separator:a80d311ee2c979b2063e28ce1e9159de7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0017dfb7ff7b0a18d5896284d23f17b"><td class="memItemLeft" align="right" valign="top"><a id="ac0017dfb7ff7b0a18d5896284d23f17b"></a>
+VkResult&#160;</td><td class="memItemRight" valign="bottom"><b>map</b> (size_t size=VK_WHOLE_SIZE, size_t offset=0)</td></tr>
+<tr class="separator:ac0017dfb7ff7b0a18d5896284d23f17b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aafb4b7d87600c31cb095e20719572472"><td class="memItemLeft" align="right" valign="top"><a id="aafb4b7d87600c31cb095e20719572472"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_v_k_buffer.html#aafb4b7d87600c31cb095e20719572472">unmap</a> ()</td></tr>
-<tr class="memdesc:aafb4b7d87600c31cb095e20719572472"><td class="mdescLeft">&#160;</td><td class="mdescRight">取消映射. <br /></td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>unmap</b> ()</td></tr>
 <tr class="separator:aafb4b7d87600c31cb095e20719572472"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a115f46956d30cb978d835323e5b0dec5"><td class="memItemLeft" align="right" valign="top"><a id="a115f46956d30cb978d835323e5b0dec5"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>flush</b> (size_t size=VK_WHOLE_SIZE, size_t offset=0)</td></tr>
+<tr class="separator:a115f46956d30cb978d835323e5b0dec5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aea6d3cbf32148746fb14ddf432fb8421"><td class="memItemLeft" align="right" valign="top"><a id="aea6d3cbf32148746fb14ddf432fb8421"></a>
 void *&#160;</td><td class="memItemRight" valign="bottom"><b>getData</b> ()</td></tr>
 <tr class="separator:aea6d3cbf32148746fb14ddf432fb8421"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -113,45 +115,6 @@ void *&#160;</td><td class="memItemRight" valign="bottom"><b>getData</b> ()</td>
 &#160;</td><td class="memItemRight" valign="bottom"><b>operator VkBuffer</b> () const</td></tr>
 <tr class="separator:ae0fe73b3be1964b7244b1ba1b091025f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">成员函数说明</h2>
-<a id="a80d311ee2c979b2063e28ce1e9159de7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a80d311ee2c979b2063e28ce1e9159de7">&#9670;&nbsp;</a></span>map()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">VkResult VKBuffer::map </td>
-          <td>(</td>
-          <td class="paramtype">VkDeviceSize&#160;</td>
-          <td class="paramname"><em>size</em> = <code>VK_WHOLE_SIZE</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">VkDeviceSize&#160;</td>
-          <td class="paramname"><em>offset</em> = <code>0</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>映射缓冲区到内存. </p>
-<dl class="params"><dt>参数</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">size</td><td>要映射的大小, 默认值: 全部. </td></tr>
-    <tr><td class="paramname">offset</td><td>偏移量, 单位: byte. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>返回</dt><dd>VkResult </dd></dl>
-
-</div>
-</div>
 <hr/>该类的文档由以下文件生成:<ul>
 <li>/github/workspace/Source/Vulkan/<a class="el" href="_v_k_buffer_8h_source.html">VKBuffer.h</a></li>
 <li>/github/workspace/Source/Vulkan/VKBuffer.cpp</li>

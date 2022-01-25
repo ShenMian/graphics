@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['fliphorizontally_324',['flipHorizontally',['../class_image.html#a670aa8908444da5e54a864204a09ec01',1,'Image']]],
-  ['flipvertically_325',['flipVertically',['../class_image.html#a7e5594ca0d776f1dcc8eb9662401b21b',1,'Image']]]
+  ['enabledebugmessenger_324',['enableDebugMessenger',['../class_instance_builder.html#aeab07698130fbad25302054954027fd1',1,'InstanceBuilder']]],
+  ['enableextension_325',['enableExtension',['../class_instance_builder.html#a0c832424d8b56ff50f66b0c96c801912',1,'InstanceBuilder']]],
+  ['enablelayer_326',['enableLayer',['../class_instance_builder.html#a35caa59a89108e38049f843ba5c0a9a5',1,'InstanceBuilder']]],
+  ['enablevalidationlayers_327',['enableValidationLayers',['../class_instance_builder.html#a7c7b5b81f59a7c7dd453a3101a752081',1,'InstanceBuilder']]]
 ];

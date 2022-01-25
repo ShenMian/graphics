@@ -86,6 +86,9 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 <div class="textblock">这里列出了所有文档化的类成员，并附带类所属的文件:</div>
 
 <h3><a id="index_b"></a>- b -</h3><ul>
+<li>Buffer()
+: <a class="el" href="class_buffer.html#a366ff84ddb5fe0e098bde020deb3df4c">Buffer</a>
+</li>
 <li>Button
 : <a class="el" href="group__core.html#ga0f09c7e25e2059e68148d494ed9449b1">Gamepad</a>
 </li>
@@ -155,6 +158,10 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 <li>flipVertically()
 : <a class="el" href="class_image.html#a7e5594ca0d776f1dcc8eb9662401b21b">Image</a>
 </li>
+<li>flush()
+: <a class="el" href="class_buffer.html#ad3d7bb0b0389604614c1a56b2a68e432">Buffer</a>
+, <a class="el" href="class_g_l_buffer.html#aa6b47ca363c1513aefd1810bb9f4b4e0">GLBuffer</a>
+</li>
 <li>Fragment
 : <a class="el" href="struct_pipeline_layout_1_1_stage_flags.html#a3766b6c50d5167f12df2624c34c93b93aa9cd37577ec3fd1aac666d52889bea40">PipelineLayout::StageFlags</a>
 </li>
@@ -204,7 +211,8 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 , <a class="el" href="class_vertex_buffer.html#a79cc0539bdc05952dcd225b6c47b0774">VertexBuffer</a>
 </li>
 <li>getData()
-: <a class="el" href="class_image.html#a5ca562c1038f55b87239f8773cdce5e3">Image</a>
+: <a class="el" href="class_buffer.html#a32a87a0644536d10c637581022283854">Buffer</a>
+, <a class="el" href="class_image.html#a5ca562c1038f55b87239f8773cdce5e3">Image</a>
 </li>
 <li>getDataSize()
 : <a class="el" href="class_image.html#aae91ac2147c0a923fb7fe7f1cc9bc7ce">Image</a>
@@ -283,7 +291,8 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 : <a class="el" href="class_monitor.html#a4e1e52b23525c876c8981564e657a7af">Monitor</a>
 </li>
 <li>getSize()
-: <a class="el" href="class_image.html#a11449ef48be752526f0537173b1d94e7">Image</a>
+: <a class="el" href="class_buffer.html#a996ac8bec0aaccf19776c45b55b27dd2">Buffer</a>
+, <a class="el" href="class_image.html#a11449ef48be752526f0537173b1d94e7">Image</a>
 , <a class="el" href="class_index_buffer.html#a9d45b662917b2b43e7e4d470515e0c91">IndexBuffer</a>
 , <a class="el" href="class_monitor.html#a7a46f0acdc341a56e8f2a4c9ca891215">Monitor</a>
 , <a class="el" href="class_vertex_buffer.html#a449c075862df927b06cf5cb1e417a89c">VertexBuffer</a>
@@ -296,8 +305,12 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 : <a class="el" href="class_v_k_renderer.html#af0556e23b419b82a6cc229fdeb5fdf51">VKRenderer</a>
 </li>
 <li>getType()
-: <a class="el" href="class_camera.html#ae8f514578aa54023476ad541b167a1e0">Camera</a>
+: <a class="el" href="class_buffer.html#a8df11718cac1d3d4321bbc9a8410ad01">Buffer</a>
+, <a class="el" href="class_camera.html#ae8f514578aa54023476ad541b167a1e0">Camera</a>
 , <a class="el" href="class_texture.html#a885cf1c026c6227fbc1b99befa842416">Texture</a>
+</li>
+<li>getUsage()
+: <a class="el" href="class_buffer.html#a35f7d79ac4e9d02a86aad038d525a8df">Buffer</a>
 </li>
 <li>getVendorName()
 : <a class="el" href="class_v_k_physical_device.html#a082cf079d83e70f3627275a5759608e6">VKPhysicalDevice</a>
@@ -354,7 +367,8 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 
 <h3><a id="index_m"></a>- m -</h3><ul>
 <li>map()
-: <a class="el" href="class_v_k_buffer.html#a80d311ee2c979b2063e28ce1e9159de7">VKBuffer</a>
+: <a class="el" href="class_buffer.html#a86ec33e500feda85e9c4eecba8c6cb92">Buffer</a>
+, <a class="el" href="class_g_l_buffer.html#ad402ea789c05a62fc95b6d35017f2f97">GLBuffer</a>
 </li>
 <li>MaxQuality
 : <a class="el" href="struct_model_1_1_process_flags.html#a2022078b156bd53704d6a9d9c62d268ea5f5636950a04a5a83cc74318ff00ef86">Model::ProcessFlags</a>
@@ -538,14 +552,16 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 : <a class="el" href="group__core.html#ga814093b43f211a291b19ccf662096738">Gamepad</a>
 </li>
 <li>Type
-: <a class="el" href="class_camera.html#a3b0a1f58deca679ac665f61c480d1dcb">Camera</a>
+: <a class="el" href="class_buffer.html#a758eb2b0cc5aac56e3879407933fd3cc">Buffer</a>
+, <a class="el" href="class_camera.html#a3b0a1f58deca679ac665f61c480d1dcb">Camera</a>
 </li>
 </ul>
 
 
 <h3><a id="index_u"></a>- u -</h3><ul>
 <li>unmap()
-: <a class="el" href="class_v_k_buffer.html#aafb4b7d87600c31cb095e20719572472">VKBuffer</a>
+: <a class="el" href="class_buffer.html#a6ba3b3427f1570055a2ad2137743435a">Buffer</a>
+, <a class="el" href="class_g_l_buffer.html#a85c80dfaa3d5d59fe53a82a6a83cd7fb">GLBuffer</a>
 </li>
 <li>update()
 : <a class="el" href="class_controller.html#abff8d731f04eccd93049041c7ee142ce">Controller</a>
@@ -554,6 +570,9 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 </li>
 <li>updateHandle()
 : <a class="el" href="classui_1_1_widget.html#a00b122fd63f70bbfe501fac5355a6457">ui::Widget</a>
+</li>
+<li>Usage
+: <a class="el" href="class_buffer.html#aa1c6312f90d7b17d923a5ac01ccd2c21">Buffer</a>
 </li>
 </ul>
 

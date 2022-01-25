@@ -1,5 +1,7 @@
 var NAVTREEINDEX1 =
 {
+"class_gamepad.html#aaf38c3534ec0ee1751b47e031bcccea1":[2,0,0,9],
+"class_gamepad.html#ab0fd07c0c3c1ac1f0ab997000061bd80":[2,0,0,8],
 "class_gamepad.html#ac43317573656b6ff87c50fe8e8830633":[2,0,0,0],
 "class_gamepad.html#ae37f83a954aabbf634e9d6f37697ae58":[2,0,0,13],
 "class_gamepad.html#af06515dbccf048df41bfcddc17460ee8":[2,0,0,12],
@@ -193,13 +195,14 @@ var NAVTREEINDEX1 =
 "class_uniform_buffer.html#a6aca4e02356bcc0bfa6881bc32b50b30":[3,0,54,2],
 "class_uniform_buffer.html#a97a52e74d2c52776406b810a1f6a7b18":[3,0,54,0],
 "class_v_k_buffer.html":[3,0,58],
-"class_v_k_buffer.html#a80d311ee2c979b2063e28ce1e9159de7":[3,0,58,3],
+"class_v_k_buffer.html#a115f46956d30cb978d835323e5b0dec5":[3,0,58,2],
 "class_v_k_buffer.html#a82c3fa383094bf5cf1673c1eb84db83e":[3,0,58,0],
-"class_v_k_buffer.html#aafb4b7d87600c31cb095e20719572472":[3,0,58,6],
+"class_v_k_buffer.html#aafb4b7d87600c31cb095e20719572472":[3,0,58,7],
+"class_v_k_buffer.html#ac0017dfb7ff7b0a18d5896284d23f17b":[3,0,58,4],
 "class_v_k_buffer.html#acacd7f2a24c970f25c852368e6048b5d":[3,0,58,1],
-"class_v_k_buffer.html#ae0fe73b3be1964b7244b1ba1b091025f":[3,0,58,5],
-"class_v_k_buffer.html#aea6d3cbf32148746fb14ddf432fb8421":[3,0,58,2],
-"class_v_k_buffer.html#aeb2bc5914845f53c37fd09f97e6f570e":[3,0,58,4],
+"class_v_k_buffer.html#ae0fe73b3be1964b7244b1ba1b091025f":[3,0,58,6],
+"class_v_k_buffer.html#aea6d3cbf32148746fb14ddf432fb8421":[3,0,58,3],
+"class_v_k_buffer.html#aeb2bc5914845f53c37fd09f97e6f570e":[3,0,58,5],
 "class_v_k_command_buffer.html":[3,0,59],
 "class_v_k_command_buffer.html#a0f17bb23c9e5ff6c58937d83ec1594f7":[3,0,59,14],
 "class_v_k_command_buffer.html#a16c2a8296fda0600fa5393fba8f15193":[3,0,59,5],
@@ -246,8 +249,5 @@ var NAVTREEINDEX1 =
 "class_v_k_physical_device.html#a073c55de15161bb780f65b6d557732fe":[3,0,63,5],
 "class_v_k_physical_device.html#a082cf079d83e70f3627275a5759608e6":[3,0,63,9],
 "class_v_k_physical_device.html#a125e7567249f11e638e3728000ff5e4a":[3,0,63,11],
-"class_v_k_physical_device.html#a17b7a8792b1c11c41d8509141ba4f372":[3,0,63,16],
-"class_v_k_physical_device.html#a346482c3cec0e12a714966837e3e4475":[3,0,63,13],
-"class_v_k_physical_device.html#a3e7eb9bf187f8cc1a9d2f324aac5a1e6":[3,0,63,4],
-"class_v_k_physical_device.html#a5ad45765fcffcf741048eefb7b179fe8":[3,0,63,0]
+"class_v_k_physical_device.html#a17b7a8792b1c11c41d8509141ba4f372":[3,0,63,16]
 };

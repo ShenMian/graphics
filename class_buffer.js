@@ -11,6 +11,7 @@ var class_buffer =
       [ "Stream", "class_buffer.html#aa1c6312f90d7b17d923a5ac01ccd2c21aeae835e83c0494a376229f254f7d3392", null ]
     ] ],
     [ "Buffer", "class_buffer.html#a366ff84ddb5fe0e098bde020deb3df4c", null ],
+    [ "flush", "class_buffer.html#ad3d7bb0b0389604614c1a56b2a68e432", null ],
     [ "getData", "class_buffer.html#a32a87a0644536d10c637581022283854", null ],
     [ "getSize", "class_buffer.html#a996ac8bec0aaccf19776c45b55b27dd2", null ],
     [ "getType", "class_buffer.html#a8df11718cac1d3d4321bbc9a8410ad01", null ],
