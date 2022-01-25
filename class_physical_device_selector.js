@@ -8,6 +8,7 @@ var class_physical_device_selector =
     [ "select", "class_physical_device_selector.html#a74e5047e7c8d027f80eeb312b103a88b", null ],
     [ "requireComputeQueue", "class_physical_device_selector.html#a7c08c9d1cb572ec5de99c2305c252dd5", null ],
     [ "requireGraphicsQueue", "class_physical_device_selector.html#ab261c047973c94b4f76040c36ca2e657", null ],
+    [ "requireMultiViewport", "class_physical_device_selector.html#aaa462ee0863a1d120db4d2ecd21f8976", null ],
     [ "requirePresentQueue", "class_physical_device_selector.html#a70ffddc951bb4cee14cdba8a3c18e95b", null ],
     [ "requireTransferQueue", "class_physical_device_selector.html#a5f7510f2e69fc65e0c1dccb2e05e4343", null ]
 ];
