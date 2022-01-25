@@ -95,40 +95,40 @@ $(document).ready(function(){initNavTree('_v_k_device_8h_source.html',''); initR
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;VKPhysicalDevice.h&quot;</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;vulkan/vulkan.h&gt;</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="class_v_k_device.html">    9</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_v_k_device.html">VKDevice</a> final</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;{</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="class_v_k_device.html#a06fa199b3117acdfe766d967a560f799">   15</a></span>&#160;    <span class="keyword">enum class</span> <a class="code" href="class_v_k_device.html#a06fa199b3117acdfe766d967a560f799">QueueType</a></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    {</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        Graphics,</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        Compute,</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        Transfer,</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        Present</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    };</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="class_v_k_device.html">VKDevice</a>() = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="class_v_k_device.html">VKDevice</a>(VkDevice device);</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="class_v_k_device.html">VKDevice</a>(VkDevice device, <a class="code" href="class_v_k_physical_device.html">VKPhysicalDevice</a>&amp; physicalDevice);</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    ~<a class="code" href="class_v_k_device.html">VKDevice</a>();</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    VkQueue <a class="code" href="class_v_k_device.html#ab9a1f3885fed4a385a311f6ac8abdcf0">getQueue</a>(<a class="code" href="class_v_k_device.html#a06fa199b3117acdfe766d967a560f799">QueueType</a> type) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    uint32_t <a class="code" href="class_v_k_device.html#a80953af4c4d080ec0778c35483ed0027">getQueueIndex</a>(<a class="code" href="class_v_k_device.html#a06fa199b3117acdfe766d967a560f799">QueueType</a> type) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="class_v_k_physical_device.html">VKPhysicalDevice</a>&amp; getPhysicalDevice();</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">operator</span> VkDevice();</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">operator</span> VkDevice() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="class_v_k_device.html">   12</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_v_k_device.html">VKDevice</a> final</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;{</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="class_v_k_device.html#a06fa199b3117acdfe766d967a560f799">   18</a></span>&#160;    <span class="keyword">enum class</span> <a class="code" href="class_v_k_device.html#a06fa199b3117acdfe766d967a560f799">QueueType</a></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    {</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        Graphics,</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        Compute,</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        Transfer,</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        Present</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    };</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="class_v_k_device.html">VKDevice</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="class_v_k_device.html">VKDevice</a>(VkDevice device);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="class_v_k_device.html">VKDevice</a>(VkDevice device, <a class="code" href="class_v_k_physical_device.html">VKPhysicalDevice</a>&amp; physicalDevice);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    ~<a class="code" href="class_v_k_device.html">VKDevice</a>();</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    VkQueue <a class="code" href="class_v_k_device.html#ab9a1f3885fed4a385a311f6ac8abdcf0">getQueue</a>(<a class="code" href="class_v_k_device.html#a06fa199b3117acdfe766d967a560f799">QueueType</a> type) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    uint32_t <a class="code" href="class_v_k_device.html#a80953af4c4d080ec0778c35483ed0027">getQueueIndex</a>(<a class="code" href="class_v_k_device.html#a06fa199b3117acdfe766d967a560f799">QueueType</a> type) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="class_v_k_physical_device.html">VKPhysicalDevice</a>&amp; getPhysicalDevice();</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    VkDevice         handle;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <a class="code" href="class_v_k_physical_device.html">VKPhysicalDevice</a> physicalDevice;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;};</div>
-<div class="ttc" id="aclass_v_k_device_html"><div class="ttname"><a href="class_v_k_device.html">VKDevice</a></div><div class="ttdef"><b>Definition:</b> VKDevice.h:10</div></div>
-<div class="ttc" id="aclass_v_k_device_html_a06fa199b3117acdfe766d967a560f799"><div class="ttname"><a href="class_v_k_device.html#a06fa199b3117acdfe766d967a560f799">VKDevice::QueueType</a></div><div class="ttdeci">QueueType</div><div class="ttdoc">队列类型.</div><div class="ttdef"><b>Definition:</b> VKDevice.h:16</div></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">operator</span> VkDevice();</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keyword">operator</span> VkDevice() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    VkDevice         handle;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <a class="code" href="class_v_k_physical_device.html">VKPhysicalDevice</a> physicalDevice;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;};</div>
+<div class="ttc" id="aclass_v_k_device_html"><div class="ttname"><a href="class_v_k_device.html">VKDevice</a></div><div class="ttdoc">Vulkan 逻辑设备.</div><div class="ttdef"><b>Definition:</b> VKDevice.h:13</div></div>
+<div class="ttc" id="aclass_v_k_device_html_a06fa199b3117acdfe766d967a560f799"><div class="ttname"><a href="class_v_k_device.html#a06fa199b3117acdfe766d967a560f799">VKDevice::QueueType</a></div><div class="ttdeci">QueueType</div><div class="ttdoc">队列类型.</div><div class="ttdef"><b>Definition:</b> VKDevice.h:19</div></div>
 <div class="ttc" id="aclass_v_k_device_html_a80953af4c4d080ec0778c35483ed0027"><div class="ttname"><a href="class_v_k_device.html#a80953af4c4d080ec0778c35483ed0027">VKDevice::getQueueIndex</a></div><div class="ttdeci">uint32_t getQueueIndex(QueueType type) const</div><div class="ttdoc">获取队列索引.</div><div class="ttdef"><b>Definition:</b> VKDevice.cpp:43</div></div>
 <div class="ttc" id="aclass_v_k_device_html_ab9a1f3885fed4a385a311f6ac8abdcf0"><div class="ttname"><a href="class_v_k_device.html#ab9a1f3885fed4a385a311f6ac8abdcf0">VKDevice::getQueue</a></div><div class="ttdeci">VkQueue getQueue(QueueType type) const</div><div class="ttdoc">获取队列.</div><div class="ttdef"><b>Definition:</b> VKDevice.cpp:22</div></div>
-<div class="ttc" id="aclass_v_k_physical_device_html"><div class="ttname"><a href="class_v_k_physical_device.html">VKPhysicalDevice</a></div><div class="ttdef"><b>Definition:</b> VKPhysicalDevice.h:11</div></div>
+<div class="ttc" id="aclass_v_k_physical_device_html"><div class="ttname"><a href="class_v_k_physical_device.html">VKPhysicalDevice</a></div><div class="ttdoc">Vulkan 物理设备.</div><div class="ttdef"><b>Definition:</b> VKPhysicalDevice.h:14</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
