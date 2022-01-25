@@ -4,6 +4,7 @@
 #include "VKCommandQueue.h"
 #include "VKCommandBuffer.h"
 #include "../CommandQueue.h"
+#include <numeric>
 
 #include "VKRenderer.h"
 
@@ -21,7 +22,7 @@ void VKCommandQueue::submit(std::shared_ptr<CommandBuffer> commandBuffer)
 
 	uint32_t imageIndex;
 	vkAcquireNextImageKHR(device, renderer->getSwapchain(),
-		UINT64_MAX, swapchain.getImageAvailableSemaphores()[0], nullptr, &imageIndex);
+		std::numeric_limits<uint64_t>::max(), swapchain.getImageAvailableSemaphores()[0], nullptr, &imageIndex);
 
 	const auto vkCommandBuffer = std::dynamic_pointer_cast<VKCommandBuffer>(commandBuffer);
 
