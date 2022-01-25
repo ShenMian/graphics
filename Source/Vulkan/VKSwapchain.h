@@ -20,6 +20,8 @@ public:
 	const std::vector<VkImageView>& getImageViews() const;
 	VkRenderPass getRenderPass() const;
 	const std::vector<VkFramebuffer>& getFramebuffers() const;
+	const std::vector<VkSemaphore>& getImageAvailableSemaphores() const;
+	const std::vector<VkSemaphore>& getRenderFinishedSemaphores() const;
 
 	operator VkSwapchainKHR();
 	operator VkSwapchainKHR() const;
@@ -28,6 +30,10 @@ private:
 	void createImageViews();
 	void createRenderPass();
 	void createFramebuffers();
+	void createSyncObjects();
+	void destroyImageViews();
+	void destroyFramebuffers();
+	void destroySyncObjects();
 
 	VkSwapchainKHR handle;
 	VKDevice       device;
@@ -39,4 +45,7 @@ private:
 
 	VkRenderPass renderPass;
 	std::vector<VkFramebuffer> framebuffers;
+
+	std::vector<VkSemaphore> imageAvailableSemaphores;
+	std::vector<VkSemaphore> renderFinishedSemaphores;
 };

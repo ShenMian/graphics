@@ -17,15 +17,16 @@ void VKCommandQueue::submit(std::shared_ptr<CommandBuffer> commandBuffer)
 {
 	auto renderer = reinterpret_cast<VKRenderer*>(Renderer::get());
 	auto& device = renderer->getDevice();
+	auto& swapchain = renderer->getSwapchain();
 
 	uint32_t imageIndex;
-	vkAcquireNextImageKHR(renderer->getDevice(), renderer->getSwapchain(),
-		UINT64_MAX, renderer->imageAvailableSemaphore, nullptr, &imageIndex);
+	vkAcquireNextImageKHR(device, renderer->getSwapchain(),
+		UINT64_MAX, swapchain.getImageAvailableSemaphores()[0], nullptr, &imageIndex);
 
 	const auto vkCommandBuffer = std::dynamic_pointer_cast<VKCommandBuffer>(commandBuffer);
 
-	VkSemaphore waitSemaphores[] = {renderer->imageAvailableSemaphore};
-	VkSemaphore signalSemaphores[] = {renderer->renderFinishedSemaphore};
+	VkSemaphore waitSemaphores[] = {swapchain.getImageAvailableSemaphores()[0]};
+	VkSemaphore signalSemaphores[] = {swapchain.getRenderFinishedSemaphores()[0]};
 	VkPipelineStageFlags waitStages[] = {VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT};
 	VkCommandBuffer commandBuffers[] = {*vkCommandBuffer};
 

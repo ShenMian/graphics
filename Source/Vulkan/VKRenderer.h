@@ -45,9 +45,6 @@ public:
 	static void init(const Window& win);
 	static void deinit();
 
-	inline static VkSemaphore imageAvailableSemaphore;
-	inline static VkSemaphore renderFinishedSemaphore;
-
 private:
 	static void createInstance();
 	static void createSurface(const Window& win);
@@ -55,5 +52,4 @@ private:
 	static void createDevice();
 	static void createSwapchain();
 	static void createCommandPool();
-	static void createSemaphores();
 };

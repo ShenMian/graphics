@@ -16,14 +16,16 @@ VKSwapchain::VKSwapchain(VkSwapchainKHR swapchain, VKDevice& device, VkFormat im
 	createImageViews();
 	createRenderPass();
 	createFramebuffers();
+	createSyncObjects();
 }
 
 VKSwapchain::~VKSwapchain()
 {
 	/*
-	for(auto view : imageViews) {
-		vkDestroyImageView(device, view, nullptr);
-	}
+	destroySyncObjects();
+	destroyFramebuffers();
+	vkDestroyRenderPass(device, renderPass, nullptr);
+	destroyImageViews();
 	vkDestroySwapchainKHR(device, handle, nullptr);
 	*/
 }
@@ -46,6 +48,16 @@ VkRenderPass VKSwapchain::getRenderPass() const
 const std::vector<VkFramebuffer>& VKSwapchain::getFramebuffers() const
 {
 	return framebuffers;
+}
+
+const std::vector<VkSemaphore>& VKSwapchain::getImageAvailableSemaphores() const
+{
+	return imageAvailableSemaphores;
+}
+
+const std::vector<VkSemaphore>& VKSwapchain::getRenderFinishedSemaphores() const
+{
+	return renderFinishedSemaphores;
 }
 
 const VkExtent2D& VKSwapchain::getSize() const
@@ -162,4 +174,46 @@ void VKSwapchain::createFramebuffers()
 		if(vkCreateFramebuffer(device, &framebufferInfo, nullptr, &framebuffers[i]) != VK_SUCCESS)
 			throw std::runtime_error("failed to create framebuffer");
 	}
+}
+
+void VKSwapchain::createSyncObjects()
+{
+	constexpr int maxFramesInFlight = 2;
+
+	VkSemaphoreCreateInfo semaphoreInfo = {};
+	semaphoreInfo.sType = VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO;
+
+	VkFenceCreateInfo fenceInfo = {};
+	fenceInfo.sType = VK_STRUCTURE_TYPE_FENCE_CREATE_INFO;
+	fenceInfo.flags = VK_FENCE_CREATE_SIGNALED_BIT;
+
+	imageAvailableSemaphores.resize(maxFramesInFlight);
+	renderFinishedSemaphores.resize(maxFramesInFlight);
+	for(size_t i = 0; i < maxFramesInFlight; i++)
+	{
+		if(vkCreateSemaphore(device, &semaphoreInfo, nullptr, &imageAvailableSemaphores[i]) != VK_SUCCESS)
+			throw std::runtime_error("failed to create semaphore");
+		if(vkCreateSemaphore(device, &semaphoreInfo, nullptr, &renderFinishedSemaphores[i]) != VK_SUCCESS)
+			throw std::runtime_error("failed to create semaphore");
+	}
+}
+
+void VKSwapchain::destroyImageViews()
+{
+	for(auto view : imageViews)
+		vkDestroyImageView(device, view, nullptr);
+}
+
+void VKSwapchain::destroyFramebuffers()
+{
+	for(auto framebuffer : framebuffers)
+		vkDestroyFramebuffer(device, framebuffer, nullptr);
+}
+
+void VKSwapchain::destroySyncObjects()
+{
+	for(size_t i = 0; i < imageAvailableSemaphores.size(); i++)
+		vkDestroySemaphore(device, imageAvailableSemaphores[i], nullptr);
+	for(size_t i = 0; i < renderFinishedSemaphores.size(); i++)
+		vkDestroySemaphore(device, renderFinishedSemaphores[i], nullptr);
 }

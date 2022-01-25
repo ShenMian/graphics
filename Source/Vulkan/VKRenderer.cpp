@@ -74,7 +74,6 @@ void VKRenderer::init(const Window& win)
 	createDevice();
 	createSwapchain();
 	createCommandPool();
-	createSemaphores();
 
 	/*
 	vkb::Instance vkbInstance;
@@ -143,8 +142,6 @@ void VKRenderer::init(const Window& win)
 
 void VKRenderer::deinit()
 {
-	vkDestroySemaphore(device, renderFinishedSemaphore, nullptr);
-	vkDestroySemaphore(device, imageAvailableSemaphore, nullptr);
 	vkDestroyCommandPool(device, commandPool, nullptr);
 	vkDestroySwapchainKHR(device, swapchain, nullptr);
 	vkDestroyDevice(device, nullptr);
@@ -195,14 +192,4 @@ void VKRenderer::createCommandPool()
 	commandPoolInfo.flags = VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT;
 	if(vkCreateCommandPool(device, &commandPoolInfo, nullptr, &commandPool) != VK_SUCCESS)
 		throw std::runtime_error("failed to create command pool");
-}
-
-void VKRenderer::createSemaphores()
-{
-	VkSemaphoreCreateInfo semaphoreInfo = {};
-	semaphoreInfo.sType = VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO;
-	if(vkCreateSemaphore(device, &semaphoreInfo, nullptr, &imageAvailableSemaphore) != VK_SUCCESS)
-		throw std::runtime_error("failed to create semaphored");
-	if(vkCreateSemaphore(device, &semaphoreInfo, nullptr, &renderFinishedSemaphore) != VK_SUCCESS)
-		throw std::runtime_error("failed to create semaphored");
 }
