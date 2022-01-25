@@ -5,6 +5,9 @@
 
 #include <vulkan/vulkan.h>
 
+/**
+ * @brief Vulkan 实例.
+ */
 class VKInstance final
 {
 public:

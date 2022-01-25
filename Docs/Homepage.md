@@ -12,6 +12,7 @@
 - [快速入门](GettingStarted.md)
 - [计划表](https://trello.com/b/qpehnqDv/graphics)
 - [依赖项](https://github.com/ShenMian/Graphics/blob/main/Deps/README.md)
+- [示例](https://github.com/ShenMian/Graphics/blob/main/Examples/README.md)
 
 # 联系
 - [Telegram](https://t.me/clementine_chat)

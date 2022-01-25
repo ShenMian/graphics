@@ -6,6 +6,9 @@
 #include "VKPhysicalDevice.h"
 #include <vulkan/vulkan.h>
 
+/**
+ * @brief Vulkan 逻辑设备.
+ */
 class VKDevice final
 {
 public:
