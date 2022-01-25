@@ -7,6 +7,9 @@
 #include <string_view>
 #include <vector>
 
+/**
+ * @brief Vulkan 物理设备.
+ */
 class VKPhysicalDevice final
 {
 public:
