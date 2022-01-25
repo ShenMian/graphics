@@ -72,7 +72,7 @@ int main()
 	Pipeline::Descriptor desc;
 	desc.program = program;
 	desc.vertexBuffer = vertexBuffer;
-	desc.viewports = {Viewport(Monitor::getPrimary().getSize())};
+	desc.viewports = {Viewport(Monitor::getPrimary().getSize() / 2)};
 	auto pipeline = Pipeline::create(desc);
 
 	bool running = true;
