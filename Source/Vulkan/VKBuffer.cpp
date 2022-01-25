@@ -48,7 +48,7 @@ VKBuffer::~VKBuffer()
 	vkFreeMemory(device, memory, nullptr);
 }
 
-VkResult VKBuffer::map(VkDeviceSize size, VkDeviceSize offset)
+VkResult VKBuffer::map(size_t size, size_t offset)
 {
 	auto& device = renderer->getDevice();
 	return vkMapMemory(device, memory, offset, size, 0, &data);
@@ -61,6 +61,16 @@ void VKBuffer::unmap()
 		return;
 	vkUnmapMemory(device, memory);
 	data = nullptr;
+}
+
+void VKBuffer::flush(size_t size, size_t offset)
+{
+	auto& device = renderer->getDevice();
+	VkMappedMemoryRange info;
+	info.memory = memory;
+	info.offset = offset;
+	info.size = size;
+	vkFlushMappedMemoryRanges(device, 1, &info);
 }
 
 void* VKBuffer::getData()

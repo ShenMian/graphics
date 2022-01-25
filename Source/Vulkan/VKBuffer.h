@@ -13,19 +13,9 @@ public:
 	VKBuffer(size_t size, Buffer::Type type, VkMemoryPropertyFlags properties);
 	virtual ~VKBuffer();
 
-	/**
-	 * @brief 映射缓冲区到内存.
-	 *
-	 * @param size   要映射的大小, 默认值: 全部.
-	 * @param offset 偏移量, 单位: byte.
-	 * @return VkResult
-	 */
-	VkResult map(VkDeviceSize size = VK_WHOLE_SIZE, VkDeviceSize offset = 0);
-
-	/**
-	 * @brief 取消映射.
-	 */
+	VkResult map(size_t size = VK_WHOLE_SIZE, size_t offset = 0);
 	void unmap();
+	void flush(size_t size = VK_WHOLE_SIZE, size_t offset = 0);
 
 	void* getData();
 
@@ -37,7 +27,7 @@ private:
 
 	VkBuffer       handle;
 	VkDeviceMemory memory;
-	void*          data = nullptr;
+	void* data = nullptr;
 
 	VKRenderer* renderer;
 };

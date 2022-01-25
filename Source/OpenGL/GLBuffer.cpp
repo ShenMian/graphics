@@ -66,6 +66,17 @@ void GLBuffer::write(const void* data, size_t size, size_t offset)
 	// glBufferSubData(glType, offset, size, data);
 }
 
+void GLBuffer::flush(size_t size, size_t offset)
+{
+	if(size == -1)
+		size = this->size;
+	assert(size <= this->size);
+
+	bind();
+	glFlushMappedBufferRange(glType, offset, size);
+	GLCheckError();
+}
+
 void GLBuffer::bind()
 {
 	glBindBuffer(glType, handle);
