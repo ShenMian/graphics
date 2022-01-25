@@ -13,15 +13,9 @@ class VKPipeline : public Pipeline
 public:
 	VKPipeline(const Descriptor& desc);
 
-	VkRenderPass getRendererPass();
 	VkPipeline getNativeHandle();
 
-	VkRenderPass renderPass;
-	std::vector<VkFramebuffer> framebuffers;
-
 private:
-	void createRenderPass();
-
 	void createLayout(const Descriptor& desc);
 	void createInputAssemblyState(VkPipelineInputAssemblyStateCreateInfo&, const Descriptor& desc);
 	void createViewportState(VkPipelineViewportStateCreateInfo& info, const Descriptor& desc, std::vector<VkViewport>& vkViewports, std::vector<VkRect2D>& vkScissors);

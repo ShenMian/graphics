@@ -56,11 +56,10 @@ VKPipeline::VKPipeline(const Descriptor& desc)
 	: Pipeline(desc)
 {
 	auto renderer = reinterpret_cast<VKRenderer*>(Renderer::get());
+	auto& swapchain = renderer->getSwapchain();
 
 	auto vertexBuffer = std::dynamic_pointer_cast<VKVertexBuffer>(desc.vertexBuffer);
 	auto program = std::dynamic_pointer_cast<VKProgram>(desc.program);
-
-	createRenderPass();
 
 	createLayout(desc);
 
@@ -68,7 +67,7 @@ VKPipeline::VKPipeline(const Descriptor& desc)
 	createInputAssemblyState(inputAssemblyState, desc);
 
 	std::vector<VkViewport> vkViewports;
-	std::vector<VkRect2D> vkScissors(1);
+	std::vector<VkRect2D> vkScissors;
 	VkPipelineViewportStateCreateInfo viewportState = {};
 	createViewportState(viewportState, desc, vkViewports, vkScissors);
 
@@ -101,97 +100,14 @@ VKPipeline::VKPipeline(const Descriptor& desc)
 	pipelineInfo.pColorBlendState = &colorBlendState;
 	// pipelineInfo.pDynamicState = (!dynamicStatesVK.empty() ? &dynamicState : nullptr);
 	pipelineInfo.layout = pipelineLayout;
-	pipelineInfo.renderPass = renderPass;
+	pipelineInfo.renderPass = swapchain.getRenderPass();
 	if(vkCreateGraphicsPipelines(renderer->getDevice(), nullptr, 1, &pipelineInfo, nullptr, &pipeline) != VK_SUCCESS)
 		throw std::runtime_error("failed to create graphics pipeline");
-}
-
-VkRenderPass VKPipeline::getRendererPass()
-{
-	return renderPass;
 }
 
 VkPipeline VKPipeline::getNativeHandle()
 {
 	return pipeline;
-}
-
-void VKPipeline::createRenderPass()
-{
-	auto renderer = reinterpret_cast<VKRenderer*>(Renderer::get());
-
-	VkAttachmentDescription depthAttachment = {};
-
-	std::vector<VkAttachmentDescription> colorAttachments;
-	VkAttachmentDescription colorAttachment = {};
-	colorAttachment.format = VK_FORMAT_B8G8R8A8_SRGB;
-	colorAttachment.samples = VK_SAMPLE_COUNT_1_BIT;
-	colorAttachment.loadOp = VK_ATTACHMENT_LOAD_OP_CLEAR;
-	colorAttachment.storeOp = VK_ATTACHMENT_STORE_OP_STORE;
-	colorAttachment.stencilLoadOp = VK_ATTACHMENT_LOAD_OP_DONT_CARE;
-	colorAttachment.stencilStoreOp = VK_ATTACHMENT_STORE_OP_DONT_CARE;
-	colorAttachment.initialLayout = VK_IMAGE_LAYOUT_UNDEFINED;
-	colorAttachment.finalLayout = VK_IMAGE_LAYOUT_PRESENT_SRC_KHR;
-	colorAttachments.push_back(colorAttachment);
-
-	std::vector<VkAttachmentReference> colorAttachmentRefs;
-	VkAttachmentReference colorAttachmentRef = {};
-	colorAttachmentRef.attachment = 0;
-	colorAttachmentRef.layout = VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL;
-	colorAttachmentRefs.push_back(colorAttachmentRef);
-
-	std::vector<VkSubpassDescription> subpasses;
-	VkSubpassDescription subpass = {};
-	subpass.pipelineBindPoint = VK_PIPELINE_BIND_POINT_GRAPHICS;
-	subpass.colorAttachmentCount = static_cast<uint32_t>(colorAttachmentRefs.size());
-	subpass.pColorAttachments = &colorAttachmentRef;
-	subpasses.push_back(subpass);
-
-	std::vector<VkSubpassDependency> dependencies;
-	VkSubpassDependency dependency = {};
-	dependency.dstSubpass = 0;
-	dependency.dstAccessMask =
-		VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT | VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT;
-	dependency.dstStageMask =
-		VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT | VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT;
-	dependency.srcSubpass = VK_SUBPASS_EXTERNAL;
-	dependency.srcAccessMask = 0;
-	dependency.srcStageMask =
-		VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT | VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT;
-	dependencies.push_back(dependency);
-
-	VkRenderPassCreateInfo renderPassInfo{};
-	renderPassInfo.sType = VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO;
-	renderPassInfo.attachmentCount = static_cast<uint32_t>(colorAttachments.size());
-	renderPassInfo.pAttachments = colorAttachments.data();
-	renderPassInfo.subpassCount = static_cast<uint32_t>(subpasses.size());
-	renderPassInfo.pSubpasses = subpasses.data();
-	renderPassInfo.dependencyCount = static_cast<uint32_t>(dependencies.size());
-	renderPassInfo.pDependencies = dependencies.data();
-
-	if(vkCreateRenderPass(renderer->getDevice(), &renderPassInfo, nullptr, &renderPass) != VK_SUCCESS)
-		throw std::runtime_error("failed to create render pass");
-
-
-
-	auto& swapchain = renderer->getSwapchain();
-	auto& imageViews = swapchain.getImageViews();
-
-	framebuffers.resize(imageViews.size());
-	for(size_t i = 0; i < imageViews.size(); i++)
-	{
-		VkFramebufferCreateInfo framebufferInfo = {};
-		framebufferInfo.sType = VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO;
-		framebufferInfo.renderPass = renderPass;
-		framebufferInfo.attachmentCount = 1;
-		framebufferInfo.pAttachments = &imageViews[i];
-		framebufferInfo.width = swapchain.getExtent().width;
-		framebufferInfo.height = swapchain.getExtent().height;
-		framebufferInfo.layers = 1;
-
-		if(vkCreateFramebuffer(renderer->getDevice(), &framebufferInfo, nullptr, &framebuffers[i]) != VK_SUCCESS)
-			throw std::runtime_error("failed to create framebuffer");
-	}
 }
 
 void VKPipeline::createLayout(const Descriptor& desc)
@@ -245,6 +161,11 @@ void VKPipeline::createViewportState(VkPipelineViewportStateCreateInfo& info, co
 		vkViewport.minDepth = viewport.minDepth;
 		vkViewport.maxDepth = viewport.maxDepth;
 		vkViewports.push_back(vkViewport);
+
+		VkRect2D scissor;
+		scissor.offset = {static_cast<int>(viewport.x), static_cast<int>(viewport.y)};
+		scissor.extent = {static_cast<unsigned int>(viewport.width), static_cast<unsigned int>(viewport.height)};
+		vkScissors.push_back(scissor);
 	}
 
 	info.sType = VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;
@@ -259,13 +180,14 @@ void VKPipeline::createRasterizerState(VkPipelineRasterizationStateCreateInfo& i
 	info.sType = VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO;
 	info.depthClampEnable = VK_FALSE;
 	info.rasterizerDiscardEnable = VK_FALSE;
-	info.lineWidth = 1.0f;
 	info.polygonMode = VKPolygonMode[desc.rasterizer.polygonMode];
 	info.cullMode = VKCullMode[desc.rasterizer.cullMode];
+	info.frontFace = VK_FRONT_FACE_CLOCKWISE;
 	info.depthBiasEnable = VK_FALSE;
 	info.depthBiasConstantFactor = 0.0f; // Optional
-	info.depthBiasClamp = 0.0f; // Optional
-	info.depthBiasSlopeFactor = 0.0f; // Optional
+	info.depthBiasClamp = 0.0f;          // Optional
+	info.depthBiasSlopeFactor = 0.0f;    // Optional
+	info.lineWidth = 1.0f;
 }
 
 void VKPipeline::createMultisampleState(VkPipelineMultisampleStateCreateInfo& info, const Descriptor& desc)
@@ -273,15 +195,24 @@ void VKPipeline::createMultisampleState(VkPipelineMultisampleStateCreateInfo& in
 	info.sType = VK_STRUCTURE_TYPE_PIPELINE_MULTISAMPLE_STATE_CREATE_INFO;
 	info.sampleShadingEnable = VK_FALSE;
 	info.rasterizationSamples = VK_SAMPLE_COUNT_1_BIT;
-	info.minSampleShading = 1.0f; // Optional
-	info.pSampleMask = nullptr; // Optional
+	info.minSampleShading = 1.0f;          // Optional
+	info.pSampleMask = nullptr;            // Optional
 	info.alphaToCoverageEnable = VK_FALSE; // Optional
-	info.alphaToOneEnable = VK_FALSE; // Optional
+	info.alphaToOneEnable = VK_FALSE;      // Optional
 }
 
 void VKPipeline::createDepthStencilState(VkPipelineDepthStencilStateCreateInfo& info, const Descriptor& desc)
 {
 	info.sType = VK_STRUCTURE_TYPE_PIPELINE_DEPTH_STENCIL_STATE_CREATE_INFO;
+	info.depthTestEnable = VK_TRUE;
+	info.depthWriteEnable = VK_TRUE;
+	info.depthCompareOp = VK_COMPARE_OP_LESS;
+	info.depthBoundsTestEnable = VK_FALSE;
+	info.stencilTestEnable = VK_FALSE;
+	info.front = {};            // Optional
+	info.back = {};             // Optional
+	info.minDepthBounds = 0.0f; // Optional
+	info.maxDepthBounds = 1.0f; // Optional
 }
 
 void VKPipeline::createColorBlendState(VkPipelineColorBlendStateCreateInfo& info, const Descriptor& desc, std::vector<VkPipelineColorBlendAttachmentState>& attachments)
@@ -289,12 +220,12 @@ void VKPipeline::createColorBlendState(VkPipelineColorBlendStateCreateInfo& info
 	VkPipelineColorBlendAttachmentState attachement = {};
 	attachement.colorWriteMask = VK_COLOR_COMPONENT_R_BIT | VK_COLOR_COMPONENT_G_BIT | VK_COLOR_COMPONENT_B_BIT | VK_COLOR_COMPONENT_A_BIT;
 	attachement.blendEnable = VK_FALSE;
-	attachement.srcColorBlendFactor = VK_BLEND_FACTOR_ONE; // Optional
+	attachement.srcColorBlendFactor = VK_BLEND_FACTOR_ONE;  // Optional
 	attachement.dstColorBlendFactor = VK_BLEND_FACTOR_ZERO; // Optional
-	attachement.colorBlendOp = VK_BLEND_OP_ADD; // Optional
-	attachement.srcAlphaBlendFactor = VK_BLEND_FACTOR_ONE; // Optional
+	attachement.colorBlendOp = VK_BLEND_OP_ADD;             // Optional
+	attachement.srcAlphaBlendFactor = VK_BLEND_FACTOR_ONE;  // Optional
 	attachement.dstAlphaBlendFactor = VK_BLEND_FACTOR_ZERO; // Optional
-	attachement.alphaBlendOp = VK_BLEND_OP_ADD; // Optional
+	attachement.alphaBlendOp = VK_BLEND_OP_ADD;             // Optional
 	attachments.push_back(attachement);
 
 	info.sType = VK_STRUCTURE_TYPE_PIPELINE_COLOR_BLEND_STATE_CREATE_INFO;

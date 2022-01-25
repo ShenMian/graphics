@@ -56,10 +56,10 @@ void VKCommandBuffer::beginRenderPass(std::shared_ptr<Pipeline> pipeline)
 
 	VkRenderPassBeginInfo beginInfo = {};
 	beginInfo.sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
-	beginInfo.renderPass = vkPipeline->getRendererPass();
-	beginInfo.framebuffer = vkPipeline->framebuffers[0];
+	beginInfo.renderPass = swapchain.getRenderPass();
+	beginInfo.framebuffer = swapchain.getFramebuffers()[0];
 	beginInfo.renderArea.offset = {0, 0};
-	beginInfo.renderArea.extent = swapchain.getExtent();
+	beginInfo.renderArea.extent = swapchain.getSize();
 	beginInfo.clearValueCount = 1;
 	beginInfo.pClearValues = &clearColor;
 	vkCmdBeginRenderPass(handles[0], &beginInfo, VK_SUBPASS_CONTENTS_INLINE);

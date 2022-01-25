@@ -14,20 +14,29 @@ public:
 	VKSwapchain(VkSwapchainKHR swapchain, VKDevice& device, VkFormat imageFormat, VkExtent2D extent);
 	~VKSwapchain();
 
+	const VkExtent2D& getSize() const;
+
 	const std::vector<VkImage>& getImages() const;
 	const std::vector<VkImageView>& getImageViews() const;
-
-	const VkExtent2D& getExtent() const;
+	VkRenderPass getRenderPass() const;
+	const std::vector<VkFramebuffer>& getFramebuffers() const;
 
 	operator VkSwapchainKHR();
 	operator VkSwapchainKHR() const;
 
 private:
+	void createImageViews();
+	void createRenderPass();
+	void createFramebuffers();
+
 	VkSwapchainKHR handle;
 	VKDevice       device;
+	VkExtent2D     size;
 	VkFormat       imageFormat;
-	VkExtent2D     extent;
 
 	std::vector<VkImage>     images;
 	std::vector<VkImageView> imageViews;
+
+	VkRenderPass renderPass;
+	std::vector<VkFramebuffer> framebuffers;
 };
