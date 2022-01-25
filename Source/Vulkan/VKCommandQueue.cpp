@@ -55,4 +55,6 @@ void VKCommandQueue::submit(std::shared_ptr<CommandBuffer> commandBuffer)
 	presentInfo.pSwapchains = swapchains;
 	presentInfo.pImageIndices = &imageIndex;
 	vkQueuePresentKHR(presentQueue, &presentInfo);
+
+	vkQueueWaitIdle(presentQueue);
 }
