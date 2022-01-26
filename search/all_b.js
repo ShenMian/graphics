@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['map_116',['map',['../class_buffer.html#a86ec33e500feda85e9c4eecba8c6cb92',1,'Buffer::map()'],['../class_g_l_buffer.html#ad402ea789c05a62fc95b6d35017f2f97',1,'GLBuffer::map()']]],
+  ['map_116',['map',['../class_buffer.html#a86ec33e500feda85e9c4eecba8c6cb92',1,'Buffer::map()'],['../class_g_l_buffer.html#ad402ea789c05a62fc95b6d35017f2f97',1,'GLBuffer::map()'],['../class_v_k_buffer.html#a38607d59f73a101deea354c97dba25ab',1,'VKBuffer::map()']]],
   ['material_117',['Material',['../class_material.html',1,'']]],
   ['maxquality_118',['MaxQuality',['../struct_model_1_1_process_flags.html#a2022078b156bd53704d6a9d9c62d268ea5f5636950a04a5a83cc74318ff00ef86',1,'Model::ProcessFlags']]],
   ['menu_119',['Menu',['../classui_1_1_menu.html',1,'ui']]],

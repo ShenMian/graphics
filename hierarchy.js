@@ -3,7 +3,8 @@ var hierarchy =
     [ "PipelineLayout::Attribute", "struct_pipeline_layout_1_1_attribute.html", null ],
     [ "VertexLayout::Attribute", "struct_vertex_layout_1_1_attribute.html", null ],
     [ "Buffer", "class_buffer.html", [
-      [ "GLBuffer", "class_g_l_buffer.html", null ]
+      [ "GLBuffer", "class_g_l_buffer.html", null ],
+      [ "VKBuffer", "class_v_k_buffer.html", null ]
     ] ],
     [ "Camera", "class_camera.html", null ],
     [ "ClearFlag", "struct_clear_flag.html", null ],
@@ -86,7 +87,6 @@ var hierarchy =
     ] ],
     [ "VertexLayout", "class_vertex_layout.html", null ],
     [ "Viewport", "struct_viewport.html", null ],
-    [ "VKBuffer", "class_v_k_buffer.html", null ],
     [ "VKDevice", "class_v_k_device.html", null ],
     [ "VKInstance", "class_v_k_instance.html", null ],
     [ "VKPhysicalDevice", "class_v_k_physical_device.html", null ],

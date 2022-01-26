@@ -90,31 +90,188 @@ $(document).ready(function(){initNavTree('class_v_k_buffer.html',''); initResiza
 <div class="title">VKBuffer类 参考</div>  </div>
 </div><!--header-->
 <div class="contents">
+<div class="dynheader">
+类 VKBuffer 继承关系图:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_v_k_buffer.png" usemap="#VKBuffer_map" alt=""/>
+  <map id="VKBuffer_map" name="VKBuffer_map">
+<area href="class_buffer.html" title="缓冲区." alt="Buffer" shape="rect" coords="0,0,64,24"/>
+  </map>
+</div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
-<tr class="memitem:a82c3fa383094bf5cf1673c1eb84db83e"><td class="memItemLeft" align="right" valign="top"><a id="a82c3fa383094bf5cf1673c1eb84db83e"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>VKBuffer</b> (size_t size, <a class="el" href="class_buffer.html#a758eb2b0cc5aac56e3879407933fd3cc">Buffer::Type</a> type, VkMemoryPropertyFlags properties)</td></tr>
-<tr class="separator:a82c3fa383094bf5cf1673c1eb84db83e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0017dfb7ff7b0a18d5896284d23f17b"><td class="memItemLeft" align="right" valign="top"><a id="ac0017dfb7ff7b0a18d5896284d23f17b"></a>
-VkResult&#160;</td><td class="memItemRight" valign="bottom"><b>map</b> (size_t size=VK_WHOLE_SIZE, size_t offset=0)</td></tr>
-<tr class="separator:ac0017dfb7ff7b0a18d5896284d23f17b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aafb4b7d87600c31cb095e20719572472"><td class="memItemLeft" align="right" valign="top"><a id="aafb4b7d87600c31cb095e20719572472"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>unmap</b> ()</td></tr>
-<tr class="separator:aafb4b7d87600c31cb095e20719572472"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a115f46956d30cb978d835323e5b0dec5"><td class="memItemLeft" align="right" valign="top"><a id="a115f46956d30cb978d835323e5b0dec5"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>flush</b> (size_t size=VK_WHOLE_SIZE, size_t offset=0)</td></tr>
-<tr class="separator:a115f46956d30cb978d835323e5b0dec5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aea6d3cbf32148746fb14ddf432fb8421"><td class="memItemLeft" align="right" valign="top"><a id="aea6d3cbf32148746fb14ddf432fb8421"></a>
-void *&#160;</td><td class="memItemRight" valign="bottom"><b>getData</b> ()</td></tr>
-<tr class="separator:aea6d3cbf32148746fb14ddf432fb8421"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7fa0dd7fb7f7fef5ebc60a22c5b0b40"><td class="memItemLeft" align="right" valign="top"><a id="ab7fa0dd7fb7f7fef5ebc60a22c5b0b40"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>VKBuffer</b> (size_t size, <a class="el" href="class_buffer.html#a758eb2b0cc5aac56e3879407933fd3cc">Buffer::Type</a> type, <a class="el" href="class_buffer.html#aa1c6312f90d7b17d923a5ac01ccd2c21">Buffer::Usage</a> usage, VkMemoryPropertyFlags properties)</td></tr>
+<tr class="separator:ab7fa0dd7fb7f7fef5ebc60a22c5b0b40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38607d59f73a101deea354c97dba25ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_v_k_buffer.html#a38607d59f73a101deea354c97dba25ab">map</a> (size_t size=VK_WHOLE_SIZE, size_t offset=0) override</td></tr>
+<tr class="memdesc:a38607d59f73a101deea354c97dba25ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">映射缓冲区到内存.  <a href="class_v_k_buffer.html#a38607d59f73a101deea354c97dba25ab">更多...</a><br /></td></tr>
+<tr class="separator:a38607d59f73a101deea354c97dba25ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3063d48f226a7d11f14de846f0a712d1"><td class="memItemLeft" align="right" valign="top"><a id="a3063d48f226a7d11f14de846f0a712d1"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_v_k_buffer.html#a3063d48f226a7d11f14de846f0a712d1">unmap</a> () override</td></tr>
+<tr class="memdesc:a3063d48f226a7d11f14de846f0a712d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">取消映射. <br /></td></tr>
+<tr class="separator:a3063d48f226a7d11f14de846f0a712d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a730f9894b404620b87c8337ec380be17"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_v_k_buffer.html#a730f9894b404620b87c8337ec380be17">flush</a> (size_t size=VK_WHOLE_SIZE, size_t offset=0) override</td></tr>
+<tr class="memdesc:a730f9894b404620b87c8337ec380be17"><td class="mdescLeft">&#160;</td><td class="mdescRight">刷新映射缓冲区.  <a href="class_v_k_buffer.html#a730f9894b404620b87c8337ec380be17">更多...</a><br /></td></tr>
+<tr class="separator:a730f9894b404620b87c8337ec380be17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb2bc5914845f53c37fd09f97e6f570e"><td class="memItemLeft" align="right" valign="top"><a id="aeb2bc5914845f53c37fd09f97e6f570e"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>operator VkBuffer</b> ()</td></tr>
 <tr class="separator:aeb2bc5914845f53c37fd09f97e6f570e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae0fe73b3be1964b7244b1ba1b091025f"><td class="memItemLeft" align="right" valign="top"><a id="ae0fe73b3be1964b7244b1ba1b091025f"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>operator VkBuffer</b> () const</td></tr>
 <tr class="separator:ae0fe73b3be1964b7244b1ba1b091025f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_class_buffer"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_buffer')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="class_buffer.html">Buffer</a></td></tr>
+<tr class="memitem:a366ff84ddb5fe0e098bde020deb3df4c inherit pub_methods_class_buffer"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#a366ff84ddb5fe0e098bde020deb3df4c">Buffer</a> (size_t size, <a class="el" href="class_buffer.html#a758eb2b0cc5aac56e3879407933fd3cc">Type</a> type, <a class="el" href="class_buffer.html#aa1c6312f90d7b17d923a5ac01ccd2c21">Usage</a> usage)</td></tr>
+<tr class="memdesc:a366ff84ddb5fe0e098bde020deb3df4c inherit pub_methods_class_buffer"><td class="mdescLeft">&#160;</td><td class="mdescRight">构造函数.  <a href="class_buffer.html#a366ff84ddb5fe0e098bde020deb3df4c">更多...</a><br /></td></tr>
+<tr class="separator:a366ff84ddb5fe0e098bde020deb3df4c inherit pub_methods_class_buffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a996ac8bec0aaccf19776c45b55b27dd2 inherit pub_methods_class_buffer"><td class="memItemLeft" align="right" valign="top"><a id="a996ac8bec0aaccf19776c45b55b27dd2"></a>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#a996ac8bec0aaccf19776c45b55b27dd2">getSize</a> () const</td></tr>
+<tr class="memdesc:a996ac8bec0aaccf19776c45b55b27dd2 inherit pub_methods_class_buffer"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取缓冲区大小, 单位: 字节. <br /></td></tr>
+<tr class="separator:a996ac8bec0aaccf19776c45b55b27dd2 inherit pub_methods_class_buffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8df11718cac1d3d4321bbc9a8410ad01 inherit pub_methods_class_buffer"><td class="memItemLeft" align="right" valign="top"><a id="a8df11718cac1d3d4321bbc9a8410ad01"></a>
+<a class="el" href="class_buffer.html#a758eb2b0cc5aac56e3879407933fd3cc">Type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#a8df11718cac1d3d4321bbc9a8410ad01">getType</a> () const</td></tr>
+<tr class="memdesc:a8df11718cac1d3d4321bbc9a8410ad01 inherit pub_methods_class_buffer"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取缓冲区类型. <br /></td></tr>
+<tr class="separator:a8df11718cac1d3d4321bbc9a8410ad01 inherit pub_methods_class_buffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35f7d79ac4e9d02a86aad038d525a8df inherit pub_methods_class_buffer"><td class="memItemLeft" align="right" valign="top"><a id="a35f7d79ac4e9d02a86aad038d525a8df"></a>
+<a class="el" href="class_buffer.html#aa1c6312f90d7b17d923a5ac01ccd2c21">Usage</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#a35f7d79ac4e9d02a86aad038d525a8df">getUsage</a> () const</td></tr>
+<tr class="memdesc:a35f7d79ac4e9d02a86aad038d525a8df inherit pub_methods_class_buffer"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取缓冲区使用方式. <br /></td></tr>
+<tr class="separator:a35f7d79ac4e9d02a86aad038d525a8df inherit pub_methods_class_buffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32a87a0644536d10c637581022283854 inherit pub_methods_class_buffer"><td class="memItemLeft" align="right" valign="top"><a id="a32a87a0644536d10c637581022283854"></a>
+void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#a32a87a0644536d10c637581022283854">getData</a> ()</td></tr>
+<tr class="memdesc:a32a87a0644536d10c637581022283854 inherit pub_methods_class_buffer"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取映射的缓冲区. <br /></td></tr>
+<tr class="separator:a32a87a0644536d10c637581022283854 inherit pub_methods_class_buffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1dfdf1f77eeec6e076bba544fd7a9b82 inherit pub_methods_class_buffer"><td class="memItemLeft" align="right" valign="top"><a id="a1dfdf1f77eeec6e076bba544fd7a9b82"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>write</b> (const void *data, size_t size, size_t offset=0)</td></tr>
+<tr class="separator:a1dfdf1f77eeec6e076bba544fd7a9b82 inherit pub_methods_class_buffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d1b991d66514a60aa7a2899ee59d28f inherit pub_methods_class_buffer"><td class="memItemLeft" align="right" valign="top"><a id="a1d1b991d66514a60aa7a2899ee59d28f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>read</b> (void *data, size_t size, size_t offset=0)</td></tr>
+<tr class="separator:a1d1b991d66514a60aa7a2899ee59d28f inherit pub_methods_class_buffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header pub_types_class_buffer"><td colspan="2" onclick="javascript:toggleInherit('pub_types_class_buffer')"><img src="closed.png" alt="-"/>&#160;Public 类型 继承自 <a class="el" href="class_buffer.html">Buffer</a></td></tr>
+<tr class="memitem:a758eb2b0cc5aac56e3879407933fd3cc inherit pub_types_class_buffer"><td class="memItemLeft" align="right" valign="top"><a id="a758eb2b0cc5aac56e3879407933fd3cc"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#a758eb2b0cc5aac56e3879407933fd3cc">Type</a> { <b>Vertex</b>
+, <b>Index</b>
+, <b>Uniform</b>
+ }</td></tr>
+<tr class="memdesc:a758eb2b0cc5aac56e3879407933fd3cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">缓冲区类型. 表明了缓冲区的用途. <br /></td></tr>
+<tr class="separator:a758eb2b0cc5aac56e3879407933fd3cc inherit pub_types_class_buffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1c6312f90d7b17d923a5ac01ccd2c21 inherit pub_types_class_buffer"><td class="memItemLeft" align="right" valign="top"><a id="aa1c6312f90d7b17d923a5ac01ccd2c21"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#aa1c6312f90d7b17d923a5ac01ccd2c21">Usage</a> { <b>Static</b>
+, <b>Dynamic</b>
+, <b>Stream</b>
+ }</td></tr>
+<tr class="memdesc:aa1c6312f90d7b17d923a5ac01ccd2c21"><td class="mdescLeft">&#160;</td><td class="mdescRight">缓冲区使用方式. <br /></td></tr>
+<tr class="separator:aa1c6312f90d7b17d923a5ac01ccd2c21 inherit pub_types_class_buffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_class_buffer"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_buffer')"><img src="closed.png" alt="-"/>&#160;Protected 属性 继承自 <a class="el" href="class_buffer.html">Buffer</a></td></tr>
+<tr class="memitem:a24e94f119f4b386771c78cf37aaff41b inherit pro_attribs_class_buffer"><td class="memItemLeft" align="right" valign="top"><a id="a24e94f119f4b386771c78cf37aaff41b"></a>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><b>size</b></td></tr>
+<tr class="separator:a24e94f119f4b386771c78cf37aaff41b inherit pro_attribs_class_buffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ff4210441bce9a41ef90b8fd8f02f7e inherit pro_attribs_class_buffer"><td class="memItemLeft" align="right" valign="top"><a id="a2ff4210441bce9a41ef90b8fd8f02f7e"></a>
+<a class="el" href="class_buffer.html#a758eb2b0cc5aac56e3879407933fd3cc">Type</a>&#160;</td><td class="memItemRight" valign="bottom"><b>type</b></td></tr>
+<tr class="separator:a2ff4210441bce9a41ef90b8fd8f02f7e inherit pro_attribs_class_buffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a630960540a4e5a7f7cc5758e0a6d9bee inherit pro_attribs_class_buffer"><td class="memItemLeft" align="right" valign="top"><a id="a630960540a4e5a7f7cc5758e0a6d9bee"></a>
+<a class="el" href="class_buffer.html#aa1c6312f90d7b17d923a5ac01ccd2c21">Usage</a>&#160;</td><td class="memItemRight" valign="bottom"><b>usage</b></td></tr>
+<tr class="separator:a630960540a4e5a7f7cc5758e0a6d9bee inherit pro_attribs_class_buffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae615518349c1a6f24d7b3b565f740dc0 inherit pro_attribs_class_buffer"><td class="memItemLeft" align="right" valign="top"><a id="ae615518349c1a6f24d7b3b565f740dc0"></a>
+void *&#160;</td><td class="memItemRight" valign="bottom"><b>data</b> = nullptr</td></tr>
+<tr class="separator:ae615518349c1a6f24d7b3b565f740dc0 inherit pro_attribs_class_buffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a730f9894b404620b87c8337ec380be17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a730f9894b404620b87c8337ec380be17">&#9670;&nbsp;</a></span>flush()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void VKBuffer::flush </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>size</em> = <code>VK_WHOLE_SIZE</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>offset</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>刷新映射缓冲区. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">size</td><td>要刷新的大小, 默认值: 全部. </td></tr>
+    <tr><td class="paramname">offset</td><td>偏移量, 单位: byte. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>实现了 <a class="el" href="class_buffer.html#ad3d7bb0b0389604614c1a56b2a68e432">Buffer</a>.</p>
+
+</div>
+</div>
+<a id="a38607d59f73a101deea354c97dba25ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38607d59f73a101deea354c97dba25ab">&#9670;&nbsp;</a></span>map()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void VKBuffer::map </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>size</em> = <code>VK_WHOLE_SIZE</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>offset</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>映射缓冲区到内存. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">size</td><td>要映射的大小, 默认值: 全部. </td></tr>
+    <tr><td class="paramname">offset</td><td>偏移量, 单位: byte. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>实现了 <a class="el" href="class_buffer.html#a86ec33e500feda85e9c4eecba8c6cb92">Buffer</a>.</p>
+
+</div>
+</div>
 <hr/>该类的文档由以下文件生成:<ul>
 <li>/github/workspace/Source/Vulkan/<a class="el" href="_v_k_buffer_8h_source.html">VKBuffer.h</a></li>
 <li>/github/workspace/Source/Vulkan/VKBuffer.cpp</li>
