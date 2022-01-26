@@ -15,7 +15,8 @@ std::unordered_map<Buffer::Type, VkBufferUsageFlags> VKUsage = {
 
 }
 
-VKBuffer::VKBuffer(size_t size, Buffer::Type type, VkMemoryPropertyFlags properties)
+VKBuffer::VKBuffer(size_t size, Buffer::Type type, Buffer::Usage usage, VkMemoryPropertyFlags properties)
+	: Buffer(size, type, usage)
 {
 	renderer = reinterpret_cast<VKRenderer*>(Renderer::get());
 	auto& device = renderer->getDevice();
@@ -48,10 +49,11 @@ VKBuffer::~VKBuffer()
 	vkFreeMemory(device, memory, nullptr);
 }
 
-VkResult VKBuffer::map(size_t size, size_t offset)
+void VKBuffer::map(size_t size, size_t offset)
 {
 	auto& device = renderer->getDevice();
-	return vkMapMemory(device, memory, offset, size, 0, &data);
+	if(vkMapMemory(device, memory, offset, size, 0, &data) != VK_SUCCESS)
+		throw std::runtime_error("failed to map buffer memory");
 }
 
 void VKBuffer::unmap()
@@ -71,11 +73,6 @@ void VKBuffer::flush(size_t size, size_t offset)
 	info.offset = offset;
 	info.size = size;
 	vkFlushMappedMemoryRanges(device, 1, &info);
-}
-
-void* VKBuffer::getData()
-{
-	return data;
 }
 
 VKBuffer::operator VkBuffer()

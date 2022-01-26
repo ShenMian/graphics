@@ -7,17 +7,15 @@
 #include "VKRenderer.h"
 #include <vulkan/vulkan.h>
 
-class VKBuffer
+class VKBuffer : public Buffer
 {
 public:
-	VKBuffer(size_t size, Buffer::Type type, VkMemoryPropertyFlags properties);
+	VKBuffer(size_t size, Buffer::Type type, Buffer::Usage usage, VkMemoryPropertyFlags properties);
 	virtual ~VKBuffer();
 
-	VkResult map(size_t size = VK_WHOLE_SIZE, size_t offset = 0);
-	void unmap();
-	void flush(size_t size = VK_WHOLE_SIZE, size_t offset = 0);
-
-	void* getData();
+	void map(size_t size = VK_WHOLE_SIZE, size_t offset = 0) override;
+	void unmap() override;
+	void flush(size_t size = VK_WHOLE_SIZE, size_t offset = 0) override;
 
 	operator VkBuffer();
 	operator VkBuffer() const;
@@ -27,7 +25,6 @@ private:
 
 	VkBuffer       handle;
 	VkDeviceMemory memory;
-	void* data = nullptr;
 
 	VKRenderer* renderer;
 };
