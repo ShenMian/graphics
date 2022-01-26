@@ -169,8 +169,6 @@ void drawIconGrid(ImDrawList* drawList, const ImRect& rect, bool filled, ImU32 c
 		tl.y += w * 2;
 		br.y += w * 2;
 	}
-
-	triangleStart = br.x + w + 1.0f / 24.0f * rect_w;
 }
 
 void DrawIconRoundSquare(ImDrawList* drawList, const ImRect& rect, bool filled, ImU32 color, ImU32 innerColor)
