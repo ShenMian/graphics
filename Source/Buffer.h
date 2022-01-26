@@ -60,6 +60,10 @@ public:
 	 */
 	void* getData();
 
+	void write(const void* data, size_t size, size_t offset = 0);
+
+	void read(void* data, size_t size, size_t offset = 0);
+
 	/**
 	 * @brief 映射缓冲区到内存.
 	 *

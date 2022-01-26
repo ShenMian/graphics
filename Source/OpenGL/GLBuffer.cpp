@@ -60,12 +60,6 @@ void GLBuffer::unmap()
 	GLCheckError();
 }
 
-void GLBuffer::write(const void* data, size_t size, size_t offset)
-{
-	std::memcpy(static_cast<unsigned char*>(this->data) + offset, data, size);
-	// glBufferSubData(glType, offset, size, data);
-}
-
 void GLBuffer::flush(size_t size, size_t offset)
 {
 	if(size == -1)
