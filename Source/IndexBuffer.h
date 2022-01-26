@@ -42,21 +42,16 @@ public:
 	 */
 	uint32_t getCount() const;
 
-	std::vector<uint8_t>& getData();
-	const std::vector<uint8_t>& getData() const;
-
-	void flash();
-
 	virtual void map() = 0;
 	virtual void unmap() = 0;
 	virtual void write(const void* data, size_t size) = 0;
+
 	virtual void bind() = 0;
 
 protected:
 	IndexBuffer(const void* data, size_t size);
 
 private:
-	size_t               size;
-	uint32_t             count;
-	std::vector<uint8_t> buffer;
+	size_t   size;
+	uint32_t count;
 };

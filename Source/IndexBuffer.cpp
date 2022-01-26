@@ -34,26 +34,7 @@ uint32_t IndexBuffer::getCount() const
 	return count;
 }
 
-std::vector<uint8_t>& IndexBuffer::getData()
-{
-	return buffer;
-}
-
-const std::vector<uint8_t>& IndexBuffer::getData() const
-{
-	return buffer;
-}
-
-void IndexBuffer::flash()
-{
-	// map();
-	write(buffer.data(), buffer.size());
-	// unmap();
-}
-
 IndexBuffer::IndexBuffer(const void* data, size_t size)
 	: size(size), count(static_cast<uint32_t>(size / sizeof(unsigned int)))
 {
-	buffer.resize(size);
-	std::memcpy(buffer.data(), data, buffer.size());
 }

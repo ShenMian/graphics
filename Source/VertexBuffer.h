@@ -51,24 +51,19 @@ public:
 	 */
 	const VertexLayout& getFormat() const;
 
-	std::vector<uint8_t>& getData();
-	const std::vector<uint8_t>& getData() const;
-
-	void flash();
-
 	virtual void map() = 0;
 	virtual void unmap() = 0;
 	virtual void write(const void* data, size_t size) = 0;
+
 	virtual void bind() = 0;
 
 protected:
 	VertexBuffer(const void* data, size_t size, const VertexLayout& layout);
 
 private:
-	size_t               size;
-	uint32_t             count;
-	VertexLayout         format;
-	std::vector<uint8_t> buffer;
+	size_t       size;
+	uint32_t     count;
+	VertexLayout format;
 };
 
 template <typename T>

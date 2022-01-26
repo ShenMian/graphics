@@ -38,26 +38,7 @@ const VertexLayout& VertexBuffer::getFormat() const
 	return format;
 }
 
-std::vector<uint8_t>& VertexBuffer::getData()
-{
-	return buffer;
-}
-
-const std::vector<uint8_t>& VertexBuffer::getData() const
-{
-	return buffer;
-}
-
-void VertexBuffer::flash()
-{
-	// map();
-	write(buffer.data(), buffer.size());
-	// unmap();
-}
-
 VertexBuffer::VertexBuffer(const void* data, size_t size, const VertexLayout& layout)
 	: size(size), count(static_cast<uint32_t>(size / layout.getStride())), format(layout)
 {
-	buffer.resize(size);
-	std::memcpy(buffer.data(), data, buffer.size());
 }

@@ -79,6 +79,8 @@ const Material& Mesh::getMaterial() const
 
 void Mesh::compress()
 {
+	// TODO
+	/*
 	{
 		std::vector<uint8_t> tmp;
 		auto& buf = indexBuffer->getData();
@@ -95,10 +97,13 @@ void Mesh::compress()
 		buf.shrink_to_fit();
 		vertexBuffer->flash();
 	}
+	*/
 }
 
 void Mesh::decompress()
 {
+	// TODO
+	/*
 	{
 		std::vector<uint8_t> tmp;
 		auto& buf = indexBuffer->getData();
@@ -115,4 +120,5 @@ void Mesh::decompress()
 		buf = tmp;
 		vertexBuffer->flash();
 	}
+	*/
 }
