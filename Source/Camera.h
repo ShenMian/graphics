@@ -87,10 +87,31 @@ public:
 	 */
 	float getFar() const;
 
+	/**
+	 * @brief 设置相机坐标.
+	 *
+	 * @param pos 相机坐标.
+	 */
 	void setPosition(Vector3f pos);
+
+	/**
+	 * @brief 获得相机坐标.
+	 */
 	Vector3f getPosition() const;
 
+	/**
+	 * @brief 设置绕各轴旋转的角度.
+	 *
+	 * @param rot 绕各轴旋转的角度.
+	 *     rot.x 为绕 x 轴旋转的角度,
+	 *     rot.y 为绕 y 轴旋转的角度,
+	 *     rot.z 为绕 z 轴旋转的角度.
+	 */
 	void setRotation(Vector3f rot);
+
+	/**
+	 * @brief 获取绕各轴旋转的角度.
+	 */
 	Vector3f getRotation() const;
 
 	Vector3f getFront() const;
@@ -98,7 +119,14 @@ public:
 	Vector3f getUp() const;
 
 protected:
+	/**
+	 * @brief 更新投影矩阵.
+	 */
 	void updateProjectionMatrix() const;
+
+	/**
+	 * @brief 更新视图矩阵.
+	 */
 	void updateViewMatrix() const;
 
 	struct Perspective
