@@ -144,11 +144,11 @@ size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cl
 void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#a32a87a0644536d10c637581022283854">getData</a> ()</td></tr>
 <tr class="memdesc:a32a87a0644536d10c637581022283854"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取映射的缓冲区. <br /></td></tr>
 <tr class="separator:a32a87a0644536d10c637581022283854"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1dfdf1f77eeec6e076bba544fd7a9b82"><td class="memItemLeft" align="right" valign="top"><a id="a1dfdf1f77eeec6e076bba544fd7a9b82"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>write</b> (const void *data, size_t size, size_t offset=0)</td></tr>
+<tr class="memitem:a1dfdf1f77eeec6e076bba544fd7a9b82"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#a1dfdf1f77eeec6e076bba544fd7a9b82">write</a> (const void *data, size_t size, size_t offset=0)</td></tr>
+<tr class="memdesc:a1dfdf1f77eeec6e076bba544fd7a9b82"><td class="mdescLeft">&#160;</td><td class="mdescRight">写入映射缓冲区.  <a href="class_buffer.html#a1dfdf1f77eeec6e076bba544fd7a9b82">更多...</a><br /></td></tr>
 <tr class="separator:a1dfdf1f77eeec6e076bba544fd7a9b82"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1d1b991d66514a60aa7a2899ee59d28f"><td class="memItemLeft" align="right" valign="top"><a id="a1d1b991d66514a60aa7a2899ee59d28f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>read</b> (void *data, size_t size, size_t offset=0)</td></tr>
+<tr class="memitem:a1d1b991d66514a60aa7a2899ee59d28f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#a1d1b991d66514a60aa7a2899ee59d28f">read</a> (void *data, size_t size, size_t offset=0)</td></tr>
+<tr class="memdesc:a1d1b991d66514a60aa7a2899ee59d28f"><td class="mdescLeft">&#160;</td><td class="mdescRight">读取映射缓冲区.  <a href="class_buffer.html#a1d1b991d66514a60aa7a2899ee59d28f">更多...</a><br /></td></tr>
 <tr class="separator:a1d1b991d66514a60aa7a2899ee59d28f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86ec33e500feda85e9c4eecba8c6cb92"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_buffer.html#a86ec33e500feda85e9c4eecba8c6cb92">map</a> (size_t size=-1, size_t offset=0)=0</td></tr>
 <tr class="memdesc:a86ec33e500feda85e9c4eecba8c6cb92"><td class="mdescLeft">&#160;</td><td class="mdescRight">映射缓冲区到内存.  <a href="class_buffer.html#a86ec33e500feda85e9c4eecba8c6cb92">更多...</a><br /></td></tr>
@@ -315,6 +315,94 @@ void *&#160;</td><td class="memItemRight" valign="bottom"><b>data</b> = nullptr<
 </dl>
 
 <p>在 <a class="el" href="class_v_k_buffer.html#a38607d59f73a101deea354c97dba25ab">VKBuffer</a> , 以及 <a class="el" href="class_g_l_buffer.html#ad402ea789c05a62fc95b6d35017f2f97">GLBuffer</a> 内被实现.</p>
+
+</div>
+</div>
+<a id="a1d1b991d66514a60aa7a2899ee59d28f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d1b991d66514a60aa7a2899ee59d28f">&#9670;&nbsp;</a></span>read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Buffer::read </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>offset</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>读取映射缓冲区. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>要写入的缓冲区. </td></tr>
+    <tr><td class="paramname">size</td><td>要读取的大小, 单位: byte. </td></tr>
+    <tr><td class="paramname">offset</td><td>偏移量, 单位: byte. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1dfdf1f77eeec6e076bba544fd7a9b82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1dfdf1f77eeec6e076bba544fd7a9b82">&#9670;&nbsp;</a></span>write()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Buffer::write </td>
+          <td>(</td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>offset</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>写入映射缓冲区. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>要写入的数据. </td></tr>
+    <tr><td class="paramname">size</td><td>要写入的大小, 单位: byte. </td></tr>
+    <tr><td class="paramname">offset</td><td>偏移量, 单位: byte. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

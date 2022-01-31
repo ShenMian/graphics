@@ -1,6 +1,6 @@
 var NAVTREEINDEX3 =
 {
-"index.html":[0],
+"index.html":[],
 "index.html#autotoc_md5":[0,0],
 "index.html#autotoc_md6":[0,1],
 "index.html#autotoc_md7":[0,2],
