@@ -92,12 +92,12 @@ public:
 	 *
 	 * @param pos 相机坐标.
 	 */
-	void setPosition(Vector3f pos);
+	void setPosition(const Vector3f& pos);
 
 	/**
 	 * @brief 获得相机坐标.
 	 */
-	Vector3f getPosition() const;
+	const Vector3f& getPosition() const;
 
 	/**
 	 * @brief 设置绕各轴旋转的角度.
@@ -107,12 +107,12 @@ public:
 	 *     rot.y 为绕 y 轴旋转的角度,
 	 *     rot.z 为绕 z 轴旋转的角度.
 	 */
-	void setRotation(Vector3f rot);
+	void setRotation(const Vector3f& rot);
 
 	/**
 	 * @brief 获取绕各轴旋转的角度.
 	 */
-	Vector3f getRotation() const;
+	const Vector3f& getRotation() const;
 
 	Vector3f getFront() const;
 	Vector3f getRight() const;

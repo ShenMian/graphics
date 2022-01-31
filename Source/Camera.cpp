@@ -45,24 +45,24 @@ Camera::Type Camera::getType() const
 	return type;
 }
 
-void Camera::setPosition(Vector3f pos)
+void Camera::setPosition(const Vector3f& pos)
 {
 	position = pos;
 	viewDirty = true;
 }
 
-Vector3f Camera::getPosition() const
+const Vector3f& Camera::getPosition() const
 {
 	return position;
 }
 
-void Camera::setRotation(Vector3f rot)
+void Camera::setRotation(const Vector3f& rot)
 {
 	rotation = rot;
 	viewDirty = true;
 }
 
-Vector3f Camera::getRotation() const
+const Vector3f& Camera::getRotation() const
 {
 	return rotation;
 }
