@@ -60,8 +60,22 @@ public:
 	 */
 	void* getData();
 
+	/**
+	 * @brief 写入映射缓冲区.
+	 *
+	 * @param data   要写入的数据.
+	 * @param size   要写入的大小, 单位: byte.
+	 * @param offset 偏移量, 单位: byte.
+	 */
 	void write(const void* data, size_t size, size_t offset = 0);
 
+	/**
+	 * @brief 读取映射缓冲区.
+	 *
+	 * @param data   要写入的缓冲区.
+	 * @param size   要读取的大小, 单位: byte.
+	 * @param offset 偏移量, 单位: byte.
+	 */
 	void read(void* data, size_t size, size_t offset = 0);
 
 	/**

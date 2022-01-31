@@ -10,6 +10,21 @@ Buffer::Buffer(size_t size, Type type, Usage usage)
 {
 }
 
+size_t Buffer::getSize() const
+{
+	return size;
+}
+
+Buffer::Type Buffer::getType() const
+{
+	return type;
+}
+
+Buffer::Usage Buffer::getUsage() const
+{
+	return usage;
+}
+
 void* Buffer::getData()
 {
 	return data;
@@ -27,19 +42,4 @@ void Buffer::read(void* data, size_t size, size_t offset)
 	assert(this->data);
 	assert(offset + size <= this->size);
 	std::memcpy(data, static_cast<unsigned char*>(this->data) + offset, size);
-}
-
-size_t Buffer::getSize() const
-{
-	return size;
-}
-
-Buffer::Type Buffer::getType() const
-{
-	return type;
-}
-
-Buffer::Usage Buffer::getUsage() const
-{
-	return usage;
 }
