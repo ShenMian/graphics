@@ -27,7 +27,7 @@ public:
 	 *
 	 * @param desc 描述符.
 	 */
-	static std::shared_ptr<Program> create(const Descriptor& desc);
+	[[nodiscard]] static std::shared_ptr<Program> create(const Descriptor& desc);
 
 	explicit Program(const std::string& name);
 

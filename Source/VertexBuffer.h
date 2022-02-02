@@ -23,7 +23,7 @@ public:
 	 * @param usage  使用方式.
 	 */
 	template <typename T>
-	static std::shared_ptr<VertexBuffer> create(const std::vector<T>& data, const VertexLayout& layout, Buffer::Usage usage = Buffer::Usage::Static);
+	[[nodiscard]] static std::shared_ptr<VertexBuffer> create(const std::vector<T>& data, const VertexLayout& layout, Buffer::Usage usage = Buffer::Usage::Static);
 
 	/**
 	 * @brief 创建 VertexBuffer.
@@ -34,7 +34,7 @@ public:
 	 * @param layout 顶点格式.
 	 * @param usage  使用方式.
 	 */
-	static std::shared_ptr<VertexBuffer> create(const void* data, size_t size, const VertexLayout& layout, Buffer::Usage usage = Buffer::Usage::Static);
+	[[nodiscard]] static std::shared_ptr<VertexBuffer> create(const void* data, size_t size, const VertexLayout& layout, Buffer::Usage usage = Buffer::Usage::Static);
 
 	/**
 	 * @brief 获取缓冲区大小, 单位: 字节.

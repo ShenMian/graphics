@@ -18,7 +18,7 @@ class Pipeline
 public:
 	struct Descriptor;
 
-	static std::shared_ptr<Pipeline> create(const Descriptor& desc);
+	[[nodiscard]] static std::shared_ptr<Pipeline> create(const Descriptor& desc);
 
 	std::shared_ptr<Program> program;
 

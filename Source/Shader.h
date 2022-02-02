@@ -37,7 +37,7 @@ public:
 	 *
 	 * @param desc 描述符.
 	 */
-	static std::shared_ptr<Shader> create(const Descriptor& desc);
+	[[nodiscard]] static std::shared_ptr<Shader> create(const Descriptor& desc);
 
 	/**
 	 * @brief 获取名称.
