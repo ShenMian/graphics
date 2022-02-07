@@ -1,7 +1,6 @@
 ﻿// Copyright 2021 ShenMian
 // License(Apache-2.0)
 
-
 #include "VKCommandBuffer.h"
 #include "VKPipeline.h"
 #include "VKVertexBuffer.h"
@@ -29,7 +28,7 @@ VKCommandBuffer::VKCommandBuffer()
 VKCommandBuffer::~VKCommandBuffer()
 {
 	auto renderer = reinterpret_cast<VKRenderer*>(Renderer::get());
-	vkFreeCommandBuffers(renderer->getDevice(), renderer->getCommandPool(), static_cast<uint32_t>(handles.size()), handles.data());
+	// vkFreeCommandBuffers(renderer->getDevice(), renderer->getCommandPool(), static_cast<uint32_t>(handles.size()), handles.data());
 }
 
 void VKCommandBuffer::begin()
