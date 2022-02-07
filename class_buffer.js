@@ -19,9 +19,5 @@ var class_buffer =
     [ "map", "class_buffer.html#a86ec33e500feda85e9c4eecba8c6cb92", null ],
     [ "read", "class_buffer.html#a1d1b991d66514a60aa7a2899ee59d28f", null ],
     [ "unmap", "class_buffer.html#a6ba3b3427f1570055a2ad2137743435a", null ],
-    [ "write", "class_buffer.html#a1dfdf1f77eeec6e076bba544fd7a9b82", null ],
-    [ "data", "class_buffer.html#ae615518349c1a6f24d7b3b565f740dc0", null ],
-    [ "size", "class_buffer.html#a24e94f119f4b386771c78cf37aaff41b", null ],
-    [ "type", "class_buffer.html#a2ff4210441bce9a41ef90b8fd8f02f7e", null ],
-    [ "usage", "class_buffer.html#a630960540a4e5a7f7cc5758e0a6d9bee", null ]
+    [ "write", "class_buffer.html#a1dfdf1f77eeec6e076bba544fd7a9b82", null ]
 ];

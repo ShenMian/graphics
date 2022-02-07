@@ -2,8 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<meta name="generator" content="Doxygen 1.9.1"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.3"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Graphics: VKDevice类 参考</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
@@ -23,10 +23,9 @@
 <div id="titlearea">
 <table cellspacing="0" cellpadding="0">
  <tbody>
- <tr style="height: 56px;">
-  <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Graphics
-   &#160;<span id="projectnumber">v0.0.0</span>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Graphics<span id="projectnumber">&#160;v0.0.0</span>
    </div>
    <div id="projectbrief">A simple abstraction layer for the modern graphics APIs.</div>
   </td>
@@ -35,21 +34,22 @@
 </table>
 </div>
 <!-- end header part -->
-<!-- 制作者 Doxygen 1.9.1 -->
+<!-- 制作者 Doxygen 1.9.3 -->
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-var searchBox = new SearchBox("searchBox", "search",false,'搜索','.html');
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'搜索','.html');
 /* @license-end */
 </script>
 <script type="text/javascript" src="menudata.js"></script>
 <script type="text/javascript" src="menu.js"></script>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function() {
   initMenu('',true,false,'search.php','搜索');
   $(document).ready(function() { init_search(); });
 });
-/* @license-end */</script>
+/* @license-end */
+</script>
 <div id="main-nav"></div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
@@ -63,7 +63,7 @@ $(function() {
   </div>
 </div>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(document).ready(function(){initNavTree('class_v_k_device.html',''); initResizable(); });
 /* @license-end */
 </script>
@@ -87,8 +87,7 @@ $(document).ready(function(){initNavTree('class_v_k_device.html',''); initResiza
 <a href="#pub-types">Public 类型</a> &#124;
 <a href="#pub-methods">Public 成员函数</a> &#124;
 <a href="class_v_k_device-members.html">所有成员列表</a>  </div>
-  <div class="headertitle">
-<div class="title">VKDevice类 参考<span class="mlabels"><span class="mlabel">final</span></span></div>  </div>
+  <div class="headertitle"><div class="title">VKDevice类 参考<span class="mlabels"><span class="mlabel">final</span></span></div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -97,9 +96,9 @@ $(document).ready(function(){initNavTree('class_v_k_device.html',''); initResiza
 
 <p><code>#include &lt;<a class="el" href="_v_k_device_8h_source.html">VKDevice.h</a>&gt;</code></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public 类型</h2></td></tr>
-<tr class="memitem:a06fa199b3117acdfe766d967a560f799"><td class="memItemLeft" align="right" valign="top"><a id="a06fa199b3117acdfe766d967a560f799"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_v_k_device.html#a06fa199b3117acdfe766d967a560f799">QueueType</a> { <b>Graphics</b>
+<tr class="memitem:a06fa199b3117acdfe766d967a560f799"><td class="memItemLeft" align="right" valign="top"><a id="a06fa199b3117acdfe766d967a560f799" name="a06fa199b3117acdfe766d967a560f799"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_v_k_device.html#a06fa199b3117acdfe766d967a560f799">QueueType</a> { <b>Graphics</b>
 , <b>Compute</b>
 , <b>Transfer</b>
 , <b>Present</b>
@@ -107,12 +106,12 @@ Public 类型</h2></td></tr>
 <tr class="memdesc:a06fa199b3117acdfe766d967a560f799"><td class="mdescLeft">&#160;</td><td class="mdescRight">队列类型. <br /></td></tr>
 <tr class="separator:a06fa199b3117acdfe766d967a560f799"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
-<tr class="memitem:ab730fcaa4eadfd8718944eaf88ae5940"><td class="memItemLeft" align="right" valign="top"><a id="ab730fcaa4eadfd8718944eaf88ae5940"></a>
+<tr class="memitem:ab730fcaa4eadfd8718944eaf88ae5940"><td class="memItemLeft" align="right" valign="top"><a id="ab730fcaa4eadfd8718944eaf88ae5940" name="ab730fcaa4eadfd8718944eaf88ae5940"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>VKDevice</b> (VkDevice device)</td></tr>
 <tr class="separator:ab730fcaa4eadfd8718944eaf88ae5940"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aff462237f68ac2a80e33c0adca2df279"><td class="memItemLeft" align="right" valign="top"><a id="aff462237f68ac2a80e33c0adca2df279"></a>
+<tr class="memitem:aff462237f68ac2a80e33c0adca2df279"><td class="memItemLeft" align="right" valign="top"><a id="aff462237f68ac2a80e33c0adca2df279" name="aff462237f68ac2a80e33c0adca2df279"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>VKDevice</b> (VkDevice device, <a class="el" href="class_v_k_physical_device.html">VKPhysicalDevice</a> &amp;physicalDevice)</td></tr>
 <tr class="separator:aff462237f68ac2a80e33c0adca2df279"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab9a1f3885fed4a385a311f6ac8abdcf0"><td class="memItemLeft" align="right" valign="top">VkQueue&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_v_k_device.html#ab9a1f3885fed4a385a311f6ac8abdcf0">getQueue</a> (<a class="el" href="class_v_k_device.html#a06fa199b3117acdfe766d967a560f799">QueueType</a> type) const</td></tr>
@@ -121,20 +120,20 @@ Public 成员函数</h2></td></tr>
 <tr class="memitem:a80953af4c4d080ec0778c35483ed0027"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_v_k_device.html#a80953af4c4d080ec0778c35483ed0027">getQueueIndex</a> (<a class="el" href="class_v_k_device.html#a06fa199b3117acdfe766d967a560f799">QueueType</a> type) const</td></tr>
 <tr class="memdesc:a80953af4c4d080ec0778c35483ed0027"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取队列索引.  <a href="class_v_k_device.html#a80953af4c4d080ec0778c35483ed0027">更多...</a><br /></td></tr>
 <tr class="separator:a80953af4c4d080ec0778c35483ed0027"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae9fd0833bf7ddff9b185fc9d3943416"><td class="memItemLeft" align="right" valign="top"><a id="aae9fd0833bf7ddff9b185fc9d3943416"></a>
+<tr class="memitem:aae9fd0833bf7ddff9b185fc9d3943416"><td class="memItemLeft" align="right" valign="top"><a id="aae9fd0833bf7ddff9b185fc9d3943416" name="aae9fd0833bf7ddff9b185fc9d3943416"></a>
 <a class="el" href="class_v_k_physical_device.html">VKPhysicalDevice</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getPhysicalDevice</b> ()</td></tr>
 <tr class="separator:aae9fd0833bf7ddff9b185fc9d3943416"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a23d87f02eb75ac84aa55931ecebb417a"><td class="memItemLeft" align="right" valign="top"><a id="a23d87f02eb75ac84aa55931ecebb417a"></a>
+<tr class="memitem:a23d87f02eb75ac84aa55931ecebb417a"><td class="memItemLeft" align="right" valign="top"><a id="a23d87f02eb75ac84aa55931ecebb417a" name="a23d87f02eb75ac84aa55931ecebb417a"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>operator VkDevice</b> ()</td></tr>
 <tr class="separator:a23d87f02eb75ac84aa55931ecebb417a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf81d170170106c99fff3aaf78bbe11d"><td class="memItemLeft" align="right" valign="top"><a id="abf81d170170106c99fff3aaf78bbe11d"></a>
+<tr class="memitem:abf81d170170106c99fff3aaf78bbe11d"><td class="memItemLeft" align="right" valign="top"><a id="abf81d170170106c99fff3aaf78bbe11d" name="abf81d170170106c99fff3aaf78bbe11d"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>operator VkDevice</b> () const</td></tr>
 <tr class="separator:abf81d170170106c99fff3aaf78bbe11d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
-<div class="textblock"><p>Vulkan 逻辑设备. </p>
+<div class="textblock"><p >Vulkan 逻辑设备. </p>
 </div><h2 class="groupheader">成员函数说明</h2>
-<a id="ab9a1f3885fed4a385a311f6ac8abdcf0"></a>
+<a id="ab9a1f3885fed4a385a311f6ac8abdcf0" name="ab9a1f3885fed4a385a311f6ac8abdcf0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab9a1f3885fed4a385a311f6ac8abdcf0">&#9670;&nbsp;</a></span>getQueue()</h2>
 
 <div class="memitem">
@@ -160,7 +159,7 @@ Public 成员函数</h2></td></tr>
 
 </div>
 </div>
-<a id="a80953af4c4d080ec0778c35483ed0027"></a>
+<a id="a80953af4c4d080ec0778c35483ed0027" name="a80953af4c4d080ec0778c35483ed0027"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a80953af4c4d080ec0778c35483ed0027">&#9670;&nbsp;</a></span>getQueueIndex()</h2>
 
 <div class="memitem">
@@ -196,7 +195,7 @@ Public 成员函数</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_v_k_device.html">VKDevice</a></li>
-    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
   </ul>
 </div>
 </body>

@@ -60,9 +60,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_buffer_8h_source.html",
-"class_gamepad.html#aace04775bce81c450f0096793f6fd199",
-"class_v_k_physical_device.html#a5ef271825f1b9c488215ba3acf424093",
-"index.html"
+"class_v_k_device.html#a06fa199b3117acdfe766d967a560f799ad334dfcea59127bedfcdbe0a3ee7f494"
 ];
 
 var SYNCONMSG = '点击 关闭 面板同步';
