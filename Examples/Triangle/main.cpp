@@ -105,7 +105,7 @@ int main()
 
 					cmdBuffer->beginRenderPass(pipeline);
 					{
-						cmdBuffer->setViewport({window.getSize()}); // TODO: Vulkan 下可能崩溃?
+						cmdBuffer->setViewport({window.getSize()});
 						cmdBuffer->setClearColor({0, 0, 0, 0});
 						cmdBuffer->clear(ClearFlag::Color);
 
