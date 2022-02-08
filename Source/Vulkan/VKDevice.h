@@ -26,7 +26,6 @@ public:
 	VKDevice() = default;
 	VKDevice(VkDevice device);
 	VKDevice(VkDevice device, VKPhysicalDevice& physicalDevice);
-	~VKDevice();
 
 	/**
 	 * @brief 获取队列.
@@ -43,6 +42,8 @@ public:
 	uint32_t getQueueIndex(QueueType type) const;
 
 	VKPhysicalDevice& getPhysicalDevice();
+
+	void destroy();
 
 	operator VkDevice();
 	operator VkDevice() const;

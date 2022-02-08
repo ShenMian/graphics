@@ -12,7 +12,6 @@ class VKSwapchain final
 public:
 	VKSwapchain() = default;
 	VKSwapchain(VkSwapchainKHR swapchain, VKDevice& device, VkFormat imageFormat, VkExtent2D extent);
-	~VKSwapchain();
 
 	const VkExtent2D& getSize() const;
 
@@ -22,6 +21,8 @@ public:
 	const std::vector<VkFramebuffer>& getFramebuffers() const;
 	const std::vector<VkSemaphore>& getImageAvailableSemaphores() const;
 	const std::vector<VkSemaphore>& getRenderFinishedSemaphores() const;
+
+	void destroy();
 
 	operator VkSwapchainKHR();
 	operator VkSwapchainKHR() const;
@@ -43,7 +44,7 @@ private:
 	std::vector<VkImage>     images;
 	std::vector<VkImageView> imageViews;
 
-	VkRenderPass renderPass;
+	VkRenderPass               renderPass;
 	std::vector<VkFramebuffer> framebuffers;
 
 	std::vector<VkSemaphore> imageAvailableSemaphores;

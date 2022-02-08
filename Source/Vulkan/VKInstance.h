@@ -13,7 +13,8 @@ class VKInstance final
 public:
 	VKInstance() = default;
 	VKInstance(VkInstance instance);
-	~VKInstance();
+
+	void destroy();
 
 	operator VkInstance();
 	operator VkInstance() const;

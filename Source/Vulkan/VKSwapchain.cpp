@@ -19,17 +19,6 @@ VKSwapchain::VKSwapchain(VkSwapchainKHR swapchain, VKDevice& device, VkFormat im
 	createSyncObjects();
 }
 
-VKSwapchain::~VKSwapchain()
-{
-	/*
-	destroySyncObjects();
-	destroyFramebuffers();
-	vkDestroyRenderPass(device, renderPass, nullptr);
-	destroyImageViews();
-	vkDestroySwapchainKHR(device, handle, nullptr);
-	*/
-}
-
 const std::vector<VkImage>& VKSwapchain::getImages() const
 {
 	return images;
@@ -58,6 +47,15 @@ const std::vector<VkSemaphore>& VKSwapchain::getImageAvailableSemaphores() const
 const std::vector<VkSemaphore>& VKSwapchain::getRenderFinishedSemaphores() const
 {
 	return renderFinishedSemaphores;
+}
+
+void VKSwapchain::destroy()
+{
+	destroySyncObjects();
+	destroyFramebuffers();
+	vkDestroyRenderPass(device, renderPass, nullptr);
+	destroyImageViews();
+	vkDestroySwapchainKHR(device, handle, nullptr);
 }
 
 const VkExtent2D& VKSwapchain::getSize() const

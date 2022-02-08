@@ -14,11 +14,6 @@ VKDevice::VKDevice(VkDevice device, VKPhysicalDevice& physicalDevice)
 {
 }
 
-VKDevice::~VKDevice()
-{
-	// vkDestroyDevice(handle, nullptr);
-}
-
 VkQueue VKDevice::getQueue(QueueType type) const
 {
 	const auto index = getQueueIndex(type);
@@ -69,4 +64,9 @@ uint32_t VKDevice::getQueueIndex(QueueType type) const
 VKPhysicalDevice& VKDevice::getPhysicalDevice()
 {
 	return physicalDevice;
+}
+
+void VKDevice::destroy()
+{
+	vkDestroyDevice(handle, nullptr);
 }

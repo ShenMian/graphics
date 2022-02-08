@@ -143,10 +143,10 @@ void VKRenderer::init(const Window& win)
 void VKRenderer::deinit()
 {
 	vkDestroyCommandPool(device, commandPool, nullptr);
-	vkDestroySwapchainKHR(device, swapchain, nullptr);
-	vkDestroyDevice(device, nullptr);
+	swapchain.destroy();
+	device.destroy();
 	vkDestroySurfaceKHR(instance, surface, nullptr);
-	vkDestroyInstance(instance, nullptr);
+	instance.destroy();
 }
 
 void VKRenderer::createInstance()
