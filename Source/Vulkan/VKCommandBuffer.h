@@ -38,5 +38,4 @@ public:
 
 private:
 	std::vector<VkCommandBuffer> handles;
-	VkPipeline pipeline;
 };
