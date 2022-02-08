@@ -84,6 +84,10 @@ VKPipeline::VKPipeline(const Descriptor& desc)
 	VkPipelineColorBlendStateCreateInfo colorBlendState = {};
 	createColorBlendState(colorBlendState, desc, colorBlendAttachments);
 
+	VkPipelineDynamicStateCreateInfo dynamicState = {};
+	std::vector<VkDynamicState> dynamicStates;
+	createDynamicState(dynamicState, dynamicStates);
+
 	auto vertexInputState = vertexBuffer->getInfo();
 
 	VkGraphicsPipelineCreateInfo pipelineInfo = {};
@@ -96,9 +100,9 @@ VKPipeline::VKPipeline(const Descriptor& desc)
 	pipelineInfo.pViewportState = &viewportState;
 	pipelineInfo.pRasterizationState = &rasterizerState;
 	pipelineInfo.pMultisampleState = &multisampleState;
-	pipelineInfo.pDepthStencilState = &depthStencilState;
+	// pipelineInfo.pDepthStencilState = &depthStencilState;
 	pipelineInfo.pColorBlendState = &colorBlendState;
-	// pipelineInfo.pDynamicState = (!dynamicStatesVK.empty() ? &dynamicState : nullptr);
+	pipelineInfo.pDynamicState = &dynamicState;
 	pipelineInfo.layout = pipelineLayout;
 	pipelineInfo.renderPass = swapchain.getRenderPass();
 	if(vkCreateGraphicsPipelines(renderer->getDevice(), nullptr, 1, &pipelineInfo, nullptr, &pipeline) != VK_SUCCESS)
@@ -237,4 +241,14 @@ void VKPipeline::createColorBlendState(VkPipelineColorBlendStateCreateInfo& info
 	info.blendConstants[1] = 0.0f; // Optional
 	info.blendConstants[2] = 0.0f; // Optional
 	info.blendConstants[3] = 0.0f; // Optional
+}
+
+void VKPipeline::createDynamicState(VkPipelineDynamicStateCreateInfo& info, std::vector<VkDynamicState>& dynamicStates)
+{
+	dynamicStates.push_back(VK_DYNAMIC_STATE_VIEWPORT);
+	dynamicStates.push_back(VK_DYNAMIC_STATE_LINE_WIDTH);
+
+	info.sType = VK_STRUCTURE_TYPE_PIPELINE_DYNAMIC_STATE_CREATE_INFO;
+	info.dynamicStateCount = dynamicStates.size();
+	info.pDynamicStates = dynamicStates.data();
 }

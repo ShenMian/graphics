@@ -18,11 +18,12 @@ public:
 private:
 	void createLayout(const Descriptor& desc);
 	void createInputAssemblyState(VkPipelineInputAssemblyStateCreateInfo&, const Descriptor& desc);
-	void createViewportState(VkPipelineViewportStateCreateInfo& info, const Descriptor& desc, std::vector<VkViewport>& vkViewports, std::vector<VkRect2D>& vkScissors);
+	void createViewportState(VkPipelineViewportStateCreateInfo& info, const Descriptor& desc, std::vector<VkViewport>& viewports, std::vector<VkRect2D>& scissors);
 	void createRasterizerState(VkPipelineRasterizationStateCreateInfo& info, const Descriptor& desc);
 	void createMultisampleState(VkPipelineMultisampleStateCreateInfo& info, const Descriptor& desc);
 	void createDepthStencilState(VkPipelineDepthStencilStateCreateInfo& info, const Descriptor& desc);
 	void createColorBlendState(VkPipelineColorBlendStateCreateInfo& info, const Descriptor& desc, std::vector<VkPipelineColorBlendAttachmentState>& colorBlendAttachments);
+	void createDynamicState(VkPipelineDynamicStateCreateInfo& info, std::vector<VkDynamicState>& dynamicStates);
 
 	VkPipeline       pipeline;
 	VkPipelineLayout pipelineLayout;
