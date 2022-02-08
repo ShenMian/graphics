@@ -12,6 +12,9 @@ public:
 	std::string getRendererName() const override;
 	std::string getVendorName() const override;
 
+	/**
+	 * @note 将会在调用线程中使用指定窗口的 context.
+	 */
 	static void init(const Window& win);
 	static void deinit();
 };

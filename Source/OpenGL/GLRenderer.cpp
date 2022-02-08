@@ -24,11 +24,11 @@ void GLRenderer::init(const Window& win)
 {
 	auto handle = reinterpret_cast<GLFWwindow*>(win.getNativeHandle());
 	glfwMakeContextCurrent(handle);
-	static auto ret = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-	if(!ret)
-		throw std::runtime_error("glad init failed");
+	if(!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+		throw std::runtime_error("OpenGL(Glad) init failed");
 }
 
 void GLRenderer::deinit()
 {
+	glfwMakeContextCurrent(nullptr);
 }
