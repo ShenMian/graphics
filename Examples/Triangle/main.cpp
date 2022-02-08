@@ -16,111 +16,114 @@ int main()
 	Renderer::setAPI(Renderer::API::Vulkan);
 	Window::init();
 
-	auto window = new Window("Triangle", Monitor::getPrimary().getSize() / 2);
-
-	Renderer::init(*window);
-
-	PrintInfo();
-
-	const std::vector<Vertex> vertices = {
-		{{0,     0.5}, {1, 0, 0}},
-		{{0.5,  -0.5}, {0, 1, 0}},
-		{{-0.5, -0.5}, {0, 0, 1}}
-	};
-
-	VertexLayout layout = {
-		{"position", Format::RG32F},
-		{"color",    Format::RGB32F}
-	};
-	layout.setStride(sizeof(Vertex));
-
-	auto vertexBuffer = VertexBuffer::create(vertices, layout);
-
-	Program::Descriptor programDesc;
 	{
-		// TODO
-		if(Renderer::getAPI() == Renderer::API::OpenGL)
+		Window window("Triangle", Monitor::getPrimary().getSize() / 2);
+		Renderer::init(window);
+
 		{
-			Shader::Descriptor vertShaderDesc;
-			vertShaderDesc.stage = Shader::Stage::Vertex;
-			vertShaderDesc.path = "Shaders/forward.vert.glsl";
-			programDesc.vertex = Shader::create(vertShaderDesc);
+			PrintInfo();
 
-			Shader::Descriptor fragShaderDesc;
-			fragShaderDesc.stage = Shader::Stage::Fragment;
-			fragShaderDesc.path = "Shaders/forward.frag.glsl";
-			programDesc.fragment = Shader::create(fragShaderDesc);
-		}
-		else
-		{
-			Shader::Descriptor vertShaderDesc;
-			vertShaderDesc.stage = Shader::Stage::Vertex;
-			vertShaderDesc.path = "Shaders/forward.vert.spv";
-			programDesc.vertex = Shader::create(vertShaderDesc);
+			const std::vector<Vertex> vertices = {
+				{{0,     0.5}, {1, 0, 0}},
+				{{0.5,  -0.5}, {0, 1, 0}},
+				{{-0.5, -0.5}, {0, 0, 1}}
+			};
 
-			Shader::Descriptor fragShaderDesc;
-			fragShaderDesc.stage = Shader::Stage::Fragment;
-			fragShaderDesc.path = "Shaders/forward.frag.spv";
-			programDesc.fragment = Shader::create(fragShaderDesc);
-		}
-	}
-	auto program = Program::create(programDesc);
+			VertexLayout layout = {
+				{"position", Format::RG32F},
+				{"color",    Format::RGB32F}
+			};
+			layout.setStride(sizeof(Vertex));
 
-	auto cmdQueue = CommandQueue::create();
-	auto cmdBuffer = CommandBuffer::create();
+			auto vertexBuffer = VertexBuffer::create(vertices, layout);
 
-	Pipeline::Descriptor desc;
-	desc.program = program;
-	desc.vertexBuffer = vertexBuffer;
-	desc.viewports = {Viewport(Monitor::getPrimary().getSize() / 2)};
-	auto pipeline = Pipeline::create(desc);
-
-	bool running = true;
-	window->onClose = [&]() { running = false; };
-	window->onKey = [&](int action, Key key)
-	{
-		if(action == 1)
-		{
-			switch(key)
+			Program::Descriptor programDesc;
 			{
-			case Key::Escape:
-				running = false;
-				break;
+				// TODO
+				if(Renderer::getAPI() == Renderer::API::OpenGL)
+				{
+					Shader::Descriptor vertShaderDesc;
+					vertShaderDesc.stage = Shader::Stage::Vertex;
+					vertShaderDesc.path = "Shaders/forward.vert.glsl";
+					programDesc.vertex = Shader::create(vertShaderDesc);
 
-			case Key::F11:
-				window->setFullscreen(!window->isFullscreen());
-				break;
+					Shader::Descriptor fragShaderDesc;
+					fragShaderDesc.stage = Shader::Stage::Fragment;
+					fragShaderDesc.path = "Shaders/forward.frag.glsl";
+					programDesc.fragment = Shader::create(fragShaderDesc);
+				}
+				else
+				{
+					Shader::Descriptor vertShaderDesc;
+					vertShaderDesc.stage = Shader::Stage::Vertex;
+					vertShaderDesc.path = "Shaders/forward.vert.spv";
+					programDesc.vertex = Shader::create(vertShaderDesc);
+
+					Shader::Descriptor fragShaderDesc;
+					fragShaderDesc.stage = Shader::Stage::Fragment;
+					fragShaderDesc.path = "Shaders/forward.frag.spv";
+					programDesc.fragment = Shader::create(fragShaderDesc);
+				}
+			}
+			auto program = Program::create(programDesc);
+
+			auto cmdQueue = CommandQueue::create();
+			auto cmdBuffer = CommandBuffer::create();
+
+			Pipeline::Descriptor desc;
+			desc.program = program;
+			desc.vertexBuffer = vertexBuffer;
+			desc.viewports = {Viewport(Monitor::getPrimary().getSize() / 2)};
+			auto pipeline = Pipeline::create(desc);
+
+			bool running = true;
+			window.onClose = [&]() { running = false; };
+			window.onKey = [&](int action, Key key)
+			{
+				if(action == 1)
+				{
+					switch(key)
+					{
+					case Key::Escape:
+						running = false;
+						break;
+
+					case Key::F11:
+						window.setFullscreen(!window.isFullscreen());
+						break;
+					}
+				}
+			};
+			window.setVisible(true); // 设置窗口可见
+
+			while(running)
+			{
+				program->use();
+				cmdBuffer->begin();
+				{
+					cmdBuffer->setPipeline(pipeline);
+
+					cmdBuffer->beginRenderPass(pipeline);
+					{
+						cmdBuffer->setViewport({window.getSize()}); // TODO: Vulkan 下可能崩溃?
+						cmdBuffer->setClearColor({0, 0, 0, 0});
+						cmdBuffer->clear(ClearFlag::Color);
+
+						cmdBuffer->setVertexBuffer(vertexBuffer);
+						cmdBuffer->draw(vertexBuffer->getCount());
+					}
+					cmdBuffer->endRenderPass();
+				}
+				cmdBuffer->end();
+				cmdQueue->submit(cmdBuffer);
+
+				window.update();
 			}
 		}
-	};
-	window->setVisible(true); // 设置窗口可见
 
-	while(running)
-	{
-		program->use();
-		cmdBuffer->begin();
-		{
-			cmdBuffer->setPipeline(pipeline);
-
-			cmdBuffer->beginRenderPass(pipeline);
-			{
-				// cmdBuffer->setViewport({window->getSize()});
-				cmdBuffer->setClearColor({0, 0, 0, 0});
-				cmdBuffer->clear(ClearFlag::Color);
-
-				cmdBuffer->setVertexBuffer(vertexBuffer);
-				cmdBuffer->draw(vertexBuffer->getCount());
-			}
-			cmdBuffer->endRenderPass();
-		}
-		cmdBuffer->end();
-		cmdQueue->submit(cmdBuffer);
-
-		window->update();
+		Renderer::deinit();
 	}
-	delete window;
 
-	Renderer::deinit();
 	Window::deinit();
 
 	return 0;
