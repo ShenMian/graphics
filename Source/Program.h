@@ -29,8 +29,6 @@ public:
 	 */
 	[[nodiscard]] static std::shared_ptr<Program> create(const Descriptor& desc);
 
-	explicit Program(const std::string& name);
-
 	virtual void use() = 0;
 
 	virtual void setUniform(const std::string& name, int value) = 0;

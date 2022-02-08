@@ -23,11 +23,6 @@ std::shared_ptr<Program> Program::create(const Descriptor& desc)
 	return nullptr;
 }
 
-Program::Program(const std::string& name)
-	: name(name)
-{
-}
-
 int Program::getStageCount() const
 {
 	return stageCount;
