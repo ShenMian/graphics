@@ -264,8 +264,7 @@ void Model::load(const fs::path& path, unsigned int process)
 	name = aScene->mName.C_Str();
 
 	printf("Meshes loaded: %.2lfs\n", timer.getSeconds()); // TODO: debug
-
-	timer.restart(); // TODO: debug
+	timer.restart();                                       // TODO: debug
 	loadNode(aScene->mRootNode, aScene, path, meshs, aabb);
 	printf("Meshes processed: %.2lfs     \n", timer.getSeconds()); // TODO: debug
 }
