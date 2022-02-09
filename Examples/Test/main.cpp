@@ -16,185 +16,189 @@ int main()
 		Renderer::setAPI(Renderer::API::OpenGL);
 		Window::init();
 
-		auto window = new Window("Test", Monitor::getPrimary().getSize() / 2);
-
-		Input::setWindow(window);
-		Renderer::init(*window);
-		UI::init(*window);
-
-		PrintInfo();
-
-		const std::filesystem::path path = "../../../3DModel";
-
-		Model model;
-		// model.load(path / "scene/Crytek_Sponza/sponza.obj", Model::ProcessFlags::Fast);
-		model.load(path / "weapon/m4a1/m4a1.gltf", Model::ProcessFlags::Fast);
-		// model.load(path / "pbr/DamagedHelmet/DamagedHelmet.gltf");
-		// model.load(path / "basic/cube.obj");
-		// model.load(path / "scene/Amazon_Lumberyard_Bistro/Exterior/exterior.obj", Model::ProcessFlags::Fast);
-		// model.load(path / "3DModel/scene/San_Miguel/san-miguel-low-poly.obj", Model::ProcessFlags::Fast);
-		// model.load(path / "pbr/MetalRoughSpheres/MetalRoughSpheres.gltf");
-		// model.load(path / "3DModel/scene/SunTemple/SunTemple.fbx", Model::ProcessFlags::Fast); // 暂不支持 DDS 格式的纹理资源
-
-		Program::Descriptor programDesc;
 		{
-			Shader::Descriptor vertShaderDesc;
-			vertShaderDesc.stage = Shader::Stage::Vertex;
-			vertShaderDesc.path = "Shaders/pbr.vert.glsl";
-			programDesc.vertex = Shader::create(vertShaderDesc);
+			Window window("Test", Monitor::getPrimary().getSize() / 2);
+			Renderer::init(window);
+			UI::init(window);
+			Input::setWindow(window);
 
-			Shader::Descriptor fragShaderDesc;
-			fragShaderDesc.stage = Shader::Stage::Fragment;
-			fragShaderDesc.path = "Shaders/pbr.frag.glsl";
-			programDesc.fragment = Shader::create(fragShaderDesc);
-		}
-		auto program = Program::create(programDesc);
-
-		PipelineLayout layout = {
-			{"albedo",    PipelineLayout::Type::Texture, 0, PipelineLayout::StageFlags::Fragment},
-			{"roughness", PipelineLayout::Type::Texture, 1, PipelineLayout::StageFlags::Fragment},
-			{"ao",        PipelineLayout::Type::Texture, 2, PipelineLayout::StageFlags::Fragment},
-			{"emissive",  PipelineLayout::Type::Texture, 3, PipelineLayout::StageFlags::Fragment},
-			{"normal",    PipelineLayout::Type::Texture, 4, PipelineLayout::StageFlags::Fragment}
-		};
-		Pipeline::Descriptor desc;
-		desc.layout = layout;
-		desc.program = program;
-		auto pipeline = Pipeline::create(desc);
-
-		auto cmdQueue = CommandQueue::create();
-		auto cmdBuffer = CommandBuffer::create();
-
-		Camera camera(Camera::Type::Perspective);
-		camera.setPerspective(radians(45.f), (float)window->getSize().x / window->getSize().y, 0.1f, 5000.f);
-
-		Controller controller;
-		controller.setCamera(camera);
-		Gamepad gamepad(0);
-		controller.setGamepad(gamepad);
-
-		bool running = true;
-		window->onClose = [&]() { running = false; };
-		window->onKey = [&](int action, Key key)
-		{
-			if(!action)
-				return;
-
-			switch(key)
 			{
-			case Key::Escape:
-				running = false;
-				break;
+				PrintInfo();
 
-			case Key::F11:
-				window->setFullscreen(!window->isFullscreen());
-				break;
+				const std::filesystem::path path = "../../../3DModel";
 
-			case Key::P:
-				window->setCursorLock(false);
-				break;
-			}
-		};
-		window->onScroll = [&](Vector2d offset)
-		{
-			static float fov = degrees(camera.getVFOV());
-			if(1.f <= fov && fov <= 60.f)
-				fov -= (float)offset.y * 3 * (fov / 60);
-			fov = std::clamp(fov, 1.f, 60.f);
-			camera.setPerspective(radians(fov), (float)window->getSize().x / window->getSize().y, 0.03f, 10000.f);
-		};
-		window->onResize = [&](Vector2i size)
-		{
-			camera.setPerspective(radians(camera.getVFOV()), (float)size.x / size.y, 0.1f, 5000.0f);
-		};
-		window->setVisible(true);
+				Model model;
+				// model.load(path / "scene/Crytek_Sponza/sponza.obj", Model::ProcessFlags::Fast);
+				model.load(path / "weapon/m4a1/m4a1.gltf", Model::ProcessFlags::Fast);
+				// model.load(path / "pbr/DamagedHelmet/DamagedHelmet.gltf");
+				// model.load(path / "basic/cube.obj");
+				// model.load(path / "scene/Amazon_Lumberyard_Bistro/Exterior/exterior.obj", Model::ProcessFlags::Fast);
+				// model.load(path / "3DModel/scene/San_Miguel/san-miguel-low-poly.obj", Model::ProcessFlags::Fast);
+				// model.load(path / "pbr/MetalRoughSpheres/MetalRoughSpheres.gltf");
+				// model.load(path / "3DModel/scene/SunTemple/SunTemple.fbx", Model::ProcessFlags::Fast); // 暂不支持 DDS 格式的纹理资源
 
-		window->setCursorLock(true);
-		window->setRawMouseMotion(true);
-
-		ui::Window win("Debug");
-		ui::Label label0("camera");
-		ui::Label label1("");
-		ui::Label label2("");
-		ui::Button compress("Compress");
-		compress.on = [&](ui::Button& btn) {
-			static bool compressed = false;
-			if(!compressed)
-			{
-				model.compress();
-				compressed = true;
-				btn.setLabel("Decompress");
-			}
-			else
-			{
-				model.decompress();
-				compressed = false;
-				btn.setLabel("Compress");
-			}
-		};
-		win.add(label0);
-		win.add(label1);
-		win.add(label2);
-		win.add(compress);
-
-		GLUniformBuffer uniformBuffer("Camera", 0, 2 * sizeof(Matrix4f));
-		uniformBuffer.bind(reinterpret_cast<GLProgram*>(program.get()));
-
-		Timer timer;
-		while(running)
-		{
-			const float dt = (float)timer.getSeconds();
-			/*static float elapse = 0;
-			elapse += dt;
-			while(elapse >= 0.002f)
-			{
-				controller.update(0.002f);
-				elapse -= 0.002f;
-			}*/
-			controller.update(dt);
-			timer.restart();
-
-			UI::begin();
-
-			const auto pos = camera.getPosition();
-			const auto dir = camera.getRotation();
-			label1.setText("  position: " + std::to_string((int)pos.x) + ", " + std::to_string((int)pos.y) + ", " + std::to_string((int)pos.z));
-			label2.setText("  rotation: " + std::to_string((int)dir.x) + ", " + std::to_string((int)dir.y) + ", " + std::to_string((int)dir.z));
-			win.update();
-
-			uniformBuffer.write(camera.getView().data(), sizeof(Matrix4f));
-			uniformBuffer.write(camera.getProjection().data(), sizeof(Matrix4f), sizeof(Matrix4f));
-
-			program->setUniform("model", Matrix4f());
-
-			cmdBuffer->begin();
-			{
-				cmdBuffer->setViewport({window->getSize()});
-				cmdBuffer->setClearColor({0, 0, 0, 0});
-				cmdBuffer->clear(ClearFlag::Color | ClearFlag::Depth);
-
-				cmdBuffer->setPipeline(pipeline);
-				for(const auto& mesh : model.getMeshs())
+				Program::Descriptor programDesc;
 				{
-					const auto vb = mesh.getVertexBuffer();
-					const auto ib = mesh.getIndexBuffer();
+					Shader::Descriptor vertShaderDesc;
+					vertShaderDesc.stage = Shader::Stage::Vertex;
+					vertShaderDesc.path = "Shaders/pbr.vert.glsl";
+					programDesc.vertex = Shader::create(vertShaderDesc);
 
-					cmdBuffer->setVertexBuffer(vb);
-					cmdBuffer->setIndexBuffer(ib);
-					cmdBuffer->drawIndexed(ib->getCount());
+					Shader::Descriptor fragShaderDesc;
+					fragShaderDesc.stage = Shader::Stage::Fragment;
+					fragShaderDesc.path = "Shaders/pbr.frag.glsl";
+					programDesc.fragment = Shader::create(fragShaderDesc);
 				}
+				auto program = Program::create(programDesc);
+
+				PipelineLayout layout = {
+					{"albedo",    PipelineLayout::Type::Texture, 0, PipelineLayout::StageFlags::Fragment},
+					{"roughness", PipelineLayout::Type::Texture, 1, PipelineLayout::StageFlags::Fragment},
+					{"ao",        PipelineLayout::Type::Texture, 2, PipelineLayout::StageFlags::Fragment},
+					{"emissive",  PipelineLayout::Type::Texture, 3, PipelineLayout::StageFlags::Fragment},
+					{"normal",    PipelineLayout::Type::Texture, 4, PipelineLayout::StageFlags::Fragment}
+				};
+				Pipeline::Descriptor desc;
+				desc.layout = layout;
+				desc.program = program;
+				auto pipeline = Pipeline::create(desc);
+
+				auto cmdQueue = CommandQueue::create();
+				auto cmdBuffer = CommandBuffer::create();
+
+				Camera camera(Camera::Type::Perspective);
+				camera.setPerspective(radians(45.f), (float)window.getSize().x / window.getSize().y, 0.1f, 5000.f);
+
+				Controller controller;
+				controller.setCamera(camera);
+				Gamepad gamepad(0);
+				controller.setGamepad(gamepad);
+
+				bool running = true;
+				window.onClose = [&]() { running = false; };
+				window.onKey = [&](int action, Key key)
+				{
+					if(!action)
+						return;
+
+					switch(key)
+					{
+					case Key::Escape:
+						running = false;
+						break;
+
+					case Key::F11:
+						window.setFullscreen(!window.isFullscreen());
+						break;
+
+					case Key::P:
+						window.setCursorLock(false);
+						break;
+					}
+				};
+				window.onScroll = [&](Vector2d offset)
+				{
+					static float fov = degrees(camera.getVFOV());
+					if(1.f <= fov && fov <= 60.f)
+						fov -= (float)offset.y * 3 * (fov / 60);
+					fov = std::clamp(fov, 1.f, 60.f);
+					camera.setPerspective(radians(fov), (float)window.getSize().x / window.getSize().y, 0.03f, 10000.f);
+				};
+				window.onResize = [&](Vector2i size)
+				{
+					camera.setPerspective(radians(camera.getVFOV()), (float)size.x / size.y, 0.1f, 5000.0f);
+				};
+				window.setVisible(true);
+
+				window.setCursorLock(true);
+				window.setRawMouseMotion(true);
+
+				ui::Window win("Debug");
+				ui::Label label0("camera");
+				ui::Label label1("");
+				ui::Label label2("");
+				ui::Button compress("Compress");
+				compress.on = [&](ui::Button& btn) {
+					static bool compressed = false;
+					if(!compressed)
+					{
+						model.compress();
+						compressed = true;
+						btn.setLabel("Decompress");
+					}
+					else
+					{
+						model.decompress();
+						compressed = false;
+						btn.setLabel("Compress");
+					}
+				};
+				win.add(label0);
+				win.add(label1);
+				win.add(label2);
+				win.add(compress);
+
+				GLUniformBuffer uniformBuffer("Camera", 0, 2 * sizeof(Matrix4f));
+				uniformBuffer.bind(reinterpret_cast<GLProgram*>(program.get()));
+
+				Timer timer;
+				while(running)
+				{
+					const float dt = (float)timer.getSeconds();
+					/*static float elapse = 0;
+					elapse += dt;
+					while(elapse >= 0.002f)
+					{
+						controller.update(0.002f);
+						elapse -= 0.002f;
+					}*/
+					controller.update(dt);
+					timer.restart();
+
+					UI::begin();
+
+					const auto pos = camera.getPosition();
+					const auto dir = camera.getRotation();
+					label1.setText("  position: " + std::to_string((int)pos.x) + ", " + std::to_string((int)pos.y) + ", " + std::to_string((int)pos.z));
+					label2.setText("  rotation: " + std::to_string((int)dir.x) + ", " + std::to_string((int)dir.y) + ", " + std::to_string((int)dir.z));
+					win.update();
+
+					uniformBuffer.write(camera.getView().data(), sizeof(Matrix4f));
+					uniformBuffer.write(camera.getProjection().data(), sizeof(Matrix4f), sizeof(Matrix4f));
+
+					program->setUniform("model", Matrix4f());
+
+					cmdBuffer->begin();
+					{
+						cmdBuffer->setViewport({window.getSize()});
+						cmdBuffer->setClearColor({0, 0, 0, 0});
+						cmdBuffer->clear(ClearFlag::Color | ClearFlag::Depth);
+
+						cmdBuffer->setPipeline(pipeline);
+						for(const auto& mesh : model.getMeshs())
+						{
+							const auto vb = mesh.getVertexBuffer();
+							const auto ib = mesh.getIndexBuffer();
+
+							cmdBuffer->setVertexBuffer(vb);
+							cmdBuffer->setIndexBuffer(ib);
+							cmdBuffer->drawIndexed(ib->getCount());
+						}
+					}
+					cmdBuffer->end();
+					cmdQueue->submit(cmdBuffer);
+
+					UI::end();
+
+					window.update();
+				}
+
+				UI::deinit();
 			}
-			cmdBuffer->end();
-			cmdQueue->submit(cmdBuffer);
 
-			UI::end();
-
-			window->update();
+			Renderer::deinit();
 		}
-		delete window;
 
-		UI::deinit();
-		Renderer::deinit();
 		Window::deinit();
 	}
 	catch(std::runtime_error& e)

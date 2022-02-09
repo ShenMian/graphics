@@ -14,119 +14,121 @@ struct Vertex
 int main()
 {
 	Renderer::setAPI(Renderer::API::OpenGL);
-
 	Window::init();
 
-	auto window = new Window("Cube", Monitor::getPrimary().getSize() / 2);
-
-	Renderer::init(*window);
-
-	PrintInfo();
-
-	const std::vector<Vertex> vertices = {
-		{{-0.5, -0.5, -0.5}, {1, 0, 0}},
-		{{-0.5, +0.5, -0.5}, {0, 1, 0}},
-		{{+0.5, +0.5, -0.5}, {0, 0, 1}},
-		{{+0.5, -0.5, -0.5}, {1, 1, 1}},
-		{{-0.5, -0.5, +0.5}, {1, 1, 0}},
-		{{-0.5, +0.5, +0.5}, {0, 1, 1}},
-		{{+0.5, +0.5, +0.5}, {1, 0, 1}},
-		{{+0.5, -0.5, +0.5}, {0.2f, 0.2f, 0.2f}}
-	};
-
-	VertexLayout format = {
-		{"position", Format::RGB32F},
-		{"color", Format::RGB32F}
-	};
-	format.setStride(sizeof(Vertex));
-
-	auto vertexBuffer = VertexBuffer::create(vertices, format);
-
-	const std::vector<uint32_t> indices = {
-		2,0,1, 2,3,0,
-		4,6,5, 4,7,6,
-		0,7,4, 0,3,7,
-		1,0,4, 1,4,5,
-		1,5,2, 5,6,2,
-		3,6,7, 3,2,6
-	};
-
-	auto indexBuffer = IndexBuffer::create(indices);
-
-	Program::Descriptor programDesc;
 	{
-		Shader::Descriptor vertShaderDesc;
-		vertShaderDesc.stage = Shader::Stage::Vertex;
-		vertShaderDesc.path = "Shaders/mesh.vert.glsl";
-		programDesc.vertex = Shader::create(vertShaderDesc);
+		Window window("Cube", Monitor::getPrimary().getSize() / 2);
+		Renderer::init(window);
 
-		Shader::Descriptor fragShaderDesc;
-		fragShaderDesc.stage = Shader::Stage::Fragment;
-		fragShaderDesc.path = "Shaders/mesh.frag.glsl";
-		programDesc.fragment = Shader::create(fragShaderDesc);
-	}
-	auto program = Program::create(programDesc);
-
-	auto cmdQueue = CommandQueue::create();
-	auto cmdBuffer = CommandBuffer::create();
-
-	Camera camera(Camera::Type::Perspective);
-	camera.setPerspective(radians(60.f), (float)window->getSize().x / window->getSize().y, 0.1f, 5000.f);
-	camera.setPosition({0, 0, 3});
-
-	bool running = true;
-	window->onClose = [&]() { running = false; };
-	window->onKey = [&](int action, Key key)
-	{
-		if(action == 1)
 		{
-			switch(key)
-			{
-			case Key::Escape:
-				running = false;
-				break;
+			PrintInfo();
 
-			case Key::F11:
-				window->setFullscreen(!window->isFullscreen());
-				break;
+			const std::vector<Vertex> vertices = {
+				{{-0.5, -0.5, -0.5}, {1, 0, 0}},
+				{{-0.5, +0.5, -0.5}, {0, 1, 0}},
+				{{+0.5, +0.5, -0.5}, {0, 0, 1}},
+				{{+0.5, -0.5, -0.5}, {1, 1, 1}},
+				{{-0.5, -0.5, +0.5}, {1, 1, 0}},
+				{{-0.5, +0.5, +0.5}, {0, 1, 1}},
+				{{+0.5, +0.5, +0.5}, {1, 0, 1}},
+				{{+0.5, -0.5, +0.5}, {0.2f, 0.2f, 0.2f}}
+			};
+
+			VertexLayout format = {
+				{"position", Format::RGB32F},
+				{"color", Format::RGB32F}
+			};
+			format.setStride(sizeof(Vertex));
+
+			auto vertexBuffer = VertexBuffer::create(vertices, format);
+
+			const std::vector<uint32_t> indices = {
+				2,0,1, 2,3,0,
+				4,6,5, 4,7,6,
+				0,7,4, 0,3,7,
+				1,0,4, 1,4,5,
+				1,5,2, 5,6,2,
+				3,6,7, 3,2,6
+			};
+
+			auto indexBuffer = IndexBuffer::create(indices);
+
+			Program::Descriptor programDesc;
+			{
+				Shader::Descriptor vertShaderDesc;
+				vertShaderDesc.stage = Shader::Stage::Vertex;
+				vertShaderDesc.path = "Shaders/mesh.vert.glsl";
+				programDesc.vertex = Shader::create(vertShaderDesc);
+
+				Shader::Descriptor fragShaderDesc;
+				fragShaderDesc.stage = Shader::Stage::Fragment;
+				fragShaderDesc.path = "Shaders/mesh.frag.glsl";
+				programDesc.fragment = Shader::create(fragShaderDesc);
+			}
+			auto program = Program::create(programDesc);
+
+			auto cmdQueue = CommandQueue::create();
+			auto cmdBuffer = CommandBuffer::create();
+
+			Camera camera(Camera::Type::Perspective);
+			camera.setPerspective(radians(60.f), (float)window.getSize().x / window.getSize().y, 0.1f, 5000.f);
+			camera.setPosition({0, 0, 3});
+
+			bool running = true;
+			window.onClose = [&]() { running = false; };
+			window.onKey = [&](int action, Key key)
+			{
+				if(action == 1)
+				{
+					switch(key)
+					{
+					case Key::Escape:
+						running = false;
+						break;
+
+					case Key::F11:
+						window.setFullscreen(!window.isFullscreen());
+						break;
+					}
+				}
+			};
+			window.onResize = [&](Vector2i size)
+			{
+				camera.setPerspective(radians(60.f), (float)size.x / size.y, 0.1f, 5000.0f);
+			};
+			window.setVisible(true);
+
+			Matrix4f model = Matrix4f::createRotationX(radians(-15.f));
+
+			while(running)
+			{
+				model *= Matrix4f::createRotationY(radians(0.5f));
+
+				program->setUniform("model", model);
+				program->setUniform("view", camera.getView());
+				program->setUniform("projection", camera.getProjection());
+
+				cmdBuffer->begin();
+				{
+					cmdBuffer->setViewport({window.getSize()});
+					cmdBuffer->setClearColor({0, 0, 0, 0});
+					cmdBuffer->setClearDepth(std::numeric_limits<float>::infinity());
+					cmdBuffer->clear(ClearFlag::Color | ClearFlag::Depth);
+
+					cmdBuffer->setVertexBuffer(vertexBuffer);
+					cmdBuffer->setIndexBuffer(indexBuffer);
+					cmdBuffer->drawIndexed(indexBuffer->getCount());
+				}
+				cmdBuffer->end();
+				cmdQueue->submit(cmdBuffer);
+
+				window.update();
 			}
 		}
-	};
-	window->onResize = [&](Vector2i size)
-	{
-		camera.setPerspective(radians(60.f), (float)size.x / size.y, 0.1f, 5000.0f);
-	};
-	window->setVisible(true);
 
-	Matrix4f model = Matrix4f::createRotationX(radians(-15.f));
-
-	while(running)
-	{
-		model *= Matrix4f::createRotationY(radians(0.5f));
-
-		program->setUniform("model", model);
-		program->setUniform("view", camera.getView());
-		program->setUniform("projection", camera.getProjection());
-
-		cmdBuffer->begin();
-		{
-			cmdBuffer->setViewport({window->getSize()});
-			cmdBuffer->setClearColor({0, 0, 0, 0});
-			cmdBuffer->setClearDepth(std::numeric_limits<float>::infinity());
-			cmdBuffer->clear(ClearFlag::Color | ClearFlag::Depth);
-
-			cmdBuffer->setVertexBuffer(vertexBuffer);
-			cmdBuffer->setIndexBuffer(indexBuffer);
-			cmdBuffer->drawIndexed(indexBuffer->getCount());
-		}
-		cmdBuffer->end();
-		cmdQueue->submit(cmdBuffer);
-
-		window->update();
+		Renderer::deinit();
 	}
-	delete window;
 
-	Renderer::deinit();
 	Window::deinit();
 
 	return 0;

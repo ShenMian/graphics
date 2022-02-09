@@ -5,7 +5,7 @@
 #include "Window.h"
 #include <GLFW/glfw3.h>
 
-Window* Input::window;
+const Window* Input::window;
 
 bool Input::isPressed(Key key)
 {
@@ -47,7 +47,7 @@ void Input::setClipboard(const std::string& str)
 	glfwSetClipboardString(nullptr, str.c_str());
 }
 
-void Input::setWindow(Window* win)
+void Input::setWindow(const Window& win)
 {
-	window = win;
+	window = &win;
 }
