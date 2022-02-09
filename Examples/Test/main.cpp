@@ -112,30 +112,13 @@ int main()
 		window->setCursorLock(true);
 		window->setRawMouseMotion(true);
 
-		ui::Window win("Debug");
-		ui::Label label0("camera");
-		ui::Label label1("");
-		ui::Label label2("");
-		ui::Button compress("Compress");
-		compress.on = [&](ui::Button& btn) {
-			static bool compressed = false;
-			if(!compressed)
-			{
-				model.compress();
-				compressed = true;
-				btn.setLabel("Decompress");
-			}
-			else
-			{
-				model.decompress();
-				compressed = false;
-				btn.setLabel("Compress");
-			}
-		};
-		win.add(label0);
-		win.add(label1);
-		win.add(label2);
-		win.add(compress);
+		ui::Window ATT("ATT");    // 摄像机姿态信息
+		ui::Label rollAngle("");  // 滚转角度
+		ui::Label pitchAngle(""); // 俯仰角度
+		ui::Label yawAngle("");   // 偏航角度
+		ATT.add(rollAngle);
+		ATT.add(pitchAngle);
+		ATT.add(yawAngle);
 
 		GLUniformBuffer uniformBuffer("Camera", 0, 2 * sizeof(Matrix4f));
 		uniformBuffer.bind(reinterpret_cast<GLProgram*>(program.get()));
@@ -144,23 +127,26 @@ int main()
 		while(running)
 		{
 			const float dt = (float)timer.getSeconds();
-			/*static float elapse = 0;
+			timer.restart();
+#if 0
+			static float elapse = 0;
 			elapse += dt;
 			while(elapse >= 0.002f)
 			{
 				controller.update(0.002f);
 				elapse -= 0.002f;
-			}*/
+			}
+#else
 			controller.update(dt);
-			timer.restart();
+#endif
 
 			UI::begin();
 
-			const auto pos = camera.getPosition();
-			const auto dir = camera.getRotation();
-			label1.setText("  position: " + std::to_string((int)pos.x) + ", " + std::to_string((int)pos.y) + ", " + std::to_string((int)pos.z));
-			label2.setText("  rotation: " + std::to_string((int)dir.x) + ", " + std::to_string((int)dir.y) + ", " + std::to_string((int)dir.z));
-			win.update();
+			const auto& dir = camera.getRotation();
+			rollAngle.setText("Roll : " + std::to_string((int)dir.z));
+			pitchAngle.setText("Pitch: " + std::to_string((int)dir.x));
+			yawAngle.setText("Yaw  : " + std::to_string((int)dir.y));
+			ATT.update();
 
 			uniformBuffer.write(camera.getView().data(), sizeof(Matrix4f));
 			uniformBuffer.write(camera.getProjection().data(), sizeof(Matrix4f), sizeof(Matrix4f));
