@@ -113,41 +113,41 @@ int main()
 				window.setCursorLock(true);
 				window.setRawMouseMotion(true);
 
-		ui::Window ATT("ATT");    // 摄像机姿态信息
-		ui::Label rollAngle("");  // 滚转角度
-		ui::Label pitchAngle(""); // 俯仰角度
-		ui::Label yawAngle("");   // 偏航角度
-		ATT.add(rollAngle);
-		ATT.add(pitchAngle);
-		ATT.add(yawAngle);
+				ui::Window ATT("ATT");    // 摄像机姿态信息
+				ui::Label rollAngle("");  // 滚转角度
+				ui::Label pitchAngle(""); // 俯仰角度
+				ui::Label yawAngle("");   // 偏航角度
+				ATT.add(rollAngle);
+				ATT.add(pitchAngle);
+				ATT.add(yawAngle);
 
 				GLUniformBuffer uniformBuffer("Camera", 0, 2 * sizeof(Matrix4f));
 				uniformBuffer.bind(reinterpret_cast<GLProgram*>(program.get()));
 
-		Timer timer;
-		while(running)
-		{
-			const float dt = (float)timer.getSeconds();
-			timer.restart();
+				Timer timer;
+				while(running)
+				{
+					const float dt = (float)timer.getSeconds();
+					timer.restart();
 #if 0
-			static float elapse = 0;
-			elapse += dt;
-			while(elapse >= 0.002f)
-			{
-				controller.update(0.002f);
-				elapse -= 0.002f;
-			}
+					static float elapse = 0;
+					elapse += dt;
+					while(elapse >= 0.002f)
+					{
+						controller.update(0.002f);
+						elapse -= 0.002f;
+					}
 #else
-			controller.update(dt);
+					controller.update(dt);
 #endif
 
 					UI::begin();
 
-			const auto& dir = camera.getRotation();
-			rollAngle.setText("Roll : " + std::to_string((int)dir.z));
-			pitchAngle.setText("Pitch: " + std::to_string((int)dir.x));
-			yawAngle.setText("Yaw  : " + std::to_string((int)dir.y));
-			ATT.update();
+					const auto& dir = camera.getRotation();
+					rollAngle.setText("Roll : " + std::to_string((int)dir.z));
+					pitchAngle.setText("Pitch: " + std::to_string((int)dir.x));
+					yawAngle.setText("Yaw  : " + std::to_string((int)dir.y));
+					ATT.update();
 
 					uniformBuffer.write(camera.getView().data(), sizeof(Matrix4f));
 					uniformBuffer.write(camera.getProjection().data(), sizeof(Matrix4f), sizeof(Matrix4f));
