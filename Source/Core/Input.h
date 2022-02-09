@@ -67,10 +67,10 @@ public:
 	/**
 	 * @brief 设置接受输入的窗口.
 	 */
-	static void setWindow(Window* win);
+	static void setWindow(const Window& win);
 
 private:
-	static Window* window;
+	static const Window* window;
 };
 
 /** @}*/
