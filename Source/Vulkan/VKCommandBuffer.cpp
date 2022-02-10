@@ -45,12 +45,10 @@ void VKCommandBuffer::end()
 		throw std::runtime_error("failed to end command buffer");
 }
 
-void VKCommandBuffer::beginRenderPass(std::shared_ptr<Pipeline> pipeline)
+void VKCommandBuffer::beginRenderPass()
 {
 	auto renderer = reinterpret_cast<VKRenderer*>(Renderer::get());
 	auto& swapchain = renderer->getSwapchain();
-
-	auto vkPipeline = std::dynamic_pointer_cast<VKPipeline>(pipeline);
 
 	std::array<VkClearValue, 2> clearValues = {};
 	// clearValues[0].color = {0.01f, 0.01f, 0.01f, 1.0f};

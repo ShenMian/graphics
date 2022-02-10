@@ -33,7 +33,7 @@ public:
 	virtual void begin() = 0;
 	virtual void end() = 0;
 
-	virtual void beginRenderPass(std::shared_ptr<Pipeline> pipeline) = 0;
+	virtual void beginRenderPass() = 0;
 	virtual void endRenderPass() = 0;
 
 	virtual void setViewport(const Viewport& viewport) = 0;

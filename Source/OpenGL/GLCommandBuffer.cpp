@@ -26,7 +26,7 @@ void GLCommandBuffer::end()
 {
 }
 
-void GLCommandBuffer::beginRenderPass(std::shared_ptr<Pipeline> pipeline)
+void GLCommandBuffer::beginRenderPass()
 {
 }
 
