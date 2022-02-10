@@ -143,7 +143,6 @@ void drawIconGrid(ImDrawList* drawList, const ImRect& rect, bool filled, ImU32 c
 	auto rect_w = rect.Max.x - rect.Min.x;
 	auto rect_center_x = (rect.Min.x + rect.Max.x) * 0.5f;
 	auto rect_center_y = (rect.Min.y + rect.Max.y) * 0.5f;
-	auto triangleStart = rect_center_x + 0.32f * rect_w;
 
 	const auto r = 0.5f * rect_w / 2.0f;
 	const auto w = ceilf(r / 3.0f);
