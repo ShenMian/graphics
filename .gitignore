@@ -22,6 +22,9 @@ Makefile
 /.vscode
 /out
 
+# IntelliJ IDEA
+/.idea
+
 # Doxygen
 /Docs/html
 /Docs/man
