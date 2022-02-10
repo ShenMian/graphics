@@ -105,8 +105,8 @@ Public 成员函数</h2></td></tr>
 <tr class="separator:a64ab6dd1ddf1326918160605f0057742"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a299d39b1769d97f9cca8ba0f0d9426b6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_v_k_command_buffer.html#a299d39b1769d97f9cca8ba0f0d9426b6">end</a> () override</td></tr>
 <tr class="separator:a299d39b1769d97f9cca8ba0f0d9426b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2be593e07c68e411bc6e3ef5413e2209"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_v_k_command_buffer.html#a2be593e07c68e411bc6e3ef5413e2209">beginRenderPass</a> (std::shared_ptr&lt; <a class="el" href="class_pipeline.html">Pipeline</a> &gt; pipeline) override</td></tr>
-<tr class="separator:a2be593e07c68e411bc6e3ef5413e2209"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa97da6018f3c602d0fd89a59913e52ef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_v_k_command_buffer.html#aa97da6018f3c602d0fd89a59913e52ef">beginRenderPass</a> () override</td></tr>
+<tr class="separator:aa97da6018f3c602d0fd89a59913e52ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a58f3b1e650739f5992b9416bec75f91f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_v_k_command_buffer.html#a58f3b1e650739f5992b9416bec75f91f">endRenderPass</a> () override</td></tr>
 <tr class="separator:a58f3b1e650739f5992b9416bec75f91f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad50d679a5b87626a22c168168e274f14"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_v_k_command_buffer.html#ad50d679a5b87626a22c168168e274f14">setViewport</a> (const <a class="el" href="struct_viewport.html">Viewport</a> &amp;viewport) override</td></tr>
@@ -139,9 +139,9 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>begin</b> ()=
 <tr class="memitem:ae8555845904a56584830ce4de9096ae5"><td class="memItemLeft" align="right" valign="top"><a id="ae8555845904a56584830ce4de9096ae5" name="ae8555845904a56584830ce4de9096ae5"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>end</b> ()=0</td></tr>
 <tr class="separator:ae8555845904a56584830ce4de9096ae5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af49408d48adc088d96af10d3d703eaa1"><td class="memItemLeft" align="right" valign="top"><a id="af49408d48adc088d96af10d3d703eaa1" name="af49408d48adc088d96af10d3d703eaa1"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>beginRenderPass</b> (std::shared_ptr&lt; <a class="el" href="class_pipeline.html">Pipeline</a> &gt; pipeline)=0</td></tr>
-<tr class="separator:af49408d48adc088d96af10d3d703eaa1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad87dea2298ad8b9546864520fe6acd8b"><td class="memItemLeft" align="right" valign="top"><a id="ad87dea2298ad8b9546864520fe6acd8b" name="ad87dea2298ad8b9546864520fe6acd8b"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>beginRenderPass</b> ()=0</td></tr>
+<tr class="separator:ad87dea2298ad8b9546864520fe6acd8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c5dfc8b1a5da86b430742361cfcb807"><td class="memItemLeft" align="right" valign="top"><a id="a1c5dfc8b1a5da86b430742361cfcb807" name="a1c5dfc8b1a5da86b430742361cfcb807"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>endRenderPass</b> ()=0</td></tr>
 <tr class="separator:a1c5dfc8b1a5da86b430742361cfcb807"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -211,8 +211,8 @@ static std::shared_ptr&lt; <a class="el" href="class_command_buffer.html">Comman
 
 </div>
 </div>
-<a id="a2be593e07c68e411bc6e3ef5413e2209" name="a2be593e07c68e411bc6e3ef5413e2209"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2be593e07c68e411bc6e3ef5413e2209">&#9670;&nbsp;</a></span>beginRenderPass()</h2>
+<a id="aa97da6018f3c602d0fd89a59913e52ef" name="aa97da6018f3c602d0fd89a59913e52ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa97da6018f3c602d0fd89a59913e52ef">&#9670;&nbsp;</a></span>beginRenderPass()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -223,8 +223,7 @@ static std::shared_ptr&lt; <a class="el" href="class_command_buffer.html">Comman
         <tr>
           <td class="memname">void VKCommandBuffer::beginRenderPass </td>
           <td>(</td>
-          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="class_pipeline.html">Pipeline</a> &gt;&#160;</td>
-          <td class="paramname"><em>pipeline</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
