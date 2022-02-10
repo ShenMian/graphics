@@ -14,7 +14,9 @@ option(BUILD_EXAMPLES "Build examples" ON)
 option(BUILD_TESTS    "Build tests"    ON)
 
 # 输出信息
-cmake_host_system_information(RESULT OS_PRETTY_NAME QUERY DISTRIB_PRETTY_NAME)
+if(${CMAKE_VERSION} VERSION_GREATER_EQUAL "3.22.0")
+  cmake_host_system_information(RESULT OS_PRETTY_NAME QUERY DISTRIB_PRETTY_NAME)
+endif()
 message(STATUS "OS")
 message(STATUS "|- Name   : ${CMAKE_SYSTEM_NAME}(${OS_PRETTY_NAME})")
 message(STATUS "`- Version: ${CMAKE_SYSTEM_VERSION}")
@@ -64,11 +66,13 @@ macro(add_example NAME)
           CXX_STANDARD          23
           CXX_STANDARD_REQUIRED ON)
   elseif(APPLE)
-      target_compile_options(${NAME} PRIVATE -std=c++2a)
+      target_compile_options(${NAME} PRIVATE -std=c++2a) # AppleClang
   elseif(UNIX)
-      target_compile_options(${NAME} PRIVATE -std=c++20)
+    target_compile_options(${NAME} PRIVATE -std=c++20)
   else()
-      message(FATAL_ERROR "Unsupported compiler")
+      set_property(TARGET ${NAME} PROPERTY
+              CXX_STANDARD          20
+              CXX_STANDARD_REQUIRED ON)
   endif()
 
   # 将 Shader 源文件复制到可执行文件的目录下

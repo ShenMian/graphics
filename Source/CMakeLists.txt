@@ -106,9 +106,11 @@ if(MSVC)
         CXX_STANDARD          23
         CXX_STANDARD_REQUIRED ON)
 elseif(APPLE)
-    target_compile_options(graphics PRIVATE -std=c++2a)
+    target_compile_options(graphics PRIVATE -std=c++2a) # AppleClang
 elseif(UNIX)
     target_compile_options(graphics PRIVATE -std=c++20)
 else()
-    message(FATAL_ERROR "Unsupported compiler")
+    set_property(TARGET graphics PROPERTY
+            CXX_STANDARD          20
+            CXX_STANDARD_REQUIRED ON)
 endif()
