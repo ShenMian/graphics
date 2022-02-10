@@ -101,7 +101,7 @@ public:
 
 private:
 	std::string           name;
-	std::vector<Mesh>     meshs;
+	std::vector<Mesh>     meshes;
 	std::filesystem::path path;
 	AABB3                 aabb;
 

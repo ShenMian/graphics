@@ -191,17 +191,17 @@ void loadMesh(const aiMesh* aMesh, const aiScene* aScene, const fs::path& path, 
  * @param aNode  assimp 节点.
  * @param aScene assimp 场景.
  * @param path   模型位置.
- * @param meshs  要载入到的 Mesh 数组.
+ * @param meshes 要载入到的 Mesh 数组.
  */
-void loadNode(const aiNode* aNode, const aiScene* aScene, const fs::path& path, std::vector<Mesh>& meshs, AABB3& aabb)
+void loadNode(const aiNode* aNode, const aiScene* aScene, const fs::path& path, std::vector<Mesh>& meshes, AABB3& aabb)
 {
 	// 加载网格
 	for(unsigned int i = 0; i < aNode->mNumMeshes; i++)
-		loadMesh(aScene->mMeshes[aNode->mMeshes[i]], aScene, path, meshs, aabb);
+		loadMesh(aScene->mMeshes[aNode->mMeshes[i]], aScene, path, meshes, aabb);
 
 	// 加载其余节点
 	for(unsigned int i = 0; i < aNode->mNumChildren; i++)
-		loadNode(aNode->mChildren[i], aScene, path, meshs, aabb);
+		loadNode(aNode->mChildren[i], aScene, path, meshes, aabb);
 }
 
 }
@@ -264,8 +264,8 @@ void Model::load(const fs::path& path, unsigned int process)
 	name = aScene->mName.C_Str();
 
 	printf("Meshes loaded: %.2lfs\n", timer.getSeconds()); // TODO: debug
-	timer.restart();                                       // TODO: debug
-	loadNode(aScene->mRootNode, aScene, path, meshs, aabb);
+	timer.restart();
+	loadNode(aScene->mRootNode, aScene, path, meshes, aabb);
 	printf("Meshes processed: %.2lfs     \n", timer.getSeconds()); // TODO: debug
 }
 
@@ -302,18 +302,18 @@ const AABB3& Model::getAABB() const
 
 const std::vector<Mesh>& Model::getMeshs() const
 {
-	return meshs;
+	return meshes;
 }
 
 void Model::compress()
 {
-	for(auto& mesh : meshs)
+	for(auto& mesh : meshes)
 		mesh.compress();
 }
 
 void Model::decompress()
 {
-	for(auto& mesh : meshs)
+	for(auto& mesh : meshes)
 		mesh.decompress();
 }
 
