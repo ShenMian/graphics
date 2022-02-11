@@ -62,17 +62,15 @@ macro(add_example NAME)
 
   # 指定 C++ 标准
   if(MSVC)
-      set_property(TARGET ${NAME} PROPERTY
+    set_property(TARGET ${NAME} PROPERTY
           CXX_STANDARD          23
-          CXX_STANDARD_REQUIRED ON)
+          CXX_STANDARD_REQUIRED ON) # MSVC
   elseif(APPLE)
-      target_compile_options(${NAME} PRIVATE -std=c++2a) # AppleClang
-  elseif(UNIX)
-    target_compile_options(${NAME} PRIVATE -std=c++20)
+    target_compile_options(${NAME} PRIVATE -std=c++2a) # AppleClang
   else()
-      set_property(TARGET ${NAME} PROPERTY
+    set_property(TARGET ${NAME} PROPERTY
               CXX_STANDARD          20
-              CXX_STANDARD_REQUIRED ON)
+              CXX_STANDARD_REQUIRED ON) # GCC/Clang
   endif()
 
   # 将 Shader 源文件复制到可执行文件的目录下
