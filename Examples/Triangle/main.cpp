@@ -103,7 +103,7 @@ int main()
 				{
 					cmdBuffer->setPipeline(pipeline);
 
-					cmdBuffer->beginRenderPass(pipeline);
+					cmdBuffer->beginRenderPass();
 					{
 						cmdBuffer->setViewport({window.getSize()});
 						cmdBuffer->setClearColor({0, 0, 0, 0});

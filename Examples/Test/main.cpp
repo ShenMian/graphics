@@ -29,7 +29,9 @@ int main()
 
 				Model model;
 				// model.load(path / "scene/Crytek_Sponza/sponza.obj", Model::ProcessFlags::Fast);
-				model.load(path / "weapon/m4a1/m4a1.gltf", Model::ProcessFlags::Fast);
+				model.load(path / "weapon/m4a1/m4a1.gltf", Model::ProcessFlags::Fast, [](float progress) {
+			      printf("Meshes loading: %d%%  \r", static_cast<int>(progress * 100));
+        });
 				// model.load(path / "pbr/DamagedHelmet/DamagedHelmet.gltf");
 				// model.load(path / "basic/cube.obj");
 				// model.load(path / "scene/Amazon_Lumberyard_Bistro/Exterior/exterior.obj", Model::ProcessFlags::Fast);

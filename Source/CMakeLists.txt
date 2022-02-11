@@ -104,13 +104,11 @@ target_compile_definitions(graphics PUBLIC ${GRAPHICS_DEFINES})
 if(MSVC)
     set_property(TARGET graphics PROPERTY
         CXX_STANDARD          23
-        CXX_STANDARD_REQUIRED ON)
+        CXX_STANDARD_REQUIRED ON) # MSVC
 elseif(APPLE)
     target_compile_options(graphics PRIVATE -std=c++2a) # AppleClang
-elseif(UNIX)
-    target_compile_options(graphics PRIVATE -std=c++20)
 else()
     set_property(TARGET graphics PROPERTY
             CXX_STANDARD          20
-            CXX_STANDARD_REQUIRED ON)
+            CXX_STANDARD_REQUIRED ON) # GCC/Clang
 endif()
