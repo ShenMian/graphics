@@ -86,7 +86,7 @@ private:
 	Camera* camera = nullptr;
 	float   speed = 200.f;
 
-	float    smoothness = 9;
+	float    smoothness = 11;
 	Vector3f target;
 
 	Gamepad* gamepad = nullptr;

@@ -92,15 +92,23 @@ void Controller::processKeyboard(float dt)
 
 void Controller::processMouse(float dt)
 {
-	const Vector2f sensitivity = Vector2f::unit * 8.f * dt;
+	const Vector2f sensitivity = Vector2f::unit;
 
 	const auto position = Input::getMousePosition();
 	static Vector2f lastPos = position;
 	const auto pos = static_cast<Vector2f>(position);
 	Vector2f offset = pos - lastPos;
 	lastPos = pos;
-	offset.x *= sensitivity.x;
-	offset.y *= sensitivity.y;
+
+	// TODO
+#if 0
+	offset.x *= sensitivity.x * 8.f * dt;
+	offset.y *= sensitivity.y * 8.f * dt;
+#else
+	// 去除 dt 的干扰, 更加稳定
+	offset.x *= sensitivity.x * 0.15;
+	offset.y *= sensitivity.y * 0.15;
+#endif
 
 	lookUp(-offset.y);
 	turnRight(offset.x);
