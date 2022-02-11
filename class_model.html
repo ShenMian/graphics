@@ -103,9 +103,9 @@ $(document).ready(function(){initNavTree('class_model.html',''); initResizable()
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
-<tr class="memitem:a6d5ce96bb0ce54b4a526c58e7a247cd0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#a6d5ce96bb0ce54b4a526c58e7a247cd0">load</a> (const std::filesystem::path &amp;path, unsigned int process=<a class="el" href="struct_model_1_1_process_flags.html#a2022078b156bd53704d6a9d9c62d268ea519d899563530cfa614845490d19426a">ProcessFlags::Fast</a>)</td></tr>
-<tr class="memdesc:a6d5ce96bb0ce54b4a526c58e7a247cd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">从文件载入场景.  <a href="class_model.html#a6d5ce96bb0ce54b4a526c58e7a247cd0">更多...</a><br /></td></tr>
-<tr class="separator:a6d5ce96bb0ce54b4a526c58e7a247cd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9948eb464a9162def45a6f2f77a5ecf2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#a9948eb464a9162def45a6f2f77a5ecf2">load</a> (const std::filesystem::path &amp;path, unsigned int process=<a class="el" href="struct_model_1_1_process_flags.html#a2022078b156bd53704d6a9d9c62d268ea519d899563530cfa614845490d19426a">ProcessFlags::Fast</a>, std::function&lt; void(float)&gt; progress=nullptr)</td></tr>
+<tr class="memdesc:a9948eb464a9162def45a6f2f77a5ecf2"><td class="mdescLeft">&#160;</td><td class="mdescRight">从文件载入场景.  <a href="class_model.html#a9948eb464a9162def45a6f2f77a5ecf2">更多...</a><br /></td></tr>
+<tr class="separator:a9948eb464a9162def45a6f2f77a5ecf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abb58f05b208fd32928caa2648341caf1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#abb58f05b208fd32928caa2648341caf1">loadAsync</a> (const std::filesystem::path &amp;path, unsigned int process=<a class="el" href="struct_model_1_1_process_flags.html#a2022078b156bd53704d6a9d9c62d268ea519d899563530cfa614845490d19426a">ProcessFlags::Fast</a>, std::function&lt; void(std::string_view)&gt; callback=nullptr) noexcept</td></tr>
 <tr class="memdesc:abb58f05b208fd32928caa2648341caf1"><td class="mdescLeft">&#160;</td><td class="mdescRight">从文件载入场景, 异步.  <a href="class_model.html#abb58f05b208fd32928caa2648341caf1">更多...</a><br /></td></tr>
 <tr class="separator:abb58f05b208fd32928caa2648341caf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -150,8 +150,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>decompress</b> ()</td
 
 </div>
 </div>
-<a id="a6d5ce96bb0ce54b4a526c58e7a247cd0" name="a6d5ce96bb0ce54b4a526c58e7a247cd0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6d5ce96bb0ce54b4a526c58e7a247cd0">&#9670;&nbsp;</a></span>load()</h2>
+<a id="a9948eb464a9162def45a6f2f77a5ecf2" name="a9948eb464a9162def45a6f2f77a5ecf2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9948eb464a9162def45a6f2f77a5ecf2">&#9670;&nbsp;</a></span>load()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -166,7 +166,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>decompress</b> ()</td
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>process</em> = <code><a class="el" href="struct_model_1_1_process_flags.html#a2022078b156bd53704d6a9d9c62d268ea519d899563530cfa614845490d19426a">ProcessFlags::Fast</a></code>&#160;</td>
+          <td class="paramname"><em>process</em> = <code><a class="el" href="struct_model_1_1_process_flags.html#a2022078b156bd53704d6a9d9c62d268ea519d899563530cfa614845490d19426a">ProcessFlags::Fast</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::function&lt; void(float)&gt;&#160;</td>
+          <td class="paramname"><em>progress</em> = <code>nullptr</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -234,7 +240,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>decompress</b> ()</td
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>参见</dt><dd><a class="el" href="class_model.html#a6d5ce96bb0ce54b4a526c58e7a247cd0" title="从文件载入场景.">load</a> </dd></dl>
+<dl class="section see"><dt>参见</dt><dd><a class="el" href="class_model.html#a9948eb464a9162def45a6f2f77a5ecf2" title="从文件载入场景.">load</a> </dd></dl>
 
 </div>
 </div>
