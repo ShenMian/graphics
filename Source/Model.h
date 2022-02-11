@@ -73,7 +73,7 @@ public:
 	 *
 	 * @see loadAsync
 	 */
-	void load(const std::filesystem::path& path, unsigned int process = ProcessFlags::Fast);
+	void load(const std::filesystem::path& path, unsigned int process = ProcessFlags::Fast, std::function<void(float)> progress = nullptr);
 
 	/**
 	 * @brief 从文件载入场景, 异步.

@@ -206,7 +206,7 @@ void loadNode(const aiNode* aNode, const aiScene* aScene, const fs::path& path, 
 
 }
 
-void Model::load(const fs::path& path, unsigned int process)
+void Model::load(const fs::path& path, unsigned int process, std::function<void(float)> progress)
 {
 	if(!fs::exists(path) && !fs::is_regular_file(path))
 		throw std::runtime_error("no such file or directory");
@@ -247,16 +247,25 @@ void Model::load(const fs::path& path, unsigned int process)
 	class Progress : public Assimp::ProgressHandler
 	{
 	public:
+		Progress(std::function<void(float)> callback)
+			: callback(callback)
+		{
+		}
+
 		bool Update(float percentage) override
 		{
-			printf("Meshes loading: %d%%  \r", static_cast<int>(percentage * 100));
+			if(callback)
+				callback(percentage);
 			return true;
 		}
+
+	private:
+		std::function<void(float)> callback;
 	};
 
 	Assimp::Importer importer;
-	importer.SetProgressHandler(new Progress);
-	aScene = importer.ReadFile(path.string(), flags); // 从文件导入场景数据
+	importer.SetProgressHandler(new Progress(progress)); // FIXME: 内存泄漏
+	aScene = importer.ReadFile(path.string(), flags);    // 从文件导入场景数据
 
 	if(aScene == nullptr || aScene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || aScene->mRootNode == nullptr)
 		throw std::runtime_error(importer.GetErrorString());
