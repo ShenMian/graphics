@@ -5,6 +5,9 @@ list(APPEND INCS
     "${DEPS_DIR}/stb"
     "${DEPS_DIR}/Math/include")
 
+# 添加 fmt
+list(APPEND INCS "${DEPS_DIR}/fmt/include")
+
 # 添加 Glad
 include("${DEPS_DIR}/glad.cmake")
 list(APPEND LIBS glad)

@@ -9,7 +9,9 @@
 #include <stdexcept>
 #include <filesystem>
 #include <glad/glad.h>
-// #include <format>
+
+#define FMT_HEADER_ONLY
+#include <fmt/core.h>
 
 namespace fs = std::filesystem;
 
@@ -128,7 +130,6 @@ void GLProgram::link()
 		glGetProgramiv(handle, GL_INFO_LOG_LENGTH, &size);
 		std::string info(size, '\0');
 		glGetProgramInfoLog(handle, (GLsizei)info.size(), &size, info.data());
-		throw std::runtime_error("program '" + name + "' link failure: " + info);
-		// assert(false && std::format("program '{}' link failure: {}", name, info));
+		throw std::runtime_error(fmt::format("program '{}' link failed: {}", name, info));
 	}
 }

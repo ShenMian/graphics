@@ -46,6 +46,7 @@ macro(add_example NAME)
       "${PROJECT_SOURCE_DIR}/Source"
       "${DEPS_DIR}/stb"
       "${DEPS_DIR}/ImGuizmo/"
+      "${DEPS_DIR}/fmt/include"
       "${DEPS_DIR}/Math/include"
       "${DEPS_DIR}/glad/include"
       "${DEPS_DIR}/glfw/include"

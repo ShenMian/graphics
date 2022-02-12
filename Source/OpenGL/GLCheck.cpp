@@ -5,7 +5,9 @@
 #include <stdexcept>
 #include <string>
 #include <glad/glad.h>
-// #include <format>
+
+#define FMT_HEADER_ONLY
+#include <fmt/core.h>
 
 using namespace std::literals::string_literals;
 
@@ -48,8 +50,7 @@ void GLCheckError()
 	{
 		if(error == GL_NO_ERROR)
 			break;
-		// std::format("OpenGL error ({}): {}", error, GLGetErrorString(error))
-		throw std::runtime_error("OpenGL error ("s + std::to_string(error) + "): " + GLGetErrorString(error));
+		throw std::runtime_error(fmt::format("OpenGL error ({}): {}", error, GLGetErrorString(error)));
 	}
 }
 

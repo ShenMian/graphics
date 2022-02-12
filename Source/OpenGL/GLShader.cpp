@@ -8,7 +8,9 @@
 #include <cassert>
 #include <stdexcept>
 #include <vector>
-// #include <format>
+
+#define FMT_HEADER_ONLY
+#include <fmt/core.h>
 
 namespace fs = std::filesystem;
 
@@ -67,7 +69,7 @@ GLShader::GLShader(const Descriptor& desc)
 		glGetShaderiv(handle, GL_INFO_LOG_LENGTH, &size);
 		std::string info(size, '\0');
 		glGetShaderInfoLog(handle, (GLsizei)info.size(), &size, info.data());
-		throw std::runtime_error("shader compile error: " + desc.path.filename().string() + ":" + info);
+		throw std::runtime_error(fmt::format("shader '{}' compile error: {}", desc.path.filename().string(), info));
 	}
 }
 

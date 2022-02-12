@@ -15,6 +15,7 @@ project "Graphics"
 	files {"**.cpp", "**.hpp", "**.h", "**.inl", "CMakeLists.txt", "premake5.lua"}
 
 	sysincludedirs {
+		"%{deps_inc.fmt}",
 		"%{deps_inc.stb}",
 		"%{deps_inc.math}",
 		"%{deps_inc.glad}",

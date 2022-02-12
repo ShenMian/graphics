@@ -40,3 +40,6 @@
 [submodule "Deps/ImGuizmo"]
 	path = Deps/ImGuizmo
 	url = https://github.com/CedricGuillemet/ImGuizmo.git
+[submodule "Deps/fmt"]
+	path = Deps/fmt
+	url = https://github.com/fmtlib/fmt.git

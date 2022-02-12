@@ -39,6 +39,7 @@ workspace "Graphics"
 
     -- 第三方库路径
     deps = {}
+    deps["fmt"]               = "%{wks.location}/Deps/fmt"
     deps["stb"]               = "%{wks.location}/Deps/stb"
     deps["math"]              = "%{wks.location}/Deps/Math"
     deps["glad"]              = "%{wks.location}/Deps/glad"
@@ -56,6 +57,7 @@ workspace "Graphics"
 
     -- 第三方库头文件路径
     deps_inc = {}
+    deps_inc["fmt"]               = "%{deps.fmt}/include"
     deps_inc["stb"]               = "%{deps.stb}"
     deps_inc["math"]              = "%{deps.math}/include"
     deps_inc["glad"]              = "%{deps.glad}/include"

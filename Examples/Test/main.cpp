@@ -3,6 +3,9 @@
 
 #include "Graphics.h"
 
+#define FMT_HEADER_ONLY
+#include <fmt/core.h>
+
 #include "OpenGL/GLUniformBuffer.h"
 
 using namespace std::literals::string_literals;
@@ -29,12 +32,13 @@ int main()
 
 				Model model;
 				// model.load(path / "scene/Crytek_Sponza/sponza.obj", Model::ProcessFlags::Fast);
-				model.load(path / "weapon/m4a1/m4a1.gltf", Model::ProcessFlags::Fast, [](float progress) {
-			      printf("Meshes loading: %d%%  \r", static_cast<int>(progress * 100));
-        });
+				// model.load(path / "TeaHouse2.obj", Model::ProcessFlags::Fast);
+				model.load(path / "weapon/m4a1/m4a1.gltf", Model::ProcessFlags::Fast);
 				// model.load(path / "pbr/DamagedHelmet/DamagedHelmet.gltf");
 				// model.load(path / "basic/cube.obj");
-				// model.load(path / "scene/Amazon_Lumberyard_Bistro/Exterior/exterior.obj", Model::ProcessFlags::Fast);
+				// model.load(path / "scene/Amazon_Lumberyard_Bistro/Exterior/exterior.obj", Model::ProcessFlags::Fast, [](float progress) {
+				// 	printf("Meshes loading: %d%%  \r", static_cast<int>(progress * 100));
+				// });
 				// model.load(path / "3DModel/scene/San_Miguel/san-miguel-low-poly.obj", Model::ProcessFlags::Fast);
 				// model.load(path / "pbr/MetalRoughSpheres/MetalRoughSpheres.gltf");
 				// model.load(path / "3DModel/scene/SunTemple/SunTemple.fbx", Model::ProcessFlags::Fast); // 暂不支持 DDS 格式的纹理资源
@@ -115,13 +119,11 @@ int main()
 				window.setCursorLock(true);
 				window.setRawMouseMotion(true);
 
-				ui::Window ATT("ATT");    // 摄像机姿态信息
-				ui::Label rollAngle("");  // 滚转角度
-				ui::Label pitchAngle(""); // 俯仰角度
-				ui::Label yawAngle("");   // 偏航角度
-				ATT.add(rollAngle);
-				ATT.add(pitchAngle);
-				ATT.add(yawAngle);
+				ui::Window ATT("ATT");  // 摄像机姿态信息
+				ui::Label position(""); // 坐标
+				ui::Label angles("");   // 姿态角角度
+				ATT.add(position);
+				ATT.add(angles);
 
 				GLUniformBuffer uniformBuffer("Camera", 0, 2 * sizeof(Matrix4f));
 				uniformBuffer.bind(reinterpret_cast<GLProgram*>(program.get()));
@@ -145,10 +147,18 @@ int main()
 
 					UI::begin();
 
+					const auto& pos = camera.getPosition();
+					position.setText(fmt::format(
+						"X    : {: .2f}\n"
+						"Y    : {: .2f}\n"
+						"Z    : {: .2f}\n",
+						pos.x, pos.y, pos.z));
 					const auto& dir = camera.getRotation();
-					rollAngle.setText("Roll : " + std::to_string((int)dir.z));
-					pitchAngle.setText("Pitch: " + std::to_string((int)dir.x));
-					yawAngle.setText("Yaw  : " + std::to_string((int)dir.y));
+					angles.setText(fmt::format(
+						"Roll : {: .1f}\n"
+						"Pitch: {: .1f}\n"
+						"Yaw  : {: .1f}\n",
+						dir.z, dir.x, dir.y));
 					ATT.update();
 
 					uniformBuffer.write(camera.getView().data(), sizeof(Matrix4f));
