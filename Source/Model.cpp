@@ -223,6 +223,8 @@ void Model::load(const fs::path& path, unsigned int process, std::function<void(
 		aiProcess_Triangulate |
 		aiProcess_SortByPType;
 
+	flags |= aiProcess_MakeLeftHanded; // TODO
+
 	if(process & ProcessFlags::GenNormals)
 		flags |= aiProcess_GenNormals;
 	if(process & ProcessFlags::GenSmoothNormals)
