@@ -3,6 +3,9 @@
 
 #include "Graphics.h"
 
+#define FMT_HEADER_ONLY
+#include <fmt/core.h>
+
 void PrintInfo();
 
 struct Vertex
@@ -139,34 +142,20 @@ void PrintInfo()
 	// 打印显示器信息
 	for(const auto& mon : Monitor::getMonitors())
 	{
-		/*printf(std::format(
+		printf(fmt::format(
 			"Monitor\n"
 			"|-Name        : {}\n"
 			"|-Size        : {}x{}\n"
 			"`-Refresh rate: {} Hz\n",
-			mon.getName(), mon.getSize().x, mon.getSize().y, mon.getRefreshRate()).c_str());*/
-		printf(
-			"Monitor\n"
-			"|-Name        : %s\n"
-			"|-Size        : %dx%d\n"
-			"`-Refresh rate: %d Hz\n",
-			mon.getName().c_str(), mon.getSize().x, mon.getSize().y, mon.getRefreshRate());
+			mon.getName(), mon.getSize().x, mon.getSize().y, mon.getRefreshRate()).c_str());
 	}
 
 	// 打印基本信息
 	const auto renderer = Renderer::get();
-	/*printf(std::format(
+	printf(fmt::format(
 		"Basic\n"
 		"|-Device  : {}\n"
 		"|-Renderer: {}\n"
 		"`-Vendor  : {}\n",
-		renderer->getDeviceName(), renderer->getRendererName(), renderer->getVendorName()).c_str());*/
-	printf(
-		"Renderer\n"
-		"|-Device  : %s\n"
-		"|-Renderer: %s\n"
-		"`-Vendor  : %s\n",
-		renderer->getDeviceName().c_str(),
-		renderer->getRendererName().c_str(),
-		renderer->getVendorName().c_str());
+		renderer->getDeviceName(), renderer->getRendererName(), renderer->getVendorName()).c_str());
 }
