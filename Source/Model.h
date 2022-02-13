@@ -13,18 +13,9 @@
 #include <unordered_map>
 
 // TODO:
-// 1. 顶点数据应该由 Model 管理, Mesh 保存顶点数据的引用和顶点索引.
-// 2. 析构后线程可能仍在运行, 导致 callback 获取不存在的数据.
-
-namespace Assimp
-{
-
-class Importer;
-class Exporter;
-
-}
-
-struct aiScene;
+// 1. 重构代码, 现有代码组织不合理.
+// 2. 顶点数据应该由 Model 管理, Mesh 保存顶点数据的引用和顶点索引.
+// 3. 析构后线程可能仍在运行, 导致 callback 获取不存在的数据.
 
 class Mesh;
 class Material;
@@ -75,14 +66,6 @@ public:
 	 */
 	void load(const std::filesystem::path& path, unsigned int process = ProcessFlags::Fast, std::function<void(float)> progress = nullptr);
 
-	/**
-	 * @brief 从文件载入场景, 异步.
-	 *
-	 * @param path 场景文件路径.
-	 *
-	 * @see load
-	 */
-	void loadAsync(const std::filesystem::path& path, unsigned int process = ProcessFlags::Fast, std::function<void(std::string_view)> callback = nullptr) noexcept;
 
 	/**
 	 * @brief 保存场景到文件.
@@ -90,8 +73,10 @@ public:
 	 * @param path 场景文件路径.
 	 */
 	 // void save(const std::filesystem::path& path);
-	 // void saveAsync(const std::filesystem::path& path, std::function<void(std::error_code)> callback = nullptr) noexcept;
 
+	/**
+	 * @brief 获取 AABB.
+	 */
 	const AABB3& getAABB() const;
 
 	const std::vector<Mesh>& getMeshs() const;
@@ -104,8 +89,6 @@ private:
 	std::vector<Mesh>     meshes;
 	std::filesystem::path path;
 	AABB3                 aabb;
-
-	const aiScene* aScene = nullptr;
 };
 
 /*

@@ -6,11 +6,13 @@
 #include "VertexBuffer.h"
 #include "Material.h"
 #include "Core/Image.h"
+
 #include <assimp/postprocess.h>
 #include <assimp/scene.h>
 #include <assimp/Exporter.hpp>
 #include <assimp/Importer.hpp>
 #include <assimp/ProgressHandler.hpp>
+
 #include <algorithm>
 #include <cassert>
 #include <concepts>
@@ -37,6 +39,26 @@ struct Vertex
 	auto operator<=>(const Vertex&) const = default;
 };
 
+// Assimp 文件加载进度回调
+class Progress : public Assimp::ProgressHandler
+{
+public:
+	Progress(std::function<void(float)> callback)
+		: callback(callback)
+	{
+	}
+
+	bool Update(float percentage) override
+	{
+		if(callback)
+			callback(percentage);
+		return true;
+	}
+
+private:
+	std::function<void(float)> callback;
+};
+
 // 获取顶点数据
 template <typename Vertex>
 void loadVertices(std::vector<Vertex>& vertices, const aiMesh* mesh)
@@ -45,7 +67,7 @@ void loadVertices(std::vector<Vertex>& vertices, const aiMesh* mesh)
 
 	for(unsigned int i = 0; i < mesh->mNumVertices; i++)
 	{
-		Vertex vertex;
+		Vertex vertex = {};
 
 		// 获取坐标
 		std::memcpy(&vertex.position, &mesh->mVertices[i], sizeof(vertex.position));
@@ -56,8 +78,8 @@ void loadVertices(std::vector<Vertex>& vertices, const aiMesh* mesh)
 
 		if(mesh->mTextureCoords[0])
 		{
-			std::memcpy(&vertex.uv, &mesh->mTextureCoords[0][i], sizeof(vertex.uv)); // 获取纹理坐标
-			std::memcpy(&vertex.tangent, &mesh->mTangents[i], sizeof(vertex.tangent)); // 获取 tangent
+			std::memcpy(&vertex.uv, &mesh->mTextureCoords[0][i], sizeof(vertex.uv));         // 获取纹理坐标
+			std::memcpy(&vertex.tangent, &mesh->mTangents[i], sizeof(vertex.tangent));       // 获取 tangent
 			std::memcpy(&vertex.bitangent, &mesh->mBitangents[i], sizeof(vertex.bitangent)); // 获取 bitangent
 		}
 
@@ -74,7 +96,6 @@ void loadIndices(std::vector<unsigned int>& indices, const aiMesh* mesh)
 	for(unsigned int i = 0; i < mesh->mNumFaces; i++)
 	{
 		const auto& face = mesh->mFaces[i];
-
 		for(unsigned int j = 0; j < face.mNumIndices; j++)
 			indices.push_back(face.mIndices[j]);
 	}
@@ -88,12 +109,16 @@ void optimize(std::vector<unsigned int>& indices, std::vector<Vertex>& vertices)
 	meshopt_optimizeVertexFetch(vertices.data(), indices.data(), indices.size(), vertices.data(), vertices.size(), sizeof(Vertex));
 }
 
-void loadMaterial(Material& mat, const aiMesh* aMesh, const aiScene* scene, const fs::path path)
+// 加载材质
+void loadMaterial(Material& mat, const aiMesh* aMesh, const aiScene* aScene, const fs::path& path)
 {
 	const auto dir = path.parent_path();
-	const auto aMat = scene->mMaterials[aMesh->mMaterialIndex];
+	const auto aMat = aScene->mMaterials[aMesh->mMaterialIndex];
+
+	// 加载指定类型的材质
 	auto loadTexture = [&](aiTextureType type)->std::shared_ptr<Texture>
 	{
+		// TODO: 此处循环无用, 同类型的材质可能有多个
 		for(unsigned int i = 0; i < aMat->GetTextureCount(type); i++)
 		{
 			aiString aPath;
@@ -143,9 +168,13 @@ void loadMesh(const aiMesh* aMesh, const aiScene* aScene, const fs::path& path, 
 
 	std::vector<Vertex> vertices;
 	std::vector<unsigned int> indices;
+	Material mat;
 
 	loadVertices(vertices, aMesh);
 	loadIndices(indices, aMesh);
+#if 0 // TODO: debug
+	loadMaterial(mat, aMesh, aScene, path);
+#endif
 
 	optimize(indices, vertices);
 
@@ -169,11 +198,6 @@ void loadMesh(const aiMesh* aMesh, const aiScene* aScene, const fs::path& path, 
 	auto& min = aMesh->mAABB.mMin;
 	auto& max = aMesh->mAABB.mMax;
 	aabb.expand({{min.x, min.y, min.z}, {max.x, max.y, max.z}});
-#endif
-
-	Material mat;
-#if 0 // TODO: debug
-	loadMaterial(mat, aMesh, aScene, path);
 #endif
 
 	Mesh mesh;
@@ -244,30 +268,11 @@ void Model::load(const fs::path& path, unsigned int process, std::function<void(
 	if(process & ProcessFlags::FixInfacingNormals)
 		flags |= aiProcess_FixInfacingNormals;
 
-	// TODO: debug
-	// 文件加载进度回调
-	class Progress : public Assimp::ProgressHandler
-	{
-	public:
-		Progress(std::function<void(float)> callback)
-			: callback(callback)
-		{
-		}
-
-		bool Update(float percentage) override
-		{
-			if(callback)
-				callback(percentage);
-			return true;
-		}
-
-	private:
-		std::function<void(float)> callback;
-	};
-
 	Assimp::Importer importer;
-	importer.SetProgressHandler(new Progress(progress)); // FIXME: 内存泄漏
-	aScene = importer.ReadFile(path.string(), flags);    // 从文件导入场景数据
+	auto progressHandler = new Progress(progress);
+	importer.SetProgressHandler(progressHandler);
+	const aiScene* aScene = importer.ReadFile(path.string(), flags); // 从文件导入场景数据
+	delete progressHandler;
 
 	if(aScene == nullptr || aScene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || aScene->mRootNode == nullptr)
 		throw std::runtime_error(importer.GetErrorString());
@@ -278,32 +283,6 @@ void Model::load(const fs::path& path, unsigned int process, std::function<void(
 	timer.restart();
 	loadNode(aScene->mRootNode, aScene, path, meshes, aabb);
 	printf("Meshes processed: %.2lfs     \n", timer.getSeconds()); // TODO: debug
-}
-
-void Model::loadAsync(const fs::path& path, unsigned int process, std::function<void(std::string_view)> callback) noexcept
-{
-	try
-	{
-		std::thread([=, this]()
-		{
-			try
-			{
-				load(path, process);
-				if(callback)
-					callback("");
-			}
-			catch(std::runtime_error& e)
-			{
-				puts(e.what());
-				if(callback)
-					callback(e.what());
-			}
-		}).detach();
-	}
-	catch(...)
-	{
-		assert(false);
-	}
 }
 
 const AABB3& Model::getAABB() const
@@ -327,34 +306,3 @@ void Model::decompress()
 	for(auto& mesh : meshes)
 		mesh.decompress();
 }
-
-/*void Model::save(const fs::path& path)
-{
-	assert(scene != nullptr);
-
-	// 导出场景数据到文件
-	Assimp::Exporter exporter;
-	auto ret = exporter.Export(scene, path.extension().string(), path.string());
-	if(ret == aiReturn_FAILURE)
-		throw std::runtime_error(importer.GetErrorString());
-}
-
-void Model::saveAsync(const fs::path& path, std::function<void(std::string_view)> callback) noexcept
-{
-	std::thread([=]()
-	{
-		try
-		{
-			save(path);
-			if(callback)
-				callback("");
-		} catch(std::runtime_error& e)
-		{
-			if(callback)
-				callback(e.what());
-		}
-	}).detach();
-}*/
-
-// static std::vector<std::future<void>> futures;
-// futures.erase(std::remove_if(futures.begin(), futures.end(), [](std::future<void>& f) { return f.wait_for(std::chrono::seconds(0)) == std::future_status::ready; }), futures.end());
