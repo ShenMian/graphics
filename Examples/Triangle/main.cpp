@@ -3,6 +3,9 @@
 
 #include "Graphics.h"
 
+#define FMT_HEADER_ONLY
+#include <fmt/core.h>
+
 void PrintInfo();
 
 struct Vertex
@@ -13,7 +16,7 @@ struct Vertex
 
 int main()
 {
-	Renderer::setAPI(Renderer::API::Vulkan);
+	Renderer::setAPI(Renderer::API::OpenGL);
 	Window::init();
 
 	{
@@ -37,35 +40,7 @@ int main()
 
 			auto vertexBuffer = VertexBuffer::create(vertices, layout);
 
-			Program::Descriptor programDesc;
-			{
-				// TODO
-				if(Renderer::getAPI() == Renderer::API::OpenGL)
-				{
-					Shader::Descriptor vertShaderDesc;
-					vertShaderDesc.stage = Shader::Stage::Vertex;
-					vertShaderDesc.path = "Shaders/forward.vert.glsl";
-					programDesc.vertex = Shader::create(vertShaderDesc);
-
-					Shader::Descriptor fragShaderDesc;
-					fragShaderDesc.stage = Shader::Stage::Fragment;
-					fragShaderDesc.path = "Shaders/forward.frag.glsl";
-					programDesc.fragment = Shader::create(fragShaderDesc);
-				}
-				else
-				{
-					Shader::Descriptor vertShaderDesc;
-					vertShaderDesc.stage = Shader::Stage::Vertex;
-					vertShaderDesc.path = "Shaders/forward.vert.spv";
-					programDesc.vertex = Shader::create(vertShaderDesc);
-
-					Shader::Descriptor fragShaderDesc;
-					fragShaderDesc.stage = Shader::Stage::Fragment;
-					fragShaderDesc.path = "Shaders/forward.frag.spv";
-					programDesc.fragment = Shader::create(fragShaderDesc);
-				}
-			}
-			auto program = Program::create(programDesc);
+			auto program = Program::create("Shaders/forward");
 
 			auto cmdQueue = CommandQueue::create();
 			auto cmdBuffer = CommandBuffer::create();
@@ -134,34 +109,20 @@ void PrintInfo()
 	// 打印显示器信息
 	for(const auto& mon : Monitor::getMonitors())
 	{
-		/*printf(std::format(
+		printf(fmt::format(
 			"Monitor\n"
 			"|-Name        : {}\n"
 			"|-Size        : {}x{}\n"
 			"`-Refresh rate: {} Hz\n",
-			mon.getName(), mon.getSize().x, mon.getSize().y, mon.getRefreshRate()).c_str());*/
-		printf(
-			"Monitor\n"
-			"|-Name        : %s\n"
-			"|-Size        : %dx%d\n"
-			"`-Refresh rate: %d Hz\n",
-			mon.getName().c_str(), mon.getSize().x, mon.getSize().y, mon.getRefreshRate());
+			mon.getName(), mon.getSize().x, mon.getSize().y, mon.getRefreshRate()).c_str());
 	}
 
 	// 打印基本信息
 	const auto renderer = Renderer::get();
-	/*printf(std::format(
+	printf(fmt::format(
 		"Basic\n"
 		"|-Device  : {}\n"
 		"|-Renderer: {}\n"
 		"`-Vendor  : {}\n",
-		renderer->getDeviceName(), renderer->getRendererName(), renderer->getVendorName()).c_str());*/
-	printf(
-		"Renderer\n"
-		"|-Device  : %s\n"
-		"|-Renderer: %s\n"
-		"`-Vendor  : %s\n",
-		renderer->getDeviceName().c_str(),
-		renderer->getRendererName().c_str(),
-		renderer->getVendorName().c_str());
+		renderer->getDeviceName(), renderer->getRendererName(), renderer->getVendorName()).c_str());
 }
