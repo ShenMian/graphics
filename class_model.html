@@ -106,9 +106,6 @@ Public 成员函数</h2></td></tr>
 <tr class="memitem:a9948eb464a9162def45a6f2f77a5ecf2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#a9948eb464a9162def45a6f2f77a5ecf2">load</a> (const std::filesystem::path &amp;path, unsigned int process=<a class="el" href="struct_model_1_1_process_flags.html#a2022078b156bd53704d6a9d9c62d268ea519d899563530cfa614845490d19426a">ProcessFlags::Fast</a>, std::function&lt; void(float)&gt; progress=nullptr)</td></tr>
 <tr class="memdesc:a9948eb464a9162def45a6f2f77a5ecf2"><td class="mdescLeft">&#160;</td><td class="mdescRight">从文件载入场景.  <a href="class_model.html#a9948eb464a9162def45a6f2f77a5ecf2">更多...</a><br /></td></tr>
 <tr class="separator:a9948eb464a9162def45a6f2f77a5ecf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb58f05b208fd32928caa2648341caf1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#abb58f05b208fd32928caa2648341caf1">loadAsync</a> (const std::filesystem::path &amp;path, unsigned int process=<a class="el" href="struct_model_1_1_process_flags.html#a2022078b156bd53704d6a9d9c62d268ea519d899563530cfa614845490d19426a">ProcessFlags::Fast</a>, std::function&lt; void(std::string_view)&gt; callback=nullptr) noexcept</td></tr>
-<tr class="memdesc:abb58f05b208fd32928caa2648341caf1"><td class="mdescLeft">&#160;</td><td class="mdescRight">从文件载入场景, 异步.  <a href="class_model.html#abb58f05b208fd32928caa2648341caf1">更多...</a><br /></td></tr>
-<tr class="separator:abb58f05b208fd32928caa2648341caf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8b2bc5e7f945efb88fcd01a7d2af3ca0"><td class="memItemLeft" align="right" valign="top">const AABB3 &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#a8b2bc5e7f945efb88fcd01a7d2af3ca0">getAABB</a> () const</td></tr>
 <tr class="memdesc:a8b2bc5e7f945efb88fcd01a7d2af3ca0"><td class="mdescLeft">&#160;</td><td class="mdescRight">保存场景到文件.  <a href="class_model.html#a8b2bc5e7f945efb88fcd01a7d2af3ca0">更多...</a><br /></td></tr>
 <tr class="separator:a8b2bc5e7f945efb88fcd01a7d2af3ca0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -143,10 +140,11 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>decompress</b> ()</td
 <p>保存场景到文件. </p>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">path</td><td>场景文件路径. </td></tr>
+    <tr><td class="paramname">path</td><td>场景文件路径.</td></tr>
   </table>
   </dd>
 </dl>
+<p>获取 AABB. </p>
 
 </div>
 </div>
@@ -189,58 +187,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>decompress</b> ()</td
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>参见</dt><dd><a class="el" href="class_model.html#abb58f05b208fd32928caa2648341caf1" title="从文件载入场景, 异步.">loadAsync</a> </dd></dl>
-
-</div>
-</div>
-<a id="abb58f05b208fd32928caa2648341caf1" name="abb58f05b208fd32928caa2648341caf1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abb58f05b208fd32928caa2648341caf1">&#9670;&nbsp;</a></span>loadAsync()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Model::loadAsync </td>
-          <td>(</td>
-          <td class="paramtype">const std::filesystem::path &amp;&#160;</td>
-          <td class="paramname"><em>path</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>process</em> = <code><a class="el" href="struct_model_1_1_process_flags.html#a2022078b156bd53704d6a9d9c62d268ea519d899563530cfa614845490d19426a">ProcessFlags::Fast</a></code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::function&lt; void(std::string_view)&gt;&#160;</td>
-          <td class="paramname"><em>callback</em> = <code>nullptr</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>从文件载入场景, 异步. </p>
-<dl class="params"><dt>参数</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">path</td><td>场景文件路径.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section see"><dt>参见</dt><dd><a class="el" href="class_model.html#a9948eb464a9162def45a6f2f77a5ecf2" title="从文件载入场景.">load</a> </dd></dl>
+<dl class="section see"><dt>参见</dt><dd>loadAsync </dd></dl>
 
 </div>
 </div>
