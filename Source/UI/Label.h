@@ -12,7 +12,7 @@ namespace ui
 class Label : public Widget
 {
 public:
-	Label(const std::string& label);
+	Label(const std::string& label = "");
 
 	void setText(const std::string& text);
 

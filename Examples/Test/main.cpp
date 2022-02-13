@@ -35,11 +35,12 @@ int main()
 				// model.load(path / "TeaHouse2.obj", Model::ProcessFlags::Fast);
 				model.load(path / "weapon/m4a1/m4a1.gltf", Model::ProcessFlags::Fast);
 				// model.load(path / "pbr/DamagedHelmet/DamagedHelmet.gltf");
-				// model.load(path / "basic/cube.obj");
 				// model.load(path / "scene/Amazon_Lumberyard_Bistro/Exterior/exterior.obj", Model::ProcessFlags::Fast, [](float progress) {
 				// 	printf("Meshes loading: %d%%  \r", static_cast<int>(progress * 100));
 				// });
-				// model.load(path / "3DModel/scene/San_Miguel/san-miguel-low-poly.obj", Model::ProcessFlags::Fast);
+				// model.load(path / "3DModel/scene/San_Miguel/san-miguel-low-poly.obj", Model::ProcessFlags::Fast, [](float progress) {
+				// 	printf("Meshes loading: %d%%  \r", static_cast<int>(progress * 100));
+				// });
 				// model.load(path / "pbr/MetalRoughSpheres/MetalRoughSpheres.gltf");
 				// model.load(path / "3DModel/scene/SunTemple/SunTemple.fbx", Model::ProcessFlags::Fast); // 暂不支持 DDS 格式的纹理资源
 
@@ -119,9 +120,9 @@ int main()
 				window.setCursorLock(true);
 				window.setRawMouseMotion(true);
 
-				ui::Window ATT("ATT");  // 摄像机姿态信息
-				ui::Label position(""); // 坐标
-				ui::Label angles("");   // 姿态角角度
+				ui::Window ATT("ATT"); // 摄像机姿态信息
+				ui::Label position;    // 坐标
+				ui::Label angles;      // 姿态角角度
 				ATT.add(position);
 				ATT.add(angles);
 
@@ -213,36 +214,22 @@ void PrintInfo()
 	// 打印显示器信息
 	for(const auto& mon : Monitor::getMonitors())
 	{
-		/*printf(std::format(
+		printf(fmt::format(
 			"Monitor\n"
 			"|-Name        : {}\n"
 			"|-Size        : {}x{}\n"
 			"`-Refresh rate: {} Hz\n",
-			mon.getName(), mon.getSize().x, mon.getSize().y, mon.getRefreshRate()).c_str());*/
-		printf(
-			"Monitor\n"
-			"|-Name        : %s\n"
-			"|-Size        : %dx%d\n"
-			"`-Refresh rate: %d Hz\n",
-			mon.getName().c_str(), mon.getSize().x, mon.getSize().y, mon.getRefreshRate());
+			mon.getName(), mon.getSize().x, mon.getSize().y, mon.getRefreshRate()).c_str());
 	}
 
 	// 打印基本信息
 	const auto renderer = Renderer::get();
-	/*printf(std::format(
+	printf(fmt::format(
 		"Basic\n"
 		"|-Device  : {}\n"
 		"|-Renderer: {}\n"
 		"`-Vendor  : {}\n",
-		renderer->getDeviceName(), renderer->getRendererName(), renderer->getVendorName()).c_str());*/
-	printf(
-		"Renderer\n"
-		"|-Device  : %s\n"
-		"|-Renderer: %s\n"
-		"`-Vendor  : %s\n",
-		renderer->getDeviceName().c_str(),
-		renderer->getRendererName().c_str(),
-		renderer->getVendorName().c_str());
+		renderer->getDeviceName(), renderer->getRendererName(), renderer->getVendorName()).c_str());
 }
 
 /*
