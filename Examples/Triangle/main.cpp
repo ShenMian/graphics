@@ -42,14 +42,14 @@ int main()
 
 			auto program = Program::create("Shaders/forward");
 
-			auto cmdQueue = CommandQueue::create();
-			auto cmdBuffer = CommandBuffer::create();
-
 			Pipeline::Descriptor desc;
 			desc.program = program;
 			desc.vertexBuffer = vertexBuffer;
 			desc.viewports = {Viewport(Monitor::getPrimary().getSize() / 2)};
 			auto pipeline = Pipeline::create(desc);
+
+			auto cmdQueue = CommandQueue::create();
+			auto cmdBuffer = CommandBuffer::create();
 
 			bool running = true;
 			window.onClose = [&]() { running = false; };
