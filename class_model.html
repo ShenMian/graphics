@@ -107,11 +107,11 @@ Public 成员函数</h2></td></tr>
 <tr class="memdesc:a9948eb464a9162def45a6f2f77a5ecf2"><td class="mdescLeft">&#160;</td><td class="mdescRight">从文件载入场景.  <a href="class_model.html#a9948eb464a9162def45a6f2f77a5ecf2">更多...</a><br /></td></tr>
 <tr class="separator:a9948eb464a9162def45a6f2f77a5ecf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8b2bc5e7f945efb88fcd01a7d2af3ca0"><td class="memItemLeft" align="right" valign="top">const AABB3 &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#a8b2bc5e7f945efb88fcd01a7d2af3ca0">getAABB</a> () const</td></tr>
-<tr class="memdesc:a8b2bc5e7f945efb88fcd01a7d2af3ca0"><td class="mdescLeft">&#160;</td><td class="mdescRight">保存场景到文件.  <a href="class_model.html#a8b2bc5e7f945efb88fcd01a7d2af3ca0">更多...</a><br /></td></tr>
+<tr class="memdesc:a8b2bc5e7f945efb88fcd01a7d2af3ca0"><td class="mdescLeft">&#160;</td><td class="mdescRight">保存模型到文件.  <a href="class_model.html#a8b2bc5e7f945efb88fcd01a7d2af3ca0">更多...</a><br /></td></tr>
 <tr class="separator:a8b2bc5e7f945efb88fcd01a7d2af3ca0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a001f7c158a94e80fa8fa2bd631ef40c3"><td class="memItemLeft" align="right" valign="top"><a id="a001f7c158a94e80fa8fa2bd631ef40c3" name="a001f7c158a94e80fa8fa2bd631ef40c3"></a>
-const std::vector&lt; <a class="el" href="class_mesh.html">Mesh</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getMeshs</b> () const</td></tr>
-<tr class="separator:a001f7c158a94e80fa8fa2bd631ef40c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa831aec5439d92d41a99cf18b9c16c95"><td class="memItemLeft" align="right" valign="top"><a id="aa831aec5439d92d41a99cf18b9c16c95" name="aa831aec5439d92d41a99cf18b9c16c95"></a>
+const std::vector&lt; <a class="el" href="class_mesh.html">Mesh</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getMeshes</b> () const</td></tr>
+<tr class="separator:aa831aec5439d92d41a99cf18b9c16c95"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2a7ca8a363ff23ffe185f803894e25c5"><td class="memItemLeft" align="right" valign="top"><a id="a2a7ca8a363ff23ffe185f803894e25c5" name="a2a7ca8a363ff23ffe185f803894e25c5"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>compress</b> ()</td></tr>
 <tr class="separator:a2a7ca8a363ff23ffe185f803894e25c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -137,7 +137,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>decompress</b> ()</td
       </table>
 </div><div class="memdoc">
 
-<p>保存场景到文件. </p>
+<p>保存模型到文件. </p>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
     <tr><td class="paramname">path</td><td>场景文件路径.</td></tr>
@@ -183,7 +183,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>decompress</b> ()</td
 <p>从文件载入场景. </p>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">path</td><td>场景文件路径.</td></tr>
+    <tr><td class="paramname">path</td><td>模型文件路径. </td></tr>
+    <tr><td class="paramname">process</td><td>要进行的处理. </td></tr>
+    <tr><td class="paramname">progress</td><td>载入进度回调.</td></tr>
   </table>
   </dd>
 </dl>
