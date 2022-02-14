@@ -13,7 +13,8 @@ Gamepad::Gamepad(handle_type handle)
 
 void Gamepad::update()
 {
-	assert(glfwJoystickIsGamepad(handle));
+	if(!glfwJoystickIsGamepad(handle)) // Linux 下未连接手柄时会返回 false
+        return;
 
 	GLFWgamepadstate state;
 	glfwGetGamepadState(handle, &state);
@@ -98,6 +99,7 @@ std::string_view Gamepad::getName() const
 
 bool Gamepad::isConnected() const
 {
+    // FIXME: Linux 下未连接手柄时会返回 true
 	return glfwJoystickPresent(handle);
 }
 
