@@ -29,6 +29,7 @@ int main()
 				PrintInfo();
 
 				const std::filesystem::path path = "../../../3DModel";
+        // const std::filesystem::path path = "/run/media/sms/Systems/Users/sms_s/Desktop/3DModel";
 
 				Model model;
 				// model.load(path / "scene/Crytek_Sponza/sponza.obj", Model::ProcessFlags::Fast);
@@ -174,7 +175,7 @@ int main()
 						cmdBuffer->clear(ClearFlag::Color | ClearFlag::Depth);
 
 						cmdBuffer->setPipeline(pipeline);
-						for(const auto& mesh : model.getMeshs())
+						for(const auto& mesh : model.getMeshes())
 						{
 							const auto vb = mesh.getVertexBuffer();
 							const auto ib = mesh.getIndexBuffer();
