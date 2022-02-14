@@ -60,7 +60,9 @@ public:
 	/**
 	 * @brief 从文件载入场景.
 	 *
-	 * @param path 场景文件路径.
+	 * @param path     模型文件路径.
+	 * @param process  要进行的处理.
+	 * @param progress 载入进度回调.
 	 *
 	 * @see loadAsync
 	 */
@@ -68,7 +70,7 @@ public:
 
 
 	/**
-	 * @brief 保存场景到文件.
+	 * @brief 保存模型到文件.
 	 *
 	 * @param path 场景文件路径.
 	 */
@@ -79,7 +81,7 @@ public:
 	 */
 	const AABB3& getAABB() const;
 
-	const std::vector<Mesh>& getMeshs() const;
+	const std::vector<Mesh>& getMeshes() const;
 
 	void compress();
 	void decompress();

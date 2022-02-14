@@ -14,8 +14,6 @@
 #include <assimp/ProgressHandler.hpp>
 
 #include <algorithm>
-#include <cassert>
-#include <concepts>
 #include <cstring>
 #include <future>
 #include <meshoptimizer.h>
@@ -43,8 +41,8 @@ struct Vertex
 class Progress : public Assimp::ProgressHandler
 {
 public:
-	Progress(std::function<void(float)> callback)
-		: callback(callback)
+	explicit Progress(std::function<void(float)> callback)
+		: callback(std::move(callback))
 	{
 	}
 
@@ -214,7 +212,7 @@ void loadMesh(const aiMesh* aMesh, const aiScene* aScene, const fs::path& path, 
  *
  * @param aNode  assimp 节点.
  * @param aScene assimp 场景.
- * @param path   模型位置.
+ * @param path   模型文件位置.
  * @param meshes 要载入到的 Mesh 数组.
  */
 void loadNode(const aiNode* aNode, const aiScene* aScene, const fs::path& path, std::vector<Mesh>& meshes, AABB3& aabb)
@@ -245,9 +243,8 @@ void Model::load(const fs::path& path, unsigned int process, std::function<void(
 	unsigned int flags = aiProcess_CalcTangentSpace |
 		aiProcess_JoinIdenticalVertices |
 		aiProcess_Triangulate |
-		aiProcess_SortByPType;
-
-	flags |= aiProcess_MakeLeftHanded; // TODO
+		aiProcess_SortByPType |
+        aiProcess_MakeLeftHanded; // TODO
 
 	if(process & ProcessFlags::GenNormals)
 		flags |= aiProcess_GenNormals;
@@ -290,7 +287,7 @@ const AABB3& Model::getAABB() const
 	return aabb;
 }
 
-const std::vector<Mesh>& Model::getMeshs() const
+const std::vector<Mesh>& Model::getMeshes() const
 {
 	return meshes;
 }
