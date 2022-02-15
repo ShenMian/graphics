@@ -61,7 +61,7 @@ auto vertexBuffer = VertexBuffer::create(vertices, format);
 ```
 
 ## 着色器
-从指定的位置寻找源文件并创建着色器程序.
+从指定的位置寻找 SPIR-V 文件并创建着色器程序.
 ```cpp
 auto program = Program::create("Shaders/forword");
 ```
