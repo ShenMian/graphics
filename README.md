@@ -10,8 +10,8 @@
 A simple abstraction layer for the modern graphics APIs.
 
 ## Features
-- Cross-platform support.
-- Multiple backends: OpenGL, Vulkan, Direct3D, Metal. (only support OpenGL for now)
+- Cross-platform support: Linux, Windows~~, macOS~~.
+- Multiple backends: OpenGL~~, Vulkan, Direct3D, Metal~~.
 - Integrated UI: [Dear ImGui](https://github.com/ocornut/imgui).
 
 ## Documentation
