@@ -35,14 +35,16 @@ void VKCommandBuffer::begin()
 {
 	VkCommandBufferBeginInfo beginInfo = {};
 	beginInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
-	if(vkBeginCommandBuffer(handles[0], &beginInfo) != VK_SUCCESS)
+	if(vkBeginCommandBuffer(handles[index], &beginInfo) != VK_SUCCESS)
 		throw std::runtime_error("failed to begin command buffer");
 }
 
 void VKCommandBuffer::end()
 {
-	if(vkEndCommandBuffer(handles[0]) != VK_SUCCESS)
+	if(vkEndCommandBuffer(handles[index]) != VK_SUCCESS)
 		throw std::runtime_error("failed to end command buffer");
+
+	index = (index + 1) % handles.size(); // TODO: debug
 }
 
 void VKCommandBuffer::beginRenderPass()
@@ -63,12 +65,12 @@ void VKCommandBuffer::beginRenderPass()
 	beginInfo.renderArea.extent = swapchain.getSize();
 	beginInfo.clearValueCount = static_cast<uint32_t>(clearValues.size());
 	beginInfo.pClearValues = clearValues.data();
-	vkCmdBeginRenderPass(handles[0], &beginInfo, VK_SUBPASS_CONTENTS_INLINE);
+	vkCmdBeginRenderPass(handles[index], &beginInfo, VK_SUBPASS_CONTENTS_INLINE);
 }
 
 void VKCommandBuffer::endRenderPass()
 {
-	vkCmdEndRenderPass(handles[0]);
+	vkCmdEndRenderPass(handles[index]);
 }
 
 void VKCommandBuffer::setViewport(const Viewport& viewport)
@@ -80,13 +82,13 @@ void VKCommandBuffer::setViewport(const Viewport& viewport)
 	vkViewport.height = viewport.height;
 	vkViewport.minDepth = viewport.minDepth;
 	vkViewport.maxDepth = viewport.maxDepth;
-	vkCmdSetViewport(handles[0], 0, 1, &vkViewport);
+	vkCmdSetViewport(handles[index], 0, 1, &vkViewport);
 }
 
 void VKCommandBuffer::setPipeline(std::shared_ptr<Pipeline> pipeline)
 {
 	auto vkPipeline = std::dynamic_pointer_cast<VKPipeline>(pipeline);
-	vkCmdBindPipeline(handles[0], VK_PIPELINE_BIND_POINT_GRAPHICS, vkPipeline->getNativeHandle());
+	vkCmdBindPipeline(handles[index], VK_PIPELINE_BIND_POINT_GRAPHICS, vkPipeline->getNativeHandle());
 }
 
 void VKCommandBuffer::setVertexBuffer(std::shared_ptr<VertexBuffer> vertexBuffer)
@@ -94,20 +96,20 @@ void VKCommandBuffer::setVertexBuffer(std::shared_ptr<VertexBuffer> vertexBuffer
 	auto vkBuffer = std::dynamic_pointer_cast<VKVertexBuffer>(vertexBuffer);
 	VkBuffer buffers = {*vkBuffer};
 	VkDeviceSize offset = 0;
-	vkCmdBindVertexBuffers(handles[0], 0, 1, &buffers, &offset);
+	vkCmdBindVertexBuffers(handles[index], 0, 1, &buffers, &offset);
 }
 
 void VKCommandBuffer::setIndexBuffer(std::shared_ptr<IndexBuffer> indexBuffer)
 {
 	/*
 	auto vkBuffer = std::dynamic_pointer_cast<VKIndexBuffer>(indexBuffer);
-	vkCmdBindIndexBuffer(handles[0], *vkBuffer, 0, VK_INDEX_TYPE_UINT32);
+	vkCmdBindIndexBuffer(handles[index], *vkBuffer, 0, VK_INDEX_TYPE_UINT32);
 	*/
 }
 
 void VKCommandBuffer::clear(uint8_t flags)
 {
-	// vkCmdClearColorImage(handles[0], );
+	// vkCmdClearColorImage(handles[index], );
 }
 
 void VKCommandBuffer::setClearColor(const Vector4& color)
@@ -124,15 +126,15 @@ void VKCommandBuffer::setClearStencil()
 
 void VKCommandBuffer::draw(uint32_t vertexCount, uint32_t firstVertex)
 {
-	vkCmdDraw(handles[0], vertexCount, 1, firstVertex, 0);
+	vkCmdDraw(handles[index], vertexCount, 1, firstVertex, 0);
 }
 
 void VKCommandBuffer::drawIndexed(uint32_t indexCount, uint32_t firstIndex)
 {
-	vkCmdDrawIndexed(handles[0], indexCount, 1, firstIndex, 0, 0);
+	vkCmdDrawIndexed(handles[index], indexCount, 1, firstIndex, 0, 0);
 }
 
 VKCommandBuffer::operator VkCommandBuffer() const
 {
-	return handles[0];
+	return handles[index];
 }

@@ -22,7 +22,7 @@ void VKCommandQueue::submit(std::shared_ptr<CommandBuffer> commandBuffer)
 
 	uint32_t imageIndex;
 	vkAcquireNextImageKHR(device, renderer->getSwapchain(),
-		std::numeric_limits<uint64_t>::max(), swapchain.getImageAvailableSemaphores()[0], nullptr, &imageIndex);
+		std::numeric_limits<uint64_t>::max(), swapchain.getImageAvailableSemaphores()[0], VK_NULL_HANDLE, &imageIndex);
 
 	const auto vkCommandBuffer = std::dynamic_pointer_cast<VKCommandBuffer>(commandBuffer);
 
@@ -41,7 +41,7 @@ void VKCommandQueue::submit(std::shared_ptr<CommandBuffer> commandBuffer)
 	submitInfo.signalSemaphoreCount = 1;
 	submitInfo.pSignalSemaphores = signalSemaphores;
 
-	if(vkQueueSubmit(handle, 1, &submitInfo, nullptr) != VK_SUCCESS)
+	if(vkQueueSubmit(handle, 1, &submitInfo, VK_NULL_HANDLE) != VK_SUCCESS)
 		throw std::runtime_error("failed to submit command buffer");
 
 

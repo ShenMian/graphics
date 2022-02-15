@@ -45,7 +45,7 @@ VKSwapchain SwapchainBuilder::build()
 	swapchainInfo.compositeAlpha = VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR;
 	swapchainInfo.presentMode = getPresentMode();
 	swapchainInfo.clipped = true;
-	swapchainInfo.oldSwapchain = nullptr;
+	swapchainInfo.oldSwapchain = VK_NULL_HANDLE;
 
 	VkSwapchainKHR swapchain;
 	if(vkCreateSwapchainKHR(device, &swapchainInfo, nullptr, &swapchain) != VK_SUCCESS)
