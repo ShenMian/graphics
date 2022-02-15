@@ -12,12 +12,18 @@ git submodule add https://github.com/ShenMian/Graphics --recursive
 
 2. 在 CMakeLists.txt 里加入下面代码. 请根据具体情况做适当修改.
 ```cmake
-add_subdirectory(Graphics)              # 构建 Graphics 并生成静态库
+add_subdirectory(Graphics)              # 构建 Graphics 并生成静态库, 参数为 Graphics 库根目录的相对路径
 add_executable(YourApp YourApp.cpp)     # 你的可执行文件, 里面包含了对 Graphics API 的调用
 target_link_libraries(YourApp graphics) # 连接 Graphics 静态库, 也可以使用 graphics::graphics
 ```
 
-**警告**: 请查看 [依赖项](https://github.com/ShenMian/Graphics/blob/main/Deps/README.md) 来确保不会产生菱形依赖. 或使用 CMake 安装依赖项来减少菱形依赖的可能性, 执行脚本 `Scripts/cmake_install_deps`.
+3. 若要设置 option 可以在 `add_subdirectory` 前加上下面代码:
+```cmake
+SET(OPTION_NAME ON CACHE BOOL "" FORCE)  # 开启选项 OPTION_NAME
+SET(OPTION_NAME OFF CACHE BOOL "" FORCE) # 关闭选项 OPTION_NAME
+```
+
+**警告**: 请查看 [依赖项](https://github.com/ShenMian/Graphics/blob/main/Deps/README.md) 来确保不会产生菱形依赖. 或使用 CMake 安装依赖项来减少产生菱形依赖的可能性, 执行脚本 `Scripts/cmake_install_deps`.
 
 通过 Premake 生成你所使用 IDE 的项目文件.
 ```bash
@@ -36,7 +42,7 @@ git pull                    # 拉取到最新的提交
 git checkout <tag-id>       # 切换到指定的版本
 git submodule update --init # 签出子模块
 ```
-**警告**: 不建议直接使用最新提交, 因为这些修改还不稳定, 可能无法正常工作.
+**警告**: 不建议直接使用最新提交, 因为这些修改还不稳定, 甚至无法正常工作.
 
 ## 应用骨架
 ```cpp
