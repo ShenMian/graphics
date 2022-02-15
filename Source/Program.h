@@ -29,6 +29,13 @@ public:
 	 */
 	[[nodiscard]] static std::shared_ptr<Program> create(const Descriptor& desc);
 
+    /**
+     * @brief 创建着色器阶段.
+     *
+     * @param name 着色器文件名称.
+     *
+     * 从指定位置加载具有相同名称和特定后缀的 SPIR-V 文件.
+     */
 	[[nodiscard]] static std::shared_ptr<Program> create(const std::string& name);
 
 	virtual void use() = 0;
