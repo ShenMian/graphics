@@ -1,8 +1,8 @@
 var searchData=
 [
   ['vertex_0',['Vertex',['../class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8fab22b929ba52471a02d18bb3a4e4472e6',1,'Shader::Vertex()'],['../struct_pipeline_layout_1_1_stage_flags.html#a3766b6c50d5167f12df2624c34c93b93ae820a6ac4dd34d05f6607e6dfe12ce5b',1,'PipelineLayout::StageFlags::Vertex()']]],
-  ['vertexbuffer_1',['VertexBuffer',['../class_vertex_buffer.html',1,'']]],
-  ['vertexlayout_2',['VertexLayout',['../class_vertex_layout.html',1,'']]],
+  ['vertexattributes_1',['VertexAttributes',['../class_vertex_attributes.html',1,'']]],
+  ['vertexbuffer_2',['VertexBuffer',['../class_vertex_buffer.html',1,'']]],
   ['viewport_3',['Viewport',['../struct_viewport.html',1,'']]],
   ['vkbuffer_4',['VKBuffer',['../class_v_k_buffer.html',1,'']]],
   ['vkcommandbuffer_5',['VKCommandBuffer',['../class_v_k_command_buffer.html',1,'']]],

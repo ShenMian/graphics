@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['vertexbuffer_0',['VertexBuffer',['../class_vertex_buffer.html',1,'']]],
-  ['vertexlayout_1',['VertexLayout',['../class_vertex_layout.html',1,'']]],
+  ['vertexattributes_0',['VertexAttributes',['../class_vertex_attributes.html',1,'']]],
+  ['vertexbuffer_1',['VertexBuffer',['../class_vertex_buffer.html',1,'']]],
   ['viewport_2',['Viewport',['../struct_viewport.html',1,'']]],
   ['vkbuffer_3',['VKBuffer',['../class_v_k_buffer.html',1,'']]],
   ['vkcommandbuffer_4',['VKCommandBuffer',['../class_v_k_command_buffer.html',1,'']]],

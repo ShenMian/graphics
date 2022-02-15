@@ -13,7 +13,7 @@ var searchData=
   ['getdatasize_10',['getDataSize',['../class_image.html#aae91ac2147c0a923fb7fe7f1cc9bc7ce',1,'Image']]],
   ['getdevice_11',['getDevice',['../class_v_k_renderer.html#ae94ac18315d26db579d64fa9eba9c980',1,'VKRenderer']]],
   ['getfar_12',['getFar',['../class_camera.html#a57b2e9d52389abc67e5b5049b150408e',1,'Camera']]],
-  ['getformat_13',['getFormat',['../class_texture.html#ab9c343ec4797d5175580d538a2e8c171',1,'Texture::getFormat()'],['../class_vertex_buffer.html#aba42fcdc0620dc88842f036c19bfce2d',1,'VertexBuffer::getFormat()']]],
+  ['getformat_13',['getFormat',['../class_texture.html#ab9c343ec4797d5175580d538a2e8c171',1,'Texture::getFormat()'],['../class_vertex_buffer.html#af6d34aac57dae26db362ec4411f71dfe',1,'VertexBuffer::getFormat()']]],
   ['gethfov_14',['getHFOV',['../class_camera.html#aefe543b1ae789c85b07cbae64c87f3f4',1,'Camera']]],
   ['getinstance_15',['getInstance',['../class_v_k_renderer.html#a7ba13c5bead768bb16789ed02c54865c',1,'VKRenderer']]],
   ['getlabel_16',['getLabel',['../classui_1_1_widget.html#ade291c6b569ac877857296a27da03e28',1,'ui::Widget']]],
