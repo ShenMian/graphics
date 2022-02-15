@@ -101,12 +101,15 @@ $(document).ready(function(){initNavTree('_getting_started.html',''); initResiza
 <ol type="1">
 <li>将该仓库作为子模块加入你的仓库. 在你的仓库下执行下面的命令. <div class="fragment"><div class="line">git submodule add https://github.com/ShenMian/Graphics --recursive</div>
 </div><!-- fragment --></li>
-<li>在 CMakeLists.txt 里加入下面代码. 请根据具体情况做适当修改. <div class="fragment"><div class="line">add_subdirectory(Graphics)              # 构建 Graphics 并生成静态库</div>
+<li>在 CMakeLists.txt 里加入下面代码. 请根据具体情况做适当修改. <div class="fragment"><div class="line">add_subdirectory(Graphics)              # 构建 Graphics 并生成静态库, 参数为 Graphics 库根目录的相对路径</div>
 <div class="line">add_executable(YourApp YourApp.cpp)     # 你的可执行文件, 里面包含了对 Graphics API 的调用</div>
 <div class="line">target_link_libraries(YourApp graphics) # 连接 Graphics 静态库, 也可以使用 graphics::graphics</div>
 </div><!-- fragment --></li>
+<li>若要设置 option 可以在 <code>add_subdirectory</code> 前加上下面代码: <div class="fragment"><div class="line">SET(OPTION_NAME ON CACHE BOOL &quot;&quot; FORCE)  # 开启选项 OPTION_NAME</div>
+<div class="line">SET(OPTION_NAME OFF CACHE BOOL &quot;&quot; FORCE) # 关闭选项 OPTION_NAME</div>
+</div><!-- fragment --></li>
 </ol>
-<p ><b>警告</b>: 请查看 <a href="https://github.com/ShenMian/Graphics/blob/main/Deps/README.md">依赖项</a> 来确保不会产生菱形依赖. 或使用 CMake 安装依赖项来减少菱形依赖的可能性, 执行脚本 <code>Scripts/cmake_install_deps</code>.</p>
+<p ><b>警告</b>: 请查看 <a href="https://github.com/ShenMian/Graphics/blob/main/Deps/README.md">依赖项</a> 来确保不会产生菱形依赖. 或使用 CMake 安装依赖项来减少产生菱形依赖的可能性, 执行脚本 <code>Scripts/cmake_install_deps</code>.</p>
 <p >通过 Premake 生成你所使用 IDE 的项目文件. </p><div class="fragment"><div class="line">./Scripts/gen_gmake2 # 生成 GNU Makefile</div>
 <div class="line">./Scripts/gen_vs2022 # 生成 Visual Studio 2022 解决方案</div>
 <div class="line">./Scripts/gen_xcode4 # 生成 Xcode4 项目文件</div>
@@ -117,7 +120,7 @@ $(document).ready(function(){initNavTree('_getting_started.html',''); initResiza
 <p >因为该库对 Git 子模块的更新较为频繁, 请注意拉取后将子模块签出到相应的提交. 你可以使用下面的命令更新本地克隆仓库/子模块. </p><div class="fragment"><div class="line">git pull                    # 拉取到最新的提交</div>
 <div class="line">git checkout &lt;tag-id&gt;       # 切换到指定的版本</div>
 <div class="line">git submodule update --init # 签出子模块</div>
-</div><!-- fragment --><p> <b>警告</b>: 不建议直接使用最新提交, 因为这些修改还不稳定, 可能无法正常工作.</p>
+</div><!-- fragment --><p> <b>警告</b>: 不建议直接使用最新提交, 因为这些修改还不稳定, 甚至无法正常工作.</p>
 <h1><a class="anchor" id="autotoc_md2"></a>
 应用骨架</h1>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;Graphics/Graphics.h&gt;</span> <span class="comment">// 引入 Graphics 头文件</span></div>
