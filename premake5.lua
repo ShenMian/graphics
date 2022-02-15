@@ -79,7 +79,7 @@ workspace "Graphics"
     group "Examples"
         include "Examples/Triangle"
         include "Examples/Cube"
-        include "Examples/Test"
+        include "Examples/Viewer"
     group ""
 
     group "Deps"

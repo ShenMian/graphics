@@ -1,7 +1,7 @@
 ﻿-- Copyright 2021 SMS
 -- License(Apache-2.0)
 
-project "test"
+project "viewer"
 	kind "ConsoleApp"
 	language "C++"
 	cppdialect "C++latest"

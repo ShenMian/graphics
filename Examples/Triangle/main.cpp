@@ -16,7 +16,7 @@ struct Vertex
 
 int main()
 {
-	Renderer::setAPI(Renderer::API::Vulkan);
+	Renderer::setAPI(Renderer::API::OpenGL);
 	Window::init();
 
 	{
@@ -53,22 +53,6 @@ int main()
 
 			bool running = true;
 			window.onClose = [&]() { running = false; };
-			window.onKey = [&](int action, Key key)
-			{
-				if(action == 1)
-				{
-					switch(key)
-					{
-					case Key::Escape:
-						running = false;
-						break;
-
-					case Key::F11:
-						window.setFullscreen(!window.isFullscreen());
-						break;
-					}
-				}
-			};
 			window.setVisible(true); // 设置窗口可见
 
 			while(running)
