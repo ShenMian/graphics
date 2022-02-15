@@ -17,12 +17,13 @@ list(APPEND INCS "${DEPS_DIR}/glad/include")
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/Scripts")
 set(GLFW3_DIR "C:/Program Files (x86)/GLFW/lib/cmake/glfw3")
 find_package(GLFW3 QUIET)
-if(GLFW3_FOUND)
-    list(APPEND LIBS ${GLFW3_LIBRARIES})
-else()
+# TODO: ${GLFW3_LIBRARIES} 指定的文件可能与实际架构不一致
+#if(GLFW3_FOUND)
+#    list(APPEND LIBS ${GLFW3_LIBRARIES})
+#else()
     add_subdirectory("${DEPS_DIR}/glfw" "glfw3")
     list(APPEND LIBS glfw)
-endif()
+#endif()
 list(APPEND INCS "${DEPS_DIR}/glfw/include")
 
 # 添加 imgui
@@ -45,6 +46,7 @@ find_package(assimp CONFIG QUIET)
 if(assimp_FOUND)
     list(APPEND LIBS ${ASSIMP_LIBRARIES})
 else()
+    SET(BUILD_SHARED_LIBS OFF CACHE BOOL "Build package with shared libraries." FORCE)
     add_subdirectory("${DEPS_DIR}/assimp" "assimp")
     list(APPEND LIBS assimp)
 endif()
@@ -57,18 +59,20 @@ find_package(Vulkan QUIET)
 if(Vulkan_FOUND)
     list(APPEND LIBS ${Vulkan_LIBRARIES})
 elseif(WIN32)
+    # FIXME: 临时解决方案
     list(APPEND LIBS "${DEPS_DIR}/VulkanSDK/Lib/vulkan-1.lib")
 else()
     message(FATAL_ERROR "Vulkan not found")
 endif()
 
+# TODO: Vulkan 初始化代码完成后移除
 # 添加 vk-bootstrap
 # 在 Github Action 中, 防止 vk-bootstrap 使用 NV 版本头文件, 导致编译失败
-if(UBUNTU)
-    add_subdirectory("${DEPS_DIR}/Vulkan-Headers" "Vulkan-Headers")
-endif()
-add_subdirectory("${DEPS_DIR}/vk-bootstrap" "vk-bootstrap")
-list(APPEND LIBS vk-bootstrap::vk-bootstrap)
+#if(UBUNTU)
+#    add_subdirectory("${DEPS_DIR}/Vulkan-Headers" "Vulkan-Headers")
+#endif()
+#add_subdirectory("${DEPS_DIR}/vk-bootstrap" "vk-bootstrap")
+#list(APPEND LIBS vk-bootstrap::vk-bootstrap)
 
 # 添加 meshoptimizer
 find_package(meshoptimizer CONFIG QUIET)
@@ -80,8 +84,8 @@ else()
 endif()
 list(APPEND INCS "${DEPS_DIR}/meshoptimizer/src")
 
-message(STATUS "INCS: ${INCS}")
-message(STATUS "LIBS: ${LIBS}")
+# message(STATUS "INCS: ${INCS}")
+# message(STATUS "LIBS: ${LIBS}")
 
 
 file(GLOB_RECURSE SOURCES "*.cpp")
