@@ -6,19 +6,19 @@
 #include <string>
 #include <stdexcept>
 
-PipelineLayout::PipelineLayout(const std::initializer_list<Attribute>& list)
+PipelineLayout::PipelineLayout(const std::initializer_list<Binding>& list)
 {
 	for(const auto& attr : list)
-		addAttribute(attr);
+        addBinding(attr);
 }
 
-const std::vector<PipelineLayout::Attribute> PipelineLayout::getAttributes() const
+const std::vector<PipelineLayout::Binding>& PipelineLayout::getBindings() const
 {
-	return attribs;
+	return bindings;
 }
 
-void PipelineLayout::addAttribute(Attribute attr)
+void PipelineLayout::addBinding(Binding attr)
 {
-	assert(std::find_if(attribs.begin(), attribs.end(), [&](auto v) { return v.slot == attr.slot; }) == attribs.end());
-	attribs.push_back(attr);
+	assert(std::find_if(bindings.begin(), bindings.end(), [&](auto v) { return v.slot == attr.slot; }) == bindings.end());
+	bindings.push_back(attr);
 }

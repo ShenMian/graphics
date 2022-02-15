@@ -22,6 +22,17 @@ std::unordered_map<CullMode, VkCullModeFlags> VKCullMode = {
 	{CullMode::Back, VK_CULL_MODE_BACK_BIT},
 };
 
+std::unordered_map<Format, VkFormat> VKFormat = {
+        {Format::R16F, VK_FORMAT_R16_SFLOAT},
+        {Format::RG16F, VK_FORMAT_R16G16_SFLOAT},
+        {Format::RGB16F, VK_FORMAT_R16G16B16_SFLOAT},
+        {Format::RGBA16F, VK_FORMAT_R16G16B16A16_SFLOAT},
+        {Format::R32F, VK_FORMAT_R32_SFLOAT},
+        {Format::RG32F, VK_FORMAT_R32G32_SFLOAT},
+        {Format::RGB32F, VK_FORMAT_R32G32B32_SFLOAT},
+        {Format::RGBA32F, VK_FORMAT_R32G32B32A32_SFLOAT},
+};
+
 VkDescriptorType VKType(PipelineLayout::Type type)
 {
 	switch(type)
@@ -58,7 +69,6 @@ VKPipeline::VKPipeline(const Descriptor& desc)
 	auto renderer = reinterpret_cast<VKRenderer*>(Renderer::get());
 	auto& swapchain = renderer->getSwapchain();
 
-	auto vertexBuffer = std::dynamic_pointer_cast<VKVertexBuffer>(desc.vertexBuffer);
 	auto program = std::dynamic_pointer_cast<VKProgram>(desc.program);
 
 	createLayout(desc);
@@ -88,7 +98,33 @@ VKPipeline::VKPipeline(const Descriptor& desc)
 	std::vector<VkDynamicState> dynamicStates;
 	createDynamicState(dynamicState, dynamicStates);
 
-	auto vertexInputState = vertexBuffer->getInfo();
+    // Create Vertex Input State
+    const auto& layout = desc.vertexAttributes;
+
+    std::vector<VkVertexInputBindingDescription>   bindings;
+    std::vector<VkVertexInputAttributeDescription> attribs;
+
+    VkVertexInputBindingDescription binding = {};
+    binding.binding = 0;
+    binding.inputRate = VK_VERTEX_INPUT_RATE_VERTEX;
+    binding.stride = layout.getStride();
+    bindings.push_back(binding);
+
+    for(const auto& attr : layout.getAttributes())
+    {
+        VkVertexInputAttributeDescription vkAttr = {};
+        vkAttr.location = attr.location;
+        vkAttr.format = VKFormat[attr.format];
+        vkAttr.offset = attr.offset;
+        attribs.push_back(vkAttr);
+    }
+
+    VkPipelineVertexInputStateCreateInfo vertexInputState = {};
+    vertexInputState.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
+    vertexInputState.vertexBindingDescriptionCount = static_cast<uint32_t>(bindings.size());
+    vertexInputState.pVertexBindingDescriptions = bindings.data();
+    vertexInputState.vertexAttributeDescriptionCount = static_cast<uint32_t>(attribs.size());
+    vertexInputState.pVertexAttributeDescriptions = attribs.data();
 
 	VkGraphicsPipelineCreateInfo pipelineInfo = {};
 	pipelineInfo.sType = VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO;
@@ -120,13 +156,13 @@ void VKPipeline::createLayout(const Descriptor& desc)
 
 	std::vector<VkDescriptorSetLayoutBinding> bindings;
 
-	for(const auto& attr : desc.layout.getAttributes())
+	for(const auto& binding : desc.layout.getBindings())
 	{
 		VkDescriptorSetLayoutBinding layoutBinding = {};
-		layoutBinding.binding = attr.slot;
-		layoutBinding.descriptorType = VKType(attr.type);
-		layoutBinding.descriptorCount = attr.arraySize;
-		layoutBinding.stageFlags = VKStageFlags(attr.stageFlags);
+		layoutBinding.binding = binding.slot;
+		layoutBinding.descriptorType = VKType(binding.type);
+		layoutBinding.descriptorCount = binding.arraySize;
+		layoutBinding.stageFlags = VKStageFlags(binding.stageFlags);
 		bindings.emplace_back(layoutBinding);
 	}
 

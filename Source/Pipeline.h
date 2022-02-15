@@ -4,6 +4,7 @@
 #pragma once
 
 #include "PipelineLayout.h"
+#include "VertexAttributes.h"
 #include "Viewport.hpp"
 #include <memory>
 
@@ -56,9 +57,9 @@ struct Pipeline::Descriptor
 {
 	RasterizerDescriptor rasterizer;
 
-	PipelineLayout                layout;
-	std::shared_ptr<Program>      program;
-	std::vector<Viewport>         viewports;
+	PipelineLayout           layout;
+    VertexAttributes         vertexAttributes;
+	std::shared_ptr<Program> program;
 
-	std::shared_ptr<VertexBuffer> vertexBuffer;
+	std::vector<Viewport>    viewports;
 };

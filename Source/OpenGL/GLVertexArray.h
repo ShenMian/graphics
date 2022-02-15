@@ -5,7 +5,7 @@
 
 #include <glad/glad.h>
 
-class VertexLayout;
+class VertexAttributes;
 
 class GLVertexArray
 {
@@ -15,7 +15,7 @@ public:
 
 	void bind();
 
-	void build(const VertexLayout& fmt);
+	void build(const VertexAttributes& fmt);
 
 private:
 	GLuint handle;

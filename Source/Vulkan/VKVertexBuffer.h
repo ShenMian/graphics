@@ -10,14 +10,12 @@
 class VKVertexBuffer : public VertexBuffer
 {
 public:
-	VKVertexBuffer(const void* data, size_t size, const VertexLayout& layout, Buffer::Usage usage);
+	VKVertexBuffer(const void* data, size_t size, const VertexAttributes& layout, Buffer::Usage usage);
 
 	void map() override;
 	void unmap() override;
 
 	void write(const void* data, size_t size) override;
-
-	VkPipelineVertexInputStateCreateInfo getInfo();
 
 	void bind() override;
 
@@ -26,7 +24,4 @@ public:
 
 private:
 	VKBuffer buffer;
-
-	std::vector<VkVertexInputBindingDescription>   bindings;
-	std::vector<VkVertexInputAttributeDescription> attribs;
 };

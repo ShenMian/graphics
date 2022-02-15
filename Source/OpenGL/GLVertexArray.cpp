@@ -2,7 +2,7 @@
 // License(Apache-2.0)
 
 #include "GLVertexArray.h"
-#include "../VertexLayout.h"
+#include "../VertexAttributes.h"
 #include "GLCheck.h"
 #include <glad/glad.h>
 #include <cstddef>
@@ -52,7 +52,7 @@ void GLVertexArray::bind()
 	glBindVertexArray(handle);
 }
 
-void GLVertexArray::build(const VertexLayout& fmt)
+void GLVertexArray::build(const VertexAttributes& fmt)
 {
 	int maxAttribs;
 	glGetIntegerv(GL_MAX_VERTEX_ATTRIBS, &maxAttribs);

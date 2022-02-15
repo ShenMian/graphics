@@ -17,7 +17,7 @@ std::unordered_map<Buffer::Usage, uint32_t> GLUsage = {
 
 }
 
-GLVertexBuffer::GLVertexBuffer(const void* data, size_t size, const VertexLayout& fmt, Buffer::Usage usage)
+GLVertexBuffer::GLVertexBuffer(const void* data, size_t size, const VertexAttributes& fmt, Buffer::Usage usage)
 	: VertexBuffer(data, size, fmt), buffer(size, Buffer::Type::Vertex, usage)
 {
 	bind();

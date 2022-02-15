@@ -6,7 +6,7 @@
 #include "CommandBuffer.h"
 #include "CommandQueue.h"
 #include "Texture.h"
-#include "VertexLayout.h"
+#include "VertexAttributes.h"
 #include "PipelineLayout.h"
 
 #include "Program.h"

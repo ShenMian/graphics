@@ -32,7 +32,7 @@ int main()
 				{{0.5,  -0.5}, {0, 1, 0}},
 				{{-0.5, -0.5}, {0, 0, 1}}
 			};
-			VertexLayout layout = {
+			VertexAttributes layout = {
 				{"position", Format::RG32F},
 				{"color",    Format::RGB32F}
 			};
@@ -44,8 +44,8 @@ int main()
 
 			Pipeline::Descriptor desc;
 			desc.program = program;
-			desc.vertexBuffer = vertexBuffer;
-			desc.viewports = {Viewport(Monitor::getPrimary().getSize() / 2)};
+			desc.vertexAttributes = layout;
+			// desc.viewports = {Viewport(Monitor::getPrimary().getSize())};
 			auto pipeline = Pipeline::create(desc);
 
 			auto cmdQueue = CommandQueue::create();
@@ -57,7 +57,6 @@ int main()
 
 			while(running)
 			{
-				program->use();
 				cmdBuffer->begin();
 				{
 					cmdBuffer->setPipeline(pipeline);

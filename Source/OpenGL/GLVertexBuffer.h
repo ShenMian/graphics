@@ -11,7 +11,7 @@
 class GLVertexBuffer : public VertexBuffer
 {
 public:
-	GLVertexBuffer(const void* data, size_t size, const VertexLayout& fmt, Buffer::Usage usage);
+	GLVertexBuffer(const void* data, size_t size, const VertexAttributes& fmt, Buffer::Usage usage);
 
 	void map() override;
 	void unmap() override;
