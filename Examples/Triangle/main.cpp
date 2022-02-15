@@ -16,7 +16,7 @@ struct Vertex
 
 int main()
 {
-	Renderer::setAPI(Renderer::API::OpenGL);
+	Renderer::setAPI(Renderer::API::Vulkan);
 	Window::init();
 
 	{
@@ -26,20 +26,20 @@ int main()
 		{
 			PrintInfo();
 
+            // 创建一个由 3 个顶点构成的三角形
 			const std::vector<Vertex> vertices = {
 				{{0,     0.5}, {1, 0, 0}},
 				{{0.5,  -0.5}, {0, 1, 0}},
 				{{-0.5, -0.5}, {0, 0, 1}}
 			};
-
 			VertexLayout layout = {
 				{"position", Format::RG32F},
 				{"color",    Format::RGB32F}
 			};
 			layout.setStride(sizeof(Vertex));
-
 			auto vertexBuffer = VertexBuffer::create(vertices, layout);
 
+            // 创建着色器程序
 			auto program = Program::create("Shaders/forward");
 
 			Pipeline::Descriptor desc;
@@ -106,23 +106,23 @@ int main()
 
 void PrintInfo()
 {
-	// 打印显示器信息
-	for(const auto& mon : Monitor::getMonitors())
-	{
-		printf(fmt::format(
-			"Monitor\n"
-			"|-Name        : {}\n"
-			"|-Size        : {}x{}\n"
-			"`-Refresh rate: {} Hz\n",
-			mon.getName(), mon.getSize().x, mon.getSize().y, mon.getRefreshRate()).c_str());
-	}
+    // 打印显示器信息
+    for(const auto& mon : Monitor::getMonitors())
+    {
+        printf("%s", fmt::format(
+                "Monitor\n"
+                "|-Name        : {}\n"
+                "|-Size        : {}x{}\n"
+                "`-Refresh rate: {} Hz\n",
+                mon.getName(), mon.getSize().x, mon.getSize().y, mon.getRefreshRate()).c_str());
+    }
 
-	// 打印基本信息
-	const auto renderer = Renderer::get();
-	printf(fmt::format(
-		"Basic\n"
-		"|-Device  : {}\n"
-		"|-Renderer: {}\n"
-		"`-Vendor  : {}\n",
-		renderer->getDeviceName(), renderer->getRendererName(), renderer->getVendorName()).c_str());
+    // 打印基本信息
+    const auto renderer = Renderer::get();
+    printf("%s", fmt::format(
+            "Basic\n"
+            "|-Device  : {}\n"
+            "|-Renderer: {}\n"
+            "`-Vendor  : {}\n",
+            renderer->getDeviceName(), renderer->getRendererName(), renderer->getVendorName()).c_str());
 }

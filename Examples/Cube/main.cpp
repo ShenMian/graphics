@@ -26,6 +26,7 @@ int main()
 		{
 			PrintInfo();
 
+            // 创建一个由 8 个顶点构成的立方体
 			const std::vector<Vertex> vertices = {
 				{{-0.5, -0.5, -0.5}, {1, 0, 0}},
 				{{-0.5, +0.5, -0.5}, {0, 1, 0}},
@@ -36,15 +37,14 @@ int main()
 				{{+0.5, +0.5, +0.5}, {1, 0, 1}},
 				{{+0.5, -0.5, +0.5}, {0.2f, 0.2f, 0.2f}}
 			};
-
 			VertexLayout format = {
 				{"position", Format::RGB32F},
 				{"color", Format::RGB32F}
 			};
 			format.setStride(sizeof(Vertex));
-
 			auto vertexBuffer = VertexBuffer::create(vertices, format);
 
+            // 创建顶点索引, 表示构成 12 个三角形的顶点组成
 			const std::vector<uint32_t> indices = {
 				2,0,1, 2,3,0,
 				4,6,5, 4,7,6,
@@ -53,9 +53,9 @@ int main()
 				1,5,2, 5,6,2,
 				3,6,7, 3,2,6
 			};
-
 			auto indexBuffer = IndexBuffer::create(indices);
 
+            // 创建着色器程序
 			Program::Descriptor programDesc;
 			{
 				Shader::Descriptor vertShaderDesc;
@@ -142,7 +142,7 @@ void PrintInfo()
 	// 打印显示器信息
 	for(const auto& mon : Monitor::getMonitors())
 	{
-		printf(fmt::format(
+		printf("%s", fmt::format(
 			"Monitor\n"
 			"|-Name        : {}\n"
 			"|-Size        : {}x{}\n"
@@ -152,7 +152,7 @@ void PrintInfo()
 
 	// 打印基本信息
 	const auto renderer = Renderer::get();
-	printf(fmt::format(
+	printf("%s", fmt::format(
 		"Basic\n"
 		"|-Device  : {}\n"
 		"|-Renderer: {}\n"

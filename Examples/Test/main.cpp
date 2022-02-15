@@ -29,7 +29,7 @@ int main()
 				PrintInfo();
 
 				const std::filesystem::path path = "../../../3DModel";
-        // const std::filesystem::path path = "/run/media/sms/Systems/Users/sms_s/Desktop/3DModel";
+                // const std::filesystem::path path = "/run/media/sms/Systems/Users/sms_s/Desktop/3DModel";
 
 				Model model;
 				// model.load(path / "scene/Crytek_Sponza/sponza.obj", Model::ProcessFlags::Fast);
@@ -212,25 +212,25 @@ int main()
 
 void PrintInfo()
 {
-	// 打印显示器信息
-	for(const auto& mon : Monitor::getMonitors())
-	{
-		printf(fmt::format(
-			"Monitor\n"
-			"|-Name        : {}\n"
-			"|-Size        : {}x{}\n"
-			"`-Refresh rate: {} Hz\n",
-			mon.getName(), mon.getSize().x, mon.getSize().y, mon.getRefreshRate()).c_str());
-	}
+    // 打印显示器信息
+    for(const auto& mon : Monitor::getMonitors())
+    {
+        printf("%s", fmt::format(
+                "Monitor\n"
+                "|-Name        : {}\n"
+                "|-Size        : {}x{}\n"
+                "`-Refresh rate: {} Hz\n",
+                mon.getName(), mon.getSize().x, mon.getSize().y, mon.getRefreshRate()).c_str());
+    }
 
-	// 打印基本信息
-	const auto renderer = Renderer::get();
-	printf(fmt::format(
-		"Basic\n"
-		"|-Device  : {}\n"
-		"|-Renderer: {}\n"
-		"`-Vendor  : {}\n",
-		renderer->getDeviceName(), renderer->getRendererName(), renderer->getVendorName()).c_str());
+    // 打印基本信息
+    const auto renderer = Renderer::get();
+    printf("%s", fmt::format(
+            "Basic\n"
+            "|-Device  : {}\n"
+            "|-Renderer: {}\n"
+            "`-Vendor  : {}\n",
+            renderer->getDeviceName(), renderer->getRendererName(), renderer->getVendorName()).c_str());
 }
 
 /*
