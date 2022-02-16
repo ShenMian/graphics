@@ -11,9 +11,9 @@
 #include <backends/imgui_impl_opengl3.h>
 #include <backends/imgui_impl_vulkan.h>
 
-void UI::begin()
+void UI::beginFrame()
 {
-	switch(Renderer::getAPI())
+    switch(Renderer::getAPI())
 	{
 		using enum Renderer::API;
 
@@ -30,9 +30,9 @@ void UI::begin()
 	ImGuizmo::BeginFrame();
 }
 
-void UI::end()
+void UI::endFrame()
 {
-	ImGui::Render();
+    ImGui::Render();
 	switch(Renderer::getAPI())
 	{
 		using enum Renderer::API;

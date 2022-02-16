@@ -147,7 +147,7 @@ int main()
 					controller.update(dt);
 #endif
 
-					UI::begin();
+					UI::beginFrame();
 
 					const auto& pos = camera.getPosition();
 					position.setText(fmt::format(
@@ -188,14 +188,13 @@ int main()
 					cmdBuffer->end();
 					cmdQueue->submit(cmdBuffer);
 
-					UI::end();
+					UI::endFrame();
 
 					window.update();
 				}
-
-				UI::deinit();
 			}
 
+            UI::deinit();
 			Renderer::deinit();
 		}
 

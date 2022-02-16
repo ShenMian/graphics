@@ -8,8 +8,8 @@ class Window;
 class UI
 {
 public:
-	static void begin();
-	static void end();
+	static void beginFrame();
+	static void endFrame();
 
 	static void init(const Window& win);
 	static void deinit();
