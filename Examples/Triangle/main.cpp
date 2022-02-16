@@ -45,7 +45,6 @@ int main()
 			Pipeline::Descriptor desc;
 			desc.program = program;
 			desc.vertexAttributes = layout;
-			// desc.viewports = {Viewport(Monitor::getPrimary().getSize())};
 			auto pipeline = Pipeline::create(desc);
 
 			auto cmdQueue = CommandQueue::create();
