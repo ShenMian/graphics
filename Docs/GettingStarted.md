@@ -64,11 +64,17 @@ const auto& monitor = Monitor::getPrimary();   // 获取主显示器
     // ... 窗口相关代码 ...
                                                    
     {
-        // 创建渲染管线 
-        Pipeline::Descriptor desc;
-        auto pipeline = Pipeline::create(desc);
+        // ... 创建渲染相关对象代码 ...
         
-        // ... 渲染相关代码 ...
+        while(true) // 主循环
+        {
+            UI::beginFrame();
+            
+            // ... UI 相关代码 ...
+            // ... 渲染相关代码 ...
+            
+            UI::endFrame();
+        }
     }
     
     // 清理, 顺序与初始化相反
