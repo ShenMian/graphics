@@ -46,7 +46,7 @@ git submodule update --init # 签出子模块
 
 ## 应用骨架
 ```cpp
-#include <Graphics/Graphics.h> // 引入 Graphics 头文件
+#include <Graphics/Graphics.h> // 引入 Graphics 头文件, 只需包含该文件
 
 // 初始化, 需按照严格的顺序. 在使用任何 API 前调用初始化即可.
 Renderer::setAPI(Renderer::API::OpenGL); // 选择将要使用的渲染后端 API.
@@ -58,18 +58,23 @@ UI::init();       // (可选) 初始化 UI, 之后才能使用 UI 相关的 API.
 
 // 创建窗口
 const auto& monitor = Monitor::getPrimary();   // 获取主显示器
-Window window("title", monitor.getSize() / 2); // 创建窗口, 窗口标题为 title, 大小为主显示器分辨率的一半,
-                                               // 即窗口应该占据屏幕的 1/4.
-
-// 创建渲染管线 
-Pipeline::Descriptor desc;
-auto pipeline = Pipeline::create(desc);
-
-// ... 应用代码 ...
-
-// 清理, 顺序与初始化相反
-UI::deinit();
-Renderer::deinit();
+{
+    Window window("title", monitor.getSize() / 2); // 创建窗口, 窗口标题为 title, 大小为主显示器分辨率的一半,
+                                                   // 即窗口应该占据屏幕的 1/4.
+    // ... 窗口相关代码 ...
+                                                   
+    {
+        // 创建渲染管线 
+        Pipeline::Descriptor desc;
+        auto pipeline = Pipeline::create(desc);
+        
+        // ... 渲染相关代码 ...
+    }
+    
+    // 清理, 顺序与初始化相反
+    UI::deinit();
+    Renderer::deinit(); // 调用该语句前应确保所以渲染相关的对象已被销毁
+}
 Window::deinit(); // 调用该语句前应该确保所有窗口已被销毁
 ```
 
