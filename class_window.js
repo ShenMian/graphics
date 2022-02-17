@@ -3,7 +3,7 @@ var class_window =
     [ "Window", "class_window.html#a4833e71f6901fa71d1d829b5d551e118", null ],
     [ "~Window", "class_window.html#a245d821e6016fa1f6970ccbbedd635f6", null ],
     [ "getNativeHandle", "class_window.html#ac2dcba6f351bed84db15e477a39f285d", null ],
-    [ "getPosition", "class_window.html#a415b9a3166cc91d5db11bc2062dd461c", null ],
+    [ "getPosition", "class_window.html#aeab22e9297f866c34da02e89c094ffd3", null ],
     [ "getSize", "class_window.html#a28b707c0e4b9ac08101fc837b0b5238f", null ],
     [ "isFullscreen", "class_window.html#ac3dc6c7f08d4b749b7949149cc6c7dc3", null ],
     [ "isVisible", "class_window.html#a6be53a737e7dfcc74167962437e93b8f", null ],
