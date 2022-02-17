@@ -62,7 +62,7 @@ void Window::setPosition(Vector2i pos)
 	glfwSetWindowPos(handle, pos.x, pos.y);
 }
 
-Vector2i Window::getPosition() noexcept
+Vector2i Window::getPosition() const noexcept
 {
 	Vector2i size;
 	glfwGetWindowPos(handle, &size.x, &size.y);
@@ -217,8 +217,7 @@ void Window::setupCallbacks()
 
 void Window::init()
 {
-	auto ret = glfwInit();
-	if(!ret)
+	if(!glfwInit())
 		throw std::runtime_error("GLFW init failed");
 
 	Monitor::init();

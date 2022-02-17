@@ -75,7 +75,7 @@ public:
 	 *
 	 * @return 当前窗口坐标.
 	 */
-	Vector2i getPosition() noexcept;
+	Vector2i getPosition() const noexcept;
 
 	/**
 	 * @brief 设置窗口可见性.
