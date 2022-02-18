@@ -6,14 +6,14 @@ on:
       - '**.cpp'
       - '**.hpp'
       - '**.h'
-      - '**.txt' # CMakeLists.txt
+      - '**/CMakeLists.txt'
       - '.github/workflows/ubuntu.yml'
   pull_request:
     paths:
       - '**.cpp'
       - '**.hpp'
       - '**.h'
-      - '**.txt' # CMakeLists.txt
+      - '**/CMakeLists.txt'
       - '.github/workflows/ubuntu.yml'
 
 jobs:
