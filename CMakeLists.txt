@@ -57,16 +57,18 @@ macro(add_example NAME)
       RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin/${NAME}")
 
   # 指定 C++ 标准
-  if(MSVC)
+  if(MSVC) # MSVC
     set_property(TARGET ${NAME} PROPERTY
           CXX_STANDARD          23
-          CXX_STANDARD_REQUIRED ON) # MSVC
-  elseif(APPLE)
-    target_compile_options(${NAME} PRIVATE -std=c++2a) # AppleClang
-  else()
+          CXX_STANDARD_REQUIRED ON)
+  elseif(APPLE) # AppleClang
+    target_compile_options(${NAME} PRIVATE -std=c++2a)
+  elseif(${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang" OR ${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU") # GCC/Clang
     set_property(TARGET ${NAME} PROPERTY
               CXX_STANDARD          20
-              CXX_STANDARD_REQUIRED ON) # GCC/Clang
+              CXX_STANDARD_REQUIRED ON)
+  else()
+    message(FATAL_ERROR "Unsupported compiler")
   endif()
 
   # 将 Shader 源文件复制到可执行文件的目录下

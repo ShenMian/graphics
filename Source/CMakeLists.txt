@@ -21,6 +21,7 @@ find_package(GLFW3 QUIET)
 #if(GLFW3_FOUND)
 #    list(APPEND LIBS ${GLFW3_LIBRARIES})
 #else()
+    SET(GLFW_BUILD_DOCS OFF CACHE BOOL "Build the GLFW documentation" FORCE)
     add_subdirectory("${DEPS_DIR}/glfw" "glfw3")
     list(APPEND LIBS glfw)
 #endif()
@@ -108,14 +109,16 @@ target_link_libraries(graphics PUBLIC ${LIBS})
 target_compile_definitions(graphics PUBLIC ${GRAPHICS_DEFINES})
 
 # 指定 C++ 标准
-if(MSVC)
+if(MSVC) # MSVC
     set_property(TARGET graphics PROPERTY
-        CXX_STANDARD          23
-        CXX_STANDARD_REQUIRED ON) # MSVC
-elseif(APPLE)
-    target_compile_options(graphics PRIVATE -std=c++2a) # AppleClang
-else()
+            CXX_STANDARD          23
+            CXX_STANDARD_REQUIRED ON)
+elseif(APPLE) # AppleClang
+    target_compile_options(graphics PRIVATE -std=c++2a)
+elseif(${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang" OR ${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU") # GCC/Clang
     set_property(TARGET graphics PROPERTY
             CXX_STANDARD          20
-            CXX_STANDARD_REQUIRED ON) # GCC/Clang
+            CXX_STANDARD_REQUIRED ON)
+else()
+    message(FATAL_ERROR "Unsupported compiler")
 endif()
