@@ -21,13 +21,18 @@ jobs:
     strategy:
       matrix:
         arch: [x64] # arm64
-        config: [Debug, Release]
+        type: [Debug, Release]
 
     runs-on: macos-latest
-    name: ${{ matrix.config }}-${{ matrix.arch }}
+    name: ${{ matrix.type }}-${{ matrix.arch }}
 
     steps:
       - uses: actions/checkout@v2
+
+      - name: Cache
+        uses: hendrikmuhs/ccache-action@v1.0.5
+        with:
+          key: ${{ matrix.type }}-${{ matrix.arch }}
 
       - name: Install dependencies
         run: ./Scripts/cmake_install_deps.sh
@@ -36,7 +41,7 @@ jobs:
         run: cmake -B build
 
       - name: Build
-        run: cmake --build build --config ${{ matrix.config }} -j2
+        run: cmake --build build --config ${{ matrix.type }} -j2
 
       - name: Upload libs
         uses: actions/upload-artifact@v2
