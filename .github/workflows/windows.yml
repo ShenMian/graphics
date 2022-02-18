@@ -38,8 +38,9 @@ jobs:
       #   uses: ilammy/msvc-dev-cmd@v1.10.0
 
       - name: Cache
-        uses: hendrikmuhs/ccache-action@v1.0.5
+        uses: actions/cache@v2.1.7
         with:
+          path: ./build
           key: ${{ matrix.type }}-${{ matrix.arch }}
 
       - name: Install dependencies

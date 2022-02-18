@@ -35,8 +35,9 @@ jobs:
           version: 13
 
       - name: Cache
-        uses: hendrikmuhs/ccache-action@v1.0.5
+        uses: actions/cache@v2.1.7
         with:
+          path: ./build
           key: ${{ matrix.type }}-${{ matrix.arch }}
 
       - name: Install dependencies
