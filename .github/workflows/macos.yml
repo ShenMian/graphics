@@ -24,7 +24,7 @@ jobs:
         type: [Debug, Release]
 
     runs-on: macos-latest
-    name: ${{ matrix.type }}-${{ matrix.arch }}
+    name: macos-${{ matrix.type }}-${{ matrix.arch }}
 
     steps:
       - uses: actions/checkout@v2

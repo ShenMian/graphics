@@ -41,7 +41,7 @@ jobs:
         uses: actions/cache@v2.1.7
         with:
           path: ./build
-          key: ${{ matrix.type }}-${{ matrix.arch }}
+          key: windows-${{ matrix.type }}-${{ matrix.arch }}
 
       - name: Install dependencies
         run: ./Scripts/cmake_install_deps.bat

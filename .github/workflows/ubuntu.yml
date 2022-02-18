@@ -24,7 +24,7 @@ jobs:
         type: [Debug, Release]
 
     runs-on: ubuntu-latest
-    name: ${{ matrix.type }}-${{ matrix.arch }}
+    name: ubuntu-${{ matrix.type }}-${{ matrix.arch }}
 
     steps:
       - uses: actions/checkout@v2
