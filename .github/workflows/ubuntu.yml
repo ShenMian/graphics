@@ -24,7 +24,7 @@ jobs:
         type: [Debug, Release]
 
     runs-on: ubuntu-latest
-    name: ubuntu-${{ matrix.type }}-${{ matrix.arch }}
+    name: ${{ matrix.type }}-${{ matrix.arch }}
 
     steps:
       - uses: actions/checkout@v2
@@ -38,7 +38,7 @@ jobs:
         uses: actions/cache@v2.1.7
         with:
           path: ./build
-          key: ${{ matrix.type }}-${{ matrix.arch }}
+          key: ubuntu-${{ matrix.type }}-${{ matrix.arch }}
 
       - name: Install dependencies
         run: ./Scripts/cmake_install_deps.sh
