@@ -223,7 +223,11 @@ void Window::init()
 	Monitor::init();
 
 	if(Renderer::get()->getAPI() == Renderer::API::Vulkan)
-		glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
+    {
+        if(!glfwVulkanSupported())
+            throw std::runtime_error("GLFW: Vulkan not supported");
+        glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
+    }
 
 	glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE); // 创建新窗口默认不可见
 	// glfwWindowHint(GLFW_DECORATED, GLFW_FALSE); // 启用无边框
