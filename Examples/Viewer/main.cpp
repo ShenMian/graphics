@@ -28,22 +28,12 @@ int main()
 			{
 				PrintInfo();
 
-				const std::filesystem::path path = "../../../3DModel";
-                // const std::filesystem::path path = "/run/media/sms/Systems/Users/sms_s/Desktop/3DModel";
+                puts(std::filesystem::current_path().string().c_str());
+
+				const std::filesystem::path path = "../../../model/low_poly/akm/scene.gltf";
 
 				Model model;
-				// model.load(path / "scene/Crytek_Sponza/sponza.obj", Model::ProcessFlags::Fast);
-				// model.load(path / "TeaHouse2.obj", Model::ProcessFlags::Fast);
-				model.load(path / "weapon/m4a1/m4a1.gltf", Model::ProcessFlags::Fast);
-				// model.load(path / "pbr/DamagedHelmet/DamagedHelmet.gltf");
-				// model.load(path / "scene/Amazon_Lumberyard_Bistro/Exterior/exterior.obj", Model::ProcessFlags::Fast, [](float progress) {
-				// 	printf("Meshes loading: %d%%  \r", static_cast<int>(progress * 100));
-				// });
-				// model.load(path / "3DModel/scene/San_Miguel/san-miguel-low-poly.obj", Model::ProcessFlags::Fast, [](float progress) {
-				// 	printf("Meshes loading: %d%%  \r", static_cast<int>(progress * 100));
-				// });
-				// model.load(path / "pbr/MetalRoughSpheres/MetalRoughSpheres.gltf");
-				// model.load(path / "3DModel/scene/SunTemple/SunTemple.fbx", Model::ProcessFlags::Fast); // 暂不支持 DDS 格式的纹理资源
+				model.load(path, Model::ProcessFlags::Fast);
 
 				Program::Descriptor programDesc;
 				{
