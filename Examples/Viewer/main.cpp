@@ -28,8 +28,6 @@ int main()
 			{
 				PrintInfo();
 
-                puts(std::filesystem::current_path().string().c_str());
-
 				const std::filesystem::path path = "../../../model/low_poly/akm/scene.gltf";
 
 				Model model;
@@ -123,7 +121,7 @@ int main()
 				Timer timer;
 				while(running)
 				{
-					const float dt = (float)timer.getSeconds();
+					const auto dt = (float)timer.getSeconds();
 					timer.restart();
 #if 0
 					static float elapse = 0;
