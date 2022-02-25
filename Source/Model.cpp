@@ -108,10 +108,10 @@ void optimize(std::vector<unsigned int>& indices, std::vector<Vertex>& vertices)
 }
 
 // 加载材质
-void loadMaterial(Material& mat, const aiMesh* aMesh, const aiScene* aScene, const fs::path& path)
+void loadMaterial(Material& mat, const aiMesh* aMesh, const aiScene* scene, const fs::path& path)
 {
 	const auto dir = path.parent_path();
-	const auto aMat = aScene->mMaterials[aMesh->mMaterialIndex];
+	const auto aMat = scene->mMaterials[aMesh->mMaterialIndex];
 
 	// 加载指定类型的材质
 	auto loadTexture = [&](aiTextureType type)->std::shared_ptr<Texture>
@@ -152,30 +152,33 @@ void loadMaterial(Material& mat, const aiMesh* aMesh, const aiScene* aScene, con
  * @brief 载入 assimp 网格数据, 创建 Mesh.
  *
  * @param aMesh  assimp 网格.
- * @param aScene assimp 场景.
+ * @param scene  assimp 场景.
  * @param path   模型位置.
  * @param meshs  要载入到的 Mesh 数组.
  */
-void loadMesh(const aiMesh* aMesh, const aiScene* aScene, const fs::path& path, std::vector<Mesh>& meshs, AABB3& aabb)
+void loadMesh(const aiMesh* aMesh, const aiScene* scene, const fs::path& path, std::vector<Mesh>& meshs, AABB3& aabb)
 {
-	static auto currScene = aScene; // TODO: debug
+	static auto currScene = scene; // TODO: debug
 	static unsigned int i = 0;
-	if(currScene != aScene)
-		currScene = aScene, i = 0;
-	printf("Processing Mesh: %3u/%-3u\r", ++i, aScene->mNumMeshes);
+	if(currScene != scene)
+		currScene = scene, i = 0;
+	printf("Processing Mesh: %3u/%-3u\r", ++i, scene->mNumMeshes);
 
 	std::vector<Vertex> vertices;
 	std::vector<unsigned int> indices;
 	Material mat;
 
+    // 读取模型数据
 	loadVertices(vertices, aMesh);
 	loadIndices(indices, aMesh);
 #if 0 // TODO: debug
-	loadMaterial(mat, aMesh, aScene, path);
+	loadMaterial(mat, aMesh, scene, path);
 #endif
 
+    // 优化网格数据
 	optimize(indices, vertices);
 
+    // 创建 IndexBuffer 和 VertexBuffer
 	VertexAttributes format = {
 		{"position", Format::RGB32F},
 		{"normal", Format::RGB32F},
@@ -183,20 +186,13 @@ void loadMesh(const aiMesh* aMesh, const aiScene* aScene, const fs::path& path, 
 		{"tangent", Format::RGB32F},
 		{"bitangent", Format::RGB32F},
 	};
-
 	auto vertexBuffer = VertexBuffer::create(vertices, format);
 	auto indexBuffer = IndexBuffer::create(indices);
 
 	const std::string name = aMesh->mName.C_Str();
 
-#if 1
 	for(auto& vertex : vertices)
 		aabb.expand(vertex.position);
-#else
-	auto& min = aMesh->mAABB.mMin;
-	auto& max = aMesh->mAABB.mMax;
-	aabb.expand({{min.x, min.y, min.z}, {max.x, max.y, max.z}});
-#endif
 
 	Mesh mesh;
 	mesh.setName(name);
@@ -210,20 +206,20 @@ void loadMesh(const aiMesh* aMesh, const aiScene* aScene, const fs::path& path, 
 /**
  * @brief 从场景中递归载入节点数据.
  *
- * @param aNode  assimp 节点.
- * @param aScene assimp 场景.
+ * @param node   assimp 节点.
+ * @param scene  assimp 场景.
  * @param path   模型文件位置.
  * @param meshes 要载入到的 Mesh 数组.
  */
-void loadNode(const aiNode* aNode, const aiScene* aScene, const fs::path& path, std::vector<Mesh>& meshes, AABB3& aabb)
+void loadNode(const aiNode* node, const aiScene* scene, const fs::path& path, std::vector<Mesh>& meshes, AABB3& aabb)
 {
 	// 加载网格
-	for(unsigned int i = 0; i < aNode->mNumMeshes; i++)
-		loadMesh(aScene->mMeshes[aNode->mMeshes[i]], aScene, path, meshes, aabb);
+	for(unsigned int i = 0; i < node->mNumMeshes; i++)
+		loadMesh(scene->mMeshes[node->mMeshes[i]], scene, path, meshes, aabb);
 
 	// 加载其余节点
-	for(unsigned int i = 0; i < aNode->mNumChildren; i++)
-		loadNode(aNode->mChildren[i], aScene, path, meshes, aabb);
+	for(unsigned int i = 0; i < node->mNumChildren; i++)
+		loadNode(node->mChildren[i], scene, path, meshes, aabb);
 }
 
 }
@@ -234,6 +230,9 @@ void Model::load(const fs::path& path, unsigned int process, std::function<void(
 		throw std::runtime_error("no such file or directory");
 
 	this->path = path;
+    name.clear();
+    meshes.clear();
+    aabb.clear();
 
 	Timer timer; // TODO: debug
 
@@ -268,17 +267,17 @@ void Model::load(const fs::path& path, unsigned int process, std::function<void(
 	Assimp::Importer importer;
 	auto progressHandler = new Progress(progress);
 	importer.SetProgressHandler(progressHandler);
-	const aiScene* aScene = importer.ReadFile(path.string(), flags); // 从文件导入场景数据
+	const aiScene* scene = importer.ReadFile(path.string(), flags); // 从文件导入场景数据
 	delete progressHandler;
 
-	if(aScene == nullptr || aScene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || aScene->mRootNode == nullptr)
+	if(scene == nullptr || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || scene->mRootNode == nullptr)
 		throw std::runtime_error(importer.GetErrorString());
 
-	name = aScene->mName.C_Str();
+	name = scene->mName.C_Str();
 
 	printf("Meshes loaded: %.2lfs\n", timer.getSeconds()); // TODO: debug
 	timer.restart();
-	loadNode(aScene->mRootNode, aScene, path, meshes, aabb);
+	loadNode(scene->mRootNode, scene, path, meshes, aabb);
 	printf("Meshes processed: %.2lfs     \n", timer.getSeconds()); // TODO: debug
 }
 
