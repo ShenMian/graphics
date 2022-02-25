@@ -23,7 +23,7 @@ REM 構建
 echo Building...
 cmake --build build >nul || (
     echo Failed to build.
-    cmake --build build -j 2
+    cmake --build build -j 8
     exit /b 1
 )
 

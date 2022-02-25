@@ -23,7 +23,7 @@ echo Building...
 if ! cmake --build build >/dev/null
 then
     echo Failed to build.
-    cmake --build build -j 2
+    cmake --build build -j 8
     exit 1
 fi
 
