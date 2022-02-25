@@ -285,6 +285,6 @@ void VKPipeline::createDynamicState(VkPipelineDynamicStateCreateInfo& info, std:
 	dynamicStates.push_back(VK_DYNAMIC_STATE_LINE_WIDTH);
 
 	info.sType = VK_STRUCTURE_TYPE_PIPELINE_DYNAMIC_STATE_CREATE_INFO;
-	info.dynamicStateCount = dynamicStates.size();
+	info.dynamicStateCount = static_cast<uint32_t>(dynamicStates.size());
 	info.pDynamicStates = dynamicStates.data();
 }
