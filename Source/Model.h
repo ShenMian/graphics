@@ -68,20 +68,12 @@ public:
 	 */
 	void load(const std::filesystem::path& path, unsigned int process = ProcessFlags::Fast, std::function<void(float)> progress = nullptr);
 
-
-	/**
-	 * @brief 保存模型到文件.
-	 *
-	 * @param path 场景文件路径.
-	 */
-	 // void save(const std::filesystem::path& path);
-
 	/**
 	 * @brief 获取 AABB.
 	 */
-	const AABB3& getAABB() const;
+	[[nodiscard]] const AABB3& getAABB() const;
 
-	const std::vector<Mesh>& getMeshes() const;
+    [[nodiscard]] const std::vector<Mesh>& getMeshes() const;
 
 	void compress();
 	void decompress();
