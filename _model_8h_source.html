@@ -137,33 +137,30 @@ $(document).ready(function(){initNavTree('_model_8h_source.html',''); initResiza
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_model.html#a9948eb464a9162def45a6f2f77a5ecf2">load</a>(<span class="keyword">const</span> std::filesystem::path&amp; path, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> process = <a class="code hl_enumvalue" href="struct_model_1_1_process_flags.html#a2022078b156bd53704d6a9d9c62d268ea519d899563530cfa614845490d19426a">ProcessFlags::Fast</a>, std::function&lt;<span class="keywordtype">void</span>(<span class="keywordtype">float</span>)&gt; progress = <span class="keyword">nullptr</span>);</div>
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>     <span class="comment">// void save(const std::filesystem::path&amp; path);</span></div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="keyword">const</span> AABB3&amp; <a class="code hl_function" href="class_model.html#a8b2bc5e7f945efb88fcd01a7d2af3ca0">getAABB</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keyword">const</span> std::vector&lt;Mesh&gt;&amp; getMeshes() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="keywordtype">void</span> compress();</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="keywordtype">void</span> decompress();</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    std::string           name;</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    std::vector&lt;Mesh&gt;     meshes;</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    std::filesystem::path path;</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    AABB3                 aabb;</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>};</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="comment">/*</span></div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="comment">inline static std::vector&lt;std::string&gt; extensions = {</span></div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="comment">    &quot;collada&quot;, &quot;x&quot;, &quot;stp&quot;, &quot;obj&quot;, &quot;objnomtl&quot;, &quot;stl&quot;, &quot;stlb&quot;, &quot;ply&quot;, &quot;plyb&quot;, &quot;3ds&quot;,</span></div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="comment">    &quot;gltf2&quot;, &quot;glb2&quot;, &quot;gltf&quot;, &quot;glb&quot;, &quot;assbin&quot;, &quot;assxml&quot;, &quot;x3d&quot;, &quot;3mf&quot;, &quot;pbrt&quot;, &quot;assjson&quot;};</span></div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="comment">*/</span></div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    [[nodiscard]] <span class="keyword">const</span> AABB3&amp; <a class="code hl_function" href="class_model.html#a8b2bc5e7f945efb88fcd01a7d2af3ca0">getAABB</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    [[nodiscard]] <span class="keyword">const</span> std::vector&lt;Mesh&gt;&amp; getMeshes() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keywordtype">void</span> compress();</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="keywordtype">void</span> decompress();</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    std::string           name;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    std::vector&lt;Mesh&gt;     meshes;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    std::filesystem::path path;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    AABB3                 aabb;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>};</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="comment">inline static std::vector&lt;std::string&gt; extensions = {</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="comment">    &quot;collada&quot;, &quot;x&quot;, &quot;stp&quot;, &quot;obj&quot;, &quot;objnomtl&quot;, &quot;stl&quot;, &quot;stlb&quot;, &quot;ply&quot;, &quot;plyb&quot;, &quot;3ds&quot;,</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="comment">    &quot;gltf2&quot;, &quot;glb2&quot;, &quot;gltf&quot;, &quot;glb&quot;, &quot;assbin&quot;, &quot;assxml&quot;, &quot;x3d&quot;, &quot;3mf&quot;, &quot;pbrt&quot;, &quot;assjson&quot;};</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
 <div class="ttc" id="aclass_material_html"><div class="ttname"><a href="class_material.html">Material</a></div><div class="ttdoc">材质.</div><div class="ttdef"><b>Definition:</b> Material.h:17</div></div>
 <div class="ttc" id="aclass_mesh_html"><div class="ttname"><a href="class_mesh.html">Mesh</a></div><div class="ttdoc">网格.</div><div class="ttdef"><b>Definition:</b> Mesh.h:21</div></div>
 <div class="ttc" id="aclass_model_html"><div class="ttname"><a href="class_model.html">Model</a></div><div class="ttdoc">3D 模型.</div><div class="ttdef"><b>Definition:</b> Model.h:31</div></div>
-<div class="ttc" id="aclass_model_html_a8b2bc5e7f945efb88fcd01a7d2af3ca0"><div class="ttname"><a href="class_model.html#a8b2bc5e7f945efb88fcd01a7d2af3ca0">Model::getAABB</a></div><div class="ttdeci">const AABB3 &amp; getAABB() const</div><div class="ttdoc">保存模型到文件.</div><div class="ttdef"><b>Definition:</b> Model.cpp:284</div></div>
+<div class="ttc" id="aclass_model_html_a8b2bc5e7f945efb88fcd01a7d2af3ca0"><div class="ttname"><a href="class_model.html#a8b2bc5e7f945efb88fcd01a7d2af3ca0">Model::getAABB</a></div><div class="ttdeci">const AABB3 &amp; getAABB() const</div><div class="ttdoc">获取 AABB.</div><div class="ttdef"><b>Definition:</b> Model.cpp:284</div></div>
 <div class="ttc" id="aclass_model_html_a9948eb464a9162def45a6f2f77a5ecf2"><div class="ttname"><a href="class_model.html#a9948eb464a9162def45a6f2f77a5ecf2">Model::load</a></div><div class="ttdeci">void load(const std::filesystem::path &amp;path, unsigned int process=ProcessFlags::Fast, std::function&lt; void(float)&gt; progress=nullptr)</div><div class="ttdoc">从文件载入场景.</div><div class="ttdef"><b>Definition:</b> Model.cpp:227</div></div>
 <div class="ttc" id="astruct_model_1_1_process_flags_html"><div class="ttname"><a href="struct_model_1_1_process_flags.html">Model::ProcessFlags</a></div><div class="ttdef"><b>Definition:</b> Model.h:34</div></div>
 <div class="ttc" id="astruct_model_1_1_process_flags_html_a2022078b156bd53704d6a9d9c62d268ea101103c5a9e2d7c4588d6b82309bcafc"><div class="ttname"><a href="struct_model_1_1_process_flags.html#a2022078b156bd53704d6a9d9c62d268ea101103c5a9e2d7c4588d6b82309bcafc">Model::ProcessFlags::FindInvalidData</a></div><div class="ttdeci">@ FindInvalidData</div><div class="ttdoc">查找无效的数据.</div><div class="ttdef"><b>Definition:</b> Model.h:47</div></div>

@@ -106,8 +106,9 @@ Public 成员函数</h2></td></tr>
 <tr class="memitem:a9948eb464a9162def45a6f2f77a5ecf2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#a9948eb464a9162def45a6f2f77a5ecf2">load</a> (const std::filesystem::path &amp;path, unsigned int process=<a class="el" href="struct_model_1_1_process_flags.html#a2022078b156bd53704d6a9d9c62d268ea519d899563530cfa614845490d19426a">ProcessFlags::Fast</a>, std::function&lt; void(float)&gt; progress=nullptr)</td></tr>
 <tr class="memdesc:a9948eb464a9162def45a6f2f77a5ecf2"><td class="mdescLeft">&#160;</td><td class="mdescRight">从文件载入场景.  <a href="class_model.html#a9948eb464a9162def45a6f2f77a5ecf2">更多...</a><br /></td></tr>
 <tr class="separator:a9948eb464a9162def45a6f2f77a5ecf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b2bc5e7f945efb88fcd01a7d2af3ca0"><td class="memItemLeft" align="right" valign="top">const AABB3 &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_model.html#a8b2bc5e7f945efb88fcd01a7d2af3ca0">getAABB</a> () const</td></tr>
-<tr class="memdesc:a8b2bc5e7f945efb88fcd01a7d2af3ca0"><td class="mdescLeft">&#160;</td><td class="mdescRight">保存模型到文件.  <a href="class_model.html#a8b2bc5e7f945efb88fcd01a7d2af3ca0">更多...</a><br /></td></tr>
+<tr class="memitem:a8b2bc5e7f945efb88fcd01a7d2af3ca0"><td class="memItemLeft" align="right" valign="top"><a id="a8b2bc5e7f945efb88fcd01a7d2af3ca0" name="a8b2bc5e7f945efb88fcd01a7d2af3ca0"></a>
+const AABB3 &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getAABB</b> () const</td></tr>
+<tr class="memdesc:a8b2bc5e7f945efb88fcd01a7d2af3ca0"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取 AABB. <br /></td></tr>
 <tr class="separator:a8b2bc5e7f945efb88fcd01a7d2af3ca0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa831aec5439d92d41a99cf18b9c16c95"><td class="memItemLeft" align="right" valign="top"><a id="aa831aec5439d92d41a99cf18b9c16c95" name="aa831aec5439d92d41a99cf18b9c16c95"></a>
 const std::vector&lt; <a class="el" href="class_mesh.html">Mesh</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getMeshes</b> () const</td></tr>
@@ -122,32 +123,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>decompress</b> ()</td
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p >3D 模型. </p>
 </div><h2 class="groupheader">成员函数说明</h2>
-<a id="a8b2bc5e7f945efb88fcd01a7d2af3ca0" name="a8b2bc5e7f945efb88fcd01a7d2af3ca0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8b2bc5e7f945efb88fcd01a7d2af3ca0">&#9670;&nbsp;</a></span>getAABB()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const AABB3 &amp; Model::getAABB </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>保存模型到文件. </p>
-<dl class="params"><dt>参数</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">path</td><td>场景文件路径.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>获取 AABB. </p>
-
-</div>
-</div>
 <a id="a9948eb464a9162def45a6f2f77a5ecf2" name="a9948eb464a9162def45a6f2f77a5ecf2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9948eb464a9162def45a6f2f77a5ecf2">&#9670;&nbsp;</a></span>load()</h2>
 
