@@ -108,24 +108,26 @@ void optimize(std::vector<unsigned int>& indices, std::vector<Vertex>& vertices)
 }
 
 // 加载材质
-void loadMaterial(Material& mat, const aiMesh* aMesh, const aiScene* scene, const fs::path& path)
+void loadMaterial(Material& mat, const aiMesh* mesh, const aiScene* scene, const fs::path& path)
 {
 	const auto dir = path.parent_path();
-	const auto aMat = scene->mMaterials[aMesh->mMaterialIndex];
+	const auto aMat = scene->mMaterials[mesh->mMaterialIndex];
 
 	// 加载指定类型的材质
 	auto loadTexture = [&](aiTextureType type)->std::shared_ptr<Texture>
 	{
+        assert(aMat->GetTextureCount(type) == 1);
+
 		// TODO: 此处循环无用, 同类型的材质可能有多个
 		for(unsigned int i = 0; i < aMat->GetTextureCount(type); i++)
-		{
-			aiString aPath;
-			aMat->GetTexture(type, 0, &aPath);
-			const auto path = dir / aPath.C_Str();
-			// if(!fs::exists(path))
-			// 	return nullptr;
-			return Texture::create(path);
-		}
+        {
+            aiString aPath;
+            aMat->GetTexture(type, 0, &aPath);
+            const auto path = dir / aPath.C_Str();
+            // if(!fs::exists(path))
+            // 	return nullptr;
+            return Texture::create(path);
+        }
 		return nullptr;
 	};
 

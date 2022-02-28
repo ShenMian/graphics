@@ -73,6 +73,9 @@ public:
 	 */
 	[[nodiscard]] const AABB3& getAABB() const;
 
+    /**
+     * @brief 获取网格.
+     */
     [[nodiscard]] const std::vector<Mesh>& getMeshes() const;
 
 	void compress();
