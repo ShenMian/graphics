@@ -39,17 +39,17 @@ public:
 	/**
 	 * @brief 获取缓冲区大小, 单位: 字节.
 	 */
-	size_t getSize() const;
+	[[nodiscard]] size_t getSize() const;
 
 	/**
 	 * @brief 获取顶点数.
 	 */
-	uint32_t getCount() const;
+	[[nodiscard]] uint32_t getCount() const;
 
 	/**
 	 * @brief 获取顶格式.
 	 */
-	const VertexAttributes& getFormat() const;
+	[[nodiscard]] const VertexAttributes& getFormat() const;
 
 	virtual void map() = 0;
 	virtual void unmap() = 0;
