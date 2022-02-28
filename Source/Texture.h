@@ -47,7 +47,7 @@ public:
 	 * @param path 图像文件路径.
 	 * @param type 纹理类型.
 	 */
-	[[nodiscard]] static std::shared_ptr<Texture> create(const std::filesystem::path path, Type type = Type::_2D);
+	[[nodiscard]] static std::shared_ptr<Texture> create(const std::filesystem::path& path, Type type = Type::_2D);
 
 	/**
 	 * @brief 从图像创建纹理.
@@ -105,12 +105,12 @@ public:
 	/**
 	 * @brief 获取纹理类型.
 	 */
-	Type getType() const;
+	[[nodiscard]] Type getType() const;
 
 	/**
 	 * @brief 获取像素格式.
 	 */
-	Format getFormat() const;
+    [[nodiscard]] Format getFormat() const;
 
 protected:
 	Texture(Type type, Format fmt);

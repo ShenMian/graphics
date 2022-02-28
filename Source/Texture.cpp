@@ -12,7 +12,7 @@ namespace fs = std::filesystem;
 
 std::unordered_map<fs::path, std::shared_ptr<Texture>> Texture::cache;
 
-std::shared_ptr<Texture> Texture::create(const std::filesystem::path path, Type type)
+std::shared_ptr<Texture> Texture::create(const fs::path& path, Type type)
 {
 	if(type == Type::Cube)
 		throw std::runtime_error("cubemap should have 6 file path");
