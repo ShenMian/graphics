@@ -106,6 +106,8 @@ GLTexture::GLTexture(const Image& image, Type type)
 		static_cast<GLsizei>(image.getSize().x), static_cast<GLsizei>(image.getSize().y), 0,
 		GLFormat(format), GL_UNSIGNED_BYTE, image.getData());
 	GLCheckError();
+
+    generateMipmap();
 }
 
 GLTexture::GLTexture(const std::vector<Image>& images)
@@ -128,6 +130,8 @@ GLTexture::GLTexture(const std::vector<Image>& images)
 			GLFormat(format), GL_UNSIGNED_BYTE, images[i].getData());
 		GLCheckError();
 	}
+
+    generateMipmap();
 }
 
 GLTexture::~GLTexture()
