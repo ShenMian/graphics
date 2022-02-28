@@ -6,6 +6,7 @@
 #include "Buffer.h"
 #include <cstdint>
 #include <memory>
+#include <span>
 #include <vector>
 
 /**
@@ -20,7 +21,7 @@ public:
 	 * @param data  索引缓冲区.
 	 * @param usage 使用方式.
 	 */
-	[[nodiscard]] static std::shared_ptr<IndexBuffer> create(const std::vector<uint32_t>& data, Buffer::Usage usage = Buffer::Usage::Static);
+    [[nodiscard]] static std::shared_ptr<IndexBuffer> create(std::span<const uint32_t> data, Buffer::Usage usage = Buffer::Usage::Static);
 
 	/**
 	 * @brief 创建 IndexBuffer.
@@ -32,15 +33,16 @@ public:
 	 */
 	[[nodiscard]] static std::shared_ptr<IndexBuffer> create(const uint32_t* data, size_t size, Buffer::Usage usage = Buffer::Usage::Static);
 
+
 	/**
 	 * @brief 获取缓冲区大小, 单位: 字节.
 	 */
-	size_t getSize() const;
+	[[nodiscard]] size_t getSize() const;
 
 	/**
 	 * @brief 获取索引数.
 	 */
-	uint32_t getCount() const;
+	[[nodiscard]] uint32_t getCount() const;
 
 	virtual void map() = 0;
 	virtual void unmap() = 0;
