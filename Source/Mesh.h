@@ -24,19 +24,19 @@ public:
 
 	void setName(const std::string& name);
 
-	const std::string& getName() const;
+	[[nodiscard]] const std::string& getName() const;
 
 	void setVertexBuffer(std::shared_ptr<VertexBuffer> buffer);
 
-	std::shared_ptr<VertexBuffer> getVertexBuffer() const;
+    [[nodiscard]] std::shared_ptr<VertexBuffer> getVertexBuffer() const;
 
 	void setIndexBuffer(std::shared_ptr<IndexBuffer> buffer);
 
-	std::shared_ptr<IndexBuffer> getIndexBuffer() const;
+    [[nodiscard]] std::shared_ptr<IndexBuffer> getIndexBuffer() const;
 
 	void setMaterial(const Material& mat);
 
-	const Material& getMaterial() const;
+    [[nodiscard]] const Material& getMaterial() const;
 
 	void compress();
 	void decompress();
