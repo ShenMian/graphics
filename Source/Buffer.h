@@ -43,22 +43,22 @@ public:
 	/**
 	 * @brief 获取缓冲区大小, 单位: 字节.
 	 */
-	size_t getSize() const;
+	[[nodiscard]] size_t getSize() const;
 
 	/**
 	 * @brief 获取缓冲区类型.
 	 */
-	Type getType() const;
+    [[nodiscard]] Type getType() const;
 
 	/**
 	 * @brief 获取缓冲区使用方式.
 	 */
-	Usage getUsage() const;
+    [[nodiscard]] Usage getUsage() const;
 
 	/**
 	 * @brief 获取映射的缓冲区.
 	 */
-	void* getData();
+    [[nodiscard]] void* getData();
 
 	/**
 	 * @brief 写入映射缓冲区.
