@@ -33,7 +33,6 @@ public:
 	 */
 	[[nodiscard]] static std::shared_ptr<IndexBuffer> create(const uint32_t* data, size_t size, Buffer::Usage usage = Buffer::Usage::Static);
 
-
 	/**
 	 * @brief 获取缓冲区大小, 单位: 字节.
 	 */
