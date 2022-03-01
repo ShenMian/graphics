@@ -10,6 +10,7 @@ VKVertexBuffer::VKVertexBuffer(const void* data, size_t size, const VertexAttrib
 	buffer(size, Buffer::Type::Vertex, usage,
 		VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT)
 {
+    write(data, size);
 }
 
 void VKVertexBuffer::map()
@@ -24,6 +25,9 @@ void VKVertexBuffer::unmap()
 
 void VKVertexBuffer::write(const void* data, size_t size)
 {
+    buffer.map();
+    buffer.write(data, size);
+    buffer.unmap();
 }
 
 void VKVertexBuffer::bind()
