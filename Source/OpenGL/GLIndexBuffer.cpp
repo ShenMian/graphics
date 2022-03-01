@@ -23,7 +23,7 @@ GLIndexBuffer::GLIndexBuffer(const uint32_t* data, size_t size, Buffer::Usage us
 	: IndexBuffer(data, size), buffer(size, Buffer::Type::Index, usage)
 {
 	bind();
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, size, data, GLUsage[usage]);
+    write(data, size);
 }
 
 void GLIndexBuffer::map()
