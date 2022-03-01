@@ -30,7 +30,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Install Clang
-        uses: egor-tensin/setup-clang@v1
+        uses: egor-tensin/setup-clang@v1.3
         with:
           version: 13
 
