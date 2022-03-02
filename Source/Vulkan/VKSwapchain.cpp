@@ -113,7 +113,7 @@ void VKSwapchain::createRenderPass()
 	colorAttachment.finalLayout = VK_IMAGE_LAYOUT_PRESENT_SRC_KHR;
 	attachments.push_back(colorAttachment);
 
-	VkAttachmentDescription depthAttachment = {};
+	// VkAttachmentDescription depthAttachment = {};
 	// attachments.push_back(depthAttachment);
 
 	std::vector<VkAttachmentReference> colorAttachmentRefs;
