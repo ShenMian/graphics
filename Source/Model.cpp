@@ -270,7 +270,6 @@ void Model::load(const fs::path& path, unsigned int process, std::function<void(
 	auto progressHandler = new Progress(progress);
 	importer.SetProgressHandler(progressHandler);
 	const aiScene* scene = importer.ReadFile(path.string(), flags); // 从文件导入场景数据
-	delete progressHandler;
 
 	if(scene == nullptr || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || scene->mRootNode == nullptr)
 		throw std::runtime_error(importer.GetErrorString());
