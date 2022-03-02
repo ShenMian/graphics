@@ -27,7 +27,7 @@ VKCommandBuffer::VKCommandBuffer()
 
 VKCommandBuffer::~VKCommandBuffer()
 {
-	auto renderer = reinterpret_cast<VKRenderer*>(Renderer::get());
+	// auto renderer = reinterpret_cast<VKRenderer*>(Renderer::get());
 	// vkFreeCommandBuffers(renderer->getDevice(), renderer->getCommandPool(), static_cast<uint32_t>(handles.size()), handles.data());
 }
 
