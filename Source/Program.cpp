@@ -75,6 +75,36 @@ std::shared_ptr<Program> Program::create(const std::string& name)
 		}
 	}
 
+    // TODO: GLSL
+    for(const auto& [stageName, stage] : com) {
+        auto path = fmt::format("{}.{}.glsl", name, stageName);
+        if (fs::exists(path)) {
+            Shader::Descriptor shaderDesc;
+            shaderDesc.stage = stage;
+            shaderDesc.path = path;
+
+            switch (stage) {
+                using enum Shader::Stage;
+
+                case Vertex:
+                    desc.vertex = Shader::create(shaderDesc);
+                    break;
+
+                case Fragment:
+                    desc.fragment = Shader::create(shaderDesc);
+                    break;
+
+                case Geometry:
+                    desc.geometry = Shader::create(shaderDesc);
+                    break;
+
+                case Compute:
+                    desc.compute = Shader::create(shaderDesc);
+                    break;
+            }
+        }
+    }
+
 	return create(desc);
 }
 
