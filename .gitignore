@@ -12,6 +12,7 @@ Makefile
 
 # CMake
 .cache
+CMakeSettings.json
 
 # Visual Studio
 *.sln
