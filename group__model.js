@@ -4,6 +4,7 @@ var group__model =
       [ "PBR", "struct_material_1_1_p_b_r.html", null ]
     ] ],
     [ "Mesh", "class_mesh.html", null ],
+    [ "Mesh::Vertex", "struct_mesh_1_1_vertex.html", null ],
     [ "Model", "class_model.html", [
       [ "ProcessFlags", "struct_model_1_1_process_flags.html", null ],
       [ "getAABB", "class_model.html#a8b2bc5e7f945efb88fcd01a7d2af3ca0", null ],

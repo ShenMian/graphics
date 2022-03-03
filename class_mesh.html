@@ -84,6 +84,7 @@ $(document).ready(function(){initNavTree('class_mesh.html',''); initResizable();
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">类</a> &#124;
 <a href="#pub-methods">Public 成员函数</a> &#124;
 <a href="class_mesh-members.html">所有成员列表</a>  </div>
   <div class="headertitle"><div class="title">Mesh类 参考<div class="ingroups"><a class="el" href="group__model.html">模型</a></div></div></div>
@@ -95,8 +96,16 @@ $(document).ready(function(){initNavTree('class_mesh.html',''); initResizable();
 
 <p><code>#include &lt;<a class="el" href="_mesh_8h_source.html">Mesh.h</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+类</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_mesh_1_1_vertex.html">Vertex</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
+<tr class="memitem:a5c3ca7ccfcb730d17fa240a5f9989f23"><td class="memItemLeft" align="right" valign="top"><a id="a5c3ca7ccfcb730d17fa240a5f9989f23" name="a5c3ca7ccfcb730d17fa240a5f9989f23"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Mesh</b> (const std::string &amp;name, std::vector&lt; <a class="el" href="struct_mesh_1_1_vertex.html">Vertex</a> &gt; &amp;vertices, std::vector&lt; unsigned int &gt; &amp;indices, const <a class="el" href="class_material.html">Material</a> &amp;mat)</td></tr>
+<tr class="separator:a5c3ca7ccfcb730d17fa240a5f9989f23"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab944b018efbf265dc7555d793e50b4fd"><td class="memItemLeft" align="right" valign="top"><a id="ab944b018efbf265dc7555d793e50b4fd" name="ab944b018efbf265dc7555d793e50b4fd"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setName</b> (const std::string &amp;name)</td></tr>
 <tr class="separator:ab944b018efbf265dc7555d793e50b4fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -121,6 +130,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setMaterial</b> (cons
 <tr class="memitem:ad815a1af67f85776d41961f44e27a5e7"><td class="memItemLeft" align="right" valign="top"><a id="ad815a1af67f85776d41961f44e27a5e7" name="ad815a1af67f85776d41961f44e27a5e7"></a>
 const <a class="el" href="class_material.html">Material</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getMaterial</b> () const</td></tr>
 <tr class="separator:ad815a1af67f85776d41961f44e27a5e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54af7969c80203323f6edecdb68a25cf"><td class="memItemLeft" align="right" valign="top"><a id="a54af7969c80203323f6edecdb68a25cf" name="a54af7969c80203323f6edecdb68a25cf"></a>
+uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>getTriangleCount</b> () const</td></tr>
+<tr class="separator:a54af7969c80203323f6edecdb68a25cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c14df866b9d28ac272b40622b74c8e5"><td class="memItemLeft" align="right" valign="top"><a id="a6c14df866b9d28ac272b40622b74c8e5" name="a6c14df866b9d28ac272b40622b74c8e5"></a>
+uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>getVertexCount</b> () const</td></tr>
+<tr class="separator:a6c14df866b9d28ac272b40622b74c8e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1bf2769511b83ed0d0395932b0065fcd"><td class="memItemLeft" align="right" valign="top"><a id="a1bf2769511b83ed0d0395932b0065fcd" name="a1bf2769511b83ed0d0395932b0065fcd"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>compress</b> ()</td></tr>
 <tr class="separator:a1bf2769511b83ed0d0395932b0065fcd"><td class="memSeparator" colspan="2">&#160;</td></tr>

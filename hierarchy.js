@@ -81,6 +81,7 @@ var hierarchy =
       [ "GLUniformBuffer", "class_g_l_uniform_buffer.html", null ],
       [ "VKUniformBuffer", "class_v_k_uniform_buffer.html", null ]
     ] ],
+    [ "Mesh::Vertex", "struct_mesh_1_1_vertex.html", null ],
     [ "VertexAttributes", "class_vertex_attributes.html", null ],
     [ "VertexBuffer", "class_vertex_buffer.html", [
       [ "GLVertexBuffer", "class_g_l_vertex_buffer.html", null ],
