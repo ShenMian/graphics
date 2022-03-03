@@ -3,9 +3,11 @@
 
 #pragma once
 
+#include "Math/Math.hpp"
 #include "Material.h"
 #include <memory>
 #include <string>
+#include <vector>
 
 class IndexBuffer;
 class VertexBuffer;
@@ -20,7 +22,11 @@ class VertexBuffer;
 class Mesh
 {
 public:
-	Mesh() = default;
+    struct Vertex;
+
+    Mesh() = default;
+
+	Mesh(const std::string& name, std::vector<Vertex>& vertices, std::vector<unsigned int>& indices, const Material& mat);
 
 	void setName(const std::string& name);
 
@@ -38,6 +44,10 @@ public:
 
     [[nodiscard]] const Material& getMaterial() const;
 
+	[[nodiscard]] uint32_t getTriangleCount() const;
+
+	[[nodiscard]] uint32_t getVertexCount() const;
+
 	void compress();
 	void decompress();
 
@@ -46,6 +56,25 @@ private:
 	std::shared_ptr<VertexBuffer> vertexBuffer;
 	std::shared_ptr<IndexBuffer>  indexBuffer;
 	Material                      material;
+
+	std::vector<Vertex>       vertices;
+	std::vector<unsigned int> indices;
+
+	std::vector<uint8_t> compressedVertices;
+	std::vector<uint8_t> compressedIndices;
+	uint32_t vertexCount;
+	uint32_t indexCount;
+};
+
+struct Mesh::Vertex
+{
+    Vector3 position;
+    Vector3 normal;
+    Vector2 uv;
+    Vector3 tangent;
+    Vector3 bitangent;
+
+    auto operator<=>(const Vertex&) const = default;
 };
 
 /** @}*/

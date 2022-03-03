@@ -12,11 +12,6 @@
 #include <functional>
 #include <unordered_map>
 
-// TODO:
-// 1. 重构代码, 现有代码组织不合理.
-// 2. 顶点数据应该由 Model 管理, Mesh 保存顶点数据的引用和顶点索引.
-// 3. 析构后线程可能仍在运行, 导致 callback 获取不存在的数据.
-
 class Mesh;
 class Material;
 

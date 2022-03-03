@@ -26,17 +26,6 @@ namespace fs = std::filesystem;
 namespace
 {
 
-struct Vertex
-{
-	Vector3 position;
-	Vector3 normal;
-	Vector2 uv;
-	Vector3 tangent;
-	Vector3 bitangent;
-
-	auto operator<=>(const Vertex&) const = default;
-};
-
 // Assimp 文件加载进度回调
 class Progress : public Assimp::ProgressHandler
 {
@@ -99,14 +88,6 @@ void loadIndices(std::vector<unsigned int>& indices, const aiMesh* mesh)
 	}
 }
 
-// 优化网格
-void optimize(std::vector<unsigned int>& indices, std::vector<Vertex>& vertices)
-{
-	meshopt_optimizeVertexCache(indices.data(), indices.data(), indices.size(), vertices.size());
-	meshopt_optimizeOverdraw(indices.data(), indices.data(), indices.size(), &vertices[0].position.x, vertices.size(), sizeof(Vertex), 1.05f);
-	meshopt_optimizeVertexFetch(vertices.data(), indices.data(), indices.size(), vertices.data(), vertices.size(), sizeof(Vertex));
-}
-
 // 加载材质
 void loadMaterial(Material& mat, const aiMesh* mesh, const aiScene* scene, const fs::path& path)
 {
@@ -116,8 +97,6 @@ void loadMaterial(Material& mat, const aiMesh* mesh, const aiScene* scene, const
 	// 加载指定类型的材质
 	auto loadTexture = [&](aiTextureType type)->std::shared_ptr<Texture>
 	{
-        assert(aMat->GetTextureCount(type) == 1);
-
 		// TODO: 此处循环无用, 同类型的材质可能有多个
 		for(unsigned int i = 0; i < aMat->GetTextureCount(type); i++)
         {
@@ -158,7 +137,7 @@ void loadMaterial(Material& mat, const aiMesh* mesh, const aiScene* scene, const
  * @param path   模型位置.
  * @param meshs  要载入到的 Mesh 数组.
  */
-void loadMesh(const aiMesh* aMesh, const aiScene* scene, const fs::path& path, std::vector<Mesh>& meshs, AABB3& aabb)
+void loadMesh(const aiMesh* aMesh, const aiScene* scene, const fs::path& path, std::vector<Mesh>& meshes, AABB3& aabb)
 {
 	static auto currScene = scene; // TODO: debug
 	static unsigned int i = 0;
@@ -166,43 +145,23 @@ void loadMesh(const aiMesh* aMesh, const aiScene* scene, const fs::path& path, s
 		currScene = scene, i = 0;
 	printf("Processing Mesh: %3u/%-3u\r", ++i, scene->mNumMeshes);
 
-	std::vector<Vertex> vertices;
+	std::vector<Mesh::Vertex> vertices;
 	std::vector<unsigned int> indices;
 	Material mat;
 
     // 读取模型数据
 	loadVertices(vertices, aMesh);
 	loadIndices(indices, aMesh);
-#if 0 // TODO: debug
-	loadMaterial(mat, aMesh, scene, path);
+#if 1 // TODO: debug
+	// loadMaterial(mat, aMesh, scene, path);
 #endif
-
-    // 优化网格数据
-	optimize(indices, vertices);
-
-    // 创建 IndexBuffer 和 VertexBuffer
-	VertexAttributes format = {
-		{"position", Format::RGB32F},
-		{"normal", Format::RGB32F},
-		{"uv", Format::RG32F},
-		{"tangent", Format::RGB32F},
-		{"bitangent", Format::RGB32F},
-	};
-	auto vertexBuffer = VertexBuffer::create(vertices, format);
-	auto indexBuffer = IndexBuffer::create(indices);
 
 	const std::string name = aMesh->mName.C_Str();
 
 	for(auto& vertex : vertices)
 		aabb.expand(vertex.position);
 
-	Mesh mesh;
-	mesh.setName(name);
-	mesh.setVertexBuffer(vertexBuffer);
-	mesh.setIndexBuffer(indexBuffer);
-	mesh.setMaterial(mat);
-
-	meshs.push_back(std::move(mesh));
+	meshes.emplace_back(name, vertices, indices, mat);
 }
 
 /**
@@ -279,7 +238,7 @@ void Model::load(const fs::path& path, unsigned int process, std::function<void(
 	printf("Meshes loaded: %.2lfs\n", timer.getSeconds()); // TODO: debug
 	timer.restart();
 	loadNode(scene->mRootNode, scene, path, meshes, aabb);
-	printf("Meshes processed: %.2lfs     \n", timer.getSeconds()); // TODO: debug
+	printf("Meshes processed: %.2lfs       \n", timer.getSeconds()); // TODO: debug
 }
 
 const AABB3& Model::getAABB() const
