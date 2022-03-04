@@ -28,10 +28,16 @@ int main()
 			{
 				PrintInfo();
 
-				const std::filesystem::path path = "../../../model/low_poly/akm/scene.gltf";
+				const std::filesystem::path path = "C:/Users/sms_s/Desktop/model/sponza/sponza.obj";
+				// const std::filesystem::path path = "C:/Users/sms_s/Desktop/model/pistol/kimber_desert_warrior/scene.gltf";
+				// const std::filesystem::path path = "C:/Users/sms_s/Desktop/model/Bistro/BistroExterior.glb";
+				// const std::filesystem::path path = "C:/Users/sms_s/Desktop/model/SpeedTree/White Oak/HighPoly/White_Oak.fbx";
+				// const std::filesystem::path path = "C:/Users/sms_s/Desktop/model/San_Miguel/san-miguel-low-poly.obj";
 
 				Model model;
-				model.load(path, Model::ProcessFlags::Fast);
+				model.load(path, Model::ProcessFlags::Fast, [](float progress) {
+					printf("Meshes loading: %.1f%%  \r", progress * 100);
+				});
 
 				Program::Descriptor programDesc;
 				{
@@ -85,6 +91,10 @@ int main()
 
 					case Key::F11:
 						window.setFullscreen(!window.isFullscreen());
+						break;
+
+					case Key::O:
+						model.compress();
 						break;
 
 					case Key::P:
