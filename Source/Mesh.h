@@ -48,10 +48,13 @@ public:
 
 	[[nodiscard]] uint32_t getVertexCount() const;
 
+	bool isCompressed() const;
 	void compress();
 	void decompress();
 
 private:
+	void optimize();
+
 	std::string                   name;
 	std::shared_ptr<VertexBuffer> vertexBuffer;
 	std::shared_ptr<IndexBuffer>  indexBuffer;

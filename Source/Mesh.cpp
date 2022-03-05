@@ -10,14 +10,6 @@
 namespace
 {
 
-// 优化网格
-void optimize(std::vector<unsigned int>& indices, std::vector<Mesh::Vertex>& vertices)
-{
-	meshopt_optimizeVertexCache(indices.data(), indices.data(), indices.size(), vertices.size());
-	meshopt_optimizeOverdraw(indices.data(), indices.data(), indices.size(), &vertices[0].position.x, vertices.size(), sizeof(Mesh::Vertex), 1.05f);
-	meshopt_optimizeVertexFetch(vertices.data(), indices.data(), indices.size(), vertices.data(), vertices.size(), sizeof(Mesh::Vertex));
-}
-
 // 压缩索引缓冲区
 void compressIndices(std::vector<uint8_t>& buffer, const void* indices, size_t indexCount, size_t vertexCount)
 {
@@ -49,7 +41,7 @@ void decompressVertices(void* vertices, size_t vertexCount, size_t vertexSize, c
 Mesh::Mesh(const std::string& name, std::vector<Vertex>& vertices, std::vector<unsigned int>& indices, const Material& mat)
 	: name(name), vertices(std::move(vertices)), indices(std::move(indices)), material(mat)
 {
-	optimize(this->indices, this->vertices);
+	optimize();
 
 	VertexAttributes format = {
 		{"position", Format::RGB32F},
@@ -112,47 +104,54 @@ uint32_t Mesh::getVertexCount() const
 	return vertices.size();
 }
 
+bool Mesh::isCompressed() const
+{
+	return !compressedIndices.empty() || !compressedVertices.empty();
+}
+
 void Mesh::compress()
 {
 	indexCount = indices.size();
+	vertexCount = vertices.size();
+
+	// FIXME: 存在内存泄露, 此处 indexBuffer 和 vertexBuffer 是引用计数很大, 而不是预期的 1.
+	// 随时间的增加而增加
+
 	compressIndices(compressedIndices, indices.data(), indices.size(), vertices.size());
 	indices.clear();
 	compressedIndices.shrink_to_fit();
-	auto t = indexBuffer.use_count();
 	indexBuffer = nullptr;
-	t = indexBuffer.use_count();
 
-	vertexCount = vertices.size();
 	compressVertices(compressedVertices, vertices.data(), vertices.size(), sizeof(Vertex));
 	vertices.clear();
 	compressedVertices.shrink_to_fit();
+	vertexBuffer = nullptr;
 }
 
 void Mesh::decompress()
 {
+	indices.resize(indexCount);
 	decompressIndices(indices.data(), indexCount, compressedIndices);
 	compressedIndices.clear();
 
+	vertices.resize(vertexCount);
 	decompressVertices(vertices.data(), vertexCount, sizeof(Vertex), compressedVertices);
 	compressedVertices.clear();
 
-	// TODO
-	/*
-	{
-		std::vector<uint8_t> tmp;
-		auto& buf = indexBuffer->getData();
-		tmp.resize(indexBuffer->getSize());
-		decompressIndices(tmp.data(), indexBuffer->getCount(), buf);
-		buf = tmp;
-		indexBuffer->flash();
-	}
-	{
-		std::vector<uint8_t> tmp;
-		auto& buf = vertexBuffer->getData();
-		tmp.resize(vertexBuffer->getSize());
-		decompressVertices(tmp.data(), vertexBuffer->getCount(), vertexBuffer->getFormat().getStride(), buf);
-		buf = tmp;
-		vertexBuffer->flash();
-	}
-	*/
+	VertexAttributes format = {
+		{"position", Format::RGB32F},
+		{"normal", Format::RGB32F},
+		{"uv", Format::RG32F},
+		{"tangent", Format::RGB32F},
+		{"bitangent", Format::RGB32F},
+	};
+	vertexBuffer = VertexBuffer::create(this->vertices, format);
+	indexBuffer = IndexBuffer::create(this->indices);
+}
+
+void Mesh::optimize()
+{
+	meshopt_optimizeVertexCache(indices.data(), indices.data(), indices.size(), vertices.size());
+	meshopt_optimizeOverdraw(indices.data(), indices.data(), indices.size(), &vertices[0].position.x, vertices.size(), sizeof(Mesh::Vertex), 1.05f);
+	meshopt_optimizeVertexFetch(vertices.data(), indices.data(), indices.size(), vertices.data(), vertices.size(), sizeof(Mesh::Vertex));
 }
