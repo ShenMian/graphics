@@ -106,8 +106,8 @@ void Controller::processMouse(float dt)
 	offset.y *= sensitivity.y * 8.f * dt;
 #else
 	// 去除 dt 的干扰, 更加稳定
-	offset.x *= sensitivity.x * 0.15;
-	offset.y *= sensitivity.y * 0.15;
+	offset.x *= sensitivity.x * 0.09;
+	offset.y *= sensitivity.y * 0.09;
 #endif
 
 	lookUp(-offset.y);
