@@ -64,6 +64,11 @@ public:
 	void load(const std::filesystem::path& path, unsigned int process = ProcessFlags::Fast, std::function<void(float)> progress = nullptr);
 
 	/**
+	 * @brief 获取名称.
+	 */
+	[[nodiscard]] const std::string& getName() const;
+
+	/**
 	 * @brief 获取 AABB.
 	 */
 	[[nodiscard]] const AABB3& getAABB() const;
@@ -73,6 +78,11 @@ public:
      */
     [[nodiscard]] const std::vector<Mesh>& getMeshes() const;
 
+	/**
+	 * @brief 获取网格信息.
+	 */
+	[[nodiscard]] const Mesh::Info& getMeshInfo() const;
+
 	void compress();
 	void decompress();
 
@@ -81,6 +91,7 @@ private:
 	std::vector<Mesh>     meshes;
 	std::filesystem::path path;
 	AABB3                 aabb;
+	Mesh::Info            meshInfo;
 };
 
 /*

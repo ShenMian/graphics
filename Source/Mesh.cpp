@@ -43,6 +43,10 @@ Mesh::Mesh(const std::string& name, std::vector<Vertex>& vertices, std::vector<u
 {
 	optimize();
 
+	info.triangles = this->indices.size() / 3;
+	info.indices = this->indices.size();
+	info.vertices = this->vertices.size();
+
 	VertexAttributes format = {
 		{"position", Format::RGB32F},
 		{"normal", Format::RGB32F},
@@ -94,14 +98,9 @@ const Material& Mesh::getMaterial() const
 	return material;
 }
 
-uint32_t Mesh::getTriangleCount() const
+const Mesh::Info& Mesh::getInfo() const
 {
-	return indices.size() / 3; // 假设图元为三角形
-}
-
-uint32_t Mesh::getVertexCount() const
-{
-	return vertices.size();
+	return info;
 }
 
 bool Mesh::isCompressed() const
@@ -111,9 +110,6 @@ bool Mesh::isCompressed() const
 
 void Mesh::compress()
 {
-	indexCount = indices.size();
-	vertexCount = vertices.size();
-
 	// FIXME: 存在内存泄露, 此处 indexBuffer 和 vertexBuffer 是引用计数很大, 而不是预期的 1.
 	// 随时间的增加而增加
 
@@ -130,12 +126,12 @@ void Mesh::compress()
 
 void Mesh::decompress()
 {
-	indices.resize(indexCount);
-	decompressIndices(indices.data(), indexCount, compressedIndices);
+	indices.resize(info.indices);
+	decompressIndices(indices.data(), info.indices, compressedIndices);
 	compressedIndices.clear();
 
-	vertices.resize(vertexCount);
-	decompressVertices(vertices.data(), vertexCount, sizeof(Vertex), compressedVertices);
+	vertices.resize(info.vertices);
+	decompressVertices(vertices.data(), info.vertices, sizeof(Vertex), compressedVertices);
 	compressedVertices.clear();
 
 	VertexAttributes format = {

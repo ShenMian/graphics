@@ -235,10 +235,23 @@ void Model::load(const fs::path& path, unsigned int process, std::function<void(
 
 	name = scene->mName.C_Str();
 
-	printf("Meshes loaded: %.2lfs\n", timer.getSeconds()); // TODO: debug
+	printf("Meshes loaded: %.2lfs       \n", timer.getSeconds()); // TODO: debug
 	timer.restart();
 	loadNode(scene->mRootNode, scene, path, meshes, aabb);
+	for(const auto& mesh : meshes)
+	{
+		const auto& info = mesh.getInfo();
+		meshInfo.triangles += info.triangles;
+		meshInfo.indices += info.indices;
+		meshInfo.vertices += info.vertices;
+	}
+
 	printf("Meshes processed: %.2lfs       \n", timer.getSeconds()); // TODO: debug
+}
+
+const std::string& Model::getName() const
+{
+	return name;
 }
 
 const AABB3& Model::getAABB() const
@@ -249,6 +262,11 @@ const AABB3& Model::getAABB() const
 const std::vector<Mesh>& Model::getMeshes() const
 {
 	return meshes;
+}
+
+const Mesh::Info& Model::getMeshInfo() const
+{
+	return meshInfo;
 }
 
 void Model::compress()
