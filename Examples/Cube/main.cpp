@@ -6,7 +6,8 @@
 #define FMT_HEADER_ONLY
 #include <fmt/core.h>
 
-void PrintInfo();
+void PrintMonitorInfo();
+void PrintRendererInfo();
 
 struct Vertex
 {
@@ -24,7 +25,8 @@ int main()
 		Renderer::init(window);
 
 		{
-			PrintInfo();
+			PrintMonitorInfo();
+			PrintRendererInfo();
 
             // 创建一个由 8 个顶点构成的立方体
 			const std::vector<Vertex> vertices = {
@@ -137,23 +139,24 @@ int main()
 	return 0;
 }
 
-void PrintInfo()
+void PrintMonitorInfo()
 {
-	// 打印显示器信息
+	printf("Monitor\n");
 	for(const auto& mon : Monitor::getMonitors())
 	{
 		printf("%s", fmt::format(
-			"Monitor\n"
-			"|-Name        : {}\n"
-			"|-Size        : {}x{}\n"
-			"`-Refresh rate: {} Hz\n",
+			"|-{}\n"
+			"  |-Size        : {}x{}\n"
+			"  `-Refresh rate: {} Hz\n",
 			mon.getName(), mon.getSize().x, mon.getSize().y, mon.getRefreshRate()).c_str());
 	}
+}
 
-	// 打印基本信息
+void PrintRendererInfo()
+{
 	const auto renderer = Renderer::get();
 	printf("%s", fmt::format(
-		"Basic\n"
+		"Renderer\n"
 		"|-Device  : {}\n"
 		"|-Renderer: {}\n"
 		"`-Vendor  : {}\n",

@@ -10,7 +10,9 @@
 
 using namespace std::literals::string_literals;
 
-void PrintInfo();
+void PrintMonitorInfo();
+void PrintRendererInfo();
+void PrintModelInfo(const Model&);
 
 int main()
 {
@@ -26,7 +28,8 @@ int main()
 			Input::setWindow(window);
 
 			{
-				PrintInfo();
+				PrintMonitorInfo();
+				PrintRendererInfo();
 
 				const std::filesystem::path path = "C:/Users/sms_s/Desktop/model/sponza/sponza.obj";
 				// const std::filesystem::path path = "C:/Users/sms_s/Desktop/model/pistol/kimber_desert_warrior/scene.gltf";
@@ -38,6 +41,7 @@ int main()
 				model.load(path, Model::ProcessFlags::Fast, [](float progress) {
 					printf("Meshes loading: %.1f%%  \r", progress * 100);
 				});
+				PrintModelInfo(model);
 
 				Program::Descriptor programDesc;
 				{
@@ -95,6 +99,10 @@ int main()
 
 					case Key::O:
 						model.compress();
+						break;
+
+					case Key::I:
+						model.decompress();
 						break;
 
 					case Key::P:
@@ -175,8 +183,13 @@ int main()
 						cmdBuffer->setPipeline(pipeline);
 						for(const auto& mesh : model.getMeshes())
 						{
+							if(mesh.isCompressed())
+								continue;
+
 							const auto vb = mesh.getVertexBuffer();
 							const auto ib = mesh.getIndexBuffer();
+
+							auto t = vb.use_count();
 
 							cmdBuffer->setVertexBuffer(vb);
 							cmdBuffer->setIndexBuffer(ib);
@@ -207,27 +220,40 @@ int main()
 	return 0;
 }
 
-void PrintInfo()
+void PrintMonitorInfo()
 {
-    // 打印显示器信息
-    for(const auto& mon : Monitor::getMonitors())
-    {
-        printf("%s", fmt::format(
-                "Monitor\n"
-                "|-Name        : {}\n"
-                "|-Size        : {}x{}\n"
-                "`-Refresh rate: {} Hz\n",
-                mon.getName(), mon.getSize().x, mon.getSize().y, mon.getRefreshRate()).c_str());
-    }
+	printf("Monitor\n");
+	for(const auto& mon : Monitor::getMonitors())
+	{
+		printf("%s", fmt::format(
+			"|-{}\n"
+			"  |-Size        : {}x{}\n"
+			"  `-Refresh rate: {} Hz\n",
+			mon.getName(), mon.getSize().x, mon.getSize().y, mon.getRefreshRate()).c_str());
+	}
+}
 
-    // 打印基本信息
+void PrintRendererInfo()
+{
     const auto renderer = Renderer::get();
     printf("%s", fmt::format(
-            "Basic\n"
+            "Renderer\n"
             "|-Device  : {}\n"
             "|-Renderer: {}\n"
             "`-Vendor  : {}\n",
             renderer->getDeviceName(), renderer->getRendererName(), renderer->getVendorName()).c_str());
+}
+
+void PrintModelInfo(const Model& model)
+{
+	const auto& info = model.getMeshInfo();
+	printf("%s", fmt::format(
+		"Mesh\n"
+		"|-Name     : {}\n"
+		"|-Triangles: {}\n"
+		"|-Vertices : {}\n"
+		"`-Indices  : {}\n",
+		model.getName(), info.triangles, info.vertices, info.indices).c_str());
 }
 
 /*
