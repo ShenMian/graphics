@@ -239,13 +239,7 @@ void Model::load(const fs::path& path, unsigned int process, std::function<void(
 	timer.restart();
 	loadNode(scene->mRootNode, scene, path, meshes, aabb);
 	for(const auto& mesh : meshes)
-	{
-		const auto& info = mesh.getInfo();
-		meshInfo.triangles += info.triangles;
-		meshInfo.indices += info.indices;
-		meshInfo.vertices += info.vertices;
-	}
-
+		meshInfo += mesh.getInfo();
 	printf("Meshes processed: %.2lfs       \n", timer.getSeconds()); // TODO: debug
 }
 

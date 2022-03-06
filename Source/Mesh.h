@@ -29,6 +29,8 @@ public:
 		uint32_t triangles = 0;
 		uint32_t vertices = 0;
 		uint32_t indices = 0;
+
+		Info& operator+=(const Info&);
 	};
 
     Mesh() = default;

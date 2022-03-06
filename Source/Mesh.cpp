@@ -151,3 +151,11 @@ void Mesh::optimize()
 	meshopt_optimizeOverdraw(indices.data(), indices.data(), indices.size(), &vertices[0].position.x, vertices.size(), sizeof(Mesh::Vertex), 1.05f);
 	meshopt_optimizeVertexFetch(vertices.data(), indices.data(), indices.size(), vertices.data(), vertices.size(), sizeof(Mesh::Vertex));
 }
+
+Mesh::Info& Mesh::Info::operator+=(const Mesh::Info& rhs)
+{
+	triangles += rhs.triangles;
+	vertices += rhs.vertices;
+	indices += rhs.indices;
+	return *this;
+}
