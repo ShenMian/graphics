@@ -98,6 +98,8 @@ $(document).ready(function(){initNavTree('class_mesh.html',''); initResizable();
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 类</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_mesh_1_1_info.html">Info</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_mesh_1_1_vertex.html">Vertex</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -106,45 +108,49 @@ Public 成员函数</h2></td></tr>
 <tr class="memitem:a5c3ca7ccfcb730d17fa240a5f9989f23"><td class="memItemLeft" align="right" valign="top"><a id="a5c3ca7ccfcb730d17fa240a5f9989f23" name="a5c3ca7ccfcb730d17fa240a5f9989f23"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Mesh</b> (const std::string &amp;name, std::vector&lt; <a class="el" href="struct_mesh_1_1_vertex.html">Vertex</a> &gt; &amp;vertices, std::vector&lt; unsigned int &gt; &amp;indices, const <a class="el" href="class_material.html">Material</a> &amp;mat)</td></tr>
 <tr class="separator:a5c3ca7ccfcb730d17fa240a5f9989f23"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab944b018efbf265dc7555d793e50b4fd"><td class="memItemLeft" align="right" valign="top"><a id="ab944b018efbf265dc7555d793e50b4fd" name="ab944b018efbf265dc7555d793e50b4fd"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setName</b> (const std::string &amp;name)</td></tr>
-<tr class="separator:ab944b018efbf265dc7555d793e50b4fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5db6e4320ba53bfd030ca231d0544a2a"><td class="memItemLeft" align="right" valign="top"><a id="a5db6e4320ba53bfd030ca231d0544a2a" name="a5db6e4320ba53bfd030ca231d0544a2a"></a>
 const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getName</b> () const</td></tr>
+<tr class="memdesc:a5db6e4320ba53bfd030ca231d0544a2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取名称. <br /></td></tr>
 <tr class="separator:a5db6e4320ba53bfd030ca231d0544a2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a24eb1e67f64f6588e5faeab66c61138d"><td class="memItemLeft" align="right" valign="top"><a id="a24eb1e67f64f6588e5faeab66c61138d" name="a24eb1e67f64f6588e5faeab66c61138d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setVertexBuffer</b> (std::shared_ptr&lt; <a class="el" href="class_vertex_buffer.html">VertexBuffer</a> &gt; buffer)</td></tr>
-<tr class="separator:a24eb1e67f64f6588e5faeab66c61138d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a305b2fb16bddc7dbb175044d30c2656d"><td class="memItemLeft" align="right" valign="top"><a id="a305b2fb16bddc7dbb175044d30c2656d" name="a305b2fb16bddc7dbb175044d30c2656d"></a>
 std::shared_ptr&lt; <a class="el" href="class_vertex_buffer.html">VertexBuffer</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getVertexBuffer</b> () const</td></tr>
+<tr class="memdesc:a305b2fb16bddc7dbb175044d30c2656d"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取顶点缓冲区. <br /></td></tr>
 <tr class="separator:a305b2fb16bddc7dbb175044d30c2656d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf4005167508a5951343d4110fa00abd"><td class="memItemLeft" align="right" valign="top"><a id="acf4005167508a5951343d4110fa00abd" name="acf4005167508a5951343d4110fa00abd"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setIndexBuffer</b> (std::shared_ptr&lt; <a class="el" href="class_index_buffer.html">IndexBuffer</a> &gt; buffer)</td></tr>
-<tr class="separator:acf4005167508a5951343d4110fa00abd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abefb61c0e5d80fb0a2135550276bc1e0"><td class="memItemLeft" align="right" valign="top"><a id="abefb61c0e5d80fb0a2135550276bc1e0" name="abefb61c0e5d80fb0a2135550276bc1e0"></a>
 std::shared_ptr&lt; <a class="el" href="class_index_buffer.html">IndexBuffer</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getIndexBuffer</b> () const</td></tr>
+<tr class="memdesc:abefb61c0e5d80fb0a2135550276bc1e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取索引缓冲区. <br /></td></tr>
 <tr class="separator:abefb61c0e5d80fb0a2135550276bc1e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1de6ddafe5332dc72cacdf891c0fd29a"><td class="memItemLeft" align="right" valign="top"><a id="a1de6ddafe5332dc72cacdf891c0fd29a" name="a1de6ddafe5332dc72cacdf891c0fd29a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setMaterial</b> (const <a class="el" href="class_material.html">Material</a> &amp;mat)</td></tr>
-<tr class="separator:a1de6ddafe5332dc72cacdf891c0fd29a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad815a1af67f85776d41961f44e27a5e7"><td class="memItemLeft" align="right" valign="top"><a id="ad815a1af67f85776d41961f44e27a5e7" name="ad815a1af67f85776d41961f44e27a5e7"></a>
 const <a class="el" href="class_material.html">Material</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getMaterial</b> () const</td></tr>
+<tr class="memdesc:ad815a1af67f85776d41961f44e27a5e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取材质. <br /></td></tr>
 <tr class="separator:ad815a1af67f85776d41961f44e27a5e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a54af7969c80203323f6edecdb68a25cf"><td class="memItemLeft" align="right" valign="top"><a id="a54af7969c80203323f6edecdb68a25cf" name="a54af7969c80203323f6edecdb68a25cf"></a>
-uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>getTriangleCount</b> () const</td></tr>
-<tr class="separator:a54af7969c80203323f6edecdb68a25cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c14df866b9d28ac272b40622b74c8e5"><td class="memItemLeft" align="right" valign="top"><a id="a6c14df866b9d28ac272b40622b74c8e5" name="a6c14df866b9d28ac272b40622b74c8e5"></a>
-uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>getVertexCount</b> () const</td></tr>
-<tr class="separator:a6c14df866b9d28ac272b40622b74c8e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0decb21b3799c3768eba050d2c703735"><td class="memItemLeft" align="right" valign="top"><a id="a0decb21b3799c3768eba050d2c703735" name="a0decb21b3799c3768eba050d2c703735"></a>
+const <a class="el" href="struct_mesh_1_1_info.html">Info</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getInfo</b> () const</td></tr>
+<tr class="memdesc:a0decb21b3799c3768eba050d2c703735"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取信息. <br /></td></tr>
+<tr class="separator:a0decb21b3799c3768eba050d2c703735"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade743282799bfe5d4d5413c86eb6e2df"><td class="memItemLeft" align="right" valign="top"><a id="ade743282799bfe5d4d5413c86eb6e2df" name="ade743282799bfe5d4d5413c86eb6e2df"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>isCompressed</b> () const</td></tr>
 <tr class="separator:ade743282799bfe5d4d5413c86eb6e2df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1bf2769511b83ed0d0395932b0065fcd"><td class="memItemLeft" align="right" valign="top"><a id="a1bf2769511b83ed0d0395932b0065fcd" name="a1bf2769511b83ed0d0395932b0065fcd"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>compress</b> ()</td></tr>
+<tr class="memdesc:a1bf2769511b83ed0d0395932b0065fcd"><td class="mdescLeft">&#160;</td><td class="mdescRight">压缩. <br /></td></tr>
 <tr class="separator:a1bf2769511b83ed0d0395932b0065fcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8f9b5776987d94db7ac1eaa591340f1e"><td class="memItemLeft" align="right" valign="top"><a id="a8f9b5776987d94db7ac1eaa591340f1e" name="a8f9b5776987d94db7ac1eaa591340f1e"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>decompress</b> ()</td></tr>
+<tr class="memdesc:a8f9b5776987d94db7ac1eaa591340f1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">解压. <br /></td></tr>
 <tr class="separator:a8f9b5776987d94db7ac1eaa591340f1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab944b018efbf265dc7555d793e50b4fd"><td class="memItemLeft" align="right" valign="top"><a id="ab944b018efbf265dc7555d793e50b4fd" name="ab944b018efbf265dc7555d793e50b4fd"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setName</b> (const std::string &amp;name)</td></tr>
+<tr class="separator:ab944b018efbf265dc7555d793e50b4fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24eb1e67f64f6588e5faeab66c61138d"><td class="memItemLeft" align="right" valign="top"><a id="a24eb1e67f64f6588e5faeab66c61138d" name="a24eb1e67f64f6588e5faeab66c61138d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setVertexBuffer</b> (std::shared_ptr&lt; <a class="el" href="class_vertex_buffer.html">VertexBuffer</a> &gt; buffer)</td></tr>
+<tr class="separator:a24eb1e67f64f6588e5faeab66c61138d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf4005167508a5951343d4110fa00abd"><td class="memItemLeft" align="right" valign="top"><a id="acf4005167508a5951343d4110fa00abd" name="acf4005167508a5951343d4110fa00abd"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setIndexBuffer</b> (std::shared_ptr&lt; <a class="el" href="class_index_buffer.html">IndexBuffer</a> &gt; buffer)</td></tr>
+<tr class="separator:acf4005167508a5951343d4110fa00abd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1de6ddafe5332dc72cacdf891c0fd29a"><td class="memItemLeft" align="right" valign="top"><a id="a1de6ddafe5332dc72cacdf891c0fd29a" name="a1de6ddafe5332dc72cacdf891c0fd29a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setMaterial</b> (const <a class="el" href="class_material.html">Material</a> &amp;mat)</td></tr>
+<tr class="separator:a1de6ddafe5332dc72cacdf891c0fd29a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p >网格. </p>

@@ -40,6 +40,7 @@ var hierarchy =
     [ "IndexBuffer", "class_index_buffer.html", [
       [ "GLIndexBuffer", "class_g_l_index_buffer.html", null ]
     ] ],
+    [ "Mesh::Info", "struct_mesh_1_1_info.html", null ],
     [ "Input", "class_input.html", null ],
     [ "InstanceBuilder", "class_instance_builder.html", null ],
     [ "Material", "class_material.html", null ],

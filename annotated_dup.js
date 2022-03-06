@@ -51,7 +51,7 @@ var annotated_dup =
     [ "Input", "class_input.html", null ],
     [ "InstanceBuilder", "class_instance_builder.html", "class_instance_builder" ],
     [ "Material", "class_material.html", "class_material" ],
-    [ "Mesh", "class_mesh.html", null ],
+    [ "Mesh", "class_mesh.html", "class_mesh" ],
     [ "Model", "class_model.html", "class_model" ],
     [ "Monitor", "class_monitor.html", "class_monitor" ],
     [ "PhysicalDeviceSelector", "class_physical_device_selector.html", null ],
