@@ -37,7 +37,7 @@ jobs:
 
     - name: Checkout submodules
       run: git submodule update --init
-      
+
     - name: Install dependencies
       run: ./Scripts/cmake_install_deps.sh
 
