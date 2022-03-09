@@ -53,7 +53,7 @@ jobs:
 
     - name: Build
       run: |
-        cmake -B build 
+        cmake -B build
         cmake --build build --config ${{ matrix.type }} -j 8
 
     # ℹ️ Command-line programs to run using the OS shell.
