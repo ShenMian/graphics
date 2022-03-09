@@ -33,7 +33,7 @@ jobs:
 
     steps:
     - name: Install dependencies
-      run: sudo apt install libxrandr
+      run: sudo apt install -y libxrandr-dev
 
     - name: Checkout repository
       uses: actions/checkout@v2
