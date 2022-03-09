@@ -33,7 +33,7 @@ jobs:
 
     steps:
     - name: Install dependencies
-      run: sudo apt install -y libxrandr-dev libxinerama-dev
+      run: ./Scripts/cmake_install_deps.sh
 
     - name: Checkout repository
       uses: actions/checkout@v2
