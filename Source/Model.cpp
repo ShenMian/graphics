@@ -147,21 +147,21 @@ void loadMesh(const aiMesh* aMesh, const aiScene* scene, const fs::path& path, s
 
 	std::vector<Mesh::Vertex> vertices;
 	std::vector<unsigned int> indices;
-	Material mat;
+
+	// TODO: 应该先加载全部的材质, 然后通过 ID 获取材质
+	Material material;
 
     // 读取模型数据
 	loadVertices(vertices, aMesh);
 	loadIndices(indices, aMesh);
-#if 1 // TODO: debug
-	// loadMaterial(mat, aMesh, scene, path);
-#endif
+	// loadMaterial(material, aMesh, scene, path);
 
 	const std::string name = aMesh->mName.C_Str();
 
-	for(auto& vertex : vertices)
+	for(const auto& vertex : vertices)
 		aabb.expand(vertex.position);
 
-	meshes.emplace_back(name, vertices, indices, mat);
+	meshes.emplace_back(name, vertices, indices, material);
 }
 
 /**
@@ -197,33 +197,30 @@ void Model::load(const fs::path& path, unsigned int process, std::function<void(
 
 	Timer timer; // TODO: debug
 
-	if(process & ProcessFlags::GenNormals & ProcessFlags::GenSmoothNormals)
-		throw std::runtime_error("flag GenNormals can not be specified together with GenSmoothNormals");
-
 	unsigned int flags = aiProcess_CalcTangentSpace |
 		aiProcess_JoinIdenticalVertices |
 		aiProcess_Triangulate |
 		aiProcess_SortByPType |
         aiProcess_MakeLeftHanded; // TODO
 
-	if(process & ProcessFlags::GenNormals)
-		flags |= aiProcess_GenNormals;
-	if(process & ProcessFlags::GenSmoothNormals)
-		flags |= aiProcess_GenSmoothNormals;
-	if(process & ProcessFlags::GenTexCoords)
-		flags |= aiProcess_GenUVCoords;
+	constexpr unsigned int fastFlags = aiProcess_GenNormals | aiProcess_GenUVCoords;
+	constexpr unsigned int qualityFlags = fastFlags | aiProcess_SplitLargeMeshes | aiProcess_ImproveCacheLocality | aiProcess_FindInvalidData;;
+	constexpr unsigned int maxQualityFlags = qualityFlags | aiProcess_OptimizeMeshes;
 
-	if(process & ProcessFlags::RemoveRedundantMaterials)
-		flags |= aiProcess_RemoveRedundantMaterials;
-	if(process & ProcessFlags::SplitLargeMeshes)
-		flags |= aiProcess_SplitLargeMeshes;
-	if(process & ProcessFlags::OptimizeMeshes)
-		flags |= aiProcess_OptimizeMeshes;
-	if(process & ProcessFlags::ImproveCacheLocality)
-		flags |= aiProcess_ImproveCacheLocality;
+	switch(process)
+	{
+	case ProcessFlags::Fast:
+		flags |= fastFlags;
+		break;
 
-	if(process & ProcessFlags::FixInfacingNormals)
-		flags |= aiProcess_FixInfacingNormals;
+	case ProcessFlags::Quality:
+		flags |= qualityFlags;
+		break;
+
+	case ProcessFlags::MaxQuality:
+		flags |= maxQualityFlags;
+		break;
+	}
 
 	Assimp::Importer importer;
 	auto progressHandler = new Progress(progress);

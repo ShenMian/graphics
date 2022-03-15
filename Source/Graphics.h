@@ -8,6 +8,8 @@
 #include "Texture.h"
 #include "VertexAttributes.h"
 #include "PipelineLayout.h"
+#include "VertexBuffer.h"
+#include "IndexBuffer.h"
 
 #include "Program.h"
 #include "Shader.h"
