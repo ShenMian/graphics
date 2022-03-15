@@ -30,7 +30,7 @@ public:
 	 * @param size       窗口大小(分辨率).
 	 * @param fullscreen 是否全屏, true 为全屏.
 	 */
-	Window(const std::string& title, Vector2i size, bool fullscreen = false);
+	Window(const std::string_view title, const Vector2i& size, bool fullscreen = false);
 
 	/**
 	 * @brief 析构函数.
@@ -49,14 +49,14 @@ public:
 	 *
 	 * @param title 窗口标题.
 	 */
-	void setTitle(const std::string& title);
+	void setTitle(const std::string_view title);
 
 	/**
 	 * @brief 设置窗口大小.
 	 *
 	 * @param size 窗口大小.
 	 */
-	void setSize(Vector2i size);
+	void setSize(const Vector2i& size);
 
 	/**
 	 * @brief 获取窗口大小.
@@ -68,7 +68,7 @@ public:
 	 *
 	 * @param pos 新窗口坐标.
 	 */
-	void setPosition(Vector2i pos);
+	void setPosition(const Vector2i& pos);
 
 	/**
 	 * @brief 获取窗口坐标.

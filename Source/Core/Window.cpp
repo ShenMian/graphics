@@ -13,9 +13,9 @@
 using namespace std::literals::string_literals;
 namespace fs = std::filesystem;
 
-Window::Window(const std::string& title, Vector2i size, bool fullscreen)
+Window::Window(const std::string_view title, const Vector2i& size, bool fullscreen)
 {
-	handle = glfwCreateWindow(size.x, size.y, title.c_str(),
+	handle = glfwCreateWindow(size.x, size.y, title.data(),
 		fullscreen ? reinterpret_cast<GLFWmonitor*>(Monitor::getPrimary().getNativeHandle()) : nullptr, nullptr);
 	assert(handle);
 
@@ -40,12 +40,12 @@ void Window::update()
 	glfwPollEvents();
 }
 
-void Window::setTitle(const std::string& title)
+void Window::setTitle(const std::string_view title)
 {
-	glfwSetWindowTitle(handle, title.c_str());
+	glfwSetWindowTitle(handle, title.data());
 }
 
-void Window::setSize(Vector2i size)
+void Window::setSize(const Vector2i& size)
 {
 	glfwSetWindowSize(handle, size.x, size.y);
 }
@@ -57,7 +57,7 @@ Vector2i Window::getSize() const noexcept
 	return {x, y};
 }
 
-void Window::setPosition(Vector2i pos)
+void Window::setPosition(const Vector2i& pos)
 {
 	glfwSetWindowPos(handle, pos.x, pos.y);
 }
