@@ -35,7 +35,7 @@ public:
 
     Mesh() = default;
 
-	Mesh(const std::string& name, std::vector<Vertex>& vertices, std::vector<unsigned int>& indices, const Material& mat);
+	Mesh(const std::string_view name, std::vector<Vertex>& vertices, std::vector<unsigned int>& indices, const Material& mat);
 
 	/**
 	 * @brief 获取名称.
