@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['quality_0',['Quality',['../struct_model_1_1_process_flags.html#a2022078b156bd53704d6a9d9c62d268eabda3872f57714c069f245a5c755b666a',1,'Model::ProcessFlags']]]
+  ['trilinear_0',['Trilinear',['../class_texture.html#a55341847b37906ddffa803675617da27a969a7b6f1f3951ef293b3ff281dc293d',1,'Texture']]]
 ];

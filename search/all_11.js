@@ -35,8 +35,7 @@ var searchData=
   ['setvisible_32',['setVisible',['../class_window.html#a6784081f75a92fcdab23f54814049b42',1,'Window']]],
   ['setwindow_33',['setWindow',['../class_input.html#ae5f6d108981471b21b7bd30a74b0361b',1,'Input']]],
   ['shader_34',['Shader',['../class_shader.html',1,'']]],
-  ['splitlargemeshes_35',['SplitLargeMeshes',['../struct_model_1_1_process_flags.html#a2022078b156bd53704d6a9d9c62d268eac0369ece8db851dd4d2695459ab6dc9b',1,'Model::ProcessFlags']]],
-  ['stage_36',['Stage',['../class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8f',1,'Shader']]],
-  ['stageflags_37',['StageFlags',['../struct_pipeline_layout_1_1_stage_flags.html',1,'PipelineLayout']]],
-  ['swapchainbuilder_38',['SwapchainBuilder',['../class_swapchain_builder.html',1,'']]]
+  ['stage_35',['Stage',['../class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8f',1,'Shader']]],
+  ['stageflags_36',['StageFlags',['../struct_pipeline_layout_1_1_stage_flags.html',1,'PipelineLayout']]],
+  ['swapchainbuilder_37',['SwapchainBuilder',['../class_swapchain_builder.html',1,'']]]
 ];

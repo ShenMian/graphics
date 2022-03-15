@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['improvecachelocality_0',['ImproveCacheLocality',['../struct_model_1_1_process_flags.html#a2022078b156bd53704d6a9d9c62d268eade36557f3383eced5af7198b52e86c8d',1,'Model::ProcessFlags']]]
+  ['left_0',['left',['../group__core.html#gga814093b43f211a291b19ccf662096738a811882fecd5c7618d7099ebbd39ea254',1,'Gamepad']]]
 ];

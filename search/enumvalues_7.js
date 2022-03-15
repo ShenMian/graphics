@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['nearest_0',['Nearest',['../class_texture.html#a55341847b37906ddffa803675617da27a60494f02d440f316319dd0fad40ad007',1,'Texture']]]
+  ['pixel_0',['Pixel',['../class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8fa08822b3ae4e2aede0afe08abe600e9c0',1,'Shader']]]
 ];

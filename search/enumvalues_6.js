@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['maxquality_0',['MaxQuality',['../struct_model_1_1_process_flags.html#a2022078b156bd53704d6a9d9c62d268ea5f5636950a04a5a83cc74318ff00ef86',1,'Model::ProcessFlags']]],
-  ['mirrorrepeat_1',['MirrorRepeat',['../class_texture.html#af110c1b8fc58036b94dced17b5399b68a39a681a9d5ccc902bebd16a343dd7b74',1,'Texture']]]
+  ['nearest_0',['Nearest',['../class_texture.html#a55341847b37906ddffa803675617da27a60494f02d440f316319dd0fad40ad007',1,'Texture']]]
 ];

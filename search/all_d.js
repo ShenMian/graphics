@@ -9,6 +9,5 @@ var searchData=
   ['onmousemove_6',['onMouseMove',['../class_window.html#aeecee346966a4459acc2e035e44b1ce1',1,'Window']]],
   ['onresize_7',['onResize',['../class_window.html#a571576b54d53d0dce7a30baa58b6e812',1,'Window']]],
   ['onscroll_8',['onScroll',['../class_window.html#adcfa42568fc483d6819b0b487f55efbf',1,'Window']]],
-  ['optimizemeshes_9',['OptimizeMeshes',['../struct_model_1_1_process_flags.html#a2022078b156bd53704d6a9d9c62d268ead4c9544b88318c88592664278864e037',1,'Model::ProcessFlags']]],
-  ['orthographic_10',['Orthographic',['../struct_camera_1_1_orthographic.html',1,'Camera']]]
+  ['orthographic_9',['Orthographic',['../struct_camera_1_1_orthographic.html',1,'Camera']]]
 ];
