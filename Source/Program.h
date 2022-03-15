@@ -36,7 +36,7 @@ public:
      *
      * 从指定位置加载具有相同名称和特定后缀的 SPIR-V 文件.
      */
-	[[nodiscard]] static std::shared_ptr<Program> create(const std::string& name);
+	[[nodiscard]] static std::shared_ptr<Program> create(const std::string_view name);
 
 	virtual void use() = 0;
 

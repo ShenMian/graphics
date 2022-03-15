@@ -30,7 +30,7 @@ std::shared_ptr<Program> Program::create(const Descriptor& desc)
 	return nullptr;
 }
 
-std::shared_ptr<Program> Program::create(const std::string& name)
+std::shared_ptr<Program> Program::create(const std::string_view name)
 {
 	Descriptor desc;
 
