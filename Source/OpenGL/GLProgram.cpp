@@ -16,10 +16,8 @@
 namespace fs = std::filesystem;
 
 GLProgram::GLProgram(const Descriptor& desc)
-	: Program(desc)
+	: Program(desc), handle(glCreateProgram())
 {
-	handle = glCreateProgram();
-
 	if(desc.vertex == nullptr || desc.fragment == nullptr)
 		throw std::runtime_error("program must have vertex shader and fragment shader");
 
