@@ -27,26 +27,26 @@ std::unordered_map<Shader::Stage, GLenum> GLStage = {
 }
 
 GLShader::GLShader(const Descriptor& desc)
-	: Shader(desc)
+	: Shader(desc), handle(glCreateShader(GLStage[stage]))
 {
-	handle = glCreateShader(GLStage[stage]);
+	const auto& path = desc.path;
 
-	if(!fs::exists(desc.path))
-		throw std::runtime_error("file not found: " + desc.path.string());
+	if(!fs::exists(path))
+		throw std::runtime_error("file not found: " + path.string());
 
 	// 读取文件内容
-	const auto fileSize = fs::file_size(desc.path);
-	std::ifstream file(desc.path, std::ios::binary);
+	const auto fileSize = fs::file_size(path);
+	std::ifstream file(path, std::ios::binary);
 	if(!file.is_open())
-		throw std::runtime_error("failed to open file: " + desc.path.string());
+		throw std::runtime_error("failed to open file: " + path.string());
 
 	std::vector<char> buffer(fileSize);
 	file.read(buffer.data(), fileSize);
 	if(!file.good() || file.gcount() != fileSize)
-		throw std::runtime_error("failed to read file: " + desc.path.string());
+		throw std::runtime_error("failed to read file: " + path.string());
 	file.close();
 
-	if(desc.path.extension() == ".spv")
+	if(path.extension() == ".spv")
 	{
 		glShaderBinary(1, &handle, GL_SHADER_BINARY_FORMAT_SPIR_V, buffer.data(), (GLsizei)buffer.size());
 		glSpecializeShader(handle, "main", 0, nullptr, nullptr); // 指定入口点函数名称
