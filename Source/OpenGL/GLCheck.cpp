@@ -11,7 +11,10 @@
 
 using namespace std::literals::string_literals;
 
-const char* GLGetErrorString(GLenum error)
+namespace
+{
+
+std::string_view GLGetErrorString(GLenum error)
 {
 	switch(error)
 	{
@@ -42,6 +45,8 @@ const char* GLGetErrorString(GLenum error)
 	default:
 		return "unknown";
 	}
+}
+
 }
 
 void GLCheckError()
