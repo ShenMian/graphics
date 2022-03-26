@@ -20,7 +20,7 @@ public:
 	// 纹理过滤方式
 	enum class Filter
 	{
-		Nearest,  ///< 最近点采样.
+		Nearest,  ///< 最近点采样, 临近过滤.
 		Bilinear, ///< 双线性过滤.
 		Trilinear ///< 三线性过滤.
 	};
