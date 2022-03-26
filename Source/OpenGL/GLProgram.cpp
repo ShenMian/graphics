@@ -26,6 +26,11 @@ GLProgram::GLProgram(const Descriptor& desc)
 	attach(desc.geometry);
 	attach(desc.compute);
 	link();
+
+	detach(desc.vertex);
+	detach(desc.fragment);
+	detach(desc.geometry);
+	detach(desc.compute);
 }
 
 GLProgram::~GLProgram()
@@ -112,6 +117,15 @@ void GLProgram::attach(const std::shared_ptr<Shader> shader)
 	stageCount++;
 	auto glShader = std::dynamic_pointer_cast<GLShader>(shader);
 	glAttachShader(handle, (GLuint)glShader->getNativeHandle());
+}
+
+void GLProgram::detach(const std::shared_ptr<Shader> shader)
+{
+	if(shader == nullptr)
+		return;
+	stageCount++;
+	auto glShader = std::dynamic_pointer_cast<GLShader>(shader);
+	glDetachShader(handle, (GLuint)glShader->getNativeHandle());
 }
 
 void GLProgram::link()

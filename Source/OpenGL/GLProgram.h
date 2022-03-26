@@ -45,16 +45,8 @@ private:
 	 */
 	int getUniformLocation(const std::string& name);
 
-	/**
-	 * @brief 附加着色器阶段到着色器程序.
-	 *
-	 * @param shader 着色器阶段.
-	 */
 	void attach(const std::shared_ptr<Shader> shader);
-
-	/**
-	 * @brief 链接着色器程序.
-	 */
+	void detach(const std::shared_ptr<Shader> shader);
 	void link();
 
 	GLuint                               handle;
