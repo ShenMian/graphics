@@ -103,7 +103,7 @@ GLShader::~GLShader()
 void GLShader::compile(const fs::path& sourcePath, Stage stage)
 {
 	const auto targetPath = fs::path(sourcePath).replace_extension(".spv");
-	if(fs::exists(targetPath) && fs::last_write_time(sourcePath) > fs::last_write_time(targetPath))
+	if(fs::exists(targetPath) && fs::last_write_time(sourcePath) < fs::last_write_time(targetPath))
 		return;
 
 	// 读取源代码
