@@ -4,6 +4,8 @@
 #include "GLShader.h"
 #include <fstream>
 #include <glad/glad.h>
+#include <shaderc/shaderc.hpp>
+#include <spirv_cross.hpp>
 #include <unordered_map>
 #include <cassert>
 #include <stdexcept>
@@ -24,15 +26,27 @@ std::unordered_map<Shader::Stage, GLenum> GLStage = {
 	{Shader::Stage::Compute, GL_COMPUTE_SHADER}
 };
 
+std::unordered_map<Shader::Stage, shaderc_shader_kind> SCStage = {
+    {Shader::Stage::Vertex, shaderc_glsl_vertex_shader},
+    {Shader::Stage::Fragment, shaderc_glsl_fragment_shader},
+    {Shader::Stage::Geometry, shaderc_glsl_geometry_shader},
+    {Shader::Stage::Compute, shaderc_glsl_compute_shader}
+};
+
 }
 
 GLShader::GLShader(const Descriptor& desc)
 	: Shader(desc), handle(glCreateShader(GLStage[stage]))
 {
-	const auto& path = desc.path;
+	auto path = desc.path;
 
 	if(!fs::exists(path))
 		throw std::runtime_error("file not found: " + path.string());
+
+#if 1
+	compile(desc.path, desc.stage);
+	if(path.extension() != ".spv")
+		path.replace_extension(".spv");
 
 	// 读取文件内容
 	const auto fileSize = fs::file_size(path);
@@ -40,23 +54,30 @@ GLShader::GLShader(const Descriptor& desc)
 	if(!file.is_open())
 		throw std::runtime_error("failed to open file: " + path.string());
 
-	std::vector<char> buffer(fileSize);
-	file.read(buffer.data(), fileSize);
+	std::vector<uint32_t> buffer(fileSize / sizeof(uint32_t));
+	file.read((char*)buffer.data(), fileSize);
 	if(!file.good() || file.gcount() != fileSize)
 		throw std::runtime_error("failed to read file: " + path.string());
 	file.close();
 
-	if(path.extension() == ".spv")
-	{
-		glShaderBinary(1, &handle, GL_SHADER_BINARY_FORMAT_SPIR_V, buffer.data(), (GLsizei)buffer.size());
-		glSpecializeShader(handle, "main", 0, nullptr, nullptr); // 指定入口点函数名称
-		return;
-	}
+	glShaderBinary(1, &handle, GL_SHADER_BINARY_FORMAT_SPIR_V, buffer.data(), (GLsizei)buffer.size() * sizeof(uint32_t));
+	glSpecializeShader(handle, "main", 0, nullptr, nullptr); // 指定入口点函数名称
+#else
+	// 读取文件内容
+	const auto fileSize = fs::file_size(path);
+	std::ifstream file(path, std::ios::binary);
+	if(!file.is_open())
+		throw std::runtime_error("failed to open file: " + path.string());
 
-	// 编译源代码
+	std::vector<char> buffer(fileSize);
+	file.read((char*)buffer.data(), fileSize);
+	if(!file.good() || file.gcount() != fileSize)
+		throw std::runtime_error("failed to read file: " + path.string());
+	file.close();
+
 	buffer.push_back('\0');
-	const auto strings = buffer.data();
-	glShaderSource(handle, 1, &strings, nullptr);
+	const auto source = buffer.data();
+	glShaderSource(handle, 1, &source, nullptr);
 	glCompileShader(handle);
 
 	// 获取编译结果状态
@@ -71,11 +92,51 @@ GLShader::GLShader(const Descriptor& desc)
 		glGetShaderInfoLog(handle, (GLsizei)info.size(), &size, info.data());
 		throw std::runtime_error(fmt::format("shader '{}' compile error: {}", desc.path.filename().string(), info));
 	}
+#endif
 }
 
 GLShader::~GLShader()
 {
 	glDeleteShader(handle);
+}
+
+void GLShader::compile(const fs::path& sourcePath, Stage stage)
+{
+	const auto targetPath = fs::path(sourcePath).replace_extension(".spv");
+	if(fs::exists(targetPath) && fs::last_write_time(sourcePath) > fs::last_write_time(targetPath))
+		return;
+
+	// 读取源代码
+	const auto fileSize = fs::file_size(sourcePath);
+	std::ifstream sourceFile(sourcePath, std::ios::binary);
+	if(!sourceFile.is_open())
+		throw std::runtime_error("failed to open file: " + sourcePath.string());
+
+	std::vector<char> buffer(fileSize);
+	sourceFile.read(buffer.data(), fileSize);
+	if(!sourceFile.good() || sourceFile.gcount() != fileSize)
+		throw std::runtime_error("failed to read file: " + sourcePath.string());
+	sourceFile.close();
+
+	const std::string source(buffer.begin(), buffer.end());
+
+	// 将 GLSL 编译为 SPIR-V
+	shaderc::Compiler compiler;
+	shaderc::CompileOptions options;
+	options.SetTargetEnvironment(shaderc_target_env_opengl, shaderc_env_version_opengl_4_5);
+	// options.SetTargetEnvironment(shaderc_target_env_vulkan, shaderc_env_version_vulkan_1_2);
+	options.SetOptimizationLevel(shaderc_optimization_level_performance);
+	auto res = compiler.CompileGlslToSpv(source, SCStage[stage], sourcePath.stem().string().c_str(), options);
+	if(res.GetCompilationStatus() != shaderc_compilation_status_success)
+		throw std::runtime_error(fmt::format("failed to compile shader: {}", res.GetErrorMessage()));
+	std::vector<uint32_t> spv(res.cbegin(), res.cend());
+
+	// 写入编译结果
+	std::ofstream targetFile(targetPath, std::ios::binary);
+	if(!targetFile.is_open())
+		throw std::runtime_error("failed to open file: " + sourcePath.string());
+	targetFile.write((char*)spv.data(), spv.size() * sizeof(uint32_t));
+	targetFile.close();
 }
 
 size_t GLShader::getNativeHandle() const
