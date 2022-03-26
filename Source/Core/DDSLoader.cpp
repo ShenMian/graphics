@@ -21,20 +21,20 @@ struct DDSPixelFormat
 
 struct DDSHeader
 {
-	[[maybe_unused]] uint32_t        size;
-	[[maybe_unused]] uint32_t        flags;
-	[[maybe_unused]] uint32_t        height;
-	[[maybe_unused]] uint32_t        width;
-	[[maybe_unused]] uint32_t        pitchOrLinearSize;
-	[[maybe_unused]] uint32_t        depth; // only if DDS_HEADER_FLAGS_VOLUME is set in flags
-	[[maybe_unused]] uint32_t        mipMapCount;
-	[[maybe_unused]] uint32_t        reserved1[11];
+	[[maybe_unused]] uint32_t       size;
+	[[maybe_unused]] uint32_t       flags;
+	[[maybe_unused]] uint32_t       height;
+	[[maybe_unused]] uint32_t       width;
+	[[maybe_unused]] uint32_t       pitchOrLinearSize;
+	[[maybe_unused]] uint32_t       depth; // only if DDS_HEADER_FLAGS_VOLUME is set in flags
+	[[maybe_unused]] uint32_t       mipMapCount;
+	[[maybe_unused]] uint32_t       reserved1[11];
 	[[maybe_unused]] DDSPixelFormat ddspf;
-	[[maybe_unused]] uint32_t        caps;
-	[[maybe_unused]] uint32_t        caps2;
-	[[maybe_unused]] uint32_t        caps3;
-	[[maybe_unused]] uint32_t        caps4;
-	[[maybe_unused]] uint32_t        reserved2;
+	[[maybe_unused]] uint32_t       caps;
+	[[maybe_unused]] uint32_t       caps2;
+	[[maybe_unused]] uint32_t       caps3;
+	[[maybe_unused]] uint32_t       caps4;
+	[[maybe_unused]] uint32_t       reserved2;
 };
 
 struct DDSHeaderDXT10
