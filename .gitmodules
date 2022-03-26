@@ -43,3 +43,6 @@
 [submodule "Deps/fmt"]
 	path = Deps/fmt
 	url = https://github.com/fmtlib/fmt.git
+[submodule "Deps/SPIRV-Cross"]
+	path = Deps/SPIRV-Cross
+	url = https://github.com/KhronosGroup/SPIRV-Cross.git

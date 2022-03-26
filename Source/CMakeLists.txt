@@ -21,7 +21,7 @@ find_package(GLFW3 QUIET)
 #if(GLFW3_FOUND)
 #    list(APPEND LIBS ${GLFW3_LIBRARIES})
 #else()
-    SET(GLFW_BUILD_DOCS OFF CACHE BOOL "Build the GLFW documentation" FORCE)
+    set(GLFW_BUILD_DOCS OFF CACHE BOOL "Build the GLFW documentation" FORCE)
     add_subdirectory("${DEPS_DIR}/glfw" "glfw3")
     list(APPEND LIBS glfw)
 #endif()
@@ -47,13 +47,34 @@ find_package(assimp CONFIG QUIET)
 if(assimp_FOUND)
     list(APPEND LIBS ${ASSIMP_LIBRARIES})
 else()
-    SET(BUILD_SHARED_LIBS OFF CACHE BOOL "Build package with shared libraries." FORCE)
+    set(BUILD_SHARED_LIBS OFF CACHE BOOL "Build package with shared libraries." FORCE)
     add_subdirectory("${DEPS_DIR}/assimp" "assimp")
     list(APPEND LIBS assimp)
 endif()
 list(APPEND INCS
     "${DEPS_DIR}/assimp/include"
     "${DEPS_DIR}/assimp/build/include")
+
+# 添加 Vulkan-Headers
+add_subdirectory("${DEPS_DIR}/SPIRV-Headers" "SPIRV-Headers")
+list(APPEND INCS "${DEPS_DIR}/Vulkan-Headers/include")
+
+# 添加 SPIRV-Tools
+add_subdirectory("${DEPS_DIR}/SPIRV-Tools" "SPIRV-Tools")
+
+# 添加 SPIRV-Cross
+add_subdirectory("${DEPS_DIR}/SPIRV-Cross" "SPIRV-Cross")
+list(APPEND LIBS spirv-cross-core)
+list(APPEND INCS "${DEPS_DIR}/SPIRV-Cross")
+
+# 添加 glslang
+add_subdirectory("${DEPS_DIR}/glslang" "glslang")
+
+# 添加 shaderc
+set(SHADERC_SKIP_TESTS ON)
+add_subdirectory("${DEPS_DIR}/shaderc" "shaderc")
+list(APPEND LIBS shaderc)
+list(APPEND INCS "${DEPS_DIR}/shaderc/libshaderc/include")
 
 # 添加 Vulkan
 find_package(Vulkan QUIET)
@@ -98,9 +119,7 @@ add_library(graphics::graphics ALIAS graphics)
 # 指定头文件目录
 target_include_directories(graphics PUBLIC
     ${INCS}
-    "${PROJECT_SOURCE_DIR}/Source"
-    "${DEPS_DIR}/Vulkan-Headers/include"
-    "${DEPS_DIR}/meshoptimizer/src")
+    "${PROJECT_SOURCE_DIR}/Source")
 
 # 指定库文件目录
 target_link_libraries(graphics PUBLIC ${LIBS})
