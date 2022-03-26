@@ -100,14 +100,17 @@ $(document).ready(function(){initNavTree('_g_l_shader_8h_source.html',''); initR
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <a class="code hl_class" href="class_g_l_shader.html">GLShader</a>(<span class="keyword">const</span> <a class="code hl_struct" href="struct_shader_1_1_descriptor.html">Descriptor</a>&amp; desc);</div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="keyword">virtual</span> <a class="code hl_class" href="class_g_l_shader.html">~GLShader</a>();</div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keywordtype">size_t</span> <a class="code hl_function" href="class_g_l_shader.html#a1aa6f472254c3073b9cb2fa0366c5522">getNativeHandle</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    GLuint handle;</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>};</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="keywordtype">void</span> compile(<span class="keyword">const</span> std::filesystem::path&amp; path, <a class="code hl_enumeration" href="class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8f">Stage</a> stage);</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keywordtype">size_t</span> <a class="code hl_function" href="class_g_l_shader.html#a1aa6f472254c3073b9cb2fa0366c5522">getNativeHandle</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    GLuint handle;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>};</div>
 <div class="ttc" id="aclass_g_l_shader_html"><div class="ttname"><a href="class_g_l_shader.html">GLShader</a></div><div class="ttdef"><b>Definition:</b> GLShader.h:10</div></div>
-<div class="ttc" id="aclass_g_l_shader_html_a1aa6f472254c3073b9cb2fa0366c5522"><div class="ttname"><a href="class_g_l_shader.html#a1aa6f472254c3073b9cb2fa0366c5522">GLShader::getNativeHandle</a></div><div class="ttdeci">size_t getNativeHandle() const</div><div class="ttdoc">获取本地句柄.</div><div class="ttdef"><b>Definition:</b> GLShader.cpp:81</div></div>
+<div class="ttc" id="aclass_g_l_shader_html_a1aa6f472254c3073b9cb2fa0366c5522"><div class="ttname"><a href="class_g_l_shader.html#a1aa6f472254c3073b9cb2fa0366c5522">GLShader::getNativeHandle</a></div><div class="ttdeci">size_t getNativeHandle() const</div><div class="ttdoc">获取本地句柄.</div><div class="ttdef"><b>Definition:</b> GLShader.cpp:142</div></div>
 <div class="ttc" id="aclass_shader_html"><div class="ttname"><a href="class_shader.html">Shader</a></div><div class="ttdoc">着色器阶段.</div><div class="ttdef"><b>Definition:</b> Shader.h:19</div></div>
+<div class="ttc" id="aclass_shader_html_aa09ca98027dbafd5d37c71f53a6efe8f"><div class="ttname"><a href="class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8f">Shader::Stage</a></div><div class="ttdeci">Stage</div><div class="ttdoc">着色器阶段.</div><div class="ttdef"><b>Definition:</b> Shader.h:25</div></div>
 <div class="ttc" id="astruct_shader_1_1_descriptor_html"><div class="ttname"><a href="struct_shader_1_1_descriptor.html">Shader::Descriptor</a></div><div class="ttdef"><b>Definition:</b> Shader.h:63</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
