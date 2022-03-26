@@ -43,65 +43,71 @@ std::shared_ptr<Program> Program::create(const std::string_view name)
 		{"comp", Shader::Stage::Compute}
 	};
 
+	// SPV
+	/*
 	for(const auto& [stageName, stage] : com)
 	{
 		auto path = fmt::format("{}.{}.spv", name, stageName);
-		if(fs::exists(path))
+		if(!fs::exists(path))
+			continue;
+
+		Shader::Descriptor shaderDesc;
+		shaderDesc.stage = stage;
+		shaderDesc.path = path;
+
+		switch(stage)
 		{
-			Shader::Descriptor shaderDesc;
-			shaderDesc.stage = stage;
-			shaderDesc.path = path;
+			using enum Shader::Stage;
 
-			switch(stage)
-			{
-				using enum Shader::Stage;
+		case Vertex:
+			desc.vertex = Shader::create(shaderDesc);
+			break;
 
-			case Vertex:
-				desc.vertex = Shader::create(shaderDesc);
-				break;
+		case Fragment:
+			desc.fragment = Shader::create(shaderDesc);
+			break;
 
-			case Fragment:
-				desc.fragment = Shader::create(shaderDesc);
-				break;
+		case Geometry:
+			desc.geometry = Shader::create(shaderDesc);
+			break;
 
-			case Geometry:
-				desc.geometry = Shader::create(shaderDesc);
-				break;
-
-			case Compute:
-				desc.compute = Shader::create(shaderDesc);
-				break;
-			}
+		case Compute:
+			desc.compute = Shader::create(shaderDesc);
+			break;
 		}
 	}
+	if(desc.vertex != nullptr && desc.fragment != nullptr)
+		return create(desc);
+	*/
 
-    // TODO: GLSL
+    // GLSL
     for(const auto& [stageName, stage] : com) {
         auto path = fmt::format("{}.{}.glsl", name, stageName);
-        if (fs::exists(path)) {
-            Shader::Descriptor shaderDesc;
-            shaderDesc.stage = stage;
-            shaderDesc.path = path;
+		if(!fs::exists(path))
+			continue;
 
-            switch (stage) {
-                using enum Shader::Stage;
+        Shader::Descriptor shaderDesc;
+        shaderDesc.stage = stage;
+        shaderDesc.path = path;
 
-                case Vertex:
-                    desc.vertex = Shader::create(shaderDesc);
-                    break;
+        switch (stage) {
+            using enum Shader::Stage;
 
-                case Fragment:
-                    desc.fragment = Shader::create(shaderDesc);
-                    break;
+            case Vertex:
+                desc.vertex = Shader::create(shaderDesc);
+                break;
 
-                case Geometry:
-                    desc.geometry = Shader::create(shaderDesc);
-                    break;
+            case Fragment:
+                desc.fragment = Shader::create(shaderDesc);
+                break;
 
-                case Compute:
-                    desc.compute = Shader::create(shaderDesc);
-                    break;
-            }
+            case Geometry:
+                desc.geometry = Shader::create(shaderDesc);
+                break;
+
+            case Compute:
+                desc.compute = Shader::create(shaderDesc);
+                break;
         }
     }
 
