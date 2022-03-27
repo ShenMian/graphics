@@ -20,7 +20,6 @@ int main()
 	Renderer::setAPI(Renderer::API::OpenGL);
 	Window::init();
 
-	try
 	{
 		Window window("Triangle", Monitor::getPrimary().getSize() / 2);
 		Renderer::init(window);
@@ -82,11 +81,6 @@ int main()
 		}
 
 		Renderer::deinit();
-	}
-	catch(const std::runtime_error& e)
-	{
-		puts(e.what());
-		getchar();
 	}
 
 	Window::deinit();
