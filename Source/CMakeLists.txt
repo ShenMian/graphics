@@ -27,6 +27,11 @@ find_package(GLFW3 QUIET)
 #endif()
 list(APPEND INCS "${DEPS_DIR}/glfw/include")
 
+# 添加 FreeType
+add_subdirectory("${DEPS_DIR}/freetype" "freetype")
+list(APPEND LIBS freetype)
+list(APPEND INCS "${DEPS_DIR}/freetype/include")
+
 # 添加 imgui
 include("${DEPS_DIR}/imgui.cmake")
 list(APPEND LIBS imgui)
