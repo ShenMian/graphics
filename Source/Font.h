@@ -13,7 +13,11 @@ typedef struct FT_FaceRec_* FT_Face;
 class Font
 {
 public:
-	struct Glyph;
+	struct Glyph
+    {
+        Image    image;
+        Vector2i advance;
+    };
 
 	Font(const std::filesystem::path& path);
 	virtual ~Font();
@@ -32,10 +36,4 @@ private:
 	std::unordered_map<uint64_t, Glyph> glyphs;
 
 	FT_Face handle;
-};
-
-struct Font::Glyph
-{
-	Image    image;
-	Vector2i advance;
 };

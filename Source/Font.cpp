@@ -43,7 +43,7 @@ Font::Glyph Font::getGlyph(uint32_t code, uint16_t size)
 	const auto& bitmap = handle->glyph->bitmap;
 	Glyph glyph;
 	glyph.image = Image(bitmap.buffer, bitmap.pitch * bitmap.rows, {(int)bitmap.width, (int)bitmap.rows}, 1);
-	glyph.advance = {handle->glyph->advance.x, handle->glyph->advance.y};
+	glyph.advance = {(int)handle->glyph->advance.x, (int)handle->glyph->advance.y};
 	glyphs.emplace(key, glyph);
 
 	return glyph;
