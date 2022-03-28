@@ -104,12 +104,15 @@ Public 成员函数</h2></td></tr>
 <tr class="memitem:aaf8eb0773fa6f75d832d5f7bb45ec8de"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#aaf8eb0773fa6f75d832d5f7bb45ec8de">Image</a> (const std::filesystem::path &amp;path)</td></tr>
 <tr class="memdesc:aaf8eb0773fa6f75d832d5f7bb45ec8de"><td class="mdescLeft">&#160;</td><td class="mdescRight">构造函数, 从文件载入图像.  <a href="class_image.html#aaf8eb0773fa6f75d832d5f7bb45ec8de">更多...</a><br /></td></tr>
 <tr class="separator:aaf8eb0773fa6f75d832d5f7bb45ec8de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d2dc69e9a91f36211469db17036fb44"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#a0d2dc69e9a91f36211469db17036fb44">Image</a> (const void *data, size_t sizeBytes, Vector2i size, int channels)</td></tr>
+<tr class="memdesc:a0d2dc69e9a91f36211469db17036fb44"><td class="mdescLeft">&#160;</td><td class="mdescRight">构造函数, 从内存载入图像.  <a href="class_image.html#a0d2dc69e9a91f36211469db17036fb44">更多...</a><br /></td></tr>
+<tr class="separator:a0d2dc69e9a91f36211469db17036fb44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aea76659efa5f8b20764e66bc920cf925"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#aea76659efa5f8b20764e66bc920cf925">loadFromFile</a> (const std::filesystem::path &amp;path)</td></tr>
 <tr class="memdesc:aea76659efa5f8b20764e66bc920cf925"><td class="mdescLeft">&#160;</td><td class="mdescRight">从文件载入图像.  <a href="class_image.html#aea76659efa5f8b20764e66bc920cf925">更多...</a><br /></td></tr>
 <tr class="separator:aea76659efa5f8b20764e66bc920cf925"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa2f61e16727bcf4f30763d2094de0446"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#aa2f61e16727bcf4f30763d2094de0446">loadFromMemory</a> (const void *data, size_t dataSize, Vector2i size)</td></tr>
-<tr class="memdesc:aa2f61e16727bcf4f30763d2094de0446"><td class="mdescLeft">&#160;</td><td class="mdescRight">从内存载入图像.  <a href="class_image.html#aa2f61e16727bcf4f30763d2094de0446">更多...</a><br /></td></tr>
-<tr class="separator:aa2f61e16727bcf4f30763d2094de0446"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a685a4d06353bbaf9b4db2130238eff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#a0a685a4d06353bbaf9b4db2130238eff">loadFromMemory</a> (const void *data, size_t sizeBytes, Vector2i size, int channels)</td></tr>
+<tr class="memdesc:a0a685a4d06353bbaf9b4db2130238eff"><td class="mdescLeft">&#160;</td><td class="mdescRight">从内存载入图像.  <a href="class_image.html#a0a685a4d06353bbaf9b4db2130238eff">更多...</a><br /></td></tr>
+<tr class="separator:a0a685a4d06353bbaf9b4db2130238eff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac4d9ef3b9adfe01df218442ae4efe181"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#ac4d9ef3b9adfe01df218442ae4efe181">saveToFile</a> (const std::filesystem::path &amp;path) const</td></tr>
 <tr class="memdesc:ac4d9ef3b9adfe01df218442ae4efe181"><td class="mdescLeft">&#160;</td><td class="mdescRight">导出图像到文件.  <a href="class_image.html#ac4d9ef3b9adfe01df218442ae4efe181">更多...</a><br /></td></tr>
 <tr class="separator:ac4d9ef3b9adfe01df218442ae4efe181"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -154,7 +157,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>getChannelCount</b> ()
 <div class="textblock"><p >图像. </p>
 </div><h2 class="groupheader">构造及析构函数说明</h2>
 <a id="aaf8eb0773fa6f75d832d5f7bb45ec8de" name="aaf8eb0773fa6f75d832d5f7bb45ec8de"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaf8eb0773fa6f75d832d5f7bb45ec8de">&#9670;&nbsp;</a></span>Image()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf8eb0773fa6f75d832d5f7bb45ec8de">&#9670;&nbsp;</a></span>Image() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -173,6 +176,57 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>getChannelCount</b> ()
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
     <tr><td class="paramname">path</td><td>图像文件地址. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a0d2dc69e9a91f36211469db17036fb44" name="a0d2dc69e9a91f36211469db17036fb44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d2dc69e9a91f36211469db17036fb44">&#9670;&nbsp;</a></span>Image() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Image::Image </td>
+          <td>(</td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>sizeBytes</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Vector2i&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>channels</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>构造函数, 从内存载入图像. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">data</td><td>图像内存地址. </td></tr>
+    <tr><td class="paramname">sizeBytes</td><td>图像数据大小, 单位: 字节. </td></tr>
+    <tr><td class="paramname">size</td><td>图像尺寸. </td></tr>
+    <tr><td class="paramname">channels</td><td>通道数. </td></tr>
   </table>
   </dd>
 </dl>
@@ -206,8 +260,8 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>getChannelCount</b> ()
 
 </div>
 </div>
-<a id="aa2f61e16727bcf4f30763d2094de0446" name="aa2f61e16727bcf4f30763d2094de0446"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa2f61e16727bcf4f30763d2094de0446">&#9670;&nbsp;</a></span>loadFromMemory()</h2>
+<a id="a0a685a4d06353bbaf9b4db2130238eff" name="a0a685a4d06353bbaf9b4db2130238eff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a685a4d06353bbaf9b4db2130238eff">&#9670;&nbsp;</a></span>loadFromMemory()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -222,13 +276,19 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>getChannelCount</b> ()
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>dataSize</em>, </td>
+          <td class="paramname"><em>sizeBytes</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">Vector2i&#160;</td>
-          <td class="paramname"><em>size</em>&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>channels</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -242,12 +302,12 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>getChannelCount</b> ()
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
     <tr><td class="paramname">data</td><td>图像内存地址. </td></tr>
-    <tr><td class="paramname">len</td><td>图像数据大小, 单位: 字节. </td></tr>
-    <tr><td class="paramname">size</td><td>图像尺寸.</td></tr>
+    <tr><td class="paramname">sizeBytes</td><td>图像数据大小, 单位: 字节. </td></tr>
+    <tr><td class="paramname">size</td><td>图像尺寸. </td></tr>
+    <tr><td class="paramname">channels</td><td>通道数. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section warning"><dt>警告</dt><dd>图片尺寸需要提前指定. </dd></dl>
 
 </div>
 </div>
