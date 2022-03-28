@@ -31,6 +31,16 @@ public:
 	Image(const std::filesystem::path& path);
 
 	/**
+	 * @brief 构造函数, 从内存载入图像.
+	 *
+	 * @param data      图像内存地址.
+	 * @param sizeBytes 图像数据大小, 单位: 字节.
+	 * @param size      图像尺寸.
+	 * @param channels  通道数.
+	 */
+	Image(const void* data, size_t sizeBytes, Vector2i size, int channels);
+
+	/**
 	 * @brief 从文件载入图像.
 	 *
 	 * @param path 图像文件地址.
@@ -40,13 +50,12 @@ public:
 	/**
 	 * @brief 从内存载入图像.
 	 *
-	 * @param data 图像内存地址.
-	 * @param len  图像数据大小, 单位: 字节.
-	 * @param size 图像尺寸.
-	 *
-	 * @warning 图片尺寸需要提前指定.
+	 * @param data      图像内存地址.
+	 * @param sizeBytes 图像数据大小, 单位: 字节.
+	 * @param size      图像尺寸.
+	 * @param channels  通道数.
 	 */
-	void loadFromMemory(const void* data, size_t dataSize, Vector2i size);
+	void loadFromMemory(const void* data, size_t sizeBytes, Vector2i size, int channels);
 
 	/**
 	 * @brief 导出图像到文件.

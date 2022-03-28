@@ -33,15 +33,16 @@ void Image::loadFromFile(const std::filesystem::path& path)
 	if(pixels == nullptr)
 		throw std::runtime_error("can't load image from file:" + path.string());
 
-	loadFromMemory(pixels, size.x * size.y * channels, size);
+	loadFromMemory(pixels, size.x * size.y * channels, size, channels);
 
 	stbi_image_free(pixels);
 }
 
-void Image::loadFromMemory(const void* data, size_t dataSize, Vector2i size)
+void Image::loadFromMemory(const void* data, size_t sizeBytes, Vector2i size, int channels)
 {
 	this->size = size;
-	this->data.resize(dataSize);
+	this->channels = channels;
+	this->data.resize(sizeBytes);
 	std::memcpy(this->data.data(), data, this->data.size());
 	this->data.shrink_to_fit();
 }
