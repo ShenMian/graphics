@@ -24,7 +24,6 @@ var annotated_dup =
     [ "DDSHeaderDXT10", "struct_d_d_s_header_d_x_t10.html", null ],
     [ "DDSPixelFormat", "struct_d_d_s_pixel_format.html", null ],
     [ "DeviceBuilder", "class_device_builder.html", null ],
-    [ "Font", "class_font.html", "class_font" ],
     [ "Gamepad", "class_gamepad.html", "class_gamepad" ],
     [ "GLBuffer", "class_g_l_buffer.html", "class_g_l_buffer" ],
     [ "GLCmdClear", "struct_g_l_cmd_clear.html", null ],
