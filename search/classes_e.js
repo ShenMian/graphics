@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['texture_0',['Texture',['../class_texture.html',1,'']]],
-  ['timer_1',['Timer',['../class_timer.html',1,'']]]
+  ['shader_0',['Shader',['../class_shader.html',1,'']]],
+  ['stageflags_1',['StageFlags',['../struct_pipeline_layout_1_1_stage_flags.html',1,'PipelineLayout']]],
+  ['swapchainbuilder_2',['SwapchainBuilder',['../class_swapchain_builder.html',1,'']]]
 ];
