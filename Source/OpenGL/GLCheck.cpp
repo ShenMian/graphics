@@ -52,11 +52,7 @@ std::string_view GLGetErrorString(GLenum error)
 void GLCheckError()
 {
 	while(const auto error = glGetError())
-	{
-		if(error == GL_NO_ERROR)
-			break;
 		throw std::runtime_error(fmt::format("OpenGL error ({}): {}", error, GLGetErrorString(error)));
-	}
 }
 
 void GLClearError()
