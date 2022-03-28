@@ -158,11 +158,15 @@ $(document).ready(function(){initNavTree('_getting_started.html',''); initResiza
 <div class="line">            </div>
 <div class="line">            UI::endFrame();</div>
 <div class="line">        }</div>
+<div class="line"> </div>
+<div class="line">        <span class="comment">// 渲染实例析构</span></div>
 <div class="line">    }</div>
 <div class="line">    </div>
 <div class="line">    <span class="comment">// 清理, 顺序与初始化相反</span></div>
 <div class="line">    UI::deinit();</div>
 <div class="line">    Renderer::deinit(); <span class="comment">// 调用该语句前应确保所以渲染相关的对象已被销毁</span></div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// 窗口实例析构</span></div>
 <div class="line">}</div>
 <div class="line">Window::deinit(); <span class="comment">// 调用该语句前应该确保所有窗口已被销毁</span></div>
 <div class="ttc" id="aclass_monitor_html_a022ad400f75d700488c657069e4d6993"><div class="ttname"><a href="class_monitor.html#a022ad400f75d700488c657069e4d6993">Monitor::getPrimary</a></div><div class="ttdeci">static const Monitor &amp; getPrimary()</div><div class="ttdoc">获取主显示器.</div><div class="ttdef"><b>Definition:</b> Monitor.cpp:10</div></div>
