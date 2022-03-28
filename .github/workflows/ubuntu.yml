@@ -38,7 +38,7 @@ jobs:
           version: 13
 
       - name: Install dependencies
-        run: vcpkg install assimp glfw3 meshoptimizer freetype
+        run: vcpkg install glfw3 meshoptimizer freetype # assimp
 
       - name: Cache
         uses: actions/cache@v2.1.7
