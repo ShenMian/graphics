@@ -22,6 +22,11 @@ Image::Image(const std::filesystem::path& path)
 	loadFromFile(path);
 }
 
+Image::Image(const void *data, size_t sizeBytes, Vector2i size, int channels)
+{
+    loadFromMemory(data, sizeBytes, size, channels);
+}
+
 void Image::loadFromFile(const std::filesystem::path& path)
 {
 	if(!fs::exists(path) && !fs::is_regular_file(path))
