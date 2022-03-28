@@ -1,4 +1,4 @@
-# 快速入门 {#GettingStarted}
+﻿# 快速入门 {#GettingStarted}
 
 [TOC]
 
@@ -85,11 +85,15 @@ const auto& monitor = Monitor::getPrimary();   // 获取主显示器
             
             UI::endFrame();
         }
+
+        // 渲染实例析构
     }
     
     // 清理, 顺序与初始化相反
     UI::deinit();
     Renderer::deinit(); // 调用该语句前应确保所以渲染相关的对象已被销毁
+
+    // 窗口实例析构
 }
 Window::deinit(); // 调用该语句前应该确保所有窗口已被销毁
 ```
