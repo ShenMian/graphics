@@ -1,4 +1,4 @@
-name: Ubuntu
+﻿name: Ubuntu
 
 on:
   push:
@@ -36,6 +36,9 @@ jobs:
         uses: egor-tensin/setup-clang@v1.3
         with:
           version: 13
+
+      - name: Install dependencies
+        run: vcpkg install assimp glfw3 meshoptimizer freetype
 
       - name: Cache
         uses: actions/cache@v2.1.7
