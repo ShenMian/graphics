@@ -10,4 +10,4 @@ then
 fi
 
 echo Installing dependencies...
-sudo vcpkg install glfw3 meshoptimizer freetype # assimp
+sudo vcpkg install meshoptimizer freetype # assimp glfw3
