@@ -1,4 +1,4 @@
-name: macOS
+﻿name: macOS
 
 on:
   push:
@@ -7,6 +7,7 @@ on:
       - '**.hpp'
       - '**.h'
       - '**/CMakeLists.txt'
+      - 'Scripts/vcpkg_install_deps.sh'
       - '.github/workflows/macos.yml'
   pull_request:
     paths:
@@ -14,6 +15,7 @@ on:
       - '**.hpp'
       - '**.h'
       - '**/CMakeLists.txt'
+      - 'Scripts/vcpkg_install_deps.sh'
       - '.github/workflows/macos.yml'
 
 jobs:
@@ -39,7 +41,7 @@ jobs:
           key: macos-${{ matrix.type }}-${{ matrix.arch }}
 
       - name: Install dependencies
-        run: ./Scripts/cmake_install_deps.sh
+        run: ./Scripts/vcpkg_install_deps.sh
 
       - name: Generating CMake cache
         run: cmake -B build

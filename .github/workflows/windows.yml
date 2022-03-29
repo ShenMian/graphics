@@ -7,6 +7,7 @@ on:
       - '**.hpp'
       - '**.h'
       - '**/CMakeLists.txt'
+      - 'Scripts/vcpkg_install_deps.bat'
       - '.github/workflows/windows.yml'
   pull_request:
     paths:
@@ -14,6 +15,7 @@ on:
       - '**.hpp'
       - '**.h'
       - '**/CMakeLists.txt'
+      - 'Scripts/vcpkg_install_deps.bat'
       - '.github/workflows/windows.yml'
 
 jobs:
