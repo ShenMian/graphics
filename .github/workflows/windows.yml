@@ -34,10 +34,10 @@ jobs:
       - name: Checkout submodules
         run: git submodule update --init --recursive
 
-      # - name: Install Clang
-      #   uses: egor-tensin/setup-clang@v1.3
-      #   with:
-      #     version: 13
+      - name: Install Clang
+        uses: egor-tensin/setup-clang@v1.3
+        with:
+          version: 13
 
       - name: Cache vcpkg artifacts
         uses: actions/cache@v2
@@ -54,8 +54,8 @@ jobs:
       - name: Install dependencies
         run: vcpkg install
 
-      - name: Setup MSVC Developer Command Environment
-        uses: ilammy/msvc-dev-cmd@v1.10.0
+      # - name: Setup MSVC Developer Command Environment
+      #   uses: ilammy/msvc-dev-cmd@v1.10.0
 
       - name: Cache
         uses: actions/cache@v2.1.7
@@ -64,7 +64,7 @@ jobs:
           key: windows-${{ matrix.type }}-${{ matrix.arch }}
 
       - name: Generating CMake cache
-        run: cmake -B build
+        run: cmake -B build -T clang
 
       - name: Build
         run: cmake --build build --config ${{ matrix.type }} -j2
