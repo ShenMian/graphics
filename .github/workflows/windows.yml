@@ -51,17 +51,17 @@ jobs:
             # !${{ env.VCPKG_ROOT }}/downloads
           key: windows-${{ matrix.type }}-${{ matrix.arch }}-${{ hashFiles('vcpkg.json') }}
 
-      # - name: Install dependencies
-      #   run: vcpkg install
+      - name: Install dependencies
+        run: vcpkg install
 
       # - name: Setup MSVC Developer Command Environment
       #   uses: ilammy/msvc-dev-cmd@v1.10.0
 
-      # - name: Cache
-      #   uses: actions/cache@v2.1.7
-      #   with:
-      #     path: ./build
-      #     key: windows-${{ matrix.type }}-${{ matrix.arch }}
+      - name: Cache
+        uses: actions/cache@v2.1.7
+        with:
+          path: ./build
+          key: windows-${{ matrix.type }}-${{ matrix.arch }}
 
       - name: Generating CMake cache
         run: cmake -B build -DCMAKE_CXX_COMPILER=clang -DCMAKE_C_COMPILER=clang
