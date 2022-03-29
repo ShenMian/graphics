@@ -23,7 +23,9 @@ void GLUniformBuffer::write(const void* data, size_t size, size_t offset)
 
 void GLUniformBuffer::bind(GLProgram* program)
 {
+	// FIXME: SPRI-V Shader无法再正确识别该项
 	auto blockIndex = glGetUniformBlockIndex(*program, name.c_str());
+	blockIndex = 0; // FIXME
 	if(blockIndex == GL_INVALID_INDEX)
 		throw std::runtime_error("failed to get uniform block index");
 	glUniformBlockBinding(*program, blockIndex, slot);

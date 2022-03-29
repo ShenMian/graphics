@@ -98,6 +98,7 @@ int GLProgram::getUniformBufferLocation(const std::string& name)
 
 int GLProgram::getUniformLocation(const std::string& name)
 {
+	// FIXME: SPRI-V Shader无法再正确识别该项
 	const auto it = uniformLocations.find(name);
 	if(it == uniformLocations.end())
 	{
