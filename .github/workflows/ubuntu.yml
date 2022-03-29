@@ -1,4 +1,4 @@
-name: Ubuntu
+﻿name: Ubuntu
 
 on:
   push:
@@ -7,6 +7,7 @@ on:
       - '**.hpp'
       - '**.h'
       - '**/CMakeLists.txt'
+      - 'Scripts/vcpkg_install_deps.sh'
       - '.github/workflows/ubuntu.yml'
   pull_request:
     paths:
@@ -14,6 +15,7 @@ on:
       - '**.hpp'
       - '**.h'
       - '**/CMakeLists.txt'
+      - 'Scripts/vcpkg_install_deps.sh'
       - '.github/workflows/ubuntu.yml'
 
 jobs:
@@ -37,14 +39,14 @@ jobs:
         with:
           version: 13
 
+      - name: Install dependencies
+        run: ./Scripts/cmake_install_deps.sh
+
       - name: Cache
         uses: actions/cache@v2.1.7
         with:
           path: ./build
           key: ubuntu-${{ matrix.type }}-${{ matrix.arch }}
-
-      - name: Install dependencies
-        run: ./Scripts/cmake_install_deps.sh
 
       - name: Generating CMake cache
         run: cmake -B build

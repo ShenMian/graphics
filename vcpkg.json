@@ -1,0 +1,12 @@
+﻿{
+  "name": "graphics",
+  "version": "0.0.0",
+  "description": "A simple abstraction layer for the modern graphics APIs.",
+  "homepage": "https://github.com/ShenMian/Graphics",
+  "dependencies": [
+    "assimp",
+    "glfw3",
+    "meshoptimizer",
+    "freetype"
+  ]
+}
