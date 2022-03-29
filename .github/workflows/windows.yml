@@ -64,7 +64,7 @@ jobs:
           key: windows-${{ matrix.type }}-${{ matrix.arch }}
 
       - name: Test
-        run: del /s /f build
+        run: del build
 
       - name: Generating CMake cache
         run: cmake -B build -T clang
