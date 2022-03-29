@@ -51,8 +51,8 @@ jobs:
             # !${{ env.VCPKG_ROOT }}/downloads
           key: windows-${{ matrix.type }}-${{ matrix.arch }}-${{ hashFiles('vcpkg.json') }}
 
-      - name: Install dependencies
-        run: vcpkg install
+      # - name: Install dependencies
+      #   run: vcpkg install
 
       # - name: Setup MSVC Developer Command Environment
       #   uses: ilammy/msvc-dev-cmd@v1.10.0
@@ -62,6 +62,9 @@ jobs:
         with:
           path: ./build
           key: windows-${{ matrix.type }}-${{ matrix.arch }}
+
+      - name: Test
+        run: del /s /f build
 
       - name: Generating CMake cache
         run: cmake -B build -T clang
