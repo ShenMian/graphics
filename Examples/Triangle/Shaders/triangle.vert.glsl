@@ -3,7 +3,7 @@
 // Copyright 2021 SMS
 // License(Apache-2.0)
 
-layout (location = 0) out vec3 v_color;
+layout(location = 0) out vec3 v_color;
 
 out gl_PerVertex
 {
