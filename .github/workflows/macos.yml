@@ -34,14 +34,26 @@ jobs:
       - name: Checkout submodules
         run: git submodule update --init --recursive
 
+      - name: Cache vcpkg artifacts
+        uses: actions/cache@v2
+        with:
+          path: |
+            ${{ env.VCPKG_ROOT }}
+            ${{ github.workspace }}/vcpkg_installed
+            !${{ env.VCPKG_ROOT }}/.git
+            !${{ env.VCPKG_ROOT }}/buildtrees
+            !${{ env.VCPKG_ROOT }}/packages
+            !${{ env.VCPKG_ROOT }}/downloads
+          key: macos-${{ matrix.type }}-${{ matrix.arch }}-${{ hashFiles('vcpkg.json') }}
+
+      - name: Install dependencies
+        run: vcpkg install
+
       - name: Cache
         uses: actions/cache@v2.1.7
         with:
           path: ./build
           key: macos-${{ matrix.type }}-${{ matrix.arch }}
-
-      - name: Install dependencies
-        run: ./Scripts/vcpkg_install_deps.sh
 
       - name: Generating CMake cache
         run: cmake -B build
