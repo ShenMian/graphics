@@ -63,6 +63,9 @@ int main()
 				Camera camera(Camera::Type::Perspective);
 				camera.setPerspective(radians(45.f), (float)window.getSize().x / window.getSize().y, 0.1f, 5000.f);
 
+				GLUniformBuffer uniformBuffer("Matrices", 0, 3 * sizeof(Matrix4f));
+				uniformBuffer.bind(reinterpret_cast<GLProgram*>(program.get()));
+
 				Controller controller;
 				controller.setCamera(camera);
 				Gamepad gamepad(0);
@@ -121,9 +124,6 @@ int main()
 				ATT.add(position);
 				ATT.add(angles);
 
-				GLUniformBuffer uniformBuffer("Camera", 0, 2 * sizeof(Matrix4f));
-				uniformBuffer.bind(reinterpret_cast<GLProgram*>(program.get()));
-
 				Timer timer;
 				while(running)
 				{
@@ -159,8 +159,7 @@ int main()
 
 					uniformBuffer.write(camera.getView().data(), sizeof(Matrix4f));
 					uniformBuffer.write(camera.getProjection().data(), sizeof(Matrix4f), sizeof(Matrix4f));
-
-					program->setUniform("model", Matrix4f());
+					uniformBuffer.write(Matrix4f().data(), sizeof(Matrix4f), sizeof(Matrix4f) * 2);
 
 					cmdBuffer->begin();
 					{
