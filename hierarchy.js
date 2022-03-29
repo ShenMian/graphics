@@ -24,6 +24,7 @@ var hierarchy =
     [ "Program::Descriptor", "struct_program_1_1_descriptor.html", null ],
     [ "Shader::Descriptor", "struct_shader_1_1_descriptor.html", null ],
     [ "DeviceBuilder", "class_device_builder.html", null ],
+    [ "Font", "class_font.html", null ],
     [ "Gamepad", "class_gamepad.html", null ],
     [ "GLCmdClear", "struct_g_l_cmd_clear.html", null ],
     [ "GLCmdDraw", "struct_g_l_cmd_draw.html", null ],
@@ -35,6 +36,7 @@ var hierarchy =
     [ "GLCmdSetVertexBuffer", "struct_g_l_cmd_set_vertex_buffer.html", null ],
     [ "GLCmdSetViewport", "struct_g_l_cmd_set_viewport.html", null ],
     [ "GLVertexArray", "class_g_l_vertex_array.html", null ],
+    [ "Font::Glyph", "struct_font_1_1_glyph.html", null ],
     [ "std::hash< std::filesystem::path >", "structstd_1_1hash_3_01std_1_1filesystem_1_1path_01_4.html", null ],
     [ "Image", "class_image.html", null ],
     [ "IndexBuffer", "class_index_buffer.html", [

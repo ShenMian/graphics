@@ -28,7 +28,7 @@ var searchData=
   ['getmousex_25',['getMouseX',['../class_input.html#aad68569383410edc8f78a943113ce511',1,'Input']]],
   ['getmousey_26',['getMouseY',['../class_input.html#ab8cd307e1a0fe647309da8583a51807b',1,'Input']]],
   ['getname_27',['getName',['../class_gamepad.html#ab0fd07c0c3c1ac1f0ab997000061bd80',1,'Gamepad::getName()'],['../class_monitor.html#a389aee29459de05e808ef216254343e8',1,'Monitor::getName()'],['../class_mesh.html#a5db6e4320ba53bfd030ca231d0544a2a',1,'Mesh::getName()'],['../class_model.html#a55493aa9daaaa26137cc00a34b351ff8',1,'Model::getName()'],['../class_shader.html#a6e91ea814d9d8ab826b483e209634393',1,'Shader::getName()'],['../class_v_k_physical_device.html#a9677d12b545e6324581f0b796a0eb229',1,'VKPhysicalDevice::getName()']]],
-  ['getnativehandle_28',['getNativeHandle',['../class_g_l_shader.html#a1aa6f472254c3073b9cb2fa0366c5522',1,'GLShader::getNativeHandle()'],['../class_window.html#ac2dcba6f351bed84db15e477a39f285d',1,'Window::getNativeHandle()'],['../class_monitor.html#a8d12b21b90a3f8449d8440452327d93f',1,'Monitor::getNativeHandle()']]],
+  ['getnativehandle_28',['getNativeHandle',['../class_window.html#ac2dcba6f351bed84db15e477a39f285d',1,'Window::getNativeHandle()'],['../class_g_l_shader.html#a1aa6f472254c3073b9cb2fa0366c5522',1,'GLShader::getNativeHandle()'],['../class_monitor.html#a8d12b21b90a3f8449d8440452327d93f',1,'Monitor::getNativeHandle()']]],
   ['getnear_29',['getNear',['../class_camera.html#ac8e964aa5463f7dd3d3555398685df52',1,'Camera']]],
   ['getphysicaldevice_30',['getPhysicalDevice',['../class_v_k_renderer.html#aa738911381876b0b264d3a0cbc6d89a2',1,'VKRenderer']]],
   ['getpixel_31',['getPixel',['../class_image.html#af84c9c11ffe818939f1fd532e3f1285c',1,'Image']]],
@@ -40,7 +40,7 @@ var searchData=
   ['getraw_37',['getRaw',['../class_gamepad.html#a9d1249f8947d85c23843c2dc934c9e70',1,'Gamepad::getRaw(Trigger trigger) const'],['../class_gamepad.html#aaf38c3534ec0ee1751b47e031bcccea1',1,'Gamepad::getRaw(Thumb thumb) const']]],
   ['getrefreshrate_38',['getRefreshRate',['../class_monitor.html#a4e1e52b23525c876c8981564e657a7af',1,'Monitor']]],
   ['getrotation_39',['getRotation',['../class_camera.html#a9f963f5adfd87616ac7d6608a17c0ac3',1,'Camera']]],
-  ['getsize_40',['getSize',['../class_vertex_buffer.html#a449c075862df927b06cf5cb1e417a89c',1,'VertexBuffer::getSize()'],['../class_buffer.html#a996ac8bec0aaccf19776c45b55b27dd2',1,'Buffer::getSize()'],['../class_image.html#a11449ef48be752526f0537173b1d94e7',1,'Image::getSize()'],['../class_monitor.html#a7a46f0acdc341a56e8f2a4c9ca891215',1,'Monitor::getSize()'],['../class_window.html#a28b707c0e4b9ac08101fc837b0b5238f',1,'Window::getSize()'],['../class_index_buffer.html#a9d45b662917b2b43e7e4d470515e0c91',1,'IndexBuffer::getSize()']]],
+  ['getsize_40',['getSize',['../class_index_buffer.html#a9d45b662917b2b43e7e4d470515e0c91',1,'IndexBuffer::getSize()'],['../class_buffer.html#a996ac8bec0aaccf19776c45b55b27dd2',1,'Buffer::getSize()'],['../class_image.html#a11449ef48be752526f0537173b1d94e7',1,'Image::getSize()'],['../class_monitor.html#a7a46f0acdc341a56e8f2a4c9ca891215',1,'Monitor::getSize()'],['../class_window.html#a28b707c0e4b9ac08101fc837b0b5238f',1,'Window::getSize()'],['../class_vertex_buffer.html#a449c075862df927b06cf5cb1e417a89c',1,'VertexBuffer::getSize()']]],
   ['getstage_41',['getStage',['../class_shader.html#a3a91e257350332a3cd3af52d740405d5',1,'Shader']]],
   ['getswapchain_42',['getSwapchain',['../class_v_k_renderer.html#af0556e23b419b82a6cc229fdeb5fdf51',1,'VKRenderer']]],
   ['gettype_43',['getType',['../class_buffer.html#a8df11718cac1d3d4321bbc9a8410ad01',1,'Buffer::getType()'],['../class_camera.html#ae8f514578aa54023476ad541b167a1e0',1,'Camera::getType()'],['../class_texture.html#a885cf1c026c6227fbc1b99befa842416',1,'Texture::getType()']]],
@@ -69,5 +69,6 @@ var searchData=
   ['gltexture_66',['GLTexture',['../class_g_l_texture.html',1,'']]],
   ['gluniformbuffer_67',['GLUniformBuffer',['../class_g_l_uniform_buffer.html',1,'']]],
   ['glvertexarray_68',['GLVertexArray',['../class_g_l_vertex_array.html',1,'']]],
-  ['glvertexbuffer_69',['GLVertexBuffer',['../class_g_l_vertex_buffer.html',1,'']]]
+  ['glvertexbuffer_69',['GLVertexBuffer',['../class_g_l_vertex_buffer.html',1,'']]],
+  ['glyph_70',['Glyph',['../struct_font_1_1_glyph.html',1,'Font']]]
 ];

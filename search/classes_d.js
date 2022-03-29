@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['shader_0',['Shader',['../class_shader.html',1,'']]],
-  ['stageflags_1',['StageFlags',['../struct_pipeline_layout_1_1_stage_flags.html',1,'PipelineLayout']]],
-  ['swapchainbuilder_2',['SwapchainBuilder',['../class_swapchain_builder.html',1,'']]]
+  ['rasterizerdescriptor_0',['RasterizerDescriptor',['../struct_rasterizer_descriptor.html',1,'']]],
+  ['renderer_1',['Renderer',['../class_renderer.html',1,'']]],
+  ['rid_2',['RID',['../class_r_i_d.html',1,'']]]
 ];
