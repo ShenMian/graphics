@@ -5,7 +5,7 @@
 
 const float PI = 3.141592654;
 
-layout (location = 0) out vec4 frag_color;
+layout(location = 0) out vec4 frag_color;
 
 uniform float time;
 

@@ -1,11 +1,11 @@
-﻿// Copyright 2021 SMS
+// Copyright 2021 SMS
 // License(Apache-2.0)
 
 #version 450
 
 const float PI = 3.141592654;
 
-layout (location = 0) out vec4 frag_color;
+layout(location = 0) out vec4 frag_color;
 
 out Out
 {
