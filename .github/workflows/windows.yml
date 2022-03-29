@@ -64,7 +64,7 @@ jobs:
           key: windows-${{ matrix.type }}-${{ matrix.arch }}
 
       - name: Generating CMake cache
-        run: cmake -B build
+        run: cmake -B build -DCMAKE_TOOLCHAIN_FILE=${{ env.VCPKG_ROOT }}/scripts/buildsystems/vcpkg.cmake
 
       - name: Build
         run: cmake --build build --config ${{ matrix.type }} -j2
