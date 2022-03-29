@@ -64,7 +64,7 @@ jobs:
       #     key: windows-${{ matrix.type }}-${{ matrix.arch }}
 
       - name: Generating CMake cache
-        run: cmake -B build -T clang
+        run: cmake -B build -DCMAKE_CXX_COMPILER=clang -DCMAKE_C_COMPILER=clang
 
       - name: Build
         run: cmake --build build --config ${{ matrix.type }} -j2
