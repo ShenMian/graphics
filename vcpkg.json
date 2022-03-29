@@ -1,0 +1,10 @@
+﻿{
+  "name": "graphics",
+  "version": "0.0.0",
+  "dependencies": [
+    "assimp",
+    "glfw3",
+    "meshoptimizer",
+    "freetype"
+  ]
+}
