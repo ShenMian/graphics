@@ -17,7 +17,7 @@ else()
     include("${DEPS_DIR}/glad.cmake")
     list(APPEND LIBS glad)
 endif()
-    list(APPEND INCS "${DEPS_DIR}/glad/include")
+list(APPEND INCS "${DEPS_DIR}/glad/include")
 
 # 添加 GLFW3
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/Scripts")
@@ -30,7 +30,7 @@ else()
     set(GLFW_BUILD_DOCS OFF CACHE BOOL "Build the GLFW documentation" FORCE)
     add_subdirectory("${DEPS_DIR}/glfw" "glfw3")
     list(APPEND LIBS glfw)
-#endif()
+endif()
 list(APPEND INCS "${DEPS_DIR}/glfw/include")
 
 # 添加 FreeType
