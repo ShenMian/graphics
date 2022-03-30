@@ -124,11 +124,11 @@ int main()
 				ATT.add(position);
 				ATT.add(angles);
 
-				Timer timer;
+				Clock clock;
 				while(running)
 				{
-					const auto dt = (float)timer.getSeconds();
-					timer.restart();
+					const auto dt = (float)clock.getSeconds();
+					clock.restart();
 #if 0
 					static float elapse = 0;
 					elapse += dt;

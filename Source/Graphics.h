@@ -22,7 +22,7 @@
 #include "Core/Gamepad.h"
 #include "Core/Monitor.h"
 #include "Core/Image.h"
-#include "Core/Timer.hpp"
+#include "Core/Clock.hpp"
 #include "Core/RID.hpp"
 #include "Core/Controller.h"
 

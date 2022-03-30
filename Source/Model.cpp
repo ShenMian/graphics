@@ -19,7 +19,7 @@
 #include <meshoptimizer.h>
 #include <vector>
 
-#include "Core/Timer.hpp"
+#include "Core/Clock.hpp"
 
 namespace fs = std::filesystem;
 
@@ -195,7 +195,7 @@ void Model::load(const fs::path& path, unsigned int process, std::function<void(
     meshes.clear();
     aabb.clear();
 
-	Timer timer; // TODO: debug
+	Clock clock; // TODO: debug
 
 	unsigned int flags = aiProcess_CalcTangentSpace |
 		aiProcess_JoinIdenticalVertices |
@@ -232,12 +232,12 @@ void Model::load(const fs::path& path, unsigned int process, std::function<void(
 
 	name = scene->mName.C_Str();
 
-	printf("Meshes loaded: %.2lfs       \n", timer.getSeconds()); // TODO: debug
-	timer.restart();
+	printf("Meshes loaded: %.2lfs       \n", clock.getSeconds()); // TODO: debug
+	clock.restart();
 	loadNode(scene->mRootNode, scene, path, meshes, aabb);
 	for(const auto& mesh : meshes)
 		meshInfo += mesh.getInfo();
-	printf("Meshes processed: %.2lfs       \n", timer.getSeconds()); // TODO: debug
+	printf("Meshes processed: %.2lfs       \n", clock.getSeconds()); // TODO: debug
 }
 
 const std::string& Model::getName() const

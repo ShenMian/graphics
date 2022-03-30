@@ -9,13 +9,13 @@
  *  @{
  */
 
- /**
-  * @brief 计时器.
-  */
-class Timer
+/**
+* @brief 计时器.
+*/
+class Clock
 {
 public:
-	Timer()
+	Clock()
 	{
 		restart();
 	}
