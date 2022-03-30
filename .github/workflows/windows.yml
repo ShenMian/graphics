@@ -30,7 +30,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           submodules: recursive
 
@@ -40,7 +40,7 @@ jobs:
           version: 13
 
       - name: Cache vcpkg artifacts
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ${{ github.workspace }}/vcpkg_installed
           key: windows-${{ matrix.type }}-${{ matrix.arch }}-${{ hashFiles('vcpkg.json') }}
@@ -52,7 +52,7 @@ jobs:
       #   uses: ilammy/msvc-dev-cmd@v1.10.0
 
       # - name: Cache
-      #   uses: actions/cache@v2.1.7
+      #   uses: actions/cache@v3
       #   with:
       #     path: ./build
       #     key: windows-${{ matrix.type }}-${{ matrix.arch }}
@@ -64,13 +64,13 @@ jobs:
         run: cmake --build build --config ${{ matrix.type }} -j2
 
       - name: Upload libraries
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: graphics-windows-${{ matrix.arch }}
           path: build/lib
 
       - name: Upload binaries
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: examples-windows-${{ matrix.arch }}
           path: build/bin
