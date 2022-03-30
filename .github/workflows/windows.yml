@@ -42,13 +42,7 @@ jobs:
       - name: Cache vcpkg artifacts
         uses: actions/cache@v2
         with:
-          path: |
-            ${{ github.workspace }}/vcpkg_installed
-            # ${{ env.VCPKG_ROOT }}
-            # !${{ env.VCPKG_ROOT }}/.git
-            # !${{ env.VCPKG_ROOT }}/buildtrees
-            # !${{ env.VCPKG_ROOT }}/packages
-            # !${{ env.VCPKG_ROOT }}/downloads
+          path: ${{ github.workspace }}/vcpkg_installed
           key: windows-${{ matrix.type }}-${{ matrix.arch }}-${{ hashFiles('vcpkg.json') }}
 
       - name: Install dependencies
@@ -64,7 +58,7 @@ jobs:
       #     key: windows-${{ matrix.type }}-${{ matrix.arch }}
 
       - name: Generating CMake cache
-        run: cmake -B build -DCMAKE_CXX_COMPILER=clang -DCMAKE_C_COMPILER=clang
+        run: cmake -B build -DCMAKE_TOOLCHAIN_FILE=D:/vcpkg/scripts/buildsystems/vcpkg.cmake -DCMAKE_CXX_COMPILER=clang -DCMAKE_C_COMPILER=clang
 
       - name: Build
         run: cmake --build build --config ${{ matrix.type }} -j2
