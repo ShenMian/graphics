@@ -1,5 +1,6 @@
 var group__core =
 [
+    [ "Clock", "class_clock.html", null ],
     [ "Gamepad", "class_gamepad.html", [
       [ "Button", "group__core.html#ga0f09c7e25e2059e68148d494ed9449b1", [
         [ "A", "group__core.html#gga0f09c7e25e2059e68148d494ed9449b1a7fc56270e7a70fa81a5935b72eacbe29", null ],
@@ -66,7 +67,6 @@ var group__core =
       [ "getSize", "class_monitor.html#a7a46f0acdc341a56e8f2a4c9ca891215", null ],
       [ "isPrimary", "class_monitor.html#abb69747f03e4fed060f16b84052eb3c0", null ]
     ] ],
-    [ "Timer", "class_timer.html", null ],
     [ "Window", "class_window.html", [
       [ "Window", "class_window.html#a147796917726708be2db0b7c381368a9", null ],
       [ "~Window", "class_window.html#a245d821e6016fa1f6970ccbbedd635f6", null ],

@@ -8,6 +8,7 @@ var hierarchy =
     ] ],
     [ "Camera", "class_camera.html", null ],
     [ "ClearFlag", "struct_clear_flag.html", null ],
+    [ "Clock", "class_clock.html", null ],
     [ "CommandBuffer", "class_command_buffer.html", [
       [ "GLCommandBuffer", "class_g_l_command_buffer.html", null ],
       [ "VKCommandBuffer", "class_v_k_command_buffer.html", null ]
@@ -76,7 +77,6 @@ var hierarchy =
     [ "Texture", "class_texture.html", [
       [ "GLTexture", "class_g_l_texture.html", null ]
     ] ],
-    [ "Timer", "class_timer.html", null ],
     [ "UI", "class_u_i.html", null ],
     [ "UniformBuffer", "class_uniform_buffer.html", [
       [ "GLUniformBuffer", "class_g_l_uniform_buffer.html", null ],
