@@ -5,6 +5,7 @@
   "homepage": "https://github.com/ShenMian/Graphics",
   "dependencies": [
     "assimp",
+    "glad",
     "glfw3",
     "meshoptimizer",
     "freetype"

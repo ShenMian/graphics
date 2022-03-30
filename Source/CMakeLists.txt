@@ -1,17 +1,24 @@
 ﻿# Copyright 2021 SMS
 # License(Apache-2.0)
 
-list(APPEND INCS
-    "${DEPS_DIR}/stb"
-    "${DEPS_DIR}/Math/include")
+list(APPEND INCS "${DEPS_DIR}/Math/include")
+
+# 添加 stb
+list(APPEND INCS "${DEPS_DIR}/stb")
 
 # 添加 fmt
 list(APPEND INCS "${DEPS_DIR}/fmt/include")
 
 # 添加 Glad
-include("${DEPS_DIR}/glad.cmake")
-list(APPEND LIBS glad)
-list(APPEND INCS "${DEPS_DIR}/glad/include")
+find_package(glad QUIET)
+if(GLAD_FOUND)
+    list(APPEND LIBS glad::glad)
+    list(APPEND INCS "${DEPS_DIR}/glad/include")
+else()
+    include("${DEPS_DIR}/glad.cmake")
+    list(APPEND LIBS glad)
+    list(APPEND INCS "${DEPS_DIR}/glad/include")
+endif()
 
 # 添加 GLFW3
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/Scripts")
@@ -39,9 +46,15 @@ else()
 endif()
 
 # 添加 imgui
-include("${DEPS_DIR}/imgui.cmake")
-list(APPEND LIBS imgui)
-list(APPEND INCS "${DEPS_DIR}/imgui")
+find_package(imgui QUIET)
+if(IMGUI_FOUND)
+    list(APPEND LIBS imgui::imgui)
+    list(APPEND INCS "${DEPS_DIR}/imgui")
+else()
+    include("${DEPS_DIR}/imgui.cmake")
+    list(APPEND LIBS imgui)
+    list(APPEND INCS "${DEPS_DIR}/imgui")
+endif()
 
 # 添加 ImGuizmo
 include("${DEPS_DIR}/imguizmo.cmake")
