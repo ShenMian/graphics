@@ -13,7 +13,7 @@
 using namespace std::literals::string_literals;
 namespace fs = std::filesystem;
 
-Window::Window(const std::string_view title, const Vector2i& size, bool fullscreen)
+Window::Window(std::string_view title, const Vector2i& size, bool fullscreen)
 {
 	handle = glfwCreateWindow(size.x, size.y, title.data(),
 		fullscreen ? reinterpret_cast<GLFWmonitor*>(Monitor::getPrimary().getNativeHandle()) : nullptr, nullptr);
@@ -40,7 +40,7 @@ void Window::update()
 	glfwPollEvents();
 }
 
-void Window::setTitle(const std::string_view title)
+void Window::setTitle(std::string_view title)
 {
 	glfwSetWindowTitle(handle, title.data());
 }
