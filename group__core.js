@@ -1,5 +1,6 @@
 var group__core =
 [
+    [ "Clock", "class_clock.html", null ],
     [ "Gamepad", "class_gamepad.html", [
       [ "Button", "group__core.html#ga0f09c7e25e2059e68148d494ed9449b1", [
         [ "A", "group__core.html#gga0f09c7e25e2059e68148d494ed9449b1a7fc56270e7a70fa81a5935b72eacbe29", null ],
@@ -66,9 +67,8 @@ var group__core =
       [ "getSize", "class_monitor.html#a7a46f0acdc341a56e8f2a4c9ca891215", null ],
       [ "isPrimary", "class_monitor.html#abb69747f03e4fed060f16b84052eb3c0", null ]
     ] ],
-    [ "Timer", "class_timer.html", null ],
     [ "Window", "class_window.html", [
-      [ "Window", "class_window.html#a147796917726708be2db0b7c381368a9", null ],
+      [ "Window", "class_window.html#ac9ade4f329d6426f3a48eea03d115be0", null ],
       [ "~Window", "class_window.html#a245d821e6016fa1f6970ccbbedd635f6", null ],
       [ "getNativeHandle", "class_window.html#ac2dcba6f351bed84db15e477a39f285d", null ],
       [ "getPosition", "class_window.html#aeab22e9297f866c34da02e89c094ffd3", null ],
@@ -83,7 +83,7 @@ var group__core =
       [ "setRawMouseMotion", "class_window.html#a6786f1592fa3da0aa66ebb08436a4355", null ],
       [ "setSize", "class_window.html#a38abe58f2cd0246d653db2972aa61b99", null ],
       [ "setSync", "class_window.html#af27c43823adcc3762b3cfab498f189f2", null ],
-      [ "setTitle", "class_window.html#a69d5a3ad054373a42b6d7d13aec6dfcc", null ],
+      [ "setTitle", "class_window.html#a5deddd3fa7c583ab6dba2947bf04c815", null ],
       [ "setVisible", "class_window.html#a6784081f75a92fcdab23f54814049b42", null ],
       [ "update", "class_window.html#a59515fc5a56e86d5a46d771595daac55", null ],
       [ "onClose", "class_window.html#a03ab4d34edba2d3b71f25ea218b9f7e7", null ],

@@ -30,7 +30,7 @@ var searchData=
   ['setsmoothness_27',['setSmoothness',['../class_controller.html#aae796d317206fc1fc9c179f15e7f1be9',1,'Controller']]],
   ['setswarp_28',['setSWarp',['../class_g_l_texture.html#abcc3dbf8017148989bb22777afc1c839',1,'GLTexture::setSWarp()'],['../class_texture.html#a78ca4624d52f3b74d6af79beaa3ce5c1',1,'Texture::setSWarp()']]],
   ['setsync_29',['setSync',['../class_window.html#af27c43823adcc3762b3cfab498f189f2',1,'Window']]],
-  ['settitle_30',['setTitle',['../class_window.html#a69d5a3ad054373a42b6d7d13aec6dfcc',1,'Window']]],
+  ['settitle_30',['setTitle',['../class_window.html#a5deddd3fa7c583ab6dba2947bf04c815',1,'Window']]],
   ['settwarp_31',['setTWarp',['../class_g_l_texture.html#a22f68c20e9572260f1d300f76ef56f9f',1,'GLTexture::setTWarp()'],['../class_texture.html#a3d7fa97316058caeebcdcbfdbcd34a0e',1,'Texture::setTWarp()']]],
   ['setvisible_32',['setVisible',['../class_window.html#a6784081f75a92fcdab23f54814049b42',1,'Window']]],
   ['setwindow_33',['setWindow',['../class_input.html#ae5f6d108981471b21b7bd30a74b0361b',1,'Input']]],
