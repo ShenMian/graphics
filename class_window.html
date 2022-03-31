@@ -99,9 +99,9 @@ $(document).ready(function(){initNavTree('class_window.html',''); initResizable(
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
-<tr class="memitem:ac9ade4f329d6426f3a48eea03d115be0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#ac9ade4f329d6426f3a48eea03d115be0">Window</a> (std::string_view title, const Vector2i &amp;size, bool fullscreen=false)</td></tr>
-<tr class="memdesc:ac9ade4f329d6426f3a48eea03d115be0"><td class="mdescLeft">&#160;</td><td class="mdescRight">构造函数, 创建一个窗口.  <a href="class_window.html#ac9ade4f329d6426f3a48eea03d115be0">更多...</a><br /></td></tr>
-<tr class="separator:ac9ade4f329d6426f3a48eea03d115be0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a147796917726708be2db0b7c381368a9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a147796917726708be2db0b7c381368a9">Window</a> (const std::string_view title, const Vector2i &amp;size, bool fullscreen=false)</td></tr>
+<tr class="memdesc:a147796917726708be2db0b7c381368a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">构造函数, 创建一个窗口.  <a href="class_window.html#a147796917726708be2db0b7c381368a9">更多...</a><br /></td></tr>
+<tr class="separator:a147796917726708be2db0b7c381368a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a245d821e6016fa1f6970ccbbedd635f6"><td class="memItemLeft" align="right" valign="top"><a id="a245d821e6016fa1f6970ccbbedd635f6" name="a245d821e6016fa1f6970ccbbedd635f6"></a>
 virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~Window</b> ()</td></tr>
 <tr class="memdesc:a245d821e6016fa1f6970ccbbedd635f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">析构函数. <br /></td></tr>
@@ -109,9 +109,9 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~Window</b> ()</td
 <tr class="memitem:a59515fc5a56e86d5a46d771595daac55"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a59515fc5a56e86d5a46d771595daac55">update</a> ()</td></tr>
 <tr class="memdesc:a59515fc5a56e86d5a46d771595daac55"><td class="mdescLeft">&#160;</td><td class="mdescRight">更新.  <a href="class_window.html#a59515fc5a56e86d5a46d771595daac55">更多...</a><br /></td></tr>
 <tr class="separator:a59515fc5a56e86d5a46d771595daac55"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5deddd3fa7c583ab6dba2947bf04c815"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a5deddd3fa7c583ab6dba2947bf04c815">setTitle</a> (std::string_view title)</td></tr>
-<tr class="memdesc:a5deddd3fa7c583ab6dba2947bf04c815"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置窗口标题.  <a href="class_window.html#a5deddd3fa7c583ab6dba2947bf04c815">更多...</a><br /></td></tr>
-<tr class="separator:a5deddd3fa7c583ab6dba2947bf04c815"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69d5a3ad054373a42b6d7d13aec6dfcc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a69d5a3ad054373a42b6d7d13aec6dfcc">setTitle</a> (const std::string_view title)</td></tr>
+<tr class="memdesc:a69d5a3ad054373a42b6d7d13aec6dfcc"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置窗口标题.  <a href="class_window.html#a69d5a3ad054373a42b6d7d13aec6dfcc">更多...</a><br /></td></tr>
+<tr class="separator:a69d5a3ad054373a42b6d7d13aec6dfcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a38abe58f2cd0246d653db2972aa61b99"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a38abe58f2cd0246d653db2972aa61b99">setSize</a> (const Vector2i &amp;size)</td></tr>
 <tr class="memdesc:a38abe58f2cd0246d653db2972aa61b99"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置窗口大小.  <a href="class_window.html#a38abe58f2cd0246d653db2972aa61b99">更多...</a><br /></td></tr>
 <tr class="separator:a38abe58f2cd0246d653db2972aa61b99"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -210,8 +210,8 @@ std::function&lt; void(int, const char *paths[])&gt;&#160;</td><td class="memIte
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p >窗体. </p>
 </div><h2 class="groupheader">构造及析构函数说明</h2>
-<a id="ac9ade4f329d6426f3a48eea03d115be0" name="ac9ade4f329d6426f3a48eea03d115be0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac9ade4f329d6426f3a48eea03d115be0">&#9670;&nbsp;</a></span>Window()</h2>
+<a id="a147796917726708be2db0b7c381368a9" name="a147796917726708be2db0b7c381368a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a147796917726708be2db0b7c381368a9">&#9670;&nbsp;</a></span>Window()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -219,7 +219,7 @@ std::function&lt; void(int, const char *paths[])&gt;&#160;</td><td class="memIte
         <tr>
           <td class="memname">Window::Window </td>
           <td>(</td>
-          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramtype">const std::string_view&#160;</td>
           <td class="paramname"><em>title</em>, </td>
         </tr>
         <tr>
@@ -504,8 +504,8 @@ std::function&lt; void(int, const char *paths[])&gt;&#160;</td><td class="memIte
 
 </div>
 </div>
-<a id="a5deddd3fa7c583ab6dba2947bf04c815" name="a5deddd3fa7c583ab6dba2947bf04c815"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5deddd3fa7c583ab6dba2947bf04c815">&#9670;&nbsp;</a></span>setTitle()</h2>
+<a id="a69d5a3ad054373a42b6d7d13aec6dfcc" name="a69d5a3ad054373a42b6d7d13aec6dfcc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69d5a3ad054373a42b6d7d13aec6dfcc">&#9670;&nbsp;</a></span>setTitle()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -513,7 +513,7 @@ std::function&lt; void(int, const char *paths[])&gt;&#160;</td><td class="memIte
         <tr>
           <td class="memname">void Window::setTitle </td>
           <td>(</td>
-          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramtype">const std::string_view&#160;</td>
           <td class="paramname"><em>title</em></td><td>)</td>
           <td></td>
         </tr>
