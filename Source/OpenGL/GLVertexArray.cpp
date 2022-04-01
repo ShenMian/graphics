@@ -13,6 +13,24 @@ namespace
 {
 
 std::unordered_map<Format, GLenum> GLType = {
+	{Format::R16I, GL_SHORT},
+	{Format::RG16I, GL_SHORT},
+	{Format::RGB16I, GL_SHORT},
+	{Format::RGBA16I, GL_SHORT},
+	{Format::R32I, GL_INT},
+	{Format::RG32I, GL_INT},
+	{Format::RGB32I, GL_INT},
+	{Format::RGBA32I, GL_INT},
+
+	{Format::R16U, GL_UNSIGNED_SHORT},
+	{Format::RG16U, GL_UNSIGNED_SHORT},
+	{Format::RGB16U, GL_UNSIGNED_SHORT},
+	{Format::RGBA16U, GL_UNSIGNED_SHORT},
+	{Format::R32U, GL_UNSIGNED_INT},
+	{Format::RG32U, GL_UNSIGNED_INT},
+	{Format::RGB32U, GL_UNSIGNED_INT},
+	{Format::RGBA32U, GL_UNSIGNED_INT},
+
 	{Format::R16F, GL_HALF_FLOAT},
 	{Format::RG16F, GL_HALF_FLOAT},
 	{Format::RGB16F, GL_HALF_FLOAT},
@@ -25,6 +43,24 @@ std::unordered_map<Format, GLenum> GLType = {
 
 // TODO: FormatAttribute
 std::unordered_map<Format, GLenum> Components = {
+	{Format::R16I, 1},
+	{Format::RG16I, 2},
+	{Format::RGB16I, 3},
+	{Format::RGBA16I, 4},
+	{Format::R32I, 1},
+	{Format::RG32I, 2},
+	{Format::RGB32I, 3},
+	{Format::RGBA32I, 4},
+
+	{Format::R16U, 1},
+	{Format::RG16U, 2},
+	{Format::RGB16U, 3},
+	{Format::RGBA16U, 4},
+	{Format::R32U, 1},
+	{Format::RG32U, 2},
+	{Format::RGB32U, 3},
+	{Format::RGBA32U, 4},
+
 	{Format::R16F, 1},
 	{Format::RG16F, 2},
 	{Format::RGB16F, 3},

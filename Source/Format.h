@@ -5,6 +5,39 @@
 
 enum class Format
 {
+	// int
+	R8I,
+	RG8I,
+	RGB8I,
+	RGBA8I,
+
+	R16I,
+	RG16I,
+	RGB16I,
+	RGBA16I,
+
+	R32I,
+	RG32I,
+	RGB32I,
+	RGBA32I,
+
+	// unsigned int
+	R8U,
+	RG8U,
+	RGB8U,
+	RGBA8U,
+
+	R16U,
+	RG16U,
+	RGB16U,
+	RGBA16U,
+
+	R32U,
+	RG32U,
+	RGB32U,
+	RGBA32U,
+
+	// float
 	R8F,
 	RG8F,
 	RGB8F,
