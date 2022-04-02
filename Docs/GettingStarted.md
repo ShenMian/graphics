@@ -27,7 +27,8 @@
    SET(OPTION_NAME OFF CACHE BOOL "" FORCE) # 关闭选项 OPTION_NAME
    ```
 
-**警告**: 请查看 [依赖项](https://github.com/ShenMian/Graphics/blob/main/Deps/README.md) 来确保不会产生菱形依赖. 或使用 CMake 安装依赖项来减少产生菱形依赖的可能性, 执行脚本 `Scripts/cmake_install_deps`.  
+**警告**: 请查看 [依赖项](https://github.com/ShenMian/Graphics/blob/main/Deps/README.md) 来确保不会产生菱形依赖. 或提前安装依赖项来减少产生菱形依赖的可能性, 执行 `vcpkg install` 命令或执行脚本 `Scripts/cmake_install_deps`.  
+**注意**: 因为该项目包含大量 [依赖项](https://github.com/ShenMian/Graphics/blob/main/Deps/README.md), 所以可以通过执行 `vcpkg install` 命令或执行脚本 `Scripts/cmake_install_deps` 提前安装依赖项来加快编译速度.  
 
 通过 Premake 生成你所使用 IDE 的项目文件.
 
