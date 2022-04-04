@@ -47,6 +47,7 @@ Mesh::Mesh(std::string_view name, std::vector<Vertex>& vertices, std::vector<uns
 	info.indices = this->indices.size();
 	info.vertices = this->vertices.size();
 
+	// TODO: 与 decompress 中的变量重复
 	VertexAttributes format = {
 		{"position", Format::RGB32F},
 		{"normal", Format::RGB32F},
@@ -71,26 +72,6 @@ std::shared_ptr<VertexBuffer> Mesh::getVertexBuffer() const
 std::shared_ptr<IndexBuffer> Mesh::getIndexBuffer() const
 {
 	return indexBuffer;
-}
-
-void Mesh::setName(const std::string& name)
-{
-	this->name = name;
-}
-
-void Mesh::setVertexBuffer(std::shared_ptr<VertexBuffer> buf)
-{
-	vertexBuffer = buf;
-}
-
-void Mesh::setIndexBuffer(std::shared_ptr<IndexBuffer> buf)
-{
-	indexBuffer = buf;
-}
-
-void Mesh::setMaterial(const Material& mat)
-{
-	material = mat;
 }
 
 const Material& Mesh::getMaterial() const

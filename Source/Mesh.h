@@ -74,12 +74,6 @@ public:
 	 */
 	void decompress();
 
-
-	void setName(const std::string& name);
-	void setVertexBuffer(std::shared_ptr<VertexBuffer> buffer);
-	void setIndexBuffer(std::shared_ptr<IndexBuffer> buffer);
-	void setMaterial(const Material& mat);
-
 private:
 	void optimize();
 
