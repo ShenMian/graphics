@@ -8,8 +8,8 @@
 
 #include <string>
 
-GLUniformBuffer::GLUniformBuffer(const std::string& name, int slot, size_t size)
-	: UniformBuffer(name, slot), buffer(size, Buffer::Type::Uniform, Buffer::Usage::Dynamic)
+GLUniformBuffer::GLUniformBuffer(const std::string& name, int binding, size_t size)
+	: UniformBuffer(name, binding), buffer(size, Buffer::Type::Uniform, Buffer::Usage::Dynamic)
 {
 }
 
@@ -28,8 +28,9 @@ void GLUniformBuffer::bind(GLProgram* program)
 	blockIndex = 0; // FIXME
 	if(blockIndex == GL_INVALID_INDEX)
 		throw std::runtime_error("failed to get uniform block index");
-	glUniformBlockBinding(*program, blockIndex, slot);
+	glUniformBlockBinding(*program, blockIndex, binding);
 	glBindBufferBase(GL_UNIFORM_BUFFER, blockIndex, buffer);
+	GLCheckError();
 }
 
 void GLUniformBuffer::bind()

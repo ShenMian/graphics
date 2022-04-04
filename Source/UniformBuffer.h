@@ -1,4 +1,4 @@
-// Copyright 2021 ShenMian
+﻿// Copyright 2021 ShenMian
 // License(Apache-2.0)
 
 #pragma once
@@ -8,9 +8,9 @@
 class UniformBuffer
 {
 public:
-	UniformBuffer(const std::string& name, int slot);
+	UniformBuffer(const std::string& name, int binding);
 
 protected:
 	std::string name;
-	int         slot;
+	int         binding;
 };

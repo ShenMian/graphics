@@ -13,7 +13,7 @@ class GLProgram;
 class GLUniformBuffer : public UniformBuffer
 {
 public:
-	GLUniformBuffer(const std::string& name, int slot, size_t size);
+	GLUniformBuffer(const std::string& name, int binding, size_t size);
 
 	void write(const void* data, size_t size, size_t offset = 0);
 
