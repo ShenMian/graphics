@@ -31,8 +31,3 @@ void GLUniformBuffer::bind(GLProgram* program)
 	glBindBufferBase(GL_UNIFORM_BUFFER, blockIndex, buffer);
 	GLCheckError();
 }
-
-void GLUniformBuffer::bind()
-{
-	buffer.bind();
-}

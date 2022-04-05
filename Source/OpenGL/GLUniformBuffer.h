@@ -18,7 +18,6 @@ public:
 	void write(const void* data, size_t size, size_t offset = 0);
 
 	void bind(GLProgram* program);
-	void bind();
 
 private:
 	GLBuffer buffer;
