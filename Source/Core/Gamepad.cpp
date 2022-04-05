@@ -44,7 +44,7 @@ Vector2f Gamepad::get(Thumb thumb) const
 	else
 		deadzone = rightThumbDeadzone;
 
-	if(value.normSquared() > deadzone * deadzone)
+	if(value.normSq() > deadzone * deadzone)
 		return value.normalized() * (value.norm() - deadzone);
 	else
 		return Vector2f::zero;
