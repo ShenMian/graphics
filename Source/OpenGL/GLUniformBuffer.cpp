@@ -8,16 +8,15 @@
 
 #include <string>
 
-GLUniformBuffer::GLUniformBuffer(const std::string& name, int binding, size_t size)
+GLUniformBuffer::GLUniformBuffer(std::string_view name, int binding, size_t size)
 	: UniformBuffer(name, binding), buffer(size, Buffer::Type::Uniform, Buffer::Usage::Dynamic)
 {
 }
 
 void GLUniformBuffer::write(const void* data, size_t size, size_t offset)
 {
-	buffer.map();
-	// buffer.map(size, offset);
-	buffer.write(data, size, offset);
+	buffer.map(size, offset);
+	buffer.write(data, size);
 	buffer.unmap();
 }
 

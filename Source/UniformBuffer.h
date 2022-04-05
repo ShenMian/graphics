@@ -8,7 +8,7 @@
 class UniformBuffer
 {
 public:
-	UniformBuffer(const std::string& name, int binding);
+	UniformBuffer(std::string_view name, int binding);
 
 protected:
 	std::string name;
