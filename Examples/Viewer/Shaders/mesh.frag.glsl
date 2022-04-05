@@ -25,10 +25,10 @@ struct Material
     sampler2D normal;
 };
 
-layout(std140, set = 0, binding = 0) uniform Matrices
+layout(set = 0, binding = 0) uniform Matrices
 {
-    mat4 view; // 视图矩阵
-    mat4 proj; // 投影矩阵
+    mat4 view;
+    mat4 proj;
     mat4 model;
 } mat;
 
@@ -46,8 +46,8 @@ void main()
 
     vec3 color = vec3(vert.tex_coord, 0.0);
 
-    if(dot(normalize(vert.position - cam_position), cam_direction) > 0.9)
-        color.r = 1;
+    // if(dot(normalize(vert.position - cam_position), cam_direction) > 0.9)
+    //     color.r = 1;
 
     frag_color = vec4(color, 1.0);
 

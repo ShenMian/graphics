@@ -13,12 +13,20 @@ struct Vert
     mat3 TBN;
 };
 
-layout(std140, set = 0, binding = 0) uniform Matrices
+layout(set = 0, binding = 0) uniform Matrices
 {
-    mat4 view; // 视图矩阵
-    mat4 proj; // 投影矩阵
+    mat4 view;
+    mat4 proj;
     mat4 model;
 } mat;
+
+/*
+const uint max_joints = 100;
+layout(set = 0, binding = 1) uniform Animation
+{
+    mat4 joints[max_joints];
+} anim;
+*/
 
 layout(location = 0) in vec3 position;
 layout(location = 1) in vec3 normal;
@@ -33,6 +41,7 @@ layout(location = 0) out Vert vert;
 void main()
 {
     mat4 invModel = inverse(mat.model);
+    // mat4 invModel = mat.model;
 
     vert.position  = vec3(invModel * vec4(position, 1.0));
     vert.normal    = normalize(mat3(transpose(inverse(mat.model))) * normal);
