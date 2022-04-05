@@ -8,8 +8,6 @@
 
 #include "OpenGL/GLUniformBuffer.h"
 
-using namespace std::literals::string_literals;
-
 void PrintMonitorInfo();
 void PrintRendererInfo();
 void PrintModelInfo(const Model&);
@@ -31,11 +29,12 @@ int main()
 				PrintMonitorInfo();
 				PrintRendererInfo();
 
-				const std::filesystem::path path = "C:/Users/sms_s/Desktop/model/sponza/sponza.obj";
-				// const std::filesystem::path path = "C:/Users/sms_s/Desktop/model/pistol/kimber_desert_warrior/scene.gltf";
-				// const std::filesystem::path path = "C:/Users/sms_s/Desktop/model/Bistro/BistroExterior.glb";
-				// const std::filesystem::path path = "C:/Users/sms_s/Desktop/model/SpeedTree/White Oak/HighPoly/White_Oak.fbx";
-				// const std::filesystem::path path = "C:/Users/sms_s/Desktop/model/San_Miguel/san-miguel-low-poly.obj";
+				// const std::filesystem::path path = "../../../../../../model/bee.glb";
+				const std::filesystem::path path = "../../../../../../model/sponza/sponza.obj";
+				// const std::filesystem::path path = "../../../../../../model/pistol/kimber_desert_warrior/scene.gltf";
+				// const std::filesystem::path path = "../../../../../../model/Bistro/BistroExterior.glb";
+				// const std::filesystem::path path = "../../../../../../model/SpeedTree/White Oak/HighPoly/White_Oak.fbx";
+				// const std::filesystem::path path = "../../../../../../model/San_Miguel/san-miguel-low-poly.obj";
 
 				Model model;
 				model.load(path, Model::ProcessFlags::Fast, [](float progress) {
@@ -43,7 +42,7 @@ int main()
 				});
 				PrintModelInfo(model);
 
-				auto program = Program::create("Shaders/pbr");
+				auto program = Program::create("Shaders/mesh");
 
 				PipelineLayout layout = {
 					{"albedo",    PipelineLayout::Type::Texture, 0, PipelineLayout::StageFlags::Fragment},
@@ -63,8 +62,15 @@ int main()
 				Camera camera(Camera::Type::Perspective);
 				camera.setPerspective(radians(45.f), (float)window.getSize().x / window.getSize().y, 0.1f, 5000.f);
 
-				GLUniformBuffer uniformBuffer("Matrices", 0, 3 * sizeof(Matrix4f));
-				uniformBuffer.bind(reinterpret_cast<GLProgram*>(program.get()));
+				GLUniformBuffer matrices("Matrices", 0, 3 * sizeof(Matrix4f));
+				matrices.bind(reinterpret_cast<GLProgram*>(program.get()));
+
+				/*
+				GLUniformBuffer animation("Animation", 1, 100 * sizeof(Matrix4f));
+				animation.bind(reinterpret_cast<GLProgram*>(program.get()));
+				Matrix4f bones[100];
+				animation.write(bones, 100 * sizeof(Matrix4f));
+				*/
 
 				Controller controller;
 				controller.setCamera(camera);
@@ -157,9 +163,9 @@ int main()
 						dir.z, dir.x, dir.y));
 					ATT.update();
 
-					uniformBuffer.write(camera.getView().data(), sizeof(Matrix4f));
-					uniformBuffer.write(camera.getProjection().data(), sizeof(Matrix4f), sizeof(Matrix4f));
-					uniformBuffer.write(Matrix4f().data(), sizeof(Matrix4f), sizeof(Matrix4f) * 2);
+					matrices.write(camera.getView().data(), sizeof(Matrix4f));
+					matrices.write(camera.getProjection().data(), sizeof(Matrix4f), sizeof(Matrix4f));
+					matrices.write(Matrix4f().data(), sizeof(Matrix4f), sizeof(Matrix4f) * 2);
 
 					cmdBuffer->begin();
 					{
