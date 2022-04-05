@@ -21,6 +21,7 @@ VKPhysicalDevice PhysicalDeviceSelector::select()
 {
 	for(const auto& device : devices)
 	{
+		// TODO: 需要兼容没有独显的环境
 		if(!(device.getProperties().deviceType == VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU &&
 			device.getFeatures().geometryShader))
 			continue;
