@@ -15,6 +15,8 @@
 class Clock
 {
 public:
+	using clock = std::chrono::high_resolution_clock;
+
 	Clock()
 	{
 		restart();
@@ -22,12 +24,12 @@ public:
 
 	void restart()
 	{
-		start = std::chrono::high_resolution_clock::now();
+		start = clock::now();
 	}
 
 	auto getMilliseconds() const
 	{
-		return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - start).count();
+		return std::chrono::duration_cast<std::chrono::milliseconds>(clock::now() - start).count();
 	}
 
 	auto getSeconds() const
@@ -36,7 +38,7 @@ public:
 	}
 
 private:
-	std::chrono::time_point<std::chrono::high_resolution_clock> start;
+	std::chrono::time_point<clock> start;
 };
 
 /** @}*/
