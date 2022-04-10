@@ -64,9 +64,9 @@ void Window::setPosition(const Vector2i& pos)
 
 Vector2i Window::getPosition() const noexcept
 {
-	Vector2i size;
-	glfwGetWindowPos(handle, &size.x, &size.y);
-	return size;
+	Vector2i pos;
+	glfwGetWindowPos(handle, &pos.x, &pos.y);
+	return pos;
 }
 
 void Window::setVisible(bool visible) noexcept
@@ -127,6 +127,18 @@ void Window::requestFocus()
 void Window::setCursorLock(bool enable)
 {
 	glfwSetInputMode(handle, GLFW_CURSOR, enable ? GLFW_CURSOR_DISABLED : GLFW_CURSOR_NORMAL);
+}
+
+void Window::setCursorPosition(const Vector2i& pos)
+{
+	glfwSetCursorPos(handle, pos.x, pos.y);
+}
+
+Vector2d Window::getCursorPosition() const
+{
+	Vector2d pos;
+	glfwGetCursorPos(handle, &pos.x, &pos.y);
+	return pos;
 }
 
 void Window::setRawMouseMotion(bool enable)

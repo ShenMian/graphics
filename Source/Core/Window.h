@@ -132,6 +132,18 @@ public:
 	void setCursorLock(bool enable);
 
 	/**
+	 * @brief 设置光标在窗口中的坐标.
+	 *
+	 * @param pos 新光标在窗口中的坐标.
+	 */
+	void setCursorPosition(const Vector2i& pos);
+
+	/**
+	 * @brief 获取光标在窗口中的坐标.
+	 */
+	Vector2d getCursorPosition() const;
+
+	/**
 	 * @brief 设置是否启用原始鼠标运动.
 	 *
 	 * @param enable true 为开启, false 为关闭.
