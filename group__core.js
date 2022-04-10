@@ -70,6 +70,7 @@ var group__core =
     [ "Window", "class_window.html", [
       [ "Window", "class_window.html#ac9ade4f329d6426f3a48eea03d115be0", null ],
       [ "~Window", "class_window.html#a245d821e6016fa1f6970ccbbedd635f6", null ],
+      [ "getCursorPosition", "class_window.html#a58bbc4cd19ab9b892747586d0e91582e", null ],
       [ "getNativeHandle", "class_window.html#ac2dcba6f351bed84db15e477a39f285d", null ],
       [ "getPosition", "class_window.html#aeab22e9297f866c34da02e89c094ffd3", null ],
       [ "getSize", "class_window.html#a28b707c0e4b9ac08101fc837b0b5238f", null ],
@@ -77,6 +78,7 @@ var group__core =
       [ "isVisible", "class_window.html#a6be53a737e7dfcc74167962437e93b8f", null ],
       [ "requestFocus", "class_window.html#acaf1ae031f7b9196f36f66e37ff3eb0f", null ],
       [ "setCursorLock", "class_window.html#a1c77b5d3561bf8c150c017a965a55c5f", null ],
+      [ "setCursorPosition", "class_window.html#aaeca61d223d6bce11b704bf7523133e3", null ],
       [ "setFullscreen", "class_window.html#ac44e3bd70572de401dd8cb2a2f164528", null ],
       [ "setIcon", "class_window.html#a77a78dd5a3e1c6adc3deedf49f112c45", null ],
       [ "setPosition", "class_window.html#a03f3d8d180353c4cec1788ad4c51ab60", null ],
