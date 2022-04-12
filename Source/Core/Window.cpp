@@ -107,6 +107,26 @@ void Window::setSync(bool enable) noexcept
 		glfwSwapInterval(0);
 }
 
+void Window::setResizable(bool enable)
+{
+	glfwSetWindowAttrib(handle, GLFW_RESIZABLE, enable);
+}
+
+bool Window::isResizable() const noexcept
+{
+	return glfwGetWindowAttrib(handle, GLFW_RESIZABLE);
+}
+
+void Window::setFloating(bool enable)
+{
+	glfwSetWindowAttrib(handle, GLFW_FLOATING, enable);
+}
+
+bool Window::isFloating() const noexcept
+{
+	return glfwGetWindowAttrib(handle, GLFW_FLOATING);
+}
+
 void Window::setIcon(const Image& image)
 {
 	if(image.getSize().x > 48 && image.getSize().y > 48)

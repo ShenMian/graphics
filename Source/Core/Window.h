@@ -111,6 +111,30 @@ public:
 	void setSync(bool enable) noexcept;
 
 	/**
+	 * @brief 设置大小是否可调.
+	 *
+	 * @param enable true 为可调, false 为不可调.
+	 */
+	void setResizable(bool enable);
+
+	/**
+	 * @brief 是否可调窗口大小.
+	 */
+	bool isResizable() const noexcept;
+
+	/**
+	 * @brief 设置窗口是否置顶.
+	 * 
+	 * @param enable true 为置顶, false 为不置顶.
+	 */
+	void setFloating(bool enable);
+
+	/**
+	 * @brief 是否已置顶.
+	 */
+	bool isFloating() const noexcept;
+
+	/**
 	 * @brief 设置窗口图标.
 	 *
 	 * @param image 图标图像.
