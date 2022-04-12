@@ -60,8 +60,8 @@ var group__core =
     ] ],
     [ "Input", "class_input.html", null ],
     [ "Monitor", "class_monitor.html", [
+      [ "getHandle", "class_monitor.html#a60d2288e26fdc53ec6ebdc2b3b6b5a49", null ],
       [ "getName", "class_monitor.html#a389aee29459de05e808ef216254343e8", null ],
-      [ "getNativeHandle", "class_monitor.html#a8d12b21b90a3f8449d8440452327d93f", null ],
       [ "getPosition", "class_monitor.html#a74335cdd01ee7b14ecf5302e61218862", null ],
       [ "getRefreshRate", "class_monitor.html#a4e1e52b23525c876c8981564e657a7af", null ],
       [ "getSize", "class_monitor.html#a7a46f0acdc341a56e8f2a4c9ca891215", null ],
@@ -71,7 +71,7 @@ var group__core =
       [ "Window", "class_window.html#ac9ade4f329d6426f3a48eea03d115be0", null ],
       [ "~Window", "class_window.html#a245d821e6016fa1f6970ccbbedd635f6", null ],
       [ "getCursorPosition", "class_window.html#a58bbc4cd19ab9b892747586d0e91582e", null ],
-      [ "getNativeHandle", "class_window.html#ac2dcba6f351bed84db15e477a39f285d", null ],
+      [ "getHandle", "class_window.html#a7ee41eb997d488c0ce69a893bcbdb02b", null ],
       [ "getPosition", "class_window.html#aeab22e9297f866c34da02e89c094ffd3", null ],
       [ "getSize", "class_window.html#a28b707c0e4b9ac08101fc837b0b5238f", null ],
       [ "isFullscreen", "class_window.html#ac3dc6c7f08d4b749b7949149cc6c7dc3", null ],
