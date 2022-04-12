@@ -46,7 +46,7 @@ bool Monitor::isPrimary() const
 	return handle == glfwGetPrimaryMonitor();
 }
 
-void* Monitor::getNativeHandle() const
+GLFWmonitor* Monitor::getHandle() const
 {
 	return handle;
 }
@@ -58,6 +58,16 @@ Monitor::Monitor(GLFWmonitor* handle)
 
 void Monitor::init()
 {
+	static auto update = []() {
+		primary = Monitor(glfwGetPrimaryMonitor());
+
+		int count;
+		const auto handles = glfwGetMonitors(&count);
+		monitors.clear();
+		for(int i = 0; i < count; i++)
+			monitors.push_back(std::move(Monitor(handles[i])));
+	};
+	
 	glfwSetMonitorCallback([](GLFWmonitor* monitor, int event) { update(); });
 	update();
 }
@@ -65,15 +75,4 @@ void Monitor::init()
 void Monitor::deinit()
 {
 	glfwSetMonitorCallback(nullptr);
-}
-
-void Monitor::update()
-{
-	primary = Monitor(glfwGetPrimaryMonitor());
-
-	int count;
-	const auto handles = glfwGetMonitors(&count);
-	monitors.clear();
-	for(int i = 0; i < count; i++)
-		monitors.push_back(std::move(Monitor(handles[i])));
 }

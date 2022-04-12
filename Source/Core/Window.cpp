@@ -16,7 +16,7 @@ namespace fs = std::filesystem;
 Window::Window(std::string_view title, const Vector2i& size, bool fullscreen)
 {
 	handle = glfwCreateWindow(size.x, size.y, title.data(),
-		fullscreen ? reinterpret_cast<GLFWmonitor*>(Monitor::getPrimary().getNativeHandle()) : nullptr, nullptr);
+		fullscreen ? Monitor::getPrimary().getHandle() : nullptr, nullptr);
 	assert(handle);
 
 	glfwSetWindowUserPointer(handle, static_cast<void*>(this));
@@ -91,7 +91,7 @@ void Window::setFullscreen(bool fullscreen)
 	}
 
 	const auto& monitor = Monitor::getPrimary();
-	glfwSetWindowMonitor(handle, fullscreen ? static_cast<GLFWmonitor*>(monitor.getNativeHandle()) : nullptr, position.x, position.y, size.x, size.y, GLFW_DONT_CARE);
+	glfwSetWindowMonitor(handle, fullscreen ? monitor.getHandle() : nullptr, position.x, position.y, size.x, size.y, GLFW_DONT_CARE);
 }
 
 bool Window::isFullscreen() const noexcept
@@ -147,7 +147,7 @@ void Window::setRawMouseMotion(bool enable)
 		glfwSetInputMode(handle, GLFW_RAW_MOUSE_MOTION, enable);
 }
 
-void* Window::getNativeHandle() const
+GLFWwindow* Window::getHandle() const
 {
 	return handle;
 }

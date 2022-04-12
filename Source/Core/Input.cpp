@@ -9,21 +9,18 @@ const Window* Input::window;
 
 bool Input::isPressed(Key key)
 {
-	auto* native = static_cast<GLFWwindow*>(window->getNativeHandle());
-	return glfwGetKey(native, static_cast<int>(key)) == GLFW_PRESS;
+	return glfwGetKey(window->getHandle(), static_cast<int>(key)) == GLFW_PRESS;
 }
 
 bool Input::isPressed(Mouse key)
 {
-	auto* native = static_cast<GLFWwindow*>(window->getNativeHandle());
-	return glfwGetMouseButton(native, static_cast<int>(key)) == GLFW_PRESS;
+	return glfwGetMouseButton(window->getHandle(), static_cast<int>(key)) == GLFW_PRESS;
 }
 
 Vector2 Input::getMousePosition()
 {
 	Vector2d pos;
-	auto* native = static_cast<GLFWwindow*>(window->getNativeHandle());
-	glfwGetCursorPos(native, &pos.x, &pos.y);
+	glfwGetCursorPos(window->getHandle(), &pos.x, &pos.y);
 	return Vector2(pos);
 }
 

@@ -157,7 +157,7 @@ public:
 	/**
 	 * @brief 获取本地句柄.
 	 */
-	void* getNativeHandle() const;
+	GLFWwindow* getHandle() const;
 
 	std::function<void(Vector2i)>                 onResize;     ///< 窗口大小变化时回调
 	std::function<void(bool)>                     onFocus;      ///< 窗口获取/失去焦点回调

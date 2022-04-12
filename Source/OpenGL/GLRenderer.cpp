@@ -22,8 +22,7 @@ std::string GLRenderer::getVendorName() const
 
 void GLRenderer::init(const Window& win)
 {
-	auto handle = reinterpret_cast<GLFWwindow*>(win.getNativeHandle());
-	glfwMakeContextCurrent(handle);
+	glfwMakeContextCurrent(win.getHandle());
 	if(!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 		throw std::runtime_error("OpenGL(Glad) init failed");
 }

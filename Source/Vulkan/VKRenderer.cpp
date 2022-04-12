@@ -159,7 +159,7 @@ void VKRenderer::createInstance()
 
 void VKRenderer::createSurface(const Window& win)
 {
-	if(glfwCreateWindowSurface(instance, reinterpret_cast<GLFWwindow*>(win.getNativeHandle()), nullptr, &surface) != VK_SUCCESS)
+	if(glfwCreateWindowSurface(instance, win.getHandle(), nullptr, &surface) != VK_SUCCESS)
 		throw std::runtime_error("failed to create window surface");
 }
 

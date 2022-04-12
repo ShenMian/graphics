@@ -70,12 +70,12 @@ void UI::init(const Window& win)
 		using enum Renderer::API;
 
 	case OpenGL:
-		ImGui_ImplGlfw_InitForOpenGL(reinterpret_cast<GLFWwindow*>(win.getNativeHandle()), true);
+		ImGui_ImplGlfw_InitForOpenGL(win.getHandle(), true);
 		ImGui_ImplOpenGL3_Init("#version 450");
 		break;
 
 	case Vulkan:
-		ImGui_ImplGlfw_InitForVulkan(reinterpret_cast<GLFWwindow*>(win.getNativeHandle()), true);
+		ImGui_ImplGlfw_InitForVulkan(win.getHandle(), true);
 		// ImGui_ImplVulkan_Init(ImGui_ImplVulkan_InitInfo);
 		break;
 	}

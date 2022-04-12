@@ -57,7 +57,7 @@ public:
 	/**
 	 * @brief 获取本地句柄.
 	 */
-	void* getNativeHandle() const;
+	GLFWmonitor* getHandle() const;
 
 	static void init();
 	static void deinit();
@@ -71,8 +71,6 @@ private:
 
 	static Monitor              primary;
 	static std::vector<Monitor> monitors;
-
-	static void update();
 };
 
 /** @}*/
