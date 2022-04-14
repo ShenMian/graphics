@@ -1,4 +1,5 @@
 #version 450
+#extension GL_KHR_vulkan_glsl : enable
 
 // Copyright 2021 SMS
 // License(Apache-2.0)
@@ -13,6 +14,12 @@ struct Vert
     mat3 TBN;
 };
 
+struct Bone
+{
+    uvec4 id;
+    vec4  weight;
+};
+
 layout(set = 0, binding = 0) uniform Matrices
 {
     mat4 view;
@@ -20,13 +27,12 @@ layout(set = 0, binding = 0) uniform Matrices
     mat4 model;
 } mat;
 
-/*
-const uint max_joints = 100;
+const uint max_bones = 100;
 layout(set = 0, binding = 1) uniform Animation
 {
-    mat4 joints[max_joints];
+    mat4 matrices[max_bones];
+    Bone bones[max_bones];
 } anim;
-*/
 
 layout(location = 0) in vec3 position;
 layout(location = 1) in vec3 normal;
@@ -40,6 +46,14 @@ layout(location = 0) out Vert vert;
 
 void main()
 {
+    /*
+    Bone bone = anim.bones[gl_VertexIndex];
+    mat4 offset = anim.matrices[bone.id[0]]
+        + anim.matrices[bone.id[1]]
+        + anim.matrices[bone.id[2]]
+        + anim.matrices[bone.id[3]];
+    */
+
     mat4 invModel = inverse(mat.model);
     // mat4 invModel = mat.model;
 

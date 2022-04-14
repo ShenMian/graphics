@@ -117,7 +117,7 @@ int main()
 				};
 				window.onResize = [&](Vector2i size)
 				{
-					camera.setPerspective(radians(camera.getVFOV()), (float)size.x / size.y, 0.1f, 5000.0f);
+					camera.setPerspective(camera.getVFOV(), (float)size.x / size.y, 0.1f, 5000.0f);
 				};
 				window.setVisible(true);
 
