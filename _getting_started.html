@@ -141,9 +141,9 @@ $(document).ready(function(){initNavTree('_getting_started.html',''); initResiza
 <div class="line">                  <span class="comment">// 如果你不打算使用 UI 相关的 API, 可以跳过此步骤.</span></div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// 创建窗口</span></div>
-<div class="line"><span class="keyword">const</span> <span class="keyword">auto</span>&amp; monitor = <a class="code hl_function" href="class_monitor.html#a8afbc04b4417bbeb2f4d4e2c69feb45c">Monitor::getPrimary</a>();   <span class="comment">// 获取主显示器</span></div>
+<div class="line"><span class="keyword">const</span> <span class="keyword">auto</span> monitor = <a class="code hl_function" href="class_monitor.html#a8afbc04b4417bbeb2f4d4e2c69feb45c">Monitor::getPrimary</a>();   <span class="comment">// 获取主显示器</span></div>
 <div class="line">{</div>
-<div class="line">    <a class="code hl_class" href="class_window.html">Window</a> window(<span class="stringliteral">&quot;title&quot;</span>, monitor.getSize() / 2); <span class="comment">// 创建窗口, 窗口标题为 title, 大小为主显示器分辨率的一半,</span></div>
+<div class="line">    <a class="code hl_class" href="class_window.html">Window</a> window(<span class="stringliteral">&quot;title&quot;</span>, monitor-&gt;getSize() / 2); <span class="comment">// 创建窗口, 窗口标题为 title, 大小为主显示器分辨率的一半,</span></div>
 <div class="line">                                                   <span class="comment">// 即窗口应该占据屏幕的 1/4.</span></div>
 <div class="line">    <span class="comment">// ... 窗口相关代码 ...</span></div>
 <div class="line">                                                   </div>
