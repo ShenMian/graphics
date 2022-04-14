@@ -35,7 +35,7 @@ var searchData=
   ['setsync_32',['setSync',['../class_window.html#af27c43823adcc3762b3cfab498f189f2',1,'Window']]],
   ['settitle_33',['setTitle',['../class_window.html#a5deddd3fa7c583ab6dba2947bf04c815',1,'Window']]],
   ['settwarp_34',['setTWarp',['../class_g_l_texture.html#a22f68c20e9572260f1d300f76ef56f9f',1,'GLTexture::setTWarp()'],['../class_texture.html#a3d7fa97316058caeebcdcbfdbcd34a0e',1,'Texture::setTWarp()']]],
-  ['setvisible_35',['setVisible',['../class_window.html#a6784081f75a92fcdab23f54814049b42',1,'Window']]],
+  ['setvisible_35',['setVisible',['../class_window.html#a118e0356bb6fcf081955f2bd97686036',1,'Window']]],
   ['setwindow_36',['setWindow',['../class_input.html#ae5f6d108981471b21b7bd30a74b0361b',1,'Input']]],
   ['shader_37',['Shader',['../class_shader.html',1,'']]],
   ['stage_38',['Stage',['../class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8f',1,'Shader']]],

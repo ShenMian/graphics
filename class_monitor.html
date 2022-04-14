@@ -98,10 +98,10 @@ $(document).ready(function(){initNavTree('class_monitor.html',''); initResizable
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
-<tr class="memitem:a389aee29459de05e808ef216254343e8"><td class="memItemLeft" align="right" valign="top"><a id="a389aee29459de05e808ef216254343e8" name="a389aee29459de05e808ef216254343e8"></a>
-const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getName</b> () const</td></tr>
-<tr class="memdesc:a389aee29459de05e808ef216254343e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取显示器名称. <br /></td></tr>
-<tr class="separator:a389aee29459de05e808ef216254343e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af348acf870af8a0e27c4560c96eafd7c"><td class="memItemLeft" align="right" valign="top"><a id="af348acf870af8a0e27c4560c96eafd7c" name="af348acf870af8a0e27c4560c96eafd7c"></a>
+std::string_view&#160;</td><td class="memItemRight" valign="bottom"><b>getName</b> () const</td></tr>
+<tr class="memdesc:af348acf870af8a0e27c4560c96eafd7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取显示器名称. <br /></td></tr>
+<tr class="separator:af348acf870af8a0e27c4560c96eafd7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7a46f0acdc341a56e8f2a4c9ca891215"><td class="memItemLeft" align="right" valign="top"><a id="a7a46f0acdc341a56e8f2a4c9ca891215" name="a7a46f0acdc341a56e8f2a4c9ca891215"></a>
 Vector2i&#160;</td><td class="memItemRight" valign="bottom"><b>getSize</b> () const</td></tr>
 <tr class="memdesc:a7a46f0acdc341a56e8f2a4c9ca891215"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取显示器大小(即分辨率), 单位: 像素. <br /></td></tr>
@@ -122,13 +122,16 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>isPrimary</b> () cons
 GLFWmonitor *&#160;</td><td class="memItemRight" valign="bottom"><b>getHandle</b> () const</td></tr>
 <tr class="memdesc:a60d2288e26fdc53ec6ebdc2b3b6b5a49"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取本地句柄. <br /></td></tr>
 <tr class="separator:a60d2288e26fdc53ec6ebdc2b3b6b5a49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05f32811769408ae11b10d15e173ce96"><td class="memItemLeft" align="right" valign="top"><a id="a05f32811769408ae11b10d15e173ce96" name="a05f32811769408ae11b10d15e173ce96"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="class_monitor.html">Monitor</a> &amp;) const =default</td></tr>
+<tr class="separator:a05f32811769408ae11b10d15e173ce96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 静态 Public 成员函数</h2></td></tr>
-<tr class="memitem:a022ad400f75d700488c657069e4d6993"><td class="memItemLeft" align="right" valign="top"><a id="a022ad400f75d700488c657069e4d6993" name="a022ad400f75d700488c657069e4d6993"></a>
-static const <a class="el" href="class_monitor.html">Monitor</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getPrimary</b> ()</td></tr>
-<tr class="memdesc:a022ad400f75d700488c657069e4d6993"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取主显示器. <br /></td></tr>
-<tr class="separator:a022ad400f75d700488c657069e4d6993"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8afbc04b4417bbeb2f4d4e2c69feb45c"><td class="memItemLeft" align="right" valign="top"><a id="a8afbc04b4417bbeb2f4d4e2c69feb45c" name="a8afbc04b4417bbeb2f4d4e2c69feb45c"></a>
+static const <a class="el" href="class_monitor.html">Monitor</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getPrimary</b> () noexcept</td></tr>
+<tr class="memdesc:a8afbc04b4417bbeb2f4d4e2c69feb45c"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取主显示器. <br /></td></tr>
+<tr class="separator:a8afbc04b4417bbeb2f4d4e2c69feb45c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad8e32b839379ec0807b90747c5ccc8d8"><td class="memItemLeft" align="right" valign="top"><a id="ad8e32b839379ec0807b90747c5ccc8d8" name="ad8e32b839379ec0807b90747c5ccc8d8"></a>
 static const std::vector&lt; <a class="el" href="class_monitor.html">Monitor</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getMonitors</b> ()</td></tr>
 <tr class="memdesc:ad8e32b839379ec0807b90747c5ccc8d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取全部显示器. <br /></td></tr>
