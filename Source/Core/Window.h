@@ -61,7 +61,7 @@ public:
 	/**
 	 * @brief 获取窗口大小.
 	 */
-	Vector2i getSize() const noexcept;
+	Vector2i getSize() const;
 
 	/**
 	 * @brief 设置窗口坐标.
@@ -75,14 +75,14 @@ public:
 	 *
 	 * @return 当前窗口坐标.
 	 */
-	Vector2i getPosition() const noexcept;
+	Vector2i getPosition() const;
 
 	/**
 	 * @brief 设置窗口可见性.
 	 *
 	 * @param visible true 为可见, false 为不可见.
 	 */
-	void setVisible(bool visible) noexcept;
+	void setVisible(bool visible);
 
 	/**
 	 * @brief 获取窗口可见性.

@@ -4,12 +4,16 @@
 #include "Monitor.h"
 #include <GLFW/glfw3.h>
 
-Monitor              Monitor::primary;
+#include <optional>
+
 std::vector<Monitor> Monitor::monitors;
 
-const Monitor& Monitor::getPrimary()
+const Monitor* Monitor::getPrimary() noexcept
 {
-	return primary;
+	const auto it = std::find(monitors.begin(), monitors.end(), Monitor(glfwGetPrimaryMonitor()));
+	if(it == monitors.end())
+		return nullptr;
+	return &(*it);
 }
 
 const std::vector<Monitor>& Monitor::getMonitors()
@@ -17,9 +21,9 @@ const std::vector<Monitor>& Monitor::getMonitors()
 	return monitors;
 }
 
-const std::string& Monitor::getName() const
+std::string_view Monitor::getName() const
 {
-	return name;
+	return glfwGetMonitorName(handle);
 }
 
 Vector2i Monitor::getSize() const
@@ -52,20 +56,20 @@ GLFWmonitor* Monitor::getHandle() const
 }
 
 Monitor::Monitor(GLFWmonitor* handle)
-	: handle(handle), name(glfwGetMonitorName(handle))
+	: handle(handle)
 {
 }
 
 void Monitor::init()
 {
 	static auto update = []() {
-		primary = Monitor(glfwGetPrimaryMonitor());
-
 		int count;
 		const auto handles = glfwGetMonitors(&count);
 		monitors.clear();
 		for(int i = 0; i < count; i++)
 			monitors.push_back(std::move(Monitor(handles[i])));
+		if(monitors.empty())
+			throw std::runtime_error("do no have any monitor");
 	};
 	
 	glfwSetMonitorCallback([](GLFWmonitor* monitor, int event) { update(); });

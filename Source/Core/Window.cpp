@@ -16,7 +16,7 @@ namespace fs = std::filesystem;
 Window::Window(std::string_view title, const Vector2i& size, bool fullscreen)
 {
 	handle = glfwCreateWindow(size.x, size.y, title.data(),
-		fullscreen ? Monitor::getPrimary().getHandle() : nullptr, nullptr);
+		fullscreen ? Monitor::getPrimary()->getHandle() : nullptr, nullptr);
 	assert(handle);
 
 	glfwSetWindowUserPointer(handle, static_cast<void*>(this));
@@ -50,7 +50,7 @@ void Window::setSize(const Vector2i& size)
 	glfwSetWindowSize(handle, size.x, size.y);
 }
 
-Vector2i Window::getSize() const noexcept
+Vector2i Window::getSize() const
 {
 	int x, y;
 	glfwGetWindowSize(handle, &x, &y);
@@ -62,14 +62,14 @@ void Window::setPosition(const Vector2i& pos)
 	glfwSetWindowPos(handle, pos.x, pos.y);
 }
 
-Vector2i Window::getPosition() const noexcept
+Vector2i Window::getPosition() const
 {
 	int x, y;
 	glfwGetWindowPos(handle, &x, &y);
 	return {x, y};
 }
 
-void Window::setVisible(bool visible) noexcept
+void Window::setVisible(bool visible)
 {
 	if(visible)
 		glfwShowWindow(handle);
@@ -90,8 +90,8 @@ void Window::setFullscreen(bool fullscreen)
 		position = getPosition();
 	}
 
-	const auto& monitor = Monitor::getPrimary();
-	glfwSetWindowMonitor(handle, fullscreen ? monitor.getHandle() : nullptr, position.x, position.y, size.x, size.y, GLFW_DONT_CARE);
+	const auto monitor = Monitor::getPrimary();
+	glfwSetWindowMonitor(handle, fullscreen ? monitor->getHandle() : nullptr, position.x, position.y, size.x, size.y, GLFW_DONT_CARE);
 }
 
 bool Window::isFullscreen() const noexcept
