@@ -2,7 +2,7 @@ var searchData=
 [
   ['gamepad_0',['Gamepad',['../class_gamepad.html',1,'Gamepad'],['../class_gamepad.html#a0153d72ca3f7dfb816a872191fa5a651',1,'Gamepad::Gamepad()']]],
   ['geometry_1',['Geometry',['../struct_pipeline_layout_1_1_stage_flags.html#a3766b6c50d5167f12df2624c34c93b93a149afe1cc4fb70e43ef1d0f485920960',1,'PipelineLayout::StageFlags::Geometry()'],['../class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8fad9c6333623e6357515fcbf17be806273',1,'Shader::Geometry()']]],
-  ['get_2',['get',['../class_gamepad.html#aace04775bce81c450f0096793f6fd199',1,'Gamepad::get(Thumb thumb) const'],['../class_gamepad.html#aff13c015ca3a1c720ef8b2a87ff941f7',1,'Gamepad::get(Trigger trigger) const'],['../class_gamepad.html#a9791f37d4d4a3e8041c6bd309950074d',1,'Gamepad::get(Button button) const'],['../class_renderer.html#a9f5e294852455a98d519f4bc03708323',1,'Renderer::get()']]],
+  ['get_2',['get',['../class_gamepad.html#adb986158a3306e5cef36f5c1b1bbe2bc',1,'Gamepad::get(Thumb thumb) const noexcept'],['../class_gamepad.html#a470f93ec7bd5fe9dc2e019a3a2f82869',1,'Gamepad::get(Trigger trigger) const noexcept'],['../class_gamepad.html#add5894040c3cb6c01f2708aa76c7b91c',1,'Gamepad::get(Button button) const noexcept'],['../class_renderer.html#a9f5e294852455a98d519f4bc03708323',1,'Renderer::get()']]],
   ['getaabb_3',['getAABB',['../class_model.html#a8b2bc5e7f945efb88fcd01a7d2af3ca0',1,'Model']]],
   ['getapi_4',['getAPI',['../class_renderer.html#a9f11c63dc16c34489aba73dac51fc58c',1,'Renderer']]],
   ['getaspectratio_5',['getAspectRatio',['../class_camera.html#ae293133e02172fd477f821dd0d065f2b',1,'Camera']]],
@@ -39,7 +39,7 @@ var searchData=
   ['getprojection_36',['getProjection',['../class_camera.html#a90f8ded7af9a5ba9fcabd5b43271be40',1,'Camera']]],
   ['getqueue_37',['getQueue',['../class_v_k_device.html#ab9a1f3885fed4a385a311f6ac8abdcf0',1,'VKDevice']]],
   ['getqueueindex_38',['getQueueIndex',['../class_v_k_device.html#a80953af4c4d080ec0778c35483ed0027',1,'VKDevice']]],
-  ['getraw_39',['getRaw',['../class_gamepad.html#aaf38c3534ec0ee1751b47e031bcccea1',1,'Gamepad::getRaw(Thumb thumb) const'],['../class_gamepad.html#a9d1249f8947d85c23843c2dc934c9e70',1,'Gamepad::getRaw(Trigger trigger) const']]],
+  ['getraw_39',['getRaw',['../class_gamepad.html#a3d1ef5d5e9845ac3e8dc5d484cc374e8',1,'Gamepad::getRaw(Thumb thumb) const noexcept'],['../class_gamepad.html#a699b3348d46e0ee4bcb7532499970570',1,'Gamepad::getRaw(Trigger trigger) const noexcept']]],
   ['getrefreshrate_40',['getRefreshRate',['../class_monitor.html#a4e1e52b23525c876c8981564e657a7af',1,'Monitor']]],
   ['getrotation_41',['getRotation',['../class_camera.html#a9f963f5adfd87616ac7d6608a17c0ac3',1,'Camera']]],
   ['getsize_42',['getSize',['../class_vertex_buffer.html#a449c075862df927b06cf5cb1e417a89c',1,'VertexBuffer::getSize()'],['../class_buffer.html#a996ac8bec0aaccf19776c45b55b27dd2',1,'Buffer::getSize()'],['../class_image.html#a11449ef48be752526f0537173b1d94e7',1,'Image::getSize()'],['../class_monitor.html#a7a46f0acdc341a56e8f2a4c9ca891215',1,'Monitor::getSize()'],['../class_window.html#a28b707c0e4b9ac08101fc837b0b5238f',1,'Window::getSize()'],['../class_index_buffer.html#a9d45b662917b2b43e7e4d470515e0c91',1,'IndexBuffer::getSize()']]],
