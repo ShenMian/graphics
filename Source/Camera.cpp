@@ -115,7 +115,7 @@ float Camera::getNear() const
 
 float Camera::getFar() const
 {
-	return perspective.near;
+	return perspective.far;
 }
 
 void Camera::updateProjectionMatrix() const
