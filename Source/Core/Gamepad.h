@@ -13,6 +13,8 @@
 
  /**
   * @brief 游戏手柄.
+  *
+  * @warning 不支持震动.
   */
 class Gamepad
 {
@@ -39,16 +41,16 @@ public:
 	 * @param thumb 摇杆.
 	 * @return Vector2f 范围: [-1, 1]
 	 */
-	Vector2f get(Thumb thumb) const;
+	Vector2f get(Thumb thumb) const noexcept;
 
 	/**
 	 * @brief 获取原始摇杆数据.
 	 *
 	 * @param thumb 摇杆.
 	 * @return Vector2f 范围: [-1, 1]
-	 * @warning 不建议使用.
+	 * @warning 不建议直接使用.
 	 */
-	Vector2f getRaw(Thumb thumb) const;
+	Vector2f getRaw(Thumb thumb) const noexcept;
 
 	/**
 	 * @brief 获取线性按键力度.
@@ -56,16 +58,16 @@ public:
 	 * @param trigger 线性按键.
 	 * @return float 0 表示没有按下, 范围: [0, 1]
 	 */
-	float get(Trigger trigger) const;
+	float get(Trigger trigger) const noexcept;
 
 	/**
 	 * @brief 获取原始线性按键数据.
 	 *
 	 * @param trigger 线性按键.
 	 * @return float 0 表示没有按下, 范围: [0, 1]
-	 * @warning 不建议使用.
+	 * @warning 不建议直接使用.
 	 */
-	float getRaw(Trigger trigger) const;
+	float getRaw(Trigger trigger) const noexcept;
 
 	/**
 	 * @brief 获取按键状态.
@@ -74,7 +76,7 @@ public:
 	 * @return true   按键按下.
 	 * @return false  按键抬起.
 	 */
-	bool get(Button button) const;
+	bool get(Button button) const noexcept;
 
 	/**
 	 * @brief 获取设备名称. 人类可读的, UTF-8 编码.

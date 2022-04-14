@@ -13,11 +13,12 @@ Gamepad::Gamepad(handle_type handle)
 
 void Gamepad::update()
 {
-	if(!glfwJoystickIsGamepad(handle)) // Linux 下未连接手柄时会返回 false
-        return;
+	// if(!glfwJoystickIsGamepad(handle))
+	//     return;
 
 	GLFWgamepadstate state;
-	glfwGetGamepadState(handle, &state);
+	if(!glfwGetGamepadState(handle, &state))
+		return;
 	std::memcpy(buttons, state.buttons, sizeof(buttons));
 	std::memcpy(axes, state.axes, sizeof(axes));
 
@@ -29,14 +30,9 @@ void Gamepad::update()
 	*/
 }
 
-bool Gamepad::get(Button button) const
+Vector2f Gamepad::get(Thumb thumb) const noexcept
 {
-	return buttons[static_cast<uint8_t>(button)] == GLFW_PRESS;
-}
-
-Vector2f Gamepad::get(Thumb thumb) const
-{
-	Vector2f value = getRaw(thumb);
+	const Vector2f value = getRaw(thumb);
 
 	float deadzone;
 	if(thumb == Thumb::left)
@@ -50,25 +46,19 @@ Vector2f Gamepad::get(Thumb thumb) const
 		return Vector2f::zero;
 }
 
-Vector2f Gamepad::getRaw(Thumb thumb) const
+Vector2f Gamepad::getRaw(Thumb thumb) const noexcept
 {
-	switch(thumb)
-	{
-	case Thumb::left:
+	assert(thumb == Thumb::left || thumb == Thumb::right);
+
+	if(thumb == Thumb::left)
 		return {axes[GLFW_GAMEPAD_AXIS_LEFT_X], axes[GLFW_GAMEPAD_AXIS_LEFT_Y]};
-
-	case Thumb::right:
+	else
 		return {axes[GLFW_GAMEPAD_AXIS_RIGHT_X], axes[GLFW_GAMEPAD_AXIS_RIGHT_Y]};
-
-	default:
-		assert(false);
-		return {};
-	}
 }
 
-float Gamepad::get(Trigger trigger) const
+float Gamepad::get(Trigger trigger) const noexcept
 {
-	float value = getRaw(trigger);
+	const float value = getRaw(trigger);
 
 	if(value > triggerThreshold)
 		return value - triggerThreshold;
@@ -76,20 +66,19 @@ float Gamepad::get(Trigger trigger) const
 		return 0;
 }
 
-float Gamepad::getRaw(Trigger trigger) const
+float Gamepad::getRaw(Trigger trigger) const noexcept
 {
-	switch(trigger)
-	{
-	case Trigger::left:
+	assert(trigger == Trigger::left || trigger == Trigger::right);
+
+	if(trigger == Trigger::left)
 		return axes[GLFW_GAMEPAD_AXIS_LEFT_TRIGGER];
-
-	case Trigger::right:
+	else
 		return axes[GLFW_GAMEPAD_AXIS_RIGHT_TRIGGER];
+}
 
-	default:
-		assert(false);
-		return {};
-	}
+bool Gamepad::get(Button button) const noexcept
+{
+	return buttons[static_cast<uint8_t>(button)] == GLFW_PRESS;
 }
 
 std::string_view Gamepad::getName() const
@@ -99,8 +88,7 @@ std::string_view Gamepad::getName() const
 
 bool Gamepad::isConnected() const
 {
-    // FIXME: Linux 下未连接手柄时会返回 true
-	return glfwJoystickPresent(handle);
+	return glfwJoystickPresent(handle); // FIXME: Linux 下未连接手柄时会返回 true
 }
 
 bool Gamepad::operator==(const Gamepad& rhs) const
