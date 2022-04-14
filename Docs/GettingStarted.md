@@ -68,9 +68,9 @@ UI::init();       // (可选) 初始化 UI, 之后才能使用 UI 相关的 API.
                   // 如果你不打算使用 UI 相关的 API, 可以跳过此步骤.
 
 // 创建窗口
-const auto& monitor = Monitor::getPrimary();   // 获取主显示器
+const auto monitor = Monitor::getPrimary();   // 获取主显示器
 {
-    Window window("title", monitor.getSize() / 2); // 创建窗口, 窗口标题为 title, 大小为主显示器分辨率的一半,
+    Window window("title", monitor->getSize() / 2); // 创建窗口, 窗口标题为 title, 大小为主显示器分辨率的一半,
                                                    // 即窗口应该占据屏幕的 1/4.
     // ... 窗口相关代码 ...
                                                    
