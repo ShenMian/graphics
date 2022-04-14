@@ -97,7 +97,7 @@ Vector4f Image::getPixel(Size2 pos) const
 	return {pixel[0] / 255.f, pixel[1] / 255.f, pixel[2] / 255.f, pixel[3] / 255.f};
 }
 
-void Image::flipHorizontally()
+void Image::flipHorizontally() noexcept
 {
 	const auto rowSize = size.x * channels;
 
@@ -116,7 +116,7 @@ void Image::flipHorizontally()
 	}
 }
 
-void Image::flipVertically()
+void Image::flipVertically() noexcept
 {
 	const auto rowSize = size.x * channels;
 
@@ -132,27 +132,27 @@ void Image::flipVertically()
 	}
 }
 
-uint8_t* Image::getData()
+uint8_t* Image::getData() noexcept
 {
 	return data.data();
 }
 
-const uint8_t* Image::getData() const
+const uint8_t* Image::getData() const noexcept
 {
 	return data.data();
 }
 
-size_t Image::getDataSize() const
+size_t Image::getDataSize() const noexcept
 {
 	return data.size();
 }
 
-Vector2i Image::getSize() const
+Vector2i Image::getSize() const noexcept
 {
 	return size;
 }
 
-int Image::getChannelCount() const
+int Image::getChannelCount() const noexcept
 {
 	return channels;
 }

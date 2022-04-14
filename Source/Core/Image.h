@@ -77,37 +77,37 @@ public:
 	/**
 	 * @brief 水平(左右)翻转.
 	 */
-	void flipHorizontally();
+	void flipHorizontally() noexcept;
 
 	/**
 	 * @brief 垂直(上下)翻转.
 	 */
-	void flipVertically();
+	void flipVertically() noexcept;
 
 	/**
 	 * @brief 获取图像数据.
 	 */
-	uint8_t* getData();
+	uint8_t* getData() noexcept;
 
 	/**
 	 * @brief 获取图像数据.
 	 */
-	const uint8_t* getData() const;
+	const uint8_t* getData() const noexcept;
 
 	/**
 	 * @brief 获取图像数据大小.
 	 */
-	size_t getDataSize() const;
+	size_t getDataSize() const noexcept;
 
 	/**
 	 * @brief 获取图像分辨率.
 	 */
-	Vector2i getSize() const;
+	Vector2i getSize() const noexcept;
 
 	/**
 	 * @brief 获取通道数.
 	 */
-	int getChannelCount() const;
+	int getChannelCount() const noexcept;
 
 private:
 	std::vector<uint8_t> data;
