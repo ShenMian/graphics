@@ -6,14 +6,21 @@ cmake_minimum_required(VERSION 3.16)
 
 # 指定项目名和版本号
 project(Graphics
-  VERSION     0.0.0
-  DESCRIPTION "A simple abstraction layer for the modern graphics APIs.")
+  VERSION      0.0.0
+  DESCRIPTION  "A simple abstraction layer for the modern graphics APIs."
+  HOMEPAGE_URL "https://github.com/ShenMian/Graphics"
+  LANGUAGES    CXX C)
+
+# 指定默认编译类型
+if(NOT DEFINED CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE Debug)
+endif()
 
 # 选项
 option(BUILD_EXAMPLES "Build examples" ON)
-option(BUILD_TESTS    "Build tests"    ON)
+# option(BUILD_TESTS    "Build tests"    ON)
 
-# 输出信息
+# 输出基本信息
 if(${CMAKE_VERSION} VERSION_GREATER_EQUAL "3.22.0")
   cmake_host_system_information(RESULT OS_PRETTY_NAME QUERY DISTRIB_PRETTY_NAME)
 endif()
@@ -23,11 +30,6 @@ message(STATUS "`- Version: ${CMAKE_SYSTEM_VERSION}")
 message(STATUS "Compiler")
 message(STATUS "|- ID     : ${CMAKE_CXX_COMPILER_ID}")
 message(STATUS "`- Version: ${CMAKE_CXX_COMPILER_VERSION}")
-
-# 指定默认编译类型
-if(NOT DEFINED CMAKE_BUILD_TYPE)
-  set(CMAKE_BUILD_TYPE Debug)
-endif()
 
 # 指定构建目录
 set(CMAKE_BINARY_DIR               "${PROJECT_SOURCE_DIR}/build")
