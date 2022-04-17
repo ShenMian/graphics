@@ -17,6 +17,7 @@ var group__model =
     [ "Model", "class_model.html", [
       [ "ProcessFlags", "struct_model_1_1_process_flags.html", null ],
       [ "getAABB", "class_model.html#a8b2bc5e7f945efb88fcd01a7d2af3ca0", null ],
+      [ "getAnimation", "class_model.html#a79792bd41f2c585b8211424a2cbb0661", null ],
       [ "getMeshes", "class_model.html#aa831aec5439d92d41a99cf18b9c16c95", null ],
       [ "getMeshInfo", "class_model.html#a625d1bcff290f0976fba8011df596037", null ],
       [ "getName", "class_model.html#a55493aa9daaaa26137cc00a34b351ff8", null ],
