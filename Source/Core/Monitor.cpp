@@ -62,7 +62,7 @@ Monitor::Monitor(GLFWmonitor* handle)
 
 void Monitor::init()
 {
-	static auto update = []() {
+	static auto update = []{
 		int count;
 		const auto handles = glfwGetMonitors(&count);
 		monitors.clear();

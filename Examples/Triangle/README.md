@@ -94,7 +94,7 @@ auto cmdQueue  = CommandQueue::create();  // 创建命令队列
 
 ```cpp
 bool running   = true; // 当该变量值为 false 时主循环退出, 程序结束
-window.onClose = [&]() { running = false; }; // 注册一个窗口关闭按钮按下的回调,
+window.onClose = [&]{ running = false; }; // 注册一个窗口关闭按钮按下的回调,
                                              // 当窗口关闭按钮被按下时 running 的值变为 false,
                                              // 主循环在执行完循环体后退出, 程序结束
 while(running)
