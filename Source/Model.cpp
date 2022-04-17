@@ -88,6 +88,34 @@ void loadIndices(std::vector<unsigned int>& indices, const aiMesh* mesh)
 	}
 }
 
+// 获取顶点骨骼数据
+template <typename Vertex>
+void loadBones(std::vector<Vertex>& vertices, std::vector<Matrix4f>& bones, const aiMesh* mesh)
+{
+	bones.resize(mesh->mNumBones);
+	for(unsigned int boneId = 0; boneId < mesh->mNumBones; boneId++)
+	{
+		const auto& bone = *mesh->mBones[boneId];
+		bones[boneId] = Matrix4f(bone.mOffsetMatrix[0]);
+
+		/*
+		for(unsigned int i = 0; i < bone.mNumWeights; i++)
+		{
+			const auto& weight = bone.mWeights[i];
+			for(size_t j = 0; j < vertices[weight.mVertexId].bones.size(); j++)
+			{
+				if(vertices[weight.mVertexId].weights[j] == 0)
+				{
+					vertices[weight.mVertexId].bones[j] = boneId;
+					vertices[weight.mVertexId].weights[j] = weight.mWeight;
+					break;
+				}
+			}
+		}
+		*/
+	}
+}
+
 // 加载材质
 void loadMaterial(Material& mat, const aiMesh* mesh, const aiScene* scene, const fs::path& path)
 {
@@ -137,7 +165,7 @@ void loadMaterial(Material& mat, const aiMesh* mesh, const aiScene* scene, const
  * @param path   模型位置.
  * @param meshs  要载入到的 Mesh 数组.
  */
-void loadMesh(const aiMesh* aMesh, const aiScene* scene, const fs::path& path, std::vector<Mesh>& meshes, AABB3& aabb)
+void loadMesh(const aiMesh* mesh, const aiScene* scene, const fs::path& path, std::vector<Mesh>& meshes, std::vector<Matrix4f>& bones, AABB3& aabb)
 {
 	static auto currScene = scene; // TODO: debug
 	static unsigned int i = 0;
@@ -152,11 +180,12 @@ void loadMesh(const aiMesh* aMesh, const aiScene* scene, const fs::path& path, s
 	Material material;
 
     // 读取模型数据
-	loadVertices(vertices, aMesh);
-	loadIndices(indices, aMesh);
+	loadVertices(vertices, mesh);
+	loadIndices(indices, mesh);
+	loadBones(vertices, bones, mesh);
 	// loadMaterial(material, aMesh, scene, path);
 
-	const std::string name = aMesh->mName.C_Str();
+	const std::string name = mesh->mName.C_Str();
 
 	for(const auto& vertex : vertices)
 		aabb.expand(vertex.position);
@@ -172,15 +201,15 @@ void loadMesh(const aiMesh* aMesh, const aiScene* scene, const fs::path& path, s
  * @param path   模型文件位置.
  * @param meshes 要载入到的 Mesh 数组.
  */
-void loadNode(const aiNode* node, const aiScene* scene, const fs::path& path, std::vector<Mesh>& meshes, AABB3& aabb)
+void loadNode(const aiNode* node, const aiScene* scene, const fs::path& path, std::vector<Mesh>& meshes, std::vector<Matrix4f>& bones, AABB3& aabb)
 {
 	// 加载网格
 	for(unsigned int i = 0; i < node->mNumMeshes; i++)
-		loadMesh(scene->mMeshes[node->mMeshes[i]], scene, path, meshes, aabb);
+		loadMesh(scene->mMeshes[node->mMeshes[i]], scene, path, meshes, bones, aabb);
 
 	// 加载其余节点
 	for(unsigned int i = 0; i < node->mNumChildren; i++)
-		loadNode(node->mChildren[i], scene, path, meshes, aabb);
+		loadNode(node->mChildren[i], scene, path, meshes, bones, aabb);
 }
 
 }
@@ -234,10 +263,16 @@ void Model::load(const fs::path& path, unsigned int process, std::function<void(
 
 	printf("Meshes loaded: %.2lfs       \n", clock.getSeconds()); // TODO: debug
 	clock.restart();
-	loadNode(scene->mRootNode, scene, path, meshes, aabb);
+	loadNode(scene->mRootNode, scene, path, meshes, bones, aabb);
 	for(const auto& mesh : meshes)
 		meshInfo += mesh.getInfo();
 	printf("Meshes processed: %.2lfs       \n", clock.getSeconds()); // TODO: debug
+
+	for(unsigned int i = 0; i < scene->mNumAnimations; i++)
+	{
+		const auto& anim = *scene->mAnimations[i];
+		animations.emplace(anim.mName.C_Str(), Animation(anim.mName.C_Str(), anim.mDuration / anim.mTicksPerSecond, (int)anim.mTicksPerSecond));
+	}
 }
 
 const std::string& Model::getName() const
@@ -253,6 +288,11 @@ const AABB3& Model::getAABB() const
 const std::vector<Mesh>& Model::getMeshes() const
 {
 	return meshes;
+}
+
+const Animation& Model::getAnimation(const std::string& name) const
+{
+	return animations.at(name);
 }
 
 const Mesh::Info& Model::getMeshInfo() const

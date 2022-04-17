@@ -4,6 +4,7 @@
 #pragma once
 
 #include "Mesh.h"
+#include "Animation.h"
 #include <Math/Math.hpp>
 #include <stdexcept>
 #include <filesystem>
@@ -54,10 +55,15 @@ public:
 	 */
 	[[nodiscard]] const AABB3& getAABB() const;
 
-    /**
-     * @brief 获取网格.
-     */
-    [[nodiscard]] const std::vector<Mesh>& getMeshes() const;
+	/**
+	 * @brief 获取网格.
+	 */
+	[[nodiscard]] const std::vector<Mesh>& getMeshes() const;
+
+	/**
+	 * @brief 获取动画.
+	 */
+	[[nodiscard]] const Animation& getAnimation(const std::string& name) const;
 
 	/**
 	 * @brief 获取网格信息.
@@ -68,11 +74,13 @@ public:
 	void decompress();
 
 private:
-	std::string           name;
-	std::vector<Mesh>     meshes;
-	std::filesystem::path path;
-	AABB3                 aabb;
-	Mesh::Info            meshInfo;
+	std::string                                name;
+	std::vector<Mesh>                          meshes;
+	std::vector<Matrix4f>                      bones;
+	std::unordered_map<std::string, Animation> animations;
+	std::filesystem::path                      path;
+	AABB3                                      aabb;
+	Mesh::Info                                 meshInfo;
 };
 
 /*
