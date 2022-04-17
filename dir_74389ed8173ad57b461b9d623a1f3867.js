@@ -4,6 +4,7 @@ var dir_74389ed8173ad57b461b9d623a1f3867 =
     [ "OpenGL", "dir_b45e4cf940d5a0df58026f031e97f341.html", "dir_b45e4cf940d5a0df58026f031e97f341" ],
     [ "UI", "dir_ad68fd99ee46e73a145661c4c85612bf.html", "dir_ad68fd99ee46e73a145661c4c85612bf" ],
     [ "Vulkan", "dir_4a0f9454dbde776c384a5152f26c4e54.html", "dir_4a0f9454dbde776c384a5152f26c4e54" ],
+    [ "Animation.h", "_animation_8h_source.html", null ],
     [ "Buffer.h", "_buffer_8h_source.html", null ],
     [ "Camera.h", "_camera_8h_source.html", null ],
     [ "CommandBuffer.h", "_command_buffer_8h_source.html", null ],

@@ -1,5 +1,6 @@
 var hierarchy =
 [
+    [ "Animation", "class_animation.html", null ],
     [ "VertexAttributes::Attribute", "struct_vertex_attributes_1_1_attribute.html", null ],
     [ "PipelineLayout::Binding", "struct_pipeline_layout_1_1_binding.html", null ],
     [ "Buffer", "class_buffer.html", [
