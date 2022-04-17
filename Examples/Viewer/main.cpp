@@ -20,7 +20,7 @@ int main()
 		Window::init();
 
 		{
-			Window window("Test", Monitor::getPrimary().getSize() / 2);
+			Window window("Test", Monitor::getPrimary()->getSize() / 2);
 			Renderer::init(window);
 			UI::init(window);
 			Input::setWindow(window);
@@ -28,19 +28,6 @@ int main()
 			{
 				PrintMonitorInfo();
 				PrintRendererInfo();
-
-				// const std::filesystem::path path = "../../../../../../model/bee.glb";
-				const std::filesystem::path path = "../../../../../../model/sponza/sponza.obj";
-				// const std::filesystem::path path = "../../../../../../model/pistol/kimber_desert_warrior/scene.gltf";
-				// const std::filesystem::path path = "../../../../../../model/Bistro/BistroExterior.glb";
-				// const std::filesystem::path path = "../../../../../../model/SpeedTree/White Oak/HighPoly/White_Oak.fbx";
-				// const std::filesystem::path path = "../../../../../../model/San_Miguel/san-miguel-low-poly.obj";
-
-				Model model;
-				model.load(path, Model::ProcessFlags::Fast, [](float progress) {
-					printf("Meshes loading: %.1f%%  \r", progress * 100);
-				});
-				PrintModelInfo(model);
 
 				auto program = Program::create("Shaders/mesh");
 
@@ -77,8 +64,21 @@ int main()
 				Gamepad gamepad(0);
 				controller.setGamepad(gamepad);
 
+				// const std::filesystem::path path = "../../../../../../model/bee.glb";
+				const std::filesystem::path path = "../../../../../../model/sponza/sponza.obj";
+				// const std::filesystem::path path = "../../../../../../model/pistol/kimber_desert_warrior/scene.gltf";
+				// const std::filesystem::path path = "../../../../../../model/Bistro/BistroExterior.glb";
+				// const std::filesystem::path path = "../../../../../../model/SpeedTree/White Oak/HighPoly/White_Oak.fbx";
+				// const std::filesystem::path path = "../../../../../../model/San_Miguel/san-miguel-low-poly.obj";
+
+				Model model;
+				model.load(path, Model::ProcessFlags::Fast, [](float progress) {
+					printf("Meshes loading: %.1f%%  \r", progress * 100);
+				});
+				PrintModelInfo(model);
+
 				bool running = true;
-				window.onClose = [&]() { running = false; };
+				window.onClose = [&]{ running = false; };
 				window.onKey = [&](int action, Key key)
 				{
 					if(!action)
@@ -113,11 +113,11 @@ int main()
 					if(1.f <= fov && fov <= 60.f)
 						fov -= (float)offset.y * 3 * (fov / 60);
 					fov = std::clamp(fov, 1.f, 60.f);
-					camera.setPerspective(radians(fov), (float)window.getSize().x / window.getSize().y, 0.03f, 10000.f);
+					camera.setPerspective(radians(fov), camera.getAspectRatio(), camera.getNear(), camera.getFar());
 				};
 				window.onResize = [&](Vector2i size)
 				{
-					camera.setPerspective(camera.getVFOV(), (float)size.x / size.y, 0.1f, 5000.0f);
+					camera.setPerspective(camera.getVFOV(), (float)size.x / size.y, camera.getNear(), camera.getFar());
 				};
 				window.setVisible(true);
 
@@ -163,9 +163,11 @@ int main()
 						dir.z, dir.x, dir.y));
 					ATT.update();
 
+					matrices.map(3 * sizeof(Matrix4f));
 					matrices.write(camera.getView().data(), sizeof(Matrix4f));
 					matrices.write(camera.getProjection().data(), sizeof(Matrix4f), sizeof(Matrix4f));
-					matrices.write(Matrix4f().data(), sizeof(Matrix4f), sizeof(Matrix4f) * 2);
+					matrices.write(Matrix4f().data(), sizeof(Matrix4f), 2 * sizeof(Matrix4f));
+					matrices.unmap();
 
 					cmdBuffer->begin();
 					{
