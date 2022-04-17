@@ -21,7 +21,7 @@ int main()
 	Window::init();
 
 	{
-		Window window("Triangle", Monitor::getPrimary().getSize() / 2);
+		Window window("Triangle", Monitor::getPrimary()->getSize() / 2);
 		Renderer::init(window);
 
 		{
@@ -53,7 +53,7 @@ int main()
 			auto cmdBuffer = CommandBuffer::create();
 
 			bool running = true;
-			window.onClose = [&]() { running = false; };
+			window.onClose = [&]{ running = false; };
 			window.setVisible(true); // 设置窗口可见
 
 			while(running)
