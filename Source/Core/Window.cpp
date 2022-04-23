@@ -17,7 +17,8 @@ Window::Window(std::string_view title, const Vector2i& size, bool fullscreen)
 {
 	handle = glfwCreateWindow(size.x, size.y, title.data(),
 		fullscreen ? Monitor::getPrimary()->getHandle() : nullptr, nullptr);
-	assert(handle);
+	if(handle == nullptr)
+		throw std::runtime_error("failed to create window");
 
 	glfwSetWindowUserPointer(handle, static_cast<void*>(this));
 
