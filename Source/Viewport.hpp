@@ -5,6 +5,9 @@
 
 #include <Math/Math.hpp>
 
+/**
+ * @brief 视口.
+ */
 struct Viewport
 {
 	Viewport() = default;
