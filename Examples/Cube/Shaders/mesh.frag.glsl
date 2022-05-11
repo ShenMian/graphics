@@ -3,13 +3,14 @@
 // Copyright 2021 SMS
 // License(Apache-2.0)
 
-layout (location = 0) out vec4 frag_color;
-
-layout (location = 0) in Out
+struct Vert
 {
-    vec3 position;
     vec3 color;
-} vert;
+};
+
+layout(location = 0) in Vert vert;
+
+layout(location = 0) out vec4 frag_color;
 
 void main()
 {
