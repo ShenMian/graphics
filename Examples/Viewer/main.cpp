@@ -49,6 +49,12 @@ int main()
 				Camera camera(Camera::Type::Perspective);
 				camera.setPerspective(radians(45.f), (float)window.getSize().x / window.getSize().y, 0.1f, 5000.f);
 
+				Gamepad gamepad(0);
+
+				Controller controller;
+				controller.setCamera(camera);
+				controller.setGamepad(gamepad);
+
 				GLUniformBuffer matrices("Matrices", 0, 3 * sizeof(Matrix4f));
 				matrices.bind(reinterpret_cast<GLProgram*>(program.get()));
 
@@ -59,13 +65,9 @@ int main()
 				animation.write(bones, 100 * sizeof(Matrix4f));
 				*/
 
-				Controller controller;
-				controller.setCamera(camera);
-				Gamepad gamepad(0);
-				controller.setGamepad(gamepad);
-
 				// const std::filesystem::path path = "../../../../../../model/bee.glb";
-				const std::filesystem::path path = "../../../../../../model/sponza/sponza.obj";
+				// const std::filesystem::path path = "../../../../../../model/sponza/sponza.obj";
+				const std::filesystem::path path = "../../../../../../model/m4a1/m4a1.gltf";
 				// const std::filesystem::path path = "../../../../../../model/pistol/kimber_desert_warrior/scene.gltf";
 				// const std::filesystem::path path = "../../../../../../model/Bistro/BistroExterior.glb";
 				// const std::filesystem::path path = "../../../../../../model/SpeedTree/White Oak/HighPoly/White_Oak.fbx";
