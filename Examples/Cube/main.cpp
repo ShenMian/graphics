@@ -6,6 +6,8 @@
 #define FMT_HEADER_ONLY
 #include <fmt/core.h>
 
+#include "OpenGL/GLUniformBuffer.h"
+
 void PrintMonitorInfo();
 void PrintRendererInfo();
 
@@ -20,8 +22,9 @@ int main()
 	Renderer::setAPI(Renderer::API::OpenGL);
 	Window::init();
 
+	try
 	{
-		Window window("Cube", Monitor::getPrimary().getSize() / 2);
+		Window window("Cube", Monitor::getPrimary()->getSize() / 2);
 		Renderer::init(window);
 
 		{
@@ -57,7 +60,6 @@ int main()
 			};
 			auto indexBuffer = IndexBuffer::create(indices);
 
-            // 创建着色器程序
 			auto program = Program::create("Shaders/mesh");
 
 			auto cmdQueue = CommandQueue::create();
@@ -65,29 +67,15 @@ int main()
 
 			Camera camera(Camera::Type::Perspective);
 			camera.setPerspective(radians(60.f), (float)window.getSize().x / window.getSize().y, 0.1f, 5000.f);
-			camera.setPosition({0, 0, 3});
+
+			GLUniformBuffer matrices("Matrices", 0, 3 * sizeof(Matrix4f));
+			matrices.bind(reinterpret_cast<GLProgram*>(program.get()));
 
 			bool running = true;
-			window.onClose = [&]() { running = false; };
-			window.onKey = [&](int action, Key key)
-			{
-				if(action == 1)
-				{
-					switch(key)
-					{
-					case Key::Escape:
-						running = false;
-						break;
-
-					case Key::F11:
-						window.setFullscreen(!window.isFullscreen());
-						break;
-					}
-				}
-			};
+			window.onClose = [&]{ running = false; };
 			window.onResize = [&](Vector2i size)
 			{
-				camera.setPerspective(radians(60.f), (float)size.x / size.y, 0.1f, 5000.0f);
+				camera.setPerspective(camera.getVFOV(), (float)size.x / size.y, camera.getNear(), camera.getFar());
 			};
 			window.setVisible(true);
 
@@ -97,9 +85,12 @@ int main()
 			{
 				model *= Matrix4f::createRotationY(radians(0.5f));
 
-				program->setUniform("model", model);
-				program->setUniform("view", camera.getView());
-				program->setUniform("projection", camera.getProjection());
+				// 更新 UniformBuffer
+				matrices.map(3 * sizeof(Matrix4f));
+				matrices.write(camera.getView().data(), sizeof(Matrix4f));
+				matrices.write(camera.getProjection().data(), sizeof(Matrix4f), sizeof(Matrix4f));
+				matrices.write(model.data(), sizeof(Matrix4f), 2 * sizeof(Matrix4f));
+				matrices.unmap();
 
 				cmdBuffer->begin();
 				{
@@ -120,6 +111,10 @@ int main()
 		}
 
 		Renderer::deinit();
+	}
+	catch(std::runtime_error e)
+	{
+		puts(e.what());
 	}
 
 	Window::deinit();
