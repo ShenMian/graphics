@@ -1,5 +1,8 @@
 var annotated_dup =
 [
+    [ "std", null, [
+      [ "hash< std::filesystem::path >", "structstd_1_1hash_3_01std_1_1filesystem_1_1path_01_4.html", null ]
+    ] ],
     [ "ui", null, [
       [ "Button", "classui_1_1_button.html", null ],
       [ "Label", "classui_1_1_label.html", null ],
