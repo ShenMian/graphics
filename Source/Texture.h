@@ -120,17 +120,3 @@ protected:
 
 	static std::unordered_map<std::filesystem::path, std::shared_ptr<Texture>> cache;
 };
-
-namespace std
-{
-
-template <>
-struct hash<std::filesystem::path>
-{
-	size_t operator()(const std::filesystem::path& path) const
-	{
-		return std::filesystem::hash_value(path);
-	}
-};
-
-} // namespace std
