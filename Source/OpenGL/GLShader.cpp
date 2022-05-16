@@ -43,7 +43,7 @@ GLShader::GLShader(const Descriptor& desc)
 	if(!fs::exists(path))
 		throw std::runtime_error("file not found: " + path.string());
 
-#if 1
+#if 0
 	compile(desc.path, desc.stage);
 	if(path.extension() != ".spv")
 		path.replace_extension(".spv");
@@ -62,6 +62,31 @@ GLShader::GLShader(const Descriptor& desc)
 
 	glShaderBinary(1, &handle, GL_SHADER_BINARY_FORMAT_SPIR_V, buffer.data(), (GLsizei)buffer.size() * sizeof(uint32_t));
 	glSpecializeShader(handle, "main", 0, nullptr, nullptr); // 指定入口点函数名称
+
+	{
+		spirv_cross::Compiler compiler(buffer);
+		const auto res = compiler.get_shader_resources();
+		if(res.uniform_buffers.empty())
+			return;
+
+		puts("uniform buffers");
+		for(const auto& buf : res.uniform_buffers)
+		{
+			const auto& type = compiler.get_type(buf.base_type_id);
+			const auto size = compiler.get_declared_struct_size(type);
+			const auto binding = compiler.get_decoration(buf.id, spv::DecorationBinding);
+			const auto memberCount = type.member_types.size();
+
+			puts(fmt::format(
+				"|-{}\n"
+				"  |-binding: {}\n"
+				"  |-size   : {} bytes\n"
+				"  `-members: {}",
+				buf.name, binding, size, memberCount).c_str());
+
+			const auto offset = compiler.type_struct_member_offset(type, 1);
+		}
+	}
 #else
 	// 读取文件内容
 	const auto fileSize = fs::file_size(path);
@@ -93,29 +118,6 @@ GLShader::GLShader(const Descriptor& desc)
 		throw std::runtime_error(fmt::format("shader '{}' compile error: {}", desc.path.filename().string(), info));
 	}
 #endif
-
-	spirv_cross::Compiler compiler(buffer);
-	const auto res = compiler.get_shader_resources();
-	if(res.uniform_buffers.empty())
-		return;
-
-	puts("uniform buffers");
-	for(const auto& buf : res.uniform_buffers)
-	{
-		const auto& type = compiler.get_type(buf.base_type_id);
-		const auto size = compiler.get_declared_struct_size(type);
-		const auto binding = compiler.get_decoration(buf.id, spv::DecorationBinding);
-		const auto memberCount = type.member_types.size();
-
-		puts(fmt::format(
-			"|-{}\n"
-			"  |-binding: {}\n"
-			"  |-size   : {} bytes\n"
-			"  `-members: {}",
-			buf.name, binding, size, memberCount).c_str());
-
-		const auto offset = compiler.type_struct_member_offset(type, 1);
-	}
 }
 
 GLShader::~GLShader()
