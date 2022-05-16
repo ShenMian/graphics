@@ -98,13 +98,13 @@ int GLProgram::getUniformBufferLocation(const std::string& name)
 
 int GLProgram::getUniformLocation(const std::string& name)
 {
-	// FIXME: SPRI-V Shader无法再正确识别该项
+	// FIXME: SPRI-V Shader 无法再正确识别该项
 	const auto it = uniformLocations.find(name);
 	if(it == uniformLocations.end())
 	{
 		const auto location = glGetUniformLocation(handle, name.c_str());
 		if(location == -1)
-			throw std::invalid_argument("uniform name");
+			throw std::runtime_error("uniform buffer name do not exist");
 		uniformLocations[name] = location;
 		return location;
 	}
