@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['主页_0',['主页',['../index.html',1,'']]]
+  ['快速入门_0',['快速入门',['../_getting_started.html',1,'']]]
 ];

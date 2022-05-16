@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
-<meta name="generator" content="Doxygen 1.9.3"/>
+<meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Graphics: /github/workspace/Source/Texture.h 源文件</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
@@ -23,8 +23,8 @@
 <div id="titlearea">
 <table cellspacing="0" cellpadding="0">
  <tbody>
- <tr id="projectrow">
-  <td id="projectalign">
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Graphics<span id="projectnumber">&#160;v0.0.0</span>
    </div>
    <div id="projectbrief">A simple abstraction layer for the modern graphics APIs.</div>
@@ -34,7 +34,7 @@
 </table>
 </div>
 <!-- end header part -->
-<!-- 制作者 Doxygen 1.9.3 -->
+<!-- 制作者 Doxygen 1.9.2 -->
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 var searchBox = new SearchBox("searchBox", "search",'搜索','.html');
@@ -105,17 +105,17 @@ $(document).ready(function(){initNavTree('_texture_8h_source.html',''); initResi
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="comment">// 纹理过滤方式</span></div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="class_texture.html#a55341847b37906ddffa803675617da27">   21</a></span>    <span class="keyword">enum class</span> <a class="code hl_enumeration" href="class_texture.html#a55341847b37906ddffa803675617da27">Filter</a></div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    {</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        Nearest,  </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        Bilinear, </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        Trilinear </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        <a class="code hl_enumvalue" href="class_texture.html#a55341847b37906ddffa803675617da27a60494f02d440f316319dd0fad40ad007">Nearest</a>,  </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        <a class="code hl_enumvalue" href="class_texture.html#a55341847b37906ddffa803675617da27aaf17c98bbd83c27d6426d2ff3fa81d7f">Bilinear</a>, </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        <a class="code hl_enumvalue" href="class_texture.html#a55341847b37906ddffa803675617da27a969a7b6f1f3951ef293b3ff281dc293d">Trilinear</a> </div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    };</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="comment">// 纹理环绕方式(纹理寻址方式)</span></div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="class_texture.html#af110c1b8fc58036b94dced17b5399b68">   29</a></span>    <span class="keyword">enum class</span> <a class="code hl_enumeration" href="class_texture.html#af110c1b8fc58036b94dced17b5399b68">Warp</a></div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    {</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        Repeat,      </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        ClampToEdge, </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        MirrorRepeat </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <a class="code hl_enumvalue" href="class_texture.html#af110c1b8fc58036b94dced17b5399b68a7020426cfb0a204051be4b3053d2acc8">Repeat</a>,      </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        <a class="code hl_enumvalue" href="class_texture.html#af110c1b8fc58036b94dced17b5399b68a74556551231333c36debc3d373261134">ClampToEdge</a>, </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        <a class="code hl_enumvalue" href="class_texture.html#af110c1b8fc58036b94dced17b5399b68a39a681a9d5ccc902bebd16a343dd7b74">MirrorRepeat</a> </div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    };</div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="comment">// 纹理类型</span></div>
@@ -156,39 +156,31 @@ $(document).ready(function(){initNavTree('_texture_8h_source.html',''); initResi
 <div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
 <div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <span class="keyword">static</span> std::unordered_map&lt;std::filesystem::path, std::shared_ptr&lt;Texture&gt;&gt; cache;</div>
 <div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>};</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span><span class="keyword">namespace </span>std</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>{</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="keyword">template</span> &lt;&gt;</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="structstd_1_1hash_3_01std_1_1filesystem_1_1path_01_4.html">  128</a></span><span class="keyword">struct </span>hash&lt;std::filesystem::path&gt;</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>{</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="keywordtype">size_t</span> operator()(<span class="keyword">const</span> std::filesystem::path&amp; path)<span class="keyword"> const</span></div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="keyword">    </span>{</div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>        <span class="keywordflow">return</span> std::filesystem::hash_value(path);</div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    }</div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>};</div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>} <span class="comment">// namespace std</span></div>
 <div class="ttc" id="aclass_image_html"><div class="ttname"><a href="class_image.html">Image</a></div><div class="ttdoc">图像.</div><div class="ttdef"><b>Definition:</b> Image.h:19</div></div>
 <div class="ttc" id="aclass_texture_html"><div class="ttname"><a href="class_texture.html">Texture</a></div><div class="ttdoc">纹理.</div><div class="ttdef"><b>Definition:</b> Texture.h:18</div></div>
 <div class="ttc" id="aclass_texture_html_a04e6a764b88c1a14f2dba009074819a2"><div class="ttname"><a href="class_texture.html#a04e6a764b88c1a14f2dba009074819a2">Texture::create</a></div><div class="ttdeci">static std::shared_ptr&lt; Texture &gt; create(const std::filesystem::path &amp;path, Type type=Type::_2D)</div><div class="ttdoc">从图像文件创建纹理.</div></div>
 <div class="ttc" id="aclass_texture_html_a23aaceb94559abb5b9c756c2ec8ac431"><div class="ttname"><a href="class_texture.html#a23aaceb94559abb5b9c756c2ec8ac431">Texture::setMinFilter</a></div><div class="ttdeci">virtual void setMinFilter(Filter filter)=0</div><div class="ttdoc">设置缩小过滤方式.</div></div>
 <div class="ttc" id="aclass_texture_html_a3d7fa97316058caeebcdcbfdbcd34a0e"><div class="ttname"><a href="class_texture.html#a3d7fa97316058caeebcdcbfdbcd34a0e">Texture::setTWarp</a></div><div class="ttdeci">virtual void setTWarp(Warp warp)=0</div><div class="ttdoc">设置 T 环绕方式.</div></div>
 <div class="ttc" id="aclass_texture_html_a55341847b37906ddffa803675617da27"><div class="ttname"><a href="class_texture.html#a55341847b37906ddffa803675617da27">Texture::Filter</a></div><div class="ttdeci">Filter</div><div class="ttdef"><b>Definition:</b> Texture.h:22</div></div>
+<div class="ttc" id="aclass_texture_html_a55341847b37906ddffa803675617da27a60494f02d440f316319dd0fad40ad007"><div class="ttname"><a href="class_texture.html#a55341847b37906ddffa803675617da27a60494f02d440f316319dd0fad40ad007">Texture::Filter::Nearest</a></div><div class="ttdeci">@ Nearest</div><div class="ttdoc">最近点采样, 临近过滤.</div></div>
+<div class="ttc" id="aclass_texture_html_a55341847b37906ddffa803675617da27a969a7b6f1f3951ef293b3ff281dc293d"><div class="ttname"><a href="class_texture.html#a55341847b37906ddffa803675617da27a969a7b6f1f3951ef293b3ff281dc293d">Texture::Filter::Trilinear</a></div><div class="ttdeci">@ Trilinear</div><div class="ttdoc">三线性过滤.</div></div>
+<div class="ttc" id="aclass_texture_html_a55341847b37906ddffa803675617da27aaf17c98bbd83c27d6426d2ff3fa81d7f"><div class="ttname"><a href="class_texture.html#a55341847b37906ddffa803675617da27aaf17c98bbd83c27d6426d2ff3fa81d7f">Texture::Filter::Bilinear</a></div><div class="ttdeci">@ Bilinear</div><div class="ttdoc">双线性过滤.</div></div>
 <div class="ttc" id="aclass_texture_html_a6488dbab409fd08a4731dcb2c921aad7"><div class="ttname"><a href="class_texture.html#a6488dbab409fd08a4731dcb2c921aad7">Texture::setRWarp</a></div><div class="ttdeci">virtual void setRWarp(Warp warp)=0</div><div class="ttdoc">设置 R 环绕方式.</div></div>
 <div class="ttc" id="aclass_texture_html_a78ca4624d52f3b74d6af79beaa3ce5c1"><div class="ttname"><a href="class_texture.html#a78ca4624d52f3b74d6af79beaa3ce5c1">Texture::setSWarp</a></div><div class="ttdeci">virtual void setSWarp(Warp warp)=0</div><div class="ttdoc">设置 S 环绕方式.</div></div>
 <div class="ttc" id="aclass_texture_html_a885cf1c026c6227fbc1b99befa842416"><div class="ttname"><a href="class_texture.html#a885cf1c026c6227fbc1b99befa842416">Texture::getType</a></div><div class="ttdeci">Type getType() const</div><div class="ttdoc">获取纹理类型.</div><div class="ttdef"><b>Definition:</b> Texture.cpp:67</div></div>
 <div class="ttc" id="aclass_texture_html_ab9c343ec4797d5175580d538a2e8c171"><div class="ttname"><a href="class_texture.html#ab9c343ec4797d5175580d538a2e8c171">Texture::getFormat</a></div><div class="ttdeci">Format getFormat() const</div><div class="ttdoc">获取像素格式.</div><div class="ttdef"><b>Definition:</b> Texture.cpp:72</div></div>
 <div class="ttc" id="aclass_texture_html_adb2d44c3e35bf0b03be885d1b3d4378f"><div class="ttname"><a href="class_texture.html#adb2d44c3e35bf0b03be885d1b3d4378f">Texture::setMagFilter</a></div><div class="ttdeci">virtual void setMagFilter(Filter filter)=0</div><div class="ttdoc">设置放大过滤方式.</div></div>
 <div class="ttc" id="aclass_texture_html_af110c1b8fc58036b94dced17b5399b68"><div class="ttname"><a href="class_texture.html#af110c1b8fc58036b94dced17b5399b68">Texture::Warp</a></div><div class="ttdeci">Warp</div><div class="ttdef"><b>Definition:</b> Texture.h:30</div></div>
+<div class="ttc" id="aclass_texture_html_af110c1b8fc58036b94dced17b5399b68a39a681a9d5ccc902bebd16a343dd7b74"><div class="ttname"><a href="class_texture.html#af110c1b8fc58036b94dced17b5399b68a39a681a9d5ccc902bebd16a343dd7b74">Texture::Warp::MirrorRepeat</a></div><div class="ttdeci">@ MirrorRepeat</div><div class="ttdoc">镜像重复, 正像/镜像交替.</div></div>
+<div class="ttc" id="aclass_texture_html_af110c1b8fc58036b94dced17b5399b68a7020426cfb0a204051be4b3053d2acc8"><div class="ttname"><a href="class_texture.html#af110c1b8fc58036b94dced17b5399b68a7020426cfb0a204051be4b3053d2acc8">Texture::Warp::Repeat</a></div><div class="ttdeci">@ Repeat</div><div class="ttdoc">重复.</div></div>
+<div class="ttc" id="aclass_texture_html_af110c1b8fc58036b94dced17b5399b68a74556551231333c36debc3d373261134"><div class="ttname"><a href="class_texture.html#af110c1b8fc58036b94dced17b5399b68a74556551231333c36debc3d373261134">Texture::Warp::ClampToEdge</a></div><div class="ttdeci">@ ClampToEdge</div><div class="ttdoc">超出边界后重复边缘, 产生边缘被拉伸的效果.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_74389ed8173ad57b461b9d623a1f3867.html">Source</a></li><li class="navelem"><b>Texture.h</b></li>
-    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
 </body>

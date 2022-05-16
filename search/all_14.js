@@ -1,20 +1,7 @@
 var searchData=
 [
-  ['vertex_0',['Vertex',['../struct_mesh_1_1_vertex.html',1,'Mesh::Vertex'],['../class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8fab22b929ba52471a02d18bb3a4e4472e6',1,'Shader::Vertex()'],['../struct_pipeline_layout_1_1_stage_flags.html#a3766b6c50d5167f12df2624c34c93b93ae820a6ac4dd34d05f6607e6dfe12ce5b',1,'PipelineLayout::StageFlags::Vertex()']]],
-  ['vertexattributes_1',['VertexAttributes',['../class_vertex_attributes.html',1,'']]],
-  ['vertexbuffer_2',['VertexBuffer',['../class_vertex_buffer.html',1,'']]],
-  ['viewport_3',['Viewport',['../struct_viewport.html',1,'']]],
-  ['vkbuffer_4',['VKBuffer',['../class_v_k_buffer.html',1,'']]],
-  ['vkcommandbuffer_5',['VKCommandBuffer',['../class_v_k_command_buffer.html',1,'']]],
-  ['vkcommandqueue_6',['VKCommandQueue',['../class_v_k_command_queue.html',1,'']]],
-  ['vkdevice_7',['VKDevice',['../class_v_k_device.html',1,'']]],
-  ['vkinstance_8',['VKInstance',['../class_v_k_instance.html',1,'']]],
-  ['vkphysicaldevice_9',['VKPhysicalDevice',['../class_v_k_physical_device.html',1,'']]],
-  ['vkpipeline_10',['VKPipeline',['../class_v_k_pipeline.html',1,'']]],
-  ['vkprogram_11',['VKProgram',['../class_v_k_program.html',1,'']]],
-  ['vkrenderer_12',['VKRenderer',['../class_v_k_renderer.html',1,'']]],
-  ['vkshader_13',['VKShader',['../class_v_k_shader.html',1,'']]],
-  ['vkswapchain_14',['VKSwapchain',['../class_v_k_swapchain.html',1,'']]],
-  ['vkuniformbuffer_15',['VKUniformBuffer',['../class_v_k_uniform_buffer.html',1,'']]],
-  ['vkvertexbuffer_16',['VKVertexBuffer',['../class_v_k_vertex_buffer.html',1,'']]]
+  ['warp_0',['Warp',['../class_texture.html#af110c1b8fc58036b94dced17b5399b68',1,'Texture']]],
+  ['widget_1',['Widget',['../classui_1_1_widget.html',1,'ui']]],
+  ['window_2',['Window',['../classui_1_1_window.html',1,'ui::Window'],['../class_window.html',1,'Window'],['../class_window.html#ac9ade4f329d6426f3a48eea03d115be0',1,'Window::Window()']]],
+  ['write_3',['write',['../class_buffer.html#a1dfdf1f77eeec6e076bba544fd7a9b82',1,'Buffer']]]
 ];
