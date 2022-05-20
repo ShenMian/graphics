@@ -208,7 +208,7 @@ int main()
 
 		Window::deinit();
 	}
-	catch(std::runtime_error& e)
+	catch(const std::runtime_error& e)
 	{
 		puts(e.what());
 		exit(1);
