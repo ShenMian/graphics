@@ -38,7 +38,7 @@ void Image::loadFromFile(const std::filesystem::path& path)
 	if(pixels == nullptr)
 		throw std::runtime_error("can't load image from file:" + path.string());
 
-	loadFromMemory(pixels, size.x * size.y * channels, size, channels);
+	loadFromMemory(pixels, static_cast<size_t>(size.x) * size.y * channels, size, channels);
 
 	stbi_image_free(pixels);
 }
