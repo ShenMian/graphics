@@ -17,7 +17,6 @@ public:
 
 private:
 	std::vector<VkDeviceQueueCreateInfo> queueInfos;
-	VkDeviceCreateInfo deviceInfo = {};
 
 	VKPhysicalDevice& physicalDevice;
 };

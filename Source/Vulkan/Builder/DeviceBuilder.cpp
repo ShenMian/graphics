@@ -42,6 +42,7 @@ VKDevice DeviceBuilder::build()
 	std::vector<const char*> extensions;
 	extensions.push_back(VK_KHR_SWAPCHAIN_EXTENSION_NAME);
 
+	VkDeviceCreateInfo deviceInfo = {};
 	deviceInfo.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
 	deviceInfo.queueCreateInfoCount = static_cast<uint32_t>(queueInfos.size());
 	deviceInfo.pQueueCreateInfos = queueInfos.data();
