@@ -61,6 +61,8 @@ public:
 	 * @brief 导出图像到文件.
 	 *
 	 * @param path 图像文件地址.
+	 *
+	 * @note 保存 jpg 格式文件时使用的质量为 90.
 	 */
 	void saveToFile(const std::filesystem::path& path) const;
 

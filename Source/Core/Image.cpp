@@ -33,14 +33,20 @@ void Image::loadFromFile(const std::filesystem::path& path)
 		throw std::runtime_error("no such file");
 
 	// stbi_set_flip_vertically_on_load(1);
-	const auto pixels = stbi_load(path.string().c_str(), reinterpret_cast<int*>(&size.x),
-		reinterpret_cast<int*>(&size.y), &channels, 0);
+	const auto pixels = stbi_load(path.string().c_str(), &size.x, &size.y, &channels, 0);
 	if(pixels == nullptr)
 		throw std::runtime_error("can't load image from file:" + path.string());
 
-	loadFromMemory(pixels, static_cast<size_t>(size.x) * size.y * channels, size, channels);
-
-	stbi_image_free(pixels);
+	try
+	{
+		loadFromMemory(pixels, static_cast<size_t>(size.x) * size.y * channels, size, channels);
+		stbi_image_free(pixels);
+	}
+	catch(...)
+	{
+		stbi_image_free(pixels);
+		throw;
+	}
 }
 
 void Image::loadFromMemory(const void* data, size_t sizeBytes, Vector2i size, int channels)
@@ -52,7 +58,7 @@ void Image::loadFromMemory(const void* data, size_t sizeBytes, Vector2i size, in
 	this->data.shrink_to_fit();
 }
 
-void Image::saveToFile(const std::filesystem::path& path) const
+void Image:1:saveToFile(const std::filesystem::path& path) const
 {
 	const auto ext = path.extension().string();
 
@@ -109,7 +115,6 @@ void Image::flipHorizontally() noexcept
 		for(size_t x = 0; x < size.x / 2; x++)
 		{
 			std::swap_ranges(left, left + channels, right);
-
 			left += channels;
 			right -= channels;
 		}
@@ -126,7 +131,6 @@ void Image::flipVertically() noexcept
 	for(size_t y = 0; y < size.y / 2; y++)
 	{
 		std::swap_ranges(top, top + rowSize, bottom);
-
 		top += rowSize;
 		bottom -= rowSize;
 	}
