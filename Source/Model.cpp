@@ -183,7 +183,7 @@ void loadMesh(const aiMesh* mesh, const aiScene* scene, const fs::path& path, st
 	loadVertices(vertices, mesh);
 	loadIndices(indices, mesh);
 	loadBones(vertices, bones, mesh);
-	// loadMaterial(material, aMesh, scene, path);
+	// loadMaterial(material, mesh, scene, path);
 
 	const std::string name = mesh->mName.C_Str();
 
