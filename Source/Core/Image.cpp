@@ -2,11 +2,12 @@
 // License(Apache-2.0)
 
 #include "Image.h"
-#include <stdexcept>
 #include <cstring>
+#include <memory>
+#include <stdexcept>
 
-#ifndef STB_IMAGE_IMPLEMENTATION
-#define STB_IMAGE_IMPLEMENTATION // 防止和 assimp 内的 stb 重定义
+#ifndef STB_IMAGE_IMPLEMENTATION // 防止和其他第三方库内的 stb 重定义
+#define STB_IMAGE_IMPLEMENTATION
 #endif
 #include <stb_image.h>
 
@@ -16,6 +17,8 @@
 #include <stb_image_write.h>
 
 namespace fs = std::filesystem;
+
+using StbiImage = std::unique_ptr<unsigned char, decltype([](auto data) { stbi_image_free(data); })>;
 
 Image::Image(const std::filesystem::path& path)
 {
@@ -32,21 +35,11 @@ void Image::loadFromFile(const std::filesystem::path& path)
 	if(!fs::exists(path) && !fs::is_regular_file(path))
 		throw std::runtime_error("no such file");
 
-	// stbi_set_flip_vertically_on_load(1);
-	const auto pixels = stbi_load(path.string().c_str(), &size.x, &size.y, &channels, 0);
+	StbiImage pixels(stbi_load(path.string().c_str(), &size.x, &size.y, &channels, 0));
 	if(pixels == nullptr)
 		throw std::runtime_error("can't load image from file:" + path.string());
 
-	try
-	{
-		loadFromMemory(pixels, static_cast<size_t>(size.x) * size.y * channels, size, channels);
-		stbi_image_free(pixels);
-	}
-	catch(...)
-	{
-		stbi_image_free(pixels);
-		throw;
-	}
+	loadFromMemory(pixels.get(), static_cast<size_t>(size.x) * size.y * channels, size, channels);
 }
 
 void Image::loadFromMemory(const void* data, size_t sizeBytes, Vector2i size, int channels)
@@ -58,7 +51,7 @@ void Image::loadFromMemory(const void* data, size_t sizeBytes, Vector2i size, in
 	this->data.shrink_to_fit();
 }
 
-void Image:1:saveToFile(const std::filesystem::path& path) const
+void Image::saveToFile(const std::filesystem::path& path) const
 {
 	const auto ext = path.extension().string();
 
