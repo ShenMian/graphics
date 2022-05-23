@@ -76,7 +76,9 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: graphics-windows-${{ matrix.arch }}
-          path: build/lib
+          path: |
+            build/lib/graphics.lib
+            build/lib/graphicsd.lib
 
       - name: Upload binaries
         uses: actions/upload-artifact@v3

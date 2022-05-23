@@ -61,7 +61,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: graphics-ubuntu-${{ matrix.arch }}
-          path: build/lib
+          path: build/lib/libgraphics.a
 
       - name: Upload bins
         uses: actions/upload-artifact@v3
