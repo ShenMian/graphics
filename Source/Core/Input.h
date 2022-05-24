@@ -53,6 +53,20 @@ public:
 	static float getMouseY();
 
 	/**
+	 * @brief 通过名称获取键盘按键.
+	 *
+	 * @param name 键盘按键名称.
+	 */
+	static Key getKeyByName(std::string_view name);
+
+	/**
+	 * @brief 通过鼠标获取键盘按键.
+	 *
+	 * @param name 鼠标按键名称.
+	 */
+	static Mouse getMouseByName(std::string_view name);
+
+	/**
 	 * @brief 获取剪切板内容, UTF-8 编码.
 	 */
 	static std::string_view getClipboard();
