@@ -41,6 +41,12 @@ public:
 	 */
 	Buffer(size_t size, Type type, Usage usage);
 
+	/**
+	 * @brief 写入映射缓冲区.
+	 *
+	 * @param data   要写入的数据.
+	 * @param offset 偏移量, 单位: byte.
+	 */
     template <typename T>
     void write(std::span<T> data, size_t offset = 0);
 
