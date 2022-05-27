@@ -99,6 +99,7 @@ var NAVTREEINDEX0 =
 "class_buffer.html#aa1c6312f90d7b17d923a5ac01ccd2c21a971fd8cc345d8bd9f92e9f7d88fdf20c":[4,0,3,1,1],
 "class_buffer.html#aa1c6312f90d7b17d923a5ac01ccd2c21aeae835e83c0494a376229f254f7d3392":[4,0,3,1,2],
 "class_buffer.html#ad3d7bb0b0389604614c1a56b2a68e432":[4,0,3,3],
+"class_buffer.html#aeaa85d41836b7c2381c68160b951bfa5":[4,0,3,12],
 "class_camera.html":[4,0,4],
 "class_camera.html#a00c0c61ca90f2e5c095055a04c53a20a":[4,0,4,17],
 "class_camera.html#a26a85543e0caeb0ff79cffeb8d27066c":[4,0,4,13],
@@ -248,6 +249,5 @@ var NAVTREEINDEX0 =
 "class_texture.html#a885cf1c026c6227fbc1b99befa842416":[4,0,53,3],
 "class_texture.html#ab9c343ec4797d5175580d538a2e8c171":[4,0,53,2],
 "class_texture.html#adb2d44c3e35bf0b03be885d1b3d4378f":[4,0,53,4],
-"class_texture.html#af110c1b8fc58036b94dced17b5399b68":[4,0,53,1],
-"class_texture.html#af110c1b8fc58036b94dced17b5399b68a39a681a9d5ccc902bebd16a343dd7b74":[4,0,53,1,2]
+"class_texture.html#af110c1b8fc58036b94dced17b5399b68":[4,0,53,1]
 };
