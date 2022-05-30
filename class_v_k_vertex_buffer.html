@@ -104,12 +104,8 @@ Public 成员函数</h2></td></tr>
 <tr class="memitem:ada5becc65ba6ce65075e4fde5efe8c83"><td class="memItemLeft" align="right" valign="top"><a id="ada5becc65ba6ce65075e4fde5efe8c83" name="ada5becc65ba6ce65075e4fde5efe8c83"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>VKVertexBuffer</b> (const void *data, size_t size, const <a class="el" href="class_vertex_attributes.html">VertexAttributes</a> &amp;layout, <a class="el" href="class_buffer.html#aa1c6312f90d7b17d923a5ac01ccd2c21">Buffer::Usage</a> usage)</td></tr>
 <tr class="separator:ada5becc65ba6ce65075e4fde5efe8c83"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee120d929aa9459d738825d69edb9849"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_v_k_vertex_buffer.html#aee120d929aa9459d738825d69edb9849">map</a> () override</td></tr>
-<tr class="separator:aee120d929aa9459d738825d69edb9849"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa1fc815c20ce282868805f2631e4e9c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_v_k_vertex_buffer.html#aa1fc815c20ce282868805f2631e4e9c1">unmap</a> () override</td></tr>
-<tr class="separator:aa1fc815c20ce282868805f2631e4e9c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e91425425a55b05bd550b05a5017bae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_v_k_vertex_buffer.html#a7e91425425a55b05bd550b05a5017bae">write</a> (const void *data, size_t size) override</td></tr>
-<tr class="separator:a7e91425425a55b05bd550b05a5017bae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae606f4d4b966e48ede1ca9f8ab261da"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_buffer.html">Buffer</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_v_k_vertex_buffer.html#aae606f4d4b966e48ede1ca9f8ab261da">getBuffer</a> () override</td></tr>
+<tr class="separator:aae606f4d4b966e48ede1ca9f8ab261da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a225adc2c00ff4e1ff751c3e0e640d5bf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_v_k_vertex_buffer.html#a225adc2c00ff4e1ff751c3e0e640d5bf">bind</a> () override</td></tr>
 <tr class="separator:a225adc2c00ff4e1ff751c3e0e640d5bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0f38bffbb7f1f577c22e7c7b08962022"><td class="memItemLeft" align="right" valign="top"><a id="a0f38bffbb7f1f577c22e7c7b08962022" name="a0f38bffbb7f1f577c22e7c7b08962022"></a>
@@ -175,8 +171,8 @@ const <a class="el" href="class_vertex_attributes.html">VertexAttributes</a> &am
 
 </div>
 </div>
-<a id="aee120d929aa9459d738825d69edb9849" name="aee120d929aa9459d738825d69edb9849"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aee120d929aa9459d738825d69edb9849">&#9670;&nbsp;</a></span>map()</h2>
+<a id="aae606f4d4b966e48ede1ca9f8ab261da" name="aae606f4d4b966e48ede1ca9f8ab261da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae606f4d4b966e48ede1ca9f8ab261da">&#9670;&nbsp;</a></span>getBuffer()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -185,75 +181,10 @@ const <a class="el" href="class_vertex_attributes.html">VertexAttributes</a> &am
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void VKVertexBuffer::map </td>
+          <td class="memname"><a class="el" href="class_buffer.html">Buffer</a> &amp; VKVertexBuffer::getBuffer </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>实现了 <a class="el" href="class_vertex_buffer.html">VertexBuffer</a>.</p>
-
-</div>
-</div>
-<a id="aa1fc815c20ce282868805f2631e4e9c1" name="aa1fc815c20ce282868805f2631e4e9c1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa1fc815c20ce282868805f2631e4e9c1">&#9670;&nbsp;</a></span>unmap()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void VKVertexBuffer::unmap </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>实现了 <a class="el" href="class_vertex_buffer.html">VertexBuffer</a>.</p>
-
-</div>
-</div>
-<a id="a7e91425425a55b05bd550b05a5017bae" name="a7e91425425a55b05bd550b05a5017bae"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7e91425425a55b05bd550b05a5017bae">&#9670;&nbsp;</a></span>write()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void VKVertexBuffer::write </td>
-          <td>(</td>
-          <td class="paramtype">const void *&#160;</td>
-          <td class="paramname"><em>data</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>size</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
   </td>
