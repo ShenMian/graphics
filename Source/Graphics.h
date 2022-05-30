@@ -25,6 +25,7 @@
 #include "Core/Clock.hpp"
 #include "Core/RID.hpp"
 #include "Core/Controller.h"
+#include "Core/Platform.h"
 
 #include "UI/UI.h"
 #include "UI/Window.h"

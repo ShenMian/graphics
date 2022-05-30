@@ -3,6 +3,7 @@
 
 #include "InstanceBuilder.h"
 #include "../VKInstance.h"
+#include "Core/Platform.h"
 #include <stdexcept>
 
 namespace
@@ -162,18 +163,18 @@ bool InstanceBuilder::isExtensionAvailable(std::string_view name) const
 void InstanceBuilder::enableWindowExtensions()
 {
 	enableExtension("VK_KHR_surface");
-#if defined(_WIN32)
+#if TARGET_PLATFORM == PLATFORM_WIN
 	enableExtension("VK_KHR_win32_surface");
-#elif defined(__ANDROID__)
+#elif TARGET_PLATFORM == PLATFORM_ANDROID
 	enableExtension("VK_KHR_android_surface");
-#elif defined(_DIRECT2DISPLAY)
-	enableExtension("VK_KHR_display");
-#elif defined(__linux__)
+#elif TARGET_PLATFORM == PLATFORM_LINUX
 	enableExtension("VK_KHR_xcb_surface");
 	enableExtension("VK_KHR_xlib_surface");
 	enableExtension("VK_KHR_wayland_surface");
-#elif defined(__APPLE__)
+#elif TARGET_PLATFORM == PLATFORM_MAC || TARGET_PLATFORM == PLATFORM_IOS
 	enableExtension("VK_EXT_metal_surface");
+#elif defined(_DIRECT2DISPLAY)
+	enableExtension("VK_KHR_display");
 #endif
 }
 

@@ -121,7 +121,7 @@ protected:
 	static std::unordered_map<std::filesystem::path, std::shared_ptr<Texture>> cache;
 };
 
-#ifndef _WIN32
+#if TARGET_PLATFORM != PLATFORM_WIN
 namespace std
 {
 template <>
