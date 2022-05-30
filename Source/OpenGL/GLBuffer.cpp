@@ -74,6 +74,7 @@ void GLBuffer::flush(size_t size, size_t offset)
 void GLBuffer::bind()
 {
 	glBindBuffer(glType, handle);
+	GLCheckError();
 }
 
 GLBuffer::operator GLuint() const

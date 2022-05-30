@@ -13,19 +13,9 @@ GLUniformBuffer::GLUniformBuffer(std::string_view name, int binding, size_t size
 {
 }
 
-void GLUniformBuffer::map(size_t size, size_t offset)
+Buffer& GLUniformBuffer::getBuffer()
 {
-	buffer.map(size, offset);
-}
-
-void GLUniformBuffer::unmap()
-{
-	buffer.unmap();
-}
-
-void GLUniformBuffer::write(const void* data, size_t size, size_t offset)
-{
-	buffer.write(data, size, offset);
+	return buffer;
 }
 
 void GLUniformBuffer::bind(GLProgram* program)

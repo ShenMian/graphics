@@ -165,11 +165,11 @@ int main()
 						dir.z, dir.x, dir.y));
 					ATT.update();
 
-					matrices.map(3 * sizeof(Matrix4f));
-					matrices.write(camera.getView().data(), sizeof(Matrix4f));
-					matrices.write(camera.getProjection().data(), sizeof(Matrix4f), sizeof(Matrix4f));
-					matrices.write(Matrix4f().data(), sizeof(Matrix4f), 2 * sizeof(Matrix4f));
-					matrices.unmap();
+					matrices.getBuffer().map(3 * sizeof(Matrix4f));
+					matrices.getBuffer().write(camera.getView().data(), sizeof(Matrix4f));
+					matrices.getBuffer().write(camera.getProjection().data(), sizeof(Matrix4f), sizeof(Matrix4f));
+					matrices.getBuffer().write(Matrix4f().data(), sizeof(Matrix4f), 2 * sizeof(Matrix4f));
+					matrices.getBuffer().unmap();
 
 					cmdBuffer->begin();
 					{
@@ -185,8 +185,6 @@ int main()
 
 							const auto vb = mesh.getVertexBuffer();
 							const auto ib = mesh.getIndexBuffer();
-
-							auto t = vb.use_count();
 
 							cmdBuffer->setVertexBuffer(vb);
 							cmdBuffer->setIndexBuffer(ib);

@@ -14,11 +14,8 @@ class GLUniformBuffer : public UniformBuffer
 {
 public:
 	GLUniformBuffer(std::string_view name, int binding, size_t size);
-
-	void map(size_t size, size_t offset = 0);
-	void unmap();
-
-	void write(const void* data, size_t size, size_t offset = 0);
+	
+	Buffer& getBuffer() override;
 
 	void bind(GLProgram* program);
 

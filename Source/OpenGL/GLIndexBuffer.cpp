@@ -22,25 +22,14 @@ std::unordered_map<Buffer::Usage, uint32_t> GLUsage = {
 GLIndexBuffer::GLIndexBuffer(const uint32_t* data, size_t size, Buffer::Usage usage)
 	: IndexBuffer(data, size), buffer(size, Buffer::Type::Index, usage)
 {
-	bind();
-    write(data, size);
-}
-
-void GLIndexBuffer::map()
-{
 	buffer.map();
-}
-
-void GLIndexBuffer::unmap()
-{
+    buffer.write(data, size);
 	buffer.unmap();
 }
 
-void GLIndexBuffer::write(const void* data, size_t size)
+Buffer& GLIndexBuffer::getBuffer()
 {
-	buffer.map();
-	buffer.write(data, size);
-	buffer.unmap();
+	return buffer;
 }
 
 void GLIndexBuffer::bind()

@@ -12,10 +12,7 @@ class VKVertexBuffer : public VertexBuffer
 public:
 	VKVertexBuffer(const void* data, size_t size, const VertexAttributes& layout, Buffer::Usage usage);
 
-	void map() override;
-	void unmap() override;
-
-	void write(const void* data, size_t size) override;
+	Buffer& getBuffer() override;
 
 	void bind() override;
 

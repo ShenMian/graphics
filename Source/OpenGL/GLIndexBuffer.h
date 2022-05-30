@@ -12,10 +12,8 @@ class GLIndexBuffer : public IndexBuffer
 public:
 	GLIndexBuffer(const uint32_t* data, size_t size, Buffer::Usage usage);
 
-	void map() override;
-	void unmap() override;
+	Buffer& getBuffer() override;
 
-	void write(const void* data, size_t size) override;
 	void bind() override;
 
 private:

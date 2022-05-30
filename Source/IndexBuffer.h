@@ -43,9 +43,7 @@ public:
 	 */
 	[[nodiscard]] uint32_t getCount() const;
 
-	virtual void map() = 0;
-	virtual void unmap() = 0;
-	virtual void write(const void* data, size_t size) = 0;
+	virtual Buffer& getBuffer() = 0;
 
 	virtual void bind() = 0;
 

@@ -5,10 +5,14 @@
 
 #include <string>
 
+class Buffer;
+
 class UniformBuffer
 {
 public:
 	UniformBuffer(std::string_view name, int binding);
+	
+	virtual Buffer& getBuffer() = 0;
 
 protected:
 	std::string name;
