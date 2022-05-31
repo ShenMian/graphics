@@ -1,8 +1,11 @@
 var searchData=
 [
-  ['texture_0',['Texture',['../class_texture.html',1,'']]],
-  ['thumb_1',['Thumb',['../group__core.html#ga3e2204214f53c8d800b8ef7d4d0fab7c',1,'Gamepad']]],
-  ['trigger_2',['Trigger',['../group__core.html#ga814093b43f211a291b19ccf662096738',1,'Gamepad']]],
-  ['trilinear_3',['Trilinear',['../class_texture.html#a55341847b37906ddffa803675617da27a969a7b6f1f3951ef293b3ff281dc293d',1,'Texture']]],
-  ['type_4',['Type',['../class_buffer.html#a758eb2b0cc5aac56e3879407933fd3cc',1,'Buffer::Type()'],['../class_camera.html#a3b0a1f58deca679ac665f61c480d1dcb',1,'Camera::Type()']]]
+  ['ui_0',['UI',['../class_u_i.html',1,'']]],
+  ['uniformbuffer_1',['UniformBuffer',['../class_uniform_buffer.html',1,'']]],
+  ['unmap_2',['unmap',['../class_buffer.html#a6ba3b3427f1570055a2ad2137743435a',1,'Buffer::unmap()'],['../class_g_l_buffer.html#a85c80dfaa3d5d59fe53a82a6a83cd7fb',1,'GLBuffer::unmap()'],['../class_v_k_buffer.html#a3063d48f226a7d11f14de846f0a712d1',1,'VKBuffer::unmap()']]],
+  ['update_3',['update',['../class_controller.html#abff8d731f04eccd93049041c7ee142ce',1,'Controller::update()'],['../class_gamepad.html#ae37f83a954aabbf634e9d6f37697ae58',1,'Gamepad::update()'],['../class_window.html#a59515fc5a56e86d5a46d771595daac55',1,'Window::update()']]],
+  ['updatehandle_4',['updateHandle',['../classui_1_1_widget.html#a00b122fd63f70bbfe501fac5355a6457',1,'ui::Widget']]],
+  ['updateprojectionmatrix_5',['updateProjectionMatrix',['../class_camera.html#a27db4d90a765984a3e4e4a4bf72bd6ac',1,'Camera']]],
+  ['updateviewmatrix_6',['updateViewMatrix',['../class_camera.html#a4b381ff945f574dbb006d5c926a00e80',1,'Camera']]],
+  ['usage_7',['Usage',['../class_buffer.html#aa1c6312f90d7b17d923a5ac01ccd2c21',1,'Buffer']]]
 ];
