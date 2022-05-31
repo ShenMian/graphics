@@ -92,90 +92,91 @@ $(document).ready(function(){initNavTree('_texture_8h_source.html',''); initResi
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;Format.h&quot;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;filesystem&gt;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;unordered_map&gt;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">class </span><a class="code hl_class" href="class_image.html">Image</a>;</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="class_texture.html">   17</a></span><span class="keyword">class </span><a class="code hl_class" href="class_texture.html">Texture</a></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>{</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="comment">// 纹理过滤方式</span></div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="class_texture.html#a55341847b37906ddffa803675617da27">   21</a></span>    <span class="keyword">enum class</span> <a class="code hl_enumeration" href="class_texture.html#a55341847b37906ddffa803675617da27">Filter</a></div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    {</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        <a class="code hl_enumvalue" href="class_texture.html#a55341847b37906ddffa803675617da27a60494f02d440f316319dd0fad40ad007">Nearest</a>,  </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        <a class="code hl_enumvalue" href="class_texture.html#a55341847b37906ddffa803675617da27aaf17c98bbd83c27d6426d2ff3fa81d7f">Bilinear</a>, </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        <a class="code hl_enumvalue" href="class_texture.html#a55341847b37906ddffa803675617da27a969a7b6f1f3951ef293b3ff281dc293d">Trilinear</a> </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    };</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="comment">// 纹理环绕方式(纹理寻址方式)</span></div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="class_texture.html#af110c1b8fc58036b94dced17b5399b68">   29</a></span>    <span class="keyword">enum class</span> <a class="code hl_enumeration" href="class_texture.html#af110c1b8fc58036b94dced17b5399b68">Warp</a></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    {</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <a class="code hl_enumvalue" href="class_texture.html#af110c1b8fc58036b94dced17b5399b68a7020426cfb0a204051be4b3053d2acc8">Repeat</a>,      </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        <a class="code hl_enumvalue" href="class_texture.html#af110c1b8fc58036b94dced17b5399b68a74556551231333c36debc3d373261134">ClampToEdge</a>, </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        <a class="code hl_enumvalue" href="class_texture.html#af110c1b8fc58036b94dced17b5399b68a39a681a9d5ccc902bebd16a343dd7b74">MirrorRepeat</a> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    };</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="comment">// 纹理类型</span></div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keyword">enum class</span> Type</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    {</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        _2D,</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        _3D,</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        Cube,</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    };</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="class_texture.html#a04e6a764b88c1a14f2dba009074819a2">   50</a></span>    [[nodiscard]] <span class="keyword">static</span> std::shared_ptr&lt;Texture&gt; <a class="code hl_function" href="class_texture.html#a04e6a764b88c1a14f2dba009074819a2">create</a>(<span class="keyword">const</span> std::filesystem::path&amp; path, Type type = Type::_2D);</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    [[nodiscard]] <span class="keyword">static</span> std::shared_ptr&lt;Texture&gt; <a class="code hl_function" href="class_texture.html#a04e6a764b88c1a14f2dba009074819a2">create</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_image.html">Image</a>&amp; image, Type type = Type::_2D);</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    [[nodiscard]] <span class="keyword">static</span> std::shared_ptr&lt;Texture&gt; <a class="code hl_function" href="class_texture.html#a04e6a764b88c1a14f2dba009074819a2">create</a>(<span class="keyword">const</span> std::vector&lt;Image&gt;&amp; images);</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> bind(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> slot = 0) = 0;</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="class_texture.html#a23aaceb94559abb5b9c756c2ec8ac431">   75</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_texture.html#a23aaceb94559abb5b9c756c2ec8ac431">setMinFilter</a>(<a class="code hl_enumeration" href="class_texture.html#a55341847b37906ddffa803675617da27">Filter</a> filter) = 0;</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="class_texture.html#adb2d44c3e35bf0b03be885d1b3d4378f">   82</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_texture.html#adb2d44c3e35bf0b03be885d1b3d4378f">setMagFilter</a>(<a class="code hl_enumeration" href="class_texture.html#a55341847b37906ddffa803675617da27">Filter</a> filter) = 0;</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="class_texture.html#a78ca4624d52f3b74d6af79beaa3ce5c1">   89</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_texture.html#a78ca4624d52f3b74d6af79beaa3ce5c1">setSWarp</a>(<a class="code hl_enumeration" href="class_texture.html#af110c1b8fc58036b94dced17b5399b68">Warp</a> warp) = 0;</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="class_texture.html#a3d7fa97316058caeebcdcbfdbcd34a0e">   96</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_texture.html#a3d7fa97316058caeebcdcbfdbcd34a0e">setTWarp</a>(<a class="code hl_enumeration" href="class_texture.html#af110c1b8fc58036b94dced17b5399b68">Warp</a> warp) = 0;</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="class_texture.html#a6488dbab409fd08a4731dcb2c921aad7">  103</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_texture.html#a6488dbab409fd08a4731dcb2c921aad7">setRWarp</a>(<a class="code hl_enumeration" href="class_texture.html#af110c1b8fc58036b94dced17b5399b68">Warp</a> warp) = 0;</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    [[nodiscard]] Type <a class="code hl_function" href="class_texture.html#a885cf1c026c6227fbc1b99befa842416">getType</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    [[nodiscard]] Format <a class="code hl_function" href="class_texture.html#ab9c343ec4797d5175580d538a2e8c171">getFormat</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <a class="code hl_class" href="class_texture.html">Texture</a>(Type type, Format fmt);</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    Type   type;</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    Format format;</div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <span class="keyword">static</span> std::unordered_map&lt;std::filesystem::path, std::shared_ptr&lt;Texture&gt;&gt; cache;</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>};</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span><span class="preprocessor">#if TARGET_PLATFORM != PLATFORM_WIN</span></div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span><span class="keyword">namespace </span>std</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>{</div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="keyword">template</span> &lt;&gt;</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="keyword">struct </span>hash&lt;std::filesystem::path&gt;</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>{</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="keywordtype">size_t</span> operator()(<span class="keyword">const</span> std::filesystem::path&amp; path) <span class="keyword">const</span> <span class="keyword">noexcept</span></div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    {</div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>        <span class="keywordflow">return</span> std::filesystem::hash_value(path);</div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    }</div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>};</div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>} <span class="comment">// namespace std</span></div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;Core/Platform.h&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;filesystem&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;unordered_map&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keyword">class </span><a class="code hl_class" href="class_image.html">Image</a>;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="class_texture.html">   18</a></span><span class="keyword">class </span><a class="code hl_class" href="class_texture.html">Texture</a></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>{</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="comment">// 纹理过滤方式</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="class_texture.html#a55341847b37906ddffa803675617da27">   22</a></span>    <span class="keyword">enum class</span> <a class="code hl_enumeration" href="class_texture.html#a55341847b37906ddffa803675617da27">Filter</a></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    {</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        <a class="code hl_enumvalue" href="class_texture.html#a55341847b37906ddffa803675617da27a60494f02d440f316319dd0fad40ad007">Nearest</a>,  </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        <a class="code hl_enumvalue" href="class_texture.html#a55341847b37906ddffa803675617da27aaf17c98bbd83c27d6426d2ff3fa81d7f">Bilinear</a>, </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        <a class="code hl_enumvalue" href="class_texture.html#a55341847b37906ddffa803675617da27a969a7b6f1f3951ef293b3ff281dc293d">Trilinear</a> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    };</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="comment">// 纹理环绕方式(纹理寻址方式)</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="class_texture.html#af110c1b8fc58036b94dced17b5399b68">   30</a></span>    <span class="keyword">enum class</span> <a class="code hl_enumeration" href="class_texture.html#af110c1b8fc58036b94dced17b5399b68">Warp</a></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    {</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        <a class="code hl_enumvalue" href="class_texture.html#af110c1b8fc58036b94dced17b5399b68a7020426cfb0a204051be4b3053d2acc8">Repeat</a>,      </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        <a class="code hl_enumvalue" href="class_texture.html#af110c1b8fc58036b94dced17b5399b68a74556551231333c36debc3d373261134">ClampToEdge</a>, </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        <a class="code hl_enumvalue" href="class_texture.html#af110c1b8fc58036b94dced17b5399b68a39a681a9d5ccc902bebd16a343dd7b74">MirrorRepeat</a> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    };</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="comment">// 纹理类型</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keyword">enum class</span> Type</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    {</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        _2D,</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        _3D,</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        Cube,</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    };</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="class_texture.html#a04e6a764b88c1a14f2dba009074819a2">   51</a></span>    [[nodiscard]] <span class="keyword">static</span> std::shared_ptr&lt;Texture&gt; <a class="code hl_function" href="class_texture.html#a04e6a764b88c1a14f2dba009074819a2">create</a>(<span class="keyword">const</span> std::filesystem::path&amp; path, Type type = Type::_2D);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    [[nodiscard]] <span class="keyword">static</span> std::shared_ptr&lt;Texture&gt; <a class="code hl_function" href="class_texture.html#a04e6a764b88c1a14f2dba009074819a2">create</a>(<span class="keyword">const</span> <a class="code hl_class" href="class_image.html">Image</a>&amp; image, Type type = Type::_2D);</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    [[nodiscard]] <span class="keyword">static</span> std::shared_ptr&lt;Texture&gt; <a class="code hl_function" href="class_texture.html#a04e6a764b88c1a14f2dba009074819a2">create</a>(<span class="keyword">const</span> std::vector&lt;Image&gt;&amp; images);</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> bind(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> slot = 0) = 0;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="class_texture.html#a23aaceb94559abb5b9c756c2ec8ac431">   76</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_texture.html#a23aaceb94559abb5b9c756c2ec8ac431">setMinFilter</a>(<a class="code hl_enumeration" href="class_texture.html#a55341847b37906ddffa803675617da27">Filter</a> filter) = 0;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="class_texture.html#adb2d44c3e35bf0b03be885d1b3d4378f">   83</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_texture.html#adb2d44c3e35bf0b03be885d1b3d4378f">setMagFilter</a>(<a class="code hl_enumeration" href="class_texture.html#a55341847b37906ddffa803675617da27">Filter</a> filter) = 0;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="class_texture.html#a78ca4624d52f3b74d6af79beaa3ce5c1">   90</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_texture.html#a78ca4624d52f3b74d6af79beaa3ce5c1">setSWarp</a>(<a class="code hl_enumeration" href="class_texture.html#af110c1b8fc58036b94dced17b5399b68">Warp</a> warp) = 0;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="class_texture.html#a3d7fa97316058caeebcdcbfdbcd34a0e">   97</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_texture.html#a3d7fa97316058caeebcdcbfdbcd34a0e">setTWarp</a>(<a class="code hl_enumeration" href="class_texture.html#af110c1b8fc58036b94dced17b5399b68">Warp</a> warp) = 0;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno"><a class="line" href="class_texture.html#a6488dbab409fd08a4731dcb2c921aad7">  104</a></span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_texture.html#a6488dbab409fd08a4731dcb2c921aad7">setRWarp</a>(<a class="code hl_enumeration" href="class_texture.html#af110c1b8fc58036b94dced17b5399b68">Warp</a> warp) = 0;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    [[nodiscard]] Type <a class="code hl_function" href="class_texture.html#a885cf1c026c6227fbc1b99befa842416">getType</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    [[nodiscard]] Format <a class="code hl_function" href="class_texture.html#ab9c343ec4797d5175580d538a2e8c171">getFormat</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <a class="code hl_class" href="class_texture.html">Texture</a>(Type type, Format fmt);</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    Type   type;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    Format format;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="keyword">static</span> std::unordered_map&lt;std::filesystem::path, std::shared_ptr&lt;Texture&gt;&gt; cache;</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>};</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span><span class="preprocessor">#if TARGET_PLATFORM != PLATFORM_WIN</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span><span class="keyword">namespace </span>std</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>{</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="keyword">template</span> &lt;&gt;</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="structstd_1_1hash_3_01std_1_1filesystem_1_1path_01_4.html">  129</a></span><span class="keyword">struct </span>hash&lt;std::filesystem::path&gt;</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>{</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="keywordtype">size_t</span> operator()(<span class="keyword">const</span> std::filesystem::path&amp; path) <span class="keyword">const</span> <span class="keyword">noexcept</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    {</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        <span class="keywordflow">return</span> std::filesystem::hash_value(path);</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    }</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>};</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>} <span class="comment">// namespace std</span></div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aclass_image_html"><div class="ttname"><a href="class_image.html">Image</a></div><div class="ttdoc">图像.</div><div class="ttdef"><b>Definition:</b> Image.h:19</div></div>
-<div class="ttc" id="aclass_texture_html"><div class="ttname"><a href="class_texture.html">Texture</a></div><div class="ttdoc">纹理.</div><div class="ttdef"><b>Definition:</b> Texture.h:18</div></div>
+<div class="ttc" id="aclass_texture_html"><div class="ttname"><a href="class_texture.html">Texture</a></div><div class="ttdoc">纹理.</div><div class="ttdef"><b>Definition:</b> Texture.h:19</div></div>
 <div class="ttc" id="aclass_texture_html_a04e6a764b88c1a14f2dba009074819a2"><div class="ttname"><a href="class_texture.html#a04e6a764b88c1a14f2dba009074819a2">Texture::create</a></div><div class="ttdeci">static std::shared_ptr&lt; Texture &gt; create(const std::filesystem::path &amp;path, Type type=Type::_2D)</div><div class="ttdoc">从图像文件创建纹理.</div></div>
 <div class="ttc" id="aclass_texture_html_a23aaceb94559abb5b9c756c2ec8ac431"><div class="ttname"><a href="class_texture.html#a23aaceb94559abb5b9c756c2ec8ac431">Texture::setMinFilter</a></div><div class="ttdeci">virtual void setMinFilter(Filter filter)=0</div><div class="ttdoc">设置缩小过滤方式.</div></div>
 <div class="ttc" id="aclass_texture_html_a3d7fa97316058caeebcdcbfdbcd34a0e"><div class="ttname"><a href="class_texture.html#a3d7fa97316058caeebcdcbfdbcd34a0e">Texture::setTWarp</a></div><div class="ttdeci">virtual void setTWarp(Warp warp)=0</div><div class="ttdoc">设置 T 环绕方式.</div></div>
-<div class="ttc" id="aclass_texture_html_a55341847b37906ddffa803675617da27"><div class="ttname"><a href="class_texture.html#a55341847b37906ddffa803675617da27">Texture::Filter</a></div><div class="ttdeci">Filter</div><div class="ttdef"><b>Definition:</b> Texture.h:22</div></div>
+<div class="ttc" id="aclass_texture_html_a55341847b37906ddffa803675617da27"><div class="ttname"><a href="class_texture.html#a55341847b37906ddffa803675617da27">Texture::Filter</a></div><div class="ttdeci">Filter</div><div class="ttdef"><b>Definition:</b> Texture.h:23</div></div>
 <div class="ttc" id="aclass_texture_html_a55341847b37906ddffa803675617da27a60494f02d440f316319dd0fad40ad007"><div class="ttname"><a href="class_texture.html#a55341847b37906ddffa803675617da27a60494f02d440f316319dd0fad40ad007">Texture::Filter::Nearest</a></div><div class="ttdeci">@ Nearest</div><div class="ttdoc">最近点采样, 临近过滤.</div></div>
 <div class="ttc" id="aclass_texture_html_a55341847b37906ddffa803675617da27a969a7b6f1f3951ef293b3ff281dc293d"><div class="ttname"><a href="class_texture.html#a55341847b37906ddffa803675617da27a969a7b6f1f3951ef293b3ff281dc293d">Texture::Filter::Trilinear</a></div><div class="ttdeci">@ Trilinear</div><div class="ttdoc">三线性过滤.</div></div>
 <div class="ttc" id="aclass_texture_html_a55341847b37906ddffa803675617da27aaf17c98bbd83c27d6426d2ff3fa81d7f"><div class="ttname"><a href="class_texture.html#a55341847b37906ddffa803675617da27aaf17c98bbd83c27d6426d2ff3fa81d7f">Texture::Filter::Bilinear</a></div><div class="ttdeci">@ Bilinear</div><div class="ttdoc">双线性过滤.</div></div>
@@ -184,7 +185,7 @@ $(document).ready(function(){initNavTree('_texture_8h_source.html',''); initResi
 <div class="ttc" id="aclass_texture_html_a885cf1c026c6227fbc1b99befa842416"><div class="ttname"><a href="class_texture.html#a885cf1c026c6227fbc1b99befa842416">Texture::getType</a></div><div class="ttdeci">Type getType() const</div><div class="ttdoc">获取纹理类型.</div><div class="ttdef"><b>Definition:</b> Texture.cpp:67</div></div>
 <div class="ttc" id="aclass_texture_html_ab9c343ec4797d5175580d538a2e8c171"><div class="ttname"><a href="class_texture.html#ab9c343ec4797d5175580d538a2e8c171">Texture::getFormat</a></div><div class="ttdeci">Format getFormat() const</div><div class="ttdoc">获取像素格式.</div><div class="ttdef"><b>Definition:</b> Texture.cpp:72</div></div>
 <div class="ttc" id="aclass_texture_html_adb2d44c3e35bf0b03be885d1b3d4378f"><div class="ttname"><a href="class_texture.html#adb2d44c3e35bf0b03be885d1b3d4378f">Texture::setMagFilter</a></div><div class="ttdeci">virtual void setMagFilter(Filter filter)=0</div><div class="ttdoc">设置放大过滤方式.</div></div>
-<div class="ttc" id="aclass_texture_html_af110c1b8fc58036b94dced17b5399b68"><div class="ttname"><a href="class_texture.html#af110c1b8fc58036b94dced17b5399b68">Texture::Warp</a></div><div class="ttdeci">Warp</div><div class="ttdef"><b>Definition:</b> Texture.h:30</div></div>
+<div class="ttc" id="aclass_texture_html_af110c1b8fc58036b94dced17b5399b68"><div class="ttname"><a href="class_texture.html#af110c1b8fc58036b94dced17b5399b68">Texture::Warp</a></div><div class="ttdeci">Warp</div><div class="ttdef"><b>Definition:</b> Texture.h:31</div></div>
 <div class="ttc" id="aclass_texture_html_af110c1b8fc58036b94dced17b5399b68a39a681a9d5ccc902bebd16a343dd7b74"><div class="ttname"><a href="class_texture.html#af110c1b8fc58036b94dced17b5399b68a39a681a9d5ccc902bebd16a343dd7b74">Texture::Warp::MirrorRepeat</a></div><div class="ttdeci">@ MirrorRepeat</div><div class="ttdoc">镜像重复, 正像/镜像交替.</div></div>
 <div class="ttc" id="aclass_texture_html_af110c1b8fc58036b94dced17b5399b68a7020426cfb0a204051be4b3053d2acc8"><div class="ttname"><a href="class_texture.html#af110c1b8fc58036b94dced17b5399b68a7020426cfb0a204051be4b3053d2acc8">Texture::Warp::Repeat</a></div><div class="ttdeci">@ Repeat</div><div class="ttdoc">重复.</div></div>
 <div class="ttc" id="aclass_texture_html_af110c1b8fc58036b94dced17b5399b68a74556551231333c36debc3d373261134"><div class="ttname"><a href="class_texture.html#af110c1b8fc58036b94dced17b5399b68a74556551231333c36debc3d373261134">Texture::Warp::ClampToEdge</a></div><div class="ttdeci">@ ClampToEdge</div><div class="ttdoc">超出边界后重复边缘, 产生边缘被拉伸的效果.</div></div>
