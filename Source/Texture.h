@@ -4,6 +4,7 @@
 #pragma once
 
 #include "Format.h"
+#include "Core/Platform.h"
 #include <filesystem>
 #include <memory>
 #include <unordered_map>
