@@ -163,15 +163,15 @@ bool InstanceBuilder::isExtensionAvailable(std::string_view name) const
 void InstanceBuilder::enableWindowExtensions()
 {
 	enableExtension("VK_KHR_surface");
-#if TARGET_PLATFORM == PLATFORM_WIN
+#if TARGET_OS == OS_WIN
 	enableExtension("VK_KHR_win32_surface");
-#elif TARGET_PLATFORM == PLATFORM_ANDROID
+#elif TARGET_OS == OS_ANDROID
 	enableExtension("VK_KHR_android_surface");
-#elif TARGET_PLATFORM == PLATFORM_LINUX
+#elif TARGET_OS == OS_LINUX
 	enableExtension("VK_KHR_xcb_surface");
 	enableExtension("VK_KHR_xlib_surface");
 	enableExtension("VK_KHR_wayland_surface");
-#elif TARGET_PLATFORM == PLATFORM_MAC || TARGET_PLATFORM == PLATFORM_IOS
+#elif TARGET_OS == OS_MAC || TARGET_OS == OS_IOS
 	enableExtension("VK_EXT_metal_surface");
 #elif defined(_DIRECT2DISPLAY)
 	enableExtension("VK_KHR_display");

@@ -122,7 +122,7 @@ protected:
 	static std::unordered_map<std::filesystem::path, std::shared_ptr<Texture>> cache;
 };
 
-#if TARGET_PLATFORM != PLATFORM_WIN
+#if TARGET_COMPILER == COMPILER_CLANG
 namespace std
 {
 template <>
