@@ -67,4 +67,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: examples-ubuntu-${{ matrix.arch }}
-          path: build/bin
+          path: build/bin/*/

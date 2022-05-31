@@ -74,4 +74,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: examples-macos-${{ matrix.arch }}
-          path: build/bin
+          path: build/bin/*/
