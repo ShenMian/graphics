@@ -29,6 +29,9 @@ vcpkg_installed
 # IntelliJ IDEA
 /.idea
 
+# Ctags
+tags
+
 # Doxygen
 /Docs/html
 /Docs/man
