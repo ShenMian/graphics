@@ -2,6 +2,7 @@
 // License(Apache-2.0)
 
 #include "PipelineLayout.h"
+#include <algorithm>
 #include <cassert>
 #include <string>
 #include <stdexcept>

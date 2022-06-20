@@ -2,6 +2,7 @@
 // License(Apache-2.0)
 
 #include "VertexAttributes.h"
+#include <algorithm>
 #include <cassert>
 #include <unordered_map>
 
