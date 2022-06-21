@@ -158,19 +158,17 @@ $(document).ready(function(){initNavTree('_texture_8h_source.html',''); initResi
 <div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="keyword">static</span> std::unordered_map&lt;std::filesystem::path, std::shared_ptr&lt;Texture&gt;&gt; cache;</div>
 <div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>};</div>
 <div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span><span class="preprocessor">#if TARGET_COMPILER == COMPILER_CLANG</span></div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span><span class="keyword">namespace </span>std</div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>{</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="keyword">template</span> &lt;&gt;</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span><span class="keyword">struct </span>hash&lt;std::filesystem::path&gt;</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>{</div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="keywordtype">size_t</span> operator()(<span class="keyword">const</span> std::filesystem::path&amp; path) <span class="keyword">const</span> <span class="keyword">noexcept</span></div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    {</div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        <span class="keywordflow">return</span> std::filesystem::hash_value(path);</div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    }</div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>};</div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>} <span class="comment">// namespace std</span></div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span><span class="comment">// TODO: 需要移动到合适的位置</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span><span class="preprocessor">#if TARGET_COMPILER == COMPILER_CLANG</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="keyword">template</span> &lt;&gt;</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="keyword">struct </span>std::hash&lt;std::filesystem::path&gt;</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>{</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="keywordtype">size_t</span> operator()(<span class="keyword">const</span> std::filesystem::path&amp; path) <span class="keyword">const</span> <span class="keyword">noexcept</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    {</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>        <span class="keywordflow">return</span> std::filesystem::hash_value(path);</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    }</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>};</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aclass_image_html"><div class="ttname"><a href="class_image.html">Image</a></div><div class="ttdoc">图像.</div><div class="ttdef"><b>Definition:</b> Image.h:19</div></div>
 <div class="ttc" id="aclass_texture_html"><div class="ttname"><a href="class_texture.html">Texture</a></div><div class="ttdoc">纹理.</div><div class="ttdef"><b>Definition:</b> Texture.h:19</div></div>
 <div class="ttc" id="aclass_texture_html_a04e6a764b88c1a14f2dba009074819a2"><div class="ttname"><a href="class_texture.html#a04e6a764b88c1a14f2dba009074819a2">Texture::create</a></div><div class="ttdeci">static std::shared_ptr&lt; Texture &gt; create(const std::filesystem::path &amp;path, Type type=Type::_2D)</div><div class="ttdoc">从图像文件创建纹理.</div></div>
