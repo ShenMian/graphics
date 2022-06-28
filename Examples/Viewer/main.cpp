@@ -65,19 +65,28 @@ int main()
 				animation.write(bones, 100 * sizeof(Matrix4f));
 				*/
 
-				// const std::filesystem::path path = "../../../../../../model/bee.glb";
-				// const std::filesystem::path path = "../../../../../../model/sponza/sponza.obj";
-				const std::filesystem::path path = "../../../../../../model/m4a1/m4a1.gltf";
-				// const std::filesystem::path path = "../../../../../../model/pistol/kimber_desert_warrior/scene.gltf";
-				// const std::filesystem::path path = "../../../../../../model/Bistro/BistroExterior.glb";
-				// const std::filesystem::path path = "../../../../../../model/SpeedTree/White Oak/HighPoly/White_Oak.fbx";
-				// const std::filesystem::path path = "../../../../../../model/San_Miguel/san-miguel-low-poly.obj";
+				// const std::filesystem::path path = "../../../../../../Model/bee.glb";
+				// const std::filesystem::path path = "../../../../../../Model/sponza/sponza.obj";
+				const std::filesystem::path path = "../../../../../../Model/sponza/sponza.glb";
+				// const std::filesystem::path path = "../../../../../../Model/m4a1/m4a1.gltf";
+				// const std::filesystem::path path = "../../../../../../Model/pistol/kimber_desert_warrior/scene.gltf";
+				// const std::filesystem::path path = "../../../../../../Model/Bistro/BistroExterior.glb";
+				// const std::filesystem::path path = "../../../../../../Model/SpeedTree/White Oak/HighPoly/White_Oak.fbx";
+				// const std::filesystem::path path = "../../../../../../Model/San_Miguel/san-miguel-low-poly.obj";
+				// const std::filesystem::path path = "../../../../../../Model/San_Miguel/SanMiguel-low.glb";
 
 				Model model;
 				model.load(path, Model::ProcessFlags::Fast, [](float progress) {
 					printf("Meshes loading: %.1f%%  \r", progress * 100);
 				});
 				PrintModelInfo(model);
+
+				auto speed = 0.f;
+				speed += model.getAABB().max.x - model.getAABB().min.x;
+				speed += model.getAABB().max.y - model.getAABB().min.y;
+				speed += model.getAABB().max.z - model.getAABB().min.z;
+				speed /= 3;
+				controller.setSpeed(speed * 0.5);
 
 				bool running = true;
 				window.onClose = [&]{ running = false; };
