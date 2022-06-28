@@ -112,33 +112,36 @@ $(document).ready(function(){initNavTree('_controller_8h_source.html',''); initR
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordtype">void</span> turnRight(<span class="keywordtype">float</span> step);</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordtype">void</span> lookUp(<span class="keywordtype">float</span> step);</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_controller.html#aae796d317206fc1fc9c179f15e7f1be9">setSmoothness</a>(<span class="keywordtype">float</span> v);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_controller.html#acb1fc27500aa29853045b72d56d59d73">setSpeed</a>(<span class="keywordtype">float</span> v);</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_controller.html#a7e32999655d611ec05ed1b89aca5261b">setCamera</a>(<a class="code hl_class" href="class_camera.html">Camera</a>&amp; cam);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_controller.html#aae796d317206fc1fc9c179f15e7f1be9">setSmoothness</a>(<span class="keywordtype">float</span> v);</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_controller.html#a495e13c4ffd2b93a9b135731017c1dfa">setGamepad</a>(<a class="code hl_class" href="class_gamepad.html">Gamepad</a>&amp; gamepad);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_controller.html#a7e32999655d611ec05ed1b89aca5261b">setCamera</a>(<a class="code hl_class" href="class_camera.html">Camera</a>&amp; cam);</div>
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keywordtype">void</span> processKeyboard(<span class="keywordtype">float</span> dt);</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keywordtype">void</span> processMouse(<span class="keywordtype">float</span> dt);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_controller.html#a495e13c4ffd2b93a9b135731017c1dfa">setGamepad</a>(<a class="code hl_class" href="class_gamepad.html">Gamepad</a>&amp; gamepad);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keywordtype">void</span> processKeyboard(<span class="keywordtype">float</span> dt);</div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keywordtype">void</span> processGamepad(<span class="keywordtype">float</span> dt);</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keywordtype">void</span> processMouse(<span class="keywordtype">float</span> dt);</div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <a class="code hl_class" href="class_camera.html">Camera</a>* camera = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="keywordtype">float</span>   speed = 200.f;</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keywordtype">float</span>    smoothness = 11;</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    Vector3f target;</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <a class="code hl_class" href="class_gamepad.html">Gamepad</a>* gamepad = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>};</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keywordtype">void</span> processGamepad(<span class="keywordtype">float</span> dt);</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <a class="code hl_class" href="class_camera.html">Camera</a>* camera = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keywordtype">float</span>   speed = 200.f;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="keywordtype">float</span>    smoothness = 11;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    Vector3f target;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <a class="code hl_class" href="class_gamepad.html">Gamepad</a>* gamepad = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>};</div>
 <div class="ttc" id="aclass_camera_html"><div class="ttname"><a href="class_camera.html">Camera</a></div><div class="ttdoc">摄像机.</div><div class="ttdef"><b>Definition:</b> Camera.h:12</div></div>
 <div class="ttc" id="aclass_controller_html"><div class="ttname"><a href="class_controller.html">Controller</a></div><div class="ttdoc">摄像机控制器.</div><div class="ttdef"><b>Definition:</b> Controller.h:15</div></div>
-<div class="ttc" id="aclass_controller_html_a495e13c4ffd2b93a9b135731017c1dfa"><div class="ttname"><a href="class_controller.html#a495e13c4ffd2b93a9b135731017c1dfa">Controller::setGamepad</a></div><div class="ttdeci">void setGamepad(Gamepad &amp;gamepad)</div><div class="ttdoc">设置要获取输入的手柄.</div><div class="ttdef"><b>Definition:</b> Controller.cpp:68</div></div>
-<div class="ttc" id="aclass_controller_html_a7e32999655d611ec05ed1b89aca5261b"><div class="ttname"><a href="class_controller.html#a7e32999655d611ec05ed1b89aca5261b">Controller::setCamera</a></div><div class="ttdeci">void setCamera(Camera &amp;cam)</div><div class="ttdoc">设置控制的相机.</div><div class="ttdef"><b>Definition:</b> Controller.cpp:62</div></div>
-<div class="ttc" id="aclass_controller_html_aae796d317206fc1fc9c179f15e7f1be9"><div class="ttname"><a href="class_controller.html#aae796d317206fc1fc9c179f15e7f1be9">Controller::setSmoothness</a></div><div class="ttdeci">void setSmoothness(float v)</div><div class="ttdoc">设置平滑度.</div><div class="ttdef"><b>Definition:</b> Controller.cpp:57</div></div>
+<div class="ttc" id="aclass_controller_html_a495e13c4ffd2b93a9b135731017c1dfa"><div class="ttname"><a href="class_controller.html#a495e13c4ffd2b93a9b135731017c1dfa">Controller::setGamepad</a></div><div class="ttdeci">void setGamepad(Gamepad &amp;gamepad)</div><div class="ttdoc">设置要获取输入的手柄.</div><div class="ttdef"><b>Definition:</b> Controller.cpp:74</div></div>
+<div class="ttc" id="aclass_controller_html_a7e32999655d611ec05ed1b89aca5261b"><div class="ttname"><a href="class_controller.html#a7e32999655d611ec05ed1b89aca5261b">Controller::setCamera</a></div><div class="ttdeci">void setCamera(Camera &amp;cam)</div><div class="ttdoc">设置控制的相机.</div><div class="ttdef"><b>Definition:</b> Controller.cpp:68</div></div>
+<div class="ttc" id="aclass_controller_html_aae796d317206fc1fc9c179f15e7f1be9"><div class="ttname"><a href="class_controller.html#aae796d317206fc1fc9c179f15e7f1be9">Controller::setSmoothness</a></div><div class="ttdeci">void setSmoothness(float v)</div><div class="ttdoc">设置平滑度.</div><div class="ttdef"><b>Definition:</b> Controller.cpp:63</div></div>
 <div class="ttc" id="aclass_controller_html_abff8d731f04eccd93049041c7ee142ce"><div class="ttname"><a href="class_controller.html#abff8d731f04eccd93049041c7ee142ce">Controller::update</a></div><div class="ttdeci">void update(float dt)</div><div class="ttdoc">通过外部输入更新相机.</div><div class="ttdef"><b>Definition:</b> Controller.cpp:15</div></div>
+<div class="ttc" id="aclass_controller_html_acb1fc27500aa29853045b72d56d59d73"><div class="ttname"><a href="class_controller.html#acb1fc27500aa29853045b72d56d59d73">Controller::setSpeed</a></div><div class="ttdeci">void setSpeed(float v)</div><div class="ttdoc">设置移动速度.</div><div class="ttdef"><b>Definition:</b> Controller.cpp:58</div></div>
 <div class="ttc" id="aclass_controller_html_ae1d7f1814db7ab462eaf42f8b84f3670"><div class="ttname"><a href="class_controller.html#ae1d7f1814db7ab462eaf42f8b84f3670">Controller::Controller</a></div><div class="ttdeci">Controller()=default</div><div class="ttdoc">默认构造函数.</div></div>
 <div class="ttc" id="aclass_gamepad_html"><div class="ttname"><a href="class_gamepad.html">Gamepad</a></div><div class="ttdoc">游戏手柄.</div><div class="ttdef"><b>Definition:</b> Gamepad.h:20</div></div>
 </div><!-- fragment --></div><!-- contents -->

@@ -5,5 +5,6 @@ var class_controller =
     [ "setCamera", "class_controller.html#a7e32999655d611ec05ed1b89aca5261b", null ],
     [ "setGamepad", "class_controller.html#a495e13c4ffd2b93a9b135731017c1dfa", null ],
     [ "setSmoothness", "class_controller.html#aae796d317206fc1fc9c179f15e7f1be9", null ],
+    [ "setSpeed", "class_controller.html#acb1fc27500aa29853045b72d56d59d73", null ],
     [ "update", "class_controller.html#abff8d731f04eccd93049041c7ee142ce", null ]
 ];
