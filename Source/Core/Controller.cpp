@@ -14,6 +14,7 @@ Controller::Controller(Camera& cam)
 
 void Controller::update(float dt)
 {
+	// FIXME: 同时使用键盘和鼠标可能达到更高的速度
 	processMouse(dt);
 	processKeyboard(dt);
 	processGamepad(dt);
@@ -52,6 +53,11 @@ void Controller::lookUp(float step)
 	rot.x += step;
 	rot.x = std::clamp(rot.x, -89.f, 89.f);
 	camera->setRotation(rot);
+}
+
+void Controller::setSpeed(float v)
+{
+	speed = v;
 }
 
 void Controller::setSmoothness(float v)

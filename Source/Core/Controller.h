@@ -41,6 +41,13 @@ public:
 	void lookUp(float step);
 
 	/**
+	 * @brief 设置移动速度.
+	 *
+	 * @param v 移动速度.
+	 */
+	void setSpeed(float v);
+
+	/**
 	 * @brief 设置平滑度.
 	 *
 	 * @param v 平滑度, 越高缓冲效果时间越短. 0 表示不开启平滑.
