@@ -43,8 +43,40 @@ std::shared_ptr<Program> Program::create(std::string_view name)
 		{"comp", Shader::Stage::Compute}
 	};
 
+    // GLSL
+    for(const auto& [stageName, stage] : com) {
+        auto path = fmt::format("{}.{}.glsl", name, stageName);
+		if(!fs::exists(path))
+			continue;
+
+        Shader::Descriptor shaderDesc;
+        shaderDesc.stage = stage;
+        shaderDesc.path = path;
+
+        switch (stage) {
+            using enum Shader::Stage;
+
+            case Vertex:
+                desc.vertex = Shader::create(shaderDesc);
+                break;
+
+            case Fragment:
+                desc.fragment = Shader::create(shaderDesc);
+                break;
+
+            case Geometry:
+                desc.geometry = Shader::create(shaderDesc);
+                break;
+
+            case Compute:
+                desc.compute = Shader::create(shaderDesc);
+                break;
+        }
+    }
+	if(desc.vertex != nullptr && desc.fragment != nullptr)
+		return create(desc);
+
 	// SPV
-	/*
 	for(const auto& [stageName, stage] : com)
 	{
 		auto path = fmt::format("{}.{}.spv", name, stageName);
@@ -76,40 +108,6 @@ std::shared_ptr<Program> Program::create(std::string_view name)
 			break;
 		}
 	}
-	if(desc.vertex != nullptr && desc.fragment != nullptr)
-		return create(desc);
-	*/
-
-    // GLSL
-    for(const auto& [stageName, stage] : com) {
-        auto path = fmt::format("{}.{}.glsl", name, stageName);
-		if(!fs::exists(path))
-			continue;
-
-        Shader::Descriptor shaderDesc;
-        shaderDesc.stage = stage;
-        shaderDesc.path = path;
-
-        switch (stage) {
-            using enum Shader::Stage;
-
-            case Vertex:
-                desc.vertex = Shader::create(shaderDesc);
-                break;
-
-            case Fragment:
-                desc.fragment = Shader::create(shaderDesc);
-                break;
-
-            case Geometry:
-                desc.geometry = Shader::create(shaderDesc);
-                break;
-
-            case Compute:
-                desc.compute = Shader::create(shaderDesc);
-                break;
-        }
-    }
 
 	return create(desc);
 }
