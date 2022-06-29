@@ -193,7 +193,7 @@ void InstanceBuilder::createDebugMessager(VkInstance instance)
 		const VkDebugUtilsMessengerCallbackDataEXT* data,
 		void* pUserData)
 	{
-		printf("[%s: %s]\n%s\n", toString(severity).data(), toString(type).data(), data->pMessage);
+		printf("Severity: %s\nType    : %s\n%s\n\n", toString(severity).data(), toString(type).data(), data->pMessage);
 		return VK_FALSE;
 	};
 
