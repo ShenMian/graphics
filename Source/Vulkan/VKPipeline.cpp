@@ -47,7 +47,7 @@ VkDescriptorType VKType(PipelineLayout::Type type)
 	throw std::invalid_argument("");
 }
 
-VkShaderStageFlags VKStageFlags(int flags)
+VkShaderStageFlags VKStageFlags(uint32_t flags)
 {
 	VkShaderStageFlags vkFlags = 0;
 	if(flags & PipelineLayout::StageFlags::Vertex)

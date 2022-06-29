@@ -33,15 +33,15 @@ public:
 
 	struct Binding
 	{
-		Binding(std::string_view name, Type type, uint32_t slot, int stageFlags, uint32_t arraySize = 1)
+		Binding(std::string_view name, Type type, uint32_t slot, uint32_t stageFlags, uint32_t arraySize = 1)
 			: type(type), slot(slot), stageFlags(stageFlags), arraySize(arraySize)
 		{
 		}
 
-		Type       type;
-		uint32_t   slot;
-		int        stageFlags;
-		uint32_t   arraySize;
+		Type     type;
+		uint32_t slot;
+		uint32_t stageFlags;
+		uint32_t arraySize;
 	};
 
 	PipelineLayout() = default;
