@@ -43,8 +43,9 @@ GLShader::GLShader(const Descriptor& desc)
 	if(!fs::exists(path))
 		throw std::runtime_error("file not found: " + path.string());
 
-#if 0
-	compile(desc.path, desc.stage);
+#if 1
+	if(path.extension() == ".glsl")
+		compile(path, desc.stage);
 	if(path.extension() != ".spv")
 		path.replace_extension(".spv");
 
@@ -154,13 +155,13 @@ void GLShader::compile(const fs::path& sourcePath, Stage stage)
 	auto res = compiler.CompileGlslToSpv(source, SCStage[stage], sourcePath.stem().string().c_str(), options);
 	if(res.GetCompilationStatus() != shaderc_compilation_status_success)
 		throw std::runtime_error(fmt::format("failed to compile shader: {}", res.GetErrorMessage()));
-	std::vector<uint32_t> spv(res.cbegin(), res.cend());
+	const std::vector<uint32_t> spv(res.cbegin(), res.cend());
 
 	// 写入编译结果
 	std::ofstream targetFile(targetPath, std::ios::binary);
 	if(!targetFile.is_open())
 		throw std::runtime_error("failed to open file: " + sourcePath.string());
-	targetFile.write((char*)spv.data(), spv.size() * sizeof(uint32_t));
+	targetFile.write((const char*)spv.data(), spv.size() * sizeof(uint32_t));
 	targetFile.close();
 }
 
