@@ -28,7 +28,7 @@ int main()
 			PrintMonitorInfo();
 			PrintRendererInfo();
 
-            // 创建一个由 3 个顶点构成的三角形
+			// 创建一个由 3 个顶点构成的三角形
 			const std::vector<Vertex> vertices = {
 				{{0,     0.5}, {1, 0, 0}},
 				{{0.5,  -0.5}, {0, 1, 0}},
@@ -41,12 +41,13 @@ int main()
 			layout.setStride(sizeof(Vertex));
 			auto vertexBuffer = VertexBuffer::create(vertices, layout);
 
-            // 创建着色器程序
+			// 创建着色器程序
 			auto program = Program::create("Shaders/forward");
 
 			Pipeline::Descriptor desc;
 			desc.program = program;
 			desc.vertexAttributes = layout;
+			// desc.viewports.push_back(Viewport({0, 0}, window.getSize()));
 			auto pipeline = Pipeline::create(desc);
 
 			auto cmdQueue = CommandQueue::create();

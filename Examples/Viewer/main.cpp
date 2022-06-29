@@ -81,6 +81,7 @@ int main()
 				});
 				PrintModelInfo(model);
 
+				// 根据模型大小设置相机移动速度
 				auto speed = 0.f;
 				speed += model.getAABB().max.x - model.getAABB().min.x;
 				speed += model.getAABB().max.y - model.getAABB().min.y;
