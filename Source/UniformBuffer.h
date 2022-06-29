@@ -10,11 +10,10 @@ class Buffer;
 class UniformBuffer
 {
 public:
-	UniformBuffer(std::string_view name, int binding);
+	UniformBuffer(int binding);
 	
 	virtual Buffer& getBuffer() = 0;
 
 protected:
-	std::string name;
-	int         binding;
+	int binding;
 };

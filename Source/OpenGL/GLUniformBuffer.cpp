@@ -8,9 +8,11 @@
 
 #include <string>
 
-GLUniformBuffer::GLUniformBuffer(std::string_view name, int binding, size_t size)
-	: UniformBuffer(name, binding), buffer(size, Buffer::Type::Uniform, Buffer::Usage::Dynamic)
+GLUniformBuffer::GLUniformBuffer(int binding, size_t size)
+	: UniformBuffer(binding), buffer(size, Buffer::Type::Uniform, Buffer::Usage::Dynamic)
 {
+	glBindBufferBase(GL_UNIFORM_BUFFER, binding, buffer);
+	GLCheckError();
 }
 
 Buffer& GLUniformBuffer::getBuffer()
@@ -18,14 +20,8 @@ Buffer& GLUniformBuffer::getBuffer()
 	return buffer;
 }
 
-void GLUniformBuffer::bind(GLProgram* program)
-{
-	// FIXME: SPRI-V Shader无法再正确识别该项
-	auto blockIndex = glGetUniformBlockIndex(*program, name.c_str());
-	blockIndex = 0; // FIXME
-	if(blockIndex == GL_INVALID_INDEX)
-		throw std::runtime_error("failed to get uniform block index");
-	glUniformBlockBinding(*program, blockIndex, binding);
-	glBindBufferBase(GL_UNIFORM_BUFFER, blockIndex, buffer);
-	GLCheckError();
-}
+/* FIXME: 使用 SPRI-V 无法再正确识别该项
+auto blockIndex = glGetUniformBlockIndex(*program, name.c_str());
+if(blockIndex == GL_INVALID_INDEX)
+	throw std::runtime_error("failed to get uniform block index");
+glUniformBlockBinding(*program, blockIndex, binding);*/

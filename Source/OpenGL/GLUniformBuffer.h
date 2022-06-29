@@ -13,11 +13,9 @@ class GLProgram;
 class GLUniformBuffer : public UniformBuffer
 {
 public:
-	GLUniformBuffer(std::string_view name, int binding, size_t size);
+	GLUniformBuffer(int binding, size_t size);
 	
 	Buffer& getBuffer() override;
-
-	void bind(GLProgram* program);
 
 private:
 	GLBuffer buffer;

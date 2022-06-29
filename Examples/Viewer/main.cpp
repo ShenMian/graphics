@@ -55,8 +55,7 @@ int main()
 				controller.setCamera(camera);
 				controller.setGamepad(gamepad);
 
-				GLUniformBuffer matrices("Matrices", 0, 3 * sizeof(Matrix4f));
-				matrices.bind(reinterpret_cast<GLProgram*>(program.get()));
+				GLUniformBuffer matrices(0, 3 * sizeof(Matrix4f));
 
 				/*
 				GLUniformBuffer animation("Animation", 1, 100 * sizeof(Matrix4f));

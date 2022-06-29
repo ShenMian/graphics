@@ -3,7 +3,7 @@
 
 #include "UniformBuffer.h"
 
-UniformBuffer::UniformBuffer(std::string_view name, int binding)
-	: name(name), binding(binding)
+UniformBuffer::UniformBuffer(int binding)
+	: binding(binding)
 {
 }

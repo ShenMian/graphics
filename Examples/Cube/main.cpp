@@ -68,8 +68,7 @@ int main()
 			Camera camera(Camera::Type::Perspective);
 			camera.setPerspective(radians(60.f), (float)window.getSize().x / window.getSize().y, 0.1f, 5000.f);
 
-			GLUniformBuffer matrices("Matrices", 0, 3 * sizeof(Matrix4f));
-			matrices.bind(reinterpret_cast<GLProgram*>(program.get()));
+			GLUniformBuffer matrices(0, 3 * sizeof(Matrix4f));
 
 			bool running = true;
 			window.onClose = [&]{ running = false; };

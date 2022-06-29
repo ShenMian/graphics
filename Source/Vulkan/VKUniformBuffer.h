@@ -10,7 +10,7 @@
 class VKUniformBuffer : public UniformBuffer
 {
 public:
-	VKUniformBuffer(const std::string& name, int slot, size_t size);
+	VKUniformBuffer(int slot, size_t size);
 
 	void write(const void* data, size_t size, size_t offset);
 
