@@ -65,6 +65,14 @@ VKInstance InstanceBuilder::build()
 {
 	enableWindowExtensions();
 
+	for(auto layer : enabledLayers)
+		if(!isLayerAvailable(layer))
+			throw std::runtime_error("requested layer not present");
+
+	for(auto ext : enabledExtensions)
+		if(!isExtensionAvailable(ext))
+			throw std::runtime_error("requested extension not avaliable");
+
 	appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
 
 	instanceInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
@@ -110,16 +118,12 @@ InstanceBuilder& InstanceBuilder::setAppVersion(uint32_t major, uint32_t minor, 
 
 InstanceBuilder& InstanceBuilder::enableLayer(std::string_view name)
 {
-	if(!isLayerAvailable(name))
-		throw std::runtime_error("requested layer not present");
 	enabledLayers.emplace_back(name.data());
 	return *this;
 }
 
 InstanceBuilder& InstanceBuilder::enableExtension(std::string_view name)
 {
-	if(!isExtensionAvailable(name))
-		throw std::runtime_error("requested extension not present");
 	enabledExtensions.emplace_back(name.data());
 	return *this;
 }
