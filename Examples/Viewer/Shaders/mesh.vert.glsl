@@ -20,7 +20,7 @@ struct Bone
     vec4  weight;
 };
 
-layout(set = 0, binding = 0) uniform Matrices
+layout(binding = 0) uniform Matrices
 {
     mat4 view;
     mat4 proj;
@@ -28,7 +28,7 @@ layout(set = 0, binding = 0) uniform Matrices
 } mat;
 
 const uint max_bones = 100;
-layout(set = 0, binding = 1) uniform Animation
+layout(binding = 1) uniform Animation
 {
     mat4 matrices[max_bones];
     Bone bones[max_bones];
