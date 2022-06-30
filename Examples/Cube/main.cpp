@@ -31,7 +31,7 @@ int main()
 			PrintMonitorInfo();
 			PrintRendererInfo();
 
-            // 创建一个由 8 个顶点构成的立方体
+			// 创建一个由 8 个顶点构成的立方体
 			const std::vector<Vertex> vertices = {
 				{{-0.5, -0.5, -0.5}, {1, 0, 0}},
 				{{-0.5, +0.5, -0.5}, {0, 1, 0}},
@@ -49,7 +49,7 @@ int main()
 			format.setStride(sizeof(Vertex));
 			auto vertexBuffer = VertexBuffer::create(vertices, format);
 
-            // 创建顶点索引, 表示构成 12 个三角形的顶点组成
+			// 创建顶点索引, 表示构成 12 个三角形的顶点组成
 			const std::vector<uint32_t> indices = {
 				2,0,1, 2,3,0,
 				4,6,5, 4,7,6,
@@ -62,11 +62,17 @@ int main()
 
 			auto program = Program::create("Shaders/mesh");
 
+			Pipeline::Descriptor desc;
+			desc.program = program;
+			desc.vertexAttributes = format;
+			auto pipeline = Pipeline::create(desc);
+
 			auto cmdQueue = CommandQueue::create();
 			auto cmdBuffer = CommandBuffer::create();
 
 			Camera camera(Camera::Type::Perspective);
 			camera.setPerspective(radians(60.f), (float)window.getSize().x / window.getSize().y, 0.1f, 5000.f);
+			camera.setPosition({0, 0, 3});
 
 			GLUniformBuffer matrices(0, 3 * sizeof(Matrix4f));
 
@@ -93,14 +99,20 @@ int main()
 
 				cmdBuffer->begin();
 				{
-					cmdBuffer->setViewport({window.getSize()});
-					cmdBuffer->setClearColor({0, 0, 0, 0});
-					cmdBuffer->setClearDepth(std::numeric_limits<float>::infinity());
-					cmdBuffer->clear(ClearFlag::Color | ClearFlag::Depth);
+					cmdBuffer->setPipeline(pipeline);
 
-					cmdBuffer->setVertexBuffer(vertexBuffer);
-					cmdBuffer->setIndexBuffer(indexBuffer);
-					cmdBuffer->drawIndexed(indexBuffer->getCount());
+					cmdBuffer->beginRenderPass();
+					{
+						cmdBuffer->setViewport({window.getSize()});
+						cmdBuffer->setClearColor({0, 0, 0, 0});
+						cmdBuffer->setClearDepth(std::numeric_limits<float>::infinity());
+						cmdBuffer->clear(ClearFlag::Color | ClearFlag::Depth);
+
+						cmdBuffer->setVertexBuffer(vertexBuffer);
+						cmdBuffer->setIndexBuffer(indexBuffer);
+						cmdBuffer->drawIndexed(indexBuffer->getCount());
+					}
+					cmdBuffer->endRenderPass();
 				}
 				cmdBuffer->end();
 				cmdQueue->submit(cmdBuffer);
