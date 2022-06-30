@@ -77,13 +77,13 @@ jobs:
         with:
           name: graphics-windows-${{ matrix.arch }}
           path: |
-            build/lib/graphics.lib
-            build/lib/graphicsd.lib
+            build/**/graphics.lib
+            build/**/graphicsd.lib
 
       - name: Upload binaries
         uses: actions/upload-artifact@v3
         with:
           name: examples-windows-${{ matrix.arch }}
           path: |
-            build/bin/*/*.exe
-            build/bin/*/*.glsl
+            build/bin/**/*.exe
+            build/bin/**/*.glsl
