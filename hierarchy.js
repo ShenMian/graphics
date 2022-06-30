@@ -57,6 +57,7 @@ var hierarchy =
       [ "VKPipeline", "class_v_k_pipeline.html", null ]
     ] ],
     [ "PipelineLayout", "class_pipeline_layout.html", null ],
+    [ "Primitive", "class_primitive.html", null ],
     [ "Model::ProcessFlags", "struct_model_1_1_process_flags.html", null ],
     [ "Program", "class_program.html", [
       [ "GLProgram", "class_g_l_program.html", null ],

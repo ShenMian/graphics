@@ -56,6 +56,7 @@ var annotated_dup =
     [ "PhysicalDeviceSelector", "class_physical_device_selector.html", null ],
     [ "Pipeline", "class_pipeline.html", "class_pipeline" ],
     [ "PipelineLayout", "class_pipeline_layout.html", "class_pipeline_layout" ],
+    [ "Primitive", "class_primitive.html", null ],
     [ "Program", "class_program.html", null ],
     [ "RasterizerDescriptor", "struct_rasterizer_descriptor.html", null ],
     [ "Renderer", "class_renderer.html", null ],

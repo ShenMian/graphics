@@ -17,6 +17,7 @@ var dir_74389ed8173ad57b461b9d623a1f3867 =
     [ "Model.h", "_model_8h_source.html", null ],
     [ "Pipeline.h", "_pipeline_8h_source.html", null ],
     [ "PipelineLayout.h", "_pipeline_layout_8h_source.html", null ],
+    [ "Primitive.h", "_primitive_8h_source.html", null ],
     [ "Program.h", "_program_8h_source.html", null ],
     [ "Renderer.h", "_renderer_8h_source.html", null ],
     [ "Shader.h", "_shader_8h_source.html", null ],
