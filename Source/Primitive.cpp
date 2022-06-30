@@ -204,17 +204,17 @@ Mesh Primitive::makePlane(unsigned int x, unsigned int z)
 
 	Vector3 offset = Vector3(-1, 0, -1);
 
-	for(unsigned int x = 0; x <= x; x++)
+	for(unsigned int x_ = 0; x_ <= x; x_++)
 	{
-		for(unsigned int z = 0; z <= z; z++)
+		for(unsigned int z_ = 0; z_ <= z; z_++)
 		{
-			unsigned int i = z + x * (z + 1);
+			unsigned int i = z_ + x_ * (z + 1);
 
 			// 'Forward' is typically -Z so either the verts or UVs need
 			// to be flipped to align textures correctly
 
-			vertices[i].position = Vector3(x * xStep, 0, z * zStep) + offset;
-			vertices[i].uv = Vector2(x * uStep, (z - z) * vStep);
+			vertices[i].position = Vector3(x_ * xStep, 0, z_ * zStep) + offset;
+			vertices[i].uv = Vector2(x_ * uStep, (z - z_) * vStep);
 		}
 	}
 
@@ -274,17 +274,17 @@ Mesh Primitive::makeSphere(unsigned int lat, unsigned int lon)
 	float lonStep = std::numbers::pi * 2 / lon; // FIXME: pi2 means pi * 2 or pi ^ 2?
 	float latStep = std::numbers::pi / lat;
 
-	for(unsigned int lat = 0, v = 0; lat <= lat; lat++) {
-		for(unsigned int lon = 0; lon <= lon; lon++, v++) {
+	for(unsigned int lat_ = 0, v = 0; lat_ <= lat; lat_++) {
+		for(unsigned int lon_ = 0; lon_ <= lon; lon_++, v++) {
 			vertices[v].position = Vector3(
-				cos(lon * lonStep) * sin(lat * latStep), // Circle equations from UVs
-				cos(lat * latStep - std::numbers::pi),   // bottom to top
-				sin(lon * lonStep) * sin(lat * latStep)
+				cos(lon_ * lonStep) * sin(lat_ * latStep), // Circle equations from UVs
+				cos(lat_ * latStep - std::numbers::pi),    // bottom to top
+				sin(lon_ * lonStep) * sin(lat_ * latStep)
 			);
 
 			vertices[v].uv = Vector2( // This is a UV spehre, so uvs map directly
-				(float)lon / lon,     // to the verts. This is effectivly a Mercator
-				(float)lat / lat      // projection
+				(float)lon_ / lon,     // to the verts. This is effectivly a Mercator
+				(float)lat_ / lat      // projection
 			);
 		}
 	}
@@ -310,8 +310,8 @@ Mesh Primitive::makeSphere(unsigned int lat, unsigned int lon)
 
 	unsigned int i = 0;
 	unsigned int v = lon + 1;
-	for(unsigned int lon = 0; lon < lon; lon++, v++) {
-		indices[i++] = lon;
+	for(unsigned int lon_ = 0; lon_ < lon; lon_++, v++) {
+		indices[i++] = lon_;
 		indices[i++] = v;
 		indices[i++] = v + 1;
 	}
@@ -333,8 +333,8 @@ Mesh Primitive::makeSphere(unsigned int lat, unsigned int lon)
 	//
 
 	v = lon + 1;
-	for(unsigned int lat = 1; lat < lat - 1; lat++, v++) {
-		for(unsigned int lon = 0; lon < lon; lon++, v++) {
+	for(unsigned int lat_ = 1; lat_ < lat - 1; lat_++, v++) {
+		for(unsigned int lon_ = 0; lon_ < lon; lon_++, v++) {
 			indices[i++] = v;
 			indices[i++] = v + lon + 1;
 			indices[i++] = v + 1;
@@ -361,7 +361,7 @@ Mesh Primitive::makeSphere(unsigned int lat, unsigned int lon)
 	//                   v + lc + 1
 	//
 
-	for(unsigned int lon = 0; lon < lon; lon++, v++) {
+	for(unsigned int lon_ = 0; lon_ < lon; lon_++, v++) {
 		indices[i++] = v;
 		indices[i++] = v + lon + 1;
 		indices[i++] = v + 1;
@@ -407,7 +407,7 @@ Mesh Primitive::makeCapsule(unsigned int resolution, float height, float radius)
 
 	float lonStep = std::numbers::pi * 2 / lonCount; // FIXME: pi2 means pi * 2 or pi ^ 2?
 	float latStep = std::numbers::pi / latCount;
-	float xStep = 1.0f / lonCount;
+	// float xStep = 1.0f / lonCount;
 
 	for(unsigned int lat = 0, v = 0; lat <= latCount; lat++)
 	{
