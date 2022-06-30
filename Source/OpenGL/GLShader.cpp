@@ -49,7 +49,6 @@ GLShader::GLShader(const Descriptor& desc)
 	if(path.extension() != ".spv")
 		path.replace_extension(".spv");
 
-	// 读取文件内容
 	const auto fileSize = fs::file_size(path);
 	std::ifstream file(path, std::ios::binary);
 	if(!file.is_open())
