@@ -85,7 +85,7 @@ int main()
 				model *= Matrix4f::createRotationY(radians(0.5f));
 
 				// 更新 UniformBuffer
-				matrices.getBuffer().map(3 * sizeof(Matrix4f));
+				matrices.getBuffer().map();
 				matrices.getBuffer().write(camera.getView().data(), sizeof(Matrix4f));
 				matrices.getBuffer().write(camera.getProjection().data(), sizeof(Matrix4f), sizeof(Matrix4f));
 				matrices.getBuffer().write(model.data(), sizeof(Matrix4f), 2 * sizeof(Matrix4f));

@@ -174,7 +174,7 @@ int main()
 						dir.z, dir.x, dir.y));
 					ATT.update();
 
-					matrices.getBuffer().map(3 * sizeof(Matrix4f));
+					matrices.getBuffer().map();
 					matrices.getBuffer().write(camera.getView().data(), sizeof(Matrix4f));
 					matrices.getBuffer().write(camera.getProjection().data(), sizeof(Matrix4f), sizeof(Matrix4f));
 					matrices.getBuffer().write(Matrix4f().data(), sizeof(Matrix4f), 2 * sizeof(Matrix4f));
