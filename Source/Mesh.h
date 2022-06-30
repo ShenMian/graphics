@@ -26,16 +26,16 @@ public:
 
 	struct Info
 	{
-		uint32_t triangles = 0;
 		uint32_t vertices = 0;
 		uint32_t indices = 0;
+		uint32_t triangles = 0;
 
 		Info& operator+=(const Info&);
 	};
 
     Mesh() = default;
 
-	Mesh(std::string_view name, std::vector<Vertex>& vertices, std::vector<unsigned int>& indices, const Material& mat);
+	Mesh(std::string_view name, std::vector<Vertex>& vertices, std::vector<unsigned int>& indices, const Material* mat = nullptr);
 
 	/**
 	 * @brief 获取名称.
@@ -80,7 +80,7 @@ private:
 	std::string                   name;
 	std::shared_ptr<VertexBuffer> vertexBuffer;
 	std::shared_ptr<IndexBuffer>  indexBuffer;
-	Material                      material;
+	Material                      material; // TODO: 不应该存放在 Mesh 中
 
 	std::vector<Vertex>       vertices;
 	std::vector<unsigned int> indices;

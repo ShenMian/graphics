@@ -38,9 +38,12 @@ void decompressVertices(void* vertices, size_t vertexCount, size_t vertexSize, c
 
 }
 
-Mesh::Mesh(std::string_view name, std::vector<Vertex>& vertices, std::vector<unsigned int>& indices, const Material& mat)
-	: name(name), vertices(std::move(vertices)), indices(std::move(indices)), material(mat)
+Mesh::Mesh(std::string_view name, std::vector<Vertex>& vertices, std::vector<unsigned int>& indices, const Material* mat)
+	: name(name), vertices(vertices), indices(indices)
 {
+	if(mat)
+		material = *mat;
+
 	optimize();
 
 	info.triangles = this->indices.size() / 3;

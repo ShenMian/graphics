@@ -190,7 +190,7 @@ void loadMesh(const aiMesh* mesh, const aiScene* scene, const fs::path& path, st
 	for(const auto& vertex : vertices)
 		aabb.expand(vertex.position);
 
-	meshes.emplace_back(name, vertices, indices, material);
+	meshes.emplace_back(name, vertices, indices, &material);
 }
 
 /**
