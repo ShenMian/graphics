@@ -1,8 +1,8 @@
 var searchData=
 [
   ['vertex_0',['Vertex',['../struct_mesh_1_1_vertex.html',1,'Mesh']]],
-  ['vertexattributes_1',['VertexAttributes',['../class_vertex_attributes.html',1,'']]],
-  ['vertexbuffer_2',['VertexBuffer',['../class_vertex_buffer.html',1,'']]],
+  ['vertexbuffer_1',['VertexBuffer',['../class_vertex_buffer.html',1,'']]],
+  ['vertexformat_2',['VertexFormat',['../class_vertex_format.html',1,'']]],
   ['viewport_3',['Viewport',['../struct_viewport.html',1,'']]],
   ['vkbuffer_4',['VKBuffer',['../class_v_k_buffer.html',1,'']]],
   ['vkcommandbuffer_5',['VKCommandBuffer',['../class_v_k_command_buffer.html',1,'']]],

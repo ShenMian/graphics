@@ -1,7 +1,7 @@
 var hierarchy =
 [
     [ "Animation", "class_animation.html", null ],
-    [ "VertexAttributes::Attribute", "struct_vertex_attributes_1_1_attribute.html", null ],
+    [ "VertexFormat::Attribute", "struct_vertex_format_1_1_attribute.html", null ],
     [ "PipelineLayout::Binding", "struct_pipeline_layout_1_1_binding.html", null ],
     [ "Buffer", "class_buffer.html", [
       [ "GLBuffer", "class_g_l_buffer.html", null ],
@@ -84,11 +84,11 @@ var hierarchy =
       [ "VKUniformBuffer", "class_v_k_uniform_buffer.html", null ]
     ] ],
     [ "Mesh::Vertex", "struct_mesh_1_1_vertex.html", null ],
-    [ "VertexAttributes", "class_vertex_attributes.html", null ],
     [ "VertexBuffer", "class_vertex_buffer.html", [
       [ "GLVertexBuffer", "class_g_l_vertex_buffer.html", null ],
       [ "VKVertexBuffer", "class_v_k_vertex_buffer.html", null ]
     ] ],
+    [ "VertexFormat", "class_vertex_format.html", null ],
     [ "Viewport", "struct_viewport.html", null ],
     [ "VKDevice", "class_v_k_device.html", null ],
     [ "VKInstance", "class_v_k_instance.html", null ],

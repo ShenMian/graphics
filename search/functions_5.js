@@ -16,7 +16,7 @@ var searchData=
   ['getdevice_13',['getDevice',['../class_v_k_renderer.html#ae94ac18315d26db579d64fa9eba9c980',1,'VKRenderer']]],
   ['getduration_14',['getDuration',['../class_animation.html#aa2cd2d5b8e2e6a8d6a2366556e29b03f',1,'Animation']]],
   ['getfar_15',['getFar',['../class_camera.html#a57b2e9d52389abc67e5b5049b150408e',1,'Camera']]],
-  ['getformat_16',['getFormat',['../class_vertex_buffer.html#af6d34aac57dae26db362ec4411f71dfe',1,'VertexBuffer::getFormat()'],['../class_texture.html#ab9c343ec4797d5175580d538a2e8c171',1,'Texture::getFormat()']]],
+  ['getformat_16',['getFormat',['../class_vertex_buffer.html#a362c0ef76280b73f68e71bf78b603a77',1,'VertexBuffer::getFormat()'],['../class_texture.html#ab9c343ec4797d5175580d538a2e8c171',1,'Texture::getFormat()']]],
   ['gethandle_17',['getHandle',['../class_monitor.html#a60d2288e26fdc53ec6ebdc2b3b6b5a49',1,'Monitor::getHandle()'],['../class_window.html#a7ee41eb997d488c0ce69a893bcbdb02b',1,'Window::getHandle()']]],
   ['gethfov_18',['getHFOV',['../class_camera.html#aefe543b1ae789c85b07cbae64c87f3f4',1,'Camera']]],
   ['getindexbuffer_19',['getIndexBuffer',['../class_mesh.html#abefb61c0e5d80fb0a2135550276bc1e0',1,'Mesh']]],
