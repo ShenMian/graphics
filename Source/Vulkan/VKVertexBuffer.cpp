@@ -20,10 +20,6 @@ Buffer& VKVertexBuffer::getBuffer()
 	return buffer;
 }
 
-void VKVertexBuffer::bind()
-{
-}
-
 VKVertexBuffer::operator VkBuffer()
 {
 	return buffer;

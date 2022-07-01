@@ -14,8 +14,6 @@ public:
 
 	Buffer& getBuffer() override;
 
-	void bind() override;
-
 	operator VkBuffer();
 	operator VkBuffer() const;
 

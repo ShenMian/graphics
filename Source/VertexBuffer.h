@@ -53,8 +53,6 @@ public:
 
 	virtual Buffer& getBuffer() = 0;
 
-	virtual void bind() = 0;
-
 protected:
 	VertexBuffer(const void* data, size_t size, const VertexFormat& layout);
 
