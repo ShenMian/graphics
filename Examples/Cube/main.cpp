@@ -74,7 +74,7 @@ int main()
 			camera.setPerspective(radians(60.f), (float)window.getSize().x / window.getSize().y, 0.1f, 5000.f);
 			camera.setPosition({0, 0, 3});
 
-			GLUniformBuffer matrices(0, 3 * sizeof(Matrix4f));
+			auto matrices = UniformBuffer::create(0, 3 * sizeof(Matrix4f));
 
 			bool running = true;
 			window.onClose = [&]{ running = false; };
@@ -91,11 +91,11 @@ int main()
 				model *= Matrix4f::createRotationY(radians(0.5f));
 
 				// 更新 UniformBuffer
-				matrices.getBuffer().map();
-				matrices.getBuffer().write(camera.getView().data(), sizeof(Matrix4f));
-				matrices.getBuffer().write(camera.getProjection().data(), sizeof(Matrix4f), sizeof(Matrix4f));
-				matrices.getBuffer().write(model.data(), sizeof(Matrix4f), 2 * sizeof(Matrix4f));
-				matrices.getBuffer().unmap();
+				matrices->getBuffer().map();
+				matrices->getBuffer().write(camera.getView().data(), sizeof(Matrix4f));
+				matrices->getBuffer().write(camera.getProjection().data(), sizeof(Matrix4f), sizeof(Matrix4f));
+				matrices->getBuffer().write(model.data(), sizeof(Matrix4f), 2 * sizeof(Matrix4f));
+				matrices->getBuffer().unmap();
 
 				cmdBuffer->begin();
 				{

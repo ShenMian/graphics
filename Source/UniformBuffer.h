@@ -4,16 +4,19 @@
 #pragma once
 
 #include <string>
+#include <memory>
 
 class Buffer;
 
 class UniformBuffer
 {
 public:
-	UniformBuffer(int binding);
+	[[nodiscard]] static std::shared_ptr<UniformBuffer> create(int binding, size_t size);
 	
 	virtual Buffer& getBuffer() = 0;
 
 protected:
+	UniformBuffer(int binding);
+
 	int binding;
 };

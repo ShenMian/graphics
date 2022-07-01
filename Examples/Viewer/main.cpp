@@ -55,7 +55,7 @@ int main()
 				controller.setCamera(camera);
 				controller.setGamepad(gamepad);
 
-				GLUniformBuffer matrices(0, 3 * sizeof(Matrix4f));
+				auto matrices = UniformBuffer::create(0, 3 * sizeof(Matrix4f));
 
 				/*
 				GLUniformBuffer animation("Animation", 1, 100 * sizeof(Matrix4f));
@@ -174,11 +174,11 @@ int main()
 						dir.z, dir.x, dir.y));
 					ATT.update();
 
-					matrices.getBuffer().map();
-					matrices.getBuffer().write(camera.getView().data(), sizeof(Matrix4f));
-					matrices.getBuffer().write(camera.getProjection().data(), sizeof(Matrix4f), sizeof(Matrix4f));
-					matrices.getBuffer().write(Matrix4f().data(), sizeof(Matrix4f), 2 * sizeof(Matrix4f));
-					matrices.getBuffer().unmap();
+					matrices->getBuffer().map();
+					matrices->getBuffer().write(camera.getView().data(), sizeof(Matrix4f));
+					matrices->getBuffer().write(camera.getProjection().data(), sizeof(Matrix4f), sizeof(Matrix4f));
+					matrices->getBuffer().write(Matrix4f().data(), sizeof(Matrix4f), 2 * sizeof(Matrix4f));
+					matrices->getBuffer().unmap();
 
 					cmdBuffer->begin();
 					{

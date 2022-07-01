@@ -4,14 +4,14 @@
 #include "VKUniformBuffer.h"
 #include <cstring>
 
-VKUniformBuffer::VKUniformBuffer(int slot, size_t size)
-	: UniformBuffer(slot),
+VKUniformBuffer::VKUniformBuffer(int binding, size_t size)
+	: UniformBuffer(binding),
 	buffer(size, Buffer::Type::Uniform, Buffer::Usage::Dynamic,
 		VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT)
 {
 }
 
-void VKUniformBuffer::write(const void* data, size_t size, size_t offset)
+Buffer& VKUniformBuffer::getBuffer()
 {
-	std::memcpy(buffer.getData(), reinterpret_cast<const uint8_t*>(data) + offset, size);
+	return buffer;
 }

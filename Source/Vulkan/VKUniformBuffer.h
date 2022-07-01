@@ -10,9 +10,9 @@
 class VKUniformBuffer : public UniformBuffer
 {
 public:
-	VKUniformBuffer(int slot, size_t size);
+	VKUniformBuffer(int binding, size_t size);
 
-	void write(const void* data, size_t size, size_t offset);
+	Buffer& getBuffer() override;
 
 private:
 	VKBuffer buffer;
