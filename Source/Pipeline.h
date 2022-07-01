@@ -58,7 +58,7 @@ struct Pipeline::Descriptor
 	RasterizerDescriptor rasterizer;
 
 	PipelineLayout           layout;
-	VertexFormat             vertexAttributes;
+	VertexFormat             vertexFormat;
 	std::shared_ptr<Program> program;
 
 	std::vector<Viewport>    viewports;
