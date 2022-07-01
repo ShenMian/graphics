@@ -46,7 +46,7 @@ int main()
 
 			Pipeline::Descriptor desc;
 			desc.program = program;
-			desc.vertexAttributes = layout;
+			desc.vertexFormat = layout;
 			// desc.viewports.push_back(Viewport({0, 0}, window.getSize()));
 			auto pipeline = Pipeline::create(desc);
 
