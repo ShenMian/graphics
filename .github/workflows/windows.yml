@@ -87,3 +87,5 @@ jobs:
           path: |
             build/bin/**/*.exe
             build/bin/**/*.glsl
+            !build/bin/Debug
+            !build/bin/Release
