@@ -4,6 +4,7 @@
 #include "VKCommandBuffer.h"
 #include "VKPipeline.h"
 #include "VKVertexBuffer.h"
+#include "VKIndexBuffer.h"
 #include "../CommandBuffer.h"
 #include "../Viewport.hpp"
 #include "VKRenderer.h"
@@ -85,35 +86,46 @@ void VKCommandBuffer::setViewport(const Viewport& viewport)
 	vkCmdSetViewport(handles[index], 0, 1, &vkViewport);
 }
 
-void VKCommandBuffer::setPipeline(std::shared_ptr<Pipeline> pipeline)
+void VKCommandBuffer::setPipeline(std::shared_ptr<Pipeline> p)
 {
-	auto vkPipeline = std::dynamic_pointer_cast<VKPipeline>(pipeline);
-	vkCmdBindPipeline(handles[index], VK_PIPELINE_BIND_POINT_GRAPHICS, vkPipeline->getNativeHandle());
+	auto pipeline = std::dynamic_pointer_cast<VKPipeline>(p);
+	vkCmdBindPipeline(handles[index], VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline->getNativeHandle());
 }
 
-void VKCommandBuffer::setVertexBuffer(std::shared_ptr<VertexBuffer> vertexBuffer)
+void VKCommandBuffer::setVertexBuffer(std::shared_ptr<VertexBuffer> buf)
 {
-	auto vkBuffer = std::dynamic_pointer_cast<VKVertexBuffer>(vertexBuffer);
-	VkBuffer buffers = {*vkBuffer};
+	auto buffer = std::dynamic_pointer_cast<VKVertexBuffer>(buf);
+	VkBuffer buffers[] = {*buffer};
 	VkDeviceSize offset = 0;
-	vkCmdBindVertexBuffers(handles[index], 0, 1, &buffers, &offset);
+	vkCmdBindVertexBuffers(handles[index], 0, 1, buffers, &offset);
 }
 
-void VKCommandBuffer::setIndexBuffer(std::shared_ptr<IndexBuffer> indexBuffer)
+void VKCommandBuffer::setIndexBuffer(std::shared_ptr<IndexBuffer> buf)
 {
-	/*
-	auto vkBuffer = std::dynamic_pointer_cast<VKIndexBuffer>(indexBuffer);
-	vkCmdBindIndexBuffer(handles[index], *vkBuffer, 0, VK_INDEX_TYPE_UINT32);
-	*/
+	auto buffer = std::dynamic_pointer_cast<VKIndexBuffer>(buf);
+	vkCmdBindIndexBuffer(handles[index], *buffer, 0, VK_INDEX_TYPE_UINT32);
 }
 
+// FIXME
 void VKCommandBuffer::clear(uint8_t flags)
 {
-	// vkCmdClearColorImage(handles[index], );
+	auto renderer = reinterpret_cast<VKRenderer*>(Renderer::get());
+	auto& swapchain = renderer->getSwapchain();
+
+	VkImageSubresourceRange imageRange = {};
+	imageRange.aspectMask = VK_IMAGE_ASPECT_COLOR_BIT;
+	imageRange.levelCount = 1;
+	imageRange.layerCount = 1;
+
+	vkCmdClearColorImage(handles[index], swapchain.getImages()[index], VK_IMAGE_LAYOUT_GENERAL, &clearColor, 1, &imageRange);
 }
 
 void VKCommandBuffer::setClearColor(const Vector4& color)
 {
+	clearColor.float32[0] = color.r;
+	clearColor.float32[1] = color.g;
+	clearColor.float32[2] = color.b;
+	clearColor.float32[3] = color.a;
 }
 
 void VKCommandBuffer::setClearDepth(float depth)

@@ -54,13 +54,13 @@ void GLCommandBuffer::setPipeline(std::shared_ptr<Pipeline> pipeline)
 void GLCommandBuffer::setVertexBuffer(std::shared_ptr<VertexBuffer> vertexBuffer)
 {
 	auto cmd = addCommand<GLCmdSetVertexBuffer>(GLOpcode::setVertexBuffer);
-	cmd->vertexBuffer = vertexBuffer;
+	cmd->vertexBuffer = std::dynamic_pointer_cast<GLVertexBuffer>(vertexBuffer);
 }
 
 void GLCommandBuffer::setIndexBuffer(std::shared_ptr<IndexBuffer> indexBuffer)
 {
 	auto cmd = addCommand<GLCmdSetIndexBuffer>(GLOpcode::setIndexBuffer);
-	cmd->indexBuffer = indexBuffer;
+	cmd->indexBuffer = std::dynamic_pointer_cast<GLIndexBuffer>(indexBuffer);
 }
 
 void GLCommandBuffer::clear(uint8_t flags)

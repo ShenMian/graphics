@@ -39,4 +39,6 @@ public:
 private:
 	std::vector<VkCommandBuffer> handles;
 	size_t                       index = 0;
+
+	VkClearColorValue clearColor = {};
 };

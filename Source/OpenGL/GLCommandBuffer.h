@@ -90,12 +90,12 @@ struct GLCmdSetPipeline
 
 struct GLCmdSetVertexBuffer
 {
-	std::shared_ptr<VertexBuffer> vertexBuffer;
+	std::shared_ptr<GLVertexBuffer> vertexBuffer;
 };
 
 struct GLCmdSetIndexBuffer
 {
-	std::shared_ptr<IndexBuffer> indexBuffer;
+	std::shared_ptr<GLIndexBuffer> indexBuffer;
 };
 
 struct GLCmdClear
