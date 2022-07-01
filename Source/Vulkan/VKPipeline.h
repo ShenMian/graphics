@@ -16,7 +16,8 @@ public:
 	VkPipeline getNativeHandle();
 
 private:
-	void createLayout(const Descriptor& desc);
+	void createPipelineLayout(const Descriptor& desc);
+	void createVertexInputState(VkPipelineVertexInputStateCreateInfo& info, const Descriptor& desc, std::vector<VkVertexInputBindingDescription>& bindings, std::vector<VkVertexInputAttributeDescription>& attribs);
 	void createInputAssemblyState(VkPipelineInputAssemblyStateCreateInfo&, const Descriptor& desc);
 	void createViewportState(VkPipelineViewportStateCreateInfo& info, const Descriptor& desc, std::vector<VkViewport>& viewports, std::vector<VkRect2D>& scissors);
 	void createRasterizerState(VkPipelineRasterizationStateCreateInfo& info, const Descriptor& desc);

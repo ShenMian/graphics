@@ -39,10 +39,12 @@ VkDescriptorType VKType(PipelineLayout::Type type)
 	{
 		using enum PipelineLayout::Type;
 
-	case Texture:
-		return VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE;
+	case UniformBuffer:
+		return VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
 	case Sampler:
 		return VK_DESCRIPTOR_TYPE_SAMPLER;
+	case Texture:
+		return VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE;
 	};
 	throw std::invalid_argument("");
 }
@@ -71,7 +73,12 @@ VKPipeline::VKPipeline(const Descriptor& desc)
 
 	auto program = std::dynamic_pointer_cast<VKProgram>(desc.program);
 
-	createLayout(desc);
+	createPipelineLayout(desc);
+
+	std::vector<VkVertexInputBindingDescription>   bindings;
+	std::vector<VkVertexInputAttributeDescription> attribs;
+	VkPipelineVertexInputStateCreateInfo vertexInputState = {};
+	createVertexInputState(vertexInputState, desc, bindings, attribs);
 
 	VkPipelineInputAssemblyStateCreateInfo inputAssemblyState = {};
 	createInputAssemblyState(inputAssemblyState, desc);
@@ -98,34 +105,6 @@ VKPipeline::VKPipeline(const Descriptor& desc)
 	std::vector<VkDynamicState> dynamicStates;
 	createDynamicState(dynamicState, dynamicStates);
 
-	// Create Vertex Input State
-	const auto& layout = desc.vertexAttributes;
-
-	std::vector<VkVertexInputBindingDescription>   bindings;
-	std::vector<VkVertexInputAttributeDescription> attribs;
-
-	VkVertexInputBindingDescription binding = {};
-	binding.binding = 0;
-	binding.inputRate = VK_VERTEX_INPUT_RATE_VERTEX;
-	binding.stride = layout.getStride();
-	bindings.push_back(binding);
-
-	for(const auto& attr : layout.getAttributes())
-	{
-		VkVertexInputAttributeDescription vkAttr = {};
-		vkAttr.location = attr.location;
-		vkAttr.format = VKFormat[attr.format];
-		vkAttr.offset = attr.offset;
-		attribs.push_back(vkAttr);
-	}
-
-	VkPipelineVertexInputStateCreateInfo vertexInputState = {};
-	vertexInputState.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
-	vertexInputState.vertexBindingDescriptionCount = static_cast<uint32_t>(bindings.size());
-	vertexInputState.pVertexBindingDescriptions = bindings.data();
-	vertexInputState.vertexAttributeDescriptionCount = static_cast<uint32_t>(attribs.size());
-	vertexInputState.pVertexAttributeDescriptions = attribs.data();
-
 	VkGraphicsPipelineCreateInfo pipelineInfo = {};
 	pipelineInfo.sType = VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO;
 	pipelineInfo.stageCount = program->getStageCount();
@@ -150,7 +129,7 @@ VkPipeline VKPipeline::getNativeHandle()
 	return pipeline;
 }
 
-void VKPipeline::createLayout(const Descriptor& desc)
+void VKPipeline::createPipelineLayout(const Descriptor& desc)
 {
 	auto renderer = reinterpret_cast<VKRenderer*>(Renderer::get());
 
@@ -180,6 +159,32 @@ void VKPipeline::createLayout(const Descriptor& desc)
 	pipelineLayoutInfo.pSetLayouts = &setLayout;
 	if(vkCreatePipelineLayout(renderer->getDevice(), &pipelineLayoutInfo, nullptr, &pipelineLayout) != VK_SUCCESS)
 		throw std::runtime_error("failed to create pipeline layout");
+}
+
+void VKPipeline::createVertexInputState(VkPipelineVertexInputStateCreateInfo& info, const Descriptor& desc, std::vector<VkVertexInputBindingDescription>& bindings, std::vector<VkVertexInputAttributeDescription>& attribs)
+{
+	const auto& layout = desc.vertexFormat;
+
+	VkVertexInputBindingDescription binding = {};
+	binding.binding = 0;
+	binding.inputRate = VK_VERTEX_INPUT_RATE_VERTEX;
+	binding.stride = layout.getStride();
+	bindings.push_back(binding);
+
+	for(const auto& attr : layout.getAttributes())
+	{
+		VkVertexInputAttributeDescription vkAttr = {};
+		vkAttr.location = attr.location;
+		vkAttr.format = VKFormat[attr.format];
+		vkAttr.offset = attr.offset;
+		attribs.push_back(vkAttr);
+	}
+
+	info.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
+	info.vertexBindingDescriptionCount = static_cast<uint32_t>(bindings.size());
+	info.pVertexBindingDescriptions = bindings.data();
+	info.vertexAttributeDescriptionCount = static_cast<uint32_t>(attribs.size());
+	info.pVertexAttributeDescriptions = attribs.data();
 }
 
 void VKPipeline::createInputAssemblyState(VkPipelineInputAssemblyStateCreateInfo& info, const Descriptor& desc)

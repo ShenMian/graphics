@@ -16,6 +16,7 @@ class PipelineLayout
 public:
 	enum class Type
 	{
+		UniformBuffer,
 		Sampler,
 		Texture
 	};
