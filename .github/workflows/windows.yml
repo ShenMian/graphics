@@ -54,8 +54,8 @@ jobs:
             !${{ env.VCPKG_ROOT }}/downloads
           key: windows-${{ matrix.type }}-${{ matrix.arch }}-${{ hashFiles('vcpkg.json') }}
 
-      - name: Install dependencies
-        run: vcpkg install
+      # - name: Install dependencies
+      #   run: vcpkg install
 
       # - name: Setup MSVC Developer Command Environment
       #   uses: ilammy/msvc-dev-cmd@v1.10.0
