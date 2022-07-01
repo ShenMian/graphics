@@ -6,6 +6,7 @@
 #include <cstring>
 
 #include "OpenGL/GLIndexBuffer.h"
+#include "Vulkan/VKIndexBuffer.h"
 
 std::shared_ptr<IndexBuffer> IndexBuffer::create(std::span<const uint32_t> data, Buffer::Usage usage)
 {
@@ -20,6 +21,9 @@ std::shared_ptr<IndexBuffer> IndexBuffer::create(const uint32_t* data, size_t si
 
 	case OpenGL:
 		return std::make_shared<GLIndexBuffer>(data, size, usage);
+
+	case Vulkan:
+		return std::make_shared<VKIndexBuffer>(data, size, usage);
 	}
 	return nullptr;
 }
