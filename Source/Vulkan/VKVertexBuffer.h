@@ -10,7 +10,7 @@
 class VKVertexBuffer : public VertexBuffer
 {
 public:
-	VKVertexBuffer(const void* data, size_t size, const VertexAttributes& layout, Buffer::Usage usage);
+	VKVertexBuffer(const void* data, size_t size, const VertexFormat& layout, Buffer::Usage usage);
 
 	Buffer& getBuffer() override;
 

@@ -11,7 +11,7 @@
 /**
  * @brief 顶点格式布局.
  */
-class VertexAttributes
+class VertexFormat
 {
 public:
 	struct Attribute
@@ -35,8 +35,8 @@ public:
 		uint32_t         offset = 0;
 	};
 
-    VertexAttributes() = default;
-	VertexAttributes(const std::initializer_list<Attribute>& list);
+    VertexFormat() = default;
+	VertexFormat(const std::initializer_list<Attribute>& list);
 
 	void addAttribute(Attribute attr);
 

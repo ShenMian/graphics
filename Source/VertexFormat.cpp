@@ -1,7 +1,7 @@
 ﻿// Copyright 2021 ShenMian
 // License(Apache-2.0)
 
-#include "VertexAttributes.h"
+#include "VertexFormat.h"
 #include <algorithm>
 #include <cassert>
 #include <unordered_map>
@@ -40,19 +40,19 @@ std::unordered_map<Format, uint32_t> sizeOf = {
 
 }
 
-uint32_t VertexAttributes::Attribute::getSize() const
+uint32_t VertexFormat::Attribute::getSize() const
 {
 	assert(sizeOf.contains(format));
 	return sizeOf[format];
 }
 
-VertexAttributes::VertexAttributes(const std::initializer_list<Attribute>& list)
+VertexFormat::VertexFormat(const std::initializer_list<Attribute>& list)
 {
 	for(const auto& attr : list)
 		addAttribute(attr);
 }
 
-void VertexAttributes::addAttribute(Attribute attr)
+void VertexFormat::addAttribute(Attribute attr)
 {
 	if(attr.location == -1)
 		attr.location = static_cast<uint32_t>(attribs.size());
@@ -63,17 +63,17 @@ void VertexAttributes::addAttribute(Attribute attr)
 	attribs.push_back(attr);
 }
 
-const std::vector<VertexAttributes::Attribute> VertexAttributes::getAttributes() const
+const std::vector<VertexFormat::Attribute> VertexFormat::getAttributes() const
 {
 	return attribs;
 }
 
-void VertexAttributes::setStride(uint32_t stride)
+void VertexFormat::setStride(uint32_t stride)
 {
 	this->stride = stride;
 }
 
-uint32_t VertexAttributes::getStride() const
+uint32_t VertexFormat::getStride() const
 {
 	return stride;
 }

@@ -51,7 +51,7 @@ Mesh::Mesh(std::string_view name, std::vector<Vertex>& vertices, std::vector<uns
 	info.vertices = this->vertices.size();
 
 	// TODO: 与 decompress 中的变量重复
-	VertexAttributes format = {
+	VertexFormat format = {
 		{"position", Format::RGB32F},
 		{"normal", Format::RGB32F},
 		{"uv", Format::RG32F},
@@ -118,7 +118,7 @@ void Mesh::decompress()
 	decompressVertices(vertices.data(), info.vertices, sizeof(Vertex), compressedVertices);
 	compressedVertices.clear();
 
-	VertexAttributes format = {
+	VertexFormat format = {
 		{"position", Format::RGB32F},
 		{"normal", Format::RGB32F},
 		{"uv", Format::RG32F},

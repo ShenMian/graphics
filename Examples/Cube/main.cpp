@@ -42,7 +42,7 @@ int main()
 				{{+0.5, +0.5, +0.5}, {1, 0, 1}},
 				{{+0.5, -0.5, +0.5}, {0.2f, 0.2f, 0.2f}}
 			};
-			VertexAttributes format = {
+			VertexFormat format = {
 				{"position", Format::RGB32F},
 				{"color", Format::RGB32F}
 			};
@@ -62,9 +62,13 @@ int main()
 
 			auto program = Program::create("Shaders/mesh");
 
+			PipelineLayout layout = {
+				{"matrices", PipelineLayout::Type::UniformBuffer, 0, PipelineLayout::StageFlags::Vertex}
+			};
 			Pipeline::Descriptor desc;
+			desc.layout = layout;
 			desc.program = program;
-			desc.vertexAttributes = format;
+			desc.vertexFormat = format;
 			auto pipeline = Pipeline::create(desc);
 
 			auto cmdQueue = CommandQueue::create();

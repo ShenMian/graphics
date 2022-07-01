@@ -6,7 +6,7 @@
 #include <cstring>
 #include <unordered_map>
 
-GLVertexBuffer::GLVertexBuffer(const void* data, size_t size, const VertexAttributes& fmt, Buffer::Usage usage)
+GLVertexBuffer::GLVertexBuffer(const void* data, size_t size, const VertexFormat& fmt, Buffer::Usage usage)
 	: VertexBuffer(data, size, fmt), buffer(size, Buffer::Type::Vertex, usage)
 {
 	buffer.map();

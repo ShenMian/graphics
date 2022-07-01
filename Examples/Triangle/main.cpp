@@ -34,7 +34,7 @@ int main()
 				{{0.5,  -0.5}, {0, 1, 0}},
 				{{-0.5, -0.5}, {0, 0, 1}}
 			};
-			VertexAttributes layout = {
+			VertexFormat layout = {
 				{"position", Format::RG32F},
 				{"color",    Format::RGB32F}
 			};
