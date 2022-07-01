@@ -77,9 +77,9 @@ void VKCommandBuffer::setViewport(const Viewport& viewport)
 {
 	VkViewport vkViewport;
 	vkViewport.x = viewport.x;
-	vkViewport.y = viewport.y;
+	vkViewport.y = viewport.y + viewport.height;
 	vkViewport.width = viewport.width;
-	vkViewport.height = viewport.height;
+	vkViewport.height = -viewport.height;
 	vkViewport.minDepth = viewport.minDepth;
 	vkViewport.maxDepth = viewport.maxDepth;
 	vkCmdSetViewport(handles[index], 0, 1, &vkViewport);

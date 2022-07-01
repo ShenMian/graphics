@@ -195,9 +195,9 @@ void VKPipeline::createViewportState(VkPipelineViewportStateCreateInfo& info, co
 	{
 		VkViewport vkViewport;
 		vkViewport.x = viewport.x;
-		vkViewport.y = viewport.y;
+		vkViewport.y = viewport.y + viewport.height;
 		vkViewport.width = viewport.width;
-		vkViewport.height = viewport.height;
+		vkViewport.height = -viewport.height;
 		vkViewport.minDepth = viewport.minDepth;
 		vkViewport.maxDepth = viewport.maxDepth;
 		vkViewports.push_back(vkViewport);
