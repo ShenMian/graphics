@@ -10,6 +10,7 @@
 #include "PipelineLayout.h"
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
+#include "UniformBuffer.h"
 
 #include "Program.h"
 #include "Shader.h"

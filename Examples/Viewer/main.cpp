@@ -6,8 +6,6 @@
 #define FMT_HEADER_ONLY
 #include <fmt/core.h>
 
-#include "OpenGL/GLUniformBuffer.h"
-
 void PrintMonitorInfo();
 void PrintRendererInfo();
 void PrintModelInfo(const Model&);
