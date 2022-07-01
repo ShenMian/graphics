@@ -14,7 +14,7 @@ public:
 
 	Buffer& getBuffer() override;
 
-	void bind() override;
+	void bind();
 
 private:
 	GLBuffer buffer;

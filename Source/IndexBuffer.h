@@ -45,8 +45,6 @@ public:
 
 	virtual Buffer& getBuffer() = 0;
 
-	virtual void bind() = 0;
-
 protected:
 	IndexBuffer(const void* data, size_t size);
 
