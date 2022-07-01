@@ -39,7 +39,8 @@ var hierarchy =
     [ "GLVertexArray", "class_g_l_vertex_array.html", null ],
     [ "Image", "class_image.html", null ],
     [ "IndexBuffer", "class_index_buffer.html", [
-      [ "GLIndexBuffer", "class_g_l_index_buffer.html", null ]
+      [ "GLIndexBuffer", "class_g_l_index_buffer.html", null ],
+      [ "VKIndexBuffer", "class_v_k_index_buffer.html", null ]
     ] ],
     [ "Mesh::Info", "struct_mesh_1_1_info.html", null ],
     [ "Input", "class_input.html", null ],

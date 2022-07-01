@@ -5,6 +5,7 @@ var dir_4a0f9454dbde776c384a5152f26c4e54 =
     [ "VKCommandBuffer.h", "_v_k_command_buffer_8h_source.html", null ],
     [ "VKCommandQueue.h", "_v_k_command_queue_8h_source.html", null ],
     [ "VKDevice.h", "_v_k_device_8h_source.html", null ],
+    [ "VKIndexBuffer.h", "_v_k_index_buffer_8h_source.html", null ],
     [ "VKInstance.h", "_v_k_instance_8h_source.html", null ],
     [ "VKPhysicalDevice.h", "_v_k_physical_device_8h_source.html", null ],
     [ "VKPipeline.h", "_v_k_pipeline_8h_source.html", null ],

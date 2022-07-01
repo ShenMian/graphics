@@ -73,6 +73,7 @@ var annotated_dup =
     [ "VKCommandBuffer", "class_v_k_command_buffer.html", "class_v_k_command_buffer" ],
     [ "VKCommandQueue", "class_v_k_command_queue.html", null ],
     [ "VKDevice", "class_v_k_device.html", "class_v_k_device" ],
+    [ "VKIndexBuffer", "class_v_k_index_buffer.html", null ],
     [ "VKInstance", "class_v_k_instance.html", null ],
     [ "VKPhysicalDevice", "class_v_k_physical_device.html", "class_v_k_physical_device" ],
     [ "VKPipeline", "class_v_k_pipeline.html", null ],
