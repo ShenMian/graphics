@@ -8,16 +8,18 @@
     "glad",
     "glfw3",
     "assimp",
+    "glslang",
     "shaderc",
     "imguizmo",
     "freetype",
+    "spirv-tools",
     "spirv-cross",
     "meshoptimizer",
     "vulkan-headers",
 
     {
       "name": "imgui",
-      "features": [ "docking-experimental" ]
+      "features": [ "docking-experimental", "glfw-binding", "opengl3-binding", "vulkan-binding" ]
     }
   ]
 }
