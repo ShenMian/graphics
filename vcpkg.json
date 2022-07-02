@@ -4,10 +4,20 @@
   "description": "A simple abstraction layer for the modern graphics APIs.",
   "homepage": "https://github.com/ShenMian/Graphics",
   "dependencies": [
-    "assimp",
+    "stb",
     "glad",
     "glfw3",
+    "assimp",
+    "shaderc",
+    "imguizmo",
+    "freetype",
+    "spirv-cross",
     "meshoptimizer",
-    "freetype"
+    "vulkan-headers",
+
+    {
+      "name": "imgui",
+      "features": [ "docking-experimental" ]
+    }
   ]
 }
