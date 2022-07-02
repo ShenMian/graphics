@@ -42,8 +42,8 @@ jobs:
         with:
           version: 13
 
-      # - name: Install dependencies
-      #   run: ./Scripts/cmake_install_deps.sh
+      - name: Install dependencies
+        run: ./Scripts/cmake_install_deps.sh
 
       - name: Cache
         uses: actions/cache@v3
