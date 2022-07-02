@@ -49,8 +49,8 @@ jobs:
             !${{ env.VCPKG_ROOT }}/downloads
           key: macos-${{ matrix.type }}-${{ matrix.arch }}-${{ hashFiles('vcpkg.json') }}
 
-      - name: Install dependencies
-        run: vcpkg install
+      # - name: Install dependencies
+      #   run: vcpkg install
 
       - name: Cache
         uses: actions/cache@v3
