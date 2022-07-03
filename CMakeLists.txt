@@ -31,13 +31,18 @@ message(STATUS "Compiler")
 message(STATUS "|- ID     : ${CMAKE_CXX_COMPILER_ID}")
 message(STATUS "`- Version: ${CMAKE_CXX_COMPILER_VERSION}")
 
+include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+conan_basic_setup()
+
 # 指定构建目录
+#[[
 set(CMAKE_BINARY_DIR               "${PROJECT_SOURCE_DIR}/build")
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 set(LIBRARY_OUTPUT_PATH            "${CMAKE_BINARY_DIR}/lib")
 set(EXECUTABLE_OUTPUT_PATH         "${CMAKE_BINARY_DIR}/bin")
+]]
 
 macro(add_example NAME)
   file(GLOB_RECURSE SOURCES "*.cpp")

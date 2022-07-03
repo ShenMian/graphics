@@ -2,6 +2,26 @@
 # License(Apache-2.0)
 
 list(APPEND INCS "${DEPS_DIR}/Math/include")
+list(APPEND INCS "${DEPS_DIR}/glad/include")
+list(APPEND INCS "${PROJECT_SOURCE_DIR}/build/include")
+
+# 添加 imgui-node-editor
+include("${DEPS_DIR}/imgui_node_editor.cmake")
+list(APPEND LIBS imgui_node_editor)
+list(APPEND INCS "${DEPS_DIR}/imgui-node-editor")
+
+# 添加 glad
+find_package(glad QUIET)
+if(GLAD_FOUND)
+    list(APPEND LIBS glad::glad)
+else()
+    include("${DEPS_DIR}/glad.cmake")
+    list(APPEND LIBS glad)
+endif()
+list(APPEND INCS "${DEPS_DIR}/glad/include")
+
+#[[
+
 list(APPEND INCS "${DEPS_DIR}/fmt/include")
 
 find_path(STB_INCLUDE_DIRS "stb_c_lexer.h")
@@ -14,6 +34,16 @@ list(APPEND INCS PRIVATE ${VULKAN_HEADERS_INCLUDE_DIRS})
 find_path(SPIRV_HEADERS_INCLUDE_DIRS "spirv/1.0/GLSL.std.450.h")
 list(APPEND INCS PRIVATE ${SPIRV_HEADERS_INCLUDE_DIRS})
 # add_subdirectory("${DEPS_DIR}/SPIRV-Headers" "SPIRV-Headers")
+
+# 添加 imgui
+find_package(imgui QUIET)
+if(IMGUI_FOUND)
+    list(APPEND LIBS imgui::imgui)
+else()
+    include("${DEPS_DIR}/imgui.cmake")
+    list(APPEND LIBS imgui)
+endif()
+list(APPEND INCS "${DEPS_DIR}/imgui")
 
 # 添加 glslang
 add_subdirectory("${DEPS_DIR}/glslang" "glslang")
@@ -37,11 +67,6 @@ add_subdirectory("${DEPS_DIR}/shaderc" "shaderc")
 list(APPEND LIBS shaderc)
 list(APPEND INCS "${DEPS_DIR}/shaderc/libshaderc/include")
 
-# 添加 imgui-node-editor
-include("${DEPS_DIR}/imgui_node_editor.cmake")
-list(APPEND LIBS imgui_node_editor)
-list(APPEND INCS "${DEPS_DIR}/imgui-node-editor")
-
 # 添加 freetype
 find_package(freetype QUIET)
 if(FREETYPE_FOUND)
@@ -52,16 +77,6 @@ else()
     list(APPEND LIBS freetype)
     list(APPEND INCS "${DEPS_DIR}/freetype/include")
 endif()
-
-# 添加 glad
-find_package(glad QUIET)
-if(GLAD_FOUND)
-    list(APPEND LIBS glad::glad)
-else()
-    include("${DEPS_DIR}/glad.cmake")
-    list(APPEND LIBS glad)
-endif()
-list(APPEND INCS "${DEPS_DIR}/glad/include")
 
 # 添加 assimp
 # TODO: 当前 vcpkg 上的版本过旧: https://github.com/microsoft/vcpkg/pull/24843
@@ -93,16 +108,6 @@ else()
 endif()
 list(APPEND INCS "${DEPS_DIR}/glfw/include")
 
-# 添加 imgui
-find_package(imgui QUIET)
-if(IMGUI_FOUND)
-    list(APPEND LIBS imgui::imgui)
-else()
-    include("${DEPS_DIR}/imgui.cmake")
-    list(APPEND LIBS imgui)
-endif()
-list(APPEND INCS "${DEPS_DIR}/imgui")
-
 # 添加 imguizmo
 include("${DEPS_DIR}/imguizmo.cmake")
 list(APPEND LIBS imguizmo)
@@ -130,10 +135,16 @@ else()
 endif()
 list(APPEND INCS "${DEPS_DIR}/meshoptimizer/src")
 
+]]
+
 # message(STATUS "INCS: ${INCS}")
 # message(STATUS "LIBS: ${LIBS}")
 
 file(GLOB_RECURSE SOURCES "*.cpp")
+
+list(APPEND SOURCES "${PROJECT_SOURCE_DIR}/build/include/imgui_impl_glfw.cpp")
+list(APPEND SOURCES "${PROJECT_SOURCE_DIR}/build/include/imgui_impl_opengl3.cpp")
+list(APPEND SOURCES "${PROJECT_SOURCE_DIR}/build/include/imgui_impl_vulkan.cpp")
 
 # 添加静态库文件
 add_library(graphics STATIC ${SOURCES})
@@ -145,7 +156,7 @@ target_include_directories(graphics PUBLIC
     "${PROJECT_SOURCE_DIR}/Source")
 
 # 指定库文件目录
-target_link_libraries(graphics PUBLIC ${LIBS})
+target_link_libraries(graphics PUBLIC ${LIBS} ${CONAN_LIBS})
 
 # 添加宏定义
 target_compile_definitions(graphics PUBLIC ${GRAPHICS_DEFINES})
