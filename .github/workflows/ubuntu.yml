@@ -26,6 +26,18 @@ jobs:
         with:
           version: 13
 
+      - name: Cache vcpkg artifacts
+        uses: actions/cache@v3
+        with:
+          path: |
+            ${{ github.workspace }}/vcpkg_installed
+            ${{ env.VCPKG_ROOT }}
+            !${{ env.VCPKG_ROOT }}/.git
+            !${{ env.VCPKG_ROOT }}/buildtrees
+            !${{ env.VCPKG_ROOT }}/packages
+            !${{ env.VCPKG_ROOT }}/downloads
+          key: ubuntu-${{ matrix.type }}-${{ matrix.arch }}-${{ hashFiles('vcpkg.json') }}
+
       - name: Install dependencies
         run: vcpkg install
 
