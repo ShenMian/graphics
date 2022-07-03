@@ -39,7 +39,10 @@ jobs:
           key: ubuntu-${{ matrix.type }}-${{ matrix.arch }}-${{ hashFiles('vcpkg.json') }}
 
       - name: Install dependencies
-        run: vcpkg install --keep-going
+        continue-on-error: true
+        run: |
+            sudo apt install vulkan-sdk
+            vcpkg install --keep-going
 
       - name: Cache
         uses: actions/cache@v3
@@ -48,11 +51,10 @@ jobs:
           key: ubuntu-${{ matrix.type }}-${{ matrix.arch }}
 
       - name: Generating CMake cache
-        run: cmake -B build -DCMAKE_TOOLCHAIN_FILE="${{ env.VCPKG_ROOT }}/scripts/buildsystems/vcpkg.cmake" -G "Ninja"
+        run: cmake -B build -DCMAKE_TOOLCHAIN_FILE="${{ env.VCPKG_ROOT }}/scripts/buildsystems/vcpkg.cmake"
 
       - name: Build
-        run: ninja
-        # run: cmake --build build --config ${{ matrix.type }} -j2
+        run: cmake --build build --config ${{ matrix.type }} -j8
 
       - name: Upload libs
         uses: actions/upload-artifact@v3
