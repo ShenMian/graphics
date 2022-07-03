@@ -39,7 +39,7 @@ jobs:
           key: ubuntu-${{ matrix.type }}-${{ matrix.arch }}-${{ hashFiles('vcpkg.json') }}
 
       - name: Install dependencies
-        run: vcpkg install
+        run: vcpkg install --keep-going
 
       - name: Cache
         uses: actions/cache@v3
@@ -48,10 +48,11 @@ jobs:
           key: ubuntu-${{ matrix.type }}-${{ matrix.arch }}
 
       - name: Generating CMake cache
-        run: cmake -B build -DCMAKE_TOOLCHAIN_FILE="${{ env.VCPKG_ROOT }}/scripts/buildsystems/vcpkg.cmake"
+        run: cmake -B build -DCMAKE_TOOLCHAIN_FILE="${{ env.VCPKG_ROOT }}/scripts/buildsystems/vcpkg.cmake" -G "Ninja"
 
       - name: Build
-        run: cmake --build build --config ${{ matrix.type }} -j2
+        run: ninja
+        # run: cmake --build build --config ${{ matrix.type }} -j2
 
       - name: Upload libs
         uses: actions/upload-artifact@v3
