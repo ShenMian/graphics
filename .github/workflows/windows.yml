@@ -1,22 +1,6 @@
 ﻿name: Windows
 
-on:
-  push:
-    paths:
-      - '**.cpp'
-      - '**.hpp'
-      - '**.h'
-      - '**/CMakeLists.txt'
-      - 'Scripts/vcpkg_install_deps.bat'
-      - '.github/workflows/windows.yml'
-  pull_request:
-    paths:
-      - '**.cpp'
-      - '**.hpp'
-      - '**.h'
-      - '**/CMakeLists.txt'
-      - 'Scripts/vcpkg_install_deps.bat'
-      - '.github/workflows/windows.yml'
+on: [push, pull_request]
 
 jobs:
   build:

@@ -1,22 +1,6 @@
 ﻿name: Ubuntu
 
-on:
-  push:
-    paths:
-      - '**.cpp'
-      - '**.hpp'
-      - '**.h'
-      - '**/CMakeLists.txt'
-      - 'Scripts/vcpkg_install_deps.sh'
-      - '.github/workflows/ubuntu.yml'
-  pull_request:
-    paths:
-      - '**.cpp'
-      - '**.hpp'
-      - '**.h'
-      - '**/CMakeLists.txt'
-      - 'Scripts/vcpkg_install_deps.sh'
-      - '.github/workflows/ubuntu.yml'
+on: [push, pull_request]
 
 jobs:
   build:
