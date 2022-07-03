@@ -10,9 +10,6 @@ list(APPEND INCS ${STB_INCLUDE_DIRS})
 find_path(VULKAN_HEADERS_INCLUDE_DIRS "vk_video/vulkan_video_codec_h264std.h")
 list(APPEND INCS PRIVATE ${VULKAN_HEADERS_INCLUDE_DIRS})
 
-find_package(freetype CONFIG REQUIRED)
-list(APPEND LIBS freetype)
-
 find_package(glfw3 CONFIG REQUIRED)
 list(APPEND LIBS glfw)
 
@@ -25,6 +22,9 @@ list(APPEND LIBS imguizmo::imguizmo)
 find_package(meshoptimizer CONFIG REQUIRED)
 list(APPEND LIBS meshoptimizer::meshoptimizer)
 
+find_package(spirv_cross_core CONFIG REQUIRED)
+list(APPEND LIBS spirv-cross-core)
+
 # 添加 glslang
 add_subdirectory("${DEPS_DIR}/glslang" "glslang")
 
@@ -33,9 +33,6 @@ add_subdirectory("${DEPS_DIR}/SPIRV-Headers" "SPIRV-Headers")
 
 # 添加 spirv-tools
 add_subdirectory("${DEPS_DIR}/SPIRV-Tools" "SPIRV-Tools")
-
-find_package(spirv_cross_core CONFIG REQUIRED)
-list(APPEND LIBS spirv-cross-core)
 
 # 添加 shaderc
 set(SHADERC_SKIP_TESTS ON)
@@ -47,6 +44,17 @@ list(APPEND INCS "${DEPS_DIR}/shaderc/libshaderc/include")
 include("${DEPS_DIR}/imgui_node_editor.cmake")
 list(APPEND LIBS imgui_node_editor)
 list(APPEND INCS "${DEPS_DIR}/imgui-node-editor")
+
+# 添加 freetype
+find_package(freetype QUIET)
+if(FREETYPE_FOUND)
+    list(APPEND LIBS ${FREETYPE_LIBRARIES})
+    list(APPEND INCS ${FREETYPE_INCLUDE_DIRS})
+else()
+    add_subdirectory("${DEPS_DIR}/freetype" "freetype")
+    list(APPEND LIBS freetype)
+    list(APPEND INCS "${DEPS_DIR}/freetype/include")
+endif()
 
 # 添加 glad
 find_package(glad QUIET)
@@ -89,17 +97,6 @@ else()
     list(APPEND LIBS glfw)
 endif()
 list(APPEND INCS "${DEPS_DIR}/glfw/include")
-
-# 添加 freetype
-find_package(freetype QUIET)
-if(FREETYPE_FOUND)
-    list(APPEND LIBS ${FREETYPE_LIBRARIES})
-    list(APPEND INCS ${FREETYPE_INCLUDE_DIRS})
-else()
-    add_subdirectory("${DEPS_DIR}/freetype" "freetype")
-    list(APPEND LIBS freetype)
-    list(APPEND INCS "${DEPS_DIR}/freetype/include")
-endif()
 
 # 添加 imgui
 find_package(imgui QUIET)
