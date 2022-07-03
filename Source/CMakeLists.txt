@@ -10,29 +10,26 @@ list(APPEND INCS ${STB_INCLUDE_DIRS})
 find_path(VULKAN_HEADERS_INCLUDE_DIRS "vk_video/vulkan_video_codec_h264std.h")
 list(APPEND INCS PRIVATE ${VULKAN_HEADERS_INCLUDE_DIRS})
 
-find_package(glfw3 CONFIG REQUIRED)
-list(APPEND LIBS glfw)
-
-find_package(imgui CONFIG REQUIRED)
-list(APPEND LIBS imgui::imgui)
-
-find_package(imguizmo CONFIG REQUIRED)
-list(APPEND LIBS imguizmo::imguizmo)
-
-find_package(meshoptimizer CONFIG REQUIRED)
-list(APPEND LIBS meshoptimizer::meshoptimizer)
-
-find_package(spirv_cross_core CONFIG REQUIRED)
-list(APPEND LIBS spirv-cross-core)
+# 添加 spirv-headers
+find_path(SPIRV_HEADERS_INCLUDE_DIRS "spirv/1.0/GLSL.std.450.h")
+target_include_directories(main PRIVATE ${SPIRV_HEADERS_INCLUDE_DIRS})
+# add_subdirectory("${DEPS_DIR}/SPIRV-Headers" "SPIRV-Headers")
 
 # 添加 glslang
 add_subdirectory("${DEPS_DIR}/glslang" "glslang")
 
-# 添加 spirv-headers
-add_subdirectory("${DEPS_DIR}/SPIRV-Headers" "SPIRV-Headers")
-
 # 添加 spirv-tools
 add_subdirectory("${DEPS_DIR}/SPIRV-Tools" "SPIRV-Tools")
+
+# 添加 spirv-cross
+find_package(spirv_cross_core QUIET)
+if(spirv_cross_core_FOUND)
+    list(APPEND LIBS spirv-cross-core)
+else()
+    add_subdirectory("${DEPS_DIR}/SPIRV-Cross" "SPIRV-Cross")
+    list(APPEND LIBS spirv-cross-core)
+    list(APPEND INCS "${DEPS_DIR}/SPIRV-Cross")
+endif()
 
 # 添加 shaderc
 set(SHADERC_SKIP_TESTS ON)
@@ -81,8 +78,6 @@ endif()
 list(APPEND INCS
     "${DEPS_DIR}/assimp/include"
     "${DEPS_DIR}/assimp/build/include")
-
-#[[
 
 # 添加 glfw3
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/Scripts")
@@ -135,10 +130,8 @@ else()
 endif()
 list(APPEND INCS "${DEPS_DIR}/meshoptimizer/src")
 
-message(STATUS "INCS: ${INCS}")
-message(STATUS "LIBS: ${LIBS}")
-
-]]
+# message(STATUS "INCS: ${INCS}")
+# message(STATUS "LIBS: ${LIBS}")
 
 file(GLOB_RECURSE SOURCES "*.cpp")
 
