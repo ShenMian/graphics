@@ -12,7 +12,7 @@ list(APPEND INCS PRIVATE ${VULKAN_HEADERS_INCLUDE_DIRS})
 
 # 添加 spirv-headers
 find_path(SPIRV_HEADERS_INCLUDE_DIRS "spirv/1.0/GLSL.std.450.h")
-target_include_directories(main PRIVATE ${SPIRV_HEADERS_INCLUDE_DIRS})
+list(APPEND INCS PRIVATE ${SPIRV_HEADERS_INCLUDE_DIRS})
 # add_subdirectory("${DEPS_DIR}/SPIRV-Headers" "SPIRV-Headers")
 
 # 添加 glslang
