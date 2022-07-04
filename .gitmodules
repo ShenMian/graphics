@@ -28,9 +28,6 @@
 [submodule "Deps/SPIRV-Headers"]
 	path = Deps/SPIRV-Headers
 	url = https://github.com/KhronosGroup/SPIRV-Headers
-[submodule "Deps/vk-bootstrap"]
-	path = Deps/vk-bootstrap
-	url = https://github.com/charles-lunarg/vk-bootstrap.git
 [submodule "Deps/imgui"]
 	path = Deps/imgui
 	url = https://github.com/ocornut/imgui
