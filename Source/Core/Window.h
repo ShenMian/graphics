@@ -156,6 +156,11 @@ public:
 	void setCursorLock(bool enable);
 
 	/**
+	 * @brief 是否开启光标锁定.
+	 */
+	bool isCursorLock() const;
+
+	/**
 	 * @brief 设置光标在窗口中的坐标.
 	 *
 	 * @param pos 新光标在窗口中的坐标.
