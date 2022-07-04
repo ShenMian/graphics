@@ -10,10 +10,12 @@ void PrintMonitorInfo();
 void PrintRendererInfo();
 void PrintModelInfo(const Model&);
 
-int main()
+int main(int argc, char* argv[])
 {
 	try
 	{
+		std::filesystem::current_path(std::filesystem::path(argv[0]).parent_path());
+
 		Renderer::setAPI(Renderer::API::OpenGL);
 		Window::init();
 
@@ -62,15 +64,21 @@ int main()
 				animation.write(bones, 100 * sizeof(Matrix4f));
 				*/
 
-				// const std::filesystem::path path = "../../../../../../Model/bee.glb";
-				// const std::filesystem::path path = "../../../../../../Model/sponza/sponza.obj";
-				const std::filesystem::path path = "../../../../../../Model/sponza/sponza.glb";
-				// const std::filesystem::path path = "../../../../../../Model/m4a1/m4a1.gltf";
-				// const std::filesystem::path path = "../../../../../../Model/pistol/kimber_desert_warrior/scene.gltf";
-				// const std::filesystem::path path = "../../../../../../Model/Bistro/BistroExterior.glb";
-				// const std::filesystem::path path = "../../../../../../Model/SpeedTree/White Oak/HighPoly/White_Oak.fbx";
-				// const std::filesystem::path path = "../../../../../../Model/San_Miguel/san-miguel-low-poly.obj";
-				// const std::filesystem::path path = "../../../../../../Model/San_Miguel/SanMiguel-low.glb";
+				std::filesystem::path path;
+				if(argc > 1)
+					path = argv[1];
+				else
+				{
+					// path = "../../../../../../Model/bee.glb";
+					// path = "../../../../../../Model/sponza/sponza.obj";
+					path = "../../../../../../Model/sponza/sponza.glb";
+					// path = "../../../../../../Model/m4a1/m4a1.gltf";
+					// path = "../../../../../../Model/pistol/kimber_desert_warrior/scene.gltf";
+					// path = "../../../../../../Model/Bistro/BistroExterior.glb";
+					// path = "../../../../../../Model/SpeedTree/White Oak/HighPoly/White_Oak.fbx";
+					// path = "../../../../../../Model/San_Miguel/san-miguel-low-poly.obj";
+					// path = "../../../../../../Model/San_Miguel/SanMiguel-low.glb";
+				}
 
 				Model model;
 				model.load(path, Model::ProcessFlags::Fast, [](float progress) {
