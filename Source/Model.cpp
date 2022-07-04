@@ -127,14 +127,14 @@ void loadMaterial(Material& mat, const aiMesh* mesh, const aiScene* scene, const
 	{
 		// TODO: 此处循环无用, 同类型的材质可能有多个
 		for(unsigned int i = 0; i < aMat->GetTextureCount(type); i++)
-        {
-            aiString aPath;
-            aMat->GetTexture(type, 0, &aPath);
-            const auto path = dir / aPath.C_Str();
-            // if(!fs::exists(path))
-            // 	return nullptr;
-            return Texture::create(path);
-        }
+		{
+			aiString aPath;
+			aMat->GetTexture(type, 0, &aPath);
+			const auto path = dir / aPath.C_Str();
+			if(!fs::exists(path))
+				return nullptr;
+			return Texture::create(path);
+		}
 		return nullptr;
 	};
 
@@ -171,7 +171,7 @@ void loadMesh(const aiMesh* mesh, const aiScene* scene, const fs::path& path, st
 	static unsigned int i = 0;
 	if(currScene != scene)
 		currScene = scene, i = 0;
-	printf("Processing Mesh: %3u/%-3u\r", ++i, scene->mNumMeshes);
+	printf("Optimizing Mesh: %3u/%-3u\r", ++i, scene->mNumMeshes);
 
 	std::vector<Mesh::Vertex> vertices;
 	std::vector<unsigned int> indices;
@@ -179,7 +179,7 @@ void loadMesh(const aiMesh* mesh, const aiScene* scene, const fs::path& path, st
 	// TODO: 应该先加载全部的材质, 然后通过 ID 获取材质
 	Material material;
 
-    // 读取模型数据
+	// 读取模型数据
 	loadVertices(vertices, mesh);
 	loadIndices(indices, mesh);
 	loadBones(vertices, bones, mesh);
@@ -220,9 +220,9 @@ void Model::load(const fs::path& path, unsigned int process, std::function<void(
 		throw std::runtime_error("no such file or directory");
 
 	this->path = path;
-    name.clear();
-    meshes.clear();
-    aabb.clear();
+	name.clear();
+	meshes.clear();
+	aabb.clear();
 
 	Clock clock; // TODO: debug
 
@@ -230,7 +230,7 @@ void Model::load(const fs::path& path, unsigned int process, std::function<void(
 		aiProcess_JoinIdenticalVertices |
 		aiProcess_Triangulate |
 		aiProcess_SortByPType |
-        aiProcess_MakeLeftHanded; // TODO
+		aiProcess_MakeLeftHanded; // TODO
 
 	constexpr unsigned int fastFlags = aiProcess_GenNormals | aiProcess_GenUVCoords;
 	constexpr unsigned int qualityFlags = fastFlags | aiProcess_SplitLargeMeshes | aiProcess_ImproveCacheLocality | aiProcess_FindInvalidData;;
@@ -261,12 +261,12 @@ void Model::load(const fs::path& path, unsigned int process, std::function<void(
 
 	name = scene->mName.C_Str();
 
-	printf("Meshes loaded: %.2lfs       \n", clock.getSeconds()); // TODO: debug
+	printf("Meshes loaded   : %.2lfs       \n", clock.getSeconds()); // TODO: debug
 	clock.restart();
 	loadNode(scene->mRootNode, scene, path, meshes, bones, aabb);
 	for(const auto& mesh : meshes)
 		meshInfo += mesh.getInfo();
-	printf("Meshes processed: %.2lfs       \n", clock.getSeconds()); // TODO: debug
+	printf("Meshes optimized: %.2lfs       \n", clock.getSeconds()); // TODO: debug
 
 	for(unsigned int i = 0; i < scene->mNumAnimations; i++)
 	{
