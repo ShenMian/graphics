@@ -1,4 +1,4 @@
-@echo off
+﻿@echo off
 REM Copyright 2021 ShenMian
 REM License(Apache-2.0)
 
@@ -8,7 +8,7 @@ echo Installing dependencies...
 mkdir build 2>nul
 pushd  build
 set CONAN_SYSREQUIRES_MODE=enabled
-conan install .. --build=missing >nul
+conan install .. -s compiler.runtime=MDd --build=missing >nul
 popd
 
 echo Generating CMake cache...
