@@ -1,4 +1,5 @@
 #version 450
+#extension GL_KHR_vulkan_glsl : enable
 
 // Copyright 2021 SMS
 // License(Apache-2.0)
@@ -15,16 +16,6 @@ struct Vert
     mat3 TBN;
 };
 
-struct Material
-{
-    sampler2D albedo;
-    sampler2D metallic;
-    sampler2D roughness;
-    sampler2D ao;
-    sampler2D emissive;
-    sampler2D normal;
-};
-
 layout(binding = 0) uniform Matrices
 {
     mat4 view;
@@ -32,11 +23,16 @@ layout(binding = 0) uniform Matrices
     mat4 model;
 } mat;
 
+layout(location = 0) uniform sampler2D albedo;
+layout(location = 1) uniform sampler2D metallic;
+layout(location = 2) uniform sampler2D roughness;
+layout(location = 3) uniform sampler2D ao;
+layout(location = 4) uniform sampler2D emissive;
+layout(location = 5) uniform sampler2D normal;
+
 layout(location = 0) in Vert vert;
 
 layout(location = 0) out vec4 frag_color;
-
-layout(location = 0) uniform Material matl;
 
 void main()
 {
@@ -51,13 +47,13 @@ void main()
 
     frag_color = vec4(color, 1.0);
 
-	vec3  albedo    = texture(matl.albedo,    vert.tex_coord).rgb;
-	float metalness = texture(matl.metallic,  vert.tex_coord).r;
-	float roughness = texture(matl.roughness, vert.tex_coord).r;
-    float ao        = texture(matl.ao,        vert.tex_coord).r;
-    vec3  emissive  = texture(matl.emissive,  vert.tex_coord).rgb;
+	vec3  albedo    = texture(albedo,    vert.tex_coord).rgb;
+	float metalness = texture(metallic,  vert.tex_coord).r;
+	float roughness = texture(roughness, vert.tex_coord).r;
+    float ao        = texture(ao,        vert.tex_coord).r;
+    vec3  emissive  = texture(emissive,  vert.tex_coord).rgb;
 
-    vec3 N = normalize(2.0 * texture(matl.normal, vert.tex_coord).rgb - 1.0);
+    vec3 N = normalize(2.0 * texture(normal, vert.tex_coord).rgb - 1.0);
     N = normalize(vert.TBN * vert.normal);
 
     vec3 direct_lighting = vec3(0.0);

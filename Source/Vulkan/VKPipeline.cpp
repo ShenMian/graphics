@@ -138,7 +138,7 @@ void VKPipeline::createPipelineLayout(const Descriptor& desc)
 	for(const auto& binding : desc.layout.getBindings())
 	{
 		VkDescriptorSetLayoutBinding layoutBinding = {};
-		layoutBinding.binding = binding.slot;
+		layoutBinding.binding = binding.binding;
 		layoutBinding.descriptorType = VKType(binding.type);
 		layoutBinding.descriptorCount = binding.arraySize;
 		layoutBinding.stageFlags = VKStageFlags(binding.stageFlags);

@@ -3,8 +3,51 @@
 
 #include "Graphics.h"
 
+#include <thread>
+
+#if TARGET_OS == OS_WIN
+#include <windows.h>
+#include <fcntl.h>
+#include <io.h>
+#elif TARGET_OS == OS_LINUX
+#include <stdio.h>
+#endif
+
 #define FMT_HEADER_ONLY
 #include <fmt/core.h>
+
+std::filesystem::path OpenFile()
+{
+#if TARGET_OS == OS_WIN
+	char buffer[MAX_PATH] = {};
+	OPENFILENAMEA ofn = {};
+	ofn.lStructSize = sizeof(ofn);
+	ofn.lpstrFilter = "Model files\0*.gltf;*.glb;*.obj;*.fbx\0";
+	ofn.lpstrFile = buffer;
+	ofn.nMaxFile = MAX_PATH;
+	ofn.lpstrTitle = "Select a Model file to load";
+	ofn.Flags = OFN_DONTADDTORECENT | OFN_FILEMUSTEXIST | OFN_NOCHANGEDIR;
+	if(GetOpenFileNameA(&ofn))
+	{
+		return buffer;
+	}
+#elif TARGET_OS == OS_LINUX
+	char buffer[1024];
+	FILE* file = popen("zenity --title=\"Select a glTF file to load\" --file-filter=\"glTF files | *.gltf *.glb\" --file-selection", "r");
+	if(file)
+	{
+		std::string filename;
+		while(fgets(buffer, sizeof(buffer), file))
+		{
+			filename += buffer;
+		};
+		filename.erase(std::remove(filename.begin(), filename.end(), '\n'), filename.end());
+		return filename;
+	}
+#else
+	return "";
+#endif
+}
 
 void PrintMonitorInfo();
 void PrintRendererInfo();
@@ -32,11 +75,11 @@ int main(int argc, char* argv[])
 				auto program = Program::create("Shaders/mesh");
 
 				PipelineLayout layout = {
-					{"albedo",    PipelineLayout::Type::Texture, 0, PipelineLayout::StageFlags::Fragment},
-					{"roughness", PipelineLayout::Type::Texture, 1, PipelineLayout::StageFlags::Fragment},
-					{"ao",        PipelineLayout::Type::Texture, 2, PipelineLayout::StageFlags::Fragment},
-					{"emissive",  PipelineLayout::Type::Texture, 3, PipelineLayout::StageFlags::Fragment},
-					{"normal",    PipelineLayout::Type::Texture, 4, PipelineLayout::StageFlags::Fragment}
+					{"albedo",    0, PipelineLayout::Type::Sampler, PipelineLayout::StageFlags::Fragment},
+					{"roughness", 1, PipelineLayout::Type::Sampler, PipelineLayout::StageFlags::Fragment},
+					{"ao",        2, PipelineLayout::Type::Sampler, PipelineLayout::StageFlags::Fragment},
+					{"emissive",  3, PipelineLayout::Type::Sampler, PipelineLayout::StageFlags::Fragment},
+					{"normal",    4, PipelineLayout::Type::Sampler, PipelineLayout::StageFlags::Fragment}
 				};
 				Pipeline::Descriptor desc;
 				desc.layout = layout;
@@ -119,8 +162,8 @@ int main(int argc, char* argv[])
 						model.decompress();
 						break;
 
-					case Key::P:
-						window.setCursorLock(false);
+					case Key::LeftAlt:
+						window.setCursorLock(!window.isCursorLock());
 						break;
 					}
 				};
@@ -144,8 +187,18 @@ int main(int argc, char* argv[])
 				ui::Window ATT("ATT"); // 摄像机姿态信息
 				ui::Label position;    // 坐标
 				ui::Label angles;      // 姿态角角度
+				ui::Button open("Open File");
 				ATT.add(position);
 				ATT.add(angles);
+				ATT.add(open);
+
+				open.click = [&model](auto btn) {
+					const auto path = OpenFile();
+					model.load(path, Model::ProcessFlags::Fast, [](float progress) {
+						printf("Meshes loading: %.1f%%  \r", progress * 100);
+					});
+					PrintModelInfo(model);
+				};
 
 				Clock clock;
 				while(running)
