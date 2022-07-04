@@ -15,76 +15,85 @@ struct Vertex
 	Vector3 color;
 };
 
-int main()
+int main(int argc, char* argv[])
 {
-	Renderer::setAPI(Renderer::API::OpenGL);
-	Window::init();
-
+	try
 	{
-		Window window("Triangle", Monitor::getPrimary()->getSize() / 2);
-		Renderer::init(window);
+		std::filesystem::current_path(std::filesystem::path(argv[0]).parent_path());
+
+		Renderer::setAPI(Renderer::API::OpenGL);
+		Window::init();
 
 		{
-			PrintMonitorInfo();
-			PrintRendererInfo();
+			Window window("Triangle", Monitor::getPrimary()->getSize() / 2);
+			Renderer::init(window);
 
-			// 创建一个由 3 个顶点构成的三角形
-			const std::vector<Vertex> vertices = {
-				{{0,     0.5}, {1, 0, 0}},
-				{{0.5,  -0.5}, {0, 1, 0}},
-				{{-0.5, -0.5}, {0, 0, 1}}
-			};
-			VertexFormat layout = {
-				{"position", Format::RG32F},
-				{"color",    Format::RGB32F}
-			};
-			layout.setStride(sizeof(Vertex));
-			auto vertexBuffer = VertexBuffer::create(vertices, layout);
-
-			// 创建着色器程序
-			auto program = Program::create("Shaders/forward");
-
-			Pipeline::Descriptor desc;
-			desc.program = program;
-			desc.vertexFormat = layout;
-			// desc.viewports.push_back(Viewport({0, 0}, window.getSize()));
-			auto pipeline = Pipeline::create(desc);
-
-			auto cmdQueue = CommandQueue::create();
-			auto cmdBuffer = CommandBuffer::create();
-
-			bool running = true;
-			window.onClose = [&]{ running = false; };
-			window.setVisible(true); // 设置窗口可见
-
-			while(running)
 			{
-				cmdBuffer->begin();
+				PrintMonitorInfo();
+				PrintRendererInfo();
+
+				// 创建一个由 3 个顶点构成的三角形
+				const std::vector<Vertex> vertices = {
+					{{0,     0.5}, {1, 0, 0}},
+					{{0.5,  -0.5}, {0, 1, 0}},
+					{{-0.5, -0.5}, {0, 0, 1}}
+				};
+				VertexFormat layout = {
+					{"position", Format::RG32F},
+					{"color",    Format::RGB32F}
+				};
+				layout.setStride(sizeof(Vertex));
+				auto vertexBuffer = VertexBuffer::create(vertices, layout);
+
+				// 创建着色器程序
+				auto program = Program::create("Shaders/forward");
+
+				Pipeline::Descriptor desc;
+				desc.program = program;
+				desc.vertexFormat = layout;
+				// desc.viewports.push_back(Viewport({0, 0}, window.getSize()));
+				auto pipeline = Pipeline::create(desc);
+
+				auto cmdQueue = CommandQueue::create();
+				auto cmdBuffer = CommandBuffer::create();
+
+				bool running = true;
+				window.onClose = [&] { running = false; };
+				window.setVisible(true); // 设置窗口可见
+
+				while(running)
 				{
-					cmdBuffer->setPipeline(pipeline);
-
-					cmdBuffer->beginRenderPass();
+					cmdBuffer->begin();
 					{
-						cmdBuffer->setViewport({window.getSize()});
-						cmdBuffer->setClearColor({0, 0, 0, 0});
-						cmdBuffer->clear(ClearFlag::Color);
+						cmdBuffer->setPipeline(pipeline);
 
-						cmdBuffer->setVertexBuffer(vertexBuffer);
-						cmdBuffer->draw(vertexBuffer->getCount());
+						cmdBuffer->beginRenderPass();
+						{
+							cmdBuffer->setViewport({window.getSize()});
+							cmdBuffer->setClearColor({0, 0, 0, 0});
+							cmdBuffer->clear(ClearFlag::Color);
+
+							cmdBuffer->setVertexBuffer(vertexBuffer);
+							cmdBuffer->draw(vertexBuffer->getCount());
+						}
+						cmdBuffer->endRenderPass();
 					}
-					cmdBuffer->endRenderPass();
-				}
-				cmdBuffer->end();
-				cmdQueue->submit(cmdBuffer);
+					cmdBuffer->end();
+					cmdQueue->submit(cmdBuffer);
 
-				window.update();
+					window.update();
+				}
 			}
+
+			Renderer::deinit();
 		}
 
-		Renderer::deinit();
+		Window::deinit();
 	}
-
-	Window::deinit();
+	catch(std::runtime_error& e)
+	{
+		puts(e.what());
+	}
 
 	return 0;
 }
