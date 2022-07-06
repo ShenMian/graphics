@@ -3,8 +3,10 @@
 
 #pragma once
 
+#include <memory>
 #include <glad/glad.h>
 
+class GLBuffer;
 class VertexFormat;
 
 class GLVertexArray
@@ -15,7 +17,7 @@ public:
 
 	void bind();
 
-	void build(const VertexFormat& fmt);
+	void build(const VertexFormat& fmt, GLBuffer& vbo);
 
 private:
 	GLuint handle;

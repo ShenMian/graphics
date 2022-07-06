@@ -13,7 +13,7 @@ GLVertexBuffer::GLVertexBuffer(const void* data, size_t size, const VertexFormat
     buffer.write(data, size);
 	buffer.unmap();
 	
-	vao.build(fmt);
+	vao.build(fmt, buffer);
 }
 
 Buffer& GLVertexBuffer::getBuffer()
@@ -23,6 +23,6 @@ Buffer& GLVertexBuffer::getBuffer()
 
 void GLVertexBuffer::bind()
 {
-	buffer.bind();
+	// buffer.bind();
 	vao.bind();
 }
