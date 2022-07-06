@@ -30,7 +30,9 @@ jobs:
         run: ./Scripts/cmake_install_deps.sh
 
       - name: Generating CMake cache
-        run: cmake -B build
+        run:  |
+          make clean
+          cmake -B build
 
       - name: Build
         run: cmake --build build --config ${{ matrix.type }} -j8
