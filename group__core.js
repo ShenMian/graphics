@@ -74,7 +74,6 @@ var group__core =
       [ "getHandle", "class_window.html#a7ee41eb997d488c0ce69a893bcbdb02b", null ],
       [ "getPosition", "class_window.html#a036ccfc71def085dafd6e4357a15921f", null ],
       [ "getSize", "class_window.html#a02895f65ac107be364b73e4088377697", null ],
-      [ "isCursorLock", "class_window.html#ad07aacec09f143cbf9acf69a79764bbe", null ],
       [ "isFloating", "class_window.html#a749973cb62e3321d7cbfe4ff39798189", null ],
       [ "isFullscreen", "class_window.html#ac3dc6c7f08d4b749b7949149cc6c7dc3", null ],
       [ "isResizable", "class_window.html#a1b888a7e6a5562968a253b915ccb7825", null ],
