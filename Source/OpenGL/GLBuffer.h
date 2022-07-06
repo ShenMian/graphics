@@ -18,6 +18,7 @@ public:
 	void flush(size_t size = -1, size_t offset = 0) override;
 
 	void bind();
+	operator GLuint();
 	operator GLuint() const;
 
 private:
