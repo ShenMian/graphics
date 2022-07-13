@@ -3,14 +3,14 @@
 # License(Apache-2.0)
 
 cd "$( cd "$( dirname "$0"  )" && pwd  )" || exit
-cd ..
+cd .. || exit
 
 echo Installing dependencies...
 mkdir build 2>/dev/null
 cd build
 export CONAN_SYSREQUIRES_MODE=enabled
 conan install .. --build=missing >/dev/null
-cd ..
+cd .. || exit
 
 echo Generating CMake cache...
 if ! cmake -B build -DUSE_CONAN=ON >/dev/null

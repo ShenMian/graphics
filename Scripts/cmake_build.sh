@@ -4,7 +4,7 @@
 
 # 切换到主目录
 cd "$( cd "$( dirname "$0"  )" && pwd  )" || exit
-cd ..
+cd .. || exit
 
 # 安装依赖项
 # ./Scripts/cmake_install_deps.sh || exit

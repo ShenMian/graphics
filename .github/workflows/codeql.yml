@@ -36,7 +36,7 @@ jobs:
       uses: actions/checkout@v3
       with:
         submodules: recursive
-        
+
     - name: Install Clang
       uses: egor-tensin/setup-clang@v1.3
       with:
