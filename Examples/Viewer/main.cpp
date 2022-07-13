@@ -95,7 +95,7 @@ int main(int argc, char* argv[])
 				controller.setSpeed(speed * 0.5);
 
 				bool running = true;
-				window.onClose = [&]{ running = false; };
+				window.onClose = [&] { running = false; };
 				window.onKey = [&](int action, Key key)
 				{
 					if(!action)
@@ -215,7 +215,7 @@ int main(int argc, char* argv[])
 				}
 			}
 
-            UI::deinit();
+			UI::deinit();
 			Renderer::deinit();
 		}
 
@@ -232,37 +232,37 @@ int main(int argc, char* argv[])
 
 void PrintMonitorInfo()
 {
-	printf("Monitor\n");
+	puts("Monitor");
 	for(const auto& mon : Monitor::getMonitors())
 	{
-		printf("%s", fmt::format(
+		puts(fmt::format(
 			"|-{}\n"
 			"  |-Size        : {}x{}\n"
-			"  `-Refresh rate: {} Hz\n",
+			"  `-Refresh rate: {} Hz",
 			mon.getName(), mon.getSize().x, mon.getSize().y, mon.getRefreshRate()).c_str());
 	}
 }
 
 void PrintRendererInfo()
 {
-    const auto renderer = Renderer::get();
-    printf("%s", fmt::format(
-            "Renderer\n"
-            "|-Device  : {}\n"
-            "|-Renderer: {}\n"
-            "`-Vendor  : {}\n",
-            renderer->getDeviceName(), renderer->getRendererName(), renderer->getVendorName()).c_str());
+	const auto renderer = Renderer::get();
+	puts(fmt::format(
+		"Renderer\n"
+		"|-Device  : {}\n"
+		"|-Renderer: {}\n"
+		"`-Vendor  : {}",
+		renderer->getDeviceName(), renderer->getRendererName(), renderer->getVendorName()).c_str());
 }
 
 void PrintModelInfo(const Model& model)
 {
 	const auto& info = model.getMeshInfo();
-	printf("%s", fmt::format(
+	puts(fmt::format(
 		"Mesh\n"
 		"|-Name     : {}\n"
 		"|-Triangles: {}\n"
 		"|-Vertices : {}\n"
-		"`-Indices  : {}\n",
+		"`-Indices  : {}",
 		model.getName(), info.triangles, info.vertices, info.indices).c_str());
 }
 

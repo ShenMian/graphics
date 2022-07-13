@@ -141,13 +141,13 @@ int main(int argc, char* argv[])
 
 void PrintMonitorInfo()
 {
-	printf("Monitor\n");
+	puts("Monitor");
 	for(const auto& mon : Monitor::getMonitors())
 	{
-		printf("%s", fmt::format(
+		puts(fmt::format(
 			"|-{}\n"
 			"  |-Size        : {}x{}\n"
-			"  `-Refresh rate: {} Hz\n",
+			"  `-Refresh rate: {} Hz",
 			mon.getName(), mon.getSize().x, mon.getSize().y, mon.getRefreshRate()).c_str());
 	}
 }
@@ -155,10 +155,10 @@ void PrintMonitorInfo()
 void PrintRendererInfo()
 {
 	const auto renderer = Renderer::get();
-	printf("%s", fmt::format(
+	puts(fmt::format(
 		"Renderer\n"
 		"|-Device  : {}\n"
 		"|-Renderer: {}\n"
-		"`-Vendor  : {}\n",
+		"`-Vendor  : {}",
 		renderer->getDeviceName(), renderer->getRendererName(), renderer->getVendorName()).c_str());
 }
