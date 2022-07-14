@@ -30,7 +30,7 @@ jobs:
         uses: turtlebrowser/get-conan@v1.0
 
       - name: Build
-        run: ./Scripts/build.sh
+        run: ./Scripts/build.sh ${{ matrix.type }} clang 13
 
       - name: Upload libs
         uses: actions/upload-artifact@v3

@@ -38,7 +38,7 @@ jobs:
         uses: turtlebrowser/get-conan@v1.0
 
       - name: Build
-        run: ./Scripts/build.bat
+        run: ./Scripts/build.bat ${{ matrix.type }}
 
       - name: Upload libraries
         uses: actions/upload-artifact@v3

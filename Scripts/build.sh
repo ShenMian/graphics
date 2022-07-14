@@ -7,7 +7,7 @@ if ! hash "cmake" &>/dev/null; then
     exit 1
 fi
 
-if [ $# -eq 0 ]
+if [ $# -eq 0 ]; then
     BUILD_TYPE="Debug"
 else
     BUILD_TYPE=$1
@@ -20,21 +20,19 @@ mkdir build 2>/dev/null
 
 echo === Installing dependencies...
 export CONAN_SYSREQUIRES_MODE=enabled
-conan install .. --build=missing -if build -of build -s build_type=${BUILD_TYPE} >/dev/null
+conan install . --build=missing -if build -of build -s build_type=${BUILD_TYPE} -s compiler=$2 -s compiler.version=$3 >/dev/null
 
 echo === Generating CMake cache...
 if ! cmake -B build >/dev/null
 then
     echo === Failed to generate CMake cache.
-    cmake -B build
     exit 1
 fi
 
 echo === Building...
-if ! cmake --build build >/dev/null
+if ! cmake --build build --config ${BUILD_TYPE} -j16 >/dev/null
 then
     echo === Failed to build.
-    cmake --build build --config ${BUILD_TYPE} -j16
     exit 1
 fi
 
