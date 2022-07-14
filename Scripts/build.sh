@@ -16,12 +16,11 @@ fi
 cd "$( cd "$( dirname "$0"  )" && pwd  )" || exit
 cd .. || exit
 
-echo === Installing dependencies...
 mkdir build 2>/dev/null
-cd build
+
+echo === Installing dependencies...
 export CONAN_SYSREQUIRES_MODE=enabled
-conan install .. --build=missing -s build_type=${BUILD_TYPE} >/dev/null
-cd .. || exit
+conan install .. --build=missing -if build -of build -s build_type=${BUILD_TYPE} >/dev/null
 
 echo === Generating CMake cache...
 if ! cmake -B build >/dev/null

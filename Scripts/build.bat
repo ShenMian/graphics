@@ -10,16 +10,13 @@ cmake --version >nul 2>&1 || (
 if "%~1"=="" (set "BUILD_TYPE=Debug") else (set "BUILD_TYPE=%~1")
 if "%BUILD_TYPE%"=="Debug" (set "VS_ARGS=MTd") else (set "VS_ARGS=MT")
 
-pushd %~dp0\..
+cd %~dp0\.. || exit /b 1
+
+mkdir build 2>nul
 
 echo === Installing dependencies...
-mkdir build 2>nul
-pushd build
-
 set "CONAN_SYSREQUIRES_MODE=enabled"
-conan install .. --build=missing -s build_type=%BUILD_TYPE% -s compiler.runtime=%VS_ARGS% >nul
-
-popd
+conan install .. --build=missing -if build -of build -s build_type=%BUILD_TYPE% -s compiler.runtime=%VS_ARGS% >nul
 
 echo === Generating CMake cache...
 cmake -B build >nul || (
@@ -36,5 +33,3 @@ cmake --build build >nul || (
 )
 
 echo === Done.
-
-popd
