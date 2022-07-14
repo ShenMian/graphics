@@ -17,7 +17,7 @@ if(NOT DEFINED CMAKE_BUILD_TYPE)
 endif()
 
 # 选项
-option(USE_CONAN      "Use conan"      OFF)
+option(USE_CONAN      "Use conan"      ON)
 option(BUILD_EXAMPLES "Build examples" ON)
 
 # 输出基本信息
@@ -59,7 +59,9 @@ macro(add_example NAME)
     target_compile_definitions(${NAME} PUBLIC ${GRAPHICS_DEFINES})
 
     set_target_properties(${NAME} PROPERTIES
-        RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin/${NAME}")
+        RUNTIME_OUTPUT_DIRECTORY         "${CMAKE_BINARY_DIR}/bin/${NAME}"
+        RUNTIME_OUTPUT_DIRECTORY_DEBUG   "${CMAKE_BINARY_DIR}/bin/${NAME}"
+        RUNTIME_OUTPUT_DIRECTORY_RELEASE "${CMAKE_BINARY_DIR}/bin/${NAME}")
 
     # 指定 C++ 标准
     if(MSVC) # MSVC
