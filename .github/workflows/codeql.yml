@@ -64,7 +64,7 @@ jobs:
 
     - name: Build
       run: |
-        cmake -B build -DUSE_CONAN=ON
+        cmake -B build
         cmake --build build --config Debug -j8
 
     # ℹ️ Command-line programs to run using the OS shell.

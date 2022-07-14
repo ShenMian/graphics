@@ -37,16 +37,8 @@ jobs:
       - name: Install Conan
         uses: turtlebrowser/get-conan@v1.0
 
-      - name: Install dependencies
-        run: |
-          set CONAN_SYSREQUIRES_MODE=enabled
-          conan install . --build=missing -if build -of build -s build_type=${{ matrix.type }} -s compiler.runtime=${{ matrix.vs_args }}
-
-      - name: Generating CMake cache
-        run: cmake -B build -DUSE_CONAN=ON
-
       - name: Build
-        run: cmake --build build --config ${{ matrix.type }} -j16
+        run: ./Scripts/build.bat
 
       - name: Upload libraries
         uses: actions/upload-artifact@v3
