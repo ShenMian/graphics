@@ -32,7 +32,7 @@ void Gamepad::update()
 
 Vector2f Gamepad::get(Thumb thumb) const noexcept
 {
-	const Vector2f value = getRaw(thumb);
+	Vector2f value = getRaw(thumb);
 
 	float deadzone;
 	if(thumb == Thumb::left)
@@ -40,8 +40,13 @@ Vector2f Gamepad::get(Thumb thumb) const noexcept
 	else
 		deadzone = rightThumbDeadzone;
 
+	const float factor = 1.f / 1.f - deadzone;
+
 	if(value.normSq() > deadzone * deadzone)
-		return value.normalized() * (value.norm() - deadzone);
+	{
+		const float magnitude = std::min(value.norm(), 1.f);
+		return value.normalized() * ((magnitude - deadzone) * factor);
+	}
 	else
 		return Vector2f::zero;
 }
@@ -59,9 +64,10 @@ Vector2f Gamepad::getRaw(Thumb thumb) const noexcept
 float Gamepad::get(Trigger trigger) const noexcept
 {
 	const float value = getRaw(trigger);
+	const float factor = 1.f / 1.f - triggerThreshold;
 
 	if(value > triggerThreshold)
-		return value - triggerThreshold;
+		return (value - triggerThreshold) * factor;
 	else
 		return 0;
 }

@@ -139,7 +139,7 @@ void Controller::processGamepad(float dt)
 	const auto leftTrigger = gamepad->get(Gamepad::Trigger::left);
 	moveFront(-leftThumb.y * step);
 	moveRight(leftThumb.x * step);
-	moveUp(rightTrigger + (-leftTrigger));
+	moveUp((rightTrigger + (-leftTrigger)) * step);
 	lookUp(-rightThumb.y * sensitivity.x);
 	turnRight(rightThumb.x * sensitivity.y);
 }
