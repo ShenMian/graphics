@@ -123,7 +123,7 @@ protected:
 };
 
 // TODO: 需要移动到合适的位置
-#if TARGET_COMPILER == COMPILER_CLANG
+#if TARGET_COMPILER == COMPILER_CLANG && __clang_major__ < 14
 template <>
 struct std::hash<std::filesystem::path>
 {
