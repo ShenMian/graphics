@@ -16,7 +16,10 @@ mkdir build 2>nul
 
 echo === Installing dependencies...
 set "CONAN_SYSREQUIRES_MODE=enabled"
-conan install . --build=missing -if build -of build -s build_type=%BUILD_TYPE% -s compiler.runtime=%VS_ARGS% >nul
+conan install . --build=missing -if build -of build -s build_type=%BUILD_TYPE% -s compiler.runtime=%VS_ARGS% >nul || (
+    echo === Failed to install.
+    exit /b 1
+)
 
 echo === Generating CMake cache...
 cmake -B build >nul || (

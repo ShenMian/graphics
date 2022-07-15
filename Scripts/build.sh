@@ -3,14 +3,18 @@
 # License(Apache-2.0)
 
 if ! hash "cmake" &>/dev/null; then
-    echo === Need cmake
-    exit 1
+  echo === Need cmake
+  exit 1
 fi
 
 if [ $# -eq 0 ]; then
-    BUILD_TYPE="Debug"
+  BUILD_TYPE="Debug"
 else
-    BUILD_TYPE=$1
+  BUILD_TYPE=$1
+fi
+
+if [ ! -z "$2" ] && [ ! -z "$3" ]; then
+  CONAN_ARGS="-s compiler=$2 -s compiler.version=$3"
 fi
 
 cd "$( cd "$( dirname "$0"  )" && pwd  )" || exit
@@ -20,7 +24,11 @@ mkdir build 2>/dev/null
 
 echo === Installing dependencies...
 export CONAN_SYSREQUIRES_MODE=enabled
-conan install . --build=missing -if build -of build -s build_type=${BUILD_TYPE} -s compiler=$2 -s compiler.version=$3 >/dev/null
+if ! conan install . --build=missing -if build -of build -s build_type=${BUILD_TYPE} ${CONAN_ARGS} >/dev/null
+then
+  echo === Failed to install.
+  exit 1
+fi
 
 echo === Generating CMake cache...
 if ! cmake -B build >/dev/null
