@@ -159,7 +159,7 @@ $(document).ready(function(){initNavTree('_texture_8h_source.html',''); initResi
 <div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>};</div>
 <div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span><span class="comment">// TODO: 需要移动到合适的位置</span></div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span><span class="preprocessor">#if TARGET_COMPILER == COMPILER_CLANG</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span><span class="preprocessor">#if TARGET_COMPILER == COMPILER_CLANG &amp;&amp; __clang_major__ &lt; 14</span></div>
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="keyword">template</span> &lt;&gt;</div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="keyword">struct </span>std::hash&lt;std::filesystem::path&gt;</div>
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>{</div>
