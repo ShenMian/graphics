@@ -3,8 +3,8 @@
 # License(Apache-2.0)
 
 if ! hash "cmake" &>/dev/null; then
-  echo === Need cmake
-  exit 1
+    echo "=== Need cmake."
+    exit 1
 fi
 
 if [ $# -eq 0 ]; then
@@ -22,26 +22,26 @@ cd .. || exit
 
 mkdir build 2>/dev/null
 
-echo === Installing dependencies...
+echo "=== Installing dependencies..."
 export CONAN_SYSREQUIRES_MODE=enabled
 if ! conan install . --build=missing -if build -of build -s build_type=${BUILD_TYPE} ${CONAN_ARGS} >/dev/null
 then
-  echo === Failed to install.
+  echo "=== Failed to install."
   exit 1
 fi
 
-echo === Generating CMake cache...
+echo "=== Generating CMake cache..."
 if ! cmake -B build >/dev/null
 then
-    echo === Failed to generate CMake cache.
+    echo "=== Failed to generate CMake cache."
     exit 1
 fi
 
-echo === Building...
+echo "=== Building..."
 if ! cmake --build build --config ${BUILD_TYPE} -j16 >/dev/null
 then
-    echo === Failed to build.
+    echo "=== Failed to build."
     exit 1
 fi
 
-echo === Done.
+echo "=== Done."

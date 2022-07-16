@@ -3,7 +3,7 @@ REM Copyright 2021 ShenMian
 REM License(Apache-2.0)
 
 cmake --version >nul 2>&1 || (
-    echo === Need cmake
+    echo === Need cmake.
     exit /b 1
 )
 
