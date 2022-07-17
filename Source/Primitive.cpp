@@ -49,7 +49,7 @@ constexpr Vector2 IcoUvs[] = {
 	{0.181818, 0.157461},  // Verts & UVs are ordered by U then Y coords,
 	{0.181818, 0.472382},  //
 	{0.272727, 0.0},       //      4   8   C   G   K
-	{0.272727, 0.314921},  //     / \ / \ / \ / \ / \ 
+	{0.272727, 0.314921},  //     / \ / \ / \ / \ / \
 	{0.363636, 0.157461},  //    2---6---A---E---I---L
 	{0.363636, 0.472382},  //   / \ / \ / \ / \ / \ /
 	{0.454545, 0.0},       //  0---3---7---B---F---J
@@ -60,7 +60,7 @@ constexpr Vector2 IcoUvs[] = {
 	{0.636363, 0.314921},  // [1, 5, 9, D, H] have the same position vert
 	{0.727272, 0.157461},  // [0, J]          have the same position vert
 	{0.727272, 0.472382},  // [2, L]          have the same position vert
-	{0.818181, 0.0},       // 
+	{0.818181, 0.0},       //
 	{0.818181, 0.314921},
 	{0.90909,  0.157461},
 	{0.90909,  0.472382},
@@ -115,7 +115,7 @@ unsigned int CreateVertexForEdge(
 	auto inserted = lookup.insert({edge, currentVertCount});
 
 	// If there wasn't one, create a new vert in the middle of the edge
-	if(inserted.second && vertices.empty())
+	if(inserted.second)
 	{
 		vertices[currentVertCount].position = (vertices[first].position + vertices[second].position) / 2.f;
 		vertices[currentVertCount++].uv = (vertices[first].uv + vertices[second].uv) / 2.f;
@@ -505,7 +505,7 @@ Mesh Primitive::makeCapsule(unsigned int resolution, float height, float radius)
 	//          -------- lonCount -------->
 	//          v          v + 1      (v + 1) + 1
 	//    |     •------------•------------•
-	//    |       \          |          /          
+	//    |       \          |          /
 	//    1          \       |       /
 	//    |             \    |    /
 	//    |                \ | /
@@ -535,10 +535,10 @@ Mesh Primitive::makeIcoSphere(unsigned int resolution)
 	//  /     \ /               / \ / \ /
 	// •-------•               •---•---•
 
-	unsigned int res = (unsigned int)pow(4, resolution);
+	const int res = pow(4, resolution);
 
 	const auto indexCount = 60 * res;
-	const auto vertCount = 22 + 60 * (1 - res) / -3;
+	const auto vertCount = 22 + 60 * (1 - res) / -3; // 因为 res > 0, 所以 (1 - res) / -3 的值为自然数
 
 	std::vector<unsigned int> indices(indexCount);
 	std::vector<Mesh::Vertex> vertices(vertCount);
@@ -560,7 +560,7 @@ Mesh Primitive::makeIcoSphere(unsigned int resolution)
 
 	// At this point we have a tessellated icosahedron, but most of the points don't
 	// have length = 1. Normalizing them it will push all but the initial points out
-	// creating a sphere 
+	// creating a sphere
 
 	for(unsigned int i = 0; i < vertCount; i++)
 		vertices[i].position.normalize();
