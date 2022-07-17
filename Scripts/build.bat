@@ -22,7 +22,7 @@ conan install . --build=missing -if build -of build -s build_type=%BUILD_TYPE% -
 )
 
 echo === Generating CMake cache...
-cmake -B build >nul || (
+cmake -B build -Wno-dev >nul || (
     echo === Failed to generate CMake cache.
     exit /b 1
 )
