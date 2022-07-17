@@ -40,7 +40,7 @@ Vector2f Gamepad::get(Thumb thumb) const noexcept
 	else
 		deadzone = rightThumbDeadzone;
 
-	const float factor = 1.f / 1.f - deadzone;
+	const float factor = 1.f / (1.f - deadzone);
 
 	if(value.normSq() > deadzone * deadzone)
 	{
@@ -64,7 +64,7 @@ Vector2f Gamepad::getRaw(Thumb thumb) const noexcept
 float Gamepad::get(Trigger trigger) const noexcept
 {
 	const float value = getRaw(trigger);
-	const float factor = 1.f / 1.f - triggerThreshold;
+	const float factor = 1.f / (1.f - triggerThreshold);
 
 	if(value > triggerThreshold)
 		return (value - triggerThreshold) * factor;
