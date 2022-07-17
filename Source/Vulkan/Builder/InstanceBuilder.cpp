@@ -4,6 +4,7 @@
 #include "InstanceBuilder.h"
 #include "../VKInstance.h"
 #include "Core/Platform.h"
+#include <algorithm>
 #include <stdexcept>
 
 namespace
@@ -65,13 +66,11 @@ VKInstance InstanceBuilder::build()
 {
 	enableWindowExtensions();
 
-	for(auto layer : enabledLayers)
-		if(!isLayerAvailable(layer))
-			throw std::runtime_error("requested layer not present");
+	if(std::ranges::any_of(enabledLayers, [this](auto layer) {return !isLayerAvailable(layer); }))
+		throw std::runtime_error("requested layer not present");
 
-	for(auto ext : enabledExtensions)
-		if(!isExtensionAvailable(ext))
-			throw std::runtime_error("requested extension not avaliable");
+	if(std::ranges::any_of(enabledExtensions, [this](auto ext) {return !isExtensionAvailable(ext); }))
+		throw std::runtime_error("requested extension not avaliable");
 
 	appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
 
@@ -150,18 +149,12 @@ InstanceBuilder& InstanceBuilder::setDebugCallback(PFN_vkDebugUtilsMessengerCall
 
 bool InstanceBuilder::isLayerAvailable(std::string_view name) const
 {
-	for(const auto& layer : availableLayers)
-		if(layer.layerName == name)
-			return true;
-	return false;
+	return std::ranges::any_of(availableLayers, [name](const auto& layer) {return layer.layerName == name; });
 }
 
 bool InstanceBuilder::isExtensionAvailable(std::string_view name) const
 {
-	for(const auto& ext : availableExtensions)
-		if(ext.extensionName == name)
-			return true;
-	return false;
+	return std::ranges::any_of(availableExtensions, [name](const auto& ext) {return ext.extensionName == name; });
 }
 
 void InstanceBuilder::enableWindowExtensions()
