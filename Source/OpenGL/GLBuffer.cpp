@@ -43,7 +43,7 @@ void GLBuffer::map(size_t size, size_t offset)
 	const GLenum access = GL_MAP_READ_BIT | GL_MAP_WRITE_BIT;
 	if(data)
 		return; // 缓冲区已处于映射状态
-	if(size == -1)
+	if(size == (size_t)-1)
 		size = this->size;
 	assert(size <= this->size);
 
@@ -62,7 +62,7 @@ void GLBuffer::unmap()
 
 void GLBuffer::flush(size_t size, size_t offset)
 {
-	if(size == -1)
+	if(size == (size_t)-1)
 		size = this->size;
 	assert(size <= this->size);
 
