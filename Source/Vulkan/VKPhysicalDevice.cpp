@@ -2,6 +2,7 @@
 // License(Apache-2.0)
 
 #include "VKPhysicalDevice.h"
+#include <algorithm>
 #include <stdexcept>
 #include <vector>
 
@@ -49,10 +50,7 @@ const VkPhysicalDeviceFeatures& VKPhysicalDevice::getFeatures() const
 
 bool VKPhysicalDevice::isExtensionAvailable(std::string_view name) const
 {
-	for(const auto& ext : availableExtensions)
-		if(ext.extensionName == name)
-			return true;
-	return false;
+	return std::ranges::any_of(availableExtensions, [name](const auto& ext) { return ext.extensionName == name; });
 }
 
 VkSurfaceKHR VKPhysicalDevice::getSurface() const
