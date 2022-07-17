@@ -127,7 +127,7 @@ void Controller::processGamepad(float dt)
 
 	gamepad->update();
 
-	float step = speed * dt * 1.2f;
+	float step = speed * dt;
 	if(gamepad->get(Gamepad::Button::LeftThumb))
 		step *= 3;
 
