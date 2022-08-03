@@ -24,7 +24,7 @@ mkdir build 2>/dev/null
 
 echo "=== Installing dependencies..."
 export CONAN_SYSREQUIRES_MODE=enabled
-if ! conan install . --build=missing -if build -of build -s build_type=${BUILD_TYPE} ${CONAN_ARGS} >/dev/null
+if ! conan install . --build=missing -if build -of build -s build_type=${BUILD_TYPE} ${CONAN_ARGS} -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True >/dev/null
 then
   echo "=== Failed to install."
   exit 1
