@@ -57,17 +57,30 @@ void loadVertices(std::vector<Vertex>& vertices, const aiMesh* mesh)
 		Vertex vertex = {};
 
 		// 获取坐标
-		std::memcpy(&vertex.position, &mesh->mVertices[i], sizeof(vertex.position));
+		vertex.position.x = mesh->mVertices[i].x;
+		vertex.position.y = mesh->mVertices[i].y;
+		vertex.position.z = mesh->mVertices[i].z;
 
 		// 获取法向量
 		if(mesh->HasNormals())
-			std::memcpy(&vertex.normal, &mesh->mNormals[i], sizeof(vertex.normal));
+		{
+			vertex.normal.x = mesh->mNormals[i].x;
+			vertex.normal.y = mesh->mNormals[i].y;
+			vertex.normal.z = mesh->mNormals[i].z;
+		}
 
 		if(mesh->mTextureCoords[0])
 		{
-			std::memcpy(&vertex.uv, &mesh->mTextureCoords[0][i], sizeof(vertex.uv));         // 获取纹理坐标
-			std::memcpy(&vertex.tangent, &mesh->mTangents[i], sizeof(vertex.tangent));       // 获取 tangent
-			std::memcpy(&vertex.bitangent, &mesh->mBitangents[i], sizeof(vertex.bitangent)); // 获取 bitangent
+			vertex.uv.x = mesh->mTextureCoords[0][i].x; // 获取纹理坐标
+			vertex.uv.y = mesh->mTextureCoords[0][i].y;
+
+			vertex.tangent.x = mesh->mTangents[i].x; // 获取 tangent
+			vertex.tangent.y = mesh->mTangents[i].y;
+			vertex.tangent.z = mesh->mTangents[i].z;
+
+			vertex.bitangent.x = mesh->mBitangents[i].x; // 获取 bitangent
+			vertex.bitangent.y = mesh->mBitangents[i].y;
+			vertex.bitangent.z = mesh->mBitangents[i].z;
 		}
 
 		vertices.push_back(vertex);
@@ -127,14 +140,14 @@ void loadMaterial(Material& mat, const aiMesh* mesh, const aiScene* scene, const
 	{
 		// TODO: 此处循环无用, 同类型的材质可能有多个
 		for(unsigned int i = 0; i < aMat->GetTextureCount(type); i++)
-        {
-            aiString aPath;
-            aMat->GetTexture(type, 0, &aPath);
-            const auto path = dir / aPath.C_Str();
-            // if(!fs::exists(path))
-            // 	return nullptr;
-            return Texture::create(path);
-        }
+		{
+			aiString aPath;
+			aMat->GetTexture(type, 0, &aPath);
+			const auto path = dir / aPath.C_Str();
+			// if(!fs::exists(path))
+			// 	return nullptr;
+			return Texture::create(path);
+		}
 		return nullptr;
 	};
 
@@ -165,21 +178,15 @@ void loadMaterial(Material& mat, const aiMesh* mesh, const aiScene* scene, const
  * @param path   模型位置.
  * @param meshs  要载入到的 Mesh 数组.
  */
-void loadMesh(const aiMesh* mesh, const aiScene* scene, const fs::path& path, std::vector<Mesh>& meshes, std::vector<Matrix4f>& bones, AABB3& aabb)
+void loadMesh(const aiMesh* mesh, const fs::path& path, std::vector<Mesh>& meshes, std::vector<Matrix4f>& bones, AABB3& aabb)
 {
-	static auto currScene = scene; // TODO: debug
-	static unsigned int i = 0;
-	if(currScene != scene)
-		currScene = scene, i = 0;
-	printf("Processing Mesh: %3u/%-3u\r", ++i, scene->mNumMeshes);
-
 	std::vector<Mesh::Vertex> vertices;
 	std::vector<unsigned int> indices;
 
 	// TODO: 应该先加载全部的材质, 然后通过 ID 获取材质
 	Material material;
 
-    // 读取模型数据
+	// 读取模型数据
 	loadVertices(vertices, mesh);
 	loadIndices(indices, mesh);
 	loadBones(vertices, bones, mesh);
@@ -205,7 +212,10 @@ void loadNode(const aiNode* node, const aiScene* scene, const fs::path& path, st
 {
 	// 加载网格
 	for(unsigned int i = 0; i < node->mNumMeshes; i++)
-		loadMesh(scene->mMeshes[node->mMeshes[i]], scene, path, meshes, bones, aabb);
+	{
+		printf("Processing Mesh: %3u/%-3u\r", i, scene->mNumMeshes); // TODO: debug
+		loadMesh(scene->mMeshes[node->mMeshes[i]], path, meshes, bones, aabb);
+	}
 
 	// 加载其余节点
 	for(unsigned int i = 0; i < node->mNumChildren; i++)
@@ -220,9 +230,9 @@ void Model::load(const fs::path& path, unsigned int process, std::function<void(
 		throw std::runtime_error("no such file or directory");
 
 	this->path = path;
-    name.clear();
-    meshes.clear();
-    aabb.clear();
+	name.clear();
+	meshes.clear();
+	aabb.clear();
 
 	Clock clock; // TODO: debug
 
@@ -230,10 +240,10 @@ void Model::load(const fs::path& path, unsigned int process, std::function<void(
 		aiProcess_JoinIdenticalVertices |
 		aiProcess_Triangulate |
 		aiProcess_SortByPType |
-        aiProcess_MakeLeftHanded; // TODO
+		aiProcess_MakeLeftHanded; // TODO
 
 	constexpr unsigned int fastFlags = aiProcess_GenNormals | aiProcess_GenUVCoords;
-	constexpr unsigned int qualityFlags = fastFlags | aiProcess_SplitLargeMeshes | aiProcess_ImproveCacheLocality | aiProcess_FindInvalidData;;
+	constexpr unsigned int qualityFlags = fastFlags | aiProcess_SplitLargeMeshes | aiProcess_ImproveCacheLocality | aiProcess_FindInvalidData;
 	constexpr unsigned int maxQualityFlags = qualityFlags | aiProcess_OptimizeMeshes;
 
 	switch(process)
@@ -261,12 +271,15 @@ void Model::load(const fs::path& path, unsigned int process, std::function<void(
 
 	name = scene->mName.C_Str();
 
-	printf("Meshes loaded: %.2lfs       \n", clock.getSeconds()); // TODO: debug
-	clock.restart();
-	loadNode(scene->mRootNode, scene, path, meshes, bones, aabb);
-	for(const auto& mesh : meshes)
-		meshInfo += mesh.getInfo();
-	printf("Meshes processed: %.2lfs       \n", clock.getSeconds()); // TODO: debug
+	// TODO: debug
+	{
+		printf("Meshes loaded: %.2lfs       \n", clock.getSeconds());
+		clock.restart();
+		loadNode(scene->mRootNode, scene, path, meshes, bones, aabb);
+		for(const auto& mesh : meshes)
+			meshInfo += mesh.getInfo();
+		printf("Meshes processed: %.2lfs       \n", clock.getSeconds());
+	}
 
 	for(unsigned int i = 0; i < scene->mNumAnimations; i++)
 	{
