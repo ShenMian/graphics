@@ -21,13 +21,8 @@ jobs:
       - name: Install Conan
         uses: turtlebrowser/get-conan@v1.0
 
-      - name: Install dependencies
-        run: |
-          export CONAN_SYSREQUIRES_MODE=enabled
-          conan install . --build=missing -if build -of build -s build_type=${{ matrix.type }} -s compiler=clang -s compiler.version=13
-
       - name: Build
-        run: ./Scripts/build.sh ${{ matrix.type }} clang 13
+        run: ./Scripts/build.sh ${{ matrix.type }} apple-clang 13
 
       - name: Upload libs
         uses: actions/upload-artifact@v3
