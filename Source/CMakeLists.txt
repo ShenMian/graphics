@@ -122,11 +122,6 @@ add_subdirectory("${DEPS_DIR}/shaderc" "shaderc")
 list(APPEND LIBS shaderc)
 list(APPEND INCS "${DEPS_DIR}/shaderc/libshaderc/include")
 
-# 添加 imgui-node-editor
-include("${DEPS_DIR}/imgui_node_editor.cmake")
-list(APPEND LIBS imgui_node_editor)
-list(APPEND INCS "${DEPS_DIR}/imgui-node-editor")
-
 # message(STATUS "INCS: ${INCS}")
 # message(STATUS "LIBS: ${LIBS}")
 
