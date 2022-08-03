@@ -26,11 +26,14 @@ jobs:
           export CONAN_SYSREQUIRES_MODE=enabled
           conan install . --build=missing -if build -of build -s build_type=${{ matrix.type }} -s compiler=clang -s compiler.version=13
 
-      - name: Generating CMake cache
-        run: cmake -B build
-
       - name: Build
-        run: cmake --build build --config ${{ matrix.type }} -j16
+        run: ./Scripts/build.sh ${{ matrix.type }} clang 13
+
+      - name: Upload libs
+        uses: actions/upload-artifact@v3
+        with:
+          name: graphics-macos-${{ matrix.type }}-${{ matrix.arch }}
+          path: build/lib/libgraphics.a
 
       - name: Upload libs
         uses: actions/upload-artifact@v3
