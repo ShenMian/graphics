@@ -122,6 +122,11 @@ add_subdirectory("${DEPS_DIR}/shaderc" "shaderc")
 list(APPEND LIBS shaderc)
 list(APPEND INCS "${DEPS_DIR}/shaderc/libshaderc/include")
 
+# 添加 imnodes
+include("${DEPS_DIR}/imnodes.cmake")
+list(APPEND LIBS imnodes)
+list(APPEND INCS "${DEPS_DIR}/imnodes")
+
 # message(STATUS "INCS: ${INCS}")
 # message(STATUS "LIBS: ${LIBS}")
 
