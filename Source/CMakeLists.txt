@@ -32,20 +32,6 @@ if(NOT USE_CONAN)
         list(APPEND INCS "${DEPS_DIR}/freetype/include")
     endif()
 
-    # 添加 assimp
-    find_package(assimp QUIET)
-    if(assimp_FOUND)
-        list(APPEND LIBS assimp::assimp)
-    else()
-        set(ASSIMP_BUILD_ASSIMP_TOOLS OFF CACHE BOOL "" FORCE)
-        set(BUILD_SHARED_LIBS         OFF CACHE BOOL "" FORCE)
-        add_subdirectory("${DEPS_DIR}/assimp" "assimp")
-        list(APPEND LIBS assimp)
-    endif()
-    list(APPEND INCS
-        "${DEPS_DIR}/assimp/include"
-        "${DEPS_DIR}/assimp/build/include")
-
     # 添加 glfw3
     list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/Scripts")
     set(GLFW3_DIR "C:/Program Files (x86)/GLFW/lib/cmake/glfw3")
@@ -54,7 +40,13 @@ if(NOT USE_CONAN)
     if(GLFW3_FOUND)
         list(APPEND LIBS ${GLFW3_LIBRARIES})
     else()
-        set(GLFW_BUILD_DOCS OFF CACHE BOOL "Build the GLFW documentation" FORCE)
+        set(BUILD_SHARED_LIBS   OFF CACHE BOOL "Build shared libraries" FORCE)
+        set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "Build the GLFW example programs" FORCE)
+        set(GLFW_BUILD_TESTS    OFF CACHE BOOL "Build the GLFW test programs" FORCE)
+        set(GLFW_BUILD_DOCS     OFF CACHE BOOL "Build the GLFW documentation" FORCE)
+        set(GLFW_INSTALL        OFF CACHE BOOL "Generate installation target" FORCE)
+        set(GLFW_VULKAN_STATIC  OFF CACHE BOOL "Assume the Vulkan loader is linked with the application" FORCE)
+        set(GLFW_BUILD_DOCS     OFF CACHE BOOL "Build the GLFW documentation" FORCE)
         add_subdirectory("${DEPS_DIR}/glfw" "glfw3")
         # list(APPEND LIBS glfw)
     endif()
@@ -86,6 +78,20 @@ endif()
 
 list(APPEND INCS "${DEPS_DIR}/Math/include")
 list(APPEND INCS "${CMAKE_BINARY_DIR}/include")
+
+# 添加 assimp
+find_package(assimp QUIET)
+if(assimp_FOUND)
+    list(APPEND LIBS assimp::assimp)
+else()
+    set(ASSIMP_BUILD_ASSIMP_TOOLS OFF CACHE BOOL "" FORCE)
+    set(BUILD_SHARED_LIBS         OFF CACHE BOOL "" FORCE)
+    add_subdirectory("${DEPS_DIR}/assimp" "assimp")
+    list(APPEND LIBS assimp)
+endif()
+list(APPEND INCS
+    "${DEPS_DIR}/assimp/include"
+    "${DEPS_DIR}/assimp/build/include")
 
 # 添加 glad
 find_package(glad QUIET)
