@@ -4,7 +4,7 @@ stb/cci.20210910
 # glad/0.1.35
 glfw/3.3.7
 imgui/cci.20220621+1.88.docking
-assimp/5.2.2
+# assimp/5.2.2
 # shaderc/2021.1
 freetype/2.12.1
 imguizmo/cci.20210223

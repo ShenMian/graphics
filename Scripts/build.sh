@@ -31,7 +31,7 @@ then
 fi
 
 echo "=== Generating CMake cache..."
-if ! cmake -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -Wno-dev >/dev/null
+if ! cmake -B build -Wno-dev >/dev/null
 then
     echo "=== Failed to generate CMake cache."
     exit 1

@@ -16,6 +16,11 @@ if(NOT DEFINED CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Debug)
 endif()
 
+# 默认生成 compiler database
+if(NOT DEFINED CMAKE_BUILD_TYPE)
+    set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+endif()
+
 # 选项
 option(USE_CONAN      "Use conan"      ON)
 option(BUILD_EXAMPLES "Build examples" ON)
@@ -82,14 +87,12 @@ macro(add_example NAME)
     file(COPY "Shaders" DESTINATION "${CMAKE_BINARY_DIR}/bin/${NAME}")
 endmacro()
 
-# 指定 Win32 下要定义的宏
 if(WIN32)
-    list(APPEND GRAPHICS_DEFINES _CRT_SECURE_NO_WARNINGS _SCL_SECURE_NO_WARNINGS UNICODE _UNICODE NOMINMAX)
+    list(APPEND GRAPHICS_DEFINES _CRT_SECURE_NO_WARNINGS _SCL_SECURE_NO_WARNINGS UNICODE _UNICODE NOMINMAX) # 指定 Win32 下要定义的宏
 endif()
 
-# 静态链接 MSVC 运行库
 if(MSVC)
-    set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+    set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>") # 静态链接 MSVC 运行库
 endif()
 
 if(UNIX)
