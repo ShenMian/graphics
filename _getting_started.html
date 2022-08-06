@@ -115,19 +115,24 @@ $(document).ready(function(){initNavTree('_getting_started.html',''); initResiza
 <p ><b>警告</b>: 请查看 <a href="https://github.com/ShenMian/Graphics/blob/main/Deps/README.md">依赖项</a> 来确保不会产生菱形依赖. 或提前安装依赖项来减少产生菱形依赖的可能性, 执行 <code>vcpkg install</code> 命令或执行脚本 <code>Scripts/cmake_install_deps</code>. <br  />
  <b>注意</b>: 因为该项目包含大量 <a href="https://github.com/ShenMian/Graphics/blob/main/Deps/README.md">依赖项</a>, 所以可以通过执行 <code>vcpkg install</code> 命令或执行脚本 <code>Scripts/cmake_install_deps</code> 提前安装依赖项来加快编译速度. <br  />
 </p>
-<p >通过 Premake 生成你所使用 IDE 的项目文件.</p>
+<p >通过 Premake 生成你所使用 IDE 的项目文件. <br  />
+</p>
 <div class="fragment"><div class="line">./Scripts/gen_gmake2 # 生成 GNU Makefile</div>
 <div class="line">./Scripts/gen_vs2022 # 生成 Visual Studio 2022 解决方案</div>
 <div class="line">./Scripts/gen_xcode4 # 生成 Xcode4 项目文件</div>
-</div><!-- fragment --><p >除此之外, 你还可以自行调用 premake5 生成你想要的内容. 详情请查看<a href="https://github.com/premake/premake-core/wiki/Using-Premake#using-premake-to-generate-project-files">相关文档</a>.</p>
-<p >该项目编译后会生成一个静态库文件, 在生成你的可执行文件时需链接该静态库.</p>
+</div><!-- fragment --><p >除此之外, 你还可以自行调用 premake5 生成你想要的内容. 详情请查看<a href="https://github.com/premake/premake-core/wiki/Using-Premake#using-premake-to-generate-project-files">相关文档</a>. <br  />
+</p>
+<p >该项目编译后会生成一个静态库文件, 在生成你的可执行文件时需链接该静态库. <br  />
+</p>
 <h1><a class="anchor" id="autotoc_md8"></a>
 更新</h1>
-<p >因为该库对 Git 子模块的更新较为频繁, 请注意拉取后将子模块签出到相应的提交. 你可以使用下面的命令更新本地克隆仓库/子模块.</p>
+<p >因为该库对 Git 子模块的更新较为频繁, 请注意拉取后将子模块签出到相应的提交. 你可以使用下面的命令更新本地克隆仓库/子模块. <br  />
+</p>
 <div class="fragment"><div class="line">git pull                    # 拉取到最新的提交</div>
 <div class="line">git checkout &lt;tag-id&gt;       # 切换到指定的版本</div>
 <div class="line">git submodule update --init # 签出子模块</div>
-</div><!-- fragment --><p ><b>警告</b>: 不建议直接使用最新提交, 因为这些修改还不稳定, 甚至无法正常工作.</p>
+</div><!-- fragment --><p ><b>警告</b>: 不建议直接使用最新提交, 因为这些修改还不稳定, 甚至无法正常工作. <br  />
+</p>
 <h1><a class="anchor" id="autotoc_md9"></a>
 应用骨架</h1>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;Graphics/Graphics.h&gt;</span> <span class="comment">// 引入 Graphics 头文件, 只需包含该文件</span></div>
@@ -140,15 +145,13 @@ $(document).ready(function(){initNavTree('_getting_started.html',''); initResiza
 <div class="line">UI::init();       <span class="comment">// (可选) 初始化 UI, 之后才能使用 UI 相关的 API.</span></div>
 <div class="line">                  <span class="comment">// 如果你不打算使用 UI 相关的 API, 可以跳过此步骤.</span></div>
 <div class="line"> </div>
-<div class="line"><span class="comment">// 创建窗口</span></div>
 <div class="line"><span class="keyword">const</span> <span class="keyword">auto</span> monitor = <a class="code hl_function" href="class_monitor.html#a8afbc04b4417bbeb2f4d4e2c69feb45c">Monitor::getPrimary</a>();   <span class="comment">// 获取主显示器</span></div>
 <div class="line">{</div>
 <div class="line">    <a class="code hl_class" href="class_window.html">Window</a> window(<span class="stringliteral">&quot;title&quot;</span>, monitor-&gt;getSize() / 2); <span class="comment">// 创建窗口, 窗口标题为 title, 大小为主显示器分辨率的一半,</span></div>
-<div class="line">                                                   <span class="comment">// 即窗口应该占据屏幕的 1/4.</span></div>
-<div class="line">    <span class="comment">// ... 窗口相关代码 ...</span></div>
+<div class="line">                                                    <span class="comment">// 即窗口应该占据屏幕的 1/4.</span></div>
 <div class="line">                                                   </div>
 <div class="line">    {</div>
-<div class="line">        <span class="comment">// ... 创建渲染相关对象代码 ...</span></div>
+<div class="line">        <span class="comment">// ... 构建渲染相关对象实例 ...</span></div>
 <div class="line">        </div>
 <div class="line">        <span class="keywordflow">while</span>(<span class="keyword">true</span>) <span class="comment">// 主循环</span></div>
 <div class="line">        {</div>
@@ -159,16 +162,12 @@ $(document).ready(function(){initNavTree('_getting_started.html',''); initResiza
 <div class="line">            </div>
 <div class="line">            UI::endFrame();</div>
 <div class="line">        }</div>
-<div class="line"> </div>
-<div class="line">        <span class="comment">// 渲染实例析构</span></div>
-<div class="line">    }</div>
+<div class="line">    } <span class="comment">// 析构渲染相关实例</span></div>
 <div class="line">    </div>
 <div class="line">    <span class="comment">// 清理, 顺序与初始化相反</span></div>
 <div class="line">    UI::deinit();</div>
 <div class="line">    Renderer::deinit(); <span class="comment">// 调用该语句前应确保所以渲染相关的对象已被销毁</span></div>
-<div class="line"> </div>
-<div class="line">    <span class="comment">// 窗口实例析构</span></div>
-<div class="line">}</div>
+<div class="line">} <span class="comment">// 析构窗口实例</span></div>
 <div class="line">Window::deinit(); <span class="comment">// 调用该语句前应该确保所有窗口已被销毁</span></div>
 <div class="ttc" id="aclass_monitor_html_a8afbc04b4417bbeb2f4d4e2c69feb45c"><div class="ttname"><a href="class_monitor.html#a8afbc04b4417bbeb2f4d4e2c69feb45c">Monitor::getPrimary</a></div><div class="ttdeci">static const Monitor * getPrimary() noexcept</div><div class="ttdoc">获取主显示器.</div><div class="ttdef"><b>Definition:</b> Monitor.cpp:11</div></div>
 <div class="ttc" id="aclass_renderer_html_a04003283aef7694ae68fe9a63bbca592"><div class="ttname"><a href="class_renderer.html#a04003283aef7694ae68fe9a63bbca592">Renderer::setAPI</a></div><div class="ttdeci">static void setAPI(API api)</div><div class="ttdoc">设置图形 API.</div><div class="ttdef"><b>Definition:</b> Renderer.cpp:33</div></div>
@@ -181,7 +180,9 @@ $(document).ready(function(){initNavTree('_getting_started.html',''); initResiza
 </ul>
 <h1><a class="anchor" id="autotoc_md11"></a>
 示例</h1>
-<p >阅读 <a href="https://github.com/ShenMian/Graphics/tree/main/Examples">示例</a> 是一种快速的入门方式. 从示例中可以很直观的看到各种常见 API 的使用方式. </p>
+<p >阅读 <a href="https://github.com/ShenMian/Graphics/tree/main/Examples">示例</a> 是一种快速的入门方式. <br  />
+ 从示例中可以很直观的看到各种常见 API 的使用方式. <br  />
+ </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
