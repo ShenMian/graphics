@@ -28,7 +28,7 @@ cmake -B build -Wno-dev >nul || (
 )
 
 echo === Generating 'compile_commands.json'...
-copy build/compile_commands.json .
+xcopy "build/compile_commands.json" "."
 
 echo === Building...
 cmake --build build --config %BUILD_TYPE% -j16 >nul || (
