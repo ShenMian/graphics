@@ -14,7 +14,7 @@ else
 fi
 
 if [ ! -z "$2" ] && [ ! -z "$3" ]; then
-  CONAN_ARGS="-s compiler=$2 -s compiler.version=$3"
+  CONAN_ARGS="-s build_type=${BUILD_TYPE} -s compiler=$2 -s compiler.version=$3"
 fi
 
 cd "$( cd "$( dirname "$0"  )" && pwd  )" || exit
@@ -24,7 +24,7 @@ mkdir build 2>/dev/null
 
 echo "=== Installing dependencies..."
 export CONAN_SYSREQUIRES_MODE=enabled
-if ! conan install . --build=missing -if build -of build -s build_type=${BUILD_TYPE} ${CONAN_ARGS} -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True >/dev/null
+if ! conan install . --build=missing -if build -of build ${CONAN_ARGS} -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True >/dev/null
 then
   echo "=== Failed to install."
   exit 1
