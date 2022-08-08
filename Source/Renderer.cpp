@@ -17,13 +17,13 @@ Renderer* Renderer::get()
 
 	case OpenGL:
 	{
-		static auto renderer = new GLRenderer;
+		static auto renderer = new GLRenderer; // TODO: 内存泄露
 		return renderer;
 	}
 
 	case Vulkan:
 	{
-		static auto renderer = new VKRenderer;
+		static auto renderer = new VKRenderer; // TODO: 内存泄露
 		return renderer;
 	}
 	}
