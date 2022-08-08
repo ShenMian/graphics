@@ -1,5 +1,5 @@
 ﻿[requires]
-fmt/8.1.1
+fmt/9.0.0
 stb/cci.20210910
 # glad/0.1.35
 glfw/3.3.7
