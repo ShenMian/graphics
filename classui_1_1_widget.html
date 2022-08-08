@@ -85,10 +85,11 @@ $(document).ready(function(){initNavTree('classui_1_1_widget.html',''); initResi
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-static-methods">静态 Public 成员函数</a> &#124;
 <a href="#pro-methods">Protected 成员函数</a> &#124;
 <a href="#pro-attribs">Protected 属性</a> &#124;
 <a href="classui_1_1_widget-members.html">所有成员列表</a>  </div>
-  <div class="headertitle"><div class="title">ui::Widget类 参考<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
+  <div class="headertitle"><div class="title">ui::Widget类 参考</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="dynheader">
@@ -99,8 +100,11 @@ $(document).ready(function(){initNavTree('classui_1_1_widget.html',''); initResi
   <map id="ui::Widget_map" name="ui::Widget_map">
 <area href="classui_1_1_button.html" alt="ui::Button" shape="rect" coords="0,56,72,80"/>
 <area href="classui_1_1_label.html" alt="ui::Label" shape="rect" coords="82,56,154,80"/>
-<area href="classui_1_1_menu.html" alt="ui::Menu" shape="rect" coords="164,56,236,80"/>
-<area href="classui_1_1_window.html" alt="ui::Window" shape="rect" coords="246,56,318,80"/>
+<area href="classui_1_1_link.html" alt="ui::Link" shape="rect" coords="164,56,236,80"/>
+<area href="classui_1_1_menu.html" alt="ui::Menu" shape="rect" coords="246,56,318,80"/>
+<area href="classui_1_1_node.html" alt="ui::Node" shape="rect" coords="328,56,400,80"/>
+<area href="classui_1_1_pin.html" alt="ui::Pin" shape="rect" coords="410,56,482,80"/>
+<area href="classui_1_1_window.html" alt="ui::Window" shape="rect" coords="492,56,564,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -118,13 +122,22 @@ Public 成员函数</h2></td></tr>
 <tr class="memitem:adc91a14a910c984855a3fcf76de9533a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classui_1_1_widget.html#adc91a14a910c984855a3fcf76de9533a">setLabel</a> (const std::string &amp;label)</td></tr>
 <tr class="memdesc:adc91a14a910c984855a3fcf76de9533a"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置组件标签.  <a href="classui_1_1_widget.html#adc91a14a910c984855a3fcf76de9533a">更多...</a><br /></td></tr>
 <tr class="separator:adc91a14a910c984855a3fcf76de9533a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade291c6b569ac877857296a27da03e28"><td class="memItemLeft" align="right" valign="top"><a id="ade291c6b569ac877857296a27da03e28" name="ade291c6b569ac877857296a27da03e28"></a>
-const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getLabel</b> () const</td></tr>
-<tr class="memdesc:ade291c6b569ac877857296a27da03e28"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取组件标签. <br /></td></tr>
-<tr class="separator:ade291c6b569ac877857296a27da03e28"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a25e8a773367488cb7173802d514a4886"><td class="memItemLeft" align="right" valign="top"><a id="a25e8a773367488cb7173802d514a4886" name="a25e8a773367488cb7173802d514a4886"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> ()=0</td></tr>
-<tr class="separator:a25e8a773367488cb7173802d514a4886"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f35c55b104b73608546f83f96b5cd61"><td class="memItemLeft" align="right" valign="top"><a id="a3f35c55b104b73608546f83f96b5cd61" name="a3f35c55b104b73608546f83f96b5cd61"></a>
+const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getLabel</b> () const noexcept</td></tr>
+<tr class="memdesc:a3f35c55b104b73608546f83f96b5cd61"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取组件标签. <br /></td></tr>
+<tr class="separator:a3f35c55b104b73608546f83f96b5cd61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad03f9e32657c9beb819aef7e91cdc450"><td class="memItemLeft" align="right" valign="top"><a id="ad03f9e32657c9beb819aef7e91cdc450" name="ad03f9e32657c9beb819aef7e91cdc450"></a>
+uint64_t&#160;</td><td class="memItemRight" valign="bottom"><b>getId</b> () const noexcept</td></tr>
+<tr class="separator:ad03f9e32657c9beb819aef7e91cdc450"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca3c3ff12594777ea14b9e737bc4eec3"><td class="memItemLeft" align="right" valign="top"><a id="aca3c3ff12594777ea14b9e737bc4eec3" name="aca3c3ff12594777ea14b9e737bc4eec3"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> ()</td></tr>
+<tr class="separator:aca3c3ff12594777ea14b9e737bc4eec3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+静态 Public 成员函数</h2></td></tr>
+<tr class="memitem:a89be3527e6d1c6a609e497a857c9dc1b"><td class="memItemLeft" align="right" valign="top"><a id="a89be3527e6d1c6a609e497a857c9dc1b" name="a89be3527e6d1c6a609e497a857c9dc1b"></a>
+static uint64_t&#160;</td><td class="memItemRight" valign="bottom"><b>requestId</b> ()</td></tr>
+<tr class="separator:a89be3527e6d1c6a609e497a857c9dc1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected 成员函数</h2></td></tr>

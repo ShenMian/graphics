@@ -45,10 +45,12 @@ var hierarchy =
     [ "Mesh::Info", "struct_mesh_1_1_info.html", null ],
     [ "Input", "class_input.html", null ],
     [ "InstanceBuilder", "class_instance_builder.html", null ],
+    [ "Link", "struct_link.html", null ],
     [ "Material", "class_material.html", null ],
     [ "Mesh", "class_mesh.html", null ],
     [ "Model", "class_model.html", null ],
     [ "Monitor", "class_monitor.html", null ],
+    [ "ui::NodeEditor", "classui_1_1_node_editor.html", null ],
     [ "Camera::Orthographic", "struct_camera_1_1_orthographic.html", null ],
     [ "Material::PBR", "struct_material_1_1_p_b_r.html", null ],
     [ "Camera::Perspective", "struct_camera_1_1_perspective.html", null ],
@@ -98,7 +100,10 @@ var hierarchy =
     [ "ui::Widget", "classui_1_1_widget.html", [
       [ "ui::Button", "classui_1_1_button.html", null ],
       [ "ui::Label", "classui_1_1_label.html", null ],
+      [ "ui::Link", "classui_1_1_link.html", null ],
       [ "ui::Menu", "classui_1_1_menu.html", null ],
+      [ "ui::Node", "classui_1_1_node.html", null ],
+      [ "ui::Pin", "classui_1_1_pin.html", null ],
       [ "ui::Window", "classui_1_1_window.html", null ]
     ] ],
     [ "Window", "class_window.html", null ]
