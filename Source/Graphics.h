@@ -35,6 +35,8 @@
 #include "UI/Label.h"
 #include "UI/Menu.h"
 
+#include "UI/NodeEditor.h"
+
 /**
  * @defgroup core 核心
  * @brief 较为基础的部分, 包括: 图像导入/导出/处理, 输入/输出等.

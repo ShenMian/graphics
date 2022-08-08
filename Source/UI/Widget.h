@@ -29,9 +29,13 @@ public:
 	/**
 	 * @brief 获取组件标签.
 	 */
-	const std::string& getLabel() const;
+	const std::string& getLabel() const noexcept;
 
-	virtual void update() = 0;
+	uint64_t getId() const noexcept;
+
+	virtual void update();
+
+	static uint64_t requestId();
 
 protected:
 	/**
