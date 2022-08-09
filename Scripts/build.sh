@@ -38,10 +38,10 @@ then
 fi
 
 echo "=== Generating 'compile_commands.json'..."
-cp build/compile_commands.json .
+cp build/compile_commands.json . &>/dev/null || echo "No 'compile_commands.json' was generated."
 
 echo "=== Building..."
-if ! cmake --build build --config ${BUILD_TYPE} -j16 >/dev/null
+if ! cmake --build build --config "${BUILD_TYPE}" -- -j$(nproc) >/dev/null
 then
     echo "=== Failed to build."
     exit 1

@@ -28,10 +28,10 @@ cmake -B build -Wno-dev >nul || (
 )
 
 echo === Generating 'compile_commands.json'...
-xcopy "build/compile_commands.json" "."
+xcopy build/compile_commands.json . 2>nul || echo No 'compile_commands.json' was generated.
 
 echo === Building...
-cmake --build build --config %BUILD_TYPE% -j16 >nul || (
+cmake --build build --config "%BUILD_TYPE%" -j16 >nul || (
     echo === Failed to build.
     exit /b 1
 )
