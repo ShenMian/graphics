@@ -6,7 +6,7 @@
 #include "Widget.h"
 #include <vector>
 #include <utility>
-#include <Math/Math.hpp>
+#include <math/math.hpp>
 
 namespace ui
 {

@@ -4,7 +4,7 @@
 #pragma once
 
 #include "Key.h"
-#include <Math/Math.hpp>
+#include <math/math.hpp>
 #include <string_view>
 
 class Window;

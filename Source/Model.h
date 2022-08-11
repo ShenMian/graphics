@@ -5,7 +5,7 @@
 
 #include "Mesh.h"
 #include "Animation.h"
-#include <Math/Math.hpp>
+#include <math/math.hpp>
 #include <stdexcept>
 #include <filesystem>
 #include <functional>

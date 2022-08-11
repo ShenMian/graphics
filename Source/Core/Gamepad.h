@@ -5,7 +5,7 @@
 
 #include <functional>
 #include <string_view>
-#include <Math/Math.hpp>
+#include <math/math.hpp>
 
 /** @addtogroup core
  *  @{

@@ -4,7 +4,7 @@
 #pragma once
 
 #include "Program.h"
-#include <Math/Math.hpp>
+#include <math/math.hpp>
 #include <memory>
 
 class Pipeline;

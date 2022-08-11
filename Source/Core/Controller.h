@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include <Math/Math.hpp>
+#include <math/math.hpp>
 
 class Camera;
 class Gamepad;

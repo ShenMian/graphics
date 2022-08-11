@@ -5,7 +5,7 @@
 
 #include "Buffer.h"
 #include "VertexFormat.h"
-#include <Math/Math.hpp>
+#include <math/math.hpp>
 #include <memory>
 #include <vector>
 

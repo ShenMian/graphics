@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include "Math/Math.hpp"
+#include <math/math.hpp>
 #include "Material.h"
 #include <memory>
 #include <string>
