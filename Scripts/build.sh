@@ -24,27 +24,24 @@ mkdir build 2>/dev/null
 
 echo "=== Installing dependencies..."
 export CONAN_SYSREQUIRES_MODE=enabled
-if ! conan install . --build=missing -if build -of build ${CONAN_ARGS} -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True >/dev/null
-then
+conan install . --build=missing -if build -of build ${CONAN_ARGS} -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True >/dev/null || {
   echo "=== Failed to install."
   exit 1
-fi
+}
 
 echo "=== Generating CMake cache..."
-if ! cmake -B build -Wno-dev >/dev/null
-then
-    echo "=== Failed to generate CMake cache."
-    exit 1
-fi
+cmake -B build -Wno-dev >/dev/null || {
+  echo "=== Failed to generate CMake cache."
+  exit 1
+}
 
 echo "=== Generating 'compile_commands.json'..."
 cp build/compile_commands.json . &>/dev/null || echo "No 'compile_commands.json' was generated."
 
 echo "=== Building..."
-if ! cmake --build build --config "${BUILD_TYPE}" -- -j$(nproc) >/dev/null
-then
-    echo "=== Failed to build."
-    exit 1
-fi
+cmake --build build --config "${BUILD_TYPE}" -- -j$(nproc) >/dev/null || {
+  echo "=== Failed to build."
+  exit 1
+}
 
 echo "=== Done."
