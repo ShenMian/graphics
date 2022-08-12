@@ -111,9 +111,9 @@ $(document).ready(function(){initNavTree('_renderer_8h_source.html',''); initRes
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keyword">static</span> API <a class="code hl_function" href="class_renderer.html#a9f11c63dc16c34489aba73dac51fc58c">getAPI</a>();</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keyword">virtual</span> std::string getDeviceName() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keyword">virtual</span> std::string getDeviceName() <span class="keyword">const</span>   = 0;</div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keyword">virtual</span> std::string getRendererName() <span class="keyword">const</span> = 0;</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keyword">virtual</span> std::string getVendorName() <span class="keyword">const</span> = 0;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keyword">virtual</span> std::string getVendorName() <span class="keyword">const</span>   = 0;</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> init(<span class="keyword">const</span> <a class="code hl_class" href="class_window.html">Window</a>&amp; win);</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> deinit();</div>
@@ -122,8 +122,8 @@ $(document).ready(function(){initNavTree('_renderer_8h_source.html',''); initRes
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keyword">static</span> API api;</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>};</div>
 <div class="ttc" id="aclass_renderer_html"><div class="ttname"><a href="class_renderer.html">Renderer</a></div><div class="ttdef"><b>Definition:</b> Renderer.h:10</div></div>
-<div class="ttc" id="aclass_renderer_html_a04003283aef7694ae68fe9a63bbca592"><div class="ttname"><a href="class_renderer.html#a04003283aef7694ae68fe9a63bbca592">Renderer::setAPI</a></div><div class="ttdeci">static void setAPI(API api)</div><div class="ttdoc">设置图形 API.</div><div class="ttdef"><b>Definition:</b> Renderer.cpp:33</div></div>
-<div class="ttc" id="aclass_renderer_html_a9f11c63dc16c34489aba73dac51fc58c"><div class="ttname"><a href="class_renderer.html#a9f11c63dc16c34489aba73dac51fc58c">Renderer::getAPI</a></div><div class="ttdeci">static API getAPI()</div><div class="ttdoc">获取图形 API.</div><div class="ttdef"><b>Definition:</b> Renderer.cpp:38</div></div>
+<div class="ttc" id="aclass_renderer_html_a04003283aef7694ae68fe9a63bbca592"><div class="ttname"><a href="class_renderer.html#a04003283aef7694ae68fe9a63bbca592">Renderer::setAPI</a></div><div class="ttdeci">static void setAPI(API api)</div><div class="ttdoc">设置图形 API.</div><div class="ttdef"><b>Definition:</b> Renderer.cpp:31</div></div>
+<div class="ttc" id="aclass_renderer_html_a9f11c63dc16c34489aba73dac51fc58c"><div class="ttname"><a href="class_renderer.html#a9f11c63dc16c34489aba73dac51fc58c">Renderer::getAPI</a></div><div class="ttdeci">static API getAPI()</div><div class="ttdoc">获取图形 API.</div><div class="ttdef"><b>Definition:</b> Renderer.cpp:36</div></div>
 <div class="ttc" id="aclass_renderer_html_a9f5e294852455a98d519f4bc03708323"><div class="ttname"><a href="class_renderer.html#a9f5e294852455a98d519f4bc03708323">Renderer::get</a></div><div class="ttdeci">static Renderer * get()</div><div class="ttdoc">获取单例.</div><div class="ttdef"><b>Definition:</b> Renderer.cpp:12</div></div>
 <div class="ttc" id="aclass_window_html"><div class="ttname"><a href="class_window.html">Window</a></div><div class="ttdoc">窗体.</div><div class="ttdef"><b>Definition:</b> Window.h:24</div></div>
 </div><!-- fragment --></div><!-- contents -->

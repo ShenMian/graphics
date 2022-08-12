@@ -128,7 +128,7 @@ $(document).ready(function(){initNavTree('_instance_builder_8h_source.html','');
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keywordtype">void</span> createDebugMessager(VkInstance instance);</div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="keywordtype">void</span> destroyDebugMessager(VkInstance instance);</div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    VkApplicationInfo appInfo = {};</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    VkApplicationInfo    appInfo      = {};</div>
 <div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    VkInstanceCreateInfo instanceInfo = {};</div>
 <div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    VkDebugUtilsMessengerEXT debugMessenger;</div>
@@ -136,19 +136,22 @@ $(document).ready(function(){initNavTree('_instance_builder_8h_source.html','');
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    std::vector&lt;const char*&gt; enabledLayers;</div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    std::vector&lt;const char*&gt; enabledExtensions;</div>
 <div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    std::vector&lt;VkLayerProperties&gt; availableLayers;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    std::vector&lt;VkLayerProperties&gt;     availableLayers;</div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    std::vector&lt;VkExtensionProperties&gt; availableExtensions;</div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="keyword">struct</span></div>
 <div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    {</div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        <span class="keywordtype">bool</span> enableValidationLayers = <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        <span class="keywordtype">bool</span> enableDebugMessager = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        VkDebugUtilsMessageSeverityFlagsEXT debugMessageSeverity = VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT;</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        VkDebugUtilsMessageTypeFlagsEXT debugMessageType = VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT;</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        PFN_vkDebugUtilsMessengerCallbackEXT debugMessageCallback = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    } info;</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>};</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        <span class="keywordtype">bool</span>                                enableDebugMessager = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        VkDebugUtilsMessageSeverityFlagsEXT debugMessageSeverity =</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>            VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        VkDebugUtilsMessageTypeFlagsEXT debugMessageType = VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT |</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>                                                           VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT |</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>                                                           VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        PFN_vkDebugUtilsMessengerCallbackEXT debugMessageCallback = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    } info;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>};</div>
 <div class="ttc" id="aclass_instance_builder_html"><div class="ttname"><a href="class_instance_builder.html">InstanceBuilder</a></div><div class="ttdef"><b>Definition:</b> InstanceBuilder.h:11</div></div>
 <div class="ttc" id="aclass_instance_builder_html_a0c832424d8b56ff50f66b0c96c801912"><div class="ttname"><a href="class_instance_builder.html#a0c832424d8b56ff50f66b0c96c801912">InstanceBuilder::enableExtension</a></div><div class="ttdeci">InstanceBuilder &amp; enableExtension(std::string_view name)</div><div class="ttdoc">启用拓展.</div><div class="ttdef"><b>Definition:</b> InstanceBuilder.cpp:124</div></div>
 <div class="ttc" id="aclass_instance_builder_html_a1ee02bb474f421e842fa44398f043e52"><div class="ttname"><a href="class_instance_builder.html#a1ee02bb474f421e842fa44398f043e52">InstanceBuilder::setAppVersion</a></div><div class="ttdeci">InstanceBuilder &amp; setAppVersion(uint32_t major, uint32_t minor, uint32_t patch)</div><div class="ttdoc">设置应用程序版本. (可选)</div><div class="ttdef"><b>Definition:</b> InstanceBuilder.cpp:112</div></div>
