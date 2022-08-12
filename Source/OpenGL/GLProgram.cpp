@@ -3,20 +3,19 @@
 
 
 #include "GLProgram.h"
-#include "GLShader.h"
 #include "GLCheck.h"
+#include "GLShader.h"
 #include <cassert>
-#include <stdexcept>
 #include <filesystem>
 #include <glad/glad.h>
+#include <stdexcept>
 
 #define FMT_HEADER_ONLY
 #include <fmt/core.h>
 
 namespace fs = std::filesystem;
 
-GLProgram::GLProgram(const Descriptor& desc)
-	: Program(desc), handle(glCreateProgram())
+GLProgram::GLProgram(const Descriptor& desc) : Program(desc), handle(glCreateProgram())
 {
 	if(desc.vertex == nullptr || desc.fragment == nullptr)
 		throw std::runtime_error("program must have vertex shader and fragment shader");

@@ -5,8 +5,8 @@
 
 #include <atomic>
 #include <cassert>
-#include <set>
 #include <random>
+#include <set>
 
 class RID
 {

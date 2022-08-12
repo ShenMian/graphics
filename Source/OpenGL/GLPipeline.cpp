@@ -3,7 +3,6 @@
 
 #include "GLPipeline.h"
 
-GLPipeline::GLPipeline(const Descriptor& desc)
-	: Pipeline(desc)
+GLPipeline::GLPipeline(const Descriptor& desc) : Pipeline(desc)
 {
 }

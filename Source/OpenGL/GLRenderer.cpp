@@ -2,8 +2,8 @@
 // License(Apache-2.0)
 
 #include "GLRenderer.h"
-#include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <glad/glad.h>
 
 std::string GLRenderer::getDeviceName() const
 {

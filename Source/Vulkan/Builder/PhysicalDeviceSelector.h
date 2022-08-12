@@ -30,9 +30,9 @@ private:
 	struct
 	{
 		bool requireGraphicsQueue = false;
-		bool requireComputeQueue = false;
+		bool requireComputeQueue  = false;
 		bool requireTransferQueue = false;
-		bool requirePresentQueue = false;
+		bool requirePresentQueue  = false;
 
 		bool requireMultiViewport = false;
 	} info;

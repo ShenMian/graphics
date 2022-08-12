@@ -6,12 +6,12 @@
 #include <vector>
 
 VKVertexBuffer::VKVertexBuffer(const void* data, size_t size, const VertexFormat& layout, Buffer::Usage usage)
-	: VertexBuffer(data, size, layout),
-	buffer(size, Buffer::Type::Vertex, usage,
-		VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT)
+    : VertexBuffer(data, size, layout),
+      buffer(size, Buffer::Type::Vertex, usage,
+             VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT)
 {
 	buffer.map();
-    buffer.write(data, size);
+	buffer.write(data, size);
 	buffer.unmap();
 }
 

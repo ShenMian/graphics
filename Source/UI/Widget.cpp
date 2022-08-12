@@ -9,25 +9,21 @@ namespace ui
 
 uint64_t Widget::nextId = 0;
 
-Widget::Widget()
-	: id(requestId())
+Widget::Widget() : id(requestId())
 {
 }
 
-Widget::Widget(const std::string& label)
-	: label(label), id(requestId())
+Widget::Widget(const std::string& label) : label(label), id(requestId())
 {
 	updateHandle();
 }
 
-Widget::Widget(const std::string& label, const std::string& id)
-	: label(label), id(std::stoull(id))
+Widget::Widget(const std::string& label, const std::string& id) : label(label), id(std::stoull(id))
 {
 	updateHandle();
 }
 
-Widget::Widget(const Widget& rhs)
-	: label(rhs.label), id(requestId())
+Widget::Widget(const Widget& rhs) : label(rhs.label), id(requestId())
 {
 	updateHandle();
 }

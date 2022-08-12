@@ -5,16 +5,15 @@
 #include <string>
 
 #define FMT_HEADER_ONLY
-#include <fmt/core.h>
 #include <fmt/color.h>
+#include <fmt/core.h>
 
 class Base
 {
 public:
 	virtual int main(int argc, char* argv[]) = 0;
 
-	Base(std::string_view name)
-		: name(name)
+	Base(std::string_view name) : name(name)
 	{
 		init();
 	}
@@ -73,40 +72,42 @@ public:
 		}
 		for(size_t i = 0; i < monitors.size() - 1; i++)
 		{
-			puts(fmt::format(
-				"|-{}\n"
-				"| |-Size        : {}x{}\n"
-				"| `-Refresh rate: {} Hz",
-				monitors[i].getName(), monitors[i].getSize().x, monitors[i].getSize().y, monitors[i].getRefreshRate()).c_str());
+			puts(fmt::format("|-{}\n"
+			                 "| |-Size        : {}x{}\n"
+			                 "| `-Refresh rate: {} Hz",
+			                 monitors[i].getName(), monitors[i].getSize().x, monitors[i].getSize().y,
+			                 monitors[i].getRefreshRate())
+			         .c_str());
 		}
-		puts(fmt::format(
-			"`-{}\n"
-			"  |-Size        : {}x{}\n"
-			"  `-Refresh rate: {} Hz",
-			monitors.back().getName(), monitors.back().getSize().x, monitors.back().getSize().y, monitors.back().getRefreshRate()).c_str());
+		puts(fmt::format("`-{}\n"
+		                 "  |-Size        : {}x{}\n"
+		                 "  `-Refresh rate: {} Hz",
+		                 monitors.back().getName(), monitors.back().getSize().x, monitors.back().getSize().y,
+		                 monitors.back().getRefreshRate())
+		         .c_str());
 	}
 
 	void printRendererInfo()
 	{
 		const auto renderer = Renderer::get();
-		puts(fmt::format(
-			"Renderer\n"
-			"|-Device  : {}\n"
-			"|-Renderer: {}\n"
-			"`-Vendor  : {}",
-			renderer->getDeviceName(), renderer->getRendererName(), renderer->getVendorName()).c_str());
+		puts(fmt::format("Renderer\n"
+		                 "|-Device  : {}\n"
+		                 "|-Renderer: {}\n"
+		                 "`-Vendor  : {}",
+		                 renderer->getDeviceName(), renderer->getRendererName(), renderer->getVendorName())
+		         .c_str());
 	}
 
 	void printModelInfo(const Model& model)
 	{
 		const auto& info = model.getMeshInfo();
-		puts(fmt::format(
-			"Mesh\n"
-			"|-Name     : {}\n"
-			"|-Triangles: {}\n"
-			"|-Vertices : {}\n"
-			"`-Indices  : {}",
-			model.getName(), info.triangles, info.vertices, info.indices).c_str());
+		puts(fmt::format("Mesh\n"
+		                 "|-Name     : {}\n"
+		                 "|-Triangles: {}\n"
+		                 "|-Vertices : {}\n"
+		                 "`-Indices  : {}",
+		                 model.getName(), info.triangles, info.vertices, info.indices)
+		         .c_str());
 	}
 
 	void printInfo(std::string_view msg)

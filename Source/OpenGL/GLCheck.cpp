@@ -2,9 +2,9 @@
 // License(Apache-2.0)
 
 #include "GLCheck.h"
+#include <glad/glad.h>
 #include <stdexcept>
 #include <string>
-#include <glad/glad.h>
 
 #define FMT_HEADER_ONLY
 #include <fmt/core.h>
@@ -47,7 +47,7 @@ std::string_view GLGetErrorString(GLenum error)
 	}
 }
 
-}
+} // namespace
 
 void GLCheckError()
 {

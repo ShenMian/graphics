@@ -7,13 +7,13 @@ void GLCheckError();
 void GLClearError();
 
 #if 1
-#    define GLCall(func)    \
-        do                  \
-        {                   \
-            GLClearError(); \
-            func;           \
-            GLCheckError(); \
-        } while(false)
+#define GLCall(func)                                                                                                   \
+	do                                                                                                                 \
+	{                                                                                                                  \
+		GLClearError();                                                                                                \
+		func;                                                                                                          \
+		GLCheckError();                                                                                                \
+	} while(false)
 #else
-#    define GLCall(func) func
+#define GLCall(func) func
 #endif

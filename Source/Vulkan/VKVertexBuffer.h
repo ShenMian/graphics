@@ -3,8 +3,8 @@
 
 #pragma once
 
-#include "VertexBuffer.h"
 #include "VKBuffer.h"
+#include "VertexBuffer.h"
 #include <vulkan/vulkan.h>
 
 class VKVertexBuffer : public VertexBuffer

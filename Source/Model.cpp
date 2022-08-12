@@ -2,16 +2,16 @@
 // License(Apache-2.0)
 
 #include "Model.h"
-#include "IndexBuffer.h"
-#include "VertexBuffer.h"
-#include "Material.h"
 #include "Core/Image.h"
+#include "IndexBuffer.h"
+#include "Material.h"
+#include "VertexBuffer.h"
 
-#include <assimp/postprocess.h>
-#include <assimp/scene.h>
 #include <assimp/Exporter.hpp>
 #include <assimp/Importer.hpp>
 #include <assimp/ProgressHandler.hpp>
+#include <assimp/postprocess.h>
+#include <assimp/scene.h>
 
 #include <algorithm>
 #include <cstring>
@@ -30,8 +30,7 @@ namespace
 class Progress : public Assimp::ProgressHandler
 {
 public:
-	explicit Progress(std::function<void(float)> callback)
-		: callback(std::move(callback))
+	explicit Progress(std::function<void(float)> callback) : callback(std::move(callback))
 	{
 	}
 
@@ -109,21 +108,21 @@ void loadBones(std::vector<Vertex>& vertices, std::vector<Matrix4f>& bones, cons
 	for(unsigned int boneId = 0; boneId < mesh->mNumBones; boneId++)
 	{
 		const auto& bone = *mesh->mBones[boneId];
-		bones[boneId] = Matrix4f(bone.mOffsetMatrix[0]);
+		bones[boneId]    = Matrix4f(bone.mOffsetMatrix[0]);
 
 		/*
 		for(unsigned int i = 0; i < bone.mNumWeights; i++)
 		{
-			const auto& weight = bone.mWeights[i];
-			for(size_t j = 0; j < vertices[weight.mVertexId].bones.size(); j++)
-			{
-				if(vertices[weight.mVertexId].weights[j] == 0)
-				{
-					vertices[weight.mVertexId].bones[j] = boneId;
-					vertices[weight.mVertexId].weights[j] = weight.mWeight;
-					break;
-				}
-			}
+		    const auto& weight = bone.mWeights[i];
+		    for(size_t j = 0; j < vertices[weight.mVertexId].bones.size(); j++)
+		    {
+		        if(vertices[weight.mVertexId].weights[j] == 0)
+		        {
+		            vertices[weight.mVertexId].bones[j] = boneId;
+		            vertices[weight.mVertexId].weights[j] = weight.mWeight;
+		            break;
+		        }
+		    }
 		}
 		*/
 	}
@@ -132,12 +131,11 @@ void loadBones(std::vector<Vertex>& vertices, std::vector<Matrix4f>& bones, cons
 // 加载材质
 void loadMaterial(Material& mat, const aiMesh* mesh, const aiScene* scene, const fs::path& path)
 {
-	const auto dir = path.parent_path();
+	const auto dir  = path.parent_path();
 	const auto aMat = scene->mMaterials[mesh->mMaterialIndex];
 
 	// 加载指定类型的材质
-	auto loadTexture = [&](aiTextureType type)->std::shared_ptr<Texture>
-	{
+	auto loadTexture = [&](aiTextureType type) -> std::shared_ptr<Texture> {
 		// TODO: 此处循环无用, 同类型的材质可能有多个
 		for(unsigned int i = 0; i < aMat->GetTextureCount(type); i++)
 		{
@@ -153,21 +151,21 @@ void loadMaterial(Material& mat, const aiMesh* mesh, const aiScene* scene, const
 
 	mat.name = aMat->GetName().C_Str();
 
-	mat.pbr.albedo = loadTexture(aiTextureType_BASE_COLOR);
-	mat.pbr.normals = loadTexture(aiTextureType_NORMAL_CAMERA);
-	mat.pbr.emissive = loadTexture(aiTextureType_EMISSION_COLOR);
-	mat.pbr.metallic = loadTexture(aiTextureType_METALNESS);
+	mat.pbr.albedo    = loadTexture(aiTextureType_BASE_COLOR);
+	mat.pbr.normals   = loadTexture(aiTextureType_NORMAL_CAMERA);
+	mat.pbr.emissive  = loadTexture(aiTextureType_EMISSION_COLOR);
+	mat.pbr.metallic  = loadTexture(aiTextureType_METALNESS);
 	mat.pbr.roughness = loadTexture(aiTextureType_DIFFUSE_ROUGHNESS);
-	mat.pbr.ao = loadTexture(aiTextureType_AMBIENT_OCCLUSION);
+	mat.pbr.ao        = loadTexture(aiTextureType_AMBIENT_OCCLUSION);
 
-	mat.diffuse = loadTexture(aiTextureType_DIFFUSE);
-	mat.specular = loadTexture(aiTextureType_SPECULAR);
-	mat.ambient = loadTexture(aiTextureType_AMBIENT);
-	mat.emissive = loadTexture(aiTextureType_EMISSIVE);
-	mat.height = loadTexture(aiTextureType_HEIGHT);
-	mat.normals = loadTexture(aiTextureType_NORMALS);
+	mat.diffuse   = loadTexture(aiTextureType_DIFFUSE);
+	mat.specular  = loadTexture(aiTextureType_SPECULAR);
+	mat.ambient   = loadTexture(aiTextureType_AMBIENT);
+	mat.emissive  = loadTexture(aiTextureType_EMISSIVE);
+	mat.height    = loadTexture(aiTextureType_HEIGHT);
+	mat.normals   = loadTexture(aiTextureType_NORMALS);
 	mat.shininess = loadTexture(aiTextureType_SHININESS);
-	mat.opacity = loadTexture(aiTextureType_OPACITY);
+	mat.opacity   = loadTexture(aiTextureType_OPACITY);
 }
 
 /**
@@ -178,7 +176,8 @@ void loadMaterial(Material& mat, const aiMesh* mesh, const aiScene* scene, const
  * @param path   模型位置.
  * @param meshs  要载入到的 Mesh 数组.
  */
-void loadMesh(const aiMesh* mesh, const fs::path& path, std::vector<Mesh>& meshes, std::vector<Matrix4f>& bones, AABB3& aabb)
+void loadMesh(const aiMesh* mesh, const fs::path& path, std::vector<Mesh>& meshes, std::vector<Matrix4f>& bones,
+              AABB3& aabb)
 {
 	std::vector<Mesh::Vertex> vertices;
 	std::vector<unsigned int> indices;
@@ -208,7 +207,8 @@ void loadMesh(const aiMesh* mesh, const fs::path& path, std::vector<Mesh>& meshe
  * @param path   模型文件位置.
  * @param meshes 要载入到的 Mesh 数组.
  */
-void loadNode(const aiNode* node, const aiScene* scene, const fs::path& path, std::vector<Mesh>& meshes, std::vector<Matrix4f>& bones, AABB3& aabb)
+void loadNode(const aiNode* node, const aiScene* scene, const fs::path& path, std::vector<Mesh>& meshes,
+              std::vector<Matrix4f>& bones, AABB3& aabb)
 {
 	// 加载网格
 	for(unsigned int i = 0; i < node->mNumMeshes; i++)
@@ -222,7 +222,7 @@ void loadNode(const aiNode* node, const aiScene* scene, const fs::path& path, st
 		loadNode(node->mChildren[i], scene, path, meshes, bones, aabb);
 }
 
-}
+} // namespace
 
 void Model::load(const fs::path& path, unsigned int process, std::function<void(float)> progress)
 {
@@ -236,14 +236,12 @@ void Model::load(const fs::path& path, unsigned int process, std::function<void(
 
 	Clock clock; // TODO: debug
 
-	unsigned int flags = aiProcess_CalcTangentSpace |
-		aiProcess_JoinIdenticalVertices |
-		aiProcess_Triangulate |
-		aiProcess_SortByPType |
-		aiProcess_MakeLeftHanded; // TODO
+	unsigned int flags = aiProcess_CalcTangentSpace | aiProcess_JoinIdenticalVertices | aiProcess_Triangulate |
+	                     aiProcess_SortByPType | aiProcess_MakeLeftHanded; // TODO
 
 	constexpr unsigned int fastFlags = aiProcess_GenNormals | aiProcess_GenUVCoords;
-	constexpr unsigned int qualityFlags = fastFlags | aiProcess_SplitLargeMeshes | aiProcess_ImproveCacheLocality | aiProcess_FindInvalidData;
+	constexpr unsigned int qualityFlags =
+	    fastFlags | aiProcess_SplitLargeMeshes | aiProcess_ImproveCacheLocality | aiProcess_FindInvalidData;
 	constexpr unsigned int maxQualityFlags = qualityFlags | aiProcess_OptimizeMeshes;
 
 	switch(process)
@@ -262,7 +260,7 @@ void Model::load(const fs::path& path, unsigned int process, std::function<void(
 	}
 
 	Assimp::Importer importer;
-	auto progressHandler = new Progress(progress);
+	auto             progressHandler = new Progress(progress);
 	importer.SetProgressHandler(progressHandler);
 	const aiScene* scene = importer.ReadFile(path.string(), flags); // 从文件导入场景数据
 
@@ -284,7 +282,8 @@ void Model::load(const fs::path& path, unsigned int process, std::function<void(
 	for(unsigned int i = 0; i < scene->mNumAnimations; i++)
 	{
 		const auto& anim = *scene->mAnimations[i];
-		animations.emplace(anim.mName.C_Str(), Animation(anim.mName.C_Str(), anim.mDuration / anim.mTicksPerSecond, (int)anim.mTicksPerSecond));
+		animations.emplace(anim.mName.C_Str(), Animation(anim.mName.C_Str(), anim.mDuration / anim.mTicksPerSecond,
+		                                                 (int)anim.mTicksPerSecond));
 	}
 }
 

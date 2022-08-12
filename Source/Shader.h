@@ -3,8 +3,8 @@
 
 #pragma once
 
-#include <memory>
 #include <filesystem>
+#include <memory>
 #include <string>
 #include <unordered_map>
 
@@ -12,9 +12,9 @@
  *  @{
  */
 
- /**
-  * @brief 着色器阶段.
-  */
+/**
+ * @brief 着色器阶段.
+ */
 class Shader
 {
 public:

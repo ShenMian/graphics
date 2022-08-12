@@ -21,4 +21,4 @@ private:
 	const Pin& end;
 };
 
-};
+}; // namespace ui

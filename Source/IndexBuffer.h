@@ -21,7 +21,8 @@ public:
 	 * @param data  索引缓冲区.
 	 * @param usage 使用方式.
 	 */
-    [[nodiscard]] static std::shared_ptr<IndexBuffer> create(std::span<const uint32_t> data, Buffer::Usage usage = Buffer::Usage::Static);
+	[[nodiscard]] static std::shared_ptr<IndexBuffer> create(std::span<const uint32_t> data,
+	                                                         Buffer::Usage             usage = Buffer::Usage::Static);
 
 	/**
 	 * @brief 创建 IndexBuffer.
@@ -31,7 +32,8 @@ public:
 	 * @param count 索引数量.
 	 * @param usage 使用方式.
 	 */
-	[[nodiscard]] static std::shared_ptr<IndexBuffer> create(const uint32_t* data, size_t size, Buffer::Usage usage = Buffer::Usage::Static);
+	[[nodiscard]] static std::shared_ptr<IndexBuffer> create(const uint32_t* data, size_t size,
+	                                                         Buffer::Usage usage = Buffer::Usage::Static);
 
 	/**
 	 * @brief 获取缓冲区大小, 单位: 字节.

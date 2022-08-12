@@ -25,9 +25,9 @@ Image::Image(const std::filesystem::path& path)
 	loadFromFile(path);
 }
 
-Image::Image(const void *data, size_t sizeBytes, Vector2i size, int channels)
+Image::Image(const void* data, size_t sizeBytes, Vector2i size, int channels)
 {
-    loadFromMemory(data, sizeBytes, size, channels);
+	loadFromMemory(data, sizeBytes, size, channels);
 }
 
 void Image::loadFromFile(const std::filesystem::path& path)
@@ -44,7 +44,7 @@ void Image::loadFromFile(const std::filesystem::path& path)
 
 void Image::loadFromMemory(const void* data, size_t sizeBytes, Vector2i size, int channels)
 {
-	this->size = size;
+	this->size     = size;
 	this->channels = channels;
 	this->data.resize(sizeBytes);
 	std::memcpy(this->data.data(), data, this->data.size());
@@ -57,7 +57,8 @@ void Image::saveToFile(const std::filesystem::path& path) const
 
 	if(ext == ".jpg" || ext == "jpeg")
 	{
-		if(!stbi_write_jpg(path.string().c_str(), size.x, size.y, channels, data.data(), 90)) // quality is between 1 and 100
+		if(!stbi_write_jpg(path.string().c_str(), size.x, size.y, channels, data.data(),
+		                   90)) // quality is between 1 and 100
 			throw std::runtime_error("can't save image to jpg/jpeg");
 	}
 	else if(ext == ".png")
@@ -81,17 +82,17 @@ void Image::saveToFile(const std::filesystem::path& path) const
 
 void Image::setPixel(Vector4f color, Size2 pos)
 {
-	assert(pos.x < size.x&& pos.y < size.y);
+	assert(pos.x < size.x && pos.y < size.y);
 	auto pixel = &data[(pos.y * size.x + pos.x) * channels];
-	*pixel++ = (uint8_t)(color.r * 255);
-	*pixel++ = (uint8_t)(color.g * 255);
-	*pixel++ = (uint8_t)(color.b * 255);
-	*pixel++ = (uint8_t)(color.a * 255);
+	*pixel++   = (uint8_t)(color.r * 255);
+	*pixel++   = (uint8_t)(color.g * 255);
+	*pixel++   = (uint8_t)(color.b * 255);
+	*pixel++   = (uint8_t)(color.a * 255);
 }
 
 Vector4f Image::getPixel(Size2 pos) const
 {
-	assert(pos.x < size.x&& pos.y < size.y);
+	assert(pos.x < size.x && pos.y < size.y);
 	const auto pixel = &data[(pos.y * size.x + pos.x) * channels];
 	return {pixel[0] / 255.f, pixel[1] / 255.f, pixel[2] / 255.f, pixel[3] / 255.f};
 }
@@ -102,7 +103,7 @@ void Image::flipHorizontally() noexcept
 
 	for(size_t y = 0; y < size.y; y++)
 	{
-		auto left = data.begin() + y * rowSize;
+		auto left  = data.begin() + y * rowSize;
 		auto right = data.begin() + (y + 1) * rowSize - channels;
 
 		for(size_t x = 0; x < size.x / 2; x++)
@@ -118,7 +119,7 @@ void Image::flipVertically() noexcept
 {
 	const auto rowSize = size.x * channels;
 
-	auto top = data.begin();
+	auto top    = data.begin();
 	auto bottom = data.end() - rowSize;
 
 	for(size_t y = 0; y < size.y / 2; y++)

@@ -13,9 +13,9 @@ struct GLFWmonitor;
  *  @{
  */
 
- /**
-  * @brief 显示器.
-  */
+/**
+ * @brief 显示器.
+ */
 class Monitor
 {
 public:

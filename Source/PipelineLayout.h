@@ -25,17 +25,17 @@ public:
 	{
 		enum
 		{
-			Vertex = 1 << 0,   ///< @see Shader::Stage::Vertex
+			Vertex   = 1 << 0, ///< @see Shader::Stage::Vertex
 			Geometry = 1 << 1, ///< @see Shader::Stage::Geometry
 			Fragment = 1 << 2, ///< @see Shader::Stage::Fragment
-			Compute = 1 << 3   ///< @see Shader::Stage::Compute
+			Compute  = 1 << 3  ///< @see Shader::Stage::Compute
 		};
 	};
 
 	struct Binding
 	{
 		Binding(std::string_view name, Type type, uint32_t slot, uint32_t stageFlags, uint32_t arraySize = 1)
-			: type(type), slot(slot), stageFlags(stageFlags), arraySize(arraySize)
+		    : type(type), slot(slot), stageFlags(stageFlags), arraySize(arraySize)
 		{
 		}
 

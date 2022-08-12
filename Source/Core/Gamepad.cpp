@@ -2,12 +2,11 @@
 // License(Apache-2.0)
 
 #include "Gamepad.h"
+#include <GLFW/glfw3.h>
 #include <cassert>
 #include <cstring>
-#include <GLFW/glfw3.h>
 
-Gamepad::Gamepad(handle_type handle)
-	: handle(handle)
+Gamepad::Gamepad(handle_type handle) : handle(handle)
 {
 }
 
@@ -63,7 +62,7 @@ Vector2f Gamepad::getRaw(Thumb thumb) const noexcept
 
 float Gamepad::get(Trigger trigger) const noexcept
 {
-	const float value = getRaw(trigger);
+	const float value  = getRaw(trigger);
 	const float factor = 1.f / (1.f - triggerThreshold);
 
 	if(value > triggerThreshold)

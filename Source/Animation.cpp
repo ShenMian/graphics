@@ -4,7 +4,7 @@
 #include "Animation.h"
 
 Animation::Animation(const std::string& name, float duration, uint32_t tickRate)
-	: name(name), duration(duration), tickRate(tickRate)
+    : name(name), duration(duration), tickRate(tickRate)
 {
 }
 

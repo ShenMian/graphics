@@ -3,8 +3,8 @@
 
 #pragma once
 
-#include <math/math.hpp>
 #include "Material.h"
+#include <math/math.hpp>
 #include <memory>
 #include <string>
 #include <vector>
@@ -16,26 +16,27 @@ class VertexBuffer;
  *  @{
  */
 
- /**
-  * @brief 网格.
-  */
+/**
+ * @brief 网格.
+ */
 class Mesh
 {
 public:
-    struct Vertex;
+	struct Vertex;
 
 	struct Info
 	{
-		uint32_t vertices = 0;
-		uint32_t indices = 0;
+		uint32_t vertices  = 0;
+		uint32_t indices   = 0;
 		uint32_t triangles = 0;
 
 		Info& operator+=(const Info&);
 	};
 
-    Mesh() = default;
+	Mesh() = default;
 
-	Mesh(std::string_view name, std::vector<Vertex>& vertices, std::vector<unsigned int>& indices, const Material* mat = nullptr);
+	Mesh(std::string_view name, std::vector<Vertex>& vertices, std::vector<unsigned int>& indices,
+	     const Material* mat = nullptr);
 
 	/**
 	 * @brief 获取名称.
@@ -45,17 +46,17 @@ public:
 	/**
 	 * @brief 获取顶点缓冲区.
 	 */
-    [[nodiscard]] std::shared_ptr<VertexBuffer> getVertexBuffer() const;
+	[[nodiscard]] std::shared_ptr<VertexBuffer> getVertexBuffer() const;
 
 	/**
 	 * @brief 获取索引缓冲区.
 	 */
-    [[nodiscard]] std::shared_ptr<IndexBuffer> getIndexBuffer() const;
+	[[nodiscard]] std::shared_ptr<IndexBuffer> getIndexBuffer() const;
 
 	/**
 	 * @brief 获取材质.
 	 */
-    [[nodiscard]] const Material& getMaterial() const;
+	[[nodiscard]] const Material& getMaterial() const;
 
 	/**
 	 * @brief 获取信息.
@@ -92,11 +93,11 @@ private:
 
 struct Mesh::Vertex
 {
-    Vector3 position;
-    Vector3 normal;
-    Vector2 uv;
-    Vector3 tangent;
-    Vector3 bitangent;
+	Vector3 position;
+	Vector3 normal;
+	Vector2 uv;
+	Vector3 tangent;
+	Vector3 bitangent;
 };
 
 /** @}*/

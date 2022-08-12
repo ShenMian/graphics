@@ -8,7 +8,8 @@
 #include "OpenGL/GLVertexBuffer.h"
 #include "Vulkan/VKVertexBuffer.h"
 
-std::shared_ptr<VertexBuffer> VertexBuffer::create(const void* data, size_t size, const VertexFormat& layout, Buffer::Usage usage)
+std::shared_ptr<VertexBuffer> VertexBuffer::create(const void* data, size_t size, const VertexFormat& layout,
+                                                   Buffer::Usage usage)
 {
 	switch(Renderer::getAPI())
 	{
@@ -39,6 +40,6 @@ const VertexFormat& VertexBuffer::getFormat() const
 }
 
 VertexBuffer::VertexBuffer(const void* data, size_t size, const VertexFormat& layout)
-	: size(size), count(static_cast<uint32_t>(size / layout.getStride())), format(layout)
+    : size(size), count(static_cast<uint32_t>(size / layout.getStride())), format(layout)
 {
 }

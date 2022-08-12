@@ -4,18 +4,18 @@
 #pragma once
 
 #include <functional>
-#include <string_view>
 #include <math/math.hpp>
+#include <string_view>
 
 /** @addtogroup core
  *  @{
  */
 
- /**
-  * @brief 游戏手柄.
-  *
-  * @warning 不支持震动.
-  */
+/**
+ * @brief 游戏手柄.
+ *
+ * @warning 不支持震动.
+ */
 class Gamepad
 {
 public:
@@ -99,12 +99,12 @@ public:
 private:
 	handle_type handle;
 
-	float leftThumbDeadzone = 0.1f;
+	float leftThumbDeadzone  = 0.1f;
 	float rightThumbDeadzone = 0.1f;
-	float triggerThreshold = 0.01f;
+	float triggerThreshold   = 0.01f;
 
 	unsigned char buttons[15] = {};
-	float axes[6] = {};
+	float         axes[6]     = {};
 };
 
 /**
@@ -121,8 +121,8 @@ enum class Gamepad::Thumb
  */
 enum class Gamepad::Trigger
 {
-	left,  ///< 左侧线性按键, 即 LT.
-	right  ///< 右侧线性按键, 即 RT.
+	left, ///< 左侧线性按键, 即 LT.
+	right ///< 右侧线性按键, 即 RT.
 };
 
 /**
@@ -135,24 +135,24 @@ enum class Gamepad::Button : uint8_t
 	X = 2,
 	Y = 3,
 
-	LeftBumper = 4,
+	LeftBumper  = 4,
 	RightBumper = 5,
 
-	Back = 6,
+	Back  = 6,
 	Start = 7,
 	Guide = 8,
 
-	LeftThumb = 9,
+	LeftThumb  = 9,
 	RightThumb = 10,
 
-	DPAD_Up = 11,
+	DPAD_Up    = 11,
 	DPAD_Right = 12,
-	DPAD_Down = 13,
-	DPAD_Left = 14,
+	DPAD_Down  = 13,
+	DPAD_Left  = 14,
 
-	Cross = A,
-	Circle = B,
-	Square = X,
+	Cross    = A,
+	Circle   = B,
+	Square   = X,
 	Triangle = Y
 };
 

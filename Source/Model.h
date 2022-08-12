@@ -3,12 +3,12 @@
 
 #pragma once
 
-#include "Mesh.h"
 #include "Animation.h"
-#include <math/math.hpp>
-#include <stdexcept>
+#include "Mesh.h"
 #include <filesystem>
 #include <functional>
+#include <math/math.hpp>
+#include <stdexcept>
 #include <unordered_map>
 
 class Mesh;
@@ -18,9 +18,9 @@ class Material;
  *  @{
  */
 
- /**
-  * @brief 3D 模型.
-  */
+/**
+ * @brief 3D 模型.
+ */
 class Model
 {
 public:
@@ -43,7 +43,8 @@ public:
 	 *
 	 * @see loadAsync
 	 */
-	void load(const std::filesystem::path& path, unsigned int process = ProcessFlags::Fast, std::function<void(float)> progress = nullptr);
+	void load(const std::filesystem::path& path, unsigned int process = ProcessFlags::Fast,
+	          std::function<void(float)> progress = nullptr);
 
 	/**
 	 * @brief 获取名称.
@@ -85,8 +86,8 @@ private:
 
 /*
 inline static std::vector<std::string> extensions = {
-	"collada", "x", "stp", "obj", "objnomtl", "stl", "stlb", "ply", "plyb", "3ds",
-	"gltf2", "glb2", "gltf", "glb", "assbin", "assxml", "x3d", "3mf", "pbrt", "assjson"};
+    "collada", "x", "stp", "obj", "objnomtl", "stl", "stlb", "ply", "plyb", "3ds",
+    "gltf2", "glb2", "gltf", "glb", "assbin", "assxml", "x3d", "3mf", "pbrt", "assjson"};
 */
 
 /** @}*/

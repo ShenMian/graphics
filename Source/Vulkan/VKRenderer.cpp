@@ -2,9 +2,9 @@
 // License(Apache-2.0)
 
 #include "VKRenderer.h"
+#include "Builder/DeviceBuilder.h"
 #include "Builder/InstanceBuilder.h"
 #include "Builder/PhysicalDeviceSelector.h"
-#include "Builder/DeviceBuilder.h"
 #include "Builder/SwapchainBuilder.h"
 #include <GLFW/glfw3.h>
 
@@ -18,7 +18,7 @@ VKDevice         device;
 VKSwapchain      swapchain;
 VkCommandPool    commandPool;
 
-}
+} // namespace
 
 std::string VKRenderer::getDeviceName() const
 {
@@ -28,10 +28,8 @@ std::string VKRenderer::getDeviceName() const
 std::string VKRenderer::getRendererName() const
 {
 	const auto version = physicalDevice.getProperties().apiVersion;
-	return "Vulkan " +
-		std::to_string(VK_VERSION_MAJOR(version)) + '.' +
-		std::to_string(VK_VERSION_MINOR(version)) + '.' +
-		std::to_string(VK_VERSION_PATCH(version));
+	return "Vulkan " + std::to_string(VK_VERSION_MAJOR(version)) + '.' + std::to_string(VK_VERSION_MINOR(version)) +
+	       '.' + std::to_string(VK_VERSION_PATCH(version));
 }
 
 std::string VKRenderer::getVendorName() const
@@ -86,9 +84,7 @@ void VKRenderer::deinit()
 void VKRenderer::createInstance()
 {
 	InstanceBuilder builder;
-	instance = builder.enableValidationLayers()
-		.enableDebugMessenger()
-		.build();
+	instance = builder.enableValidationLayers().enableDebugMessenger().build();
 }
 
 void VKRenderer::createSurface(const Window& win)
@@ -100,10 +96,7 @@ void VKRenderer::createSurface(const Window& win)
 void VKRenderer::selectPhysicalDevice()
 {
 	PhysicalDeviceSelector selector(instance, surface);
-	physicalDevice = selector.requireGraphicsQueue()
-		.requirePresentQueue()
-		.requireTransferQueue()
-		.select();
+	physicalDevice = selector.requireGraphicsQueue().requirePresentQueue().requireTransferQueue().select();
 }
 
 void VKRenderer::createDevice()
@@ -121,8 +114,9 @@ void VKRenderer::createSwapchain()
 void VKRenderer::createCommandPool()
 {
 	VkCommandPoolCreateInfo commandPoolInfo = {};
-	commandPoolInfo.sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO;
-	commandPoolInfo.queueFamilyIndex = device.getQueueIndex(VKDevice::QueueType::Graphics);;
+	commandPoolInfo.sType                   = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO;
+	commandPoolInfo.queueFamilyIndex        = device.getQueueIndex(VKDevice::QueueType::Graphics);
+	;
 	commandPoolInfo.flags = VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT;
 	if(vkCreateCommandPool(device, &commandPoolInfo, nullptr, &commandPool) != VK_SUCCESS)
 		throw std::runtime_error("failed to create command pool");

@@ -2,8 +2,8 @@
 // License(Apache-2.0)
 
 #include "Texture.h"
-#include "Renderer.h"
 #include "Core/Image.h"
+#include "Renderer.h"
 #include <stdexcept>
 
 #include "OpenGL/GLTexture.h"
@@ -18,7 +18,7 @@ std::shared_ptr<Texture> Texture::create(const fs::path& path, Type type)
 		throw std::runtime_error("cubemap should have 6 file path");
 
 	const auto absPath = fs::absolute(path);
-	const auto it = cache.find(absPath);
+	const auto it      = cache.find(absPath);
 	if(it != cache.end())
 		return it->second;
 
@@ -74,7 +74,6 @@ Format Texture::getFormat() const
 	return format;
 }
 
-Texture::Texture(Type type, Format fmt)
-	: type(type), format(fmt)
+Texture::Texture(Type type, Format fmt) : type(type), format(fmt)
 {
 }

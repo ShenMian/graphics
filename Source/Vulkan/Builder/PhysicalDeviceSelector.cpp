@@ -23,7 +23,7 @@ VKPhysicalDevice PhysicalDeviceSelector::select()
 	{
 		// TODO: 需要兼容没有独显的环境
 		if(!(device.getProperties().deviceType == VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU &&
-			device.getFeatures().geometryShader))
+		     device.getFeatures().geometryShader))
 			continue;
 
 		if(info.requireGraphicsQueue)

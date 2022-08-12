@@ -6,28 +6,23 @@
 class Viewer final : public Base
 {
 public:
-	Viewer()
-		: Base("Viewer")
-	{
-	};
+	Viewer() : Base("Viewer"){};
 
 	int main(int argc, char* argv[])
 	{
 		auto program = Program::create("Shaders/mesh");
 
-		PipelineLayout layout = {
-			{"albedo",    PipelineLayout::Type::Texture, 0, PipelineLayout::StageFlags::Fragment},
-			{"roughness", PipelineLayout::Type::Texture, 1, PipelineLayout::StageFlags::Fragment},
-			{"ao",        PipelineLayout::Type::Texture, 2, PipelineLayout::StageFlags::Fragment},
-			{"emissive",  PipelineLayout::Type::Texture, 3, PipelineLayout::StageFlags::Fragment},
-			{"normal",    PipelineLayout::Type::Texture, 4, PipelineLayout::StageFlags::Fragment}
-		};
+		PipelineLayout layout = {{"albedo", PipelineLayout::Type::Texture, 0, PipelineLayout::StageFlags::Fragment},
+		                         {"roughness", PipelineLayout::Type::Texture, 1, PipelineLayout::StageFlags::Fragment},
+		                         {"ao", PipelineLayout::Type::Texture, 2, PipelineLayout::StageFlags::Fragment},
+		                         {"emissive", PipelineLayout::Type::Texture, 3, PipelineLayout::StageFlags::Fragment},
+		                         {"normal", PipelineLayout::Type::Texture, 4, PipelineLayout::StageFlags::Fragment}};
 		Pipeline::Descriptor desc;
-		desc.layout = layout;
-		desc.program = program;
+		desc.layout   = layout;
+		desc.program  = program;
 		auto pipeline = Pipeline::create(desc);
 
-		auto cmdQueue = CommandQueue::create();
+		auto cmdQueue  = CommandQueue::create();
 		auto cmdBuffer = CommandBuffer::create();
 
 		Camera camera(Camera::Type::Perspective);
@@ -65,9 +60,8 @@ public:
 		}
 
 		Model model;
-		model.load(path, Model::ProcessFlags::Fast, [](float progress) {
-			printf("Meshes loading: %.1f%%  \r", progress * 100);
-		});
+		model.load(path, Model::ProcessFlags::Fast,
+		           [](float progress) { printf("Meshes loading: %.1f%%  \r", progress * 100); });
 		printModelInfo(model);
 
 		// 根据模型大小设置相机移动速度
@@ -78,46 +72,43 @@ public:
 		speed /= 3;
 		controller.setSpeed(speed * 0.5);
 
-		bool running = true;
+		bool running    = true;
 		window->onClose = [&] { running = false; };
-		window->onKey = [&](int action, Key key)
-		{
-			if(!action)
-				return;
+		window->onKey   = [&](int action, Key key) {
+            if(!action)
+                return;
 
-			switch(key)
-			{
-			case Key::Escape:
-				running = false;
-				break;
+            switch(key)
+            {
+            case Key::Escape:
+                running = false;
+                break;
 
-			case Key::F11:
-				window->setFullscreen(!window->isFullscreen());
-				break;
+            case Key::F11:
+                window->setFullscreen(!window->isFullscreen());
+                break;
 
-			case Key::O:
-				model.compress();
-				break;
+            case Key::O:
+                model.compress();
+                break;
 
-			case Key::I:
-				model.decompress();
-				break;
+            case Key::I:
+                model.decompress();
+                break;
 
-			case Key::P:
-				window->setCursorLock(false);
-				break;
-			}
+            case Key::P:
+                window->setCursorLock(false);
+                break;
+            }
 		};
-		window->onScroll = [&](Vector2d offset)
-		{
+		window->onScroll = [&](Vector2d offset) {
 			static float fov = degrees(camera.getVFOV());
 			if(1.f <= fov && fov <= 60.f)
 				fov -= (float)offset.y * 3 * (fov / 60);
 			fov = std::clamp(fov, 1.f, 60.f);
 			camera.setPerspective(radians(fov), camera.getAspectRatio(), camera.getNear(), camera.getFar());
 		};
-		window->onResize = [&](Vector2i size)
-		{
+		window->onResize = [&](Vector2i size) {
 			camera.setPerspective(camera.getVFOV(), (float)size.x / size.y, camera.getNear(), camera.getFar());
 		};
 		window->setVisible(true);
@@ -126,8 +117,8 @@ public:
 		window->setRawMouseMotion(true);
 
 		ui::Window ATT("ATT"); // 摄像机姿态信息
-		ui::Label position;    // 坐标
-		ui::Label angles;      // 姿态角角度
+		ui::Label  position;   // 坐标
+		ui::Label  angles;     // 姿态角角度
 		ATT.add(position);
 		ATT.add(angles);
 
@@ -155,17 +146,15 @@ public:
 			editor.update();
 
 			const auto& pos = camera.getPosition();
-			position.setText(fmt::format(
-				"X    : {: .2f}\n"
-				"Y    : {: .2f}\n"
-				"Z    : {: .2f}\n",
-				pos.x, pos.y, pos.z));
+			position.setText(fmt::format("X    : {: .2f}\n"
+			                             "Y    : {: .2f}\n"
+			                             "Z    : {: .2f}\n",
+			                             pos.x, pos.y, pos.z));
 			const auto& dir = camera.getRotation();
-			angles.setText(fmt::format(
-				"Roll : {: .1f}\n"
-				"Pitch: {: .1f}\n"
-				"Yaw  : {: .1f}\n",
-				dir.z, dir.x, dir.y));
+			angles.setText(fmt::format("Roll : {: .1f}\n"
+			                           "Pitch: {: .1f}\n"
+			                           "Yaw  : {: .1f}\n",
+			                           dir.z, dir.x, dir.y));
 			ATT.update();
 
 			matrices->getBuffer().map();
@@ -214,12 +203,12 @@ int main(int argc, char* argv[])
 
 /*
 const std::vector<Image> images = {
-	{"../../../3DModel/skybox/cube/right.jpg"},
-	{"../../../3DModel/skybox/cube/left.jpg"},
-	{"../../../3DModel/skybox/cube/top.jpg"},
-	{"../../../3DModel/skybox/cube/bottom.jpg"},
-	{"../../../3DModel/skybox/cube/front.jpg"},
-	{"../../../3DModel/skybox/cube/back.jpg"}
+    {"../../../3DModel/skybox/cube/right.jpg"},
+    {"../../../3DModel/skybox/cube/left.jpg"},
+    {"../../../3DModel/skybox/cube/top.jpg"},
+    {"../../../3DModel/skybox/cube/bottom.jpg"},
+    {"../../../3DModel/skybox/cube/front.jpg"},
+    {"../../../3DModel/skybox/cube/back.jpg"}
 };
 auto cubemap = Texture::create(images);
 auto program = Program::create("Shaders/skybox");

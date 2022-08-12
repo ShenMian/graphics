@@ -3,8 +3,8 @@
 
 #pragma once
 
-#include <string>
 #include <functional>
+#include <string>
 #include <vector>
 
 namespace ui
@@ -48,7 +48,7 @@ protected:
 	std::string handle;
 
 	std::string label;
-	uint64_t id;
+	uint64_t    id;
 
 private:
 	static uint64_t nextId;

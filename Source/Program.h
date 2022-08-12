@@ -14,9 +14,9 @@ class Shader;
  *  @{
  */
 
- /**
-  * @brief 着色器程序.
-  */
+/**
+ * @brief 着色器程序.
+ */
 class Program
 {
 public:
@@ -29,19 +29,19 @@ public:
 	 */
 	[[nodiscard]] static std::shared_ptr<Program> create(const Descriptor& desc);
 
-    /**
-     * @brief 创建着色器阶段.
-     *
-     * @param name 着色器文件名称.
-     *
-     * 从指定位置加载具有相同名称和特定后缀的 SPIR-V 文件.
-     */
+	/**
+	 * @brief 创建着色器阶段.
+	 *
+	 * @param name 着色器文件名称.
+	 *
+	 * 从指定位置加载具有相同名称和特定后缀的 SPIR-V 文件.
+	 */
 	[[nodiscard]] static std::shared_ptr<Program> create(std::string_view name);
 
 	virtual void use() = 0;
 
-	virtual void setUniform(const std::string& name, int value) = 0;
-	virtual void setUniform(const std::string& name, float value) = 0;
+	virtual void setUniform(const std::string& name, int value)            = 0;
+	virtual void setUniform(const std::string& name, float value)          = 0;
 	virtual void setUniform(const std::string& name, const Vector2& value) = 0;
 	virtual void setUniform(const std::string& name, const Vector3& value) = 0;
 	virtual void setUniform(const std::string& name, const Vector4& value) = 0;
@@ -53,7 +53,7 @@ protected:
 	Program(const Descriptor& desc);
 
 	std::string name;
-	int stageCount = 0;
+	int         stageCount = 0;
 
 	inline static std::unordered_map<std::string, std::shared_ptr<Program>> cache;
 };

@@ -3,8 +3,8 @@
 
 #pragma once
 
-#include <string>
 #include <memory>
+#include <string>
 
 class Buffer;
 
@@ -12,7 +12,7 @@ class UniformBuffer
 {
 public:
 	[[nodiscard]] static std::shared_ptr<UniformBuffer> create(int binding, size_t size);
-	
+
 	virtual Buffer& getBuffer() = 0;
 
 protected:

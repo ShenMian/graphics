@@ -55,15 +55,14 @@ GLFWmonitor* Monitor::getHandle() const
 	return handle;
 }
 
-Monitor::Monitor(GLFWmonitor* handle)
-	: handle(handle)
+Monitor::Monitor(GLFWmonitor* handle) : handle(handle)
 {
 }
 
 void Monitor::init()
 {
-	static auto update = []{
-		int count;
+	static auto update = [] {
+		int        count;
 		const auto handles = glfwGetMonitors(&count);
 		monitors.clear();
 		for(int i = 0; i < count; i++)
@@ -71,7 +70,7 @@ void Monitor::init()
 		if(monitors.empty())
 			throw std::runtime_error("do no have any monitor");
 	};
-	
+
 	glfwSetMonitorCallback([](GLFWmonitor* monitor, int event) { update(); });
 	update();
 }

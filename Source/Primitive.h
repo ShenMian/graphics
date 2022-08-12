@@ -25,7 +25,7 @@ public:
 
 	/**
 	 * @brief 生成胶囊体.
-	 * 
+	 *
 	 * @param resolution 分辨率. 越高顶点数越多, 越接近胶囊体.
 	 * @param height     高度.
 	 * @param radius     半径.
