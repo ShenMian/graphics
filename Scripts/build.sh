@@ -15,6 +15,7 @@ fi
 
 if [ ! -z "$2" ] && [ ! -z "$3" ]; then
   CONAN_ARGS="-s build_type=${BUILD_TYPE} -s compiler=$2 -s compiler.version=$3"
+  CMAKE_ARGS="-D CMAKE_C_COMPILER=$2 -DCMAKE_CXX_COMPILER=$2"
 fi
 
 cd "$( cd "$( dirname "$0"  )" && pwd  )" || exit
@@ -30,7 +31,7 @@ conan install . --build=missing -if build -of build ${CONAN_ARGS} -c tools.syste
 }
 
 echo "=== Generating CMake cache..."
-cmake -B build -Wno-dev >/dev/null || {
+cmake -Wno-dev ${CMAKE_ARGS} -B build >/dev/null || {
   echo "=== Failed to generate CMake cache."
   exit 1
 }
