@@ -6,6 +6,10 @@
 #include <memory>
 #include <stdexcept>
 
+#define FMT_HEADER_ONLY
+#include <fmt/format.h>
+#include <fmt/std.h>
+
 #ifndef STB_IMAGE_IMPLEMENTATION // 防止和其他第三方库内的 stb 重定义
 #define STB_IMAGE_IMPLEMENTATION
 #endif
@@ -33,11 +37,11 @@ Image::Image(const void* data, size_t sizeBytes, Vector2i size, int channels)
 void Image::loadFromFile(const std::filesystem::path& path)
 {
 	if(!fs::exists(path) && !fs::is_regular_file(path))
-		throw std::runtime_error("no such file");
+		throw std::runtime_error(fmt::format("no such file: '{}' ", path));
 
 	StbiImage pixels(stbi_load(path.string().c_str(), &size.x, &size.y, &channels, 0));
 	if(pixels == nullptr)
-		throw std::runtime_error("can't load image from file:" + path.string());
+		throw std::runtime_error(fmt::format("failed load image from file: '{}'", path));
 
 	loadFromMemory(pixels.get(), static_cast<size_t>(size.x) * size.y * channels, size, channels);
 }
@@ -59,22 +63,22 @@ void Image::saveToFile(const std::filesystem::path& path) const
 	{
 		if(!stbi_write_jpg(path.string().c_str(), size.x, size.y, channels, data.data(),
 		                   90)) // quality is between 1 and 100
-			throw std::runtime_error("can't save image to jpg/jpeg");
+			throw std::runtime_error("failed to save image to jpg/jpeg");
 	}
 	else if(ext == ".png")
 	{
 		if(!stbi_write_png(path.string().c_str(), size.x, size.y, channels, data.data(), 0))
-			throw std::runtime_error("can't save image to png");
+			throw std::runtime_error("failed to save image to png");
 	}
 	else if(ext == ".bmp")
 	{
 		if(!stbi_write_bmp(path.string().c_str(), size.x, size.y, channels, data.data()))
-			throw std::runtime_error("can't save image to bmp");
+			throw std::runtime_error("failed to save image to bmp");
 	}
 	else if(ext == ".tga")
 	{
 		if(!stbi_write_tga(path.string().c_str(), size.x, size.y, channels, data.data()))
-			throw std::runtime_error("can't save image to tga");
+			throw std::runtime_error("failed to save image to tga");
 	}
 	else
 		assert(false); // 不支持的导出格式

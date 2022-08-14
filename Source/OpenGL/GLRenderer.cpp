@@ -2,7 +2,9 @@
 // License(Apache-2.0)
 
 #include "GLRenderer.h"
+
 #include <glad/glad.h>
+
 #include <GLFW/glfw3.h>
 
 std::string GLRenderer::getDeviceName() const
@@ -24,7 +26,7 @@ void GLRenderer::init(const Window& win)
 {
 	glfwMakeContextCurrent(win.getHandle());
 	if(!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-		throw std::runtime_error("OpenGL(Glad) init failed");
+		throw std::runtime_error("Glad: failed to init");
 }
 
 void GLRenderer::deinit()

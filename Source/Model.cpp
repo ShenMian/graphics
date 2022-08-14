@@ -21,6 +21,10 @@
 
 #include "Core/Clock.hpp"
 
+#define FMT_HEADER_ONLY
+#include <fmt/format.h>
+#include <fmt/std.h>
+
 namespace fs = std::filesystem;
 
 namespace
@@ -227,7 +231,7 @@ void loadNode(const aiNode* node, const aiScene* scene, const fs::path& path, st
 void Model::load(const fs::path& path, unsigned int process, std::function<void(float)> progress)
 {
 	if(!fs::exists(path) && !fs::is_regular_file(path))
-		throw std::runtime_error("no such file or directory");
+		throw std::runtime_error(fmt::format("no such file: '{}' ", path));
 
 	this->path = path;
 	name.clear();

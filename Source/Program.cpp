@@ -8,7 +8,7 @@
 #include <vector>
 
 #define FMT_HEADER_ONLY
-#include <fmt/core.h>
+#include <fmt/format.h>
 
 #include "OpenGL/GLProgram.h"
 #include "Vulkan/VKProgram.h"

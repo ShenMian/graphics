@@ -5,6 +5,10 @@
 #include <filesystem>
 #include <fstream>
 
+#define FMT_HEADER_ONLY
+#include <fmt/format.h>
+#include <fmt/std.h>
+
 constexpr uint32_t dds_magic_number = 0x20534444; // "DDS "
 
 struct DDSPixelFormat
@@ -83,7 +87,7 @@ void LoadDDS(const fs::path& path)
 	const auto    fileSize = fs::file_size(path);
 	std::ifstream file(path, std::ios::binary);
 	if(!file.is_open())
-		throw std::runtime_error("failed to open file: " + path.string());
+		throw std::runtime_error(fmt::format("failed to open file: '{}'", path));
 
 	if(fileSize < sizeof(uint32_t) + sizeof(DDSHeader))
 		throw std::runtime_error("file size too small");

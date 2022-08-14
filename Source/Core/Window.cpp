@@ -8,9 +8,10 @@
 #include <GLFW/glfw3.h>
 #include <cassert>
 #include <stdexcept>
-// #include <format>
 
-using namespace std::literals::string_literals;
+#define FMT_HEADER_ONLY
+#include <fmt/format.h>
+
 namespace fs = std::filesystem;
 
 Window::Window(std::string_view title, const Vector2i& size, bool fullscreen)
@@ -132,7 +133,7 @@ bool Window::isFloating() const noexcept
 void Window::setIcon(const Image& image)
 {
 	if(image.getSize().x > 48 && image.getSize().y > 48)
-		throw std::runtime_error("image size too large");
+		throw std::runtime_error("image size is too large");
 
 	GLFWimage glfwImage;
 	glfwImage.pixels = const_cast<unsigned char*>(image.getData());
@@ -178,8 +179,8 @@ void Window::setupCallbacks()
 {
 	glfwSetErrorCallback([](int error, const char* desc) {
 		if(error == 65537)
-			throw std::runtime_error("GLFW error: some windows has not been destroyed");
-		throw std::runtime_error("GLFW error: "s + desc);
+			throw std::runtime_error("GLFW: some windows has not been destroyed");
+		throw std::runtime_error(fmt::format("GLFW: {}", desc));
 	});
 
 	glfwSetWindowSizeCallback(handle, [](GLFWwindow* native, int width, int height) {
@@ -243,7 +244,7 @@ void Window::setupCallbacks()
 void Window::init()
 {
 	if(!glfwInit())
-		throw std::runtime_error("GLFW init failed");
+		throw std::runtime_error("GLFW: failed to init");
 
 	Monitor::init();
 

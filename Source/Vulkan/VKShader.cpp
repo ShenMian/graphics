@@ -10,7 +10,8 @@
 #include <stdexcept>
 
 #define FMT_HEADER_ONLY
-#include <fmt/core.h>
+#include <fmt/format.h>
+#include <fmt/std.h>
 
 namespace fs = std::filesystem;
 
@@ -33,7 +34,7 @@ VKShader::VKShader(const Descriptor& desc) : Shader(desc)
 	auto path = desc.path;
 
 	if(!fs::exists(path))
-		throw std::runtime_error("file not found: " + path.string());
+		throw std::runtime_error(fmt::format("no such file: '{}' ", path));
 
 	// TODO: 与 GLShader 重复
 	if(path.extension() == ".glsl")
@@ -45,12 +46,12 @@ VKShader::VKShader(const Descriptor& desc) : Shader(desc)
 	const auto    fileSize = fs::file_size(path);
 	std::ifstream file(path, std::ios::binary);
 	if(!file.is_open())
-		throw std::runtime_error("failed to open file: " + path.string());
+		throw std::runtime_error(fmt::format("failed to open file: '{}'", path));
 
 	std::vector<char> buffer(fileSize);
 	file.read(buffer.data(), fileSize);
 	if(!file.good() || file.gcount() != fileSize)
-		throw std::runtime_error("failed to read file: " + path.string());
+		throw std::runtime_error(fmt::format("failed to read file: ", path));
 	file.close();
 
 	VkShaderModuleCreateInfo info = {};
@@ -79,12 +80,12 @@ void VKShader::compile(const std::filesystem::path& sourcePath, Stage stage)
 	const auto    fileSize = fs::file_size(sourcePath);
 	std::ifstream sourceFile(sourcePath, std::ios::binary);
 	if(!sourceFile.is_open())
-		throw std::runtime_error("failed to open file: " + sourcePath.string());
+		throw std::runtime_error(fmt::format("failed to open file: '{}'", sourcePath));
 
 	std::vector<char> buffer(fileSize);
 	sourceFile.read(buffer.data(), fileSize);
 	if(!sourceFile.good() || sourceFile.gcount() != fileSize)
-		throw std::runtime_error("failed to read file: " + sourcePath.string());
+		throw std::runtime_error(fmt::format("failed to read file: '{}'", sourcePath));
 	sourceFile.close();
 
 	const std::string source(buffer.begin(), buffer.end());
@@ -102,7 +103,7 @@ void VKShader::compile(const std::filesystem::path& sourcePath, Stage stage)
 	// 写入编译结果
 	std::ofstream targetFile(targetPath, std::ios::binary);
 	if(!targetFile.is_open())
-		throw std::runtime_error("failed to open file: " + sourcePath.string());
+		throw std::runtime_error(fmt::format("failed to open file: '{}'", sourcePath));
 	targetFile.write((const char*)spv.data(), spv.size() * sizeof(uint32_t));
 	targetFile.close();
 }

@@ -6,7 +6,7 @@
 
 #define FMT_HEADER_ONLY
 #include <fmt/color.h>
-#include <fmt/core.h>
+#include <fmt/format.h>
 
 class Base
 {
@@ -67,67 +67,63 @@ public:
 		const auto monitors = Monitor::getMonitors();
 		if(monitors.empty())
 		{
-			printWarn("No monitor");
+			printWarn("no monitor");
 			return;
 		}
 		for(size_t i = 0; i < monitors.size() - 1; i++)
 		{
-			puts(fmt::format("|-{}\n"
-			                 "| |-Size        : {}x{}\n"
-			                 "| `-Refresh rate: {} Hz",
-			                 monitors[i].getName(), monitors[i].getSize().x, monitors[i].getSize().y,
-			                 monitors[i].getRefreshRate())
-			         .c_str());
+			fmt::print("|-{}\n"
+			           "| |-Size        : {}x{}\n"
+			           "| `-Refresh rate: {} Hz\n",
+			           monitors[i].getName(), monitors[i].getSize().x, monitors[i].getSize().y,
+			           monitors[i].getRefreshRate());
 		}
-		puts(fmt::format("`-{}\n"
-		                 "  |-Size        : {}x{}\n"
-		                 "  `-Refresh rate: {} Hz",
-		                 monitors.back().getName(), monitors.back().getSize().x, monitors.back().getSize().y,
-		                 monitors.back().getRefreshRate())
-		         .c_str());
+		fmt::print("`-{}\n"
+		           "  |-Size        : {}x{}\n"
+		           "  `-Refresh rate: {} Hz\n",
+		           monitors.back().getName(), monitors.back().getSize().x, monitors.back().getSize().y,
+		           monitors.back().getRefreshRate());
 	}
 
 	void printRendererInfo()
 	{
 		const auto renderer = Renderer::get();
-		puts(fmt::format("Renderer\n"
-		                 "|-Device  : {}\n"
-		                 "|-Renderer: {}\n"
-		                 "`-Vendor  : {}",
-		                 renderer->getDeviceName(), renderer->getRendererName(), renderer->getVendorName())
-		         .c_str());
+		fmt::print("Renderer\n"
+		           "|-Device  : {}\n"
+		           "|-Renderer: {}\n"
+		           "`-Vendor  : {}\n",
+		           renderer->getDeviceName(), renderer->getRendererName(), renderer->getVendorName());
 	}
 
 	void printModelInfo(const Model& model)
 	{
 		const auto& info = model.getMeshInfo();
-		puts(fmt::format("Mesh\n"
-		                 "|-Name     : {}\n"
-		                 "|-Triangles: {}\n"
-		                 "|-Vertices : {}\n"
-		                 "`-Indices  : {}",
-		                 model.getName(), info.triangles, info.vertices, info.indices)
-		         .c_str());
+		fmt::print("Model\n"
+		           "|-Name     : {}\n"
+		           "|-Triangles: {}\n"
+		           "|-Vertices : {}\n"
+		           "`-Indices  : {}\n",
+		           model.getName(), info.triangles, info.vertices, info.indices);
 	}
 
 	void printInfo(std::string_view msg)
 	{
-		puts(fmt::format("{} {}", fmt::styled("[*]", fg(fmt::color::blue)), msg).c_str());
+		fmt::print("{} {}", fmt::styled("[*]", fg(fmt::color::blue)), msg);
 	}
 
 	void printGood(std::string_view msg)
 	{
-		puts(fmt::format("{} {}", fmt::styled("[+]", fg(fmt::color::red)), msg).c_str());
+		fmt::print("{} {}", fmt::styled("[+]", fg(fmt::color::red)), msg);
 	}
 
 	void printError(std::string_view msg)
 	{
-		puts(fmt::format("{} {}", fmt::styled("[-]", fg(fmt::color::red)), msg).c_str());
+		fmt::print("{} {}", fmt::styled("[-]", fg(fmt::color::red)), msg);
 	}
 
 	void printWarn(std::string_view msg)
 	{
-		puts(fmt::format("{} {}", fmt::styled("[!]", fg(fmt::color::yellow)), msg).c_str());
+		fmt::print("{} {}", fmt::styled("[!]", fg(fmt::color::yellow)), msg);
 	}
 
 protected:
