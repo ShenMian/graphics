@@ -15,7 +15,7 @@ fi
 
 if [ ! -z "$2" ] && [ ! -z "$3" ]; then
   CONAN_ARGS="-s build_type=${BUILD_TYPE} -s compiler=$2 -s compiler.version=$3"
-  CMAKE_ARGS="-D CMAKE_C_COMPILER=$2 -DCMAKE_CXX_COMPILER=$2"
+  CMAKE_ARGS="-DCMAKE_CXX_COMPILER=$2"
 fi
 
 cd "$( cd "$( dirname "$0"  )" && pwd  )" || exit
