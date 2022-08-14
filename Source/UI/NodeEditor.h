@@ -3,8 +3,8 @@
 
 #pragma once
 
-#include <vector>
 #include <unordered_map>
+#include <vector>
 
 struct ImNodesEditorContext;
 
@@ -23,7 +23,7 @@ public:
 
 private:
 	ImNodesEditorContext* context;
-	std::vector<Node> nodes;
+	std::vector<Node>     nodes;
 };
 
 } // namespace ui

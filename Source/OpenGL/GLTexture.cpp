@@ -2,41 +2,29 @@
 // License(Apache-2.0)
 
 #include "GLTexture.h"
-#include "GLCheck.h"
 #include "Core/Image.h"
 #include "Format.h"
+#include "GLCheck.h"
 #include <cassert>
 #include <unordered_map>
 
 namespace
 {
 
-std::unordered_map<Texture::Type, GLenum> GLType = {
-	{Texture::Type::_2D, GL_TEXTURE_2D},
-	{Texture::Type::_3D, GL_TEXTURE_3D},
-	{Texture::Type::Cube, GL_TEXTURE_CUBE_MAP}
-};
+std::unordered_map<Texture::Type, GLenum> GLType = {{Texture::Type::_2D, GL_TEXTURE_2D},
+                                                    {Texture::Type::_3D, GL_TEXTURE_3D},
+                                                    {Texture::Type::Cube, GL_TEXTURE_CUBE_MAP}};
 
-std::unordered_map<Texture::Filter, GLenum> GLFilter = {
-	{Texture::Filter::Nearest, GL_NEAREST},
-	{Texture::Filter::Bilinear, GL_LINEAR},
-	{Texture::Filter::Trilinear, GL_LINEAR_MIPMAP_LINEAR}
-};
+std::unordered_map<Texture::Filter, GLenum> GLFilter = {{Texture::Filter::Nearest, GL_NEAREST},
+                                                        {Texture::Filter::Bilinear, GL_LINEAR},
+                                                        {Texture::Filter::Trilinear, GL_LINEAR_MIPMAP_LINEAR}};
 
-std::unordered_map<Texture::Warp, GLenum> GLWarp = {
-	{Texture::Warp::Repeat, GL_REPEAT},
-	{Texture::Warp::MirrorRepeat, GL_MIRRORED_REPEAT},
-	{Texture::Warp::ClampToEdge, GL_CLAMP_TO_EDGE}
-};
+std::unordered_map<Texture::Warp, GLenum> GLWarp = {{Texture::Warp::Repeat, GL_REPEAT},
+                                                    {Texture::Warp::MirrorRepeat, GL_MIRRORED_REPEAT},
+                                                    {Texture::Warp::ClampToEdge, GL_CLAMP_TO_EDGE}};
 
-std::unordered_map<int, Format> ChannelsToFormat = {
-	{1, Format::R8F},
-	{2, Format::RG8F},
-	{3, Format::RGB8F},
-	{4, Format::RGBA8F},
-	{6, Format::RGB16F},
-	{8, Format::RGBA16F}
-};
+std::unordered_map<int, Format> ChannelsToFormat = {{1, Format::R8F},    {2, Format::RG8F},   {3, Format::RGB8F},
+                                                    {4, Format::RGBA8F}, {6, Format::RGB16F}, {8, Format::RGBA16F}};
 
 GLint GLInternalFormat(Format fmt)
 {
@@ -89,10 +77,10 @@ GLenum GLFormat(Format fmt)
 	}
 }
 
-}
+} // namespace
 
 GLTexture::GLTexture(const Image& image, Type type)
-	: Texture(type, ChannelsToFormat[image.getChannelCount()]), glTarget(GLType[type])
+    : Texture(type, ChannelsToFormat[image.getChannelCount()]), glTarget(GLType[type])
 {
 	glCreateTextures(glTarget, 1, &handle);
 	bind();
@@ -102,16 +90,15 @@ GLTexture::GLTexture(const Image& image, Type type)
 	setSWarp(Warp::Repeat);
 	setTWarp(Warp::Repeat);
 
-	glTexImage2D(glTarget, 0, GLInternalFormat(format),
-		static_cast<GLsizei>(image.getSize().x), static_cast<GLsizei>(image.getSize().y), 0,
-		GLFormat(format), GL_UNSIGNED_BYTE, image.getData());
+	glTexImage2D(glTarget, 0, GLInternalFormat(format), static_cast<GLsizei>(image.getSize().x),
+	             static_cast<GLsizei>(image.getSize().y), 0, GLFormat(format), GL_UNSIGNED_BYTE, image.getData());
 	GLCheckError();
 
-    generateMipmap();
+	generateMipmap();
 }
 
 GLTexture::GLTexture(const std::vector<Image>& images)
-	: Texture(Type::Cube, ChannelsToFormat[images[0].getChannelCount()]), glTarget(GLType[type])
+    : Texture(Type::Cube, ChannelsToFormat[images[0].getChannelCount()]), glTarget(GLType[type])
 {
 	glCreateTextures(glTarget, 1, &handle);
 	bind();
@@ -124,14 +111,13 @@ GLTexture::GLTexture(const std::vector<Image>& images)
 
 	for(size_t i = 0; i < images.size(); i++)
 	{
-		glTexImage2D(
-			static_cast<GLenum>(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i), 0, GLInternalFormat(format),
-			static_cast<GLsizei>(images[i].getSize().x), static_cast<GLsizei>(images[i].getSize().y), 0,
-			GLFormat(format), GL_UNSIGNED_BYTE, images[i].getData());
+		glTexImage2D(static_cast<GLenum>(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i), 0, GLInternalFormat(format),
+		             static_cast<GLsizei>(images[i].getSize().x), static_cast<GLsizei>(images[i].getSize().y), 0,
+		             GLFormat(format), GL_UNSIGNED_BYTE, images[i].getData());
 		GLCheckError();
 	}
 
-    generateMipmap();
+	generateMipmap();
 }
 
 GLTexture::~GLTexture()

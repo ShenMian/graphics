@@ -145,8 +145,7 @@ protected:
 		float far;
 	};
 
-	union
-	{
+	union {
 		Perspective  perspective;
 		Orthographic orthographic;
 	};

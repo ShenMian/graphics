@@ -13,9 +13,9 @@ class Window;
  *  @{
  */
 
- /**
-  * @brief 键盘/鼠标输入.
-  */
+/**
+ * @brief 键盘/鼠标输入.
+ */
 class Input
 {
 public:

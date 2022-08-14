@@ -3,14 +3,13 @@
 
 #include "Node.h"
 #include "Pin.h"
-#include <imnodes.h>
 #include <algorithm>
+#include <imnodes.h>
 
 namespace ui
 {
 
-Node::Node(const std::string& label)
-	: Widget(label)
+Node::Node(const std::string& label) : Widget(label)
 {
 }
 

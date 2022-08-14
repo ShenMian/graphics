@@ -4,9 +4,8 @@
 #include "VKIndexBuffer.h"
 
 VKIndexBuffer::VKIndexBuffer(const uint32_t* data, size_t size, Buffer::Usage usage)
-	: IndexBuffer(data, size),
-	buffer(size, Buffer::Type::Index, usage,
-		VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT)
+    : IndexBuffer(data, size), buffer(size, Buffer::Type::Index, usage,
+                                      VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT)
 {
 	buffer.map();
 	buffer.write(data, size);

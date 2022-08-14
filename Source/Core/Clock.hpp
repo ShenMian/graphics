@@ -10,8 +10,8 @@
  */
 
 /**
-* @brief 计时器.
-*/
+ * @brief 计时器.
+ */
 class Clock
 {
 public:

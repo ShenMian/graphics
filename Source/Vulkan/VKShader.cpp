@@ -3,11 +3,11 @@
 
 #include "VKShader.h"
 #include "VKRenderer.h"
-#include <shaderc/shaderc.hpp>
 #include <cassert>
-#include <stdexcept>
 #include <filesystem>
 #include <fstream>
+#include <shaderc/shaderc.hpp>
+#include <stdexcept>
 
 #define FMT_HEADER_ONLY
 #include <fmt/core.h>
@@ -19,16 +19,14 @@ namespace
 {
 
 std::unordered_map<Shader::Stage, shaderc_shader_kind> SCStage = {
-	{Shader::Stage::Vertex, shaderc_glsl_vertex_shader},
-	{Shader::Stage::Fragment, shaderc_glsl_fragment_shader},
-	{Shader::Stage::Geometry, shaderc_glsl_geometry_shader},
-	{Shader::Stage::Compute, shaderc_glsl_compute_shader}
-};
+    {Shader::Stage::Vertex, shaderc_glsl_vertex_shader},
+    {Shader::Stage::Fragment, shaderc_glsl_fragment_shader},
+    {Shader::Stage::Geometry, shaderc_glsl_geometry_shader},
+    {Shader::Stage::Compute, shaderc_glsl_compute_shader}};
 
 }
 
-VKShader::VKShader(const Descriptor& desc)
-	: Shader(desc)
+VKShader::VKShader(const Descriptor& desc) : Shader(desc)
 {
 	auto renderer = reinterpret_cast<VKRenderer*>(Renderer::get());
 
@@ -44,7 +42,7 @@ VKShader::VKShader(const Descriptor& desc)
 		path.replace_extension(".spv");
 
 	// 读取文件内容
-	const auto fileSize = fs::file_size(path);
+	const auto    fileSize = fs::file_size(path);
 	std::ifstream file(path, std::ios::binary);
 	if(!file.is_open())
 		throw std::runtime_error("failed to open file: " + path.string());
@@ -56,9 +54,9 @@ VKShader::VKShader(const Descriptor& desc)
 	file.close();
 
 	VkShaderModuleCreateInfo info = {};
-	info.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
-	info.codeSize = buffer.size();
-	info.pCode = reinterpret_cast<const uint32_t*>(buffer.data());
+	info.sType                    = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
+	info.codeSize                 = buffer.size();
+	info.pCode                    = reinterpret_cast<const uint32_t*>(buffer.data());
 
 	if(vkCreateShaderModule(renderer->getDevice(), &info, nullptr, &handle) != VK_SUCCESS)
 		throw std::runtime_error("failed to create shader module");
@@ -78,7 +76,7 @@ void VKShader::compile(const std::filesystem::path& sourcePath, Stage stage)
 		return;
 
 	// 读取源代码
-	const auto fileSize = fs::file_size(sourcePath);
+	const auto    fileSize = fs::file_size(sourcePath);
 	std::ifstream sourceFile(sourcePath, std::ios::binary);
 	if(!sourceFile.is_open())
 		throw std::runtime_error("failed to open file: " + sourcePath.string());
@@ -92,7 +90,7 @@ void VKShader::compile(const std::filesystem::path& sourcePath, Stage stage)
 	const std::string source(buffer.begin(), buffer.end());
 
 	// 将 GLSL 编译为 SPIR-V
-	shaderc::Compiler compiler;
+	shaderc::Compiler       compiler;
 	shaderc::CompileOptions options;
 	options.SetTargetEnvironment(shaderc_target_env_vulkan, shaderc_env_version_vulkan_1_2);
 	options.SetOptimizationLevel(shaderc_optimization_level_performance);

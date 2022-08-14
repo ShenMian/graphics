@@ -3,9 +3,9 @@
 
 #pragma once
 
-#include <vulkan/vulkan.h>
 #include <string_view>
 #include <vector>
+#include <vulkan/vulkan.h>
 
 /**
  * @brief Vulkan 物理设备.
@@ -33,16 +33,16 @@ public:
 	 */
 	std::string_view getVendorName() const;
 
-	VkSurfaceCapabilitiesKHR getSurfaceCapabilities() const;
+	VkSurfaceCapabilitiesKHR        getSurfaceCapabilities() const;
 	std::vector<VkSurfaceFormatKHR> getSurfaceFormats() const;
-	std::vector<VkPresentModeKHR> getSurfacePresentModes() const;
+	std::vector<VkPresentModeKHR>   getSurfacePresentModes() const;
 
 	bool isExtensionAvailable(std::string_view name) const;
 
 	uint32_t graphics = -1;
-	uint32_t compute = -1;
+	uint32_t compute  = -1;
 	uint32_t transfer = -1;
-	uint32_t present = -1;
+	uint32_t present  = -1;
 
 	operator VkPhysicalDevice();
 	operator VkPhysicalDevice() const;

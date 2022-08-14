@@ -7,8 +7,7 @@
 namespace ui
 {
 
-Menu::Menu(const std::string& label)
-	: Widget(label)
+Menu::Menu(const std::string& label) : Widget(label)
 {
 }
 

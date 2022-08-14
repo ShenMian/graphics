@@ -3,8 +3,7 @@
 
 #include "VKInstance.h"
 
-VKInstance::VKInstance(VkInstance instance)
-	: handle(instance)
+VKInstance::VKInstance(VkInstance instance) : handle(instance)
 {
 }
 

@@ -10,22 +10,17 @@
 namespace
 {
 
-std::unordered_map<Buffer::Type, uint32_t> GLType = {
-	{Buffer::Type::Vertex, GL_ARRAY_BUFFER},
-	{Buffer::Type::Index, GL_ELEMENT_ARRAY_BUFFER},
-	{Buffer::Type::Uniform, GL_UNIFORM_BUFFER}
-};
+std::unordered_map<Buffer::Type, uint32_t> GLType = {{Buffer::Type::Vertex, GL_ARRAY_BUFFER},
+                                                     {Buffer::Type::Index, GL_ELEMENT_ARRAY_BUFFER},
+                                                     {Buffer::Type::Uniform, GL_UNIFORM_BUFFER}};
 
-std::unordered_map<Buffer::Usage, uint32_t> GLUsage = {
-	{Buffer::Usage::Static, GL_STATIC_DRAW},
-	{Buffer::Usage::Dynamic, GL_DYNAMIC_DRAW},
-	{Buffer::Usage::Stream, GL_STREAM_DRAW}
-};
+std::unordered_map<Buffer::Usage, uint32_t> GLUsage = {{Buffer::Usage::Static, GL_STATIC_DRAW},
+                                                       {Buffer::Usage::Dynamic, GL_DYNAMIC_DRAW},
+                                                       {Buffer::Usage::Stream, GL_STREAM_DRAW}};
 
-}
+} // namespace
 
-GLBuffer::GLBuffer(size_t size, Type type, Usage usage)
-	: Buffer(size, type, usage), glType(GLType[type])
+GLBuffer::GLBuffer(size_t size, Type type, Usage usage) : Buffer(size, type, usage), glType(GLType[type])
 {
 	glCreateBuffers(1, &handle);
 	bind();

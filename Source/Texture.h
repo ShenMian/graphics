@@ -3,8 +3,8 @@
 
 #pragma once
 
-#include "Format.h"
 #include "Core/Platform.h"
+#include "Format.h"
 #include <filesystem>
 #include <memory>
 #include <unordered_map>
@@ -111,7 +111,7 @@ public:
 	/**
 	 * @brief 获取像素格式.
 	 */
-    [[nodiscard]] Format getFormat() const;
+	[[nodiscard]] Format getFormat() const;
 
 protected:
 	Texture(Type type, Format fmt);

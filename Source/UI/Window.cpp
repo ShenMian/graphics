@@ -7,8 +7,7 @@
 namespace ui
 {
 
-Window::Window(const std::string& label, Flag flags)
-	: Widget(label), flags(flags)
+Window::Window(const std::string& label, Flag flags) : Widget(label), flags(flags)
 {
 }
 

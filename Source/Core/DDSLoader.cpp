@@ -1,9 +1,9 @@
 ﻿// Copyright 2021 ShenMian
 // License(Apache-2.0)
 
+#include <cassert>
 #include <filesystem>
 #include <fstream>
-#include <cassert>
 
 constexpr uint32_t dds_magic_number = 0x20534444; // "DDS "
 
@@ -51,14 +51,14 @@ namespace DDSFlag
 
 enum
 {
-	Alpha = 0x00000001,
+	Alpha      = 0x00000001,
 	Compressed = 0x00000004,
-	Cubemap = 0x00000200,
-	Mipmaps = 0x00020000,
-	Depth = 0x00800000
+	Cubemap    = 0x00000200,
+	Mipmaps    = 0x00020000,
+	Depth      = 0x00800000
 };
 
-}
+} // namespace DDSFlag
 
 template <typename T>
 void Read(std::istream& stream, T& value)
@@ -80,7 +80,7 @@ namespace fs = std::filesystem;
 
 void LoadDDS(const fs::path& path)
 {
-	const auto fileSize = fs::file_size(path);
+	const auto    fileSize = fs::file_size(path);
 	std::ifstream file(path, std::ios::binary);
 	if(!file.is_open())
 		throw std::runtime_error("failed to open file: " + path.string());
@@ -94,7 +94,7 @@ void LoadDDS(const fs::path& path)
 	DDSHeader header;
 	Read(file, header);
 
-	const bool hasDepth = header.flags & DDSFlag::Depth;
+	const bool hasDepth  = header.flags & DDSFlag::Depth;
 	const bool isCubeMap = header.flags & DDSFlag::Cubemap;
 
 	const auto MakeFourCC = [](const char* str) {

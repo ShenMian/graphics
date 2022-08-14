@@ -10,9 +10,9 @@
  *  @{
  */
 
- /**
-  * @brief 材质.
-  */
+/**
+ * @brief 材质.
+ */
 class Material
 {
 public:

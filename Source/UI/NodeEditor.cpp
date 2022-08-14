@@ -2,9 +2,9 @@
 // License(Apache-2.0)
 
 #include "NodeEditor.h"
+#include <algorithm>
 #include <imnodes.h>
 #include <imnodes_internal.h>
-#include <algorithm>
 
 #include "Node.h"
 #include "Pin.h"
@@ -22,7 +22,7 @@ NodeEditor::NodeEditor()
 {
 	ImNodes::CreateContext();
 	// ImNodes::GetCurrentContext()->Style.PinOffset = 10;
-    ImNodes::PushAttributeFlag(ImNodesAttributeFlags_EnableLinkDetachWithDragClick);
+	ImNodes::PushAttributeFlag(ImNodesAttributeFlags_EnableLinkDetachWithDragClick);
 
 	context = ImNodes::EditorContextCreate();
 
@@ -71,7 +71,7 @@ void NodeEditor::update()
 	if(ImNodes::IsLinkCreated(&startId, &endId))
 	{
 		const Pin* start = nullptr;
-		const Pin* end = nullptr;
+		const Pin* end   = nullptr;
 		for(auto& node : nodes)
 			if(start = node.getPinById(startId))
 				break;
@@ -79,7 +79,8 @@ void NodeEditor::update()
 			if(end = node.getPinById(endId))
 				break;
 
-		if(start != nullptr && end != nullptr && start->getKind() != end->getKind() && start->getType() == end->getType())
+		if(start != nullptr && end != nullptr && start->getKind() != end->getKind() &&
+		   start->getType() == end->getType())
 			links.insert(std::make_pair(Widget::requestId(), Link{*start, *end}));
 	}
 

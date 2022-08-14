@@ -3,18 +3,18 @@
 
 #pragma once
 
-#include <math/math.hpp>
 #include <cstdint>
 #include <filesystem>
+#include <math/math.hpp>
 #include <vector>
 
 /** @addtogroup core
  *  @{
  */
 
- /**
-  * @brief 图像.
-  */
+/**
+ * @brief 图像.
+ */
 class Image
 {
 public:
