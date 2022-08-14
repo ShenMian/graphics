@@ -2,20 +2,25 @@
 # Copyright 2021 ShenMian
 # License(Apache-2.0)
 
+build_type=$1
+compiler=$2 # 编译器只能是 clang/gcc
+compiler_version=$3
+shift
+shift
+shift
+
 if ! hash "cmake" &>/dev/null; then
     echo "=== Need cmake."
     exit 1
 fi
 
-if [ $# -eq 0 ]; then
-  BUILD_TYPE="Debug"
-else
-  BUILD_TYPE=$1
+if [ -z ${build_type} ]; then
+  build_type="Debug"
 fi
 
-if [ ! -z "$2" ] && [ ! -z "$3" ]; then
-  CONAN_ARGS="-s build_type=${BUILD_TYPE} -s compiler=$2 -s compiler.version=$3"
-  CMAKE_ARGS="-DCMAKE_CXX_COMPILER=$2"
+if [ ! -z "$compiler" ] && [ ! -z "$compiler_version" ]; then
+  CONAN_ARGS="-s build_type=$build_type -s compiler=$compiler -s compiler.version=$compiler_version"
+  CMAKE_ARGS="-DCMAKE_CXX_COMPILER=$compiler++"
 fi
 
 cd "$( cd "$( dirname "$0"  )" && pwd  )" || exit
@@ -40,7 +45,7 @@ echo "=== Generating 'compile_commands.json'..."
 cp build/compile_commands.json . &>/dev/null || echo "No 'compile_commands.json' was generated."
 
 echo "=== Building..."
-cmake --build build --config "${BUILD_TYPE}" -- -j$(nproc) >/dev/null || {
+cmake --build build --config "$build_type" -- -j$(nproc) >/dev/null || {
   echo "=== Failed to build."
   exit 1
 }
