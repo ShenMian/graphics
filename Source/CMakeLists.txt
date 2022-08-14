@@ -77,6 +77,7 @@ if(NOT USE_CONAN)
 endif()
 
 list(APPEND INCS "${DEPS_DIR}/Math/include")
+list(APPEND INCS "${DEPS_DIR}/Math/deps/gcem/include")
 list(APPEND INCS "${CMAKE_BINARY_DIR}/include")
 
 # 添加 assimp
