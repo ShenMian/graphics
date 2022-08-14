@@ -16,8 +16,8 @@ if(NOT DEFINED CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Debug)
 endif()
 
-# 默认生成 compiler database
-if(NOT DEFINED CMAKE_BUILD_TYPE)
+# 默认生成 compilation databases
+if(NOT DEFINED CMAKE_EXPORT_COMPILE_COMMANDS)
     set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 endif()
 
