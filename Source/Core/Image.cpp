@@ -37,7 +37,7 @@ Image::Image(const void* data, size_t sizeBytes, Vector2i size, int channels)
 void Image::loadFromFile(const std::filesystem::path& path)
 {
 	if(!fs::exists(path) && !fs::is_regular_file(path))
-		throw std::runtime_error(fmt::format("no such file: '{}' ", path));
+		throw std::runtime_error(fmt::format("no such file: {}", path));
 
 	StbiImage pixels(stbi_load(path.string().c_str(), &size.x, &size.y, &channels, 0));
 	if(pixels == nullptr)

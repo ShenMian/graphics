@@ -74,14 +74,14 @@ void loadVertices(std::vector<Vertex>& vertices, const aiMesh* mesh)
 
 		if(mesh->mTextureCoords[0])
 		{
-			vertex.uv.x = mesh->mTextureCoords[0][i].x; // 获取纹理坐标
+			vertex.uv.x = mesh->mTextureCoords[0][i].x;
 			vertex.uv.y = mesh->mTextureCoords[0][i].y;
 
-			vertex.tangent.x = mesh->mTangents[i].x; // 获取 tangent
+			vertex.tangent.x = mesh->mTangents[i].x;
 			vertex.tangent.y = mesh->mTangents[i].y;
 			vertex.tangent.z = mesh->mTangents[i].z;
 
-			vertex.bitangent.x = mesh->mBitangents[i].x; // 获取 bitangent
+			vertex.bitangent.x = mesh->mBitangents[i].x;
 			vertex.bitangent.y = mesh->mBitangents[i].y;
 			vertex.bitangent.z = mesh->mBitangents[i].z;
 		}
@@ -231,7 +231,7 @@ void loadNode(const aiNode* node, const aiScene* scene, const fs::path& path, st
 void Model::load(const fs::path& path, unsigned int process, std::function<void(float)> progress)
 {
 	if(!fs::exists(path) && !fs::is_regular_file(path))
-		throw std::runtime_error(fmt::format("no such file: '{}' ", path));
+		throw std::runtime_error(fmt::format("no such file: {}", path));
 
 	this->path = path;
 	name.clear();

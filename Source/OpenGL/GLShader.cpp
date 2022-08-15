@@ -38,7 +38,7 @@ GLShader::GLShader(const Descriptor& desc) : Shader(desc), handle(glCreateShader
 	auto path = desc.path;
 
 	if(!fs::exists(path))
-		throw std::runtime_error(fmt::format("no such file: '{}' ", path));
+		throw std::runtime_error(fmt::format("no such file: {}", path));
 
 #if 1
 	if(path.extension() == ".glsl")

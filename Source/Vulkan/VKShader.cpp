@@ -34,7 +34,7 @@ VKShader::VKShader(const Descriptor& desc) : Shader(desc)
 	auto path = desc.path;
 
 	if(!fs::exists(path))
-		throw std::runtime_error(fmt::format("no such file: '{}' ", path));
+		throw std::runtime_error(fmt::format("no such file: {}", path));
 
 	// TODO: 与 GLShader 重复
 	if(path.extension() == ".glsl")
