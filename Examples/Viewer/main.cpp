@@ -10,6 +10,23 @@ public:
 
 	int main(int argc, char* argv[])
 	{
+		std::filesystem::path path;
+		if(argc > 1)
+			path = argv[1];
+		else
+		{
+			// path = "../../../../../../Model/sponza/sponza.glb";
+			// path = "../../../../../../Model/m4a1/m4a1.gltf";
+			// path = "../../../../../../Model/pistol/kimber_desert_warrior/scene.gltf";
+			// path = "../../../../../../Model/Bistro/BistroExterior.glb";
+			path = "../../../../../../Model/San_Miguel/SanMiguel-low.glb";
+		}
+
+		Model model;
+		model.load(path, Model::ProcessFlags::Fast,
+		           [](float progress) { printf("Meshes loading: %.1f%%  \r", progress * 100); });
+		printModelInfo(model);
+
 		auto program = Program::create("Shaders/mesh");
 
 		PipelineLayout layout = {{"albedo", PipelineLayout::Type::Texture, 0, PipelineLayout::StageFlags::Fragment},
@@ -42,27 +59,6 @@ public:
 		Matrix4f bones[100];
 		animation.write(bones, 100 * sizeof(Matrix4f));
 		*/
-
-		std::filesystem::path path;
-		if(argc > 1)
-			path = argv[1];
-		else
-		{
-			// path = "../../../../../../Model/bee.glb";
-			// path = "../../../../../../Model/sponza/sponza.obj";
-			path = "../../../../../../Model/sponza/sponza.glb";
-			// path = "../../../../../../Model/m4a1/m4a1.gltf";
-			// path = "../../../../../../Model/pistol/kimber_desert_warrior/scene.gltf";
-			// path = "../../../../../../Model/Bistro/BistroExterior.glb";
-			// path = "../../../../../../Model/SpeedTree/White Oak/HighPoly/White_Oak.fbx";
-			// path = "../../../../../../Model/San_Miguel/san-miguel-low-poly.obj";
-			// path = "../../../../../../Model/San_Miguel/SanMiguel-low.glb";
-		}
-
-		Model model;
-		model.load(path, Model::ProcessFlags::Fast,
-		           [](float progress) { printf("Meshes loading: %.1f%%  \r", progress * 100); });
-		printModelInfo(model);
 
 		// 根据模型大小设置相机移动速度
 		auto speed = 0.f;
