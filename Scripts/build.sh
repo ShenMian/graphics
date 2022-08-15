@@ -14,7 +14,7 @@ if ! hash "cmake" &>/dev/null; then
     exit 1
 fi
 
-if [ -z ${build_type} ]; then
+if [ -z "${build_type}" ]; then
   build_type="Debug"
 fi
 
