@@ -57,6 +57,7 @@ public:
 		catch(std::runtime_error& e)
 		{
 			printError(e.what());
+			getchar();
 			return 1;
 		}
 	}
