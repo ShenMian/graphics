@@ -52,15 +52,7 @@ macro(add_example NAME)
 
     add_executable(${NAME} ${SOURCES})
 
-    target_include_directories(${NAME} PUBLIC
-        "${PROJECT_SOURCE_DIR}/Source"
-        "${DEPS_DIR}/stb"
-        "${DEPS_DIR}/fmt/include"
-        "${DEPS_DIR}/Math/include"
-        "${DEPS_DIR}/glad/include"
-        "${DEPS_DIR}/Vulkan-Headers/include"
-        "${DEPS_DIR}/imgui-node-editor")
-    target_link_libraries(${NAME} PRIVATE graphics glad)
+    target_link_libraries(${NAME} PRIVATE graphics)
     target_compile_definitions(${NAME} PUBLIC ${GRAPHICS_DEFINES})
 
     set_target_properties(${NAME} PROPERTIES
