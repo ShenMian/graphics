@@ -19,7 +19,7 @@
 struct Model
 {
 	std::string            name;
-	std::vector<Mesh>      meshs;
+	std::vector<Mesh>      meshes;
 	std::vector<Material>  materials;
 	std::vector<Animation> animations;
 	std::filesystem::path  path;

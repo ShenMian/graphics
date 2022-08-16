@@ -15,11 +15,14 @@ public:
 			path = argv[1];
 		else
 		{
-			path = "../../../../../../Model/sponza/sponza.glb";
+			// path = "../../../../../../Model/sponza/sponza.obj"; // no texture
+			path = "../../../../../../Model/pbr/sponza/sponza.glb";
+			// path = "../../../../../../Model/pbr/MetalRoughSpheres/MetalRoughSpheres.gltf";
 			// path = "../../../../../../Model/m4a1/m4a1.gltf";
 			// path = "../../../../../../Model/pistol/kimber_desert_warrior/scene.gltf";
 			// path = "../../../../../../Model/Bistro/BistroExterior.glb";
 			// path = "../../../../../../Model/San_Miguel/SanMiguel-low.glb";
+			// path = "../../../../../../Model/San_Miguel/san-miguel-low-poly.obj";
 		}
 
 		AssimpImporter importer;
@@ -163,13 +166,30 @@ public:
 				cmdBuffer->clear(ClearFlag::Color | ClearFlag::Depth);
 
 				cmdBuffer->setPipeline(pipeline);
-				for(const auto& mesh : model.meshs)
+				for(const auto& mesh : model.meshes)
 				{
 					const auto vb = mesh.vertexBuffer;
 					const auto ib = mesh.indexBuffer;
 
 					cmdBuffer->setVertexBuffer(vb);
 					cmdBuffer->setIndexBuffer(ib);
+
+					if(mesh.material->pbr.albedo)
+					{
+						cmdBuffer->setTexture(mesh.material->pbr.albedo, 0);
+						cmdBuffer->setTexture(mesh.material->pbr.metallic, 1);
+						cmdBuffer->setTexture(mesh.material->pbr.roughness, 2);
+						cmdBuffer->setTexture(mesh.material->pbr.ao, 3);
+						cmdBuffer->setTexture(mesh.material->pbr.emissive, 4);
+						cmdBuffer->setTexture(mesh.material->pbr.normals, 5);
+					}
+					else
+					{
+						cmdBuffer->setTexture(mesh.material->diffuse, 0);
+						cmdBuffer->setTexture(mesh.material->emissive, 4);
+						cmdBuffer->setTexture(mesh.material->normals, 5);
+					}
+
 					cmdBuffer->drawIndexed(ib->getCount());
 				}
 			}

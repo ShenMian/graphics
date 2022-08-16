@@ -21,7 +21,6 @@
 
 namespace fs = std::filesystem;
 
-
 namespace
 {
 
@@ -65,7 +64,8 @@ Model AssimpImporter::load(const fs::path& path)
 		throw std::runtime_error(fmt::format("Assimp: {}", importer.GetErrorString()));
 
 	Model model;
-	this->model = &model;
+	this->model       = &model;
+	this->model->path = path;
 	loadScene();
 
 	return model;
@@ -101,7 +101,7 @@ void AssimpImporter::loadMesh(const aiMesh& mesh)
 	for(const auto& vertex : vertices)
 		model->aabb.expand(vertex.position);
 
-	model->meshs.push_back({mesh.mName.C_Str(), vertices, indices, &model->materials[mesh.mMaterialIndex]});
+	model->meshes.push_back({mesh.mName.C_Str(), vertices, indices, &model->materials[mesh.mMaterialIndex]});
 	model->vertexCount += vertices.size();
 	model->indexCount += indices.size();
 }
