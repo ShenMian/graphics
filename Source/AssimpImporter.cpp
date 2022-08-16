@@ -24,6 +24,12 @@ namespace fs = std::filesystem;
 namespace
 {
 
+std::unordered_map<aiTextureMapMode, Texture::Warp> AIWarp = {
+    {aiTextureMapMode_Wrap, Texture::Warp::Repeat},
+    {aiTextureMapMode_Clamp, Texture::Warp::ClampToEdge},
+    {aiTextureMapMode_Mirror, Texture::Warp::MirrorRepeat},
+    {aiTextureMapMode_Decal, Texture::Warp::ClampToEdge} /* 缺省, 指定一个默认方式 */};
+
 // Assimp 文件加载进度回调
 class Progress : public Assimp::ProgressHandler
 {
@@ -113,11 +119,14 @@ void AssimpImporter::loadMaterial(const aiMaterial& mat)
 			return nullptr;
 		assert(mat.GetTextureCount(type) == 1);
 
-		aiString name;
-		mat.GetTexture(type, 0, &name);
-		if(!fs::exists(model->path.parent_path() / name.C_Str()))
+		aiString         path;
+		aiTextureMapMode warp;
+		mat.GetTexture(type, 0, &path, nullptr, nullptr, nullptr, nullptr, &warp);
+		if(!fs::exists(model->path.parent_path() / path.C_Str()))
 			return nullptr;
-		return Texture::create(model->path.parent_path() / name.C_Str());
+		auto texture = Texture::create(model->path.parent_path() / path.C_Str());
+		texture->setRWarp(AIWarp[warp]);
+		return texture;
 	};
 
 	model->materials.push_back({
