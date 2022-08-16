@@ -89,16 +89,18 @@ $(document).ready(function(){initNavTree('class_mesh.html',''); initResizable();
 
 <p>成员的完整列表，这些成员属于 <a class="el" href="class_mesh.html">Mesh</a>,包括所有继承而来的类成员</p>
 <table class="directory">
-  <tr class="even"><td class="entry"><a class="el" href="class_mesh.html#a1bf2769511b83ed0d0395932b0065fcd">compress</a>()</td><td class="entry"><a class="el" href="class_mesh.html">Mesh</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_mesh.html#a85a46b3f1d32d145153ae05816e28368">compress</a>()</td><td class="entry"><a class="el" href="class_mesh.html">Mesh</a></td><td class="entry"></td></tr>
   <tr class="odd"><td class="entry"><a class="el" href="class_mesh.html#a8f9b5776987d94db7ac1eaa591340f1e">decompress</a>()</td><td class="entry"><a class="el" href="class_mesh.html">Mesh</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_mesh.html#abefb61c0e5d80fb0a2135550276bc1e0">getIndexBuffer</a>() const</td><td class="entry"><a class="el" href="class_mesh.html">Mesh</a></td><td class="entry"></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="class_mesh.html#a0decb21b3799c3768eba050d2c703735">getInfo</a>() const</td><td class="entry"><a class="el" href="class_mesh.html">Mesh</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_mesh.html#ad815a1af67f85776d41961f44e27a5e7">getMaterial</a>() const</td><td class="entry"><a class="el" href="class_mesh.html">Mesh</a></td><td class="entry"></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="class_mesh.html#a5db6e4320ba53bfd030ca231d0544a2a">getName</a>() const</td><td class="entry"><a class="el" href="class_mesh.html">Mesh</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_mesh.html#a305b2fb16bddc7dbb175044d30c2656d">getVertexBuffer</a>() const</td><td class="entry"><a class="el" href="class_mesh.html">Mesh</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>isCompressed</b>() const (定义于 <a class="el" href="class_mesh.html">Mesh</a>)</td><td class="entry"><a class="el" href="class_mesh.html">Mesh</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>Mesh</b>()=default (定义于 <a class="el" href="class_mesh.html">Mesh</a>)</td><td class="entry"><a class="el" href="class_mesh.html">Mesh</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>Mesh</b>(std::string_view name, std::vector&lt; Vertex &gt; &amp;vertices, std::vector&lt; unsigned int &gt; &amp;indices, const Material *mat=nullptr) (定义于 <a class="el" href="class_mesh.html">Mesh</a>)</td><td class="entry"><a class="el" href="class_mesh.html">Mesh</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>indexBuffer</b> (定义于 <a class="el" href="class_mesh.html">Mesh</a>)</td><td class="entry"><a class="el" href="class_mesh.html">Mesh</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>indexCount</b> (定义于 <a class="el" href="class_mesh.html">Mesh</a>)</td><td class="entry"><a class="el" href="class_mesh.html">Mesh</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>indices</b> (定义于 <a class="el" href="class_mesh.html">Mesh</a>)</td><td class="entry"><a class="el" href="class_mesh.html">Mesh</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_mesh.html#a805c66466278300f121c366cb0f9c6de">isCompressed</a>() const noexcept</td><td class="entry"><a class="el" href="class_mesh.html">Mesh</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>material</b> (定义于 <a class="el" href="class_mesh.html">Mesh</a>)</td><td class="entry"><a class="el" href="class_mesh.html">Mesh</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>Mesh</b>(std::string_view name, const std::vector&lt; Vertex &gt; &amp;vertices, const std::vector&lt; unsigned int &gt; &amp;indices, Material *mat=nullptr) (定义于 <a class="el" href="class_mesh.html">Mesh</a>)</td><td class="entry"><a class="el" href="class_mesh.html">Mesh</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>name</b> (定义于 <a class="el" href="class_mesh.html">Mesh</a>)</td><td class="entry"><a class="el" href="class_mesh.html">Mesh</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>vertexBuffer</b> (定义于 <a class="el" href="class_mesh.html">Mesh</a>)</td><td class="entry"><a class="el" href="class_mesh.html">Mesh</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>vertexCount</b> (定义于 <a class="el" href="class_mesh.html">Mesh</a>)</td><td class="entry"><a class="el" href="class_mesh.html">Mesh</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>vertices</b> (定义于 <a class="el" href="class_mesh.html">Mesh</a>)</td><td class="entry"><a class="el" href="class_mesh.html">Mesh</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Graphics: 成员列表</title>
+<title>Graphics: Importer类 参考</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -64,7 +64,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('class_primitive.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('class_importer.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -83,21 +83,44 @@ $(document).ready(function(){initNavTree('class_primitive.html',''); initResizab
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">Primitive 成员列表</div></div>
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="class_importer-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">Importer类 参考<span class="mlabels"><span class="mlabel">abstract</span></span><div class="ingroups"><a class="el" href="group__model.html">模型</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>成员的完整列表，这些成员属于 <a class="el" href="class_primitive.html">Primitive</a>,包括所有继承而来的类成员</p>
-<table class="directory">
-  <tr class="even"><td class="entry"><a class="el" href="class_primitive.html#a610c5a7dca221b52beaadb4ab6e19b8a">makeCapsule</a>(unsigned int resolution, float height, float radius)</td><td class="entry"><a class="el" href="class_primitive.html">Primitive</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="class_primitive.html#a699761ff48c97c8f363e295e1166f7b7">makeIcoSphere</a>(unsigned int resolution)</td><td class="entry"><a class="el" href="class_primitive.html">Primitive</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_primitive.html#a41a15df592e088807ee33784600ab280">makePlane</a>(unsigned int x, unsigned int z)</td><td class="entry"><a class="el" href="class_primitive.html">Primitive</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="class_primitive.html#ad007a4e272cd9896a9514355cebffd90">makeSphere</a>(unsigned int lat, unsigned int lon)</td><td class="entry"><a class="el" href="class_primitive.html">Primitive</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-</table></div><!-- contents -->
+<p>模型导入器.  
+ <a href="class_importer.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_importer_8h_source.html">Importer.h</a>&gt;</code></p>
+<div class="dynheader">
+类 Importer 继承关系图:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_importer.png" usemap="#Importer_map" alt=""/>
+  <map id="Importer_map" name="Importer_map">
+<area href="class_assimp_importer.html" title="Assimp 模型导入器." alt="AssimpImporter" shape="rect" coords="0,56,98,80"/>
+  </map>
+</div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a68d2b0c60318efbd3f37e0535c75de99"><td class="memItemLeft" align="right" valign="top"><a id="a68d2b0c60318efbd3f37e0535c75de99" name="a68d2b0c60318efbd3f37e0535c75de99"></a>
+virtual <a class="el" href="struct_model.html">Model</a>&#160;</td><td class="memItemRight" valign="bottom"><b>load</b> (const std::filesystem::path &amp;path)=0</td></tr>
+<tr class="separator:a68d2b0c60318efbd3f37e0535c75de99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p >模型导入器. </p>
+</div><hr/>该类的文档由以下文件生成:<ul>
+<li>/github/workspace/Source/<a class="el" href="_importer_8h_source.html">Importer.h</a></li>
+</ul>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
+    <li class="navelem"><a class="el" href="class_importer.html">Importer</a></li>
     <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4 </li>
   </ul>
 </div>

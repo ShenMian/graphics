@@ -5,7 +5,7 @@ var indexSectionsWithContent =
   2: "bcdefgilmrsuw~",
   3: "eo",
   4: "bfkmqstuw",
-  5: "bcfglmnpqrtv",
+  5: "bcfglmnprtv",
   6: "核模着",
   7: "主快贡"
 };

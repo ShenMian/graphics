@@ -38,17 +38,19 @@ var hierarchy =
     [ "GLCmdSetViewport", "struct_g_l_cmd_set_viewport.html", null ],
     [ "GLVertexArray", "class_g_l_vertex_array.html", null ],
     [ "Image", "class_image.html", null ],
+    [ "Importer", "class_importer.html", [
+      [ "AssimpImporter", "class_assimp_importer.html", null ]
+    ] ],
     [ "IndexBuffer", "class_index_buffer.html", [
       [ "GLIndexBuffer", "class_g_l_index_buffer.html", null ],
       [ "VKIndexBuffer", "class_v_k_index_buffer.html", null ]
     ] ],
-    [ "Mesh::Info", "struct_mesh_1_1_info.html", null ],
     [ "Input", "class_input.html", null ],
     [ "InstanceBuilder", "class_instance_builder.html", null ],
     [ "Link", "struct_link.html", null ],
-    [ "Material", "class_material.html", null ],
+    [ "Material", "struct_material.html", null ],
     [ "Mesh", "class_mesh.html", null ],
-    [ "Model", "class_model.html", null ],
+    [ "Model", "struct_model.html", null ],
     [ "Monitor", "class_monitor.html", null ],
     [ "ui::NodeEditor", "classui_1_1_node_editor.html", null ],
     [ "Camera::Orthographic", "struct_camera_1_1_orthographic.html", null ],
@@ -61,7 +63,6 @@ var hierarchy =
     ] ],
     [ "PipelineLayout", "class_pipeline_layout.html", null ],
     [ "Primitive", "class_primitive.html", null ],
-    [ "Model::ProcessFlags", "struct_model_1_1_process_flags.html", null ],
     [ "Program", "class_program.html", [
       [ "GLProgram", "class_g_l_program.html", null ],
       [ "VKProgram", "class_v_k_program.html", null ]

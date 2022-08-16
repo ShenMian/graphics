@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.4"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Graphics: Mesh::Info结构体 参考</title>
+<title>Graphics: AssimpImporter类 参考</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -64,7 +64,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('struct_mesh_1_1_info.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('class_assimp_importer.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -85,40 +85,74 @@ $(document).ready(function(){initNavTree('struct_mesh_1_1_info.html',''); initRe
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public 成员函数</a> &#124;
-<a href="#pub-attribs">Public 属性</a> &#124;
-<a href="struct_mesh_1_1_info-members.html">所有成员列表</a>  </div>
-  <div class="headertitle"><div class="title">Mesh::Info结构体 参考</div></div>
+<a href="class_assimp_importer-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">AssimpImporter类 参考<div class="ingroups"><a class="el" href="group__model.html">模型</a></div></div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Assimp 模型导入器.  
+ <a href="class_assimp_importer.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_assimp_importer_8h_source.html">AssimpImporter.h</a>&gt;</code></p>
+<div class="dynheader">
+类 AssimpImporter 继承关系图:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_assimp_importer.png" usemap="#AssimpImporter_map" alt=""/>
+  <map id="AssimpImporter_map" name="AssimpImporter_map">
+<area href="class_importer.html" title="模型导入器." alt="Importer" shape="rect" coords="0,0,98,24"/>
+  </map>
+</div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
-<tr class="memitem:afc0354660de25cb0f8b4a3b05193be1c"><td class="memItemLeft" align="right" valign="top"><a id="afc0354660de25cb0f8b4a3b05193be1c" name="afc0354660de25cb0f8b4a3b05193be1c"></a>
-<a class="el" href="struct_mesh_1_1_info.html">Info</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator+=</b> (const <a class="el" href="struct_mesh_1_1_info.html">Info</a> &amp;)</td></tr>
-<tr class="separator:afc0354660de25cb0f8b4a3b05193be1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
-Public 属性</h2></td></tr>
-<tr class="memitem:a90f106d2d9c7a18aaa2395210769fe84"><td class="memItemLeft" align="right" valign="top"><a id="a90f106d2d9c7a18aaa2395210769fe84" name="a90f106d2d9c7a18aaa2395210769fe84"></a>
-uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>vertices</b> = 0</td></tr>
-<tr class="separator:a90f106d2d9c7a18aaa2395210769fe84"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba7844efa2465b229bdfd1b268260bcb"><td class="memItemLeft" align="right" valign="top"><a id="aba7844efa2465b229bdfd1b268260bcb" name="aba7844efa2465b229bdfd1b268260bcb"></a>
-uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>indices</b> = 0</td></tr>
-<tr class="separator:aba7844efa2465b229bdfd1b268260bcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf3d748d8a29e99f9841fa2f5830fe22"><td class="memItemLeft" align="right" valign="top"><a id="acf3d748d8a29e99f9841fa2f5830fe22" name="acf3d748d8a29e99f9841fa2f5830fe22"></a>
-uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>triangles</b> = 0</td></tr>
-<tr class="separator:acf3d748d8a29e99f9841fa2f5830fe22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f897fe7ab9d6fdb48fcb0f630e5463e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_model.html">Model</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_assimp_importer.html#a6f897fe7ab9d6fdb48fcb0f630e5463e">load</a> (const std::filesystem::path &amp;path) override</td></tr>
+<tr class="separator:a6f897fe7ab9d6fdb48fcb0f630e5463e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68d2b0c60318efbd3f37e0535c75de99"><td class="memItemLeft" align="right" valign="top"><a id="a68d2b0c60318efbd3f37e0535c75de99" name="a68d2b0c60318efbd3f37e0535c75de99"></a>
+virtual <a class="el" href="struct_model.html">Model</a>&#160;</td><td class="memItemRight" valign="bottom"><b>load</b> (const std::filesystem::path &amp;path)=0</td></tr>
+<tr class="separator:a68d2b0c60318efbd3f37e0535c75de99"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>该结构体的文档由以下文件生成:<ul>
-<li>/github/workspace/Source/<a class="el" href="_mesh_8h_source.html">Mesh.h</a></li>
-<li>/github/workspace/Source/Mesh.cpp</li>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p >Assimp 模型导入器. </p>
+</div><h2 class="groupheader">成员函数说明</h2>
+<a id="a6f897fe7ab9d6fdb48fcb0f630e5463e" name="a6f897fe7ab9d6fdb48fcb0f630e5463e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f897fe7ab9d6fdb48fcb0f630e5463e">&#9670;&nbsp;</a></span>load()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_model.html">Model</a> AssimpImporter::load </td>
+          <td>(</td>
+          <td class="paramtype">const std::filesystem::path &amp;&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="class_importer.html">Importer</a>.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/github/workspace/Source/<a class="el" href="_assimp_importer_8h_source.html">AssimpImporter.h</a></li>
+<li>/github/workspace/Source/AssimpImporter.cpp</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="class_mesh.html">Mesh</a></li><li class="navelem"><a class="el" href="struct_mesh_1_1_info.html">Info</a></li>
+    <li class="navelem"><a class="el" href="class_assimp_importer.html">AssimpImporter</a></li>
     <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4 </li>
   </ul>
 </div>

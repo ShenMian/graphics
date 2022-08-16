@@ -1,16 +1,17 @@
 var searchData=
 [
-  ['image_0',['Image',['../class_image.html',1,'Image'],['../class_image.html#a0d2dc69e9a91f36211469db17036fb44',1,'Image::Image(const void *data, size_t sizeBytes, Vector2i size, int channels)'],['../class_image.html#a5502e928122744be1d3b89648298e162',1,'Image::Image()=default'],['../class_image.html#aaf8eb0773fa6f75d832d5f7bb45ec8de',1,'Image::Image(const std::filesystem::path &amp;path)']]],
-  ['indexbuffer_1',['IndexBuffer',['../class_index_buffer.html',1,'']]],
-  ['info_2',['Info',['../struct_mesh_1_1_info.html',1,'Mesh']]],
+  ['image_0',['Image',['../class_image.html#a5502e928122744be1d3b89648298e162',1,'Image::Image()=default'],['../class_image.html#aaf8eb0773fa6f75d832d5f7bb45ec8de',1,'Image::Image(const std::filesystem::path &amp;path)'],['../class_image.html#a0d2dc69e9a91f36211469db17036fb44',1,'Image::Image(const void *data, size_t sizeBytes, Vector2i size, int channels)'],['../class_image.html',1,'Image']]],
+  ['importer_1',['Importer',['../class_importer.html',1,'']]],
+  ['indexbuffer_2',['IndexBuffer',['../class_index_buffer.html',1,'']]],
   ['init_3',['init',['../class_g_l_renderer.html#ad419c85c7b9ede2f3a21f1e7fe3231ff',1,'GLRenderer']]],
   ['input_4',['Input',['../class_input.html',1,'']]],
   ['instancebuilder_5',['InstanceBuilder',['../class_instance_builder.html',1,'']]],
-  ['isconnected_6',['isConnected',['../class_gamepad.html#a33d4dbd503a8d645885bd19cbc390a91',1,'Gamepad']]],
-  ['isfloating_7',['isFloating',['../class_window.html#a749973cb62e3321d7cbfe4ff39798189',1,'Window']]],
-  ['isfullscreen_8',['isFullscreen',['../class_window.html#ac3dc6c7f08d4b749b7949149cc6c7dc3',1,'Window']]],
-  ['ispressed_9',['isPressed',['../class_input.html#a77ca3703c1457f69fa12c89f5b08d917',1,'Input::isPressed(Key key)'],['../class_input.html#adfeb39c4544f18847f3b7353fec5ef2d',1,'Input::isPressed(Mouse key)']]],
-  ['isprimary_10',['isPrimary',['../class_monitor.html#abb69747f03e4fed060f16b84052eb3c0',1,'Monitor']]],
-  ['isresizable_11',['isResizable',['../class_window.html#a1b888a7e6a5562968a253b915ccb7825',1,'Window']]],
-  ['isvisible_12',['isVisible',['../class_window.html#a6be53a737e7dfcc74167962437e93b8f',1,'Window']]]
+  ['iscompressed_6',['isCompressed',['../class_mesh.html#a805c66466278300f121c366cb0f9c6de',1,'Mesh']]],
+  ['isconnected_7',['isConnected',['../class_gamepad.html#a33d4dbd503a8d645885bd19cbc390a91',1,'Gamepad']]],
+  ['isfloating_8',['isFloating',['../class_window.html#a749973cb62e3321d7cbfe4ff39798189',1,'Window']]],
+  ['isfullscreen_9',['isFullscreen',['../class_window.html#ac3dc6c7f08d4b749b7949149cc6c7dc3',1,'Window']]],
+  ['ispressed_10',['isPressed',['../class_input.html#a77ca3703c1457f69fa12c89f5b08d917',1,'Input::isPressed(Key key)'],['../class_input.html#adfeb39c4544f18847f3b7353fec5ef2d',1,'Input::isPressed(Mouse key)']]],
+  ['isprimary_11',['isPrimary',['../class_monitor.html#abb69747f03e4fed060f16b84052eb3c0',1,'Monitor']]],
+  ['isresizable_12',['isResizable',['../class_window.html#a1b888a7e6a5562968a253b915ccb7825',1,'Window']]],
+  ['isvisible_13',['isVisible',['../class_window.html#a6be53a737e7dfcc74167962437e93b8f',1,'Window']]]
 ];
