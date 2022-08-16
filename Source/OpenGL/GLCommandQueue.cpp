@@ -50,6 +50,15 @@ size_t GLCommandQueue::execute(GLOpcode opcode, const uint8_t* pc)
 		return sizeof(*args);
 	}
 
+	case GLOpcode::setTexture: {
+		auto args = reinterpret_cast<const GLCmdSetTexture*>(pc);
+		if(args->texture == nullptr)
+			glBindTextureUnit(args->slot, 0);
+		else
+			args->texture->bind(args->slot);
+		return sizeof(*args);
+	}
+
 	case GLOpcode::clear: {
 		auto       args    = reinterpret_cast<const GLCmdClear*>(pc);
 		GLbitfield glFlags = 0;

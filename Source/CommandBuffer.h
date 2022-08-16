@@ -7,6 +7,7 @@
 #include <math/math.hpp>
 #include <memory>
 
+class Texture;
 class Pipeline;
 class VertexBuffer;
 class IndexBuffer;
@@ -40,8 +41,9 @@ public:
 
 	virtual void setPipeline(std::shared_ptr<Pipeline> pipeline) = 0;
 
-	virtual void setVertexBuffer(std::shared_ptr<VertexBuffer> vertexBuffer) = 0;
-	virtual void setIndexBuffer(std::shared_ptr<IndexBuffer> indexBuffer)    = 0;
+	virtual void setVertexBuffer(std::shared_ptr<VertexBuffer> vertexBuffer)     = 0;
+	virtual void setIndexBuffer(std::shared_ptr<IndexBuffer> indexBuffer)        = 0;
+	virtual void setTexture(std::shared_ptr<Texture> texture, unsigned int slot) = 0;
 
 	/**
 	 * @brief 清空缓冲区.

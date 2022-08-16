@@ -61,6 +61,13 @@ void GLCommandBuffer::setIndexBuffer(std::shared_ptr<IndexBuffer> indexBuffer)
 	cmd->indexBuffer = std::dynamic_pointer_cast<GLIndexBuffer>(indexBuffer);
 }
 
+void GLCommandBuffer::setTexture(std::shared_ptr<Texture> texture, unsigned int slot)
+{
+	auto cmd     = addCommand<GLCmdSetTexture>(GLOpcode::setTexture);
+	cmd->texture = std::dynamic_pointer_cast<GLTexture>(texture);
+	cmd->slot    = slot;
+}
+
 void GLCommandBuffer::clear(uint8_t flags)
 {
 	auto cmd   = addCommand<GLCmdClear>(GLOpcode::clear);

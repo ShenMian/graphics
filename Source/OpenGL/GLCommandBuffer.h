@@ -5,6 +5,7 @@
 
 #include "CommandBuffer.h"
 #include "GLIndexBuffer.h"
+#include "GLTexture.h"
 #include "GLVertexBuffer.h"
 #include <cstdint>
 #include <vector>
@@ -26,6 +27,7 @@ public:
 
 	void setVertexBuffer(std::shared_ptr<VertexBuffer> vertexBuffer) override;
 	void setIndexBuffer(std::shared_ptr<IndexBuffer> indexBuffer) override;
+	void setTexture(std::shared_ptr<Texture> texture, unsigned int slot) override;
 
 	void clear(uint8_t flags) override;
 	void setClearColor(const Vector4& color) override;
@@ -67,6 +69,7 @@ enum class GLOpcode
 
 	setVertexBuffer,
 	setIndexBuffer,
+	setTexture,
 
 	clear,
 	setClearColor,
@@ -97,6 +100,12 @@ struct GLCmdSetVertexBuffer
 struct GLCmdSetIndexBuffer
 {
 	std::shared_ptr<GLIndexBuffer> indexBuffer;
+};
+
+struct GLCmdSetTexture
+{
+	std::shared_ptr<GLTexture> texture;
+	unsigned int               slot;
 };
 
 struct GLCmdClear

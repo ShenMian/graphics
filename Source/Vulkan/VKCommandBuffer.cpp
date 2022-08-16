@@ -107,6 +107,11 @@ void VKCommandBuffer::setIndexBuffer(std::shared_ptr<IndexBuffer> buf)
 	vkCmdBindIndexBuffer(handles[index], *buffer, 0, VK_INDEX_TYPE_UINT32);
 }
 
+void VKCommandBuffer::setTexture(std::shared_ptr<Texture> texture, unsigned int slot)
+{
+	// TODO
+}
+
 // FIXME
 void VKCommandBuffer::clear(uint8_t flags)
 {
