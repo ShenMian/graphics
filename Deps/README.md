@@ -12,7 +12,7 @@ The following dependencies greatly simplify the development of the this project.
 - [meshoptimizer](https://github.com/zeux/meshoptimizer)(MIT): Optimize/compress/decompress meshes.
 - [dear-imgui](https://github.com/ocornut/imgui)(MIT): Immediate mode GUI.
 - [imguizmo](https://github.com/CedricGuillemet/ImGuizmo)(MIT): ImGui gizmo.
-- [freetype](https://github.com/freetype/freetype) Import fonts.
+- [freetype](https://github.com/freetype/freetype)(The FreeType License): Import fonts.
 
 The following third parties will be removed in the future:  
 
