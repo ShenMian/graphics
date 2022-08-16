@@ -37,5 +37,6 @@ var class_gamepad =
     [ "getRaw", "class_gamepad.html#a3d1ef5d5e9845ac3e8dc5d484cc374e8", null ],
     [ "getRaw", "class_gamepad.html#a699b3348d46e0ee4bcb7532499970570", null ],
     [ "isConnected", "class_gamepad.html#a33d4dbd503a8d645885bd19cbc390a91", null ],
+    [ "loadMappingsDb", "class_gamepad.html#a3c38442114ed8e3932a3eb6dd60e45aa", null ],
     [ "update", "class_gamepad.html#ae37f83a954aabbf634e9d6f37697ae58", null ]
 ];

@@ -173,6 +173,9 @@ std::string_view&#160;</td><td class="memItemRight" valign="bottom"><b>getName</
 <tr class="memitem:a33d4dbd503a8d645885bd19cbc390a91"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gamepad.html#a33d4dbd503a8d645885bd19cbc390a91">isConnected</a> () const</td></tr>
 <tr class="memdesc:a33d4dbd503a8d645885bd19cbc390a91"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查手柄是否处于连接状态.  <a href="class_gamepad.html#a33d4dbd503a8d645885bd19cbc390a91">更多...</a><br /></td></tr>
 <tr class="separator:a33d4dbd503a8d645885bd19cbc390a91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c38442114ed8e3932a3eb6dd60e45aa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_gamepad.html#a3c38442114ed8e3932a3eb6dd60e45aa">loadMappingsDb</a> (const std::filesystem::path &amp;path)</td></tr>
+<tr class="memdesc:a3c38442114ed8e3932a3eb6dd60e45aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">加载 SDL 按键映射数据库.  <a href="class_gamepad.html#a3c38442114ed8e3932a3eb6dd60e45aa">更多...</a><br /></td></tr>
+<tr class="separator:a3c38442114ed8e3932a3eb6dd60e45aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af06515dbccf048df41bfcddc17460ee8"><td class="memItemLeft" align="right" valign="top"><a id="af06515dbccf048df41bfcddc17460ee8" name="af06515dbccf048df41bfcddc17460ee8"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="class_gamepad.html">Gamepad</a> &amp;) const</td></tr>
 <tr class="separator:af06515dbccf048df41bfcddc17460ee8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -201,10 +204,10 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>deinit</b> ()<
 <div class="line"><span class="keywordtype">bool</span>     pressed   = gamepad.<a class="code hl_function" href="class_gamepad.html#adb986158a3306e5cef36f5c1b1bbe2bc">get</a>(Gamepad::Button::A))     <span class="comment">// 获取按键 A 是否按下</span></div>
 <div class="line"><span class="keywordtype">float</span>    magnitude = gamepad.<a class="code hl_function" href="class_gamepad.html#adb986158a3306e5cef36f5c1b1bbe2bc">get</a>(<a class="code hl_enumvalue" href="group__core.html#gga814093b43f211a291b19ccf662096738a811882fecd5c7618d7099ebbd39ea254">Gamepad::Trigger::left</a>); <span class="comment">// 获取左侧线性按键(LT)按力度</span></div>
 <div class="line">Vector2f position  = gamepad.<a class="code hl_function" href="class_gamepad.html#adb986158a3306e5cef36f5c1b1bbe2bc">get</a>(Gamepad::Thumb::left);   <span class="comment">// 获取左侧摇杆数据</span></div>
-<div class="ttc" id="aclass_gamepad_html"><div class="ttname"><a href="class_gamepad.html">Gamepad</a></div><div class="ttdoc">游戏手柄.</div><div class="ttdef"><b>Definition:</b> Gamepad.h:20</div></div>
-<div class="ttc" id="aclass_gamepad_html_a33d4dbd503a8d645885bd19cbc390a91"><div class="ttname"><a href="class_gamepad.html#a33d4dbd503a8d645885bd19cbc390a91">Gamepad::isConnected</a></div><div class="ttdeci">bool isConnected() const</div><div class="ttdoc">检查手柄是否处于连接状态.</div><div class="ttdef"><b>Definition:</b> Gamepad.cpp:94</div></div>
-<div class="ttc" id="aclass_gamepad_html_adb986158a3306e5cef36f5c1b1bbe2bc"><div class="ttname"><a href="class_gamepad.html#adb986158a3306e5cef36f5c1b1bbe2bc">Gamepad::get</a></div><div class="ttdeci">Vector2f get(Thumb thumb) const noexcept</div><div class="ttdoc">获取摇杆数据.</div><div class="ttdef"><b>Definition:</b> Gamepad.cpp:32</div></div>
-<div class="ttc" id="aclass_gamepad_html_ae37f83a954aabbf634e9d6f37697ae58"><div class="ttname"><a href="class_gamepad.html#ae37f83a954aabbf634e9d6f37697ae58">Gamepad::update</a></div><div class="ttdeci">void update()</div><div class="ttdoc">更新数据.</div><div class="ttdef"><b>Definition:</b> Gamepad.cpp:13</div></div>
+<div class="ttc" id="aclass_gamepad_html"><div class="ttname"><a href="class_gamepad.html">Gamepad</a></div><div class="ttdoc">游戏手柄.</div><div class="ttdef"><b>Definition:</b> Gamepad.h:21</div></div>
+<div class="ttc" id="aclass_gamepad_html_a33d4dbd503a8d645885bd19cbc390a91"><div class="ttname"><a href="class_gamepad.html#a33d4dbd503a8d645885bd19cbc390a91">Gamepad::isConnected</a></div><div class="ttdeci">bool isConnected() const</div><div class="ttdoc">检查手柄是否处于连接状态.</div><div class="ttdef"><b>Definition:</b> Gamepad.cpp:101</div></div>
+<div class="ttc" id="aclass_gamepad_html_adb986158a3306e5cef36f5c1b1bbe2bc"><div class="ttname"><a href="class_gamepad.html#adb986158a3306e5cef36f5c1b1bbe2bc">Gamepad::get</a></div><div class="ttdeci">Vector2f get(Thumb thumb) const noexcept</div><div class="ttdoc">获取摇杆数据.</div><div class="ttdef"><b>Definition:</b> Gamepad.cpp:39</div></div>
+<div class="ttc" id="aclass_gamepad_html_ae37f83a954aabbf634e9d6f37697ae58"><div class="ttname"><a href="class_gamepad.html#ae37f83a954aabbf634e9d6f37697ae58">Gamepad::update</a></div><div class="ttdeci">void update()</div><div class="ttdoc">更新数据.</div><div class="ttdef"><b>Definition:</b> Gamepad.cpp:20</div></div>
 <div class="ttc" id="agroup__core_html_gga814093b43f211a291b19ccf662096738a811882fecd5c7618d7099ebbd39ea254"><div class="ttname"><a href="group__core.html#gga814093b43f211a291b19ccf662096738a811882fecd5c7618d7099ebbd39ea254">Gamepad::Trigger::left</a></div><div class="ttdeci">@ left</div><div class="ttdoc">左侧线性按键, 即 LT.</div></div>
 </div><!-- fragment --> </div><h2 class="groupheader">成员函数说明</h2>
 <a id="add5894040c3cb6c01f2708aa76c7b91c" name="add5894040c3cb6c01f2708aa76c7b91c"></a>
@@ -234,13 +237,11 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>deinit</b> ()<
 <p>获取按键状态. </p>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">button</td><td>按键. </td></tr>
+    <tr><td class="paramname">button</td><td>按键.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>返回</dt><dd>true 按键按下. </dd>
-<dd>
-false 按键抬起. </dd></dl>
+<dl class="section return"><dt>返回</dt><dd>按键是否按下. </dd></dl>
 
 </div>
 </div>
@@ -271,11 +272,11 @@ false 按键抬起. </dd></dl>
 <p>获取摇杆数据. </p>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">thumb</td><td>摇杆. </td></tr>
+    <tr><td class="paramname">thumb</td><td>摇杆.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>返回</dt><dd>Vector2f 范围: [-1, 1] </dd></dl>
+<dl class="section return"><dt>返回</dt><dd>范围: [-1, 1] </dd></dl>
 
 </div>
 </div>
@@ -306,11 +307,11 @@ false 按键抬起. </dd></dl>
 <p>获取线性按键力度. </p>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">trigger</td><td>线性按键. </td></tr>
+    <tr><td class="paramname">trigger</td><td>线性按键.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>返回</dt><dd>float 0 表示没有按下, 范围: [0, 1] </dd></dl>
+<dl class="section return"><dt>返回</dt><dd>0 表示没有按下, 范围: [0, 1] </dd></dl>
 
 </div>
 </div>
@@ -341,11 +342,11 @@ false 按键抬起. </dd></dl>
 <p>获取原始摇杆数据. </p>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">thumb</td><td>摇杆. </td></tr>
+    <tr><td class="paramname">thumb</td><td>摇杆.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>返回</dt><dd>Vector2f 范围: [-1, 1] </dd></dl>
+<dl class="section return"><dt>返回</dt><dd>范围: [-1, 1]</dd></dl>
 <dl class="section warning"><dt>警告</dt><dd>不建议直接使用. </dd></dl>
 
 </div>
@@ -377,11 +378,11 @@ false 按键抬起. </dd></dl>
 <p>获取原始线性按键数据. </p>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">trigger</td><td>线性按键. </td></tr>
+    <tr><td class="paramname">trigger</td><td>线性按键.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>返回</dt><dd>float 0 表示没有按下, 范围: [0, 1] </dd></dl>
+<dl class="section return"><dt>返回</dt><dd>0 表示没有按下, 范围: [0, 1]</dd></dl>
 <dl class="section warning"><dt>警告</dt><dd>不建议直接使用. </dd></dl>
 
 </div>
@@ -402,9 +403,34 @@ false 按键抬起. </dd></dl>
 </div><div class="memdoc">
 
 <p>检查手柄是否处于连接状态. </p>
-<dl class="section return"><dt>返回</dt><dd>true 已连接. </dd>
-<dd>
-false 已断开. </dd></dl>
+<dl class="section return"><dt>返回</dt><dd>是否已连接. </dd></dl>
+
+</div>
+</div>
+<a id="a3c38442114ed8e3932a3eb6dd60e45aa" name="a3c38442114ed8e3932a3eb6dd60e45aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c38442114ed8e3932a3eb6dd60e45aa">&#9670;&nbsp;</a></span>loadMappingsDb()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Gamepad::loadMappingsDb </td>
+          <td>(</td>
+          <td class="paramtype">const std::filesystem::path &amp;&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>加载 SDL 按键映射数据库. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>数据库文件地址.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>是否成功. </dd></dl>
 
 </div>
 </div>

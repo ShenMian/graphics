@@ -165,13 +165,14 @@ var NAVTREEINDEX0 =
 "class_gamepad.html":[3,0,1],
 "class_gamepad.html#a0153d72ca3f7dfb816a872191fa5a651":[3,0,1,3],
 "class_gamepad.html#a33d4dbd503a8d645885bd19cbc390a91":[3,0,1,10],
+"class_gamepad.html#a3c38442114ed8e3932a3eb6dd60e45aa":[3,0,1,11],
 "class_gamepad.html#a3d1ef5d5e9845ac3e8dc5d484cc374e8":[3,0,1,8],
 "class_gamepad.html#a470f93ec7bd5fe9dc2e019a3a2f82869":[3,0,1,6],
 "class_gamepad.html#a699b3348d46e0ee4bcb7532499970570":[3,0,1,9],
 "class_gamepad.html#ab0fd07c0c3c1ac1f0ab997000061bd80":[3,0,1,7],
 "class_gamepad.html#adb986158a3306e5cef36f5c1b1bbe2bc":[3,0,1,5],
 "class_gamepad.html#add5894040c3cb6c01f2708aa76c7b91c":[3,0,1,4],
-"class_gamepad.html#ae37f83a954aabbf634e9d6f37697ae58":[3,0,1,11],
+"class_gamepad.html#ae37f83a954aabbf634e9d6f37697ae58":[3,0,1,12],
 "class_image.html":[3,0,2],
 "class_image.html#a0a685a4d06353bbaf9b4db2130238eff":[3,0,2,12],
 "class_image.html#a0d2dc69e9a91f36211469db17036fb44":[3,0,2,2],
@@ -248,6 +249,5 @@ var NAVTREEINDEX0 =
 "class_texture.html#adb2d44c3e35bf0b03be885d1b3d4378f":[4,0,57,4],
 "class_texture.html#af110c1b8fc58036b94dced17b5399b68":[4,0,57,1],
 "class_texture.html#af110c1b8fc58036b94dced17b5399b68a39a681a9d5ccc902bebd16a343dd7b74":[4,0,57,1,2],
-"class_texture.html#af110c1b8fc58036b94dced17b5399b68a7020426cfb0a204051be4b3053d2acc8":[4,0,57,1,0],
-"class_texture.html#af110c1b8fc58036b94dced17b5399b68a74556551231333c36debc3d373261134":[4,0,57,1,1]
+"class_texture.html#af110c1b8fc58036b94dced17b5399b68a7020426cfb0a204051be4b3053d2acc8":[4,0,57,1,0]
 };
