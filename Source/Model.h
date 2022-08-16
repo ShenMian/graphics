@@ -4,15 +4,10 @@
 #pragma once
 
 #include "Animation.h"
+#include "Material.h"
 #include "Mesh.h"
-#include <filesystem>
-#include <functional>
 #include <math/math.hpp>
-#include <stdexcept>
-#include <unordered_map>
-
-class Mesh;
-class Material;
+#include <string>
 
 /** @addtogroup model
  *  @{
@@ -21,73 +16,18 @@ class Material;
 /**
  * @brief 3D 模型.
  */
-class Model
+struct Model
 {
-public:
-	struct ProcessFlags
-	{
-		enum
-		{
-			Fast,      /// 快速.
-			Quality,   /// 质量.
-			MaxQuality /// 最高质量.
-		};
-	};
+	std::string            name;
+	std::vector<Mesh>      meshs;
+	std::vector<Material>  materials;
+	std::vector<Animation> animations;
+	std::filesystem::path  path;
 
-	/**
-	 * @brief 从文件载入场景.
-	 *
-	 * @param path     模型文件路径.
-	 * @param process  要进行的处理.
-	 * @param progress 载入进度回调.
-	 *
-	 * @see loadAsync
-	 */
-	void load(const std::filesystem::path& path, unsigned int process = ProcessFlags::Fast,
-	          std::function<void(float)> progress = nullptr);
+	AABB3 aabb;
 
-	/**
-	 * @brief 获取名称.
-	 */
-	[[nodiscard]] const std::string& getName() const;
-
-	/**
-	 * @brief 获取 AABB.
-	 */
-	[[nodiscard]] const AABB3& getAABB() const;
-
-	/**
-	 * @brief 获取网格.
-	 */
-	[[nodiscard]] const std::vector<Mesh>& getMeshes() const;
-
-	/**
-	 * @brief 获取动画.
-	 */
-	[[nodiscard]] const Animation& getAnimation(const std::string& name) const;
-
-	/**
-	 * @brief 获取网格信息.
-	 */
-	[[nodiscard]] const Mesh::Info& getMeshInfo() const;
-
-	void compress();
-	void decompress();
-
-private:
-	std::string                                name;
-	std::vector<Mesh>                          meshes;
-	std::vector<Matrix4f>                      bones;
-	std::unordered_map<std::string, Animation> animations;
-	std::filesystem::path                      path;
-	AABB3                                      aabb;
-	Mesh::Info                                 meshInfo;
+	uint32_t vertexCount = 0;
+	uint32_t indexCount  = 0;
 };
-
-/*
-inline static std::vector<std::string> extensions = {
-    "collada", "x", "stp", "obj", "objnomtl", "stl", "stlb", "ply", "plyb", "3ds",
-    "gltf2", "glb2", "gltf", "glb", "assbin", "assxml", "x3d", "3mf", "pbrt", "assjson"};
-*/
 
 /** @}*/

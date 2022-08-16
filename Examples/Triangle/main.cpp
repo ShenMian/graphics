@@ -3,32 +3,33 @@
 
 #include "../Base/Base.hpp"
 
+namespace
+{
+
 struct Vertex
 {
 	Vector2 position;
 	Vector3 color;
 };
 
+} // namespace
+
 class Triangle final : public Base
 {
 public:
-	Triangle()
-		: Base("Triangle")
-	{
-	};
+	Triangle() : Base("Triangle"){};
 
 	int main(int argc, char* argv[]) override
 	{
 		// 创建一个由 3 个顶点构成的三角形
+		// clang-format off
 		const std::vector<Vertex> vertices = {
 			{{0,     0.5}, {1, 0, 0}},
 			{{0.5,  -0.5}, {0, 1, 0}},
 			{{-0.5, -0.5}, {0, 0, 1}}
 		};
-		VertexFormat layout = {
-			{"position", Format::RG32F},
-			{"color",    Format::RGB32F}
-		};
+		// clang-format on
+		VertexFormat layout = {{"position", Format::RG32F}, {"color", Format::RGB32F}};
 		layout.setStride(sizeof(Vertex));
 		auto vertexBuffer = VertexBuffer::create(vertices, layout);
 
@@ -36,15 +37,15 @@ public:
 		auto program = Program::create("Shaders/forward");
 
 		Pipeline::Descriptor desc;
-		desc.program = program;
+		desc.program      = program;
 		desc.vertexFormat = layout;
 		// desc.viewports.push_back(Viewport({0, 0}, window.getSize()));
 		auto pipeline = Pipeline::create(desc);
 
-		auto cmdQueue = CommandQueue::create();
+		auto cmdQueue  = CommandQueue::create();
 		auto cmdBuffer = CommandBuffer::create();
 
-		bool running = true;
+		bool running    = true;
 		window->onClose = [&] { running = false; };
 		window->setVisible(true); // 设置窗口可见
 

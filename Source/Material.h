@@ -13,9 +13,8 @@
 /**
  * @brief 材质.
  */
-class Material
+struct Material
 {
-public:
 	struct PBR
 	{
 		std::shared_ptr<Texture> albedo;

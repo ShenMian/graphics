@@ -135,11 +135,11 @@ void SubDevideVerts(std::vector<Mesh::Vertex>& vertices, std::vector<unsigned in
 
 } // namespace
 
-Mesh Primitive::makePlane(unsigned int x, unsigned int z)
+std::optional<Mesh> Primitive::makePlane(unsigned int x, unsigned int z)
 {
 	// Edge case throws off counts so return nullptrs
 	if(x == 0 || z == 0)
-		return Mesh();
+		return std::nullopt;
 
 	// Each count makes two more triangles (6 indices) for every other count
 	// Each count makes its verts + 1 for the final edge
@@ -210,11 +210,11 @@ Mesh Primitive::makePlane(unsigned int x, unsigned int z)
 	return Mesh("plane", vertices, indices);
 }
 
-Mesh Primitive::makeSphere(unsigned int lat, unsigned int lon)
+std::optional<Mesh> Primitive::makeSphere(unsigned int lat, unsigned int lon)
 {
 	// Edge case throws off counts so return nullptrs
 	if(lon < 2 || lat < 2)
-		return Mesh();
+		return std::nullopt;
 
 	// Each longitudinal count makes two triangles (6 indices) for every
 	// lateral count except for the top and bottom caps, which only make
@@ -335,11 +335,11 @@ Mesh Primitive::makeSphere(unsigned int lat, unsigned int lon)
 	return Mesh("sphere", vertices, indices);
 }
 
-Mesh Primitive::makeCapsule(unsigned int resolution, float height, float radius)
+std::optional<Mesh> Primitive::makeCapsule(unsigned int resolution, float height, float radius)
 {
 	// Edge case throws off counts so return nullptrs
 	if(resolution < 2)
-		return Mesh();
+		return std::nullopt;
 
 	// Almost same generation as UV sphere but we force the
 	// lat count to be odd so it can be split evenly
@@ -483,6 +483,7 @@ Mesh Primitive::makeCapsule(unsigned int resolution, float height, float radius)
 	return Mesh("capsule", vertices, indices);
 }
 
+// FIXME
 Mesh Primitive::makeIcoSphere(unsigned int resolution)
 {
 	// For every resolution, each face of the initial mesh gets split into 4 triangles.

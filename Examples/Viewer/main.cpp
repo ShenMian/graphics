@@ -15,17 +15,22 @@ public:
 			path = argv[1];
 		else
 		{
-			// path = "../../../../../../Model/sponza/sponza.glb";
+			path = "../../../../../../Model/sponza/sponza.glb";
 			// path = "../../../../../../Model/m4a1/m4a1.gltf";
 			// path = "../../../../../../Model/pistol/kimber_desert_warrior/scene.gltf";
 			// path = "../../../../../../Model/Bistro/BistroExterior.glb";
-			path = "../../../../../../Model/San_Miguel/SanMiguel-low.glb";
+			// path = "../../../../../../Model/San_Miguel/SanMiguel-low.glb";
 		}
 
-		Model model;
-		model.load(path, Model::ProcessFlags::Fast,
-		           [](float progress) { printf("Meshes loading: %.1f%%  \r", progress * 100); });
+		AssimpImporter importer;
+		auto           model = importer.load(path);
 		printModelInfo(model);
+
+		// model.meshs.clear();
+		// model.meshs.push_back(Primitive::makeSphere(64, 32).value());
+		// model.meshs.push_back(Primitive::makeIcoSphere(7));
+		// model.meshs.push_back(Primitive::makeCapsule(15, 2, 0.5).value());
+		// model.meshs.push_back(Primitive::makePlane(10, 10).value());
 
 		auto program = Program::create("Shaders/mesh");
 
@@ -62,9 +67,9 @@ public:
 
 		// 根据模型大小设置相机移动速度
 		auto speed = 0.f;
-		speed += model.getAABB().max.x - model.getAABB().min.x;
-		speed += model.getAABB().max.y - model.getAABB().min.y;
-		speed += model.getAABB().max.z - model.getAABB().min.z;
+		speed += model.aabb.max.x - model.aabb.min.x;
+		speed += model.aabb.max.y - model.aabb.min.y;
+		speed += model.aabb.max.z - model.aabb.min.z;
 		speed /= 3;
 		controller.setSpeed(speed * 0.5);
 
@@ -82,14 +87,6 @@ public:
 
             case Key::F11:
                 window->setFullscreen(!window->isFullscreen());
-                break;
-
-            case Key::O:
-                model.compress();
-                break;
-
-            case Key::I:
-                model.decompress();
                 break;
 
             case Key::P:
@@ -166,13 +163,10 @@ public:
 				cmdBuffer->clear(ClearFlag::Color | ClearFlag::Depth);
 
 				cmdBuffer->setPipeline(pipeline);
-				for(const auto& mesh : model.getMeshes())
+				for(const auto& mesh : model.meshs)
 				{
-					if(mesh.isCompressed())
-						continue;
-
-					const auto vb = mesh.getVertexBuffer();
-					const auto ib = mesh.getIndexBuffer();
+					const auto vb = mesh.vertexBuffer;
+					const auto ib = mesh.indexBuffer;
 
 					cmdBuffer->setVertexBuffer(vb);
 					cmdBuffer->setIndexBuffer(ib);

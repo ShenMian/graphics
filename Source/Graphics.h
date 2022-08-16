@@ -15,6 +15,7 @@
 #include "Program.h"
 #include "Shader.h"
 
+#include "AssimpImporter.h"
 #include "Camera.h"
 #include "Model.h"
 #include "Primitive.h"

@@ -13,15 +13,9 @@ class Base
 public:
 	virtual int main(int argc, char* argv[]) = 0;
 
-	Base(std::string_view name) : name(name)
-	{
-		init();
-	}
+	Base(std::string_view name) : name(name) { init(); }
 
-	virtual ~Base()
-	{
-		deinit();
-	}
+	virtual ~Base() { deinit(); }
 
 	void init()
 	{
@@ -98,34 +92,21 @@ public:
 
 	void printModelInfo(const Model& model)
 	{
-		const auto& info = model.getMeshInfo();
 		fmt::print("Model\n"
 		           "|-Name     : {}\n"
 		           "|-Triangles: {}\n"
 		           "|-Vertices : {}\n"
 		           "`-Indices  : {}\n",
-		           model.getName(), info.triangles, info.vertices, info.indices);
+		           model.name, model.indexCount / 3, model.vertexCount, model.indexCount);
 	}
 
-	void printInfo(std::string_view msg)
-	{
-		fmt::print("{} {}", fmt::styled("[*]", fg(fmt::color::blue)), msg);
-	}
+	void printInfo(std::string_view msg) { fmt::print("{} {}", fmt::styled("[*]", fg(fmt::color::blue)), msg); }
 
-	void printGood(std::string_view msg)
-	{
-		fmt::print("{} {}", fmt::styled("[+]", fg(fmt::color::red)), msg);
-	}
+	void printGood(std::string_view msg) { fmt::print("{} {}", fmt::styled("[+]", fg(fmt::color::red)), msg); }
 
-	void printError(std::string_view msg)
-	{
-		fmt::print("{} {}", fmt::styled("[-]", fg(fmt::color::red)), msg);
-	}
+	void printError(std::string_view msg) { fmt::print("{} {}", fmt::styled("[-]", fg(fmt::color::red)), msg); }
 
-	void printWarn(std::string_view msg)
-	{
-		fmt::print("{} {}", fmt::styled("[!]", fg(fmt::color::yellow)), msg);
-	}
+	void printWarn(std::string_view msg) { fmt::print("{} {}", fmt::styled("[!]", fg(fmt::color::yellow)), msg); }
 
 protected:
 	Window* window;
