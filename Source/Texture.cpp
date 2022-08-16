@@ -14,8 +14,7 @@ std::unordered_map<fs::path, std::shared_ptr<Texture>> Texture::cache;
 
 std::shared_ptr<Texture> Texture::create(const fs::path& path, Type type)
 {
-	if(type == Type::Cube)
-		throw std::runtime_error("cubemap should have 6 file path");
+	assert(type != Type::Cube);
 
 	const auto absPath = fs::absolute(path);
 	const auto it      = cache.find(absPath);
@@ -36,8 +35,7 @@ std::shared_ptr<Texture> Texture::create(const fs::path& path, Type type)
 
 std::shared_ptr<Texture> Texture::create(const Image& image, Type type)
 {
-	if(type == Type::Cube)
-		throw std::runtime_error("cubemap should have 6 images");
+	assert(type != Type::Cube);
 
 	switch(Renderer::getAPI())
 	{
