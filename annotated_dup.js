@@ -33,6 +33,7 @@ var annotated_dup =
     [ "GLCmdSetClearDepth", "struct_g_l_cmd_set_clear_depth.html", null ],
     [ "GLCmdSetIndexBuffer", "struct_g_l_cmd_set_index_buffer.html", null ],
     [ "GLCmdSetPipeline", "struct_g_l_cmd_set_pipeline.html", null ],
+    [ "GLCmdSetTexture", "struct_g_l_cmd_set_texture.html", null ],
     [ "GLCmdSetVertexBuffer", "struct_g_l_cmd_set_vertex_buffer.html", null ],
     [ "GLCmdSetViewport", "struct_g_l_cmd_set_viewport.html", null ],
     [ "GLCommandBuffer", "class_g_l_command_buffer.html", "class_g_l_command_buffer" ],

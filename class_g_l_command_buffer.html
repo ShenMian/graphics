@@ -117,6 +117,8 @@ Public 成员函数</h2></td></tr>
 <tr class="separator:a3d900bfe36f8eb14326894fed66a9fb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3411448d7e186bd325a04017b4578e4e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_l_command_buffer.html#a3411448d7e186bd325a04017b4578e4e">setIndexBuffer</a> (std::shared_ptr&lt; <a class="el" href="class_index_buffer.html">IndexBuffer</a> &gt; indexBuffer) override</td></tr>
 <tr class="separator:a3411448d7e186bd325a04017b4578e4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a740f0267cf8dd1e87729f3efe0d5a077"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_l_command_buffer.html#a740f0267cf8dd1e87729f3efe0d5a077">setTexture</a> (std::shared_ptr&lt; <a class="el" href="class_texture.html">Texture</a> &gt; texture, unsigned int slot) override</td></tr>
+<tr class="separator:a740f0267cf8dd1e87729f3efe0d5a077"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afb2847fd985cc379404cbecd852afa2f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_l_command_buffer.html#afb2847fd985cc379404cbecd852afa2f">clear</a> (uint8_t flags) override</td></tr>
 <tr class="memdesc:afb2847fd985cc379404cbecd852afa2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">清空缓冲区.  <a href="class_g_l_command_buffer.html#afb2847fd985cc379404cbecd852afa2f">更多...</a><br /></td></tr>
 <tr class="separator:afb2847fd985cc379404cbecd852afa2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -157,6 +159,9 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>setVertexBuff
 <tr class="memitem:a865dbd501675b2906ffbb7140dfda529"><td class="memItemLeft" align="right" valign="top"><a id="a865dbd501675b2906ffbb7140dfda529" name="a865dbd501675b2906ffbb7140dfda529"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>setIndexBuffer</b> (std::shared_ptr&lt; <a class="el" href="class_index_buffer.html">IndexBuffer</a> &gt; indexBuffer)=0</td></tr>
 <tr class="separator:a865dbd501675b2906ffbb7140dfda529"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfe65e8fd7e01dcd6794e6c9e5164d5c"><td class="memItemLeft" align="right" valign="top"><a id="acfe65e8fd7e01dcd6794e6c9e5164d5c" name="acfe65e8fd7e01dcd6794e6c9e5164d5c"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>setTexture</b> (std::shared_ptr&lt; <a class="el" href="class_texture.html">Texture</a> &gt; texture, unsigned int slot)=0</td></tr>
+<tr class="separator:acfe65e8fd7e01dcd6794e6c9e5164d5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:accc1761193f40a84dd8e3dd05f18dd0f"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command_buffer.html#accc1761193f40a84dd8e3dd05f18dd0f">clear</a> (uint8_t flags)=0</td></tr>
 <tr class="memdesc:accc1761193f40a84dd8e3dd05f18dd0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">清空缓冲区.  <a href="class_command_buffer.html#accc1761193f40a84dd8e3dd05f18dd0f">更多...</a><br /></td></tr>
 <tr class="separator:accc1761193f40a84dd8e3dd05f18dd0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -537,6 +542,44 @@ setClearStencil </dd></dl>
           <td class="paramtype">std::shared_ptr&lt; <a class="el" href="class_pipeline.html">Pipeline</a> &gt;&#160;</td>
           <td class="paramname"><em>pipeline</em></td><td>)</td>
           <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="class_command_buffer.html">CommandBuffer</a>.</p>
+
+</div>
+</div>
+<a id="a740f0267cf8dd1e87729f3efe0d5a077" name="a740f0267cf8dd1e87729f3efe0d5a077"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a740f0267cf8dd1e87729f3efe0d5a077">&#9670;&nbsp;</a></span>setTexture()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GLCommandBuffer::setTexture </td>
+          <td>(</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="class_texture.html">Texture</a> &gt;&#160;</td>
+          <td class="paramname"><em>texture</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>slot</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>

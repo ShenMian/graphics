@@ -113,26 +113,27 @@ $(document).ready(function(){initNavTree('_v_k_command_buffer_8h_source.html',''
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keywordtype">void</span> setVertexBuffer(std::shared_ptr&lt;VertexBuffer&gt; vertexBuffer) <span class="keyword">override</span>;</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordtype">void</span> setIndexBuffer(std::shared_ptr&lt;IndexBuffer&gt; indexBuffer) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_v_k_command_buffer.html#acdd3586370f5e2dd6d40c2b697d4b88a">clear</a>(uint8_t flags) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keywordtype">void</span> setClearColor(<span class="keyword">const</span> Vector4&amp; color) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordtype">void</span> setClearDepth(<span class="keywordtype">float</span> depth) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordtype">void</span> setClearStencil() <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordtype">void</span> draw(uint32_t vertexCount, uint32_t firstVertex) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordtype">void</span> drawIndexed(uint32_t indexCount, uint32_t firstIndex) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keyword">operator</span> VkCommandBuffer() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    std::vector&lt;VkCommandBuffer&gt; handles;</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordtype">size_t</span>                       index = 0;</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    VkClearColorValue clearColor = {};</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>};</div>
-<div class="ttc" id="aclass_command_buffer_html"><div class="ttname"><a href="class_command_buffer.html">CommandBuffer</a></div><div class="ttdoc">命令缓冲区.</div><div class="ttdef"><b>Definition:</b> CommandBuffer.h:29</div></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keywordtype">void</span> setTexture(std::shared_ptr&lt;Texture&gt; texture, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> slot) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_v_k_command_buffer.html#acdd3586370f5e2dd6d40c2b697d4b88a">clear</a>(uint8_t flags) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordtype">void</span> setClearColor(<span class="keyword">const</span> Vector4&amp; color) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordtype">void</span> setClearDepth(<span class="keywordtype">float</span> depth) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordtype">void</span> setClearStencil() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordtype">void</span> draw(uint32_t vertexCount, uint32_t firstVertex) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordtype">void</span> drawIndexed(uint32_t indexCount, uint32_t firstIndex) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keyword">operator</span> VkCommandBuffer() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    std::vector&lt;VkCommandBuffer&gt; handles;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordtype">size_t</span>                       index = 0;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    VkClearColorValue clearColor = {};</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>};</div>
+<div class="ttc" id="aclass_command_buffer_html"><div class="ttname"><a href="class_command_buffer.html">CommandBuffer</a></div><div class="ttdoc">命令缓冲区.</div><div class="ttdef"><b>Definition:</b> CommandBuffer.h:30</div></div>
 <div class="ttc" id="aclass_v_k_command_buffer_html"><div class="ttname"><a href="class_v_k_command_buffer.html">VKCommandBuffer</a></div><div class="ttdef"><b>Definition:</b> VKCommandBuffer.h:11</div></div>
-<div class="ttc" id="aclass_v_k_command_buffer_html_acdd3586370f5e2dd6d40c2b697d4b88a"><div class="ttname"><a href="class_v_k_command_buffer.html#acdd3586370f5e2dd6d40c2b697d4b88a">VKCommandBuffer::clear</a></div><div class="ttdeci">void clear(uint8_t flags) override</div><div class="ttdoc">清空缓冲区.</div><div class="ttdef"><b>Definition:</b> VKCommandBuffer.cpp:111</div></div>
+<div class="ttc" id="aclass_v_k_command_buffer_html_acdd3586370f5e2dd6d40c2b697d4b88a"><div class="ttname"><a href="class_v_k_command_buffer.html#acdd3586370f5e2dd6d40c2b697d4b88a">VKCommandBuffer::clear</a></div><div class="ttdeci">void clear(uint8_t flags) override</div><div class="ttdoc">清空缓冲区.</div><div class="ttdef"><b>Definition:</b> VKCommandBuffer.cpp:116</div></div>
 <div class="ttc" id="astruct_viewport_html"><div class="ttname"><a href="struct_viewport.html">Viewport</a></div><div class="ttdoc">视口.</div><div class="ttdef"><b>Definition:</b> Viewport.hpp:12</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
