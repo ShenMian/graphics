@@ -79,29 +79,33 @@ GLenum GLFormat(Format fmt)
 
 } // namespace
 
-GLTexture::GLTexture(const Image& image, Type type)
-    : Texture(type, ChannelsToFormat[image.getChannelCount()]), glTarget(GLType[type])
+GLTexture::GLTexture(const Image& image, Type type) : Texture(type, ChannelsToFormat[image.getChannelCount()])
 {
-	glCreateTextures(glTarget, 1, &handle);
-	bind();
+	glCreateTextures(GLType[type], 1, &handle);
 
 	setMinFilter(Filter::Nearest);
 	setMagFilter(Filter::Bilinear);
 	setSWarp(Warp::Repeat);
 	setTWarp(Warp::Repeat);
 
-	glTexImage2D(glTarget, 0, GLInternalFormat(format), static_cast<GLsizei>(image.getSize().x),
-	             static_cast<GLsizei>(image.getSize().y), 0, GLFormat(format), GL_UNSIGNED_BYTE, image.getData());
+	Image flippedImage = Image(image);
+	flippedImage.flipVertically();
+
+	GLsizei width  = image.getSize().x;
+	GLsizei height = image.getSize().y;
+	glTextureStorage2D(handle, 1, GLInternalFormat(format), width, height);
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+	glTextureSubImage2D(handle, 0, 0, 0, width, height, GLFormat(format), GL_UNSIGNED_BYTE,
+	                    flippedImage.getData()); // FIXME: 有时会崩溃
 	GLCheckError();
 
 	generateMipmap();
 }
 
 GLTexture::GLTexture(const std::vector<Image>& images)
-    : Texture(Type::Cube, ChannelsToFormat[images[0].getChannelCount()]), glTarget(GLType[type])
+    : Texture(Type::Cube, ChannelsToFormat[images[0].getChannelCount()])
 {
-	glCreateTextures(glTarget, 1, &handle);
-	bind();
+	glCreateTextures(GLType[type], 1, &handle);
 
 	setMinFilter(Filter::Nearest);
 	setMagFilter(Filter::Bilinear);
@@ -111,9 +115,12 @@ GLTexture::GLTexture(const std::vector<Image>& images)
 
 	for(size_t i = 0; i < images.size(); i++)
 	{
+		Image flipImage = Image(images[i]);
+		flipImage.flipVertically();
+
 		glTexImage2D(static_cast<GLenum>(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i), 0, GLInternalFormat(format),
-		             static_cast<GLsizei>(images[i].getSize().x), static_cast<GLsizei>(images[i].getSize().y), 0,
-		             GLFormat(format), GL_UNSIGNED_BYTE, images[i].getData());
+		             static_cast<GLsizei>(flipImage.getSize().x), static_cast<GLsizei>(flipImage.getSize().y), 0,
+		             GLFormat(format), GL_UNSIGNED_BYTE, flipImage.getData());
 		GLCheckError();
 	}
 
@@ -129,8 +136,7 @@ void GLTexture::setMinFilter(Filter filter)
 {
 	assert(filter == Filter::Nearest || filter == Filter::Bilinear || filter == Filter::Trilinear);
 
-	bind();
-	glTexParameteri(glTarget, GL_TEXTURE_MIN_FILTER, GLFilter[filter]);
+	glTextureParameteri(handle, GL_TEXTURE_MIN_FILTER, GLFilter[filter]);
 	GLCheckError();
 }
 
@@ -138,22 +144,19 @@ void GLTexture::setMagFilter(Filter filter)
 {
 	assert(filter == Filter::Nearest || filter == Filter::Bilinear);
 
-	bind();
-	glTexParameteri(glTarget, GL_TEXTURE_MAG_FILTER, GLFilter[filter]);
+	glTextureParameteri(handle, GL_TEXTURE_MAG_FILTER, GLFilter[filter]);
 	GLCheckError();
 }
 
 void GLTexture::setSWarp(Warp warp)
 {
-	bind();
-	glTexParameteri(glTarget, GL_TEXTURE_WRAP_S, GLWarp[warp]);
+	glTextureParameteri(handle, GL_TEXTURE_WRAP_S, GLWarp[warp]);
 	GLCheckError();
 }
 
 void GLTexture::setTWarp(Warp warp)
 {
-	bind();
-	glTexParameteri(glTarget, GL_TEXTURE_WRAP_T, GLWarp[warp]);
+	glTextureParameteri(handle, GL_TEXTURE_WRAP_T, GLWarp[warp]);
 	GLCheckError();
 }
 
@@ -161,15 +164,13 @@ void GLTexture::setRWarp(Warp warp)
 {
 	assert(type == Type::_3D);
 
-	bind();
-	glTexParameteri(glTarget, GL_TEXTURE_WRAP_T, GLWarp[warp]);
+	glTextureParameteri(handle, GL_TEXTURE_WRAP_R, GLWarp[warp]);
 	GLCheckError();
 }
 
 void GLTexture::generateMipmap()
 {
-	bind();
-	glGenerateMipmap(glTarget);
+	glGenerateTextureMipmap(handle);
 	GLCheckError();
 }
 
