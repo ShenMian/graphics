@@ -4,10 +4,11 @@ var searchData=
   ['init_1',['init',['../class_g_l_renderer.html#ad419c85c7b9ede2f3a21f1e7fe3231ff',1,'GLRenderer']]],
   ['iscompressed_2',['isCompressed',['../class_mesh.html#a805c66466278300f121c366cb0f9c6de',1,'Mesh']]],
   ['isconnected_3',['isConnected',['../class_gamepad.html#a33d4dbd503a8d645885bd19cbc390a91',1,'Gamepad']]],
-  ['isfloating_4',['isFloating',['../class_window.html#a749973cb62e3321d7cbfe4ff39798189',1,'Window']]],
-  ['isfullscreen_5',['isFullscreen',['../class_window.html#ac3dc6c7f08d4b749b7949149cc6c7dc3',1,'Window']]],
-  ['ispressed_6',['isPressed',['../class_input.html#a77ca3703c1457f69fa12c89f5b08d917',1,'Input::isPressed(Key key)'],['../class_input.html#adfeb39c4544f18847f3b7353fec5ef2d',1,'Input::isPressed(Mouse key)']]],
-  ['isprimary_7',['isPrimary',['../class_monitor.html#abb69747f03e4fed060f16b84052eb3c0',1,'Monitor']]],
-  ['isresizable_8',['isResizable',['../class_window.html#a1b888a7e6a5562968a253b915ccb7825',1,'Window']]],
-  ['isvisible_9',['isVisible',['../class_window.html#a6be53a737e7dfcc74167962437e93b8f',1,'Window']]]
+  ['iscursorlock_4',['isCursorLock',['../class_window.html#ad07aacec09f143cbf9acf69a79764bbe',1,'Window']]],
+  ['isfloating_5',['isFloating',['../class_window.html#a749973cb62e3321d7cbfe4ff39798189',1,'Window']]],
+  ['isfullscreen_6',['isFullscreen',['../class_window.html#ac3dc6c7f08d4b749b7949149cc6c7dc3',1,'Window']]],
+  ['ispressed_7',['isPressed',['../class_input.html#a77ca3703c1457f69fa12c89f5b08d917',1,'Input::isPressed(Key key)'],['../class_input.html#adfeb39c4544f18847f3b7353fec5ef2d',1,'Input::isPressed(Mouse key)']]],
+  ['isprimary_8',['isPrimary',['../class_monitor.html#abb69747f03e4fed060f16b84052eb3c0',1,'Monitor']]],
+  ['isresizable_9',['isResizable',['../class_window.html#a1b888a7e6a5562968a253b915ccb7825',1,'Window']]],
+  ['isvisible_10',['isVisible',['../class_window.html#a6be53a737e7dfcc74167962437e93b8f',1,'Window']]]
 ];
