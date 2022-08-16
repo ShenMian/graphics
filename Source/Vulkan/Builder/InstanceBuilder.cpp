@@ -4,6 +4,7 @@
 #include "InstanceBuilder.h"
 #include "../VKInstance.h"
 #include "Core/Platform.h"
+#include <algorithm>
 #include <stdexcept>
 
 namespace
@@ -44,7 +45,7 @@ std::string_view toString(VkDebugUtilsMessageTypeFlagsEXT type)
 	return "";
 }
 
-}
+} // namespace
 
 InstanceBuilder::InstanceBuilder()
 {
@@ -65,21 +66,19 @@ VKInstance InstanceBuilder::build()
 {
 	enableWindowExtensions();
 
-	for(auto layer : enabledLayers)
-		if(!isLayerAvailable(layer))
-			throw std::runtime_error("requested layer not present");
+	if(std::ranges::any_of(enabledLayers, [this](auto layer) { return !isLayerAvailable(layer); }))
+		throw std::runtime_error("requested layer not present");
 
-	for(auto ext : enabledExtensions)
-		if(!isExtensionAvailable(ext))
-			throw std::runtime_error("requested extension not avaliable");
+	if(std::ranges::any_of(enabledExtensions, [this](auto ext) { return !isExtensionAvailable(ext); }))
+		throw std::runtime_error("requested extension not avaliable");
 
 	appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
 
-	instanceInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
-	instanceInfo.pApplicationInfo = &appInfo;
-	instanceInfo.enabledLayerCount = static_cast<uint32_t>(enabledLayers.size());
-	instanceInfo.ppEnabledLayerNames = enabledLayers.data();
-	instanceInfo.enabledExtensionCount = static_cast<uint32_t>(enabledExtensions.size());
+	instanceInfo.sType                   = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
+	instanceInfo.pApplicationInfo        = &appInfo;
+	instanceInfo.enabledLayerCount       = static_cast<uint32_t>(enabledLayers.size());
+	instanceInfo.ppEnabledLayerNames     = enabledLayers.data();
+	instanceInfo.enabledExtensionCount   = static_cast<uint32_t>(enabledExtensions.size());
 	instanceInfo.ppEnabledExtensionNames = enabledExtensions.data();
 
 	VkInstance instance;
@@ -150,18 +149,12 @@ InstanceBuilder& InstanceBuilder::setDebugCallback(PFN_vkDebugUtilsMessengerCall
 
 bool InstanceBuilder::isLayerAvailable(std::string_view name) const
 {
-	for(const auto& layer : availableLayers)
-		if(layer.layerName == name)
-			return true;
-	return false;
+	return std::ranges::any_of(availableLayers, [name](const auto& layer) { return layer.layerName == name; });
 }
 
 bool InstanceBuilder::isExtensionAvailable(std::string_view name) const
 {
-	for(const auto& ext : availableExtensions)
-		if(ext.extensionName == name)
-			return true;
-	return false;
+	return std::ranges::any_of(availableExtensions, [name](const auto& ext) { return ext.extensionName == name; });
 }
 
 void InstanceBuilder::enableWindowExtensions()
@@ -187,24 +180,22 @@ void InstanceBuilder::createDebugMessager(VkInstance instance)
 	if(!info.enableValidationLayers)
 		throw std::runtime_error("must enable validation layers");
 
-	auto vkCreateDebugUtilsMessengerEXT = (PFN_vkCreateDebugUtilsMessengerEXT)vkGetInstanceProcAddr(instance, "vkCreateDebugUtilsMessengerEXT");
+	auto vkCreateDebugUtilsMessengerEXT =
+	    (PFN_vkCreateDebugUtilsMessengerEXT)vkGetInstanceProcAddr(instance, "vkCreateDebugUtilsMessengerEXT");
 	if(vkCreateDebugUtilsMessengerEXT == nullptr)
 		throw std::runtime_error("failed to locate function");
 
-	const auto defaultCallback = [](
-		VkDebugUtilsMessageSeverityFlagBitsEXT severity,
-		VkDebugUtilsMessageTypeFlagsEXT type,
-		const VkDebugUtilsMessengerCallbackDataEXT* data,
-		void* pUserData)
-	{
+	const auto defaultCallback = [](VkDebugUtilsMessageSeverityFlagBitsEXT      severity,
+	                                VkDebugUtilsMessageTypeFlagsEXT             type,
+	                                const VkDebugUtilsMessengerCallbackDataEXT* data, void* pUserData) {
 		printf("Severity: %s\nType    : %s\n%s\n\n", toString(severity).data(), toString(type).data(), data->pMessage);
 		return VK_FALSE;
 	};
 
 	VkDebugUtilsMessengerCreateInfoEXT messagerInfo = {};
-	messagerInfo.sType = VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT;
-	messagerInfo.messageSeverity = info.debugMessageSeverity;
-	messagerInfo.messageType = info.debugMessageType;
+	messagerInfo.sType                              = VK_STRUCTURE_TYPE_DEBUG_UTILS_MESSENGER_CREATE_INFO_EXT;
+	messagerInfo.messageSeverity                    = info.debugMessageSeverity;
+	messagerInfo.messageType                        = info.debugMessageType;
 	messagerInfo.pfnUserCallback = info.debugMessageCallback ? info.debugMessageCallback : defaultCallback;
 
 	if(vkCreateDebugUtilsMessengerEXT(instance, &messagerInfo, nullptr, &debugMessenger) != VK_SUCCESS)
@@ -213,7 +204,8 @@ void InstanceBuilder::createDebugMessager(VkInstance instance)
 
 void InstanceBuilder::destroyDebugMessager(VkInstance instance)
 {
-	auto vkDestroyDebugUtilsMessengerEXT = (PFN_vkDestroyDebugUtilsMessengerEXT)vkGetInstanceProcAddr(instance, "vkDestroyDebugUtilsMessengerEXT");
+	auto vkDestroyDebugUtilsMessengerEXT =
+	    (PFN_vkDestroyDebugUtilsMessengerEXT)vkGetInstanceProcAddr(instance, "vkDestroyDebugUtilsMessengerEXT");
 	if(vkDestroyDebugUtilsMessengerEXT == nullptr)
 		throw std::runtime_error("failed to locate function");
 

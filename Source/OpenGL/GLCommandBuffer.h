@@ -4,8 +4,8 @@
 #pragma once
 
 #include "CommandBuffer.h"
-#include "GLVertexBuffer.h"
 #include "GLIndexBuffer.h"
+#include "GLVertexBuffer.h"
 #include <cstdint>
 #include <vector>
 
@@ -39,7 +39,8 @@ public:
 
 private:
 	void addCommand(GLOpcode opcode);
-	template <typename T> T* addCommand(GLOpcode opcode);
+	template <typename T>
+	T* addCommand(GLOpcode opcode);
 
 	std::vector<uint8_t> buffer;
 };
@@ -49,7 +50,7 @@ inline const auto& GLCommandBuffer::getData() const
 	return buffer;
 }
 
-template<typename T>
+template <typename T>
 inline T* GLCommandBuffer::addCommand(GLOpcode opcode)
 {
 	auto offset = buffer.size();
@@ -78,8 +79,8 @@ enum class GLOpcode
 
 struct GLCmdSetViewport
 {
-	GLint x, y;
-	GLsizei width, height;
+	GLint    x, y;
+	GLsizei  width, height;
 	GLdouble n, f;
 };
 

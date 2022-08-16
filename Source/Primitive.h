@@ -3,6 +3,8 @@
 
 #pragma once
 
+#include <optional>
+
 class Mesh;
 
 class Primitive
@@ -11,7 +13,7 @@ public:
 	/**
 	 * @brief 生成平面.
 	 */
-	static Mesh makePlane(unsigned int x, unsigned int z);
+	static std::optional<Mesh> makePlane(unsigned int x, unsigned int z);
 
 	/**
 	 * @brief 生成立方体.
@@ -21,16 +23,16 @@ public:
 	/**
 	 * @brief 生成包含UV坐标的球.
 	 */
-	static Mesh makeSphere(unsigned int lat, unsigned int lon);
+	static std::optional<Mesh> makeSphere(unsigned int lat, unsigned int lon);
 
 	/**
 	 * @brief 生成胶囊体.
-	 * 
+	 *
 	 * @param resolution 分辨率. 越高顶点数越多, 越接近胶囊体.
 	 * @param height     高度.
 	 * @param radius     半径.
 	 */
-	static Mesh makeCapsule(unsigned int resolution, float height, float radius);
+	static std::optional<Mesh> makeCapsule(unsigned int resolution, float height, float radius);
 
 	/**
 	 * @brief 生成 ico 球.

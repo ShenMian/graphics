@@ -2,77 +2,75 @@
 // License(Apache-2.0)
 
 #include "Pin.h"
-#include <unordered_map>
+#include <imnodes.h>
 
 #define IMGUI_DEFINE_MATH_OPERATORS
 #include <imgui_internal.h>
 
-using namespace ax::NodeEditor;
-
 namespace
 {
 
-std::unordered_map<ui::Pin::Kind, PinKind> axPinKind = {
-	{ui::Pin::Kind::Input, PinKind::Input},
-	{ui::Pin::Kind::Output, PinKind::Output}
-};
-
 enum class IconType : ImU32
 {
-	Flow, Circle, Square, Grid, RoundSquare, Diamond
+	Flow,
+	Circle,
+	Square,
+	Grid,
+	RoundSquare,
+	Diamond
 };
+
+std::unordered_map<ui::Pin::Type, ImColor> PinIconColor = {
+    {ui::Pin::Type::Flow, ImColor(255, 255, 255)},   {ui::Pin::Type::Bool, ImColor(220, 48, 48)},
+    {ui::Pin::Type::Int, ImColor(68, 201, 156)},     {ui::Pin::Type::Float, ImColor(147, 226, 74)},
+    {ui::Pin::Type::String, ImColor(124, 21, 153)},  {ui::Pin::Type::Object, ImColor(51, 150, 215)},
+    {ui::Pin::Type::Function, ImColor(218, 0, 183)}, {ui::Pin::Type::Delegate, ImColor(255, 48, 48)}};
+
+std::unordered_map<ui::Pin::Type, IconType> PinIconType = {
+    {ui::Pin::Type::Flow, IconType::Flow},       {ui::Pin::Type::Bool, IconType::Circle},
+    {ui::Pin::Type::Int, IconType::Circle},      {ui::Pin::Type::Float, IconType::Circle},
+    {ui::Pin::Type::String, IconType::Circle},   {ui::Pin::Type::Object, IconType::Circle},
+    {ui::Pin::Type::Function, IconType::Circle}, {ui::Pin::Type::Delegate, IconType::Square}};
 
 void DrawIconFlow(ImDrawList* drawList, const ImRect& rect, bool filled, ImU32 color, ImU32 innerColor)
 {
-	auto rect_w = rect.Max.x - rect.Min.x;
+	auto       rect_w        = rect.Max.x - rect.Min.x;
 	const auto outline_scale = rect_w / 24.0f;
 
 	const auto origin_scale = rect_w / 24.0f;
 
-	const auto offset_x = 1.0f * origin_scale;
-	const auto offset_y = 0.0f * origin_scale;
-	const auto margin = (filled ? 2.0f : 2.0f) * origin_scale;
-	const auto rounding = 0.1f * origin_scale;
+	const auto offset_x  = 1.0f * origin_scale;
+	const auto offset_y  = 0.0f * origin_scale;
+	const auto margin    = (filled ? 2.0f : 2.0f) * origin_scale;
+	const auto rounding  = 0.1f * origin_scale;
 	const auto tip_round = 0.7f; // percentage of triangle edge (for tip)
-	//const auto edge_round = 0.7f; // percentage of triangle edge (for corner)
-	const auto canvas = ImRect(
-		rect.Min.x + margin + offset_x,
-		rect.Min.y + margin + offset_y,
-		rect.Max.x - margin + offset_x,
-		rect.Max.y - margin + offset_y);
+	// const auto edge_round = 0.7f; // percentage of triangle edge (for corner)
+	const auto canvas   = ImRect(rect.Min.x + margin + offset_x, rect.Min.y + margin + offset_y,
+	                             rect.Max.x - margin + offset_x, rect.Max.y - margin + offset_y);
 	const auto canvas_x = canvas.Min.x;
 	const auto canvas_y = canvas.Min.y;
 	const auto canvas_w = canvas.Max.x - canvas.Min.x;
 	const auto canvas_h = canvas.Max.y - canvas.Min.y;
 
-	const auto left = canvas_x + canvas_w * 0.5f * 0.3f;
-	const auto right = canvas_x + canvas_w - canvas_w * 0.5f * 0.3f;
-	const auto top = canvas_y + canvas_h * 0.5f * 0.2f;
-	const auto bottom = canvas_y + canvas_h - canvas_h * 0.5f * 0.2f;
+	const auto left     = canvas_x + canvas_w * 0.5f * 0.3f;
+	const auto right    = canvas_x + canvas_w - canvas_w * 0.5f * 0.3f;
+	const auto top      = canvas_y + canvas_h * 0.5f * 0.2f;
+	const auto bottom   = canvas_y + canvas_h - canvas_h * 0.5f * 0.2f;
 	const auto center_y = (top + bottom) * 0.5f;
-	//const auto angle = AX_PI * 0.5f * 0.5f * 0.5f;
+	// const auto angle = AX_PI * 0.5f * 0.5f * 0.5f;
 
-	const auto tip_top = ImVec2(canvas_x + canvas_w * 0.5f, top);
-	const auto tip_right = ImVec2(right, center_y);
+	const auto tip_top    = ImVec2(canvas_x + canvas_w * 0.5f, top);
+	const auto tip_right  = ImVec2(right, center_y);
 	const auto tip_bottom = ImVec2(canvas_x + canvas_w * 0.5f, bottom);
 
 	drawList->PathLineTo(ImVec2(left, top) + ImVec2(0, rounding));
-	drawList->PathBezierCurveTo(
-		ImVec2(left, top),
-		ImVec2(left, top),
-		ImVec2(left, top) + ImVec2(rounding, 0));
+	drawList->PathBezierCurveTo(ImVec2(left, top), ImVec2(left, top), ImVec2(left, top) + ImVec2(rounding, 0));
 	drawList->PathLineTo(tip_top);
 	drawList->PathLineTo(tip_top + (tip_right - tip_top) * tip_round);
-	drawList->PathBezierCurveTo(
-		tip_right,
-		tip_right,
-		tip_bottom + (tip_right - tip_bottom) * tip_round);
+	drawList->PathBezierCurveTo(tip_right, tip_right, tip_bottom + (tip_right - tip_bottom) * tip_round);
 	drawList->PathLineTo(tip_bottom);
 	drawList->PathLineTo(ImVec2(left, bottom) + ImVec2(rounding, 0));
-	drawList->PathBezierCurveTo(
-		ImVec2(left, bottom),
-		ImVec2(left, bottom),
-		ImVec2(left, bottom) - ImVec2(0, rounding));
+	drawList->PathBezierCurveTo(ImVec2(left, bottom), ImVec2(left, bottom), ImVec2(left, bottom) - ImVec2(0, rounding));
 
 	if(!filled)
 	{
@@ -87,11 +85,11 @@ void DrawIconFlow(ImDrawList* drawList, const ImRect& rect, bool filled, ImU32 c
 
 void DrawIconCircle(ImDrawList* drawList, const ImRect& rect, bool filled, ImU32 color, ImU32 innerColor)
 {
-	auto rect_w = rect.Max.x - rect.Min.x;
-	auto rect_center_x = (rect.Min.x + rect.Max.x) * 0.5f;
-	auto rect_center_y = (rect.Min.y + rect.Max.y) * 0.5f;
-	auto rect_center = ImVec2(rect_center_x, rect_center_y);
-	const auto outline_scale = rect_w / 24.0f;
+	auto       rect_w         = rect.Max.x - rect.Min.x;
+	auto       rect_center_x  = (rect.Min.x + rect.Max.x) * 0.5f;
+	auto       rect_center_y  = (rect.Min.y + rect.Max.y) * 0.5f;
+	auto       rect_center    = ImVec2(rect_center_x, rect_center_y);
+	const auto outline_scale  = rect_w / 24.0f;
 	const auto extra_segments = static_cast<int>(2 * outline_scale); // for full circle
 
 	const auto c = rect_center;
@@ -110,16 +108,16 @@ void DrawIconCircle(ImDrawList* drawList, const ImRect& rect, bool filled, ImU32
 
 void DrawIconSquare(ImDrawList* drawList, const ImRect& rect, bool filled, ImU32 color, ImU32 innerColor)
 {
-	auto rect_w = rect.Max.x - rect.Min.x;
-	auto rect_center_x = (rect.Min.x + rect.Max.x) * 0.5f;
-	auto rect_center_y = (rect.Min.y + rect.Max.y) * 0.5f;
-	auto rect_center = ImVec2(rect_center_x, rect_center_y);
-	const auto outline_scale = rect_w / 24.0f;
+	auto       rect_w         = rect.Max.x - rect.Min.x;
+	auto       rect_center_x  = (rect.Min.x + rect.Max.x) * 0.5f;
+	auto       rect_center_y  = (rect.Min.y + rect.Max.y) * 0.5f;
+	auto       rect_center    = ImVec2(rect_center_x, rect_center_y);
+	const auto outline_scale  = rect_w / 24.0f;
 	const auto extra_segments = static_cast<int>(2 * outline_scale); // for full circle
 
 	if(filled)
 	{
-		const auto r = 0.5f * rect_w / 2.0f;
+		const auto r  = 0.5f * rect_w / 2.0f;
 		const auto p0 = rect_center - ImVec2(r, r);
 		const auto p1 = rect_center + ImVec2(r, r);
 
@@ -127,7 +125,7 @@ void DrawIconSquare(ImDrawList* drawList, const ImRect& rect, bool filled, ImU32
 	}
 	else
 	{
-		const auto r = 0.5f * rect_w / 2.0f - 0.5f;
+		const auto r  = 0.5f * rect_w / 2.0f - 0.5f;
 		const auto p0 = rect_center - ImVec2(r, r);
 		const auto p1 = rect_center + ImVec2(r, r);
 
@@ -140,7 +138,7 @@ void DrawIconSquare(ImDrawList* drawList, const ImRect& rect, bool filled, ImU32
 
 void drawIconGrid(ImDrawList* drawList, const ImRect& rect, bool filled, ImU32 color, ImU32 innerColor)
 {
-	auto rect_w = rect.Max.x - rect.Min.x;
+	auto rect_w        = rect.Max.x - rect.Min.x;
 	auto rect_center_x = (rect.Min.x + rect.Max.x) * 0.5f;
 	auto rect_center_y = (rect.Min.y + rect.Max.y) * 0.5f;
 
@@ -172,15 +170,15 @@ void drawIconGrid(ImDrawList* drawList, const ImRect& rect, bool filled, ImU32 c
 
 void DrawIconRoundSquare(ImDrawList* drawList, const ImRect& rect, bool filled, ImU32 color, ImU32 innerColor)
 {
-	auto rect_w = rect.Max.x - rect.Min.x;
-	auto rect_center_x = (rect.Min.x + rect.Max.x) * 0.5f;
-	auto rect_center_y = (rect.Min.y + rect.Max.y) * 0.5f;
-	auto rect_center = ImVec2(rect_center_x, rect_center_y);
+	auto       rect_w        = rect.Max.x - rect.Min.x;
+	auto       rect_center_x = (rect.Min.x + rect.Max.x) * 0.5f;
+	auto       rect_center_y = (rect.Min.y + rect.Max.y) * 0.5f;
+	auto       rect_center   = ImVec2(rect_center_x, rect_center_y);
 	const auto outline_scale = rect_w / 24.0f;
 
 	if(filled)
 	{
-		const auto r = 0.5f * rect_w / 2.0f;
+		const auto r  = 0.5f * rect_w / 2.0f;
 		const auto cr = r * 0.5f;
 		const auto p0 = rect_center - ImVec2(r, r);
 		const auto p1 = rect_center + ImVec2(r, r);
@@ -189,7 +187,7 @@ void DrawIconRoundSquare(ImDrawList* drawList, const ImRect& rect, bool filled, 
 	}
 	else
 	{
-		const auto r = 0.5f * rect_w / 2.0f - 0.5f;
+		const auto r  = 0.5f * rect_w / 2.0f - 0.5f;
 		const auto cr = r * 0.5f;
 		const auto p0 = rect_center - ImVec2(r, r);
 		const auto p1 = rect_center + ImVec2(r, r);
@@ -203,10 +201,10 @@ void DrawIconRoundSquare(ImDrawList* drawList, const ImRect& rect, bool filled, 
 
 void DrawIconDiamond(ImDrawList* drawList, const ImRect& rect, bool filled, ImU32 color, ImU32 innerColor)
 {
-	auto rect_w = rect.Max.x - rect.Min.x;
-	auto rect_center_x = (rect.Min.x + rect.Max.x) * 0.5f;
-	auto rect_center_y = (rect.Min.y + rect.Max.y) * 0.5f;
-	auto rect_center = ImVec2(rect_center_x, rect_center_y);
+	auto       rect_w        = rect.Max.x - rect.Min.x;
+	auto       rect_center_x = (rect.Min.x + rect.Max.x) * 0.5f;
+	auto       rect_center_y = (rect.Min.y + rect.Max.y) * 0.5f;
+	auto       rect_center   = ImVec2(rect_center_x, rect_center_y);
 	const auto outline_scale = rect_w / 24.0f;
 
 	if(filled)
@@ -237,16 +235,17 @@ void DrawIconDiamond(ImDrawList* drawList, const ImRect& rect, bool filled, ImU3
 	}
 }
 
-void DrawIcon(ImDrawList* drawList, const ImVec2& a, const ImVec2& b, IconType type, bool filled, ImU32 color, ImU32 innerColor)
+void DrawIcon(ImDrawList* drawList, const ImVec2& a, const ImVec2& b, IconType type, bool filled, ImU32 color,
+              ImU32 innerColor)
 {
-	auto rect = ImRect(a, b);
-	auto rect_y = rect.Min.y;
-	auto rect_w = rect.Max.x - rect.Min.x;
-	auto rect_h = rect.Max.y - rect.Min.y;
-	auto rect_center_x = (rect.Min.x + rect.Max.x) * 0.5f;
-	auto rect_center_y = (rect.Min.y + rect.Max.y) * 0.5f;
-	auto triangleStart = rect_center_x + 0.32f * rect_w;
-	const auto triangleTip = triangleStart + rect_w * (0.45f - 0.32f);
+	auto       rect          = ImRect(a, b);
+	auto       rect_y        = rect.Min.y;
+	auto       rect_w        = rect.Max.x - rect.Min.x;
+	auto       rect_h        = rect.Max.y - rect.Min.y;
+	auto       rect_center_x = (rect.Min.x + rect.Max.x) * 0.5f;
+	auto       rect_center_y = (rect.Min.y + rect.Max.y) * 0.5f;
+	auto       triangleStart = rect_center_x + 0.32f * rect_w;
+	const auto triangleTip   = triangleStart + rect_w * (0.45f - 0.32f);
 
 	switch(type)
 	{
@@ -277,100 +276,67 @@ void DrawIcon(ImDrawList* drawList, const ImVec2& a, const ImVec2& b, IconType t
 		break;
 
 	default:
-		drawList->AddTriangleFilled(
-			ImVec2(ceilf(triangleTip), rect_y + rect_h * 0.5f),
-			ImVec2(triangleStart, rect_center_y + 0.15f * rect_h),
-			ImVec2(triangleStart, rect_center_y - 0.15f * rect_h),
-			color);
+		drawList->AddTriangleFilled(ImVec2(ceilf(triangleTip), rect_y + rect_h * 0.5f),
+		                            ImVec2(triangleStart, rect_center_y + 0.15f * rect_h),
+		                            ImVec2(triangleStart, rect_center_y - 0.15f * rect_h), color);
 	}
 }
 
-void Icon(const ImVec2& size, IconType type, bool filled, const ImVec4& color = ImVec4(1, 1, 1, 1), const ImVec4& innerColor = ImVec4(0, 0, 0, 0))
+void Icon(const ImVec2& size, IconType type, bool filled, const ImVec4& color = ImVec4(1, 1, 1, 1),
+          const ImVec4& innerColor = ImVec4(0, 0, 0, 0))
 {
 	if(ImGui::IsRectVisible(size))
 	{
 		auto cursorPos = ImGui::GetCursorScreenPos();
-		auto drawList = ImGui::GetWindowDrawList();
+		auto drawList  = ImGui::GetWindowDrawList();
 		DrawIcon(drawList, cursorPos, cursorPos + size, type, filled, ImColor(color), ImColor(innerColor));
 	}
 	ImGui::Dummy(size);
 }
 
-std::unordered_map<ui::Pin::Type, ImColor> PinIconColor = {
-	{ui::Pin::Type::Flow,     ImColor(255, 255, 255)},
-	{ui::Pin::Type::Bool,     ImColor(220,  48,  48)},
-	{ui::Pin::Type::Int,      ImColor(68,  201, 156)},
-	{ui::Pin::Type::Float,    ImColor(147, 226,  74)},
-	{ui::Pin::Type::String,   ImColor(124,  21, 153)},
-	{ui::Pin::Type::Object,   ImColor(51,  150, 215)},
-	{ui::Pin::Type::Function, ImColor(218,   0, 183)},
-	{ui::Pin::Type::Delegate, ImColor(255,  48,  48)}
-};
-
-std::unordered_map<ui::Pin::Type, IconType> PinIconType = {
-	{ui::Pin::Type::Flow,     IconType::Flow},
-	{ui::Pin::Type::Bool,     IconType::Circle},
-	{ui::Pin::Type::Int,      IconType::Circle},
-	{ui::Pin::Type::Float,    IconType::Circle},
-	{ui::Pin::Type::String,   IconType::Circle},
-	{ui::Pin::Type::Object,   IconType::Circle},
-	{ui::Pin::Type::Function, IconType::Circle},
-	{ui::Pin::Type::Delegate, IconType::Square}
-};
-
-}
+} // namespace
 
 namespace ui
 {
 
-Pin::Pin(const std::string& label, Type type, Kind kind)
-	: Widget(label), pinId(id), type(type), kind(kind)
+Pin::Pin(const std::string& label, Kind kind, Type type) : Widget(label), kind(kind), type(type)
 {
 }
 
-Pin::Type Pin::getType() const
+Pin::Type Pin::getType() const noexcept
 {
 	return type;
 }
 
-Pin::Kind Pin::getKind() const
+Pin::Kind Pin::getKind() const noexcept
 {
 	return kind;
 }
 
-void Pin::setNode(Node& node)
-{
-	this->node = &node;
-}
-
-Node* Pin::getNode() const
-{
-	return node;
-}
-
 void Pin::update()
 {
-	BeginPin(pinId, axPinKind[kind]);
+	if(kind == Kind::Input)
 	{
-		if(kind == Kind::Input)
-		{
-			Icon(ImVec2(iconSize, iconSize), PinIconType[type], connected, PinIconColor[type]);
-			ImGui::SameLine();
-			ImGui::TextUnformatted(label.c_str());
-		}
-		else
-		{
-			ImGui::TextUnformatted(label.c_str());
-			ImGui::SameLine();
-			Icon(ImVec2(iconSize, iconSize), PinIconType[type], connected, PinIconColor[type]);
-		}
-	}
-	EndPin();
-}
+		ImNodes::BeginInputAttribute(id);
 
-Pin::operator PinId() const
-{
-	return pinId;
+		Icon(ImVec2(16, 16), PinIconType[type], false, PinIconColor[type]);
+		ImGui::SameLine();
+		ImGui::TextUnformatted(label.c_str());
+
+		ImNodes::EndInputAttribute();
+	}
+	else
+	{
+		ImNodes::BeginOutputAttribute(id);
+
+		// ImGui::Indent(ImGui::GetColumnWidth() - ImGui::CalcTextSize(label.c_str()).x);
+
+		ImGui::TextUnformatted(label.c_str());
+		ImGui::SameLine();
+		Icon(ImVec2(16, 16), PinIconType[type], false, PinIconColor[type]);
+
+		ImNodes::EndOutputAttribute();
+	}
 }
 
 } // namespace ui

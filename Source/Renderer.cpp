@@ -15,15 +15,13 @@ Renderer* Renderer::get()
 	{
 		using enum Renderer::API;
 
-	case OpenGL:
-	{
-		static auto renderer = new GLRenderer;
+	case OpenGL: {
+		static auto renderer = new GLRenderer; // TODO: 内存泄露
 		return renderer;
 	}
 
-	case Vulkan:
-	{
-		static auto renderer = new VKRenderer;
+	case Vulkan: {
+		static auto renderer = new VKRenderer; // TODO: 内存泄露
 		return renderer;
 	}
 	}

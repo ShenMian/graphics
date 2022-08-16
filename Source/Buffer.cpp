@@ -5,8 +5,7 @@
 #include <cassert>
 #include <cstring>
 
-Buffer::Buffer(size_t size, Type type, Usage usage)
-	: size(size), type(type), usage(usage)
+Buffer::Buffer(size_t size, Type type, Usage usage) : size(size), type(type), usage(usage)
 {
 }
 

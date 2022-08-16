@@ -3,12 +3,11 @@
 
 #include "Controller.h"
 #include "Camera.h"
-#include "Input.h"
 #include "Gamepad.h"
+#include "Input.h"
 #include <algorithm>
 
-Controller::Controller(Camera& cam)
-	: camera(&cam)
+Controller::Controller(Camera& cam) : camera(&cam)
 {
 }
 
@@ -32,12 +31,14 @@ void Controller::moveFront(float step)
 
 void Controller::moveRight(float step)
 {
-	target += camera->getRight() * step;;
+	target += camera->getRight() * step;
+	;
 }
 
 void Controller::moveUp(float step)
 {
-	target += -Vector3f::unit_y * step;;
+	target += -Vector3f::unit_y * step;
+	;
 }
 
 void Controller::turnRight(float step)
@@ -100,11 +101,11 @@ void Controller::processMouse(float dt)
 {
 	const Vector2f sensitivity = Vector2f::unit;
 
-	const auto position = Input::getMousePosition();
-	static Vector2f lastPos = position;
-	const auto pos = static_cast<Vector2f>(position);
-	Vector2f offset = pos - lastPos;
-	lastPos = pos;
+	const auto      position = Input::getMousePosition();
+	static Vector2f lastPos  = position;
+	const auto      pos      = static_cast<Vector2f>(position);
+	Vector2f        offset   = pos - lastPos;
+	lastPos                  = pos;
 
 	// TODO
 #if 0
@@ -127,19 +128,19 @@ void Controller::processGamepad(float dt)
 
 	gamepad->update();
 
-	float step = speed * dt * 1.2f;
+	float step = speed * dt;
 	if(gamepad->get(Gamepad::Button::LeftThumb))
 		step *= 3;
 
 	const Vector2f sensitivity = Vector2f::unit * 200.f * dt;
 
-	const auto leftThumb = gamepad->get(Gamepad::Thumb::left);
-	const auto rightThumb = gamepad->get(Gamepad::Thumb::right);
+	const auto leftThumb    = gamepad->get(Gamepad::Thumb::left);
+	const auto rightThumb   = gamepad->get(Gamepad::Thumb::right);
 	const auto rightTrigger = gamepad->get(Gamepad::Trigger::right);
-	const auto leftTrigger = gamepad->get(Gamepad::Trigger::left);
+	const auto leftTrigger  = gamepad->get(Gamepad::Trigger::left);
 	moveFront(-leftThumb.y * step);
 	moveRight(leftThumb.x * step);
-	moveUp(rightTrigger + (-leftTrigger));
+	moveUp((rightTrigger + (-leftTrigger)) * step);
 	lookUp(-rightThumb.y * sensitivity.x);
 	turnRight(rightThumb.x * sensitivity.y);
 }

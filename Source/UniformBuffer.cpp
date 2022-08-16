@@ -22,7 +22,6 @@ std::shared_ptr<UniformBuffer> UniformBuffer::create(int binding, size_t size)
 	return nullptr;
 }
 
-UniformBuffer::UniformBuffer(int binding)
-	: binding(binding)
+UniformBuffer::UniformBuffer(int binding) : binding(binding)
 {
 }

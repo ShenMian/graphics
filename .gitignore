@@ -14,6 +14,9 @@ Makefile
 .cache
 CMakeSettings.json
 
+# Compile database
+compile_commands.json
+
 # Vcpkg
 vcpkg_installed
 

@@ -1,12 +1,7 @@
 ﻿// Copyright 2021 ShenMian
 // License(Apache-2.0)
 
-#pragma once
-
 #include "Widget.h"
-#include <imgui_node_editor.h>
-
-using ax::NodeEditor::PinId;
 
 namespace ui
 {
@@ -34,27 +29,16 @@ public:
 		Input
 	};
 
-	Pin(const std::string& label, Type type, Kind kind);
+	Pin(const std::string& label, Kind kind, Type type);
 
-	Type getType() const;
-	Kind getKind() const;
-
-	void setNode(Node& node);
-	Node* getNode() const;
+	Type getType() const noexcept;
+	Kind getKind() const noexcept;
 
 	void update() override;
 
-	operator PinId() const;
-
-	bool connected = false;
-
 private:
-	PinId pinId;
-	Type  type;
-	Kind  kind;
-	Node* node = nullptr;
-
-	const float iconSize = 24;
+	Kind kind;
+	Type type;
 };
 
 } // namespace ui

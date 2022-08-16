@@ -8,12 +8,10 @@
 #include "OpenGL/GLShader.h"
 #include "Vulkan/VKShader.h"
 
-std::unordered_map<Shader::Stage, const char*> Shader::extension = {
-	{Shader::Stage::Vertex, "vert"},
-	{Shader::Stage::Geometry, "geom"},
-	{Shader::Stage::Fragment, "frag"},
-	{Shader::Stage::Compute, "comp"}
-};
+std::unordered_map<Shader::Stage, const char*> Shader::extension = {{Shader::Stage::Vertex, "vert"},
+                                                                    {Shader::Stage::Geometry, "geom"},
+                                                                    {Shader::Stage::Fragment, "frag"},
+                                                                    {Shader::Stage::Compute, "comp"}};
 
 std::shared_ptr<Shader> Shader::create(const Descriptor& desc)
 {
@@ -43,8 +41,6 @@ Shader::Stage Shader::getStage() const
 	return stage;
 }
 
-Shader::Shader(const Descriptor& desc)
-	: name(desc.path.filename().string()),
-	stage(desc.stage)
+Shader::Shader(const Descriptor& desc) : name(desc.path.filename().string()), stage(desc.stage)
 {
 }

@@ -16,8 +16,13 @@ if(NOT DEFINED CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Debug)
 endif()
 
+# 默认生成 compilation databases
+if(NOT DEFINED CMAKE_EXPORT_COMPILE_COMMANDS)
+    set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+endif()
+
 # 选项
-option(USE_CONAN      "Use conan"      OFF)
+option(USE_CONAN      "Use conan"      ON)
 option(BUILD_EXAMPLES "Build examples" ON)
 
 # 输出基本信息
@@ -47,19 +52,15 @@ macro(add_example NAME)
 
     add_executable(${NAME} ${SOURCES})
 
-    target_include_directories(${NAME} PUBLIC
-        "${PROJECT_SOURCE_DIR}/Source"
-        "${DEPS_DIR}/stb"
-        "${DEPS_DIR}/fmt/include"
-        "${DEPS_DIR}/Math/include"
-        "${DEPS_DIR}/glad/include"
-        "${DEPS_DIR}/Vulkan-Headers/include"
-        "${DEPS_DIR}/imgui-node-editor")
-    target_link_libraries(${NAME} PRIVATE graphics glad)
+    target_link_libraries(${NAME} PRIVATE graphics)
     target_compile_definitions(${NAME} PUBLIC ${GRAPHICS_DEFINES})
 
     set_target_properties(${NAME} PROPERTIES
-        RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin/${NAME}")
+        RUNTIME_OUTPUT_DIRECTORY                "${CMAKE_BINARY_DIR}/bin/${NAME}"
+        RUNTIME_OUTPUT_DIRECTORY_DEBUG          "${CMAKE_BINARY_DIR}/bin/${NAME}"
+        RUNTIME_OUTPUT_DIRECTORY_RELEASE        "${CMAKE_BINARY_DIR}/bin/${NAME}"
+        RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO "${CMAKE_BINARY_DIR}/bin/${NAME}"
+        RUNTIME_OUTPUT_DIRECTORY_MINSIZEREL     "${CMAKE_BINARY_DIR}/bin/${NAME}")
 
     # 指定 C++ 标准
     if(MSVC) # MSVC
@@ -80,14 +81,12 @@ macro(add_example NAME)
     file(COPY "Shaders" DESTINATION "${CMAKE_BINARY_DIR}/bin/${NAME}")
 endmacro()
 
-# 指定 Win32 下要定义的宏
 if(WIN32)
-    list(APPEND GRAPHICS_DEFINES _CRT_SECURE_NO_WARNINGS _SCL_SECURE_NO_WARNINGS UNICODE _UNICODE NOMINMAX)
+    list(APPEND GRAPHICS_DEFINES _CRT_SECURE_NO_WARNINGS _SCL_SECURE_NO_WARNINGS UNICODE _UNICODE NOMINMAX) # 指定 Win32 下要定义的宏
 endif()
 
-# 静态链接 MSVC 运行库
 if(MSVC)
-    set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+    set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>") # 静态链接 MSVC 运行库
 endif()
 
 if(UNIX)

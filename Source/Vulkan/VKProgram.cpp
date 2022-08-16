@@ -5,8 +5,8 @@
 #include "VKProgram.h"
 #include "VKShader.h"
 #include <cassert>
-#include <stdexcept>
 #include <filesystem>
+#include <stdexcept>
 
 namespace fs = std::filesystem;
 
@@ -14,16 +14,14 @@ namespace
 {
 
 std::unordered_map<Shader::Stage, VkShaderStageFlagBits> VKStage = {
-	{Shader::Stage::Vertex, VK_SHADER_STAGE_VERTEX_BIT},
-	{Shader::Stage::Fragment, VK_SHADER_STAGE_FRAGMENT_BIT},
-	{Shader::Stage::Geometry, VK_SHADER_STAGE_GEOMETRY_BIT},
-	{Shader::Stage::Compute, VK_SHADER_STAGE_COMPUTE_BIT}
-};
+    {Shader::Stage::Vertex, VK_SHADER_STAGE_VERTEX_BIT},
+    {Shader::Stage::Fragment, VK_SHADER_STAGE_FRAGMENT_BIT},
+    {Shader::Stage::Geometry, VK_SHADER_STAGE_GEOMETRY_BIT},
+    {Shader::Stage::Compute, VK_SHADER_STAGE_COMPUTE_BIT}};
 
 }
 
-VKProgram::VKProgram(const Descriptor& desc)
-	: Program(desc)
+VKProgram::VKProgram(const Descriptor& desc) : Program(desc)
 {
 	if(desc.vertex == nullptr || desc.fragment == nullptr)
 		throw std::runtime_error("program must have vertex shader and fragment shader");
@@ -36,10 +34,10 @@ VKProgram::VKProgram(const Descriptor& desc)
 	for(auto& [stage, shader] : shaders)
 	{
 		VkPipelineShaderStageCreateInfo info = {};
-		info.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
-		info.stage = VKStage[stage];
-		info.module = shader->getNativeHandle();
-		info.pName = "main";
+		info.sType                           = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
+		info.stage                           = VKStage[stage];
+		info.module                          = shader->getNativeHandle();
+		info.pName                           = "main";
 		infos.push_back(info);
 	}
 }

@@ -2,12 +2,12 @@
 // License(Apache-2.0)
 
 #include "GLCheck.h"
+#include <glad/glad.h>
 #include <stdexcept>
 #include <string>
-#include <glad/glad.h>
 
 #define FMT_HEADER_ONLY
-#include <fmt/core.h>
+#include <fmt/format.h>
 
 using namespace std::literals::string_literals;
 
@@ -47,12 +47,12 @@ std::string_view GLGetErrorString(GLenum error)
 	}
 }
 
-}
+} // namespace
 
 void GLCheckError()
 {
 	while(const auto error = glGetError())
-		throw std::runtime_error(fmt::format("OpenGL error ({}): {}", error, GLGetErrorString(error)));
+		throw std::runtime_error(fmt::format("OpenGL ({}): {}", error, GLGetErrorString(error)));
 }
 
 void GLClearError()

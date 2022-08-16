@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include <Math/Math.hpp>
+#include <math/math.hpp>
 #include <string>
 #include <vector>
 
@@ -13,9 +13,9 @@ struct GLFWmonitor;
  *  @{
  */
 
- /**
-  * @brief 显示器.
-  */
+/**
+ * @brief 显示器.
+ */
 class Monitor
 {
 public:

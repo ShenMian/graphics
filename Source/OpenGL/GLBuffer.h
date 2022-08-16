@@ -4,8 +4,8 @@
 #pragma once
 
 #include "Buffer.h"
-#include <glad/glad.h>
 #include <cstddef>
+#include <glad/glad.h>
 
 class GLBuffer : public Buffer
 {

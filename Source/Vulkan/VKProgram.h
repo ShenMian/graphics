@@ -5,9 +5,9 @@
 
 #include "Program.h"
 #include "Shader.h"
-#include <vulkan/vulkan.h>
 #include <unordered_map>
 #include <vector>
+#include <vulkan/vulkan.h>
 
 class Shader;
 class VKShader;
@@ -33,5 +33,5 @@ private:
 	void addShader(std::shared_ptr<Shader> shader);
 
 	std::unordered_map<Shader::Stage, std::shared_ptr<VKShader>> shaders;
-	std::vector<VkPipelineShaderStageCreateInfo> infos;
+	std::vector<VkPipelineShaderStageCreateInfo>                 infos;
 };

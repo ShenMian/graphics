@@ -1,13 +1,10 @@
 ﻿// Copyright 2021 ShenMian
 // License(Apache-2.0)
 
-#include "Graphics.h"
+#include "../Base/Base.hpp"
 
-#define FMT_HEADER_ONLY
-#include <fmt/core.h>
-
-void PrintMonitorInfo();
-void PrintRendererInfo();
+namespace
+{
 
 struct Vertex
 {
@@ -15,109 +12,72 @@ struct Vertex
 	Vector3 color;
 };
 
-int main(int argc, char* argv[])
+} // namespace
+
+class Triangle final : public Base
 {
-	try
+public:
+	Triangle() : Base("Triangle"){};
+
+	int main(int argc, char* argv[]) override
 	{
-		std::filesystem::current_path(std::filesystem::path(argv[0]).parent_path());
+		// 创建一个由 3 个顶点构成的三角形
+		// clang-format off
+		const std::vector<Vertex> vertices = {
+			{{0,     0.5}, {1, 0, 0}},
+			{{0.5,  -0.5}, {0, 1, 0}},
+			{{-0.5, -0.5}, {0, 0, 1}}
+		};
+		// clang-format on
+		VertexFormat layout = {{"position", Format::RG32F}, {"color", Format::RGB32F}};
+		layout.setStride(sizeof(Vertex));
+		auto vertexBuffer = VertexBuffer::create(vertices, layout);
 
-		Renderer::setAPI(Renderer::API::OpenGL);
-		Window::init();
+		// 创建着色器程序
+		auto program = Program::create("Shaders/forward");
 
+		Pipeline::Descriptor desc;
+		desc.program      = program;
+		desc.vertexFormat = layout;
+		// desc.viewports.push_back(Viewport({0, 0}, window.getSize()));
+		auto pipeline = Pipeline::create(desc);
+
+		auto cmdQueue  = CommandQueue::create();
+		auto cmdBuffer = CommandBuffer::create();
+
+		bool running    = true;
+		window->onClose = [&] { running = false; };
+		window->setVisible(true); // 设置窗口可见
+
+		while(running)
 		{
-			Window window("Triangle", Monitor::getPrimary()->getSize() / 2);
-			Renderer::init(window);
-
+			cmdBuffer->begin();
 			{
-				PrintMonitorInfo();
-				PrintRendererInfo();
+				cmdBuffer->setPipeline(pipeline);
 
-				// 创建一个由 3 个顶点构成的三角形
-				const std::vector<Vertex> vertices = {
-					{{0,     0.5}, {1, 0, 0}},
-					{{0.5,  -0.5}, {0, 1, 0}},
-					{{-0.5, -0.5}, {0, 0, 1}}
-				};
-				VertexFormat layout = {
-					{"position", Format::RG32F},
-					{"color",    Format::RGB32F}
-				};
-				layout.setStride(sizeof(Vertex));
-				auto vertexBuffer = VertexBuffer::create(vertices, layout);
-
-				// 创建着色器程序
-				auto program = Program::create("Shaders/forward");
-
-				Pipeline::Descriptor desc;
-				desc.program = program;
-				desc.vertexFormat = layout;
-				// desc.viewports.push_back(Viewport({0, 0}, window.getSize()));
-				auto pipeline = Pipeline::create(desc);
-
-				auto cmdQueue = CommandQueue::create();
-				auto cmdBuffer = CommandBuffer::create();
-
-				bool running = true;
-				window.onClose = [&] { running = false; };
-				window.setVisible(true); // 设置窗口可见
-
-				while(running)
+				cmdBuffer->beginRenderPass();
 				{
-					cmdBuffer->begin();
-					{
-						cmdBuffer->setPipeline(pipeline);
+					cmdBuffer->setViewport({window->getSize()});
+					cmdBuffer->setClearColor({0, 0, 0, 0});
+					cmdBuffer->clear(ClearFlag::Color);
 
-						cmdBuffer->beginRenderPass();
-						{
-							cmdBuffer->setViewport({window.getSize()});
-							cmdBuffer->setClearColor({0, 0, 0, 0});
-							cmdBuffer->clear(ClearFlag::Color);
-
-							cmdBuffer->setVertexBuffer(vertexBuffer);
-							cmdBuffer->draw(vertexBuffer->getCount());
-						}
-						cmdBuffer->endRenderPass();
-					}
-					cmdBuffer->end();
-					cmdQueue->submit(cmdBuffer);
-
-					window.update();
+					cmdBuffer->setVertexBuffer(vertexBuffer);
+					cmdBuffer->draw(vertexBuffer->getCount());
 				}
+				cmdBuffer->endRenderPass();
 			}
+			cmdBuffer->end();
+			cmdQueue->submit(cmdBuffer);
 
-			Renderer::deinit();
+			window->update();
 		}
 
-		Window::deinit();
+		return 0;
 	}
-	catch(std::runtime_error& e)
-	{
-		puts(e.what());
-	}
+};
 
-	return 0;
-}
-
-void PrintMonitorInfo()
+int main(int argc, char* argv[])
 {
-	printf("Monitor\n");
-	for(const auto& mon : Monitor::getMonitors())
-	{
-		printf("%s", fmt::format(
-			"|-{}\n"
-			"  |-Size        : {}x{}\n"
-			"  `-Refresh rate: {} Hz\n",
-			mon.getName(), mon.getSize().x, mon.getSize().y, mon.getRefreshRate()).c_str());
-	}
-}
-
-void PrintRendererInfo()
-{
-	const auto renderer = Renderer::get();
-	printf("%s", fmt::format(
-		"Renderer\n"
-		"|-Device  : {}\n"
-		"|-Renderer: {}\n"
-		"`-Vendor  : {}\n",
-		renderer->getDeviceName(), renderer->getRendererName(), renderer->getVendorName()).c_str());
+	Triangle instance;
+	return instance.run(argc, argv);
 }

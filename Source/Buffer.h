@@ -47,26 +47,26 @@ public:
 	 * @param data   要写入的数据.
 	 * @param offset 偏移量, 单位: byte.
 	 */
-    template <typename T>
-    void write(std::span<T> data, size_t offset = 0);
+	template <typename T>
+	void write(std::span<T> data, size_t offset = 0);
 
-    /**
-     * @brief 写入映射缓冲区.
-     *
-     * @param data   要写入的数据.
-     * @param size   要写入的大小, 单位: byte.
-     * @param offset 偏移量, 单位: byte.
-     */
-    void write(const void* data, size_t size, size_t offset = 0);
+	/**
+	 * @brief 写入映射缓冲区.
+	 *
+	 * @param data   要写入的数据.
+	 * @param size   要写入的大小, 单位: byte.
+	 * @param offset 偏移量, 单位: byte.
+	 */
+	void write(const void* data, size_t size, size_t offset = 0);
 
-    /**
-     * @brief 读取映射缓冲区.
-     *
-     * @param data   要写入的缓冲区.
-     * @param size   要读取的大小, 单位: byte.
-     * @param offset 偏移量, 单位: byte.
-     */
-    void read(void* data, size_t size, size_t offset = 0);
+	/**
+	 * @brief 读取映射缓冲区.
+	 *
+	 * @param data   要写入的缓冲区.
+	 * @param size   要读取的大小, 单位: byte.
+	 * @param offset 偏移量, 单位: byte.
+	 */
+	void read(void* data, size_t size, size_t offset = 0);
 
 	/**
 	 * @brief 获取缓冲区大小, 单位: 字节.
@@ -76,17 +76,17 @@ public:
 	/**
 	 * @brief 获取缓冲区类型.
 	 */
-    [[nodiscard]] Type getType() const;
+	[[nodiscard]] Type getType() const;
 
 	/**
 	 * @brief 获取缓冲区使用方式.
 	 */
-    [[nodiscard]] Usage getUsage() const;
+	[[nodiscard]] Usage getUsage() const;
 
 	/**
 	 * @brief 获取映射的缓冲区.
 	 */
-    [[nodiscard]] void* getData();
+	[[nodiscard]] void* getData();
 
 	/**
 	 * @brief 映射缓冲区到内存.
@@ -113,11 +113,11 @@ protected:
 	size_t size;
 	Type   type;
 	Usage  usage;
-	void* data = nullptr;
+	void*  data = nullptr;
 };
 
-template<typename T>
+template <typename T>
 void Buffer::write(std::span<T> data, size_t offset)
 {
-    write(data.data(), data.size_bytes(), offset);
+	write(data.data(), data.size_bytes(), offset);
 }

@@ -4,10 +4,10 @@
 #pragma once
 
 #include "Key.h"
-#include <Math/Math.hpp>
-#include <string>
 #include <filesystem>
 #include <functional>
+#include <math/math.hpp>
+#include <string>
 
 struct GLFWwindow;
 
@@ -17,9 +17,9 @@ class Image;
  *  @{
  */
 
- /**
-  * @brief 窗体.
-  */
+/**
+ * @brief 窗体.
+ */
 class Window
 {
 public:
@@ -124,7 +124,7 @@ public:
 
 	/**
 	 * @brief 设置窗口是否置顶.
-	 * 
+	 *
 	 * @param enable true 为置顶, false 为不置顶.
 	 */
 	void setFloating(bool enable);

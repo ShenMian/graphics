@@ -33,8 +33,8 @@ protected:
  */
 enum class PolygonMode
 {
-	Fill,      ///< 填充的.
-	Wireframe  ///< 线框.
+	Fill,     ///< 填充的.
+	Wireframe ///< 线框.
 };
 
 /**
@@ -42,15 +42,15 @@ enum class PolygonMode
  */
 enum class CullMode
 {
-	Disabled,   ///< 禁用.
-	Front,      ///< 正面剔除.
-	Back,       ///< 背面剔除.
+	Disabled, ///< 禁用.
+	Front,    ///< 正面剔除.
+	Back,     ///< 背面剔除.
 };
 
 struct RasterizerDescriptor
 {
 	PolygonMode polygonMode = PolygonMode::Fill;
-	CullMode    cullMode = CullMode::Disabled;
+	CullMode    cullMode    = CullMode::Disabled;
 };
 
 struct Pipeline::Descriptor
@@ -61,5 +61,5 @@ struct Pipeline::Descriptor
 	VertexFormat             vertexFormat;
 	std::shared_ptr<Program> program;
 
-	std::vector<Viewport>    viewports;
+	std::vector<Viewport> viewports;
 };

@@ -3,8 +3,8 @@
 
 #pragma once
 
-#include "Format.h"
 #include "Core/Platform.h"
+#include "Format.h"
 #include <filesystem>
 #include <memory>
 #include <unordered_map>
@@ -111,7 +111,7 @@ public:
 	/**
 	 * @brief 获取像素格式.
 	 */
-    [[nodiscard]] Format getFormat() const;
+	[[nodiscard]] Format getFormat() const;
 
 protected:
 	Texture(Type type, Format fmt);
@@ -123,7 +123,7 @@ protected:
 };
 
 // TODO: 需要移动到合适的位置
-#if TARGET_COMPILER == COMPILER_CLANG
+#if TARGET_COMPILER == COMPILER_CLANG && __clang_major__ < 14
 template <>
 struct std::hash<std::filesystem::path>
 {

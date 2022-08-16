@@ -85,7 +85,7 @@ private:
 	void createDebugMessager(VkInstance instance);
 	void destroyDebugMessager(VkInstance instance);
 
-	VkApplicationInfo appInfo = {};
+	VkApplicationInfo    appInfo      = {};
 	VkInstanceCreateInfo instanceInfo = {};
 
 	VkDebugUtilsMessengerEXT debugMessenger;
@@ -93,16 +93,19 @@ private:
 	std::vector<const char*> enabledLayers;
 	std::vector<const char*> enabledExtensions;
 
-	std::vector<VkLayerProperties> availableLayers;
+	std::vector<VkLayerProperties>     availableLayers;
 	std::vector<VkExtensionProperties> availableExtensions;
 
 	struct
 	{
 		bool enableValidationLayers = false;
 
-		bool enableDebugMessager = false;
-		VkDebugUtilsMessageSeverityFlagsEXT debugMessageSeverity = VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT;
-		VkDebugUtilsMessageTypeFlagsEXT debugMessageType = VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT;
+		bool                                enableDebugMessager = false;
+		VkDebugUtilsMessageSeverityFlagsEXT debugMessageSeverity =
+		    VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT | VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT;
+		VkDebugUtilsMessageTypeFlagsEXT debugMessageType = VK_DEBUG_UTILS_MESSAGE_TYPE_GENERAL_BIT_EXT |
+		                                                   VK_DEBUG_UTILS_MESSAGE_TYPE_VALIDATION_BIT_EXT |
+		                                                   VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT;
 		PFN_vkDebugUtilsMessengerCallbackEXT debugMessageCallback = nullptr;
 	} info;
 };

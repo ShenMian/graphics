@@ -4,7 +4,7 @@
 #pragma once
 
 #include "Key.h"
-#include <Math/Math.hpp>
+#include <math/math.hpp>
 #include <string_view>
 
 class Window;
@@ -13,9 +13,9 @@ class Window;
  *  @{
  */
 
- /**
-  * @brief 键盘/鼠标输入.
-  */
+/**
+ * @brief 键盘/鼠标输入.
+ */
 class Input
 {
 public:

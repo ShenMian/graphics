@@ -1,31 +1,24 @@
 ﻿// Copyright 2021 ShenMian
 // License(Apache-2.0)
 
-#pragma once
-
 #include "Widget.h"
-#include "Pin.h"
-#include <imgui_node_editor.h>
-
-using ax::NodeEditor::LinkId;
 
 namespace ui
 {
 
+class Pin;
+
 class Link : public Widget
 {
 public:
-	Link(Pin& start, Pin& end);
+	Link(const Pin& start, const Pin& end);
 
-	void update() override;
-
-	operator LinkId() const;
+	const Pin& getStart() const noexcept;
+	const Pin& getEnd() const noexcept;
 
 private:
-	LinkId linkId;
-
-	Pin start;
-	Pin end;
+	const Pin& start;
+	const Pin& end;
 };
 
-} // namespace ui
+}; // namespace ui

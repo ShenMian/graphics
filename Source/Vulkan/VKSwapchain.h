@@ -4,8 +4,8 @@
 #pragma once
 
 #include "VKDevice.h"
-#include <vulkan/vulkan.h>
 #include <vector>
+#include <vulkan/vulkan.h>
 
 class VKSwapchain final
 {
@@ -15,12 +15,12 @@ public:
 
 	const VkExtent2D& getSize() const;
 
-	const std::vector<VkImage>& getImages() const;
-	const std::vector<VkImageView>& getImageViews() const;
-	VkRenderPass getRenderPass() const;
+	const std::vector<VkImage>&       getImages() const;
+	const std::vector<VkImageView>&   getImageViews() const;
+	VkRenderPass                      getRenderPass() const;
 	const std::vector<VkFramebuffer>& getFramebuffers() const;
-	const std::vector<VkSemaphore>& getImageAvailableSemaphores() const;
-	const std::vector<VkSemaphore>& getRenderFinishedSemaphores() const;
+	const std::vector<VkSemaphore>&   getImageAvailableSemaphores() const;
+	const std::vector<VkSemaphore>&   getRenderFinishedSemaphores() const;
 
 	void destroy();
 

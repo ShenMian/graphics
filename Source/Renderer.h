@@ -34,9 +34,9 @@ public:
 	 */
 	static API getAPI();
 
-	virtual std::string getDeviceName() const = 0;
+	virtual std::string getDeviceName() const   = 0;
 	virtual std::string getRendererName() const = 0;
-	virtual std::string getVendorName() const = 0;
+	virtual std::string getVendorName() const   = 0;
 
 	static void init(const Window& win);
 	static void deinit();

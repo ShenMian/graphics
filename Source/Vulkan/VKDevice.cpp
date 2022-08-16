@@ -4,13 +4,11 @@
 #include "VKDevice.h"
 #include <stdexcept>
 
-VKDevice::VKDevice(VkDevice device)
-	: handle(device)
+VKDevice::VKDevice(VkDevice device) : handle(device)
 {
 }
 
-VKDevice::VKDevice(VkDevice device, VKPhysicalDevice& physicalDevice)
-	: handle(device), physicalDevice(physicalDevice)
+VKDevice::VKDevice(VkDevice device, VKPhysicalDevice& physicalDevice) : handle(device), physicalDevice(physicalDevice)
 {
 }
 

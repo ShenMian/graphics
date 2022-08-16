@@ -4,16 +4,31 @@
 # You may wish to alter this file to override the set of languages analyzed,
 # or to provide custom queries or build logic.
 #
+# ******** NOTE ********
+# We have attempted to detect the languages in your repository. Please check
+# the `language` matrix defined below to confirm you have the correct set of
+# supported CodeQL languages.
+#
 name: "CodeQL"
 
 on:
   push:
-    branches: [ main ]
+    branches: [ "main" ]
+    paths:
+      - '**.cpp'
+      - '**.h'
+      - '**.hpp'
+      - '**.inl'
   pull_request:
     # The branches below must be a subset of the branches above
-    branches: [ main ]
+    branches: [ "main" ]
+    paths:
+      - '**.cpp'
+      - '**.h'
+      - '**.hpp'
+      - '**.inl'
   schedule:
-    - cron: '41 1 * * 1'
+    - cron: '36 20 * * 2'
 
 jobs:
   analyze:
@@ -29,21 +44,26 @@ jobs:
       matrix:
         language: [ 'cpp' ]
         # CodeQL supports [ 'cpp', 'csharp', 'go', 'java', 'javascript', 'python', 'ruby' ]
-        # Learn more about CodeQL language support at https://git.io/codeql-language-support
+        # Learn more about CodeQL language support at https://aka.ms/codeql-docs/language-support
 
     steps:
-    - name: Install Clang
-      uses: egor-tensin/setup-clang@v1.3
-      with:
-        version: 13
-        
     - name: Checkout
       uses: actions/checkout@v3
       with:
         submodules: recursive
 
+    - name: Install clang
+      uses: egor-tensin/setup-clang@v1.3
+      with:
+        version: 13
+
+    - name: Install Conan
+      uses: turtlebrowser/get-conan@v1.0
+
     - name: Install dependencies
-      run: ./Scripts/cmake_install_deps.sh
+      run: |
+        export CONAN_SYSREQUIRES_MODE=enabled
+        conan install . --build=missing -if build -of build -s build_type=Debug -s compiler=clang -s compiler.version=13 -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True
 
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
@@ -59,11 +79,8 @@ jobs:
 
     - name: Build
       run: |
-        cmake -B build
-        cmake --build build --config Debug -j 8
-
-    # ℹ️ Command-line programs to run using the OS shell.
-    # 📚 https://git.io/JvXDl
+        cmake -B build -Wno-dev
+        cmake --build build --config Debug
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2

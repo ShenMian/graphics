@@ -5,7 +5,7 @@
 
 #include "Buffer.h"
 #include "VertexFormat.h"
-#include <Math/Math.hpp>
+#include <math/math.hpp>
 #include <memory>
 #include <vector>
 
@@ -23,7 +23,8 @@ public:
 	 * @param usage  使用方式.
 	 */
 	template <typename T>
-	[[nodiscard]] static std::shared_ptr<VertexBuffer> create(const std::vector<T>& data, const VertexFormat& layout, Buffer::Usage usage = Buffer::Usage::Static);
+	[[nodiscard]] static std::shared_ptr<VertexBuffer> create(const std::vector<T>& data, const VertexFormat& layout,
+	                                                          Buffer::Usage usage = Buffer::Usage::Static);
 
 	/**
 	 * @brief 创建 VertexBuffer.
@@ -34,7 +35,8 @@ public:
 	 * @param layout 顶点格式.
 	 * @param usage  使用方式.
 	 */
-	[[nodiscard]] static std::shared_ptr<VertexBuffer> create(const void* data, size_t size, const VertexFormat& layout, Buffer::Usage usage = Buffer::Usage::Static);
+	[[nodiscard]] static std::shared_ptr<VertexBuffer> create(const void* data, size_t size, const VertexFormat& layout,
+	                                                          Buffer::Usage usage = Buffer::Usage::Static);
 
 	/**
 	 * @brief 获取缓冲区大小, 单位: 字节.
@@ -63,7 +65,8 @@ private:
 };
 
 template <typename T>
-inline std::shared_ptr<VertexBuffer> VertexBuffer::create(const std::vector<T>& data, const VertexFormat& layout, Buffer::Usage usage)
+inline std::shared_ptr<VertexBuffer> VertexBuffer::create(const std::vector<T>& data, const VertexFormat& layout,
+                                                          Buffer::Usage usage)
 {
 	return create(data.data(), data.size() * sizeof(T), layout, usage);
 }

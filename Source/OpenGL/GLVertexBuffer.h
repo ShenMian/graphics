@@ -3,9 +3,9 @@
 
 #pragma once
 
-#include "VertexBuffer.h"
 #include "GLBuffer.h"
 #include "GLVertexArray.h"
+#include "VertexBuffer.h"
 #include <glad/glad.h>
 
 class GLVertexBuffer : public VertexBuffer
