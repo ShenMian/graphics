@@ -21,8 +21,7 @@ layout(binding = 0) uniform Matrices
 	mat4 view;
 	mat4 proj;
 	mat4 model;
-}
-mat;
+} mat;
 
 layout(location = 0) uniform sampler2D albedo;
 layout(location = 1) uniform sampler2D metallic;
@@ -41,12 +40,8 @@ void main()
 	vec3 cam_position  = invView[3].xyz;
 	vec3 cam_direction = -normalize(invView[2].xyz);
 
-	vec3 color = vec3(vert.tex_coord, 0.0);
-
 	// if(dot(normalize(vert.position - cam_position), cam_direction) > 0.9)
 	//     color.r = 1;
-
-	frag_color = vec4(color, 1.0);
 
 	vec4  albedo    = texture(albedo, vert.tex_coord).rgba;
 	float metalness = texture(metallic, vert.tex_coord).r;
