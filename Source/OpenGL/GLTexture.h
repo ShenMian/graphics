@@ -23,5 +23,4 @@ public:
 
 private:
 	GLuint handle;
-	GLenum glTarget;
 };

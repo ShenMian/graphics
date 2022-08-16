@@ -2,8 +2,10 @@
 // License(Apache-2.0)
 
 #include "GLVertexArray.h"
-#include "../VertexFormat.h"
 #include "GLCheck.h"
+#include "GLBuffer.h"
+#include "../VertexFormat.h"
+#include <glad/glad.h>
 #include <cstddef>
 #include <glad/glad.h>
 #include <stdexcept>
@@ -70,21 +72,20 @@ void GLVertexArray::bind()
 	glBindVertexArray(handle);
 }
 
-void GLVertexArray::build(const VertexFormat& fmt)
+void GLVertexArray::build(const VertexFormat& fmt, GLBuffer& vbo)
 {
-	int maxAttribs;
+	GLint maxAttribs;
 	glGetIntegerv(GL_MAX_VERTEX_ATTRIBS, &maxAttribs);
 	if(fmt.getAttributes().size() > maxAttribs)
 		throw std::runtime_error("too many vertex attributes");
 
-	bind();
 	for(const auto& attr : fmt.getAttributes())
 	{
-		glEnableVertexAttribArray(attr.location);
-		glVertexAttribPointer(attr.location, Components[attr.format], GLType[attr.format], attr.normalized,
-		                      static_cast<GLsizei>(fmt.getStride()),
-		                      reinterpret_cast<const void*>(static_cast<size_t>(attr.offset)));
+		glEnableVertexArrayAttrib(handle, attr.location);
+		glVertexArrayAttribBinding(handle, attr.location, 0);
+		glVertexArrayAttribFormat(handle, attr.location, Components[attr.format], GLType[attr.format], attr.normalized, attr.offset);
 		GLCheckError();
 	}
-	// glVertexAttribDivisor
+	glVertexArrayVertexBuffer(handle, 0, vbo, 0, fmt.getStride());
+	glVertexArrayElementBuffer(handle, vbo);
 }

@@ -152,6 +152,11 @@ void Window::setCursorLock(bool enable)
 	glfwSetInputMode(handle, GLFW_CURSOR, enable ? GLFW_CURSOR_DISABLED : GLFW_CURSOR_NORMAL);
 }
 
+bool Window::isCursorLock() const
+{
+	return glfwGetInputMode(handle, GLFW_CURSOR) == GLFW_CURSOR_DISABLED;
+}
+
 void Window::setCursorPosition(const Vector2i& pos)
 {
 	glfwSetCursorPos(handle, pos.x, pos.y);

@@ -23,8 +23,7 @@ std::unordered_map<Buffer::Usage, uint32_t> GLUsage = {{Buffer::Usage::Static, G
 GLBuffer::GLBuffer(size_t size, Type type, Usage usage) : Buffer(size, type, usage), glType(GLType[type])
 {
 	glCreateBuffers(1, &handle);
-	bind();
-	glBufferData(glType, size, nullptr, GLUsage[usage]);
+	glNamedBufferData(handle, size, nullptr, GLUsage[usage]);
 	GLCheckError();
 }
 
@@ -42,15 +41,16 @@ void GLBuffer::map(size_t size, size_t offset)
 		size = this->size;
 	assert(size <= this->size);
 
-	bind();
-	data = glMapBufferRange(glType, offset, size, access);
+	data = glMapNamedBufferRange(handle, offset, size, access);
 	GLCheckError();
 }
 
 void GLBuffer::unmap()
 {
+	// FIXME
 	bind();
 	glUnmapBuffer(glType);
+	// glUnmapNamedBuffer(handle);
 	data = nullptr;
 	GLCheckError();
 }
@@ -61,8 +61,7 @@ void GLBuffer::flush(size_t size, size_t offset)
 		size = this->size;
 	assert(size <= this->size);
 
-	bind();
-	glFlushMappedBufferRange(glType, offset, size);
+	glFlushMappedNamedBufferRange(handle, offset, size);
 	GLCheckError();
 }
 
@@ -70,6 +69,11 @@ void GLBuffer::bind()
 {
 	glBindBuffer(glType, handle);
 	GLCheckError();
+}
+
+GLBuffer::operator GLuint()
+{
+	return handle;
 }
 
 GLBuffer::operator GLuint() const

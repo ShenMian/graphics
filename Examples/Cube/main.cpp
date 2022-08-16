@@ -54,7 +54,7 @@ public:
 		auto program = Program::create("Shaders/mesh");
 
 		PipelineLayout layout = {
-		    {"matrices", PipelineLayout::Type::UniformBuffer, 0, PipelineLayout::StageFlags::Vertex}};
+		    {"matrices", 0, PipelineLayout::Type::UniformBuffer, PipelineLayout::StageFlags::Vertex}};
 		Pipeline::Descriptor desc;
 		desc.layout       = layout;
 		desc.program      = program;

@@ -34,11 +34,11 @@ public:
 
 		auto program = Program::create("Shaders/mesh");
 
-		PipelineLayout layout = {{"albedo", PipelineLayout::Type::Texture, 0, PipelineLayout::StageFlags::Fragment},
-		                         {"roughness", PipelineLayout::Type::Texture, 1, PipelineLayout::StageFlags::Fragment},
-		                         {"ao", PipelineLayout::Type::Texture, 2, PipelineLayout::StageFlags::Fragment},
-		                         {"emissive", PipelineLayout::Type::Texture, 3, PipelineLayout::StageFlags::Fragment},
-		                         {"normal", PipelineLayout::Type::Texture, 4, PipelineLayout::StageFlags::Fragment}};
+		PipelineLayout layout = {{"albedo", 0, PipelineLayout::Type::Texture, PipelineLayout::StageFlags::Fragment},
+		                         {"roughness", 1, PipelineLayout::Type::Texture, PipelineLayout::StageFlags::Fragment},
+		                         {"ao", 2, PipelineLayout::Type::Texture, PipelineLayout::StageFlags::Fragment},
+		                         {"emissive", 3, PipelineLayout::Type::Texture, PipelineLayout::StageFlags::Fragment},
+		                         {"normal", 4, PipelineLayout::Type::Texture, PipelineLayout::StageFlags::Fragment}};
 		Pipeline::Descriptor desc;
 		desc.layout   = layout;
 		desc.program  = program;

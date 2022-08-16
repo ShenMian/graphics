@@ -13,12 +13,12 @@ Controller::Controller(Camera& cam) : camera(&cam)
 
 void Controller::update(float dt)
 {
-	// FIXME: 同时使用键盘和鼠标可能达到更高的速度
+	// FIXME: 同时使用键盘和游戏手柄能达到更高的速度
 	processMouse(dt);
 	processKeyboard(dt);
 	processGamepad(dt);
 
-	if(smoothness)
+	if(smoothness && camera->getPosition().distanceSquared(target) > 0.3f)
 		camera->setPosition(Vector3f::lerp(camera->getPosition(), target, dt * smoothness));
 	else
 		camera->setPosition(target);
