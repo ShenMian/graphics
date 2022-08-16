@@ -5,6 +5,13 @@
 #include <GLFW/glfw3.h>
 #include <cassert>
 #include <cstring>
+#include <fstream>
+
+#define FMT_HEADER_ONLY
+#include <fmt/format.h>
+#include <fmt/std.h>
+
+namespace fs = std::filesystem;
 
 Gamepad::Gamepad(handle_type handle) : handle(handle)
 {
@@ -94,6 +101,16 @@ std::string_view Gamepad::getName() const
 bool Gamepad::isConnected() const
 {
 	return glfwJoystickPresent(handle); // FIXME: Linux 下未连接手柄时会返回 true
+}
+
+bool Gamepad::loadMappingsDb(const fs::path& path)
+{
+	if(!fs::exists(path))
+		throw std::runtime_error(fmt::format("no such file: {}", path));
+	std::ifstream     file(path, std::ios::binary);
+	std::stringstream buf;
+	buf << file.rdbuf();
+	return glfwUpdateGamepadMappings(buf.str().c_str());
 }
 
 bool Gamepad::operator==(const Gamepad& rhs) const

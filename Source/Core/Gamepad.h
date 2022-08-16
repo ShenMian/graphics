@@ -3,6 +3,7 @@
 
 #pragma once
 
+#include <filesystem>
 #include <functional>
 #include <math/math.hpp>
 #include <string_view>
@@ -39,7 +40,8 @@ public:
 	 * @brief 获取摇杆数据.
 	 *
 	 * @param thumb 摇杆.
-	 * @return Vector2f 范围: [-1, 1]
+	 *
+	 * @return 范围: [-1, 1]
 	 */
 	Vector2f get(Thumb thumb) const noexcept;
 
@@ -47,7 +49,9 @@ public:
 	 * @brief 获取原始摇杆数据.
 	 *
 	 * @param thumb 摇杆.
-	 * @return Vector2f 范围: [-1, 1]
+	 *
+	 * @return 范围: [-1, 1]
+	 *
 	 * @warning 不建议直接使用.
 	 */
 	Vector2f getRaw(Thumb thumb) const noexcept;
@@ -56,7 +60,8 @@ public:
 	 * @brief 获取线性按键力度.
 	 *
 	 * @param trigger 线性按键.
-	 * @return float 0 表示没有按下, 范围: [0, 1]
+	 *
+	 * @return 0 表示没有按下, 范围: [0, 1]
 	 */
 	float get(Trigger trigger) const noexcept;
 
@@ -64,7 +69,9 @@ public:
 	 * @brief 获取原始线性按键数据.
 	 *
 	 * @param trigger 线性按键.
-	 * @return float 0 表示没有按下, 范围: [0, 1]
+	 *
+	 * @return 0 表示没有按下, 范围: [0, 1]
+	 *
 	 * @warning 不建议直接使用.
 	 */
 	float getRaw(Trigger trigger) const noexcept;
@@ -73,8 +80,8 @@ public:
 	 * @brief 获取按键状态.
 	 *
 	 * @param  button 按键.
-	 * @return true   按键按下.
-	 * @return false  按键抬起.
+	 *
+	 * @return 按键是否按下.
 	 */
 	bool get(Button button) const noexcept;
 
@@ -86,10 +93,18 @@ public:
 	/**
 	 * @brief 检查手柄是否处于连接状态.
 	 *
-	 * @return true  已连接.
-	 * @return false 已断开.
+	 * @return 是否已连接.
 	 */
 	bool isConnected() const;
+
+	/**
+	 * @brief 加载 SDL 按键映射数据库.
+	 *
+	 * @param path 数据库文件地址.
+	 *
+	 * @return 是否成功.
+	 */
+	bool loadMappingsDb(const std::filesystem::path& path);
 
 	bool operator==(const Gamepad&) const;
 
