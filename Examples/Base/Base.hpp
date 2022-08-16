@@ -96,8 +96,12 @@ public:
 		           "|-Name     : {}\n"
 		           "|-Triangles: {}\n"
 		           "|-Vertices : {}\n"
-		           "`-Indices  : {}\n",
-		           model.name, model.indexCount / 3, model.vertexCount, model.indexCount);
+		           "|-Indices  : {}\n"
+		           "|-Meshes   : {}\n"
+		           "|-Materials: {}\n"
+		           "`-Anims    : {}\n",
+		           model.name, model.indexCount / 3, model.vertexCount, model.indexCount, model.meshes.size(),
+		           model.materials.size(), model.animations.size());
 	}
 
 	void printInfo(std::string_view msg) { fmt::print("{} {}", fmt::styled("[*]", fg(fmt::color::blue)), msg); }
