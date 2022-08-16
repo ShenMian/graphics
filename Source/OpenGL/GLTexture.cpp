@@ -83,7 +83,7 @@ GLTexture::GLTexture(const Image& image, Type type) : Texture(type, ChannelsToFo
 {
 	glCreateTextures(GLType[type], 1, &handle);
 
-	setMinFilter(Filter::Nearest);
+	setMinFilter(Filter::Trilinear);
 	setMagFilter(Filter::Bilinear);
 	setSWarp(Warp::Repeat);
 	setTWarp(Warp::Repeat);
