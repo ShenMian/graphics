@@ -12,7 +12,6 @@
 
 class Mesh;
 class Vector;
-class Vertex;
 class Animation;
 struct Material;
 

@@ -4,6 +4,7 @@
 #pragma once
 
 #include <math/math.hpp>
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -14,8 +15,6 @@ struct Material;
 /** @addtogroup model
  *  @{
  */
-
-struct Vertex;
 
 /**
  * @brief 网格.

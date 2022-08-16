@@ -95,11 +95,6 @@ void AssimpImporter::loadNode(const aiNode& node)
 
 void AssimpImporter::loadMesh(const aiMesh& mesh)
 {
-	VertexFormat format = {
-	    {"position", Format::RGB32F}, {"normal", Format::RGB32F},    {"uv", Format::RG32F},
-	    {"tangent", Format::RGB32F},  {"bitangent", Format::RGB32F},
-	};
-
 	const auto vertices = loadVertices(mesh);
 	const auto indices  = loadIndices(mesh);
 
