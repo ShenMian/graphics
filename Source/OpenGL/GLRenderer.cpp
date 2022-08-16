@@ -27,6 +27,8 @@ void GLRenderer::init(const Window& win)
 	glfwMakeContextCurrent(win.getHandle());
 	if(!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 		throw std::runtime_error("Glad: failed to init");
+
+	glEnable(GL_MULTISAMPLE);
 }
 
 void GLRenderer::deinit()

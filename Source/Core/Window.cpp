@@ -23,10 +23,6 @@ Window::Window(std::string_view title, const Vector2i& size, bool fullscreen)
 
 	glfwSetWindowUserPointer(handle, static_cast<void*>(this));
 
-	// 开启 MASS 抗锯齿
-	// glfwWindowHint(GLFW_SAMPLES, 2);
-	// glEnable(GL_MULTISAMPLE);
-
 	setupCallbacks();
 }
 
@@ -261,6 +257,7 @@ void Window::init()
 	}
 
 	glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE); // 创建新窗口默认不可见
+	glfwWindowHint(GLFW_SAMPLES, 4);          // 开启 MASS 抗锯齿
 	                                          // glfwWindowHint(GLFW_DECORATED, GLFW_FALSE); // 启用无边框
 
 	/*
