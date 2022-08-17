@@ -89,32 +89,32 @@ public:
 	/**
 	 * @brief 获取图像数据.
 	 */
-	uint8_t* getData() noexcept;
+	uint8_t* data() noexcept;
 
 	/**
 	 * @brief 获取图像数据.
 	 */
-	const uint8_t* getData() const noexcept;
+	const uint8_t* data() const noexcept;
 
 	/**
 	 * @brief 获取图像数据大小.
 	 */
-	size_t getDataSize() const noexcept;
+	size_t sizeBytes() const noexcept;
 
 	/**
 	 * @brief 获取图像分辨率.
 	 */
-	Vector2i getSize() const noexcept;
+	Vector2i size() const noexcept;
 
 	/**
 	 * @brief 获取通道数.
 	 */
-	int getChannelCount() const noexcept;
+	int channelCount() const noexcept;
 
 private:
-	std::vector<uint8_t> data;
-	Vector2i             size;
-	int                  channels = 0;
+	std::vector<uint8_t> data_;
+	Vector2i             size_;
+	int                  channels_ = 0;
 };
 
 /** @}*/

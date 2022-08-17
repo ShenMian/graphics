@@ -7,6 +7,10 @@
 #include <algorithm>
 #include <stdexcept>
 
+#define FMT_HEADER_ONLY
+#include <fmt/format.h>
+#include <fmt/std.h>
+
 namespace
 {
 
@@ -188,7 +192,12 @@ void InstanceBuilder::createDebugMessager(VkInstance instance)
 	const auto defaultCallback = [](VkDebugUtilsMessageSeverityFlagBitsEXT      severity,
 	                                VkDebugUtilsMessageTypeFlagsEXT             type,
 	                                const VkDebugUtilsMessengerCallbackDataEXT* data, void* pUserData) {
-		printf("Severity: %s\nType    : %s\n%s\n\n", toString(severity).data(), toString(type).data(), data->pMessage);
+		puts(fmt::format("Vulkan Message\n"
+		                 "|-Type:     {}\n"
+		                 "|-Severity: {}\n"
+		                 "`-Message:  {}",
+		                 toString(type), toString(severity), data->pMessage)
+		         .c_str());
 		return VK_FALSE;
 	};
 

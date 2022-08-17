@@ -39,20 +39,20 @@ void Image::loadFromFile(const std::filesystem::path& path)
 	if(!fs::is_regular_file(path))
 		throw std::runtime_error(fmt::format("no such file: {}", path));
 
-	StbiImage pixels(stbi_load(path.string().c_str(), &size.x, &size.y, &channels, 0));
+	StbiImage pixels(stbi_load(path.string().c_str(), &size_.x, &size_.y, &channels_, 0));
 	if(pixels == nullptr)
 		throw std::runtime_error(fmt::format("failed load image from file: {}", path));
 
-	loadFromMemory(pixels.get(), static_cast<size_t>(size.x) * size.y * channels, size, channels);
+	loadFromMemory(pixels.get(), static_cast<size_t>(size_.x) * size_.y * channels_, size_, channels_);
 }
 
 void Image::loadFromMemory(const void* data, size_t sizeBytes, Vector2i size, int channels)
 {
-	this->size     = size;
-	this->channels = channels;
-	this->data.resize(sizeBytes);
-	std::memcpy(this->data.data(), data, this->data.size());
-	this->data.shrink_to_fit();
+	size_    = size;
+	channels_ = channels;
+	data_.resize(sizeBytes);
+	std::memcpy(this->data_.data(), data, this->data_.size());
+	data_.shrink_to_fit();
 }
 
 void Image::saveToFile(const std::filesystem::path& path) const
@@ -61,23 +61,23 @@ void Image::saveToFile(const std::filesystem::path& path) const
 
 	if(ext == ".jpg" || ext == "jpeg")
 	{
-		if(!stbi_write_jpg(path.string().c_str(), size.x, size.y, channels, data.data(),
+		if(!stbi_write_jpg(path.string().c_str(), size_.x, size_.y, channels_, data_.data(),
 		                   90)) // quality is between 1 and 100
 			throw std::runtime_error("failed to save image to jpg/jpeg");
 	}
 	else if(ext == ".png")
 	{
-		if(!stbi_write_png(path.string().c_str(), size.x, size.y, channels, data.data(), 0))
+		if(!stbi_write_png(path.string().c_str(), size_.x, size_.y, channels_, data_.data(), 0))
 			throw std::runtime_error("failed to save image to png");
 	}
 	else if(ext == ".bmp")
 	{
-		if(!stbi_write_bmp(path.string().c_str(), size.x, size.y, channels, data.data()))
+		if(!stbi_write_bmp(path.string().c_str(), size_.x, size_.y, channels_, data_.data()))
 			throw std::runtime_error("failed to save image to bmp");
 	}
 	else if(ext == ".tga")
 	{
-		if(!stbi_write_tga(path.string().c_str(), size.x, size.y, channels, data.data()))
+		if(!stbi_write_tga(path.string().c_str(), size_.x, size_.y, channels_, data_.data()))
 			throw std::runtime_error("failed to save image to tga");
 	}
 	else
@@ -86,8 +86,8 @@ void Image::saveToFile(const std::filesystem::path& path) const
 
 void Image::setPixel(Vector4f color, Size2 pos)
 {
-	assert(pos.x < size.x && pos.y < size.y);
-	auto pixel = &data[(pos.y * size.x + pos.x) * channels];
+	assert(pos.x < size_.x && pos.y < size_.y);
+	auto pixel = &data_[(pos.y * size_.x + pos.x) * channels_];
 	*pixel++   = (uint8_t)(color.r * 255);
 	*pixel++   = (uint8_t)(color.g * 255);
 	*pixel++   = (uint8_t)(color.b * 255);
@@ -96,37 +96,37 @@ void Image::setPixel(Vector4f color, Size2 pos)
 
 Vector4f Image::getPixel(Size2 pos) const
 {
-	assert(pos.x < size.x && pos.y < size.y);
-	const auto pixel = &data[(pos.y * size.x + pos.x) * channels];
+	assert(pos.x < size_.x && pos.y < size_.y);
+	const auto pixel = &data_[(pos.y * size_.x + pos.x) * channels_];
 	return {pixel[0] / 255.f, pixel[1] / 255.f, pixel[2] / 255.f, pixel[3] / 255.f};
 }
 
 void Image::flipHorizontally() noexcept
 {
-	const auto rowSize = size.x * channels;
+	const auto rowSize = size_.x * channels_;
 
-	for(size_t y = 0; y < size.y; y++)
+	for(size_t y = 0; y < size_.y; y++)
 	{
-		auto left  = data.begin() + y * rowSize;
-		auto right = data.begin() + (y + 1) * rowSize - channels;
+		auto left  = data_.begin() + y * rowSize;
+		auto right = data_.begin() + (y + 1) * rowSize - channels_;
 
-		for(size_t x = 0; x < size.x / 2; x++)
+		for(size_t x = 0; x < size_.x / 2; x++)
 		{
-			std::swap_ranges(left, left + channels, right);
-			left += channels;
-			right -= channels;
+			std::swap_ranges(left, left + channels_, right);
+			left += channels_;
+			right -= channels_;
 		}
 	}
 }
 
 void Image::flipVertically() noexcept
 {
-	const auto rowSize = size.x * channels;
+	const auto rowSize = size_.x * channels_;
 
-	auto top    = data.begin();
-	auto bottom = data.end() - rowSize;
+	auto top    = data_.begin();
+	auto bottom = data_.end() - rowSize;
 
-	for(size_t y = 0; y < size.y / 2; y++)
+	for(size_t y = 0; y < size_.y / 2; y++)
 	{
 		std::swap_ranges(top, top + rowSize, bottom);
 		top += rowSize;
@@ -134,27 +134,27 @@ void Image::flipVertically() noexcept
 	}
 }
 
-uint8_t* Image::getData() noexcept
+uint8_t* Image::data() noexcept
 {
-	return data.data();
+	return data_.data();
 }
 
-const uint8_t* Image::getData() const noexcept
+const uint8_t* Image::data() const noexcept
 {
-	return data.data();
+	return data_.data();
 }
 
-size_t Image::getDataSize() const noexcept
+size_t Image::sizeBytes() const noexcept
 {
-	return data.size();
+	return data_.size();
 }
 
-Vector2i Image::getSize() const noexcept
+Vector2i Image::size() const noexcept
 {
-	return size;
+	return size_;
 }
 
-int Image::getChannelCount() const noexcept
+int Image::channelCount() const noexcept
 {
-	return channels;
+	return channels_;
 }

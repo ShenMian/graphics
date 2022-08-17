@@ -16,6 +16,42 @@ struct Vert
 	mat3 TBN;
 };
 
+struct DirectionalLight
+{
+    vec3  color;
+    float intesity;
+
+    vec3 direction;
+};
+
+struct PointLight
+{
+    vec3  color;
+    float intesity;
+
+    vec3 position;
+
+    float constant;
+    float linear;
+    float quadratic;
+};
+
+struct SpotLight
+{
+    vec3  color;
+    float intesity;
+
+    vec3 position;
+    vec3 direction;
+
+    float constant;
+    float linear;
+    float quadratic;
+
+    float cutOff;
+    float outerCutOff;
+};
+
 layout(binding = 0) uniform Matrices
 {
 	mat4 view;
@@ -33,6 +69,16 @@ layout(location = 5) uniform sampler2D normal;
 layout(location = 0) in Vert vert;
 
 layout(location = 0) out vec4 frag_color;
+
+vec3 calc_light()
+{
+	DirectionalLight light;
+	light.color = vec3(0.0);
+	light.intesity = 10.0;
+	light.direction = vec3(0.0, -1.0, 0.0);
+
+	return vec3(0.0);
+}
 
 void main()
 {
@@ -54,7 +100,11 @@ void main()
 
 	frag_color = albedo;
 
-	vec3 N = normalize(2.0 * texture(normal, vert.tex_coord).rgb - 1.0);
+	if(vec3(albedo) == vec3(0.0))
+		frag_color = vec4(vert.tex_coord, 0.0, 0.0);
+
+	vec3 N = texture(normal, vert.tex_coord).rgb;
+	N      = normalize(2.0 * N - 1.0);
 	N      = normalize(vert.TBN * vert.normal);
 
 	vec3 direct_lighting = vec3(0.0);

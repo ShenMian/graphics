@@ -8,6 +8,8 @@
 #include "Model.h"
 #include "VertexBuffer.h"
 
+#include "DDSImporter.h"
+
 #include <assimp/Importer.hpp>
 #include <assimp/ProgressHandler.hpp>
 #include <assimp/postprocess.h>
@@ -24,7 +26,7 @@ namespace fs = std::filesystem;
 namespace
 {
 
-std::unordered_map<aiTextureMapMode, Texture::Warp> AIWarp = {
+std::unordered_map<aiTextureMapMode, Texture::Warp> Warp = {
     {aiTextureMapMode_Wrap, Texture::Warp::Repeat},
     {aiTextureMapMode_Clamp, Texture::Warp::ClampToEdge},
     {aiTextureMapMode_Mirror, Texture::Warp::MirrorRepeat},
@@ -119,13 +121,17 @@ void AssimpImporter::loadMaterial(const aiMaterial& mat)
 			return nullptr;
 		assert(mat.GetTextureCount(type) == 1);
 
-		aiString         path;
-		aiTextureMapMode warp;
-		mat.GetTexture(type, 0, &path, nullptr, nullptr, nullptr, nullptr, &warp);
+		aiString path;
+		mat.GetTexture(type, 0, &path);
 		if(!fs::exists(model->path.parent_path() / path.C_Str()))
 			return nullptr;
+		if((model->path.parent_path() / path.C_Str()).extension() == ".dds")
+		{
+			DDSImporter importer;
+			return importer.load(model->path.parent_path() / path.C_Str());
+		}
 		auto texture = Texture::create(model->path.parent_path() / path.C_Str());
-		texture->setRWarp(AIWarp[warp]);
+		texture->setMinFilter(Texture::Filter::Trilinear);
 		return texture;
 	};
 

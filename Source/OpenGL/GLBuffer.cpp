@@ -2,7 +2,6 @@
 // License(Apache-2.0)
 
 #include "GLBuffer.h"
-#include "GLCheck.h"
 #include <cassert>
 #include <cstring>
 #include <unordered_map>
@@ -24,7 +23,6 @@ GLBuffer::GLBuffer(size_t size, Type type, Usage usage) : Buffer(size, type, usa
 {
 	glCreateBuffers(1, &handle);
 	glNamedBufferData(handle, size, nullptr, GLUsage[usage]);
-	GLCheckError();
 }
 
 GLBuffer::~GLBuffer()
@@ -42,17 +40,12 @@ void GLBuffer::map(size_t size, size_t offset)
 	assert(size <= this->size);
 
 	data = glMapNamedBufferRange(handle, offset, size, access);
-	GLCheckError();
 }
 
 void GLBuffer::unmap()
 {
-	// FIXME
-	bind();
-	glUnmapBuffer(glType);
-	// glUnmapNamedBuffer(handle);
+	glUnmapNamedBuffer(handle);
 	data = nullptr;
-	GLCheckError();
 }
 
 void GLBuffer::flush(size_t size, size_t offset)
@@ -62,13 +55,11 @@ void GLBuffer::flush(size_t size, size_t offset)
 	assert(size <= this->size);
 
 	glFlushMappedNamedBufferRange(handle, offset, size);
-	GLCheckError();
 }
 
 void GLBuffer::bind()
 {
 	glBindBuffer(glType, handle);
-	GLCheckError();
 }
 
 GLBuffer::operator GLuint()

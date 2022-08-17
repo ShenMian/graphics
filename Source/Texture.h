@@ -10,6 +10,9 @@
 #include <unordered_map>
 #include <vector>
 
+// TODO: 一个想法
+// create(const std::vector<Image>& image /* mipmaps */, Format fmt = Format::Unknown, Type type = Type::_2D);
+
 class Image;
 
 /**
@@ -48,7 +51,9 @@ public:
 	 * @param path 图像文件路径.
 	 * @param type 纹理类型.
 	 */
-	[[nodiscard]] static std::shared_ptr<Texture> create(const std::filesystem::path& path, Type type = Type::_2D);
+	[[nodiscard]] static std::shared_ptr<Texture> create(const std::filesystem::path& path,
+	                                                     Format fmt = Format::Unknown, uint32_t mipmapCount = 1,
+	                                                     Type type = Type::_2D);
 
 	/**
 	 * @brief 从图像创建纹理.
@@ -56,7 +61,8 @@ public:
 	 * @param image 图像.
 	 * @param type  纹理类型.
 	 */
-	[[nodiscard]] static std::shared_ptr<Texture> create(const Image& image, Type type = Type::_2D);
+	[[nodiscard]] static std::shared_ptr<Texture> create(const Image& image, Format fmt = Format::Unknown,
+	                                                     uint32_t mipmapCount = 1, Type type = Type::_2D);
 
 	/**
 	 * @brief 从图像创建立方体纹理.
@@ -127,9 +133,6 @@ protected:
 template <>
 struct std::hash<std::filesystem::path>
 {
-	size_t operator()(const std::filesystem::path& path) const noexcept
-	{
-		return std::filesystem::hash_value(path);
-	}
+	size_t operator()(const std::filesystem::path& path) const noexcept { return std::filesystem::hash_value(path); }
 };
 #endif

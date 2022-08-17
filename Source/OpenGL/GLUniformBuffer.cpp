@@ -2,7 +2,6 @@
 // License(Apache-2.0)
 
 #include "GLUniformBuffer.h"
-#include "GLCheck.h"
 #include "GLProgram.h"
 #include <stdexcept>
 
@@ -12,7 +11,6 @@ GLUniformBuffer::GLUniformBuffer(int binding, size_t size)
     : UniformBuffer(binding), buffer(size, Buffer::Type::Uniform, Buffer::Usage::Dynamic)
 {
 	glBindBufferBase(GL_UNIFORM_BUFFER, binding, buffer);
-	GLCheckError();
 }
 
 Buffer& GLUniformBuffer::getBuffer()

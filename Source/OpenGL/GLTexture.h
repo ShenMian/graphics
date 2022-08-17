@@ -9,7 +9,7 @@
 class GLTexture : public Texture
 {
 public:
-	GLTexture(const Image& image, Type type);
+	GLTexture(const Image& image, Format fmt, uint32_t mipmapCount, Type type);
 	GLTexture(const std::vector<Image>& images);
 	~GLTexture();
 

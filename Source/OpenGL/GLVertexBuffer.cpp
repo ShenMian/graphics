@@ -2,7 +2,6 @@
 // License(Apache-2.0)
 
 #include "GLVertexBuffer.h"
-#include "GLCheck.h"
 #include <cstring>
 #include <unordered_map>
 

@@ -128,13 +128,13 @@ bool Window::isFloating() const noexcept
 
 void Window::setIcon(const Image& image)
 {
-	if(image.getSize().x > 48 && image.getSize().y > 48)
+	if(image.size().x > 48 && image.size().y > 48)
 		throw std::runtime_error("image size is too large");
 
 	GLFWimage glfwImage;
-	glfwImage.pixels = const_cast<unsigned char*>(image.getData());
-	glfwImage.width  = image.getSize().x;
-	glfwImage.height = image.getSize().y;
+	glfwImage.pixels = const_cast<unsigned char*>(image.data());
+	glfwImage.width  = image.size().x;
+	glfwImage.height = image.size().y;
 	glfwSetWindowIcon(handle, 1, &glfwImage);
 }
 

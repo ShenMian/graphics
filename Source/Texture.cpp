@@ -10,9 +10,17 @@
 
 namespace fs = std::filesystem;
 
+namespace
+{
+
+std::unordered_map<int, Format> ChannelsToFormat = {{1, Format::R8F},    {2, Format::RG8F},   {3, Format::RGB8F},
+                                                    {4, Format::RGBA8F}, {6, Format::RGB16F}, {8, Format::RGBA16F}};
+
+}
+
 std::unordered_map<fs::path, std::shared_ptr<Texture>> Texture::cache;
 
-std::shared_ptr<Texture> Texture::create(const fs::path& path, Type type)
+std::shared_ptr<Texture> Texture::create(const fs::path& path, Format fmt, uint32_t mipmapCount, Type type)
 {
 	assert(type != Type::Cube);
 
@@ -27,13 +35,13 @@ std::shared_ptr<Texture> Texture::create(const fs::path& path, Type type)
 		using enum Renderer::API;
 
 	case OpenGL:
-		ptr = std::make_shared<GLTexture>(absPath, type);
+		ptr = std::make_shared<GLTexture>(absPath, fmt, mipmapCount, type);
 	}
 	cache.insert({absPath, ptr});
 	return ptr;
 }
 
-std::shared_ptr<Texture> Texture::create(const Image& image, Type type)
+std::shared_ptr<Texture> Texture::create(const Image& image, Format fmt, uint32_t mipmapCount, Type type)
 {
 	assert(type != Type::Cube);
 
@@ -42,7 +50,7 @@ std::shared_ptr<Texture> Texture::create(const Image& image, Type type)
 		using enum Renderer::API;
 
 	case OpenGL:
-		return std::make_shared<GLTexture>(image, type);
+		return std::make_shared<GLTexture>(image, fmt, mipmapCount, type);
 	}
 	return nullptr;
 }

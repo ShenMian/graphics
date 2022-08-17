@@ -3,6 +3,10 @@
 
 #include "../Base/Base.hpp"
 
+#include <imgui.h>
+
+#include <ImGuizmo.h>
+
 class Viewer final : public Base
 {
 public:
@@ -15,14 +19,14 @@ public:
 			path = argv[1];
 		else
 		{
-			// path = "../../../../../../Model/sponza/sponza.obj"; // no texture
 			path = "../../../../../../Model/pbr/sponza/sponza.glb";
-			// path = "../../../../../../Model/pbr/MetalRoughSpheres/MetalRoughSpheres.gltf";
 			// path = "../../../../../../Model/m4a1/m4a1.gltf";
 			// path = "../../../../../../Model/pistol/kimber_desert_warrior/scene.gltf";
-			// path = "../../../../../../Model/Bistro/BistroExterior.glb";
-			// path = "../../../../../../Model/San_Miguel/SanMiguel-low.glb";
-			// path = "../../../../../../Model/San_Miguel/san-miguel-low-poly.obj";
+			// path = "../../../../../../Model/pbr/MetalRoughSpheres/MetalRoughSpheres.gltf";
+			// path = "../../../../../../Model/san_miguel/san-miguel-low-poly.obj";
+			// path = "../../../../../../Model/ORCA/bistro/BistroExterior.glb";
+			// path = "../../../../../../Model/ORCA/bistro/BistroExterior.fbx";
+			// path = "../../../../../../Model/ORCA/SunTemple/SunTemple.fbx";
 		}
 
 		AssimpImporter importer;
@@ -138,6 +142,7 @@ public:
 #endif
 
 			UI::beginFrame();
+			ImGuizmo::BeginFrame();
 
 			editor.update();
 

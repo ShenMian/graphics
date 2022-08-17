@@ -104,13 +104,13 @@ public:
 		           model.materials.size(), model.animations.size());
 	}
 
-	void printInfo(std::string_view msg) { fmt::print("{} {}", fmt::styled("[*]", fg(fmt::color::blue)), msg); }
+	void printInfo(std::string_view msg) { fmt::print("{} {}\n", fmt::styled("[*]", fg(fmt::color::blue)), msg); }
 
-	void printGood(std::string_view msg) { fmt::print("{} {}", fmt::styled("[+]", fg(fmt::color::red)), msg); }
+	void printGood(std::string_view msg) { fmt::print("{} {}\n", fmt::styled("[+]", fg(fmt::color::red)), msg); }
 
-	void printError(std::string_view msg) { fmt::print("{} {}", fmt::styled("[-]", fg(fmt::color::red)), msg); }
+	void printError(std::string_view msg) { fmt::print("{} {}\n", fmt::styled("[-]", fg(fmt::color::red)), msg); }
 
-	void printWarn(std::string_view msg) { fmt::print("{} {}", fmt::styled("[!]", fg(fmt::color::yellow)), msg); }
+	void printWarn(std::string_view msg) { fmt::print("{} {}\n", fmt::styled("[!]", fg(fmt::color::yellow)), msg); }
 
 protected:
 	Window* window;

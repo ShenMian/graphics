@@ -3,7 +3,6 @@
 
 
 #include "GLProgram.h"
-#include "GLCheck.h"
 #include "GLShader.h"
 #include <cassert>
 #include <filesystem>
@@ -40,49 +39,42 @@ GLProgram::~GLProgram()
 void GLProgram::use()
 {
 	glUseProgram(handle);
-	GLCheckError();
 }
 
 void GLProgram::setUniform(const std::string& name, int value)
 {
 	use();
 	glUniform1i(getUniformLocation(name), value);
-	GLCheckError();
 }
 
 void GLProgram::setUniform(const std::string& name, float value)
 {
 	use();
 	glUniform1f(getUniformLocation(name), value);
-	GLCheckError();
 }
 
 void GLProgram::setUniform(const std::string& name, const Vector2& value)
 {
 	use();
 	glUniform2f(getUniformLocation(name), value.x, value.y);
-	GLCheckError();
 }
 
 void GLProgram::setUniform(const std::string& name, const Vector3& value)
 {
 	use();
 	glUniform3f(getUniformLocation(name), value.x, value.y, value.z);
-	GLCheckError();
 }
 
 void GLProgram::setUniform(const std::string& name, const Vector4& value)
 {
 	use();
 	glUniform4f(getUniformLocation(name), value.x, value.y, value.z, value.w);
-	GLCheckError();
 }
 
 void GLProgram::setUniform(const std::string& name, const Matrix4& value)
 {
 	use();
 	glUniformMatrix4fv(getUniformLocation(name), 1, false, value.data());
-	GLCheckError();
 }
 
 GLProgram::operator GLuint() const
