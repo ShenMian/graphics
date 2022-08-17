@@ -19,8 +19,8 @@ var searchData=
   ['setgamepad_16',['setGamepad',['../class_controller.html#a495e13c4ffd2b93a9b135731017c1dfa',1,'Controller']]],
   ['seticon_17',['setIcon',['../class_window.html#a77a78dd5a3e1c6adc3deedf49f112c45',1,'Window']]],
   ['setlabel_18',['setLabel',['../classui_1_1_widget.html#adc91a14a910c984855a3fcf76de9533a',1,'ui::Widget']]],
-  ['setmagfilter_19',['setMagFilter',['../class_g_l_texture.html#a501fd5097f3f05bb5ab4b3d4f82d05f1',1,'GLTexture::setMagFilter()'],['../class_texture.html#adb2d44c3e35bf0b03be885d1b3d4378f',1,'Texture::setMagFilter(Filter filter)=0']]],
-  ['setminfilter_20',['setMinFilter',['../class_texture.html#a23aaceb94559abb5b9c756c2ec8ac431',1,'Texture::setMinFilter()'],['../class_g_l_texture.html#ab6dbf1736f0b47c7696d3f0271495b8c',1,'GLTexture::setMinFilter()']]],
+  ['setmagfilter_19',['setMagFilter',['../class_g_l_texture.html#a501fd5097f3f05bb5ab4b3d4f82d05f1',1,'GLTexture::setMagFilter()'],['../class_texture.html#adb2d44c3e35bf0b03be885d1b3d4378f',1,'Texture::setMagFilter()']]],
+  ['setminfilter_20',['setMinFilter',['../class_g_l_texture.html#ab6dbf1736f0b47c7696d3f0271495b8c',1,'GLTexture::setMinFilter()'],['../class_texture.html#a23aaceb94559abb5b9c756c2ec8ac431',1,'Texture::setMinFilter()']]],
   ['setorthographic_21',['setOrthographic',['../class_camera.html#a58fa647dd4e285efa42da0e1fea31c16',1,'Camera']]],
   ['setperspective_22',['setPerspective',['../class_camera.html#abd5431a9a5ad4ae881c0a95fc62eb4aa',1,'Camera']]],
   ['setpixel_23',['setPixel',['../class_image.html#a5c4bc51e491be5f0ba98f42269f5fe86',1,'Image']]],
@@ -37,5 +37,7 @@ var searchData=
   ['settitle_34',['setTitle',['../class_window.html#a5deddd3fa7c583ab6dba2947bf04c815',1,'Window']]],
   ['settwarp_35',['setTWarp',['../class_g_l_texture.html#a22f68c20e9572260f1d300f76ef56f9f',1,'GLTexture::setTWarp()'],['../class_texture.html#a3d7fa97316058caeebcdcbfdbcd34a0e',1,'Texture::setTWarp()']]],
   ['setvisible_36',['setVisible',['../class_window.html#a118e0356bb6fcf081955f2bd97686036',1,'Window']]],
-  ['setwindow_37',['setWindow',['../class_input.html#ae5f6d108981471b21b7bd30a74b0361b',1,'Input']]]
+  ['setwindow_37',['setWindow',['../class_input.html#ae5f6d108981471b21b7bd30a74b0361b',1,'Input']]],
+  ['size_38',['size',['../class_image.html#a98d7a3b70e503a62479c8d0590419db3',1,'Image']]],
+  ['sizebytes_39',['sizeBytes',['../class_image.html#a00cc735fe203384f02aa65ff51922ddf',1,'Image']]]
 ];

@@ -89,14 +89,12 @@ $(document).ready(function(){initNavTree('class_image.html',''); initResizable()
 
 <p>成员的完整列表，这些成员属于 <a class="el" href="class_image.html">Image</a>,包括所有继承而来的类成员</p>
 <table class="directory">
-  <tr class="even"><td class="entry"><a class="el" href="class_image.html#a1a28efa22d4064dfd0a444a7c2ce47f8">flipHorizontally</a>() noexcept</td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="class_image.html#aa2f8a55c9b2cc7744abeba1681695782">flipVertically</a>() noexcept</td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_image.html#a2dd4b06ec75a432ac4f5aefb628e988c">getChannelCount</a>() const noexcept</td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="class_image.html#a612dcb94eaeddd54431611e539df6b1e">getData</a>() noexcept</td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_image.html#a77f5716aaecbab0415092361897da8fb">getData</a>() const noexcept</td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="class_image.html#afcced926b6869ea06dafda5b8766c82d">getDataSize</a>() const noexcept</td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_image.html#af84c9c11ffe818939f1fd532e3f1285c">getPixel</a>(Size2 pos) const</td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="class_image.html#a853e227553c975a96aed15269bab5f1b">getSize</a>() const noexcept</td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_image.html#a1199588fcdf503972928e8756eb9ec24">channelCount</a>() const noexcept</td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_image.html#addc944576d34c3a622898dcac4f39fff">data</a>() noexcept</td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_image.html#a4d7095d568a7918688959f13f84692c8">data</a>() const noexcept</td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_image.html#a1a28efa22d4064dfd0a444a7c2ce47f8">flipHorizontally</a>() noexcept</td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_image.html#aa2f8a55c9b2cc7744abeba1681695782">flipVertically</a>() noexcept</td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_image.html#af84c9c11ffe818939f1fd532e3f1285c">getPixel</a>(Size2 pos) const</td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_image.html#a5502e928122744be1d3b89648298e162">Image</a>()=default</td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"></td></tr>
   <tr class="odd"><td class="entry"><a class="el" href="class_image.html#aaf8eb0773fa6f75d832d5f7bb45ec8de">Image</a>(const std::filesystem::path &amp;path)</td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_image.html#a0d2dc69e9a91f36211469db17036fb44">Image</a>(const void *data, size_t sizeBytes, Vector2i size, int channels)</td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"></td></tr>
@@ -104,6 +102,8 @@ $(document).ready(function(){initNavTree('class_image.html',''); initResizable()
   <tr class="even"><td class="entry"><a class="el" href="class_image.html#a0a685a4d06353bbaf9b4db2130238eff">loadFromMemory</a>(const void *data, size_t sizeBytes, Vector2i size, int channels)</td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"></td></tr>
   <tr class="odd"><td class="entry"><a class="el" href="class_image.html#ac4d9ef3b9adfe01df218442ae4efe181">saveToFile</a>(const std::filesystem::path &amp;path) const</td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_image.html#a5c4bc51e491be5f0ba98f42269f5fe86">setPixel</a>(Vector4f color, Size2 pos)</td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="class_image.html#a98d7a3b70e503a62479c8d0590419db3">size</a>() const noexcept</td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_image.html#a00cc735fe203384f02aa65ff51922ddf">sizeBytes</a>() const noexcept</td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

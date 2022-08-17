@@ -104,13 +104,13 @@ Public 成员函数</h2></td></tr>
 <tr class="memitem:aaf8eb0773fa6f75d832d5f7bb45ec8de"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#aaf8eb0773fa6f75d832d5f7bb45ec8de">Image</a> (const std::filesystem::path &amp;path)</td></tr>
 <tr class="memdesc:aaf8eb0773fa6f75d832d5f7bb45ec8de"><td class="mdescLeft">&#160;</td><td class="mdescRight">构造函数, 从文件载入图像.  <a href="class_image.html#aaf8eb0773fa6f75d832d5f7bb45ec8de">更多...</a><br /></td></tr>
 <tr class="separator:aaf8eb0773fa6f75d832d5f7bb45ec8de"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0d2dc69e9a91f36211469db17036fb44"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#a0d2dc69e9a91f36211469db17036fb44">Image</a> (const void *data, size_t sizeBytes, Vector2i size, int channels)</td></tr>
+<tr class="memitem:a0d2dc69e9a91f36211469db17036fb44"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#a0d2dc69e9a91f36211469db17036fb44">Image</a> (const void *<a class="el" href="class_image.html#addc944576d34c3a622898dcac4f39fff">data</a>, size_t <a class="el" href="class_image.html#a00cc735fe203384f02aa65ff51922ddf">sizeBytes</a>, Vector2i <a class="el" href="class_image.html#a98d7a3b70e503a62479c8d0590419db3">size</a>, int channels)</td></tr>
 <tr class="memdesc:a0d2dc69e9a91f36211469db17036fb44"><td class="mdescLeft">&#160;</td><td class="mdescRight">构造函数, 从内存载入图像.  <a href="class_image.html#a0d2dc69e9a91f36211469db17036fb44">更多...</a><br /></td></tr>
 <tr class="separator:a0d2dc69e9a91f36211469db17036fb44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aea76659efa5f8b20764e66bc920cf925"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#aea76659efa5f8b20764e66bc920cf925">loadFromFile</a> (const std::filesystem::path &amp;path)</td></tr>
 <tr class="memdesc:aea76659efa5f8b20764e66bc920cf925"><td class="mdescLeft">&#160;</td><td class="mdescRight">从文件载入图像.  <a href="class_image.html#aea76659efa5f8b20764e66bc920cf925">更多...</a><br /></td></tr>
 <tr class="separator:aea76659efa5f8b20764e66bc920cf925"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0a685a4d06353bbaf9b4db2130238eff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#a0a685a4d06353bbaf9b4db2130238eff">loadFromMemory</a> (const void *data, size_t sizeBytes, Vector2i size, int channels)</td></tr>
+<tr class="memitem:a0a685a4d06353bbaf9b4db2130238eff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#a0a685a4d06353bbaf9b4db2130238eff">loadFromMemory</a> (const void *<a class="el" href="class_image.html#addc944576d34c3a622898dcac4f39fff">data</a>, size_t <a class="el" href="class_image.html#a00cc735fe203384f02aa65ff51922ddf">sizeBytes</a>, Vector2i <a class="el" href="class_image.html#a98d7a3b70e503a62479c8d0590419db3">size</a>, int channels)</td></tr>
 <tr class="memdesc:a0a685a4d06353bbaf9b4db2130238eff"><td class="mdescLeft">&#160;</td><td class="mdescRight">从内存载入图像.  <a href="class_image.html#a0a685a4d06353bbaf9b4db2130238eff">更多...</a><br /></td></tr>
 <tr class="separator:a0a685a4d06353bbaf9b4db2130238eff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac4d9ef3b9adfe01df218442ae4efe181"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#ac4d9ef3b9adfe01df218442ae4efe181">saveToFile</a> (const std::filesystem::path &amp;path) const</td></tr>
@@ -132,26 +132,26 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>flipHorizontally</b> 
 void&#160;</td><td class="memItemRight" valign="bottom"><b>flipVertically</b> () noexcept</td></tr>
 <tr class="memdesc:aa2f8a55c9b2cc7744abeba1681695782"><td class="mdescLeft">&#160;</td><td class="mdescRight">垂直(上下)翻转. <br /></td></tr>
 <tr class="separator:aa2f8a55c9b2cc7744abeba1681695782"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a612dcb94eaeddd54431611e539df6b1e"><td class="memItemLeft" align="right" valign="top"><a id="a612dcb94eaeddd54431611e539df6b1e" name="a612dcb94eaeddd54431611e539df6b1e"></a>
-uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><b>getData</b> () noexcept</td></tr>
-<tr class="memdesc:a612dcb94eaeddd54431611e539df6b1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取图像数据. <br /></td></tr>
-<tr class="separator:a612dcb94eaeddd54431611e539df6b1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a77f5716aaecbab0415092361897da8fb"><td class="memItemLeft" align="right" valign="top"><a id="a77f5716aaecbab0415092361897da8fb" name="a77f5716aaecbab0415092361897da8fb"></a>
-const uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><b>getData</b> () const noexcept</td></tr>
-<tr class="memdesc:a77f5716aaecbab0415092361897da8fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取图像数据. <br /></td></tr>
-<tr class="separator:a77f5716aaecbab0415092361897da8fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afcced926b6869ea06dafda5b8766c82d"><td class="memItemLeft" align="right" valign="top"><a id="afcced926b6869ea06dafda5b8766c82d" name="afcced926b6869ea06dafda5b8766c82d"></a>
-size_t&#160;</td><td class="memItemRight" valign="bottom"><b>getDataSize</b> () const noexcept</td></tr>
-<tr class="memdesc:afcced926b6869ea06dafda5b8766c82d"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取图像数据大小. <br /></td></tr>
-<tr class="separator:afcced926b6869ea06dafda5b8766c82d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a853e227553c975a96aed15269bab5f1b"><td class="memItemLeft" align="right" valign="top"><a id="a853e227553c975a96aed15269bab5f1b" name="a853e227553c975a96aed15269bab5f1b"></a>
-Vector2i&#160;</td><td class="memItemRight" valign="bottom"><b>getSize</b> () const noexcept</td></tr>
-<tr class="memdesc:a853e227553c975a96aed15269bab5f1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取图像分辨率. <br /></td></tr>
-<tr class="separator:a853e227553c975a96aed15269bab5f1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2dd4b06ec75a432ac4f5aefb628e988c"><td class="memItemLeft" align="right" valign="top"><a id="a2dd4b06ec75a432ac4f5aefb628e988c" name="a2dd4b06ec75a432ac4f5aefb628e988c"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getChannelCount</b> () const noexcept</td></tr>
-<tr class="memdesc:a2dd4b06ec75a432ac4f5aefb628e988c"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取通道数. <br /></td></tr>
-<tr class="separator:a2dd4b06ec75a432ac4f5aefb628e988c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:addc944576d34c3a622898dcac4f39fff"><td class="memItemLeft" align="right" valign="top"><a id="addc944576d34c3a622898dcac4f39fff" name="addc944576d34c3a622898dcac4f39fff"></a>
+uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><b>data</b> () noexcept</td></tr>
+<tr class="memdesc:addc944576d34c3a622898dcac4f39fff"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取图像数据. <br /></td></tr>
+<tr class="separator:addc944576d34c3a622898dcac4f39fff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d7095d568a7918688959f13f84692c8"><td class="memItemLeft" align="right" valign="top"><a id="a4d7095d568a7918688959f13f84692c8" name="a4d7095d568a7918688959f13f84692c8"></a>
+const uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><b>data</b> () const noexcept</td></tr>
+<tr class="memdesc:a4d7095d568a7918688959f13f84692c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取图像数据. <br /></td></tr>
+<tr class="separator:a4d7095d568a7918688959f13f84692c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00cc735fe203384f02aa65ff51922ddf"><td class="memItemLeft" align="right" valign="top"><a id="a00cc735fe203384f02aa65ff51922ddf" name="a00cc735fe203384f02aa65ff51922ddf"></a>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><b>sizeBytes</b> () const noexcept</td></tr>
+<tr class="memdesc:a00cc735fe203384f02aa65ff51922ddf"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取图像数据大小. <br /></td></tr>
+<tr class="separator:a00cc735fe203384f02aa65ff51922ddf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98d7a3b70e503a62479c8d0590419db3"><td class="memItemLeft" align="right" valign="top"><a id="a98d7a3b70e503a62479c8d0590419db3" name="a98d7a3b70e503a62479c8d0590419db3"></a>
+Vector2i&#160;</td><td class="memItemRight" valign="bottom"><b>size</b> () const noexcept</td></tr>
+<tr class="memdesc:a98d7a3b70e503a62479c8d0590419db3"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取图像分辨率. <br /></td></tr>
+<tr class="separator:a98d7a3b70e503a62479c8d0590419db3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1199588fcdf503972928e8756eb9ec24"><td class="memItemLeft" align="right" valign="top"><a id="a1199588fcdf503972928e8756eb9ec24" name="a1199588fcdf503972928e8756eb9ec24"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>channelCount</b> () const noexcept</td></tr>
+<tr class="memdesc:a1199588fcdf503972928e8756eb9ec24"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取通道数. <br /></td></tr>
+<tr class="separator:a1199588fcdf503972928e8756eb9ec24"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p >图像. </p>

@@ -19,9 +19,7 @@ var hierarchy =
       [ "VKCommandQueue", "class_v_k_command_queue.html", null ]
     ] ],
     [ "Controller", "class_controller.html", null ],
-    [ "DDSHeader", "struct_d_d_s_header.html", null ],
-    [ "DDSHeaderDXT10", "struct_d_d_s_header_d_x_t10.html", null ],
-    [ "DDSPixelFormat", "struct_d_d_s_pixel_format.html", null ],
+    [ "DDSImporter", "class_d_d_s_importer.html", null ],
     [ "Pipeline::Descriptor", "struct_pipeline_1_1_descriptor.html", null ],
     [ "Program::Descriptor", "struct_program_1_1_descriptor.html", null ],
     [ "Shader::Descriptor", "struct_shader_1_1_descriptor.html", null ],
