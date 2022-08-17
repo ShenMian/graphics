@@ -41,7 +41,7 @@ void Image::loadFromFile(const std::filesystem::path& path)
 
 	StbiImage pixels(stbi_load(path.string().c_str(), &size.x, &size.y, &channels, 0));
 	if(pixels == nullptr)
-		throw std::runtime_error(fmt::format("failed load image from file: '{}'", path));
+		throw std::runtime_error(fmt::format("failed load image from file: {}", path));
 
 	loadFromMemory(pixels.get(), static_cast<size_t>(size.x) * size.y * channels, size, channels);
 }

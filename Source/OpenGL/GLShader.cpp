@@ -49,12 +49,12 @@ GLShader::GLShader(const Descriptor& desc) : Shader(desc), handle(glCreateShader
 	const auto    fileSize = fs::file_size(path);
 	std::ifstream file(path, std::ios::binary);
 	if(!file.is_open())
-		throw std::runtime_error(fmt::format("failed to open file: '{}'", path));
+		throw std::runtime_error(fmt::format("failed to open file: {}", path));
 
 	std::vector<uint32_t> buffer(fileSize / sizeof(uint32_t));
 	file.read(reinterpret_cast<char*>(buffer.data()), fileSize);
 	if(!file.good() || file.gcount() != fileSize)
-		throw std::runtime_error(fmt::format("failed to read file: '{}'", path));
+		throw std::runtime_error(fmt::format("failed to read file: {}", path));
 	file.close();
 
 	glShaderBinary(1, &handle, GL_SHADER_BINARY_FORMAT_SPIR_V, buffer.data(),
@@ -90,12 +90,12 @@ GLShader::GLShader(const Descriptor& desc) : Shader(desc), handle(glCreateShader
 	const auto    fileSize = fs::file_size(path);
 	std::ifstream file(path, std::ios::binary);
 	if(!file.is_open())
-		throw std::runtime_error(fmt::format("failed to open file: '{}'", path));
+		throw std::runtime_error(fmt::format("failed to open file: {}", path));
 
 	std::vector<char> buffer(fileSize);
 	file.read((char*)buffer.data(), fileSize);
 	if(!file.good() || file.gcount() != fileSize)
-		throw std::runtime_error(fmt::format("failed to read file: '{}'", path));
+		throw std::runtime_error(fmt::format("failed to read file: {}", path));
 	file.close();
 
 	buffer.push_back('\0');
@@ -133,12 +133,12 @@ void GLShader::compile(const fs::path& sourcePath, Stage stage)
 	const auto    fileSize = fs::file_size(sourcePath);
 	std::ifstream sourceFile(sourcePath, std::ios::binary);
 	if(!sourceFile.is_open())
-		throw std::runtime_error(fmt::format("failed to open file: '{}'", sourcePath));
+		throw std::runtime_error(fmt::format("failed to open file: {}", sourcePath));
 
 	std::vector<char> buffer(fileSize);
 	sourceFile.read(buffer.data(), fileSize);
 	if(!sourceFile.good() || sourceFile.gcount() != fileSize)
-		throw std::runtime_error(fmt::format("failed to read file: '{}'", sourcePath));
+		throw std::runtime_error(fmt::format("failed to read file: {}", sourcePath));
 	sourceFile.close();
 
 	const std::string source(buffer.begin(), buffer.end());
@@ -157,7 +157,7 @@ void GLShader::compile(const fs::path& sourcePath, Stage stage)
 	// 写入编译结果
 	std::ofstream targetFile(targetPath, std::ios::binary);
 	if(!targetFile.is_open())
-		throw std::runtime_error(fmt::format("failed to open file: '{}'", sourcePath));
+		throw std::runtime_error(fmt::format("failed to open file: {}", sourcePath));
 	targetFile.write(reinterpret_cast<const char*>(spv.data()), spv.size() * sizeof(uint32_t));
 	targetFile.close();
 }
