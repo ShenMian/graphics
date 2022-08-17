@@ -11,7 +11,7 @@
  */
 
 /**
- * @brief 模型导入器.
+ * @brief 导入器.
  */
 class Importer
 {
