@@ -191,6 +191,7 @@ GLTexture::GLTexture(const Image& image, Format fmt, uint32_t mipmapCount, Type 
 		GLsizei height = flippedImage.size().y;
 		for(uint32_t level = 0; level < mipmapCount; level++)
 		{
+			// FIXME
 			size_t size = ((width + 3) / 4) * ((height + 3) / 4) * blockSize;
 			glCompressedTextureSubImage2D(handle, level, 0, 0, width, height, GLCompressedFormat(format), size,
 			                              flippedImage.data() + offset);
