@@ -7,6 +7,7 @@
 #include "Material.h"
 #include "Model.h"
 #include "VertexBuffer.h"
+#include <cassert>
 
 #include "DDSImporter.h"
 
@@ -18,8 +19,6 @@
 #define FMT_HEADER_ONLY
 #include <fmt/format.h>
 #include <fmt/std.h>
-
-#include <cassert>
 
 namespace fs = std::filesystem;
 

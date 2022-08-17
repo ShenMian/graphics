@@ -4,6 +4,7 @@
 #include "Texture.h"
 #include "Core/Image.h"
 #include "Renderer.h"
+#include <cassert>
 #include <stdexcept>
 
 #include "OpenGL/GLTexture.h"

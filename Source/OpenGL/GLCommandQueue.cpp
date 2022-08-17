@@ -4,6 +4,7 @@
 #include "GLCommandQueue.h"
 #include "../Pipeline.h"
 #include "GLCommandBuffer.h"
+#include <cassert>
 #include <glad/glad.h>
 
 void GLCommandQueue::submit(std::shared_ptr<CommandBuffer> commandBuffer)

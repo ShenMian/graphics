@@ -3,10 +3,6 @@
 
 #include "../Base/Base.hpp"
 
-#include <imgui.h>
-
-#include <ImGuizmo.h>
-
 class Viewer final : public Base
 {
 public:
@@ -142,7 +138,6 @@ public:
 #endif
 
 			UI::beginFrame();
-			ImGuizmo::BeginFrame();
 
 			editor.update();
 

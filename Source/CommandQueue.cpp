@@ -3,6 +3,7 @@
 
 #include "CommandQueue.h"
 #include "Renderer.h"
+#include <cassert>
 
 #include "OpenGL/GLCommandQueue.h"
 #include "Vulkan/VKCommandQueue.h"

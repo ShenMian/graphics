@@ -2,6 +2,7 @@
 // License(Apache-2.0)
 
 #include "DDSImporter.h"
+#include <cassert>
 #include <fstream>
 #include <stdexcept>
 #include <string>
@@ -102,19 +103,19 @@ std::shared_ptr<Texture> DDSImporter::load(const fs::path& path)
 	if(memcmp("DXT1", &header.format.fourCC, 4))
 	{
 		// BC1 compression (DXT1)
-		fmt = Format::RGBA_DXT1;
+		fmt       = Format::RGBA_DXT1;
 		blockSize = 8;
 	}
 	else if(memcmp("DXT2", &header.format.fourCC, 4) || memcmp("DXT3", &header.format.fourCC, 4))
 	{
 		// BC2 compression (DXT2 or DXT3)
-		fmt = Format::RGBA_DXT3;
+		fmt       = Format::RGBA_DXT3;
 		blockSize = 16;
 	}
 	else if(memcmp("DXT4", &header.format.fourCC, 4) || memcmp("DXT5", &header.format.fourCC, 4))
 	{
 		// BC3 compression (DXT4 or DXT5)
-		fmt = Format::RGBA_DXT5;
+		fmt       = Format::RGBA_DXT5;
 		blockSize = 16;
 	}
 	else if(memcmp("ETC1", &header.format.fourCC, 4))

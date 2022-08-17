@@ -2,6 +2,7 @@
 // License(Apache-2.0)
 
 #include "Camera.h"
+#include <cassert>
 
 Camera::Camera(Type type) : type(type)
 {
