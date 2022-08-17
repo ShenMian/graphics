@@ -5,4 +5,15 @@
 
 GLPipeline::GLPipeline(const Descriptor& desc) : Pipeline(desc)
 {
+	glCreateProgramPipelines(1, &handle);
+}
+
+GLPipeline::~GLPipeline()
+{
+	glDeleteProgramPipelines(1, &handle);
+}
+
+void GLPipeline::bind()
+{
+	glBindProgramPipeline(handle);
 }

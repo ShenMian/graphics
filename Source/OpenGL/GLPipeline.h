@@ -4,9 +4,16 @@
 #pragma once
 
 #include "../Pipeline.h"
+#include <glad/glad.h>
 
 class GLPipeline : public Pipeline
 {
 public:
 	GLPipeline(const Descriptor& desc);
+	~GLPipeline();
+
+	void bind();
+
+private:
+	GLuint handle;
 };
