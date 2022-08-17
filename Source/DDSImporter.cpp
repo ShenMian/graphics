@@ -131,6 +131,7 @@ std::shared_ptr<Texture> DDSImporter::load(const fs::path& path)
 	        header.format.BBitMask & 0xff && header.format.ABitMask & 0xff000000)
 	{
 		compressed = false;
+		blockSize  = 64;
 	}
 	else
 		throw std::runtime_error(fmt::format("unsupported FourCC code"));
@@ -140,19 +141,17 @@ std::shared_ptr<Texture> DDSImporter::load(const fs::path& path)
 
 	Texture::Type type;
 	if(isCubeMap)
-		type = Texture::Type::Cube;
-	else if(hasDepth)
-		type = Texture::Type::_3D;
-	else
-		type = Texture::Type::_2D;
-
-	if(isCubeMap)
 	{
 		if(!(header.caps2 & CAPS2_Cubemap_PositiveX && header.caps2 & CAPS2_Cubemap_NegativeX &&
 		     header.caps2 & CAPS2_Cubemap_PositiveY && header.caps2 & CAPS2_Cubemap_NegativeY &&
 		     header.caps2 & CAPS2_Cubemap_PositiveZ && header.caps2 & CAPS2_Cubemap_NegativeZ))
 			throw std::runtime_error("cubemap incomplete");
+		type = Texture::Type::Cube;
 	}
+	else if(hasDepth)
+		type = Texture::Type::_3D;
+	else
+		type = Texture::Type::_2D;
 
 	size_t size   = 0;
 	auto   width  = header.width;
