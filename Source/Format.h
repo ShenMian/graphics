@@ -53,9 +53,16 @@ enum class Format
 	RGB32F,
 	RGBA32F,
 
+	// compressed
+	RGBA_DXT1,
+	RGBA_DXT3,
+	RGBA_DXT5,
+
 	Depth,
 	Stencil,
-	DepthStencil
+	DepthStencil,
+
+	Unknown
 };
 
 enum class DataType
