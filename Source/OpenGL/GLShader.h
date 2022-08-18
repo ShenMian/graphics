@@ -12,8 +12,6 @@ public:
 	GLShader(const Descriptor& desc);
 	virtual ~GLShader();
 
-	void compile(const std::filesystem::path& path, Stage stage);
-
 	/**
 	 * @brief 获取本地句柄.
 	 */
