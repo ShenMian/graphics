@@ -22,6 +22,7 @@ var annotated_dup =
     [ "Controller", "class_controller.html", "class_controller" ],
     [ "DDSImporter", "class_d_d_s_importer.html", null ],
     [ "DeviceBuilder", "class_device_builder.html", null ],
+    [ "Font", "class_font.html", "class_font" ],
     [ "Gamepad", "class_gamepad.html", "class_gamepad" ],
     [ "GLBuffer", "class_g_l_buffer.html", "class_g_l_buffer" ],
     [ "GLCmdClear", "struct_g_l_cmd_clear.html", null ],
