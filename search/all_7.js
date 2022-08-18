@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['image_0',['Image',['../class_image.html#a5502e928122744be1d3b89648298e162',1,'Image::Image()=default'],['../class_image.html#aaf8eb0773fa6f75d832d5f7bb45ec8de',1,'Image::Image(const std::filesystem::path &amp;path)'],['../class_image.html#a0d2dc69e9a91f36211469db17036fb44',1,'Image::Image(const void *data, size_t sizeBytes, Vector2i size, int channels)'],['../class_image.html',1,'Image']]],
+  ['image_0',['Image',['../class_image.html#a5502e928122744be1d3b89648298e162',1,'Image::Image()=default'],['../class_image.html#aaf8eb0773fa6f75d832d5f7bb45ec8de',1,'Image::Image(const std::filesystem::path &amp;path)'],['../class_image.html#ab17fdfd579c51f4881fb23f038021590',1,'Image::Image(const void *data, size_t sizeBytes, const Vector2i &amp;size, int channels)'],['../class_image.html',1,'Image']]],
   ['importer_1',['Importer',['../class_importer.html',1,'']]],
   ['indexbuffer_2',['IndexBuffer',['../class_index_buffer.html',1,'']]],
   ['init_3',['init',['../class_g_l_renderer.html#ad419c85c7b9ede2f3a21f1e7fe3231ff',1,'GLRenderer']]],

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['savetofile_0',['saveToFile',['../class_image.html#ac4d9ef3b9adfe01df218442ae4efe181',1,'Image']]],
+  ['save_0',['save',['../class_image.html#aa22dec7058acdbf25133159b783c1a31',1,'Image']]],
   ['setapi_1',['setAPI',['../class_renderer.html#a04003283aef7694ae68fe9a63bbca592',1,'Renderer']]],
   ['setappname_2',['setAppName',['../class_instance_builder.html#a267231a3bc831f940fe434b11a928a54',1,'InstanceBuilder']]],
   ['setappversion_3',['setAppVersion',['../class_instance_builder.html#a1ee02bb474f421e842fa44398f043e52',1,'InstanceBuilder']]],
@@ -23,7 +23,7 @@ var searchData=
   ['setminfilter_20',['setMinFilter',['../class_g_l_texture.html#ab6dbf1736f0b47c7696d3f0271495b8c',1,'GLTexture::setMinFilter()'],['../class_texture.html#a23aaceb94559abb5b9c756c2ec8ac431',1,'Texture::setMinFilter()']]],
   ['setorthographic_21',['setOrthographic',['../class_camera.html#a58fa647dd4e285efa42da0e1fea31c16',1,'Camera']]],
   ['setperspective_22',['setPerspective',['../class_camera.html#abd5431a9a5ad4ae881c0a95fc62eb4aa',1,'Camera']]],
-  ['setpixel_23',['setPixel',['../class_image.html#a5c4bc51e491be5f0ba98f42269f5fe86',1,'Image']]],
+  ['setpixel_23',['setPixel',['../class_image.html#a952777a50ea84dbca8f4c0696c13b1b8',1,'Image']]],
   ['setposition_24',['setPosition',['../class_camera.html#a925a708dbd78d7bd258f682f3418fac0',1,'Camera::setPosition()'],['../class_window.html#a03f3d8d180353c4cec1788ad4c51ab60',1,'Window::setPosition(const Vector2i &amp;pos)']]],
   ['setrawmousemotion_25',['setRawMouseMotion',['../class_window.html#a6786f1592fa3da0aa66ebb08436a4355',1,'Window']]],
   ['setresizable_26',['setResizable',['../class_window.html#a78e7c56b6a69e299390d9ba72b7993fc',1,'Window']]],

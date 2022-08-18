@@ -27,7 +27,7 @@ var searchData=
   ['getnativehandle_24',['getNativeHandle',['../class_g_l_shader.html#a1aa6f472254c3073b9cb2fa0366c5522',1,'GLShader']]],
   ['getnear_25',['getNear',['../class_camera.html#ac8e964aa5463f7dd3d3555398685df52',1,'Camera']]],
   ['getphysicaldevice_26',['getPhysicalDevice',['../class_v_k_renderer.html#aa738911381876b0b264d3a0cbc6d89a2',1,'VKRenderer']]],
-  ['getpixel_27',['getPixel',['../class_image.html#af84c9c11ffe818939f1fd532e3f1285c',1,'Image']]],
+  ['getpixel_27',['getPixel',['../class_image.html#afa2d45be59ae6bd0867544f571fda47a',1,'Image']]],
   ['getposition_28',['getPosition',['../class_camera.html#a6398e135109b2dcfdf831b338ce4d958',1,'Camera::getPosition()'],['../class_monitor.html#a74335cdd01ee7b14ecf5302e61218862',1,'Monitor::getPosition()'],['../class_window.html#a036ccfc71def085dafd6e4357a15921f',1,'Window::getPosition()']]],
   ['getprimary_29',['getPrimary',['../class_monitor.html#a8afbc04b4417bbeb2f4d4e2c69feb45c',1,'Monitor']]],
   ['getprojection_30',['getProjection',['../class_camera.html#a90f8ded7af9a5ba9fcabd5b43271be40',1,'Camera']]],

@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['loadfromfile_0',['loadFromFile',['../class_image.html#aea76659efa5f8b20764e66bc920cf925',1,'Image']]],
-  ['loadfrommemory_1',['loadFromMemory',['../class_image.html#a0a685a4d06353bbaf9b4db2130238eff',1,'Image']]],
-  ['loadmappingsdb_2',['loadMappingsDb',['../class_gamepad.html#a3c38442114ed8e3932a3eb6dd60e45aa',1,'Gamepad']]]
+  ['load_0',['load',['../class_image.html#a341924ecbb3971dce82d057dd859c142',1,'Image::load(const std::filesystem::path &amp;path)'],['../class_image.html#acc5793757707545c8c3663d06cc80b46',1,'Image::load(const void *data, size_t sizeBytes, const Vector2i &amp;size, int channels)']]],
+  ['loadmappingsdb_1',['loadMappingsDb',['../class_gamepad.html#a3c38442114ed8e3932a3eb6dd60e45aa',1,'Gamepad']]]
 ];
