@@ -1,22 +1,6 @@
 ﻿name: Windows
 
-on:
-  push:
-    paths:
-      - '**.cpp'
-      - '**.hpp'
-      - '**.h'
-      - '**/CMakeLists.txt'
-      - 'Scripts/vcpkg_install_deps.bat'
-      - '.github/workflows/windows.yml'
-  pull_request:
-    paths:
-      - '**.cpp'
-      - '**.hpp'
-      - '**.h'
-      - '**/CMakeLists.txt'
-      - 'Scripts/vcpkg_install_deps.bat'
-      - '.github/workflows/windows.yml'
+on: [push, pull_request]
 
 jobs:
   build:
@@ -24,6 +8,11 @@ jobs:
       matrix:
         arch: [x64] # arm64
         type: [Debug, Release]
+        include:
+          - type: Debug
+            vs_args: MTd
+          - type: Release
+            vs_args: MT
 
     runs-on: windows-latest
     name: ${{ matrix.type }}-${{ matrix.arch }}
@@ -37,43 +26,34 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Install Clang
-        uses: egor-tensin/setup-clang@v1.3
-        with:
-          version: 13
-
-      - name: Cache vcpkg artifacts
-        uses: actions/cache@v3
-        with:
-          path: ${{ github.workspace }}/vcpkg_installed
-          key: windows-${{ matrix.type }}-${{ matrix.arch }}-${{ hashFiles('vcpkg.json') }}
-
-      - name: Install dependencies
-        run: vcpkg install
-
       # - name: Setup MSVC Developer Command Environment
       #   uses: ilammy/msvc-dev-cmd@v1.10.0
 
-      # - name: Cache
-      #   uses: actions/cache@v3
+      # - name: Install clang
+      #   uses: egor-tensin/setup-clang@v1.3
       #   with:
-      #     path: ./build
-      #     key: windows-${{ matrix.type }}-${{ matrix.arch }}
+      #     version: 13
 
-      - name: Generating CMake cache
-        run: cmake -B build -DCMAKE_TOOLCHAIN_FILE=${{ env.VCPKG_ROOT }}/scripts/buildsystems/vcpkg.cmake -DCMAKE_CXX_COMPILER=clang -DCMAKE_C_COMPILER=clang
+      - name: Install Conan
+        uses: turtlebrowser/get-conan@v1.0
 
       - name: Build
-        run: cmake --build build --config ${{ matrix.type }} -j2
+        run: ./Scripts/build.bat ${{ matrix.type }}
 
       - name: Upload libraries
         uses: actions/upload-artifact@v3
         with:
-          name: graphics-windows-${{ matrix.arch }}
-          path: build/lib
+          name: graphics-windows-${{ matrix.type }}-${{ matrix.arch }}
+          path: |
+            build/**/graphics.lib
+            build/**/graphicsd.lib
 
       - name: Upload binaries
         uses: actions/upload-artifact@v3
         with:
-          name: examples-windows-${{ matrix.arch }}
-          path: build/bin
+          name: examples-windows-${{ matrix.type }}-${{ matrix.arch }}
+          path: |
+            build/bin/**/*.exe
+            build/bin/**/*.glsl
+            !build/bin/Debug
+            !build/bin/Release

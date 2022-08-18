@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include <Math/Math.hpp>
+#include <math/math.hpp>
 
 class Camera;
 class Gamepad;
@@ -39,6 +39,13 @@ public:
 
 	void turnRight(float step);
 	void lookUp(float step);
+
+	/**
+	 * @brief 设置移动速度.
+	 *
+	 * @param v 移动速度.
+	 */
+	void setSpeed(float v);
 
 	/**
 	 * @brief 设置平滑度.
@@ -84,7 +91,7 @@ private:
 	void processGamepad(float dt);
 
 	Camera* camera = nullptr;
-	float   speed = 200.f;
+	float   speed  = 200.f;
 
 	float    smoothness = 11;
 	Vector3f target;

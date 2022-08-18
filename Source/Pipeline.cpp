@@ -21,7 +21,6 @@ std::shared_ptr<Pipeline> Pipeline::create(const Descriptor& desc)
 	return nullptr;
 }
 
-Pipeline::Pipeline(const Descriptor& desc)
-	: program(desc.program)
+Pipeline::Pipeline(const Descriptor& desc) : desc(desc)
 {
 }

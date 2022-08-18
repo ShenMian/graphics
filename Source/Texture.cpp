@@ -2,23 +2,31 @@
 // License(Apache-2.0)
 
 #include "Texture.h"
-#include "Renderer.h"
 #include "Core/Image.h"
+#include "Renderer.h"
+#include <cassert>
 #include <stdexcept>
 
 #include "OpenGL/GLTexture.h"
 
 namespace fs = std::filesystem;
 
+namespace
+{
+
+std::unordered_map<int, Format> ChannelsToFormat = {{1, Format::R8F},    {2, Format::RG8F},   {3, Format::RGB8F},
+                                                    {4, Format::RGBA8F}, {6, Format::RGB16F}, {8, Format::RGBA16F}};
+
+}
+
 std::unordered_map<fs::path, std::shared_ptr<Texture>> Texture::cache;
 
-std::shared_ptr<Texture> Texture::create(const fs::path& path, Type type)
+std::shared_ptr<Texture> Texture::create(const fs::path& path, Format fmt, uint32_t mipmapCount, Type type)
 {
-	if(type == Type::Cube)
-		throw std::runtime_error("cubemap should have 6 file path");
+	assert(type != Type::Cube);
 
 	const auto absPath = fs::absolute(path);
-	const auto it = cache.find(absPath);
+	const auto it      = cache.find(absPath);
 	if(it != cache.end())
 		return it->second;
 
@@ -28,23 +36,22 @@ std::shared_ptr<Texture> Texture::create(const fs::path& path, Type type)
 		using enum Renderer::API;
 
 	case OpenGL:
-		ptr = std::make_shared<GLTexture>(absPath, type);
+		ptr = std::make_shared<GLTexture>(absPath, fmt, mipmapCount, type);
 	}
 	cache.insert({absPath, ptr});
 	return ptr;
 }
 
-std::shared_ptr<Texture> Texture::create(const Image& image, Type type)
+std::shared_ptr<Texture> Texture::create(const Image& image, Format fmt, uint32_t mipmapCount, Type type)
 {
-	if(type == Type::Cube)
-		throw std::runtime_error("cubemap should have 6 images");
+	assert(type != Type::Cube);
 
 	switch(Renderer::getAPI())
 	{
 		using enum Renderer::API;
 
 	case OpenGL:
-		return std::make_shared<GLTexture>(image, type);
+		return std::make_shared<GLTexture>(image, fmt, mipmapCount, type);
 	}
 	return nullptr;
 }
@@ -74,7 +81,6 @@ Format Texture::getFormat() const
 	return format;
 }
 
-Texture::Texture(Type type, Format fmt)
-	: type(type), format(fmt)
+Texture::Texture(Type type, Format fmt) : type(type), format(fmt)
 {
 }

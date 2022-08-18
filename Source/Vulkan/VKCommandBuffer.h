@@ -25,6 +25,7 @@ public:
 
 	void setVertexBuffer(std::shared_ptr<VertexBuffer> vertexBuffer) override;
 	void setIndexBuffer(std::shared_ptr<IndexBuffer> indexBuffer) override;
+	void setTexture(std::shared_ptr<Texture> texture, unsigned int slot) override;
 
 	void clear(uint8_t flags) override;
 	void setClearColor(const Vector4& color) override;
@@ -39,4 +40,6 @@ public:
 private:
 	std::vector<VkCommandBuffer> handles;
 	size_t                       index = 0;
+
+	VkClearColorValue clearColor = {};
 };

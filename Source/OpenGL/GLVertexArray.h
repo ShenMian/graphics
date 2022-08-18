@@ -3,9 +3,11 @@
 
 #pragma once
 
+#include <memory>
 #include <glad/glad.h>
 
-class VertexAttributes;
+class GLBuffer;
+class VertexFormat;
 
 class GLVertexArray
 {
@@ -15,7 +17,7 @@ public:
 
 	void bind();
 
-	void build(const VertexAttributes& fmt);
+	void build(const VertexFormat& fmt, GLBuffer& vbo);
 
 private:
 	GLuint handle;

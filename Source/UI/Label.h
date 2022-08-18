@@ -4,11 +4,14 @@
 #pragma once
 
 #include "Widget.h"
-#include <Math/Math.hpp>
+#include <math/math.hpp>
 
 namespace ui
 {
 
+/**
+ * @brief 文本标签.
+ */
 class Label : public Widget
 {
 public:

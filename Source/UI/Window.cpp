@@ -7,8 +7,7 @@
 namespace ui
 {
 
-Window::Window(const std::string& label, Flag flags)
-	: Widget(label), flags(flags)
+Window::Window(const std::string& label, Flag flags) : Widget(label), flags(flags)
 {
 }
 
@@ -24,15 +23,19 @@ void Window::clear()
 
 void Window::update()
 {
-	if(ImGui::Begin(handle.c_str(), nullptr, flags))
+	if(!ImGui::Begin(handle.c_str(), nullptr, flags))
 	{
-		for(auto& widget : widgets)
-			widget->update();
-		if(ImGui::IsWindowHovered())
-			if(hover)
-				hover(*this);
 		ImGui::End();
+		return;
 	}
+
+	for(auto& widget : widgets)
+		widget->update();
+	if(ImGui::IsWindowHovered())
+		if(hover)
+			hover(*this);
+
+	ImGui::End();
 }
 
 } // namespace ui

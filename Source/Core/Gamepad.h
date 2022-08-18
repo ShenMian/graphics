@@ -3,17 +3,20 @@
 
 #pragma once
 
+#include <filesystem>
 #include <functional>
+#include <math/math.hpp>
 #include <string_view>
-#include <Math/Math.hpp>
 
 /** @addtogroup core
  *  @{
  */
 
- /**
-  * @brief 游戏手柄.
-  */
+/**
+ * @brief 游戏手柄.
+ *
+ * @warning 不支持震动.
+ */
 class Gamepad
 {
 public:
@@ -37,44 +40,50 @@ public:
 	 * @brief 获取摇杆数据.
 	 *
 	 * @param thumb 摇杆.
-	 * @return Vector2f 范围: [-1, 1]
+	 *
+	 * @return 范围: [-1, 1]
 	 */
-	Vector2f get(Thumb thumb) const;
+	Vector2f get(Thumb thumb) const noexcept;
 
 	/**
 	 * @brief 获取原始摇杆数据.
 	 *
 	 * @param thumb 摇杆.
-	 * @return Vector2f 范围: [-1, 1]
-	 * @warning 不建议使用.
+	 *
+	 * @return 范围: [-1, 1]
+	 *
+	 * @warning 不建议直接使用.
 	 */
-	Vector2f getRaw(Thumb thumb) const;
+	Vector2f getRaw(Thumb thumb) const noexcept;
 
 	/**
 	 * @brief 获取线性按键力度.
 	 *
 	 * @param trigger 线性按键.
-	 * @return float 0 表示没有按下, 范围: [0, 1]
+	 *
+	 * @return 0 表示没有按下, 范围: [0, 1]
 	 */
-	float get(Trigger trigger) const;
+	float get(Trigger trigger) const noexcept;
 
 	/**
 	 * @brief 获取原始线性按键数据.
 	 *
 	 * @param trigger 线性按键.
-	 * @return float 0 表示没有按下, 范围: [0, 1]
-	 * @warning 不建议使用.
+	 *
+	 * @return 0 表示没有按下, 范围: [0, 1]
+	 *
+	 * @warning 不建议直接使用.
 	 */
-	float getRaw(Trigger trigger) const;
+	float getRaw(Trigger trigger) const noexcept;
 
 	/**
 	 * @brief 获取按键状态.
 	 *
 	 * @param  button 按键.
-	 * @return true   按键按下.
-	 * @return false  按键抬起.
+	 *
+	 * @return 按键是否按下.
 	 */
-	bool get(Button button) const;
+	bool get(Button button) const noexcept;
 
 	/**
 	 * @brief 获取设备名称. 人类可读的, UTF-8 编码.
@@ -84,10 +93,18 @@ public:
 	/**
 	 * @brief 检查手柄是否处于连接状态.
 	 *
-	 * @return true  已连接.
-	 * @return false 已断开.
+	 * @return 是否已连接.
 	 */
 	bool isConnected() const;
+
+	/**
+	 * @brief 加载 SDL 按键映射数据库.
+	 *
+	 * @param path 数据库文件地址.
+	 *
+	 * @return 是否成功.
+	 */
+	bool loadMappingsDb(const std::filesystem::path& path);
 
 	bool operator==(const Gamepad&) const;
 
@@ -97,12 +114,12 @@ public:
 private:
 	handle_type handle;
 
-	float leftThumbDeadzone = 0.1f;
+	float leftThumbDeadzone  = 0.1f;
 	float rightThumbDeadzone = 0.1f;
-	float triggerThreshold = 0.01f;
+	float triggerThreshold   = 0.01f;
 
 	unsigned char buttons[15] = {};
-	float axes[6] = {};
+	float         axes[6]     = {};
 };
 
 /**
@@ -119,8 +136,8 @@ enum class Gamepad::Thumb
  */
 enum class Gamepad::Trigger
 {
-	left,  ///< 左侧线性按键, 即 LT.
-	right  ///< 右侧线性按键, 即 RT.
+	left, ///< 左侧线性按键, 即 LT.
+	right ///< 右侧线性按键, 即 RT.
 };
 
 /**
@@ -133,24 +150,24 @@ enum class Gamepad::Button : uint8_t
 	X = 2,
 	Y = 3,
 
-	LeftBumper = 4,
+	LeftBumper  = 4,
 	RightBumper = 5,
 
-	Back = 6,
+	Back  = 6,
 	Start = 7,
 	Guide = 8,
 
-	LeftThumb = 9,
+	LeftThumb  = 9,
 	RightThumb = 10,
 
-	DPAD_Up = 11,
+	DPAD_Up    = 11,
 	DPAD_Right = 12,
-	DPAD_Down = 13,
-	DPAD_Left = 14,
+	DPAD_Down  = 13,
+	DPAD_Left  = 14,
 
-	Cross = A,
-	Circle = B,
-	Square = X,
+	Cross    = A,
+	Circle   = B,
+	Square   = X,
 	Triangle = Y
 };
 

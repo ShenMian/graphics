@@ -4,7 +4,7 @@
 #pragma once
 
 #include "Key.h"
-#include <Math/Math.hpp>
+#include <math/math.hpp>
 #include <string_view>
 
 class Window;
@@ -13,9 +13,9 @@ class Window;
  *  @{
  */
 
- /**
-  * @brief 键盘/鼠标输入.
-  */
+/**
+ * @brief 键盘/鼠标输入.
+ */
 class Input
 {
 public:
@@ -51,6 +51,20 @@ public:
 	 * @brief 获取光标相对窗口的 Y 坐标.
 	 */
 	static float getMouseY();
+
+	/**
+	 * @brief 通过名称获取键盘按键.
+	 *
+	 * @param name 键盘按键名称.
+	 */
+	static Key getKeyByName(std::string_view name);
+
+	/**
+	 * @brief 通过鼠标获取键盘按键.
+	 *
+	 * @param name 鼠标按键名称.
+	 */
+	static Mouse getMouseByName(std::string_view name);
 
 	/**
 	 * @brief 获取剪切板内容, UTF-8 编码.

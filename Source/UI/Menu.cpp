@@ -7,8 +7,7 @@
 namespace ui
 {
 
-Menu::Menu(const std::string& label)
-	: Widget(label)
+Menu::Menu(const std::string& label) : Widget(label)
 {
 }
 
@@ -19,15 +18,19 @@ void Menu::addItem(const std::string& label, const std::function<void()>& callba
 
 void Menu::update()
 {
-	if(ImGui::BeginMenu(getLabel().c_str()))
+	if(!ImGui::BeginMenu(getLabel().c_str()))
 	{
-		for(const auto& [label, callback] : items)
-		{
-			if(ImGui::MenuItem(label.c_str()))
-				callback();
-		}
 		ImGui::EndMenu();
+		return;
 	}
+
+	for(const auto& [label, callback] : items)
+	{
+		if(ImGui::MenuItem(label.c_str()))
+			callback();
+	}
+
+	ImGui::EndMenu();
 }
 
 } // namespace ui

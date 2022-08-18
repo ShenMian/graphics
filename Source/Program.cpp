@@ -8,7 +8,7 @@
 #include <vector>
 
 #define FMT_HEADER_ONLY
-#include <fmt/core.h>
+#include <fmt/format.h>
 
 #include "OpenGL/GLProgram.h"
 #include "Vulkan/VKProgram.h"
@@ -30,30 +30,27 @@ std::shared_ptr<Program> Program::create(const Descriptor& desc)
 	return nullptr;
 }
 
-std::shared_ptr<Program> Program::create(const std::string_view name)
+std::shared_ptr<Program> Program::create(std::string_view name)
 {
 	Descriptor desc;
 
 	desc.name = name;
 
-	const std::vector<std::pair<std::string, Shader::Stage>> com = {
-		{"vert", Shader::Stage::Vertex},
-		{"frag", Shader::Stage::Fragment},
-		{"geom", Shader::Stage::Geometry},
-		{"comp", Shader::Stage::Compute}
-	};
+	const std::vector<std::pair<std::string, Shader::Stage>> com = {{"vert", Shader::Stage::Vertex},
+	                                                                {"frag", Shader::Stage::Fragment},
+	                                                                {"geom", Shader::Stage::Geometry},
+	                                                                {"comp", Shader::Stage::Compute}};
 
-	// SPV
-	/*
+	// GLSL
 	for(const auto& [stageName, stage] : com)
 	{
-		auto path = fmt::format("{}.{}.spv", name, stageName);
+		const auto path = fmt::format("{}.{}.glsl", name, stageName);
 		if(!fs::exists(path))
 			continue;
 
 		Shader::Descriptor shaderDesc;
 		shaderDesc.stage = stage;
-		shaderDesc.path = path;
+		shaderDesc.path  = path;
 
 		switch(stage)
 		{
@@ -78,38 +75,39 @@ std::shared_ptr<Program> Program::create(const std::string_view name)
 	}
 	if(desc.vertex != nullptr && desc.fragment != nullptr)
 		return create(desc);
-	*/
 
-    // GLSL
-    for(const auto& [stageName, stage] : com) {
-        auto path = fmt::format("{}.{}.glsl", name, stageName);
+	// SPV
+	for(const auto& [stageName, stage] : com)
+	{
+		auto path = fmt::format("{}.{}.spv", name, stageName);
 		if(!fs::exists(path))
 			continue;
 
-        Shader::Descriptor shaderDesc;
-        shaderDesc.stage = stage;
-        shaderDesc.path = path;
+		Shader::Descriptor shaderDesc;
+		shaderDesc.stage = stage;
+		shaderDesc.path  = path;
 
-        switch (stage) {
-            using enum Shader::Stage;
+		switch(stage)
+		{
+			using enum Shader::Stage;
 
-            case Vertex:
-                desc.vertex = Shader::create(shaderDesc);
-                break;
+		case Vertex:
+			desc.vertex = Shader::create(shaderDesc);
+			break;
 
-            case Fragment:
-                desc.fragment = Shader::create(shaderDesc);
-                break;
+		case Fragment:
+			desc.fragment = Shader::create(shaderDesc);
+			break;
 
-            case Geometry:
-                desc.geometry = Shader::create(shaderDesc);
-                break;
+		case Geometry:
+			desc.geometry = Shader::create(shaderDesc);
+			break;
 
-            case Compute:
-                desc.compute = Shader::create(shaderDesc);
-                break;
-        }
-    }
+		case Compute:
+			desc.compute = Shader::create(shaderDesc);
+			break;
+		}
+	}
 
 	return create(desc);
 }
@@ -119,7 +117,6 @@ int Program::getStageCount() const
 	return stageCount;
 }
 
-Program::Program(const Descriptor& desc)
-	: name(desc.name)
+Program::Program(const Descriptor& desc) : name(desc.name)
 {
 }

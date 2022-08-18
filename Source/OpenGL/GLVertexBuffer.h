@@ -3,21 +3,19 @@
 
 #pragma once
 
-#include "VertexBuffer.h"
 #include "GLBuffer.h"
 #include "GLVertexArray.h"
+#include "VertexBuffer.h"
 #include <glad/glad.h>
 
 class GLVertexBuffer : public VertexBuffer
 {
 public:
-	GLVertexBuffer(const void* data, size_t size, const VertexAttributes& fmt, Buffer::Usage usage);
+	GLVertexBuffer(const void* data, size_t size, const VertexFormat& fmt, Buffer::Usage usage);
 
-	void map() override;
-	void unmap() override;
+	Buffer& getBuffer() override;
 
-	void write(const void* data, size_t size) override;
-	void bind() override;
+	void bind();
 
 private:
 	GLBuffer      buffer;

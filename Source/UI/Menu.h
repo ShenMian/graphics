@@ -4,9 +4,9 @@
 #pragma once
 
 #include "Widget.h"
-#include <vector>
+#include <math/math.hpp>
 #include <utility>
-#include <Math/Math.hpp>
+#include <vector>
 
 namespace ui
 {

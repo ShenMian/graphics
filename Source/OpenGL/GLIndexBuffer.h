@@ -3,8 +3,8 @@
 
 #pragma once
 
-#include "IndexBuffer.h"
 #include "GLBuffer.h"
+#include "IndexBuffer.h"
 #include <glad/glad.h>
 
 class GLIndexBuffer : public IndexBuffer
@@ -12,11 +12,9 @@ class GLIndexBuffer : public IndexBuffer
 public:
 	GLIndexBuffer(const uint32_t* data, size_t size, Buffer::Usage usage);
 
-	void map() override;
-	void unmap() override;
+	Buffer& getBuffer() override;
 
-	void write(const void* data, size_t size) override;
-	void bind() override;
+	void bind();
 
 private:
 	GLBuffer buffer;

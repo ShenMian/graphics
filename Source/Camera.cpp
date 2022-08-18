@@ -2,30 +2,30 @@
 // License(Apache-2.0)
 
 #include "Camera.h"
+#include <cassert>
 
-Camera::Camera(Type type)
-	: type(type)
+Camera::Camera(Type type) : type(type)
 {
 }
 
 void Camera::setPerspective(float vFOV, float aspectRatio, float near, float far)
 {
 	assert(type == Type::Perspective);
-	perspective.vFOV = vFOV;
+	perspective.vFOV        = vFOV;
 	perspective.aspectRatio = aspectRatio;
-	perspective.near = near;
-	perspective.far = far;
-	projectionDirty = true;
+	perspective.near        = near;
+	perspective.far         = far;
+	projectionDirty         = true;
 }
 
 void Camera::setOrthographic(float width, float height, float near, float far)
 {
 	assert(type == Type::Orthographic);
-	orthographic.width = width;
+	orthographic.width  = width;
 	orthographic.height = height;
-	orthographic.near = near;
-	orthographic.far = far;
-	projectionDirty = true;
+	orthographic.near   = near;
+	orthographic.far    = far;
+	projectionDirty     = true;
 }
 
 const Matrix4& Camera::getView() const
@@ -47,7 +47,7 @@ Camera::Type Camera::getType() const
 
 void Camera::setPosition(const Vector3f& pos)
 {
-	position = pos;
+	position  = pos;
 	viewDirty = true;
 }
 
@@ -58,7 +58,7 @@ const Vector3f& Camera::getPosition() const
 
 void Camera::setRotation(const Vector3f& rot)
 {
-	rotation = rot;
+	rotation  = rot;
 	viewDirty = true;
 }
 
@@ -97,7 +97,8 @@ float Camera::getVFOV() const
 
 float Camera::getHFOV() const
 {
-	return std::atan(std::tan(getVFOV() / 2.f) * getAspectRatio()) * 2.f;;
+	return std::atan(std::tan(getVFOV() / 2.f) * getAspectRatio()) * 2.f;
+	;
 }
 
 float Camera::getAspectRatio() const
@@ -115,7 +116,7 @@ float Camera::getNear() const
 
 float Camera::getFar() const
 {
-	return perspective.near;
+	return perspective.far;
 }
 
 void Camera::updateProjectionMatrix() const
@@ -132,7 +133,7 @@ void Camera::updateViewMatrix() const
 	// TODO
 
 	auto trans = Matrix4f::createTranslate(position);
-	auto rot = Matrix4f::identity();
+	auto rot   = Matrix4f::identity();
 #if 0
 	rot *= Matrix4f::createRotation(radians(rotation.x), Vector3f::unit_x);
 	rot *= Matrix4f::createRotation(radians(-rotation.y), Vector3f::unit_y);

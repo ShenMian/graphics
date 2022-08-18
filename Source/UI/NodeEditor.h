@@ -3,35 +3,30 @@
 
 #pragma once
 
-#include "Widget.h"
-#include "Node.h"
-#include "Pin.h"
-#include "Link.h"
-#include <imgui_node_editor.h>
+#include <unordered_map>
+#include <vector>
 
-using ax::NodeEditor::PinId;
-using ax::NodeEditor::EditorContext;
+struct ImNodesEditorContext;
 
 namespace ui
 {
 
-class NodeEditor : public Widget
+class Node;
+
+/**
+ * @brief 节点编辑器.
+ */
+class NodeEditor
 {
 public:
-	NodeEditor(const std::string& label);
+	NodeEditor();
 	virtual ~NodeEditor();
 
-	void update() override;
-
-	std::vector<Node> nodes;
-	std::vector<Link> links;
+	void update();
 
 private:
-	void updateCreate();
-	void updateDelete();
-	Pin* getPin(PinId id);
-
-	EditorContext* context;
+	ImNodesEditorContext* context;
+	std::vector<Node>     nodes;
 };
 
 } // namespace ui

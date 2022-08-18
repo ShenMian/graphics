@@ -27,9 +27,10 @@
    SET(OPTION_NAME OFF CACHE BOOL "" FORCE) # 关闭选项 OPTION_NAME
    ```
 
-**警告**: 请查看 [依赖项](https://github.com/ShenMian/Graphics/blob/main/Deps/README.md) 来确保不会产生菱形依赖. 或使用 CMake 安装依赖项来减少产生菱形依赖的可能性, 执行脚本 `Scripts/cmake_install_deps`.  
+**警告**: 请查看 [依赖项](https://github.com/ShenMian/Graphics/blob/main/Deps/README.md) 来确保不会产生菱形依赖. 或提前安装依赖项来减少产生菱形依赖的可能性, 执行 `vcpkg install` 命令或执行脚本 `Scripts/cmake_install_deps`.  
+**注意**: 因为该项目包含大量 [依赖项](https://github.com/ShenMian/Graphics/blob/main/Deps/README.md), 所以可以通过执行 `vcpkg install` 命令或执行脚本 `Scripts/cmake_install_deps` 提前安装依赖项来加快编译速度.  
 
-通过 Premake 生成你所使用 IDE 的项目文件.
+通过 Premake 生成你所使用 IDE 的项目文件.  
 
 ```bash
 ./Scripts/gen_gmake2 # 生成 GNU Makefile
@@ -37,13 +38,13 @@
 ./Scripts/gen_xcode4 # 生成 Xcode4 项目文件
 ```
 
-除此之外, 你还可以自行调用 premake5 生成你想要的内容. 详情请查看[相关文档](https://github.com/premake/premake-core/wiki/Using-Premake#using-premake-to-generate-project-files).
+除此之外, 你还可以自行调用 premake5 生成你想要的内容. 详情请查看[相关文档](https://github.com/premake/premake-core/wiki/Using-Premake#using-premake-to-generate-project-files).  
 
-该项目编译后会生成一个静态库文件, 在生成你的可执行文件时需链接该静态库.
+该项目编译后会生成一个静态库文件, 在生成你的可执行文件时需链接该静态库.  
 
 ## 更新
 
-因为该库对 Git 子模块的更新较为频繁, 请注意拉取后将子模块签出到相应的提交. 你可以使用下面的命令更新本地克隆仓库/子模块.
+因为该库对 Git 子模块的更新较为频繁, 请注意拉取后将子模块签出到相应的提交. 你可以使用下面的命令更新本地克隆仓库/子模块.  
 
 ```bash
 git pull                    # 拉取到最新的提交
@@ -51,7 +52,7 @@ git checkout <tag-id>       # 切换到指定的版本
 git submodule update --init # 签出子模块
 ```
 
-**警告**: 不建议直接使用最新提交, 因为这些修改还不稳定, 甚至无法正常工作.
+**警告**: 不建议直接使用最新提交, 因为这些修改还不稳定, 甚至无法正常工作.  
 
 ## 应用骨架
 
@@ -66,15 +67,13 @@ Renderer::init(); // 初始化渲染 API, 之后才可以使用渲染相关的 A
 UI::init();       // (可选) 初始化 UI, 之后才能使用 UI 相关的 API.
                   // 如果你不打算使用 UI 相关的 API, 可以跳过此步骤.
 
-// 创建窗口
-const auto& monitor = Monitor::getPrimary();   // 获取主显示器
+const auto monitor = Monitor::getPrimary();   // 获取主显示器
 {
-    Window window("title", monitor.getSize() / 2); // 创建窗口, 窗口标题为 title, 大小为主显示器分辨率的一半,
-                                                   // 即窗口应该占据屏幕的 1/4.
-    // ... 窗口相关代码 ...
+    Window window("title", monitor->getSize() / 2); // 创建窗口, 窗口标题为 title, 大小为主显示器分辨率的一半,
+                                                    // 即窗口应该占据屏幕的 1/4.
                                                    
     {
-        // ... 创建渲染相关对象代码 ...
+        // ... 构建渲染相关对象实例 ...
         
         while(true) // 主循环
         {
@@ -85,16 +84,12 @@ const auto& monitor = Monitor::getPrimary();   // 获取主显示器
             
             UI::endFrame();
         }
-
-        // 渲染实例析构
-    }
+    } // 析构渲染相关实例
     
     // 清理, 顺序与初始化相反
     UI::deinit();
     Renderer::deinit(); // 调用该语句前应确保所以渲染相关的对象已被销毁
-
-    // 窗口实例析构
-}
+} // 析构窗口实例
 Window::deinit(); // 调用该语句前应该确保所有窗口已被销毁
 ```
 
@@ -105,5 +100,5 @@ Window::deinit(); // 调用该语句前应该确保所有窗口已被销毁
 
 ## 示例
 
-阅读 [示例](https://github.com/ShenMian/Graphics/tree/main/Examples) 是一种快速的入门方式.
-从示例中可以很直观的看到各种常见 API 的使用方式.
+阅读 [示例](https://github.com/ShenMian/Graphics/tree/main/Examples) 是一种快速的入门方式.  
+从示例中可以很直观的看到各种常见 API 的使用方式.  

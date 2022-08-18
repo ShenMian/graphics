@@ -3,68 +3,53 @@
 
 #include "Node.h"
 #include "Pin.h"
-#include <imgui_node_editor.h>
-
-using namespace ax::NodeEditor;
+#include <algorithm>
+#include <imnodes.h>
 
 namespace ui
 {
 
-Node::Node(const std::string& label)
-	: Widget(label), nodeId(id)
+Node::Node(const std::string& label) : Widget(label)
 {
-}
-
-void Node::update()
-{
-	BeginNode(nodeId);
-	{
-		ImGui::TextUnformatted(label.c_str());
-
-		if(ImGui::BeginTable(handle.c_str(), 2, 0, ImVec2(120, 40)))
-		{
-			for(size_t i = 0; i < inputs.size() || i < outputs.size(); i++)
-			{
-				ImGui::TableNextRow();
-				if(i < inputs.size())
-				{
-					ImGui::TableSetColumnIndex(0);
-					inputs[i].update();
-				}
-				if(i < outputs.size())
-				{
-					ImGui::TableSetColumnIndex(1);
-					outputs[i].update();
-				}
-			}
-			ImGui::EndTable();
-		}
-	}
-	EndNode();
 }
 
 void Node::addPin(const Pin& pin)
 {
-	if(pin.getKind() == Pin::Kind::Input)
-	{
-		inputs.push_back(pin);
-		inputs.back().setNode(*this);
-	}
-	else
-	{
-		outputs.push_back(pin);
-		outputs.back().setNode(*this);
-	}
+	inputs.push_back(pin);
 }
 
-std::vector<Pin>& Node::getInputs()
+const Pin* Node::getPinById(uint64_t id)
 {
-	return inputs;
+	{
+		const auto it = std::ranges::find_if(inputs, [id](const auto& pin) { return pin.getId() == id; });
+		if(it != inputs.end())
+			return &*it;
+	}
+
+	{
+		const auto it = std::ranges::find_if(outputs, [id](const auto& pin) { return pin.getId() == id; });
+		if(it != outputs.end())
+			return &*it;
+	}
+
+	return nullptr;
 }
 
-std::vector<Pin>& Node::getOutputs()
+void Node::update()
 {
-	return outputs;
+	ImNodes::BeginNode(id);
+
+	ImNodes::BeginNodeTitleBar();
+	ImGui::TextUnformatted(label.c_str());
+	ImNodes::EndNodeTitleBar();
+
+	for(size_t i = 0; i < inputs.size(); i++)
+		inputs[i].update();
+
+	for(size_t i = 0; i < outputs.size(); i++)
+		outputs[i].update();
+
+	ImNodes::EndNode();
 }
 
 } // namespace ui

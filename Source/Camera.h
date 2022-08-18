@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include <Math/Math.hpp>
+#include <math/math.hpp>
 
 /**
  * @brief 摄像机.
@@ -145,8 +145,7 @@ protected:
 		float far;
 	};
 
-	union
-	{
+	union {
 		Perspective  perspective;
 		Orthographic orthographic;
 	};

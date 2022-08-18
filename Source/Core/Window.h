@@ -4,10 +4,10 @@
 #pragma once
 
 #include "Key.h"
-#include <Math/Math.hpp>
-#include <string>
 #include <filesystem>
 #include <functional>
+#include <math/math.hpp>
+#include <string>
 
 struct GLFWwindow;
 
@@ -17,9 +17,9 @@ class Image;
  *  @{
  */
 
- /**
-  * @brief 窗体.
-  */
+/**
+ * @brief 窗体.
+ */
 class Window
 {
 public:
@@ -30,7 +30,7 @@ public:
 	 * @param size       窗口大小(分辨率).
 	 * @param fullscreen 是否全屏, true 为全屏.
 	 */
-	Window(const std::string_view title, const Vector2i& size, bool fullscreen = false);
+	Window(std::string_view title, const Vector2i& size, bool fullscreen = false);
 
 	/**
 	 * @brief 析构函数.
@@ -49,7 +49,7 @@ public:
 	 *
 	 * @param title 窗口标题.
 	 */
-	void setTitle(const std::string_view title);
+	void setTitle(std::string_view title);
 
 	/**
 	 * @brief 设置窗口大小.
@@ -61,7 +61,7 @@ public:
 	/**
 	 * @brief 获取窗口大小.
 	 */
-	Vector2i getSize() const noexcept;
+	Vector2i getSize() const;
 
 	/**
 	 * @brief 设置窗口坐标.
@@ -75,14 +75,14 @@ public:
 	 *
 	 * @return 当前窗口坐标.
 	 */
-	Vector2i getPosition() const noexcept;
+	Vector2i getPosition() const;
 
 	/**
 	 * @brief 设置窗口可见性.
 	 *
 	 * @param visible true 为可见, false 为不可见.
 	 */
-	void setVisible(bool visible) noexcept;
+	void setVisible(bool visible);
 
 	/**
 	 * @brief 获取窗口可见性.
@@ -111,6 +111,30 @@ public:
 	void setSync(bool enable) noexcept;
 
 	/**
+	 * @brief 设置大小是否可调.
+	 *
+	 * @param enable true 为可调, false 为不可调.
+	 */
+	void setResizable(bool enable);
+
+	/**
+	 * @brief 是否可调窗口大小.
+	 */
+	bool isResizable() const noexcept;
+
+	/**
+	 * @brief 设置窗口是否置顶.
+	 *
+	 * @param enable true 为置顶, false 为不置顶.
+	 */
+	void setFloating(bool enable);
+
+	/**
+	 * @brief 是否已置顶.
+	 */
+	bool isFloating() const noexcept;
+
+	/**
 	 * @brief 设置窗口图标.
 	 *
 	 * @param image 图标图像.
@@ -132,6 +156,23 @@ public:
 	void setCursorLock(bool enable);
 
 	/**
+	 * @brief 是否开启光标锁定.
+	 */
+	bool isCursorLock() const;
+
+	/**
+	 * @brief 设置光标在窗口中的坐标.
+	 *
+	 * @param pos 新光标在窗口中的坐标.
+	 */
+	void setCursorPosition(const Vector2i& pos);
+
+	/**
+	 * @brief 获取光标在窗口中的坐标.
+	 */
+	Vector2d getCursorPosition() const;
+
+	/**
 	 * @brief 设置是否启用原始鼠标运动.
 	 *
 	 * @param enable true 为开启, false 为关闭.
@@ -145,7 +186,7 @@ public:
 	/**
 	 * @brief 获取本地句柄.
 	 */
-	void* getNativeHandle() const;
+	GLFWwindow* getHandle() const;
 
 	std::function<void(Vector2i)>                 onResize;     ///< 窗口大小变化时回调
 	std::function<void(bool)>                     onFocus;      ///< 窗口获取/失去焦点回调

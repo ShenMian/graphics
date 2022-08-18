@@ -5,25 +5,23 @@
 #include "Image.h"
 #include "Monitor.h"
 #include "Renderer.h"
+#include <GLFW/glfw3.h>
 #include <cassert>
 #include <stdexcept>
-#include <GLFW/glfw3.h>
-// #include <format>
 
-using namespace std::literals::string_literals;
+#define FMT_HEADER_ONLY
+#include <fmt/format.h>
+
 namespace fs = std::filesystem;
 
-Window::Window(const std::string_view title, const Vector2i& size, bool fullscreen)
+Window::Window(std::string_view title, const Vector2i& size, bool fullscreen)
 {
-	handle = glfwCreateWindow(size.x, size.y, title.data(),
-		fullscreen ? reinterpret_cast<GLFWmonitor*>(Monitor::getPrimary().getNativeHandle()) : nullptr, nullptr);
-	assert(handle);
+	handle = glfwCreateWindow(size.x, size.y, title.data(), fullscreen ? Monitor::getPrimary()->getHandle() : nullptr,
+	                          nullptr);
+	if(handle == nullptr)
+		throw std::runtime_error("failed to create window");
 
 	glfwSetWindowUserPointer(handle, static_cast<void*>(this));
-
-	// 开启 MASS 抗锯齿
-	// glfwWindowHint(GLFW_SAMPLES, 2);
-	// glEnable(GL_MULTISAMPLE);
 
 	setupCallbacks();
 }
@@ -40,7 +38,7 @@ void Window::update()
 	glfwPollEvents();
 }
 
-void Window::setTitle(const std::string_view title)
+void Window::setTitle(std::string_view title)
 {
 	glfwSetWindowTitle(handle, title.data());
 }
@@ -50,7 +48,7 @@ void Window::setSize(const Vector2i& size)
 	glfwSetWindowSize(handle, size.x, size.y);
 }
 
-Vector2i Window::getSize() const noexcept
+Vector2i Window::getSize() const
 {
 	int x, y;
 	glfwGetWindowSize(handle, &x, &y);
@@ -62,14 +60,14 @@ void Window::setPosition(const Vector2i& pos)
 	glfwSetWindowPos(handle, pos.x, pos.y);
 }
 
-Vector2i Window::getPosition() const noexcept
+Vector2i Window::getPosition() const
 {
-	Vector2i size;
-	glfwGetWindowPos(handle, &size.x, &size.y);
-	return size;
+	int x, y;
+	glfwGetWindowPos(handle, &x, &y);
+	return {x, y};
 }
 
-void Window::setVisible(bool visible) noexcept
+void Window::setVisible(bool visible)
 {
 	if(visible)
 		glfwShowWindow(handle);
@@ -86,12 +84,13 @@ void Window::setFullscreen(bool fullscreen)
 {
 	if(fullscreen)
 	{
-		size = getSize();
+		size     = getSize();
 		position = getPosition();
 	}
 
-	const auto& monitor = Monitor::getPrimary();
-	glfwSetWindowMonitor(handle, fullscreen ? static_cast<GLFWmonitor*>(monitor.getNativeHandle()) : nullptr, position.x, position.y, size.x, size.y, GLFW_DONT_CARE);
+	const auto monitor = Monitor::getPrimary();
+	glfwSetWindowMonitor(handle, fullscreen ? monitor->getHandle() : nullptr, position.x, position.y, size.x, size.y,
+	                     GLFW_DONT_CARE);
 }
 
 bool Window::isFullscreen() const noexcept
@@ -107,15 +106,35 @@ void Window::setSync(bool enable) noexcept
 		glfwSwapInterval(0);
 }
 
+void Window::setResizable(bool enable)
+{
+	glfwSetWindowAttrib(handle, GLFW_RESIZABLE, enable);
+}
+
+bool Window::isResizable() const noexcept
+{
+	return glfwGetWindowAttrib(handle, GLFW_RESIZABLE);
+}
+
+void Window::setFloating(bool enable)
+{
+	glfwSetWindowAttrib(handle, GLFW_FLOATING, enable);
+}
+
+bool Window::isFloating() const noexcept
+{
+	return glfwGetWindowAttrib(handle, GLFW_FLOATING);
+}
+
 void Window::setIcon(const Image& image)
 {
-	if(image.getSize().x > 48 && image.getSize().y > 48)
-		throw std::runtime_error("image size too large");
+	if(image.size().x > 48 && image.size().y > 48)
+		throw std::runtime_error("image size is too large");
 
 	GLFWimage glfwImage;
-	glfwImage.pixels = const_cast<unsigned char*>(image.getData());
-	glfwImage.width = image.getSize().x;
-	glfwImage.height = image.getSize().y;
+	glfwImage.pixels = const_cast<unsigned char*>(image.data());
+	glfwImage.width  = image.size().x;
+	glfwImage.height = image.size().y;
 	glfwSetWindowIcon(handle, 1, &glfwImage);
 }
 
@@ -129,79 +148,87 @@ void Window::setCursorLock(bool enable)
 	glfwSetInputMode(handle, GLFW_CURSOR, enable ? GLFW_CURSOR_DISABLED : GLFW_CURSOR_NORMAL);
 }
 
+bool Window::isCursorLock() const
+{
+	return glfwGetInputMode(handle, GLFW_CURSOR) == GLFW_CURSOR_DISABLED;
+}
+
+void Window::setCursorPosition(const Vector2i& pos)
+{
+	glfwSetCursorPos(handle, pos.x, pos.y);
+}
+
+Vector2d Window::getCursorPosition() const
+{
+	double x, y;
+	glfwGetCursorPos(handle, &x, &y);
+	return {x, y};
+}
+
 void Window::setRawMouseMotion(bool enable)
 {
 	if(glfwRawMouseMotionSupported())
 		glfwSetInputMode(handle, GLFW_RAW_MOUSE_MOTION, enable);
 }
 
-void* Window::getNativeHandle() const
+GLFWwindow* Window::getHandle() const
 {
 	return handle;
 }
 
 void Window::setupCallbacks()
 {
-	glfwSetErrorCallback([](int error, const char* desc)
-	{
+	glfwSetErrorCallback([](int error, const char* desc) {
 		if(error == 65537)
-			throw std::runtime_error("GLFW error: some windows has not been destroyed");
-		throw std::runtime_error("GLFW error: "s + desc);
+			throw std::runtime_error("GLFW: some windows has not been destroyed");
+		throw std::runtime_error(fmt::format("GLFW: {}", desc));
 	});
 
-	glfwSetWindowSizeCallback(handle, [](GLFWwindow* native, int width, int height)
-	{
+	glfwSetWindowSizeCallback(handle, [](GLFWwindow* native, int width, int height) {
 		const auto handle = static_cast<Window*>(glfwGetWindowUserPointer(native));
 		if(handle->onResize)
 			handle->onResize({width, height});
 	});
 
-	glfwSetWindowCloseCallback(handle, [](GLFWwindow* native)
-	{
+	glfwSetWindowCloseCallback(handle, [](GLFWwindow* native) {
 		const auto handle = static_cast<Window*>(glfwGetWindowUserPointer(native));
 		if(handle->onClose)
 			handle->onClose();
 	});
 
-	glfwSetWindowFocusCallback(handle, [](GLFWwindow* native, int focused)
-	{
+	glfwSetWindowFocusCallback(handle, [](GLFWwindow* native, int focused) {
 		const auto handle = static_cast<Window*>(glfwGetWindowUserPointer(native));
 		if(handle->onFocus)
 			handle->onFocus(static_cast<bool>(focused));
 	});
 
 
-	glfwSetKeyCallback(handle, [](GLFWwindow* native, int key, int scancode, int action, int mods)
-	{
+	glfwSetKeyCallback(handle, [](GLFWwindow* native, int key, int scancode, int action, int mods) {
 		const auto handle = static_cast<Window*>(glfwGetWindowUserPointer(native));
 		if(handle->onKey)
 			handle->onKey(action, static_cast<Key>(key));
 	});
 
 
-	glfwSetScrollCallback(handle, [](GLFWwindow* native, double xOffset, double yOffset)
-	{
+	glfwSetScrollCallback(handle, [](GLFWwindow* native, double xOffset, double yOffset) {
 		const auto handle = static_cast<Window*>(glfwGetWindowUserPointer(native));
 		if(handle->onScroll)
 			handle->onScroll({xOffset, yOffset});
 	});
 
-	glfwSetCursorPosCallback(handle, [](GLFWwindow* native, double x, double y)
-	{
+	glfwSetCursorPosCallback(handle, [](GLFWwindow* native, double x, double y) {
 		const auto handle = static_cast<Window*>(glfwGetWindowUserPointer(native));
 		if(handle->onMouseMove)
 			handle->onMouseMove({x, y});
 	});
 
-	glfwSetCursorEnterCallback(handle, [](GLFWwindow* native, int entered)
-	{
+	glfwSetCursorEnterCallback(handle, [](GLFWwindow* native, int entered) {
 		const auto handle = static_cast<Window*>(glfwGetWindowUserPointer(native));
 		if(handle->onMouseEnter)
 			handle->onMouseEnter(entered);
 	});
 
-	glfwSetMouseButtonCallback(handle, [](GLFWwindow* native, int button, int action, int mods)
-	{
+	glfwSetMouseButtonCallback(handle, [](GLFWwindow* native, int button, int action, int mods) {
 		const auto handle = static_cast<Window*>(glfwGetWindowUserPointer(native));
 		if(handle->onMouse)
 			handle->onMouse(action, static_cast<Mouse>(button));
@@ -218,7 +245,7 @@ void Window::setupCallbacks()
 void Window::init()
 {
 	if(!glfwInit())
-		throw std::runtime_error("GLFW init failed");
+		throw std::runtime_error("GLFW: failed to init");
 
 	Monitor::init();
 
@@ -230,11 +257,12 @@ void Window::init()
 	}
 
 	glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE); // 创建新窗口默认不可见
-	// glfwWindowHint(GLFW_DECORATED, GLFW_FALSE); // 启用无边框
+	glfwWindowHint(GLFW_SAMPLES, 4);          // 开启 MASS 抗锯齿
+	                                          // glfwWindowHint(GLFW_DECORATED, GLFW_FALSE); // 启用无边框
 
 	/*
 	const auto& monitor = Monitor::getPrimary();
-	auto mode = glfwGetVideoMode(static_cast<GLFWmonitor*>(monitor.getNativeHandle()));
+	auto mode = glfwGetVideoMode(static_cast<GLFWmonitor*>(monitor.getHandle()));
 	glfwWindowHint(GLFW_RED_BITS, mode->redBits);
 	glfwWindowHint(GLFW_GREEN_BITS, mode->greenBits);
 	glfwWindowHint(GLFW_BLUE_BITS, mode->blueBits);

@@ -3,7 +3,7 @@
 
 #pragma once
 
-#include <Math/Math.hpp>
+#include <math/math.hpp>
 #include <string>
 #include <vector>
 
@@ -13,16 +13,16 @@ struct GLFWmonitor;
  *  @{
  */
 
- /**
-  * @brief 显示器.
-  */
+/**
+ * @brief 显示器.
+ */
 class Monitor
 {
 public:
 	/**
 	 * @brief 获取主显示器.
 	 */
-	static const Monitor& getPrimary();
+	static const Monitor* getPrimary() noexcept;
 
 	/**
 	 * @brief 获取全部显示器.
@@ -32,7 +32,7 @@ public:
 	/**
 	 * @brief 获取显示器名称.
 	 */
-	const std::string& getName() const;
+	std::string_view getName() const;
 
 	/**
 	 * @brief 获取显示器大小(即分辨率), 单位: 像素.
@@ -57,7 +57,9 @@ public:
 	/**
 	 * @brief 获取本地句柄.
 	 */
-	void* getNativeHandle() const;
+	GLFWmonitor* getHandle() const;
+
+	bool operator==(const Monitor&) const = default;
 
 	static void init();
 	static void deinit();
@@ -67,12 +69,8 @@ private:
 	Monitor(GLFWmonitor* handle);
 
 	GLFWmonitor* handle = nullptr;
-	std::string  name;
 
-	static Monitor              primary;
 	static std::vector<Monitor> monitors;
-
-	static void update();
 };
 
 /** @}*/

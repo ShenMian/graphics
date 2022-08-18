@@ -12,12 +12,10 @@ public:
 	GLShader(const Descriptor& desc);
 	virtual ~GLShader();
 
-	void compile(const std::filesystem::path& path, Stage stage);
-
 	/**
 	 * @brief 获取本地句柄.
 	 */
-	size_t getNativeHandle() const;
+	size_t getHandle() const;
 
 private:
 	GLuint handle;

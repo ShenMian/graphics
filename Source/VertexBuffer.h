@@ -4,8 +4,8 @@
 #pragma once
 
 #include "Buffer.h"
-#include "VertexAttributes.h"
-#include <Math/Math.hpp>
+#include "VertexFormat.h"
+#include <math/math.hpp>
 #include <memory>
 #include <vector>
 
@@ -23,7 +23,8 @@ public:
 	 * @param usage  使用方式.
 	 */
 	template <typename T>
-	[[nodiscard]] static std::shared_ptr<VertexBuffer> create(const std::vector<T>& data, const VertexAttributes& layout, Buffer::Usage usage = Buffer::Usage::Static);
+	[[nodiscard]] static std::shared_ptr<VertexBuffer> create(const std::vector<T>& data, const VertexFormat& layout,
+	                                                          Buffer::Usage usage = Buffer::Usage::Static);
 
 	/**
 	 * @brief 创建 VertexBuffer.
@@ -34,7 +35,8 @@ public:
 	 * @param layout 顶点格式.
 	 * @param usage  使用方式.
 	 */
-	[[nodiscard]] static std::shared_ptr<VertexBuffer> create(const void* data, size_t size, const VertexAttributes& layout, Buffer::Usage usage = Buffer::Usage::Static);
+	[[nodiscard]] static std::shared_ptr<VertexBuffer> create(const void* data, size_t size, const VertexFormat& layout,
+	                                                          Buffer::Usage usage = Buffer::Usage::Static);
 
 	/**
 	 * @brief 获取缓冲区大小, 单位: 字节.
@@ -49,25 +51,22 @@ public:
 	/**
 	 * @brief 获取顶格式.
 	 */
-	[[nodiscard]] const VertexAttributes& getFormat() const;
+	[[nodiscard]] const VertexFormat& getFormat() const;
 
-	virtual void map() = 0;
-	virtual void unmap() = 0;
-	virtual void write(const void* data, size_t size) = 0;
-
-	virtual void bind() = 0;
+	virtual Buffer& getBuffer() = 0;
 
 protected:
-	VertexBuffer(const void* data, size_t size, const VertexAttributes& layout);
+	VertexBuffer(const void* data, size_t size, const VertexFormat& layout);
 
 private:
 	size_t       size;
 	uint32_t     count;
-	VertexAttributes format;
+	VertexFormat format;
 };
 
 template <typename T>
-inline std::shared_ptr<VertexBuffer> VertexBuffer::create(const std::vector<T>& data, const VertexAttributes& layout, Buffer::Usage usage)
+inline std::shared_ptr<VertexBuffer> VertexBuffer::create(const std::vector<T>& data, const VertexFormat& layout,
+                                                          Buffer::Usage usage)
 {
 	return create(data.data(), data.size() * sizeof(T), layout, usage);
 }

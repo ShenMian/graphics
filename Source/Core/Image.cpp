@@ -2,11 +2,16 @@
 // License(Apache-2.0)
 
 #include "Image.h"
-#include <stdexcept>
 #include <cstring>
+#include <memory>
+#include <stdexcept>
 
-#ifndef STB_IMAGE_IMPLEMENTATION
-#define STB_IMAGE_IMPLEMENTATION // 防止和 assimp 内的 stb 重定义
+#define FMT_HEADER_ONLY
+#include <fmt/format.h>
+#include <fmt/std.h>
+
+#ifndef STB_IMAGE_IMPLEMENTATION // 防止和其他第三方库内的 stb 重定义
+#define STB_IMAGE_IMPLEMENTATION
 #endif
 #include <stb_image.h>
 
@@ -17,142 +22,139 @@
 
 namespace fs = std::filesystem;
 
-Image::Image(const std::filesystem::path& path)
+using StbiImage = std::unique_ptr<unsigned char, decltype([](auto data) { stbi_image_free(data); })>;
+
+Image::Image(const fs::path& path)
 {
-	loadFromFile(path);
+	load(path);
 }
 
-Image::Image(const void *data, size_t sizeBytes, Vector2i size, int channels)
+Image::Image(const void* data, size_t sizeBytes, const Vector2i& size, int channels)
 {
-    loadFromMemory(data, sizeBytes, size, channels);
+	load(data, sizeBytes, size, channels);
 }
 
-void Image::loadFromFile(const std::filesystem::path& path)
+void Image::load(const fs::path& path)
 {
-	if(!fs::exists(path) && !fs::is_regular_file(path))
-		throw std::runtime_error("no such file");
+	if(!fs::is_regular_file(path))
+		throw std::runtime_error(fmt::format("no such file: {}", path));
 
-	// stbi_set_flip_vertically_on_load(1);
-	const auto pixels = stbi_load(path.string().c_str(), reinterpret_cast<int*>(&size.x),
-		reinterpret_cast<int*>(&size.y), &channels, 0);
+	StbiImage pixels(stbi_load(path.string().c_str(), &size_.x, &size_.y, &channels_, 0));
 	if(pixels == nullptr)
-		throw std::runtime_error("can't load image from file:" + path.string());
+		throw std::runtime_error(fmt::format("failed load image from file: {}", path));
 
-	loadFromMemory(pixels, size.x * size.y * channels, size, channels);
-
-	stbi_image_free(pixels);
+	load(pixels.get(), static_cast<size_t>(size_.x) * size_.y * channels_, size_, channels_);
 }
 
-void Image::loadFromMemory(const void* data, size_t sizeBytes, Vector2i size, int channels)
+void Image::load(const void* data, size_t sizeBytes, const Vector2i& size, int channels)
 {
-	this->size = size;
-	this->channels = channels;
-	this->data.resize(sizeBytes);
-	std::memcpy(this->data.data(), data, this->data.size());
-	this->data.shrink_to_fit();
+	size_    = size;
+	channels_ = channels;
+	data_.resize(sizeBytes);
+	std::memcpy(this->data_.data(), data, this->data_.size());
+	data_.shrink_to_fit();
 }
 
-void Image::saveToFile(const std::filesystem::path& path) const
+void Image::save(const fs::path& path) const
 {
 	const auto ext = path.extension().string();
 
 	if(ext == ".jpg" || ext == "jpeg")
 	{
-		if(!stbi_write_jpg(path.string().c_str(), size.x, size.y, channels, data.data(), 90)) // quality is between 1 and 100
-			throw std::runtime_error("can't save image to jpg/jpeg");
+		if(!stbi_write_jpg(path.string().c_str(), size_.x, size_.y, channels_, data_.data(),
+		                   90)) // quality is between 1 and 100
+			throw std::runtime_error("failed to save image to jpg/jpeg");
 	}
 	else if(ext == ".png")
 	{
-		if(!stbi_write_png(path.string().c_str(), size.x, size.y, channels, data.data(), 0))
-			throw std::runtime_error("can't save image to png");
+		if(!stbi_write_png(path.string().c_str(), size_.x, size_.y, channels_, data_.data(), 0))
+			throw std::runtime_error("failed to save image to png");
 	}
 	else if(ext == ".bmp")
 	{
-		if(!stbi_write_bmp(path.string().c_str(), size.x, size.y, channels, data.data()))
-			throw std::runtime_error("can't save image to bmp");
+		if(!stbi_write_bmp(path.string().c_str(), size_.x, size_.y, channels_, data_.data()))
+			throw std::runtime_error("failed to save image to bmp");
 	}
 	else if(ext == ".tga")
 	{
-		if(!stbi_write_tga(path.string().c_str(), size.x, size.y, channels, data.data()))
-			throw std::runtime_error("can't save image to tga");
+		if(!stbi_write_tga(path.string().c_str(), size_.x, size_.y, channels_, data_.data()))
+			throw std::runtime_error("failed to save image to tga");
 	}
 	else
 		assert(false); // 不支持的导出格式
 }
 
-void Image::setPixel(Vector4f color, Size2 pos)
+void Image::setPixel(const Vector4f& color, const Vector2i& pos)
 {
-	assert(pos.x < size.x&& pos.y < size.y);
-	auto pixel = &data[(pos.y * size.x + pos.x) * channels];
-	*pixel++ = (uint8_t)(color.r * 255);
-	*pixel++ = (uint8_t)(color.g * 255);
-	*pixel++ = (uint8_t)(color.b * 255);
-	*pixel++ = (uint8_t)(color.a * 255);
+	assert(pos.x < size_.x && pos.y < size_.y);
+	auto pixel = &data_[(pos.y * size_.x + pos.x) * channels_];
+	*pixel++   = (uint8_t)(color.r * 255);
+	*pixel++   = (uint8_t)(color.g * 255);
+	*pixel++   = (uint8_t)(color.b * 255);
+	*pixel++   = (uint8_t)(color.a * 255);
 }
 
-Vector4f Image::getPixel(Size2 pos) const
+Vector4f Image::getPixel(const Vector2i& pos) const
 {
-	assert(pos.x < size.x&& pos.y < size.y);
-	const auto pixel = &data[(pos.y * size.x + pos.x) * channels];
+	assert(pos.x < size_.x && pos.y < size_.y);
+	const auto pixel = &data_[(pos.y * size_.x + pos.x) * channels_];
 	return {pixel[0] / 255.f, pixel[1] / 255.f, pixel[2] / 255.f, pixel[3] / 255.f};
 }
 
-void Image::flipHorizontally()
+void Image::flipHorizontally() noexcept
 {
-	const auto rowSize = size.x * channels;
+	const auto rowSize = size_.x * channels_;
 
-	for(size_t y = 0; y < size.y; y++)
+	for(size_t y = 0; y < size_.y; y++)
 	{
-		auto left = data.begin() + y * rowSize;
-		auto right = data.begin() + (y + 1) * rowSize - channels;
+		auto left  = data_.begin() + y * rowSize;
+		auto right = data_.begin() + (y + 1) * rowSize - channels_;
 
-		for(size_t x = 0; x < size.x / 2; x++)
+		for(size_t x = 0; x < size_.x / 2; x++)
 		{
-			std::swap_ranges(left, left + channels, right);
-
-			left += channels;
-			right -= channels;
+			std::swap_ranges(left, left + channels_, right);
+			left += channels_;
+			right -= channels_;
 		}
 	}
 }
 
-void Image::flipVertically()
+void Image::flipVertically() noexcept
 {
-	const auto rowSize = size.x * channels;
+	const auto rowSize = size_.x * channels_;
 
-	auto top = data.begin();
-	auto bottom = data.end() - rowSize;
+	auto top    = data_.begin();
+	auto bottom = data_.end() - rowSize;
 
-	for(size_t y = 0; y < size.y / 2; y++)
+	for(size_t y = 0; y < size_.y / 2; y++)
 	{
 		std::swap_ranges(top, top + rowSize, bottom);
-
 		top += rowSize;
 		bottom -= rowSize;
 	}
 }
 
-uint8_t* Image::getData()
+uint8_t* Image::data() noexcept
 {
-	return data.data();
+	return data_.data();
 }
 
-const uint8_t* Image::getData() const
+const uint8_t* Image::data() const noexcept
 {
-	return data.data();
+	return data_.data();
 }
 
-size_t Image::getDataSize() const
+size_t Image::sizeBytes() const noexcept
 {
-	return data.size();
+	return data_.size();
 }
 
-Vector2i Image::getSize() const
+Vector2i Image::size() const noexcept
 {
-	return size;
+	return size_;
 }
 
-int Image::getChannelCount() const
+int Image::channelCount() const noexcept
 {
-	return channels;
+	return channels_;
 }

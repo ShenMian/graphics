@@ -3,10 +3,10 @@
 
 #pragma once
 
-#include "../VKPhysicalDevice.h"
 #include "../VKDevice.h"
-#include <vulkan/vulkan.h>
+#include "../VKPhysicalDevice.h"
 #include <vector>
+#include <vulkan/vulkan.h>
 
 class DeviceBuilder final
 {
@@ -17,7 +17,6 @@ public:
 
 private:
 	std::vector<VkDeviceQueueCreateInfo> queueInfos;
-	VkDeviceCreateInfo deviceInfo = {};
 
 	VKPhysicalDevice& physicalDevice;
 };

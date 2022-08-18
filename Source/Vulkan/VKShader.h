@@ -12,7 +12,7 @@ public:
 	VKShader(const Descriptor& desc);
 	virtual ~VKShader();
 
-	VkShaderModule getNativeHandle();
+	VkShaderModule getHandle();
 
 private:
 	VkShaderModule handle;

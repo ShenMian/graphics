@@ -4,8 +4,9 @@
 #pragma once
 
 #include "CommandBuffer.h"
-#include "GLVertexBuffer.h"
 #include "GLIndexBuffer.h"
+#include "GLTexture.h"
+#include "GLVertexBuffer.h"
 #include <cstdint>
 #include <vector>
 
@@ -26,6 +27,7 @@ public:
 
 	void setVertexBuffer(std::shared_ptr<VertexBuffer> vertexBuffer) override;
 	void setIndexBuffer(std::shared_ptr<IndexBuffer> indexBuffer) override;
+	void setTexture(std::shared_ptr<Texture> texture, unsigned int slot) override;
 
 	void clear(uint8_t flags) override;
 	void setClearColor(const Vector4& color) override;
@@ -39,7 +41,8 @@ public:
 
 private:
 	void addCommand(GLOpcode opcode);
-	template <typename T> T* addCommand(GLOpcode opcode);
+	template <typename T>
+	T* addCommand(GLOpcode opcode);
 
 	std::vector<uint8_t> buffer;
 };
@@ -49,7 +52,7 @@ inline const auto& GLCommandBuffer::getData() const
 	return buffer;
 }
 
-template<typename T>
+template <typename T>
 inline T* GLCommandBuffer::addCommand(GLOpcode opcode)
 {
 	auto offset = buffer.size();
@@ -66,6 +69,7 @@ enum class GLOpcode
 
 	setVertexBuffer,
 	setIndexBuffer,
+	setTexture,
 
 	clear,
 	setClearColor,
@@ -78,8 +82,8 @@ enum class GLOpcode
 
 struct GLCmdSetViewport
 {
-	GLint x, y;
-	GLsizei width, height;
+	GLint    x, y;
+	GLsizei  width, height;
 	GLdouble n, f;
 };
 
@@ -90,12 +94,18 @@ struct GLCmdSetPipeline
 
 struct GLCmdSetVertexBuffer
 {
-	std::shared_ptr<VertexBuffer> vertexBuffer;
+	std::shared_ptr<GLVertexBuffer> vertexBuffer;
 };
 
 struct GLCmdSetIndexBuffer
 {
-	std::shared_ptr<IndexBuffer> indexBuffer;
+	std::shared_ptr<GLIndexBuffer> indexBuffer;
+};
+
+struct GLCmdSetTexture
+{
+	std::shared_ptr<GLTexture> texture;
+	unsigned int               slot;
 };
 
 struct GLCmdClear

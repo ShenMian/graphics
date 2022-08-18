@@ -2,11 +2,11 @@
 // License(Apache-2.0)
 
 #include "VKPhysicalDevice.h"
+#include <algorithm>
 #include <stdexcept>
 #include <vector>
 
-VKPhysicalDevice::VKPhysicalDevice(VkPhysicalDevice device, VkSurfaceKHR surface)
-	: handle(device), surface(surface)
+VKPhysicalDevice::VKPhysicalDevice(VkPhysicalDevice device, VkSurfaceKHR surface) : handle(device), surface(surface)
 {
 	vkGetPhysicalDeviceProperties(device, &properties);
 	vkGetPhysicalDeviceFeatures(device, &features);
@@ -49,10 +49,7 @@ const VkPhysicalDeviceFeatures& VKPhysicalDevice::getFeatures() const
 
 bool VKPhysicalDevice::isExtensionAvailable(std::string_view name) const
 {
-	for(const auto& ext : availableExtensions)
-		if(ext.extensionName == name)
-			return true;
-	return false;
+	return std::ranges::any_of(availableExtensions, [name](const auto& ext) { return ext.extensionName == name; });
 }
 
 VkSurfaceKHR VKPhysicalDevice::getSurface() const
@@ -69,14 +66,22 @@ std::string_view VKPhysicalDevice::getVendorName() const
 {
 	switch(properties.vendorID)
 	{
-	case 0x1002: return "Advanced Micro Devices, Inc.";
-	case 0x10de: return "NVIDIA Corporation";
-	case 0x102b: return "Matrox Electronic Systems Ltd.";
-	case 0x1414: return "Microsoft Corporation";
-	case 0x5333: return "S3 Graphics Co., Ltd.";
-	case 0x8086: return "Intel Corporation";
-	case 0x80ee: return "Oracle Corporation";
-	case 0x15ad: return "VMware Inc.";
+	case 0x1002:
+		return "Advanced Micro Devices, Inc.";
+	case 0x10de:
+		return "NVIDIA Corporation";
+	case 0x102b:
+		return "Matrox Electronic Systems Ltd.";
+	case 0x1414:
+		return "Microsoft Corporation";
+	case 0x5333:
+		return "S3 Graphics Co., Ltd.";
+	case 0x8086:
+		return "Intel Corporation";
+	case 0x80ee:
+		return "Oracle Corporation";
+	case 0x15ad:
+		return "VMware Inc.";
 	}
 	return "Unknown";
 }
@@ -92,7 +97,7 @@ VkSurfaceCapabilitiesKHR VKPhysicalDevice::getSurfaceCapabilities() const
 std::vector<VkSurfaceFormatKHR> VKPhysicalDevice::getSurfaceFormats() const
 {
 	std::vector<VkSurfaceFormatKHR> formats;
-	uint32_t formatCount;
+	uint32_t                        formatCount;
 	if(vkGetPhysicalDeviceSurfaceFormatsKHR(handle, surface, &formatCount, nullptr) != VK_SUCCESS)
 		throw std::runtime_error("failed to get surface formats");
 	formats.resize(formatCount);
@@ -103,7 +108,7 @@ std::vector<VkSurfaceFormatKHR> VKPhysicalDevice::getSurfaceFormats() const
 std::vector<VkPresentModeKHR> VKPhysicalDevice::getSurfacePresentModes() const
 {
 	std::vector<VkPresentModeKHR> presentModes;
-	uint32_t presentModeCount;
+	uint32_t                      presentModeCount;
 	if(vkGetPhysicalDeviceSurfacePresentModesKHR(handle, surface, &presentModeCount, nullptr) != VK_SUCCESS)
 		throw std::runtime_error("failed to get surface present modes");
 	presentModes.resize(presentModeCount);

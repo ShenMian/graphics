@@ -3,21 +3,16 @@
 
 #pragma once
 
-#include "VertexBuffer.h"
 #include "VKBuffer.h"
+#include "VertexBuffer.h"
 #include <vulkan/vulkan.h>
 
 class VKVertexBuffer : public VertexBuffer
 {
 public:
-	VKVertexBuffer(const void* data, size_t size, const VertexAttributes& layout, Buffer::Usage usage);
+	VKVertexBuffer(const void* data, size_t size, const VertexFormat& layout, Buffer::Usage usage);
 
-	void map() override;
-	void unmap() override;
-
-	void write(const void* data, size_t size) override;
-
-	void bind() override;
+	Buffer& getBuffer() override;
 
 	operator VkBuffer();
 	operator VkBuffer() const;

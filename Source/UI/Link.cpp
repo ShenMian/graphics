@@ -2,26 +2,23 @@
 // License(Apache-2.0)
 
 #include "Link.h"
-#include <imgui_node_editor.h>
+#include "Pin.h"
 
 namespace ui
 {
 
-Link::Link(Pin& start, Pin& end)
-	: start(start), end(end)
+Link::Link(const Pin& start, const Pin& end) : start(start), end(end)
 {
-	start.connected = true;
-	end.connected = true;
 }
 
-void Link::update()
+const Pin& Link::getStart() const noexcept
 {
-	ax::NodeEditor::Link(linkId, start, end);
+	return start;
 }
 
-Link::operator LinkId() const
+const Pin& Link::getEnd() const noexcept
 {
-	return linkId;
+	return end;
 }
 
-} // namespace ui
+}; // namespace ui

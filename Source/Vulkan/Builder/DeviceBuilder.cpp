@@ -5,8 +5,7 @@
 #include <set>
 #include <stdexcept>
 
-DeviceBuilder::DeviceBuilder(VKPhysicalDevice& physicalDevice)
-	: physicalDevice(physicalDevice)
+DeviceBuilder::DeviceBuilder(VKPhysicalDevice& physicalDevice) : physicalDevice(physicalDevice)
 {
 	if(!physicalDevice.isExtensionAvailable(VK_KHR_SWAPCHAIN_EXTENSION_NAME))
 		throw std::runtime_error("physical device do not support swapchain extension");
@@ -30,10 +29,10 @@ VKDevice DeviceBuilder::build()
 	for(const auto index : uniqueQueueIndices)
 	{
 		VkDeviceQueueCreateInfo info = {};
-		info.sType = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
-		info.queueFamilyIndex = index;
-		info.queueCount = 1;
-		info.pQueuePriorities = &queuePriority;
+		info.sType                   = VK_STRUCTURE_TYPE_DEVICE_QUEUE_CREATE_INFO;
+		info.queueFamilyIndex        = index;
+		info.queueCount              = 1;
+		info.pQueuePriorities        = &queuePriority;
 		queueInfos.emplace_back(info);
 	}
 
@@ -42,14 +41,15 @@ VKDevice DeviceBuilder::build()
 	std::vector<const char*> extensions;
 	extensions.push_back(VK_KHR_SWAPCHAIN_EXTENSION_NAME);
 
-	deviceInfo.sType = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
-	deviceInfo.queueCreateInfoCount = static_cast<uint32_t>(queueInfos.size());
-	deviceInfo.pQueueCreateInfos = queueInfos.data();
-	deviceInfo.enabledLayerCount = static_cast<uint32_t>(layers.size());
-	deviceInfo.ppEnabledLayerNames = layers.data();
-	deviceInfo.enabledExtensionCount = static_cast<uint32_t>(extensions.size());
+	VkDeviceCreateInfo deviceInfo      = {};
+	deviceInfo.sType                   = VK_STRUCTURE_TYPE_DEVICE_CREATE_INFO;
+	deviceInfo.queueCreateInfoCount    = static_cast<uint32_t>(queueInfos.size());
+	deviceInfo.pQueueCreateInfos       = queueInfos.data();
+	deviceInfo.enabledLayerCount       = static_cast<uint32_t>(layers.size());
+	deviceInfo.ppEnabledLayerNames     = layers.data();
+	deviceInfo.enabledExtensionCount   = static_cast<uint32_t>(extensions.size());
 	deviceInfo.ppEnabledExtensionNames = extensions.data();
-	deviceInfo.pEnabledFeatures = &deviceFeatures;
+	deviceInfo.pEnabledFeatures        = &deviceFeatures;
 
 	VkDevice device;
 	if(vkCreateDevice(physicalDevice, &deviceInfo, nullptr, &device) != VK_SUCCESS)

@@ -2,22 +2,29 @@
 // License(Apache-2.0)
 
 #include "Gamepad.h"
+#include <GLFW/glfw3.h>
 #include <cassert>
 #include <cstring>
-#include <GLFW/glfw3.h>
+#include <fstream>
 
-Gamepad::Gamepad(handle_type handle)
-	: handle(handle)
+#define FMT_HEADER_ONLY
+#include <fmt/format.h>
+#include <fmt/std.h>
+
+namespace fs = std::filesystem;
+
+Gamepad::Gamepad(handle_type handle) : handle(handle)
 {
 }
 
 void Gamepad::update()
 {
-	if(!glfwJoystickIsGamepad(handle)) // Linux 下未连接手柄时会返回 false
-        return;
+	// if(!glfwJoystickIsGamepad(handle))
+	//     return;
 
 	GLFWgamepadstate state;
-	glfwGetGamepadState(handle, &state);
+	if(!glfwGetGamepadState(handle, &state))
+		return;
 	std::memcpy(buttons, state.buttons, sizeof(buttons));
 	std::memcpy(axes, state.axes, sizeof(axes));
 
@@ -29,12 +36,7 @@ void Gamepad::update()
 	*/
 }
 
-bool Gamepad::get(Button button) const
-{
-	return buttons[static_cast<uint8_t>(button)] == GLFW_PRESS;
-}
-
-Vector2f Gamepad::get(Thumb thumb) const
+Vector2f Gamepad::get(Thumb thumb) const noexcept
 {
 	Vector2f value = getRaw(thumb);
 
@@ -44,52 +46,51 @@ Vector2f Gamepad::get(Thumb thumb) const
 	else
 		deadzone = rightThumbDeadzone;
 
-	if(value.normSquared() > deadzone * deadzone)
-		return value.normalized() * (value.norm() - deadzone);
+	const float factor = 1.f / (1.f - deadzone);
+
+	if(value.normSq() > deadzone * deadzone)
+	{
+		const float magnitude = std::min(value.norm(), 1.f);
+		return value.normalized() * ((magnitude - deadzone) * factor);
+	}
 	else
 		return Vector2f::zero;
 }
 
-Vector2f Gamepad::getRaw(Thumb thumb) const
+Vector2f Gamepad::getRaw(Thumb thumb) const noexcept
 {
-	switch(thumb)
-	{
-	case Thumb::left:
+	assert(thumb == Thumb::left || thumb == Thumb::right);
+
+	if(thumb == Thumb::left)
 		return {axes[GLFW_GAMEPAD_AXIS_LEFT_X], axes[GLFW_GAMEPAD_AXIS_LEFT_Y]};
-
-	case Thumb::right:
+	else
 		return {axes[GLFW_GAMEPAD_AXIS_RIGHT_X], axes[GLFW_GAMEPAD_AXIS_RIGHT_Y]};
-
-	default:
-		assert(false);
-		return {};
-	}
 }
 
-float Gamepad::get(Trigger trigger) const
+float Gamepad::get(Trigger trigger) const noexcept
 {
-	float value = getRaw(trigger);
+	const float value  = getRaw(trigger);
+	const float factor = 1.f / (1.f - triggerThreshold);
 
 	if(value > triggerThreshold)
-		return value - triggerThreshold;
+		return (value - triggerThreshold) * factor;
 	else
 		return 0;
 }
 
-float Gamepad::getRaw(Trigger trigger) const
+float Gamepad::getRaw(Trigger trigger) const noexcept
 {
-	switch(trigger)
-	{
-	case Trigger::left:
+	assert(trigger == Trigger::left || trigger == Trigger::right);
+
+	if(trigger == Trigger::left)
 		return axes[GLFW_GAMEPAD_AXIS_LEFT_TRIGGER];
-
-	case Trigger::right:
+	else
 		return axes[GLFW_GAMEPAD_AXIS_RIGHT_TRIGGER];
+}
 
-	default:
-		assert(false);
-		return {};
-	}
+bool Gamepad::get(Button button) const noexcept
+{
+	return buttons[static_cast<uint8_t>(button)] == GLFW_PRESS;
 }
 
 std::string_view Gamepad::getName() const
@@ -99,8 +100,17 @@ std::string_view Gamepad::getName() const
 
 bool Gamepad::isConnected() const
 {
-    // FIXME: Linux 下未连接手柄时会返回 true
-	return glfwJoystickPresent(handle);
+	return glfwJoystickPresent(handle); // FIXME: Linux 下未连接手柄时会返回 true
+}
+
+bool Gamepad::loadMappingsDb(const fs::path& path)
+{
+	if(!fs::exists(path))
+		throw std::runtime_error(fmt::format("no such file: {}", path));
+	std::ifstream     file(path, std::ios::binary);
+	std::stringstream buf;
+	buf << file.rdbuf();
+	return glfwUpdateGamepadMappings(buf.str().c_str());
 }
 
 bool Gamepad::operator==(const Gamepad& rhs) const

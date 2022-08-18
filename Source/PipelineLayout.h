@@ -16,6 +16,7 @@ class PipelineLayout
 public:
 	enum class Type
 	{
+		UniformBuffer,
 		Sampler,
 		Texture
 	};
@@ -24,24 +25,24 @@ public:
 	{
 		enum
 		{
-			Vertex = 1 << 0,   ///< @see Shader::Stage::Vertex
+			Vertex   = 1 << 0, ///< @see Shader::Stage::Vertex
 			Geometry = 1 << 1, ///< @see Shader::Stage::Geometry
 			Fragment = 1 << 2, ///< @see Shader::Stage::Fragment
-			Compute = 1 << 3   ///< @see Shader::Stage::Compute
+			Compute  = 1 << 3  ///< @see Shader::Stage::Compute
 		};
 	};
 
 	struct Binding
 	{
-		Binding(std::string_view name, Type type, uint32_t slot, int stageFlags, uint32_t arraySize = 1)
-			: type(type), slot(slot), stageFlags(stageFlags), arraySize(arraySize)
+		Binding(std::string_view name, uint32_t binding, Type type, uint32_t stageFlags, uint32_t arraySize = 1)
+			: type(type), binding(binding), stageFlags(stageFlags), arraySize(arraySize)
 		{
 		}
 
-		Type       type;
-		uint32_t   slot;
-		int        stageFlags;
-		uint32_t   arraySize;
+		uint32_t binding;
+		Type     type;
+		uint32_t stageFlags;
+		uint32_t arraySize;
 	};
 
 	PipelineLayout() = default;

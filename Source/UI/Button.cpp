@@ -7,8 +7,7 @@
 namespace ui
 {
 
-Button::Button(const std::string& label, const Vector2& size)
-	: Widget(label), size(size)
+Button::Button(const std::string& label, const Vector2& size) : Widget(label), size(size)
 {
 }
 

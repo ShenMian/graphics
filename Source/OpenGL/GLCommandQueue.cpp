@@ -1,9 +1,10 @@
 ﻿// Copyright 2021 ShenMian
 // License(Apache-2.0)
 
-#include "../Pipeline.h"
 #include "GLCommandQueue.h"
+#include "../Pipeline.h"
 #include "GLCommandBuffer.h"
+#include <cassert>
 #include <glad/glad.h>
 
 void GLCommandQueue::submit(std::shared_ptr<CommandBuffer> commandBuffer)
@@ -11,7 +12,7 @@ void GLCommandQueue::submit(std::shared_ptr<CommandBuffer> commandBuffer)
 	auto& buffer = dynamic_cast<GLCommandBuffer*>(commandBuffer.get())->getData();
 
 	const auto end = buffer.data() + buffer.size();
-	auto        pc = buffer.data();
+	auto       pc  = buffer.data();
 
 	while(pc < end)
 	{
@@ -25,38 +26,42 @@ size_t GLCommandQueue::execute(GLOpcode opcode, const uint8_t* pc)
 {
 	switch(opcode)
 	{
-	case GLOpcode::setViewport:
-	{
+	case GLOpcode::setViewport: {
 		auto args = reinterpret_cast<const GLCmdSetViewport*>(pc);
 		glViewport(args->x, args->y, args->width, args->height);
 		glDepthRange(args->n, args->f);
 		return sizeof(*args);
 	}
 
-	case GLOpcode::setPipeline:
-	{
+	case GLOpcode::setPipeline: {
 		auto args = reinterpret_cast<const GLCmdSetPipeline*>(pc);
-		args->pipeline->program->use();
+		args->pipeline->bind();
 		return sizeof(*args);
 	}
 
-	case GLOpcode::setVertexBuffer:
-	{
+	case GLOpcode::setVertexBuffer: {
 		auto args = reinterpret_cast<const GLCmdSetVertexBuffer*>(pc);
 		args->vertexBuffer->bind();
 		return sizeof(*args);
 	}
 
-	case GLOpcode::setIndexBuffer:
-	{
+	case GLOpcode::setIndexBuffer: {
 		auto args = reinterpret_cast<const GLCmdSetIndexBuffer*>(pc);
 		args->indexBuffer->bind();
 		return sizeof(*args);
 	}
 
-	case GLOpcode::clear:
-	{
-		auto args = reinterpret_cast<const GLCmdClear*>(pc);
+	case GLOpcode::setTexture: {
+		auto args = reinterpret_cast<const GLCmdSetTexture*>(pc);
+		if(args->texture == nullptr)
+			glBindTextureUnit(args->slot, 0);
+		else
+			args->texture->bind(args->slot);
+		return sizeof(*args);
+	}
+
+	case GLOpcode::clear: {
+		auto       args    = reinterpret_cast<const GLCmdClear*>(pc);
 		GLbitfield glFlags = 0;
 		if(args->flags & ClearFlag::Color)
 			glFlags |= GL_COLOR_BUFFER_BIT;
@@ -68,32 +73,27 @@ size_t GLCommandQueue::execute(GLOpcode opcode, const uint8_t* pc)
 		return sizeof(*args);
 	}
 
-	case GLOpcode::setClearColor:
-	{
+	case GLOpcode::setClearColor: {
 		const auto args = reinterpret_cast<const GLCmdSetClearColor*>(pc);
 		glClearColor(args->color.x, args->color.y, args->color.z, args->color.w);
 		return sizeof(*args);
 	}
 
-	case GLOpcode::setClearDepth:
-	{
+	case GLOpcode::setClearDepth: {
 		const auto args = reinterpret_cast<const GLCmdSetClearDepth*>(pc);
 		glClearDepth(args->depth);
 		return sizeof(*args);
 	}
 
-	case GLOpcode::draw:
-	{
+	case GLOpcode::draw: {
 		const auto args = reinterpret_cast<const GLCmdDraw*>(pc);
 		glDrawArrays(GL_TRIANGLES, (GLsizei)args->firstVertex, (GLsizei)args->vertexCount);
 		return sizeof(*args);
 	}
 
-	case GLOpcode::drawIndexed:
-	{
+	case GLOpcode::drawIndexed: {
 		const auto args = reinterpret_cast<const GLCmdDrawIndexed*>(pc);
 		glEnable(GL_DEPTH_TEST);
-		// glPolygonMode(GL_FRONT_AND_BACK, GL_LINE); // TODO: debug
 		// const GLintptr indices = args->firstIndex * sizeof(unsigned int);
 		glDrawElements(GL_TRIANGLES, (GLsizei)args->indexCount, GL_UNSIGNED_INT, nullptr);
 		return sizeof(*args);

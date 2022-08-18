@@ -28,15 +28,9 @@
 [submodule "Deps/SPIRV-Headers"]
 	path = Deps/SPIRV-Headers
 	url = https://github.com/KhronosGroup/SPIRV-Headers
-[submodule "Deps/vk-bootstrap"]
-	path = Deps/vk-bootstrap
-	url = https://github.com/charles-lunarg/vk-bootstrap.git
 [submodule "Deps/imgui"]
 	path = Deps/imgui
 	url = https://github.com/ocornut/imgui
-[submodule "Deps/imgui-node-editor"]
-	path = Deps/imgui-node-editor
-	url = https://github.com/thedmd/imgui-node-editor.git
 [submodule "Deps/ImGuizmo"]
 	path = Deps/ImGuizmo
 	url = https://github.com/CedricGuillemet/ImGuizmo.git
@@ -49,3 +43,6 @@
 [submodule "Deps/freetype"]
 	path = Deps/freetype
 	url = https://github.com/freetype/freetype.git
+[submodule "Deps/imnodes"]
+	path = Deps/imnodes
+	url = https://github.com/Nelarius/imnodes.git

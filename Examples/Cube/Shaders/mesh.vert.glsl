@@ -3,37 +3,20 @@
 // Copyright 2021 SMS
 // License(Apache-2.0)
 
-layout (location = 0) in vec3 position;
-layout (location = 1) in vec3 color;
-
-layout (location = 0) out Out
+layout(binding = 0) uniform Matrices
 {
-    vec3 position;
-    vec3 color;
-} vert;
-
-/*
-layout (std140, binding = 0) uniform Uniform
-{
-    mat4 model;
     mat4 view;
-    mat4 projection;
-};
-*/
+    mat4 proj;
+    mat4 model;
+} mat;
 
-out gl_PerVertex
-{
-    vec4 gl_Position;
-};
+layout(location = 0) in vec3 position;
+layout(location = 1) in vec3 color;
 
-uniform mat4 model;
-uniform mat4 view;
-uniform mat4 projection;
+layout(location = 0) out vec3 v_color;
 
 void main()
 {
-    vert.position = position;
-    vert.color    = color;
-
-    gl_Position = projection * view * model * vec4(position, 1.0);
+    v_color  = color;
+    gl_Position = mat.proj * mat.view * mat.model * vec4(position, 1.0);
 }

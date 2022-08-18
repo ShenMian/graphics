@@ -4,19 +4,17 @@
 
 #include "GLProgram.h"
 #include "GLShader.h"
-#include "GLCheck.h"
 #include <cassert>
-#include <stdexcept>
 #include <filesystem>
 #include <glad/glad.h>
+#include <stdexcept>
 
 #define FMT_HEADER_ONLY
-#include <fmt/core.h>
+#include <fmt/format.h>
 
 namespace fs = std::filesystem;
 
-GLProgram::GLProgram(const Descriptor& desc)
-	: Program(desc), handle(glCreateProgram())
+GLProgram::GLProgram(const Descriptor& desc) : Program(desc), handle(glCreateProgram())
 {
 	if(desc.vertex == nullptr || desc.fragment == nullptr)
 		throw std::runtime_error("program must have vertex shader and fragment shader");
@@ -26,7 +24,6 @@ GLProgram::GLProgram(const Descriptor& desc)
 	attach(desc.geometry);
 	attach(desc.compute);
 	link();
-
 	detach(desc.vertex);
 	detach(desc.fragment);
 	detach(desc.geometry);
@@ -41,49 +38,42 @@ GLProgram::~GLProgram()
 void GLProgram::use()
 {
 	glUseProgram(handle);
-	GLCheckError();
 }
 
 void GLProgram::setUniform(const std::string& name, int value)
 {
 	use();
 	glUniform1i(getUniformLocation(name), value);
-	GLCheckError();
 }
 
 void GLProgram::setUniform(const std::string& name, float value)
 {
 	use();
 	glUniform1f(getUniformLocation(name), value);
-	GLCheckError();
 }
 
 void GLProgram::setUniform(const std::string& name, const Vector2& value)
 {
 	use();
 	glUniform2f(getUniformLocation(name), value.x, value.y);
-	GLCheckError();
 }
 
 void GLProgram::setUniform(const std::string& name, const Vector3& value)
 {
 	use();
 	glUniform3f(getUniformLocation(name), value.x, value.y, value.z);
-	GLCheckError();
 }
 
 void GLProgram::setUniform(const std::string& name, const Vector4& value)
 {
 	use();
 	glUniform4f(getUniformLocation(name), value.x, value.y, value.z, value.w);
-	GLCheckError();
 }
 
 void GLProgram::setUniform(const std::string& name, const Matrix4& value)
 {
 	use();
 	glUniformMatrix4fv(getUniformLocation(name), 1, false, value.data());
-	GLCheckError();
 }
 
 GLProgram::operator GLuint() const
@@ -98,13 +88,13 @@ int GLProgram::getUniformBufferLocation(const std::string& name)
 
 int GLProgram::getUniformLocation(const std::string& name)
 {
-	// FIXME: SPRI-V Shader无法再正确识别该项
+	// FIXME: SPRI-V Shader 无法再正确识别该项
 	const auto it = uniformLocations.find(name);
 	if(it == uniformLocations.end())
 	{
 		const auto location = glGetUniformLocation(handle, name.c_str());
 		if(location == -1)
-			throw std::invalid_argument("uniform name");
+			throw std::runtime_error("uniform buffer name do not exist");
 		uniformLocations[name] = location;
 		return location;
 	}
@@ -117,7 +107,7 @@ void GLProgram::attach(const std::shared_ptr<Shader> shader)
 		return;
 	stageCount++;
 	auto glShader = std::dynamic_pointer_cast<GLShader>(shader);
-	glAttachShader(handle, (GLuint)glShader->getNativeHandle());
+	glAttachShader(handle, (GLuint)glShader->getHandle());
 }
 
 void GLProgram::detach(const std::shared_ptr<Shader> shader)
@@ -126,7 +116,7 @@ void GLProgram::detach(const std::shared_ptr<Shader> shader)
 		return;
 	stageCount++;
 	auto glShader = std::dynamic_pointer_cast<GLShader>(shader);
-	glDetachShader(handle, (GLuint)glShader->getNativeHandle());
+	glDetachShader(handle, (GLuint)glShader->getHandle());
 }
 
 void GLProgram::link()

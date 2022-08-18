@@ -2,124 +2,93 @@
 // License(Apache-2.0)
 
 #include "NodeEditor.h"
+#include <algorithm>
+#include <imnodes.h>
+#include <imnodes_internal.h>
 
-#define IMGUI_DEFINE_MATH_OPERATORS
-#include <imgui_internal.h>
+#include "Node.h"
+#include "Pin.h"
 
-using namespace ax::NodeEditor;
+struct Link
+{
+	const ui::Pin& start;
+	const ui::Pin& end;
+};
 
 namespace ui
 {
 
-NodeEditor::NodeEditor(const std::string& label)
-	: Widget(label)
+NodeEditor::NodeEditor()
 {
-	context = CreateEditor();
+	ImNodes::CreateContext();
+	// ImNodes::GetCurrentContext()->Style.PinOffset = 10;
+	ImNodes::PushAttributeFlag(ImNodesAttributeFlags_EnableLinkDetachWithDragClick);
+
+	context = ImNodes::EditorContextCreate();
+
+	Pin aPin("A", Pin::Kind::Input, Pin::Type::Bool);
+	Pin bPin("B", Pin::Kind::Output, Pin::Type::Int);
+	Pin cPin("C", Pin::Kind::Output, Pin::Type::Bool);
+	Pin dPin("D", Pin::Kind::Input, Pin::Type::Bool);
+	Pin ePin("E", Pin::Kind::Input, Pin::Type::Int);
+
+	Node aNode("A");
+	aNode.addPin(aPin);
+	aNode.addPin(bPin);
+	aNode.addPin(cPin);
+
+	Node bNode("B");
+	bNode.addPin(dPin);
+	bNode.addPin(ePin);
+
+	nodes.push_back(std::move(aNode));
+	nodes.push_back(std::move(bNode));
 }
 
 NodeEditor::~NodeEditor()
 {
-	DestroyEditor(reinterpret_cast<EditorContext*>(context));
+	ImNodes::DestroyContext();
 }
 
 void NodeEditor::update()
 {
-	SetCurrentEditor(reinterpret_cast<EditorContext*>(context));
+	ImGui::Begin("node editor");
+	ImNodes::BeginNodeEditor();
 
-	Begin(handle.c_str());
-	{
-		for(auto& node : nodes)
-			node.update();
-		for(auto& link : links)
-			link.update();
-		updateCreate();
-		updateDelete();
-
-		if(ImGui::BeginPopup("Create New Node"))
-		{
-			// TODO: 新建节点的菜单, 包含若干 ImGui::MenuItem
-			ImGui::EndPopup();
-		}
-	}
-	End();
-}
-
-void NodeEditor::updateCreate()
-{
-	if(BeginCreate(ImColor(255, 255, 255), 2.0f))
-	{
-		// 创建链接
-		PinId startPinId = 0, endPinId = 0;
-		if(QueryNewLink(&startPinId, &endPinId) && startPinId && endPinId)
-		{
-			auto start = getPin(startPinId);
-			auto end = getPin(endPinId);
-			if(start->connected || end->connected)
-				RejectNewItem(ImColor(255, 0, 0), 2.0f);
-			else if(start->getKind() == end->getKind())
-				RejectNewItem(ImColor(255, 0, 0), 2.0f);
-			else if(start->getType() != end->getType())
-				RejectNewItem(ImColor(255, 0, 0), 2.0f);
-			else if(AcceptNewItem(ImColor(128, 255, 128), 4.0f))
-				links.emplace_back(*start, *end);
-		}
-
-		// 创建节点
-		PinId pinId = 0;
-		if(QueryNewNode(&pinId) && pinId)
-		{
-			auto pin = getPin(pinId);
-
-			if(AcceptNewItem())
-			{
-				Suspend();
-				ImGui::OpenPopup("Create New Node");
-				Resume();
-			}
-		}
-	}
-	EndCreate();
-}
-
-void NodeEditor::updateDelete()
-{
-	if(BeginDelete())
-	{
-		// 删除链接
-		LinkId linkId;
-		while(QueryDeletedLink(&linkId))
-		{
-			if(AcceptDeletedItem())
-			{
-				// TODO: 从 links 中删除 linkId
-			}
-		}
-
-		// 删除节点
-		NodeId nodeId = 0;
-		while(QueryDeletedNode(&nodeId))
-		{
-			if(AcceptDeletedItem())
-			{
-				// TODO: 从 nodes 中删除 nodeId
-			}
-		}
-	}
-	EndDelete();
-}
-
-Pin* NodeEditor::getPin(PinId id)
-{
 	for(auto& node : nodes)
+		node.update();
+
+	static std::unordered_map<int, Link> links;
+
+	for(auto& [id, link] : links)
+		ImNodes::Link(id, link.start.getId(), link.end.getId());
+
+	// ImNodes::MiniMap();
+	ImNodes::EndNodeEditor();
+	ImGui::End();
+
+	int startId, endId;
+	if(ImNodes::IsLinkCreated(&startId, &endId))
 	{
-		for(auto& pin : node.getInputs())
-			if(static_cast<PinId>(pin) == id)
-				return &pin;
-		for(auto& pin : node.getOutputs())
-			if(static_cast<PinId>(pin) == id)
-				return &pin;
+		const Pin* start = nullptr;
+		const Pin* end   = nullptr;
+		for(auto& node : nodes)
+			if(start = node.getPinById(startId))
+				break;
+		for(auto& node : nodes)
+			if(end = node.getPinById(endId))
+				break;
+
+		if(start != nullptr && end != nullptr && start->getKind() != end->getKind() &&
+		   start->getType() == end->getType())
+			links.insert(std::make_pair(Widget::requestId(), Link{*start, *end}));
 	}
-	return nullptr;
+
+	int linkId;
+	if(ImNodes::IsLinkDestroyed(&linkId))
+	{
+		links.erase(linkId);
+	}
 }
 
 } // namespace ui

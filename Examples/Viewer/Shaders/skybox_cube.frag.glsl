@@ -3,14 +3,16 @@
 
 #version 450
 
-const float PI = 3.141592654;
-
-layout(location = 0) out vec4 frag_color;
-
-out Out
+struct Vert
 {
     vec2 tex_coord;
-} vert;
+};
+
+const float PI = 3.141592654;
+
+layout(location = 0) in Vert vert;
+
+layout(location = 0) out vec4 frag_color;
 
 uniform samplerCube cubemap;
 

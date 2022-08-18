@@ -67,7 +67,7 @@ function install_cmake() {
 
     echo " |-Done."
 
-    cd ..
+    cd .. || return 1
 }
 
 # 切换到 Deps 目录

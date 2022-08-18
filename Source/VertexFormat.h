@@ -4,39 +4,39 @@
 #pragma once
 
 #include "Format.h"
-#include <string_view>
 #include <initializer_list>
+#include <string_view>
 #include <vector>
 
 /**
  * @brief 顶点格式布局.
  */
-class VertexAttributes
+class VertexFormat
 {
 public:
 	struct Attribute
 	{
-		Attribute(std::string_view name, Format fmt, bool normalized = false)
-			: location(-1), name(name), format(fmt), normalized(normalized)
+		Attribute(std::string_view name, Format fmt, uint32_t offset = -1, bool normalized = false)
+		    : name(name), format(fmt), offset(offset), normalized(normalized)
 		{
 		}
 
 		Attribute(uint32_t location, std::string_view name, Format fmt, bool normalized = false)
-			: location(location), name(name), format(fmt), normalized(normalized)
+		    : location(location), name(name), format(fmt), normalized(normalized)
 		{
 		}
 
 		uint32_t getSize() const;
 
-		uint32_t         location;
+		uint32_t         location = -1;
 		std::string_view name;
 		Format           format;
 		bool             normalized = false;
-		uint32_t         offset = 0;
+		uint32_t         offset     = -1;
 	};
 
-    VertexAttributes() = default;
-	VertexAttributes(const std::initializer_list<Attribute>& list);
+	VertexFormat() = default;
+	VertexFormat(const std::initializer_list<Attribute>& list);
 
 	void addAttribute(Attribute attr);
 

@@ -1,16 +1,22 @@
-// Copyright 2021 ShenMian
+﻿// Copyright 2021 ShenMian
 // License(Apache-2.0)
 
 #pragma once
 
+#include <memory>
 #include <string>
+
+class Buffer;
 
 class UniformBuffer
 {
 public:
-	UniformBuffer(const std::string& name, int slot);
+	[[nodiscard]] static std::shared_ptr<UniformBuffer> create(int binding, size_t size);
+
+	virtual Buffer& getBuffer() = 0;
 
 protected:
-	std::string name;
-	int         slot;
+	UniformBuffer(int binding);
+
+	int binding;
 };

@@ -1,22 +1,6 @@
 ﻿name: Ubuntu
 
-on:
-  push:
-    paths:
-      - '**.cpp'
-      - '**.hpp'
-      - '**.h'
-      - '**/CMakeLists.txt'
-      - 'Scripts/vcpkg_install_deps.sh'
-      - '.github/workflows/ubuntu.yml'
-  pull_request:
-    paths:
-      - '**.cpp'
-      - '**.hpp'
-      - '**.h'
-      - '**/CMakeLists.txt'
-      - 'Scripts/vcpkg_install_deps.sh'
-      - '.github/workflows/ubuntu.yml'
+on: [push, pull_request]
 
 jobs:
   build:
@@ -37,34 +21,25 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Install Clang
+      - name: Install clang
         uses: egor-tensin/setup-clang@v1.3
         with:
           version: 13
 
-      - name: Install dependencies
-        run: ./Scripts/cmake_install_deps.sh
-
-      - name: Cache
-        uses: actions/cache@v3
-        with:
-          path: ./build
-          key: ubuntu-${{ matrix.type }}-${{ matrix.arch }}
-
-      - name: Generating CMake cache
-        run: cmake -B build
+      - name: Install Conan
+        uses: turtlebrowser/get-conan@v1.0
 
       - name: Build
-        run: cmake --build build --config ${{ matrix.type }} -j2
+        run: ./Scripts/build.sh ${{ matrix.type }} clang 13
 
       - name: Upload libs
         uses: actions/upload-artifact@v3
         with:
-          name: graphics-ubuntu-${{ matrix.arch }}
-          path: build/lib
+          name: graphics-ubuntu-${{ matrix.type }}-${{ matrix.arch }}
+          path: build/lib/libgraphics.a
 
       - name: Upload bins
         uses: actions/upload-artifact@v3
         with:
-          name: examples-ubuntu-${{ matrix.arch }}
-          path: build/bin
+          name: examples-ubuntu-${{ matrix.type }}-${{ matrix.arch }}
+          path: build/bin/*/*

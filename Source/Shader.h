@@ -3,8 +3,8 @@
 
 #pragma once
 
-#include <memory>
 #include <filesystem>
+#include <memory>
 #include <string>
 #include <unordered_map>
 
@@ -12,9 +12,9 @@
  *  @{
  */
 
- /**
-  * @brief 着色器阶段.
-  */
+/**
+ * @brief 着色器阶段.
+ */
 class Shader
 {
 public:
@@ -53,16 +53,26 @@ protected:
 	Shader(const Descriptor& desc);
 	virtual ~Shader() = default;
 
+	/**
+	 * @brief 将 GLSL 编译为 SPIR-V.
+	 * 
+	 * @param sourcePath GLSL 文件路径.
+	 * @param targetPath
+	 * SPIR-V 文件路径.
+	 * @param stage      着色器阶段.
+	 * 
+	 * @warning 入口点必须为 main.
+	 */
+	void compile(const std::filesystem::path& sourcePath, const std::filesystem::path& targetPath, Stage stage);
+
 	std::string name;
 	Stage       stage;
-
-	static std::unordered_map<Shader::Stage, const char*> extension;
 };
 
 struct Shader::Descriptor
 {
 	Stage                 stage;
-	std::filesystem::path path;
+	std::filesystem::path path;                ///< 源码文件或 SPIR-V 文件路径.
 	std::string_view      entryPoint = "main"; ///< 入口点.
 };
 

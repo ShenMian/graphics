@@ -6,14 +6,14 @@
 #include "Renderer.h"
 #include <GLFW/glfw3.h>
 #include <imgui.h>
+#include <imgui_impl_glfw.h>
+#include <imgui_impl_opengl3.h>
+#include <imgui_impl_vulkan.h>
 #include <ImGuizmo.h>
-#include <backends/imgui_impl_glfw.h>
-#include <backends/imgui_impl_opengl3.h>
-#include <backends/imgui_impl_vulkan.h>
 
 void UI::beginFrame()
 {
-    switch(Renderer::getAPI())
+	switch(Renderer::getAPI())
 	{
 		using enum Renderer::API;
 
@@ -32,7 +32,7 @@ void UI::beginFrame()
 
 void UI::endFrame()
 {
-    ImGui::Render();
+	ImGui::Render();
 	switch(Renderer::getAPI())
 	{
 		using enum Renderer::API;
@@ -70,12 +70,12 @@ void UI::init(const Window& win)
 		using enum Renderer::API;
 
 	case OpenGL:
-		ImGui_ImplGlfw_InitForOpenGL(reinterpret_cast<GLFWwindow*>(win.getNativeHandle()), true);
+		ImGui_ImplGlfw_InitForOpenGL(win.getHandle(), true);
 		ImGui_ImplOpenGL3_Init("#version 450");
 		break;
 
 	case Vulkan:
-		ImGui_ImplGlfw_InitForVulkan(reinterpret_cast<GLFWwindow*>(win.getNativeHandle()), true);
+		ImGui_ImplGlfw_InitForVulkan(win.getHandle(), true);
 		// ImGui_ImplVulkan_Init(ImGui_ImplVulkan_InitInfo);
 		break;
 	}

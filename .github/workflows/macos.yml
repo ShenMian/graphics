@@ -1,22 +1,6 @@
 ﻿name: macOS
 
-on:
-  push:
-    paths:
-      - '**.cpp'
-      - '**.hpp'
-      - '**.h'
-      - '**/CMakeLists.txt'
-      - 'Scripts/vcpkg_install_deps.sh'
-      - '.github/workflows/macos.yml'
-  pull_request:
-    paths:
-      - '**.cpp'
-      - '**.hpp'
-      - '**.h'
-      - '**/CMakeLists.txt'
-      - 'Scripts/vcpkg_install_deps.sh'
-      - '.github/workflows/macos.yml'
+on: [push, pull_request]
 
 jobs:
   build:
@@ -34,38 +18,26 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Checkout submodules
-        run: git submodule update --init --recursive
-
-      - name: Cache vcpkg artifacts
-        uses: actions/cache@v3
-        with:
-          path: ${{ github.workspace }}/vcpkg_installed
-          key: macos-${{ matrix.type }}-${{ matrix.arch }}-${{ hashFiles('vcpkg.json') }}
-
-      - name: Install dependencies
-        run: vcpkg install
-
-      - name: Cache
-        uses: actions/cache@v3
-        with:
-          path: ./build
-          key: macos-${{ matrix.type }}-${{ matrix.arch }}
-
-      - name: Generating CMake cache
-        run: cmake -B build
+      - name: Install Conan
+        uses: turtlebrowser/get-conan@v1.0
 
       - name: Build
-        run: cmake --build build --config ${{ matrix.type }} -j2
+        run: ./Scripts/build.sh ${{ matrix.type }} apple-clang 13
 
       - name: Upload libs
         uses: actions/upload-artifact@v3
         with:
-          name: graphics-macos-${{ matrix.arch }}
-          path: build/lib
+          name: graphics-macos-${{ matrix.type }}-${{ matrix.arch }}
+          path: build/lib/libgraphics.a
+
+      - name: Upload libs
+        uses: actions/upload-artifact@v3
+        with:
+          name: graphics-macos-${{ matrix.type }}-${{ matrix.arch }}
+          path: build/lib/libgraphics.a
 
       - name: Upload bins
         uses: actions/upload-artifact@v3
         with:
-          name: examples-macos-${{ matrix.arch }}
-          path: build/bin
+          name: examples-macos-${{ matrix.type }}-${{ matrix.arch }}
+          path: build/bin/*/*
