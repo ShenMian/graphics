@@ -107,7 +107,7 @@ void GLProgram::attach(const std::shared_ptr<Shader> shader)
 		return;
 	stageCount++;
 	auto glShader = std::dynamic_pointer_cast<GLShader>(shader);
-	glAttachShader(handle, (GLuint)glShader->getNativeHandle());
+	glAttachShader(handle, (GLuint)glShader->getHandle());
 }
 
 void GLProgram::detach(const std::shared_ptr<Shader> shader)
@@ -116,7 +116,7 @@ void GLProgram::detach(const std::shared_ptr<Shader> shader)
 		return;
 	stageCount++;
 	auto glShader = std::dynamic_pointer_cast<GLShader>(shader);
-	glDetachShader(handle, (GLuint)glShader->getNativeHandle());
+	glDetachShader(handle, (GLuint)glShader->getHandle());
 }
 
 void GLProgram::link()

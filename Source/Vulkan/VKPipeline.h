@@ -15,7 +15,7 @@ public:
 
 	void bind() override;
 
-	VkPipeline getNativeHandle();
+	VkPipeline getHandle();
 
 private:
 	void createPipelineLayout(const Descriptor& desc);

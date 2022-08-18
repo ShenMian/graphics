@@ -108,7 +108,7 @@ GLShader::~GLShader()
 	glDeleteShader(handle);
 }
 
-size_t GLShader::getNativeHandle() const
+size_t GLShader::getHandle() const
 {
 	return handle;
 }

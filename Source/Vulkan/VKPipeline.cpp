@@ -123,7 +123,7 @@ void VKPipeline::bind()
 {
 }
 
-VkPipeline VKPipeline::getNativeHandle()
+VkPipeline VKPipeline::getHandle()
 {
 	return pipeline;
 }

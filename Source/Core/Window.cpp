@@ -262,7 +262,7 @@ void Window::init()
 
 	/*
 	const auto& monitor = Monitor::getPrimary();
-	auto mode = glfwGetVideoMode(static_cast<GLFWmonitor*>(monitor.getNativeHandle()));
+	auto mode = glfwGetVideoMode(static_cast<GLFWmonitor*>(monitor.getHandle()));
 	glfwWindowHint(GLFW_RED_BITS, mode->redBits);
 	glfwWindowHint(GLFW_GREEN_BITS, mode->greenBits);
 	glfwWindowHint(GLFW_BLUE_BITS, mode->blueBits);

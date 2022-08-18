@@ -69,7 +69,7 @@ VKShader::~VKShader()
 	vkDestroyShaderModule(renderer->getDevice(), handle, nullptr);
 }
 
-VkShaderModule VKShader::getNativeHandle()
+VkShaderModule VKShader::getHandle()
 {
 	return handle;
 }
