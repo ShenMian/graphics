@@ -1,4 +1,4 @@
 var class_g_l_shader =
 [
-    [ "getNativeHandle", "class_g_l_shader.html#a1aa6f472254c3073b9cb2fa0366c5522", null ]
+    [ "getHandle", "class_g_l_shader.html#accfe9362aa240453329a478ac0244909", null ]
 ];
