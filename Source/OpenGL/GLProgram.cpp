@@ -24,7 +24,6 @@ GLProgram::GLProgram(const Descriptor& desc) : Program(desc), handle(glCreatePro
 	attach(desc.geometry);
 	attach(desc.compute);
 	link();
-
 	detach(desc.vertex);
 	detach(desc.fragment);
 	detach(desc.geometry);

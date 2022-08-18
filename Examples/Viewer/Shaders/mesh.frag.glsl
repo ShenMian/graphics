@@ -94,6 +94,9 @@ void main()
 	float roughness = texture(roughness, vert.tex_coord).r;
 	float ao        = texture(ao, vert.tex_coord).r;
 	vec3  emissive  = texture(emissive, vert.tex_coord).rgb;
+	vec3  normal    = texture(normal, vert.tex_coord).rgb;
+	normal          = normalize(2.0 * normal - 1.0);
+	normal          = normalize(vert.TBN * vert.normal);
 
 	if(albedo.a < 0.5)
 		discard;
@@ -102,10 +105,6 @@ void main()
 
 	if(vec3(albedo) == vec3(0.0))
 		frag_color = vec4(vert.tex_coord, 0.0, 0.0);
-
-	vec3 N = texture(normal, vert.tex_coord).rgb;
-	N      = normalize(2.0 * N - 1.0);
-	N      = normalize(vert.TBN * vert.normal);
 
 	vec3 direct_lighting = vec3(0.0);
 }

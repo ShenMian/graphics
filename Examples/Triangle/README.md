@@ -35,12 +35,13 @@ Renderer::init(*window);                 // 初始化渲染器
 ```cpp
 struct Vertex
 {
-	Vector2 position; // 2D 坐标
-	Vector3 color;    // RGB 颜色
+    Vector2 position; // 2D 坐标
+    Vector3 color;    // RGB 颜色
 };
 ```
 
 创建三个顶点, 坐标原点在视口的中心.  
+
 ![坐标系](Assets/coordinates.png)  
 
 ```cpp
@@ -71,6 +72,7 @@ auto vertexBuffer = VertexBuffer::create(vertices, format);
 ```
 
 ## 着色器
+
 从指定的位置寻找 SPIR-V 文件并创建着色器程序.  
 
 ```cpp
