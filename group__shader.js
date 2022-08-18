@@ -15,6 +15,7 @@ var group__shader =
       [ "getStage", "class_shader.html#a3a91e257350332a3cd3af52d740405d5", null ]
     ] ],
     [ "Shader::Descriptor", "struct_shader_1_1_descriptor.html", [
-      [ "entryPoint", "struct_shader_1_1_descriptor.html#a96861fa2f46a963baed7e6a6366ee1f4", null ]
+      [ "entryPoint", "struct_shader_1_1_descriptor.html#a96861fa2f46a963baed7e6a6366ee1f4", null ],
+      [ "path", "struct_shader_1_1_descriptor.html#a3d605a411ee9b397efe1b4bd21b7ac5e", null ]
     ] ]
 ];
