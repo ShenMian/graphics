@@ -8,6 +8,9 @@ namespace ui
 
 class Node;
 
+/**
+ * @brief 节点上的大头针.
+ */
 class Pin : public Widget
 {
 public:

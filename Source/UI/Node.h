@@ -9,6 +9,9 @@ namespace ui
 
 class Pin;
 
+/**
+ * @brief 节点.
+ */
 class Node : public Widget
 {
 public:

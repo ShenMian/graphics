@@ -13,6 +13,9 @@ namespace ui
 
 class Node;
 
+/**
+ * @brief 节点编辑器.
+ */
 class NodeEditor
 {
 public:

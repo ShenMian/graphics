@@ -9,6 +9,9 @@
 namespace ui
 {
 
+/**
+ * @brief 文本标签.
+ */
 class Label : public Widget
 {
 public:

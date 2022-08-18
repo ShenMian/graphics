@@ -8,6 +8,9 @@ namespace ui
 
 class Pin;
 
+/**
+ * @brief 连接大头针的线.
+ */
 class Link : public Widget
 {
 public:

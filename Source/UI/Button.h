@@ -9,6 +9,9 @@
 namespace ui
 {
 
+/**
+ * @brief 按钮.
+ */
 class Button : public Widget
 {
 public:
