@@ -93,9 +93,9 @@ $(document).ready(function(){initNavTree('struct_vertex_format_1_1_attribute.htm
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
-<tr class="memitem:ae21168c33be00da466ad7529a4a3360e"><td class="memItemLeft" align="right" valign="top"><a id="ae21168c33be00da466ad7529a4a3360e" name="ae21168c33be00da466ad7529a4a3360e"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Attribute</b> (std::string_view name, Format fmt, bool normalized=false)</td></tr>
-<tr class="separator:ae21168c33be00da466ad7529a4a3360e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6e23ffb6acc57cd3eebe4eeb15f6a2a"><td class="memItemLeft" align="right" valign="top"><a id="ae6e23ffb6acc57cd3eebe4eeb15f6a2a" name="ae6e23ffb6acc57cd3eebe4eeb15f6a2a"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Attribute</b> (std::string_view name, Format fmt, uint32_t offset=-1, bool normalized=false)</td></tr>
+<tr class="separator:ae6e23ffb6acc57cd3eebe4eeb15f6a2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a945359fde154cd94cf7403fe8faa08b6"><td class="memItemLeft" align="right" valign="top"><a id="a945359fde154cd94cf7403fe8faa08b6" name="a945359fde154cd94cf7403fe8faa08b6"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Attribute</b> (uint32_t location, std::string_view name, Format fmt, bool normalized=false)</td></tr>
 <tr class="separator:a945359fde154cd94cf7403fe8faa08b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -106,7 +106,7 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>getSize</b> () co
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public 属性</h2></td></tr>
 <tr class="memitem:ac5d870b7f362dcab8b6da7c5fa4591a6"><td class="memItemLeft" align="right" valign="top"><a id="ac5d870b7f362dcab8b6da7c5fa4591a6" name="ac5d870b7f362dcab8b6da7c5fa4591a6"></a>
-uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>location</b></td></tr>
+uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>location</b> = -1</td></tr>
 <tr class="separator:ac5d870b7f362dcab8b6da7c5fa4591a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae61385c2149037237a89cf28ed83a1f3"><td class="memItemLeft" align="right" valign="top"><a id="ae61385c2149037237a89cf28ed83a1f3" name="ae61385c2149037237a89cf28ed83a1f3"></a>
 std::string_view&#160;</td><td class="memItemRight" valign="bottom"><b>name</b></td></tr>
@@ -118,7 +118,7 @@ Format&#160;</td><td class="memItemRight" valign="bottom"><b>format</b></td></tr
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>normalized</b> = false</td></tr>
 <tr class="separator:ab1c32e076d64dd7c1295cec40c226848"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2b0fe33f2f8ee114810020edd6657727"><td class="memItemLeft" align="right" valign="top"><a id="a2b0fe33f2f8ee114810020edd6657727" name="a2b0fe33f2f8ee114810020edd6657727"></a>
-uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>offset</b> = 0</td></tr>
+uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>offset</b> = -1</td></tr>
 <tr class="separator:a2b0fe33f2f8ee114810020edd6657727"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>该结构体的文档由以下文件生成:<ul>

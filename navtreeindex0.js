@@ -224,14 +224,15 @@ var NAVTREEINDEX0 =
 "class_r_i_d.html":[4,0,52],
 "class_renderer.html":[4,0,51],
 "class_shader.html":[3,2,2],
-"class_shader.html#a3a91e257350332a3cd3af52d740405d5":[3,2,2,2],
-"class_shader.html#a6e91ea814d9d8ab826b483e209634393":[3,2,2,1],
+"class_shader.html#a3a91e257350332a3cd3af52d740405d5":[3,2,2,3],
+"class_shader.html#a6e91ea814d9d8ab826b483e209634393":[3,2,2,2],
 "class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8f":[3,2,2,0],
 "class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8fa08822b3ae4e2aede0afe08abe600e9c0":[3,2,2,0,2],
 "class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8fa37d01b98065725fe3a1d30acf3a0064a":[3,2,2,0,1],
 "class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8faa623a8d0366bf079411aa30be45b2d10":[3,2,2,0,4],
 "class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8fab22b929ba52471a02d18bb3a4e4472e6":[3,2,2,0,0],
 "class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8fad9c6333623e6357515fcbf17be806273":[3,2,2,0,3],
+"class_shader.html#ae3484242fc9225bbde56ef271989bdd3":[3,2,2,1],
 "class_swapchain_builder.html":[4,0,54],
 "class_swapchain_builder.html#a813faf543b27668a82093a3680ef71e8":[4,0,54,2],
 "class_swapchain_builder.html#aa79fd2d4b5e9af8d17b1ba23e9bf1c93":[4,0,54,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX0 =
 "class_texture.html#a885cf1c026c6227fbc1b99befa842416":[4,0,55,3],
 "class_texture.html#ab9c343ec4797d5175580d538a2e8c171":[4,0,55,2],
 "class_texture.html#adb2d44c3e35bf0b03be885d1b3d4378f":[4,0,55,4],
-"class_texture.html#af110c1b8fc58036b94dced17b5399b68":[4,0,55,1],
-"class_texture.html#af110c1b8fc58036b94dced17b5399b68a39a681a9d5ccc902bebd16a343dd7b74":[4,0,55,1,2]
+"class_texture.html#af110c1b8fc58036b94dced17b5399b68":[4,0,55,1]
 };

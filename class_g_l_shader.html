@@ -104,9 +104,6 @@ Public 成员函数</h2></td></tr>
 <tr class="memitem:a7019a587a4fc3f47e9ebb58db37f1119"><td class="memItemLeft" align="right" valign="top"><a id="a7019a587a4fc3f47e9ebb58db37f1119" name="a7019a587a4fc3f47e9ebb58db37f1119"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>GLShader</b> (const <a class="el" href="struct_shader_1_1_descriptor.html">Descriptor</a> &amp;desc)</td></tr>
 <tr class="separator:a7019a587a4fc3f47e9ebb58db37f1119"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade6abc8c42bc13f571b2b9dd225cb2f3"><td class="memItemLeft" align="right" valign="top"><a id="ade6abc8c42bc13f571b2b9dd225cb2f3" name="ade6abc8c42bc13f571b2b9dd225cb2f3"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>compile</b> (const std::filesystem::path &amp;path, <a class="el" href="class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8f">Stage</a> stage)</td></tr>
-<tr class="separator:ade6abc8c42bc13f571b2b9dd225cb2f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1aa6f472254c3073b9cb2fa0366c5522"><td class="memItemLeft" align="right" valign="top"><a id="a1aa6f472254c3073b9cb2fa0366c5522" name="a1aa6f472254c3073b9cb2fa0366c5522"></a>
 size_t&#160;</td><td class="memItemRight" valign="bottom"><b>getNativeHandle</b> () const</td></tr>
 <tr class="memdesc:a1aa6f472254c3073b9cb2fa0366c5522"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取本地句柄. <br /></td></tr>
@@ -143,6 +140,9 @@ const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>ge
 <tr class="memitem:a8bba8301aa0e47e0195765334df1ab2a inherit pro_methods_class_shader"><td class="memItemLeft" align="right" valign="top"><a id="a8bba8301aa0e47e0195765334df1ab2a" name="a8bba8301aa0e47e0195765334df1ab2a"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Shader</b> (const <a class="el" href="struct_shader_1_1_descriptor.html">Descriptor</a> &amp;desc)</td></tr>
 <tr class="separator:a8bba8301aa0e47e0195765334df1ab2a inherit pro_methods_class_shader"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3484242fc9225bbde56ef271989bdd3 inherit pro_methods_class_shader"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_shader.html#ae3484242fc9225bbde56ef271989bdd3">compile</a> (const std::filesystem::path &amp;sourcePath, const std::filesystem::path &amp;targetPath, <a class="el" href="class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8f">Stage</a> stage)</td></tr>
+<tr class="memdesc:ae3484242fc9225bbde56ef271989bdd3 inherit pro_methods_class_shader"><td class="mdescLeft">&#160;</td><td class="mdescRight">将 GLSL 编译为 SPIR-V.  <a href="class_shader.html#ae3484242fc9225bbde56ef271989bdd3">更多...</a><br /></td></tr>
+<tr class="separator:ae3484242fc9225bbde56ef271989bdd3 inherit pro_methods_class_shader"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_class_shader"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_shader')"><img src="closed.png" alt="-"/>&#160;Protected 属性 继承自 <a class="el" href="class_shader.html">Shader</a></td></tr>
 <tr class="memitem:a8c8fba8311ca3a7cfeac5afeb346e51b inherit pro_attribs_class_shader"><td class="memItemLeft" align="right" valign="top"><a id="a8c8fba8311ca3a7cfeac5afeb346e51b" name="a8c8fba8311ca3a7cfeac5afeb346e51b"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b></td></tr>
@@ -150,9 +150,6 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b></td><
 <tr class="memitem:a475124c13e3925dda88ed118b0a9d2ed inherit pro_attribs_class_shader"><td class="memItemLeft" align="right" valign="top"><a id="a475124c13e3925dda88ed118b0a9d2ed" name="a475124c13e3925dda88ed118b0a9d2ed"></a>
 <a class="el" href="class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8f">Stage</a>&#160;</td><td class="memItemRight" valign="bottom"><b>stage</b></td></tr>
 <tr class="separator:a475124c13e3925dda88ed118b0a9d2ed inherit pro_attribs_class_shader"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pro_static_attribs_class_shader"><td colspan="2" onclick="javascript:toggleInherit('pro_static_attribs_class_shader')"><img src="closed.png" alt="-"/>&#160;静态 Protected 属性 继承自 <a class="el" href="class_shader.html">Shader</a></td></tr>
-<tr class="memitem:a1f3ed30475d8dfaea39cd29c02748ca1 inherit pro_static_attribs_class_shader"><td class="memItemLeft" align="right" valign="top">static std::unordered_map&lt; <a class="el" href="class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8f">Shader::Stage</a>, const char * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_shader.html#a1f3ed30475d8dfaea39cd29c02748ca1">extension</a></td></tr>
-<tr class="separator:a1f3ed30475d8dfaea39cd29c02748ca1 inherit pro_static_attribs_class_shader"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>该类的文档由以下文件生成:<ul>
 <li>/github/workspace/Source/OpenGL/<a class="el" href="_g_l_shader_8h_source.html">GLShader.h</a></li>

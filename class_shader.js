@@ -7,6 +7,7 @@ var class_shader =
       [ "Geometry", "class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8fad9c6333623e6357515fcbf17be806273", null ],
       [ "Compute", "class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8faa623a8d0366bf079411aa30be45b2d10", null ]
     ] ],
+    [ "compile", "class_shader.html#ae3484242fc9225bbde56ef271989bdd3", null ],
     [ "getName", "class_shader.html#a6e91ea814d9d8ab826b483e209634393", null ],
     [ "getStage", "class_shader.html#a3a91e257350332a3cd3af52d740405d5", null ]
 ];

@@ -90,7 +90,6 @@ $(document).ready(function(){initNavTree('class_shader.html',''); initResizable(
 <a href="#pub-static-methods">静态 Public 成员函数</a> &#124;
 <a href="#pro-methods">Protected 成员函数</a> &#124;
 <a href="#pro-attribs">Protected 属性</a> &#124;
-<a href="#pro-static-attribs">静态 Protected 属性</a> &#124;
 <a href="class_shader-members.html">所有成员列表</a>  </div>
   <div class="headertitle"><div class="title">Shader类 参考<div class="ingroups"><a class="el" href="group__shader.html">着色器</a></div></div></div>
 </div><!--header-->
@@ -152,6 +151,9 @@ Protected 成员函数</h2></td></tr>
 <tr class="memitem:a8bba8301aa0e47e0195765334df1ab2a"><td class="memItemLeft" align="right" valign="top"><a id="a8bba8301aa0e47e0195765334df1ab2a" name="a8bba8301aa0e47e0195765334df1ab2a"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Shader</b> (const <a class="el" href="struct_shader_1_1_descriptor.html">Descriptor</a> &amp;desc)</td></tr>
 <tr class="separator:a8bba8301aa0e47e0195765334df1ab2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3484242fc9225bbde56ef271989bdd3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_shader.html#ae3484242fc9225bbde56ef271989bdd3">compile</a> (const std::filesystem::path &amp;sourcePath, const std::filesystem::path &amp;targetPath, <a class="el" href="class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8f">Stage</a> stage)</td></tr>
+<tr class="memdesc:ae3484242fc9225bbde56ef271989bdd3"><td class="mdescLeft">&#160;</td><td class="mdescRight">将 GLSL 编译为 SPIR-V.  <a href="class_shader.html#ae3484242fc9225bbde56ef271989bdd3">更多...</a><br /></td></tr>
+<tr class="separator:ae3484242fc9225bbde56ef271989bdd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected 属性</h2></td></tr>
@@ -161,11 +163,6 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b></td><
 <tr class="memitem:a475124c13e3925dda88ed118b0a9d2ed"><td class="memItemLeft" align="right" valign="top"><a id="a475124c13e3925dda88ed118b0a9d2ed" name="a475124c13e3925dda88ed118b0a9d2ed"></a>
 <a class="el" href="class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8f">Stage</a>&#160;</td><td class="memItemRight" valign="bottom"><b>stage</b></td></tr>
 <tr class="separator:a475124c13e3925dda88ed118b0a9d2ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-static-attribs" name="pro-static-attribs"></a>
-静态 Protected 属性</h2></td></tr>
-<tr class="memitem:a1f3ed30475d8dfaea39cd29c02748ca1"><td class="memItemLeft" align="right" valign="top">static std::unordered_map&lt; <a class="el" href="class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8f">Shader::Stage</a>, const char * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_shader.html#a1f3ed30475d8dfaea39cd29c02748ca1">extension</a></td></tr>
-<tr class="separator:a1f3ed30475d8dfaea39cd29c02748ca1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p >着色器阶段. </p>
@@ -207,6 +204,63 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b></td><
 </div>
 </div>
 <h2 class="groupheader">成员函数说明</h2>
+<a id="ae3484242fc9225bbde56ef271989bdd3" name="ae3484242fc9225bbde56ef271989bdd3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3484242fc9225bbde56ef271989bdd3">&#9670;&nbsp;</a></span>compile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Shader::compile </td>
+          <td>(</td>
+          <td class="paramtype">const std::filesystem::path &amp;&#160;</td>
+          <td class="paramname"><em>sourcePath</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::filesystem::path &amp;&#160;</td>
+          <td class="paramname"><em>targetPath</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8f">Stage</a>&#160;</td>
+          <td class="paramname"><em>stage</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>将 GLSL 编译为 SPIR-V. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sourcePath</td><td>GLSL 文件路径. </td></tr>
+    <tr><td class="paramname">targetPath</td><td>SPIR-V 文件路径. </td></tr>
+    <tr><td class="paramname">stage</td><td>着色器阶段.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section warning"><dt>警告</dt><dd>入口点必须为 main.</dd></dl>
+<p>TODO:</p><ul>
+<li>支持定义宏.</li>
+<li>设置优化选项. </li>
+</ul>
+
+</div>
+</div>
 <a id="ab70cd02a421203fa41756adb7a8a3b23" name="ab70cd02a421203fa41756adb7a8a3b23"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab70cd02a421203fa41756adb7a8a3b23">&#9670;&nbsp;</a></span>create()</h2>
 
@@ -239,37 +293,6 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b></td><
   </dd>
 </dl>
 
-</div>
-</div>
-<h2 class="groupheader">类成员变量说明</h2>
-<a id="a1f3ed30475d8dfaea39cd29c02748ca1" name="a1f3ed30475d8dfaea39cd29c02748ca1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1f3ed30475d8dfaea39cd29c02748ca1">&#9670;&nbsp;</a></span>extension</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::unordered_map&lt; <a class="el" href="class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8f">Shader::Stage</a>, const char * &gt; Shader::extension</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<b>初始值:</b><div class="fragment"><div class="line">= {{<a class="code hl_enumvalue" href="class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8fab22b929ba52471a02d18bb3a4e4472e6">Shader::Stage::Vertex</a>, <span class="stringliteral">&quot;vert&quot;</span>},</div>
-<div class="line">                                                                    {<a class="code hl_enumvalue" href="class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8fad9c6333623e6357515fcbf17be806273">Shader::Stage::Geometry</a>, <span class="stringliteral">&quot;geom&quot;</span>},</div>
-<div class="line">                                                                    {<a class="code hl_enumvalue" href="class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8fa37d01b98065725fe3a1d30acf3a0064a">Shader::Stage::Fragment</a>, <span class="stringliteral">&quot;frag&quot;</span>},</div>
-<div class="line">                                                                    {<a class="code hl_enumvalue" href="class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8faa623a8d0366bf079411aa30be45b2d10">Shader::Stage::Compute</a>, <span class="stringliteral">&quot;comp&quot;</span>}}</div>
-<div class="ttc" id="aclass_shader_html_aa09ca98027dbafd5d37c71f53a6efe8fa37d01b98065725fe3a1d30acf3a0064a"><div class="ttname"><a href="class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8fa37d01b98065725fe3a1d30acf3a0064a">Shader::Stage::Fragment</a></div><div class="ttdeci">@ Fragment</div><div class="ttdoc">片段着色器.</div></div>
-<div class="ttc" id="aclass_shader_html_aa09ca98027dbafd5d37c71f53a6efe8faa623a8d0366bf079411aa30be45b2d10"><div class="ttname"><a href="class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8faa623a8d0366bf079411aa30be45b2d10">Shader::Stage::Compute</a></div><div class="ttdeci">@ Compute</div><div class="ttdoc">计算着色器.</div></div>
-<div class="ttc" id="aclass_shader_html_aa09ca98027dbafd5d37c71f53a6efe8fab22b929ba52471a02d18bb3a4e4472e6"><div class="ttname"><a href="class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8fab22b929ba52471a02d18bb3a4e4472e6">Shader::Stage::Vertex</a></div><div class="ttdeci">@ Vertex</div><div class="ttdoc">顶点着色器.</div></div>
-<div class="ttc" id="aclass_shader_html_aa09ca98027dbafd5d37c71f53a6efe8fad9c6333623e6357515fcbf17be806273"><div class="ttname"><a href="class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8fad9c6333623e6357515fcbf17be806273">Shader::Stage::Geometry</a></div><div class="ttdeci">@ Geometry</div><div class="ttdoc">几何着色器.</div></div>
-</div><!-- fragment -->
 </div>
 </div>
 <hr/>该类的文档由以下文件生成:<ul>
