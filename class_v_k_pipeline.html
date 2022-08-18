@@ -104,9 +104,14 @@ Public 成员函数</h2></td></tr>
 <tr class="memitem:a599378af1132938529000f2a78ceea8f"><td class="memItemLeft" align="right" valign="top"><a id="a599378af1132938529000f2a78ceea8f" name="a599378af1132938529000f2a78ceea8f"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>VKPipeline</b> (const <a class="el" href="struct_pipeline_1_1_descriptor.html">Descriptor</a> &amp;desc)</td></tr>
 <tr class="separator:a599378af1132938529000f2a78ceea8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a045f5be0b9c918c8112a3c56d9bdf965"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_v_k_pipeline.html#a045f5be0b9c918c8112a3c56d9bdf965">bind</a> () override</td></tr>
+<tr class="separator:a045f5be0b9c918c8112a3c56d9bdf965"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad4f875417f558431221659f366cc520f"><td class="memItemLeft" align="right" valign="top"><a id="ad4f875417f558431221659f366cc520f" name="ad4f875417f558431221659f366cc520f"></a>
 VkPipeline&#160;</td><td class="memItemRight" valign="bottom"><b>getNativeHandle</b> ()</td></tr>
 <tr class="separator:ad4f875417f558431221659f366cc520f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24ef5c4a49dd369f680ec84f6f85e1cf"><td class="memItemLeft" align="right" valign="top"><a id="a24ef5c4a49dd369f680ec84f6f85e1cf" name="a24ef5c4a49dd369f680ec84f6f85e1cf"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>bind</b> ()=0</td></tr>
+<tr class="separator:a24ef5c4a49dd369f680ec84f6f85e1cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 额外继承的成员函数</h2></td></tr>
@@ -114,15 +119,43 @@ VkPipeline&#160;</td><td class="memItemRight" valign="bottom"><b>getNativeHandle
 <tr class="memitem:aee48998a6ab3d9e881d6995fc131b852 inherit pub_static_methods_class_pipeline"><td class="memItemLeft" align="right" valign="top"><a id="aee48998a6ab3d9e881d6995fc131b852" name="aee48998a6ab3d9e881d6995fc131b852"></a>
 static std::shared_ptr&lt; <a class="el" href="class_pipeline.html">Pipeline</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>create</b> (const <a class="el" href="struct_pipeline_1_1_descriptor.html">Descriptor</a> &amp;desc)</td></tr>
 <tr class="separator:aee48998a6ab3d9e881d6995fc131b852 inherit pub_static_methods_class_pipeline"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_attribs_class_pipeline"><td colspan="2" onclick="javascript:toggleInherit('pub_attribs_class_pipeline')"><img src="closed.png" alt="-"/>&#160;Public 属性 继承自 <a class="el" href="class_pipeline.html">Pipeline</a></td></tr>
-<tr class="memitem:a048484c221b820e0759bb769981a237c inherit pub_attribs_class_pipeline"><td class="memItemLeft" align="right" valign="top"><a id="a048484c221b820e0759bb769981a237c" name="a048484c221b820e0759bb769981a237c"></a>
-std::shared_ptr&lt; <a class="el" href="class_program.html">Program</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>program</b></td></tr>
-<tr class="separator:a048484c221b820e0759bb769981a237c inherit pub_attribs_class_pipeline"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_class_pipeline"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_pipeline')"><img src="closed.png" alt="-"/>&#160;Protected 成员函数 继承自 <a class="el" href="class_pipeline.html">Pipeline</a></td></tr>
 <tr class="memitem:a01efab7ac1015f4213fe07cf65398a35 inherit pro_methods_class_pipeline"><td class="memItemLeft" align="right" valign="top"><a id="a01efab7ac1015f4213fe07cf65398a35" name="a01efab7ac1015f4213fe07cf65398a35"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Pipeline</b> (const <a class="el" href="struct_pipeline_1_1_descriptor.html">Descriptor</a> &amp;desc)</td></tr>
 <tr class="separator:a01efab7ac1015f4213fe07cf65398a35 inherit pro_methods_class_pipeline"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_class_pipeline"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_pipeline')"><img src="closed.png" alt="-"/>&#160;Protected 属性 继承自 <a class="el" href="class_pipeline.html">Pipeline</a></td></tr>
+<tr class="memitem:a17af7b6cd66760c00a1450536242d378 inherit pro_attribs_class_pipeline"><td class="memItemLeft" align="right" valign="top"><a id="a17af7b6cd66760c00a1450536242d378" name="a17af7b6cd66760c00a1450536242d378"></a>
+<a class="el" href="struct_pipeline_1_1_descriptor.html">Descriptor</a>&#160;</td><td class="memItemRight" valign="bottom"><b>desc</b></td></tr>
+<tr class="separator:a17af7b6cd66760c00a1450536242d378 inherit pro_attribs_class_pipeline"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a045f5be0b9c918c8112a3c56d9bdf965" name="a045f5be0b9c918c8112a3c56d9bdf965"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a045f5be0b9c918c8112a3c56d9bdf965">&#9670;&nbsp;</a></span>bind()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void VKPipeline::bind </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="class_pipeline.html">Pipeline</a>.</p>
+
+</div>
+</div>
 <hr/>该类的文档由以下文件生成:<ul>
 <li>/github/workspace/Source/Vulkan/<a class="el" href="_v_k_pipeline_8h_source.html">VKPipeline.h</a></li>
 <li>/github/workspace/Source/Vulkan/VKPipeline.cpp</li>
