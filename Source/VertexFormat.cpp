@@ -38,7 +38,8 @@ void VertexFormat::addAttribute(Attribute attr)
 {
 	if(attr.location == -1)
 		attr.location = static_cast<uint32_t>(attribs.size());
-	attr.offset = stride;
+	if(attr.offset == -1)
+		attr.offset = stride;
 	stride += attr.getSize();
 
 	assert(std::find_if(attribs.begin(), attribs.end(),

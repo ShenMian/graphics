@@ -16,8 +16,8 @@ class VertexFormat
 public:
 	struct Attribute
 	{
-		Attribute(std::string_view name, Format fmt, bool normalized = false)
-		    : location(-1), name(name), format(fmt), normalized(normalized)
+		Attribute(std::string_view name, Format fmt, uint32_t offset = -1, bool normalized = false)
+		    : name(name), format(fmt), offset(offset), normalized(normalized)
 		{
 		}
 
@@ -28,11 +28,11 @@ public:
 
 		uint32_t getSize() const;
 
-		uint32_t         location;
+		uint32_t         location = -1;
 		std::string_view name;
 		Format           format;
 		bool             normalized = false;
-		uint32_t         offset     = 0;
+		uint32_t         offset     = -1;
 	};
 
 	VertexFormat() = default;
