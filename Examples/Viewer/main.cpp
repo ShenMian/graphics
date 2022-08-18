@@ -89,12 +89,12 @@ public:
                 running = false;
                 break;
 
-            case Key::F11:
-                window->setFullscreen(!window->isFullscreen());
+            case Key::LeftAlt:
+                window->setCursorLock(!window->isCursorLock());
                 break;
 
-            case Key::P:
-                window->setCursorLock(false);
+            case Key::F11:
+                window->setFullscreen(!window->isFullscreen());
                 break;
             }
 		};
