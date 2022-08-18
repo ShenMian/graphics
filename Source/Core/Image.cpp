@@ -26,15 +26,15 @@ using StbiImage = std::unique_ptr<unsigned char, decltype([](auto data) { stbi_i
 
 Image::Image(const std::filesystem::path& path)
 {
-	loadFromFile(path);
+	load(path);
 }
 
-Image::Image(const void* data, size_t sizeBytes, Vector2i size, int channels)
+Image::Image(const void* data, size_t sizeBytes, const Vector2i& size, int channels)
 {
-	loadFromMemory(data, sizeBytes, size, channels);
+	load(data, sizeBytes, size, channels);
 }
 
-void Image::loadFromFile(const std::filesystem::path& path)
+void Image::load(const std::filesystem::path& path)
 {
 	if(!fs::is_regular_file(path))
 		throw std::runtime_error(fmt::format("no such file: {}", path));
@@ -43,10 +43,10 @@ void Image::loadFromFile(const std::filesystem::path& path)
 	if(pixels == nullptr)
 		throw std::runtime_error(fmt::format("failed load image from file: {}", path));
 
-	loadFromMemory(pixels.get(), static_cast<size_t>(size_.x) * size_.y * channels_, size_, channels_);
+	load(pixels.get(), static_cast<size_t>(size_.x) * size_.y * channels_, size_, channels_);
 }
 
-void Image::loadFromMemory(const void* data, size_t sizeBytes, Vector2i size, int channels)
+void Image::load(const void* data, size_t sizeBytes, const Vector2i& size, int channels)
 {
 	size_    = size;
 	channels_ = channels;
@@ -55,7 +55,7 @@ void Image::loadFromMemory(const void* data, size_t sizeBytes, Vector2i size, in
 	data_.shrink_to_fit();
 }
 
-void Image::saveToFile(const std::filesystem::path& path) const
+void Image::save(const std::filesystem::path& path) const
 {
 	const auto ext = path.extension().string();
 
@@ -84,7 +84,7 @@ void Image::saveToFile(const std::filesystem::path& path) const
 		assert(false); // 不支持的导出格式
 }
 
-void Image::setPixel(Vector4f color, Size2 pos)
+void Image::setPixel(const Vector4f& color, const Vector2i& pos)
 {
 	assert(pos.x < size_.x && pos.y < size_.y);
 	auto pixel = &data_[(pos.y * size_.x + pos.x) * channels_];
@@ -94,7 +94,7 @@ void Image::setPixel(Vector4f color, Size2 pos)
 	*pixel++   = (uint8_t)(color.a * 255);
 }
 
-Vector4f Image::getPixel(Size2 pos) const
+Vector4f Image::getPixel(const Vector2i& pos) const
 {
 	assert(pos.x < size_.x && pos.y < size_.y);
 	const auto pixel = &data_[(pos.y * size_.x + pos.x) * channels_];
