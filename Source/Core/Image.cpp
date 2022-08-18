@@ -24,7 +24,7 @@ namespace fs = std::filesystem;
 
 using StbiImage = std::unique_ptr<unsigned char, decltype([](auto data) { stbi_image_free(data); })>;
 
-Image::Image(const std::filesystem::path& path)
+Image::Image(const fs::path& path)
 {
 	load(path);
 }
@@ -34,7 +34,7 @@ Image::Image(const void* data, size_t sizeBytes, const Vector2i& size, int chann
 	load(data, sizeBytes, size, channels);
 }
 
-void Image::load(const std::filesystem::path& path)
+void Image::load(const fs::path& path)
 {
 	if(!fs::is_regular_file(path))
 		throw std::runtime_error(fmt::format("no such file: {}", path));
@@ -55,7 +55,7 @@ void Image::load(const void* data, size_t sizeBytes, const Vector2i& size, int c
 	data_.shrink_to_fit();
 }
 
-void Image::save(const std::filesystem::path& path) const
+void Image::save(const fs::path& path) const
 {
 	const auto ext = path.extension().string();
 

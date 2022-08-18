@@ -36,11 +36,11 @@ VKShader::VKShader(const Descriptor& desc) : Shader(desc)
 	if(!fs::exists(path))
 		throw std::runtime_error(fmt::format("no such file: {}", path));
 
-	// TODO: 与 GLShader 重复
-	if(path.extension() == ".glsl")
-		compile(path, desc.stage);
 	if(path.extension() != ".spv")
+	{
+		compile(path, fs::path(path).replace_extension(".spv"), desc.stage);
 		path.replace_extension(".spv");
+	}
 
 	// 读取文件内容
 	const auto    fileSize = fs::file_size(path);
@@ -67,45 +67,6 @@ VKShader::~VKShader()
 {
 	auto renderer = reinterpret_cast<VKRenderer*>(Renderer::get());
 	vkDestroyShaderModule(renderer->getDevice(), handle, nullptr);
-}
-
-// TODO: 与 GLShader 重复
-void VKShader::compile(const std::filesystem::path& sourcePath, Stage stage)
-{
-	const auto targetPath = fs::path(sourcePath).replace_extension(".spv");
-	if(fs::exists(targetPath) && fs::last_write_time(sourcePath) < fs::last_write_time(targetPath))
-		return;
-
-	// 读取源代码
-	const auto    fileSize = fs::file_size(sourcePath);
-	std::ifstream sourceFile(sourcePath, std::ios::binary);
-	if(!sourceFile.is_open())
-		throw std::runtime_error(fmt::format("failed to open file: {}", sourcePath));
-
-	std::vector<char> buffer(fileSize);
-	sourceFile.read(buffer.data(), fileSize);
-	if(!sourceFile.good() || sourceFile.gcount() != fileSize)
-		throw std::runtime_error(fmt::format("failed to read file: {}", sourcePath));
-	sourceFile.close();
-
-	const std::string source(buffer.begin(), buffer.end());
-
-	// 将 GLSL 编译为 SPIR-V
-	shaderc::Compiler       compiler;
-	shaderc::CompileOptions options;
-	options.SetTargetEnvironment(shaderc_target_env_vulkan, shaderc_env_version_vulkan_1_2);
-	options.SetOptimizationLevel(shaderc_optimization_level_performance);
-	auto res = compiler.CompileGlslToSpv(source, SCStage[stage], sourcePath.stem().string().c_str(), options);
-	if(res.GetCompilationStatus() != shaderc_compilation_status_success)
-		throw std::runtime_error(fmt::format("failed to compile shader: {}", res.GetErrorMessage()));
-	const std::vector<uint32_t> spv(res.cbegin(), res.cend());
-
-	// 写入编译结果
-	std::ofstream targetFile(targetPath, std::ios::binary);
-	if(!targetFile.is_open())
-		throw std::runtime_error(fmt::format("failed to open file: {}", sourcePath));
-	targetFile.write((const char*)spv.data(), spv.size() * sizeof(uint32_t));
-	targetFile.close();
 }
 
 VkShaderModule VKShader::getNativeHandle()

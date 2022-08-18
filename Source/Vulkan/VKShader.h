@@ -12,8 +12,6 @@ public:
 	VKShader(const Descriptor& desc);
 	virtual ~VKShader();
 
-	void compile(const std::filesystem::path& path, Stage stage);
-
 	VkShaderModule getNativeHandle();
 
 private:
