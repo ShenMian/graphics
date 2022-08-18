@@ -3,8 +3,8 @@
 [Oo]bj
 [Ll]ib
 /[Bb]uild
-!/Deps/premake/bin
-!/Deps/VulkanSDK/Lib
+!/deps/premake/bin
+!/deps/VulkanSDK/Lib
 
 # Makefile
 Makefile
@@ -36,9 +36,9 @@ vcpkg_installed
 tags
 
 # Doxygen
-/Docs/html
-/Docs/man
-/Docs/xml
+/docs/html
+/docs/man
+/docs/xml
 
 # SPIR-V
 *.spv
