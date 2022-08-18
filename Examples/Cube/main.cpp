@@ -35,7 +35,6 @@ public:
 		};
 		// clang-format on
 		VertexFormat format = {{"position", Format::RGB32F}, {"color", Format::RGB32F}};
-		format.setStride(sizeof(Vertex));
 		auto vertexBuffer = VertexBuffer::create(vertices, format);
 
 		// 创建顶点索引, 表示构成 12 个三角形的顶点组成

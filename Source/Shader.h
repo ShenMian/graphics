@@ -72,7 +72,7 @@ protected:
 struct Shader::Descriptor
 {
 	Stage                 stage;
-	std::filesystem::path path;
+	std::filesystem::path path;                ///< 源码文件或 SPIR-V 文件路径.
 	std::string_view      entryPoint = "main"; ///< 入口点.
 };
 

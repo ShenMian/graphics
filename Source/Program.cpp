@@ -44,7 +44,7 @@ std::shared_ptr<Program> Program::create(std::string_view name)
 	// GLSL
 	for(const auto& [stageName, stage] : com)
 	{
-		auto path = fmt::format("{}.{}.glsl", name, stageName);
+		const auto path = fmt::format("{}.{}.glsl", name, stageName);
 		if(!fs::exists(path))
 			continue;
 

@@ -40,7 +40,6 @@ GLShader::GLShader(const Descriptor& desc) : Shader(desc), handle(glCreateShader
 	if(!fs::exists(path))
 		throw std::runtime_error(fmt::format("no such file: {}", path));
 
-#if 1
 	if(path.extension() != ".spv")
 	{
 		compile(path, fs::path(path).replace_extension(".spv"), desc.stage);
@@ -102,37 +101,6 @@ GLShader::GLShader(const Descriptor& desc) : Shader(desc), handle(glCreateShader
 			}
 		}
 	}
-#else
-	// 读取文件内容
-	const auto    fileSize = fs::file_size(path);
-	std::ifstream file(path, std::ios::binary);
-	if(!file.is_open())
-		throw std::runtime_error(fmt::format("failed to open file: {}", path));
-
-	std::vector<char> buffer(fileSize);
-	file.read((char*)buffer.data(), fileSize);
-	if(!file.good() || file.gcount() != fileSize)
-		throw std::runtime_error(fmt::format("failed to read file: {}", path));
-	file.close();
-
-	buffer.push_back('\0');
-	const auto source = buffer.data();
-	glShaderSource(handle, 1, &source, nullptr);
-	glCompileShader(handle);
-
-	// 获取编译结果状态
-	int status;
-	glGetShaderiv(handle, GL_COMPILE_STATUS, &status);
-	if(!status)
-	{
-		// 获取报错内容
-		int size;
-		glGetShaderiv(handle, GL_INFO_LOG_LENGTH, &size);
-		std::string info(size, '\0');
-		glGetShaderInfoLog(handle, (GLsizei)info.size(), &size, info.data());
-		throw std::runtime_error(fmt::format("shader '{}' compile error: {}", desc.path.filename().string(), info));
-	}
-#endif
 }
 
 GLShader::~GLShader()
