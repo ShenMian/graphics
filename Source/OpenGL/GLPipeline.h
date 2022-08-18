@@ -12,7 +12,7 @@ public:
 	GLPipeline(const Descriptor& desc);
 	~GLPipeline();
 
-	void bind();
+	void bind() override;
 
 private:
 	GLuint handle;

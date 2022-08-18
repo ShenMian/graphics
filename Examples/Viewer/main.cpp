@@ -43,9 +43,10 @@ public:
 		                         {"emissive", 3, PipelineLayout::Type::Texture, PipelineLayout::StageFlags::Fragment},
 		                         {"normal", 4, PipelineLayout::Type::Texture, PipelineLayout::StageFlags::Fragment}};
 		Pipeline::Descriptor desc;
-		desc.layout   = layout;
-		desc.program  = program;
-		auto pipeline = Pipeline::create(desc);
+		desc.layout              = layout;
+		desc.program             = program;
+		desc.rasterizer.cullMode = CullMode::Back;
+		auto pipeline            = Pipeline::create(desc);
 
 		auto cmdQueue  = CommandQueue::create();
 		auto cmdBuffer = CommandBuffer::create();

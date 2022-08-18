@@ -119,6 +119,10 @@ VKPipeline::VKPipeline(const Descriptor& desc) : Pipeline(desc)
 		throw std::runtime_error("failed to create graphics pipeline");
 }
 
+void VKPipeline::bind()
+{
+}
+
 VkPipeline VKPipeline::getNativeHandle()
 {
 	return pipeline;

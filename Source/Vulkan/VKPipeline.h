@@ -13,6 +13,8 @@ class VKPipeline : public Pipeline
 public:
 	VKPipeline(const Descriptor& desc);
 
+	void bind() override;
+
 	VkPipeline getNativeHandle();
 
 private:
