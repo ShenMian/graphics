@@ -30,7 +30,6 @@ public:
 		};
 		// clang-format on
 		VertexFormat layout = {{"position", Format::RG32F}, {"color", Format::RGB32F}};
-		layout.setStride(sizeof(Vertex));
 		auto vertexBuffer = VertexBuffer::create(vertices, layout);
 
 		// 创建着色器程序

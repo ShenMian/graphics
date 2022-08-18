@@ -23,7 +23,7 @@ Renderer::setAPI(Renderer::API::OpenGL);
 Window::init();                        // 初始化窗口模块
 Window window("Triangle", {960, 540}); // 创建一个标题为 Triangle, 大小为 960x540 像素的窗口
 
-Renderer::init(*window);                 // 初始化渲染器
+Renderer::init(*window);               // 初始化渲染器
 ```
 
 **注意**: 若第三方库 GLAD 没有被初始化, 调用 OpenGL API 时将发生致命错误.  
@@ -59,11 +59,16 @@ VertexFormat format = {
     {"position", Format::RG32F}, // 2D 坐标, 包含两个 32 位的 float 变量.
     {"color",    Format::RGB32F} // RGB 颜色, 包含三个 32 位的 float 变量.
 };
+
+// 若无法确定结构体对齐方式, 可以使用下面方法
+VertexFormat format;
+format.addAttribute({"position", Format::RG32F, offsetof(Vertex, position)});
+format.addAttribute({"position", Format::RG32F, offsetof(Vertex, color)});
 format.setStride(sizeof(Vertex)); // 设置数组中每个顶点的大小.
 ```
 
-创建 VertexFormat 的过程中会通过格式自动计算单个顶点的大小. 但由于内存对齐, 实际的大小不一定等于各成员大小之和.
-因此最后一行将顶点大小设置为了常量`sizeof(Vertex)`, 该值会在编译时变成实际的顶点大小.  
+创建 VertexFormat 的过程中会通过格式自动计算成员的偏移量/单个顶点的大小. 但由于内存对齐, 实际的大小不一定等于各成员大小之和.  
+因此还提供了第二种方式, 确保在不确定对齐方式的情况下确保数据正确.  
 
 创建顶点缓冲区.  
 
@@ -73,13 +78,13 @@ auto vertexBuffer = VertexBuffer::create(vertices, format);
 
 ## 着色器
 
-从指定的位置寻找 SPIR-V 文件并创建着色器程序.  
+从指定的位置寻找着色器源码或 SPIR-V 文件并创建着色器程序.  
 
 ```cpp
-auto program = Program::create("Shaders/forword");
+auto program = Program::create("Shaders/forward");
 ```
 
-这行代码会找到 [Shaders](Shaders) 文件夹下了两个源文件, 分别是 [forword.vert.glsl](Shaders/forword.vert.glsl)(顶点着色器源文件) 和 [forword.frag.glsl](Shaders/forword.frag.glsl)(片段着色器源文件). 将其编译并链接为着色器程序.  
+这行代码会找到 [Shaders](Shaders) 文件夹下了两个源文件, 分别是 [forward.vert.glsl](Shaders/forward.vert.glsl)(顶点着色器源文件) 和 [forward.frag.glsl](Shaders/forward.frag.glsl)(片段着色器源文件). 将其编译为 SPIR-V 并读取链接为着色器程序.  
 
 ## 命令缓冲区 & 命令队列
 
@@ -97,8 +102,8 @@ auto cmdQueue  = CommandQueue::create();  // 创建命令队列
 ```cpp
 bool running   = true; // 当该变量值为 false 时主循环退出, 程序结束
 window.onClose = [&]{ running = false; }; // 注册一个窗口关闭按钮按下的回调,
-                                             // 当窗口关闭按钮被按下时 running 的值变为 false,
-                                             // 主循环在执行完循环体后退出, 程序结束
+                                          // 当窗口关闭按钮被按下时 running 的值变为 false,
+                                          // 主循环在执行完循环体后退出, 程序结束
 while(running)
 {
     program->use(); // 使用着色器程序
