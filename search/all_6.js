@@ -13,7 +13,7 @@ var searchData=
   ['getdevice_10',['getDevice',['../class_v_k_renderer.html#ae94ac18315d26db579d64fa9eba9c980',1,'VKRenderer']]],
   ['getduration_11',['getDuration',['../class_animation.html#aa2cd2d5b8e2e6a8d6a2366556e29b03f',1,'Animation']]],
   ['getfar_12',['getFar',['../class_camera.html#a57b2e9d52389abc67e5b5049b150408e',1,'Camera']]],
-  ['getformat_13',['getFormat',['../class_vertex_buffer.html#a362c0ef76280b73f68e71bf78b603a77',1,'VertexBuffer::getFormat()'],['../class_texture.html#ab9c343ec4797d5175580d538a2e8c171',1,'Texture::getFormat()']]],
+  ['getformat_13',['getFormat',['../class_texture.html#ab9c343ec4797d5175580d538a2e8c171',1,'Texture::getFormat()'],['../class_vertex_buffer.html#a362c0ef76280b73f68e71bf78b603a77',1,'VertexBuffer::getFormat()']]],
   ['gethandle_14',['getHandle',['../class_monitor.html#a60d2288e26fdc53ec6ebdc2b3b6b5a49',1,'Monitor::getHandle()'],['../class_window.html#a7ee41eb997d488c0ce69a893bcbdb02b',1,'Window::getHandle()'],['../class_g_l_shader.html#accfe9362aa240453329a478ac0244909',1,'GLShader::getHandle()']]],
   ['gethfov_15',['getHFOV',['../class_camera.html#aefe543b1ae789c85b07cbae64c87f3f4',1,'Camera']]],
   ['getinstance_16',['getInstance',['../class_v_k_renderer.html#a7ba13c5bead768bb16789ed02c54865c',1,'VKRenderer']]],
@@ -28,7 +28,7 @@ var searchData=
   ['getnear_25',['getNear',['../class_camera.html#ac8e964aa5463f7dd3d3555398685df52',1,'Camera']]],
   ['getphysicaldevice_26',['getPhysicalDevice',['../class_v_k_renderer.html#aa738911381876b0b264d3a0cbc6d89a2',1,'VKRenderer']]],
   ['getpixel_27',['getPixel',['../class_image.html#afa2d45be59ae6bd0867544f571fda47a',1,'Image']]],
-  ['getposition_28',['getPosition',['../class_window.html#a036ccfc71def085dafd6e4357a15921f',1,'Window::getPosition()'],['../class_camera.html#a6398e135109b2dcfdf831b338ce4d958',1,'Camera::getPosition()'],['../class_monitor.html#a74335cdd01ee7b14ecf5302e61218862',1,'Monitor::getPosition() const']]],
+  ['getposition_28',['getPosition',['../class_monitor.html#a74335cdd01ee7b14ecf5302e61218862',1,'Monitor::getPosition()'],['../class_camera.html#a6398e135109b2dcfdf831b338ce4d958',1,'Camera::getPosition()'],['../class_window.html#a036ccfc71def085dafd6e4357a15921f',1,'Window::getPosition()']]],
   ['getprimary_29',['getPrimary',['../class_monitor.html#a8afbc04b4417bbeb2f4d4e2c69feb45c',1,'Monitor']]],
   ['getprojection_30',['getProjection',['../class_camera.html#a90f8ded7af9a5ba9fcabd5b43271be40',1,'Camera']]],
   ['getqueue_31',['getQueue',['../class_v_k_device.html#ab9a1f3885fed4a385a311f6ac8abdcf0',1,'VKDevice']]],
@@ -36,7 +36,7 @@ var searchData=
   ['getraw_33',['getRaw',['../class_gamepad.html#a699b3348d46e0ee4bcb7532499970570',1,'Gamepad::getRaw(Trigger trigger) const noexcept'],['../class_gamepad.html#a3d1ef5d5e9845ac3e8dc5d484cc374e8',1,'Gamepad::getRaw(Thumb thumb) const noexcept']]],
   ['getrefreshrate_34',['getRefreshRate',['../class_monitor.html#a4e1e52b23525c876c8981564e657a7af',1,'Monitor']]],
   ['getrotation_35',['getRotation',['../class_camera.html#a9f963f5adfd87616ac7d6608a17c0ac3',1,'Camera']]],
-  ['getsize_36',['getSize',['../class_window.html#a02895f65ac107be364b73e4088377697',1,'Window::getSize()'],['../class_monitor.html#a7a46f0acdc341a56e8f2a4c9ca891215',1,'Monitor::getSize()'],['../class_buffer.html#a996ac8bec0aaccf19776c45b55b27dd2',1,'Buffer::getSize()'],['../class_index_buffer.html#a9d45b662917b2b43e7e4d470515e0c91',1,'IndexBuffer::getSize()'],['../class_vertex_buffer.html#a449c075862df927b06cf5cb1e417a89c',1,'VertexBuffer::getSize()']]],
+  ['getsize_36',['getSize',['../class_index_buffer.html#a9d45b662917b2b43e7e4d470515e0c91',1,'IndexBuffer::getSize()'],['../class_window.html#a02895f65ac107be364b73e4088377697',1,'Window::getSize()'],['../class_monitor.html#a7a46f0acdc341a56e8f2a4c9ca891215',1,'Monitor::getSize()'],['../class_buffer.html#a996ac8bec0aaccf19776c45b55b27dd2',1,'Buffer::getSize()'],['../class_vertex_buffer.html#a449c075862df927b06cf5cb1e417a89c',1,'VertexBuffer::getSize()']]],
   ['getstage_37',['getStage',['../class_shader.html#a3a91e257350332a3cd3af52d740405d5',1,'Shader']]],
   ['getswapchain_38',['getSwapchain',['../class_v_k_renderer.html#af0556e23b419b82a6cc229fdeb5fdf51',1,'VKRenderer']]],
   ['gettype_39',['getType',['../class_buffer.html#a8df11718cac1d3d4321bbc9a8410ad01',1,'Buffer::getType()'],['../class_camera.html#ae8f514578aa54023476ad541b167a1e0',1,'Camera::getType()'],['../class_texture.html#a885cf1c026c6227fbc1b99befa842416',1,'Texture::getType()']]],
@@ -65,5 +65,6 @@ var searchData=
   ['gltexture_62',['GLTexture',['../class_g_l_texture.html',1,'']]],
   ['gluniformbuffer_63',['GLUniformBuffer',['../class_g_l_uniform_buffer.html',1,'']]],
   ['glvertexarray_64',['GLVertexArray',['../class_g_l_vertex_array.html',1,'']]],
-  ['glvertexbuffer_65',['GLVertexBuffer',['../class_g_l_vertex_buffer.html',1,'']]]
+  ['glvertexbuffer_65',['GLVertexBuffer',['../class_g_l_vertex_buffer.html',1,'']]],
+  ['glyph_66',['Glyph',['../struct_font_1_1_glyph.html',1,'Font']]]
 ];
