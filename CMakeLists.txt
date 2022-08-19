@@ -97,12 +97,12 @@ if(UNIX)
 endif()
 
 # 添加第三方库
-set(DEPS_DIR "${PROJECT_SOURCE_DIR}/Deps")
+set(DEPS_DIR "${PROJECT_SOURCE_DIR}/deps")
 
-add_subdirectory(Source)
+add_subdirectory(source)
 
 if(BUILD_EXAMPLES)
-    add_subdirectory(Examples/Triangle)
-    add_subdirectory(Examples/Cube)
-    add_subdirectory(Examples/Viewer)
+    add_subdirectory(examples/Triangle)
+    add_subdirectory(examples/Cube)
+    add_subdirectory(examples/Viewer)
 endif()

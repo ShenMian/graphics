@@ -1,48 +1,48 @@
 [submodule "Deps/assimp"]
-	path = Deps/assimp
+	path = deps/assimp
 	url = https://github.com/assimp/assimp.git
 [submodule "Deps/Vulkan-Headers"]
-	path = Deps/Vulkan-Headers
+	path = deps/Vulkan-Headers
 	url = https://github.com/KhronosGroup/Vulkan-Headers.git
 [submodule "Deps/meshoptimizer"]
-	path = Deps/meshoptimizer
+	path = deps/meshoptimizer
 	url = https://github.com/zeux/meshoptimizer.git
 [submodule "Deps/glfw"]
-	path = Deps/glfw
+	path = deps/glfw
 	url = https://github.com/glfw/glfw.git
 [submodule "Deps/stb"]
-	path = Deps/stb
+	path = deps/stb
 	url = https://github.com/nothings/stb.git
 [submodule "Deps/Math"]
-	path = Deps/Math
+	path = deps/Math
 	url = https://github.com/ShenMian/Math
 [submodule "Deps/shaderc"]
-	path = Deps/shaderc
+	path = deps/shaderc
 	url = https://github.com/google/shaderc.git
 [submodule "Deps/glslang"]
-	path = Deps/glslang
+	path = deps/glslang
 	url = https://github.com/KhronosGroup/glslang.git
 [submodule "Deps/SPIRV-Tools"]
-	path = Deps/SPIRV-Tools
+	path = deps/SPIRV-Tools
 	url = https://github.com/KhronosGroup/SPIRV-Tools.git
 [submodule "Deps/SPIRV-Headers"]
-	path = Deps/SPIRV-Headers
+	path = deps/SPIRV-Headers
 	url = https://github.com/KhronosGroup/SPIRV-Headers
 [submodule "Deps/imgui"]
-	path = Deps/imgui
+	path = deps/imgui
 	url = https://github.com/ocornut/imgui
 [submodule "Deps/ImGuizmo"]
-	path = Deps/ImGuizmo
+	path = deps/ImGuizmo
 	url = https://github.com/CedricGuillemet/ImGuizmo.git
 [submodule "Deps/fmt"]
-	path = Deps/fmt
+	path = deps/fmt
 	url = https://github.com/fmtlib/fmt.git
 [submodule "Deps/SPIRV-Cross"]
-	path = Deps/SPIRV-Cross
+	path = deps/SPIRV-Cross
 	url = https://github.com/KhronosGroup/SPIRV-Cross.git
 [submodule "Deps/freetype"]
-	path = Deps/freetype
+	path = deps/freetype
 	url = https://github.com/freetype/freetype.git
 [submodule "Deps/imnodes"]
-	path = Deps/imnodes
+	path = deps/imnodes
 	url = https://github.com/Nelarius/imnodes.git
