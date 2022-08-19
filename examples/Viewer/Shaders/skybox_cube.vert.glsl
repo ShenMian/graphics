@@ -16,12 +16,16 @@ layout(location = 4) in vec3 bitangent;
 
 layout(location = 0) out Vert vert;
 
-uniform mat4 view;
-uniform mat4 projection;
+layout(binding = 0) uniform Matrices
+{
+    mat4 view;
+    mat4 proj;
+    mat4 model;
+} mat;
 
 void main()
 {
     vert.tex_coord = tex_coord;
 
-    gl_Position = (projection * mat4(mat3(view)) * vec4(position, 1.0)).xyww;
+    gl_Position = (mat.proj * mat4(mat3(mat.view)) * vec4(position, 1.0)).xyww;
 }

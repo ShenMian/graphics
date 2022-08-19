@@ -14,9 +14,9 @@ layout(location = 0) in Vert vert;
 
 layout(location = 0) out vec4 frag_color;
 
-uniform samplerCube cubemap;
+uniform samplerCube cube_map;
 
 void main()
 {
-    frag_color = texture(cubemap, vert.tex_coord);
+    frag_color = texture(cube_map, vert.tex_coord);
 }

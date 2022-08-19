@@ -53,10 +53,10 @@ void main()
         + anim.matrices[bone.id[3]];
     */
 
-    mat4 invModel = inverse(mat.model);
-    // mat4 invModel = mat.model;
+    mat4 inv_model = inverse(mat.model);
+    // mat4 inv_model = mat.model;
 
-    vert.position  = vec3(invModel * vec4(position, 1.0));
+    vert.position  = vec3(inv_model * vec4(position, 1.0));
     vert.normal    = normalize(mat3(transpose(inverse(mat.model))) * normal);
     vert.tex_coord = tex_coord;
     vert.tangent   = tangent;
