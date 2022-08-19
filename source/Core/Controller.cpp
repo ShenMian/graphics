@@ -18,7 +18,7 @@ void Controller::update(float dt)
 	processKeyboard(dt);
 	processGamepad(dt);
 
-	if(smoothness && camera->getPosition().distanceSquared(target) > 0.3f)
+	if(smoothness && camera->getPosition().distance(target) > speed * 0.001f)
 		camera->setPosition(Vector3f::lerp(camera->getPosition(), target, dt * smoothness));
 	else
 		camera->setPosition(target);
