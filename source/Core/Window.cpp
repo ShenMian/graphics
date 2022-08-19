@@ -100,8 +100,9 @@ bool Window::isFullscreen() const noexcept
 	return glfwGetWindowMonitor(handle) != nullptr;
 }
 
-void Window::setSync(bool enable) noexcept
+void Window::setVSync(bool enable) noexcept
 {
+	glfwMakeContextCurrent(handle);
 	if(enable)
 		glfwSwapInterval(1);
 	else

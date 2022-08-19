@@ -108,7 +108,7 @@ public:
 	 *
 	 * @param enable true 为开启, false 为关闭.
 	 */
-	void setSync(bool enable) noexcept;
+	void setVSync(bool enable) noexcept;
 
 	/**
 	 * @brief 设置大小是否可调.
