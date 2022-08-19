@@ -17,11 +17,14 @@ public:
 			path = argv[1];
 		else
 		{
-			path = "../../../../../../Model/pbr/sponza/sponza.glb";
-			// path = "../../../../../../Model/m4a1/m4a1.gltf";
+			path = "../../../../../../Model/sponza/sponza.obj";
+			// path = "../../../../../../Model/san_miguel/san-miguel-low-poly.obj";
+
+			// PBR
+			// path = "../../../../../../Model/pbr/sponza/sponza.glb";
+			path = "../../../../../../Model/m4a1/m4a1.gltf";
 			// path = "../../../../../../Model/pistol/kimber_desert_warrior/scene.gltf";
 			// path = "../../../../../../Model/pbr/MetalRoughSpheres/MetalRoughSpheres.gltf";
-			// path = "../../../../../../Model/san_miguel/san-miguel-low-poly.obj";
 			// path = "../../../../../../Model/ORCA/bistro/BistroExterior.glb";
 			// path = "../../../../../../Model/ORCA/bistro/BistroExterior.fbx";
 			// path = "../../../../../../Model/ORCA/SunTemple/SunTemple.fbx";
@@ -31,13 +34,14 @@ public:
 		auto           model = importer.load(path);
 		printModelInfo(model);
 
-		// model.meshs.clear();
-		// model.meshs.push_back(Primitive::makeSphere(64, 32).value());
+		// model.meshes.clear();
+		// model.meshes.push_back(Primitive::makeSphere(64, 32).value());
 		// model.meshs.push_back(Primitive::makeIcoSphere(7));
 		// model.meshs.push_back(Primitive::makeCapsule(15, 2, 0.5).value());
 		// model.meshs.push_back(Primitive::makePlane(10, 10).value());
 
-		auto program = Program::create("Shaders/mesh");
+		// auto program = Program::create("Shaders/mesh");
+		auto program = Program::create("Shaders/pbr");
 
 		PipelineLayout layout = {{"albedo", 0, PipelineLayout::Type::Texture, PipelineLayout::StageFlags::Fragment},
 		                         {"roughness", 1, PipelineLayout::Type::Texture, PipelineLayout::StageFlags::Fragment},
@@ -45,10 +49,9 @@ public:
 		                         {"emissive", 3, PipelineLayout::Type::Texture, PipelineLayout::StageFlags::Fragment},
 		                         {"normal", 4, PipelineLayout::Type::Texture, PipelineLayout::StageFlags::Fragment}};
 		Pipeline::Descriptor desc;
-		desc.layout              = layout;
-		desc.program             = program;
-		desc.rasterizer.cullMode = CullMode::Back;
-		auto pipeline            = Pipeline::create(desc);
+		desc.layout   = layout;
+		desc.program  = program;
+		auto pipeline = Pipeline::create(desc);
 
 		auto cmdQueue  = CommandQueue::create();
 		auto cmdBuffer = CommandBuffer::create();
@@ -131,7 +134,7 @@ public:
 
 		ui::NodeEditor editor;
 
-		Clock clock;
+		Timer clock;
 		while(running)
 		{
 			const auto dt = (float)clock.getSeconds();
@@ -185,20 +188,28 @@ public:
 					cmdBuffer->setVertexBuffer(vb);
 					cmdBuffer->setIndexBuffer(ib);
 
-					if(mesh.material->pbr.albedo)
+					if(mesh.material)
 					{
-						cmdBuffer->setTexture(mesh.material->pbr.albedo, 0);
-						cmdBuffer->setTexture(mesh.material->pbr.metallic, 1);
-						cmdBuffer->setTexture(mesh.material->pbr.roughness, 2);
-						cmdBuffer->setTexture(mesh.material->pbr.ao, 3);
-						cmdBuffer->setTexture(mesh.material->pbr.emissive, 4);
-						cmdBuffer->setTexture(mesh.material->pbr.normals, 5);
-					}
-					else
-					{
-						cmdBuffer->setTexture(mesh.material->diffuse, 0);
-						cmdBuffer->setTexture(mesh.material->emissive, 4);
-						cmdBuffer->setTexture(mesh.material->normals, 5);
+						if(mesh.material->pbr.albedo)
+						{
+							cmdBuffer->setTexture(mesh.material->pbr.albedo, 0);
+							cmdBuffer->setTexture(mesh.material->pbr.normals, 1);
+							cmdBuffer->setTexture(mesh.material->pbr.metallic, 2);
+							cmdBuffer->setTexture(mesh.material->pbr.roughness, 3);
+							// cmdBuffer->setTexture(mesh.material->pbr.emissive, 4);
+							// cmdBuffer->setTexture(mesh.material->pbr.occlusion, 5);
+						}
+						else
+						{
+							cmdBuffer->setTexture(mesh.material->diffuse, 0);
+							cmdBuffer->setTexture(mesh.material->specular, 1);
+							cmdBuffer->setTexture(mesh.material->ambient, 2);
+							cmdBuffer->setTexture(mesh.material->emissive, 3);
+							cmdBuffer->setTexture(mesh.material->height, 4);
+							cmdBuffer->setTexture(mesh.material->normals, 5);
+							cmdBuffer->setTexture(mesh.material->shininess, 6);
+							cmdBuffer->setTexture(mesh.material->opacity, 7);
+						}
 					}
 
 					cmdBuffer->drawIndexed(ib->getCount());

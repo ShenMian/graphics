@@ -70,23 +70,48 @@ layout(location = 0) in Vert vert;
 
 layout(location = 0) out vec4 frag_color;
 
-vec3 calc_light()
+vec3 calc_dir_light(DirectionalLight light, vec3 N, vec3 V)
+{
+	const vec3 L = light.direction;
+
+	// 环境光
+	const float  ka      = 0.4;
+    const vec3   ambient = ka * light.color;
+
+	// 漫反射
+	const float kd             = 1.0;
+	const float diffuse_amount = max(dot(N, L), 0.0);
+	const vec3  diffuse        = kd * diffuse_amount * light.color;
+
+	// 镜面反射
+	const float ks              = 0.3;
+	const float shininess       = 4.0;
+	const vec3  reflect_dir     = reflect(-L, N);
+	const float specular_amount = pow(max(dot(reflect_dir, V), 0.0), shininess);
+	const vec3  specular        = ks * specular_amount * light.color;
+
+	return (ambient + diffuse + specular) * light.intesity;
+}
+
+vec3 calc_light(vec3 N, vec3 V)
 {
 	DirectionalLight light;
-	light.color = vec3(0.0);
-	light.intesity = 10.0;
-	light.direction = vec3(0.0, -1.0, 0.0);
+	light.color     = vec3(1.0);
+	light.intesity  = 0.8;
+	light.direction = vec3(-1.0, 0.0, -1.0);
 
-	return vec3(0.0);
+	vec3 lighting = vec3(0.0);
+	lighting += calc_dir_light(light, N, V);
+	return lighting;
 }
 
 void main()
 {
-	mat4 invView       = inverse(mat.view);
-	vec3 cam_position  = invView[3].xyz;
-	vec3 cam_direction = -normalize(invView[2].xyz);
+	mat4 inv_view = inverse(mat.view);
+	vec3 cam_pos  = inv_view[3].xyz;
+	vec3 cam_dir  = -normalize(inv_view[2].xyz);
 
-	// if(dot(normalize(vert.position - cam_position), cam_direction) > 0.9)
+	// if(dot(normalize(vert.position - cam_pos), cam_dir) > 0.9)
 	//     color.r = 1;
 
 	vec4  albedo    = texture(albedo, vert.tex_coord).rgba;
@@ -94,9 +119,10 @@ void main()
 	float roughness = texture(roughness, vert.tex_coord).r;
 	float ao        = texture(ao, vert.tex_coord).r;
 	vec3  emissive  = texture(emissive, vert.tex_coord).rgb;
-	vec3  normal    = texture(normal, vert.tex_coord).rgb;
-	normal          = normalize(2.0 * normal - 1.0);
-	normal          = normalize(vert.TBN * vert.normal);
+	// vec3  normal    = texture(normal, vert.tex_coord).rgb;
+	// normal          = normalize(2.0 * normal - 1.0);
+	// normal          = normalize(vert.TBN * vert.normal);
+	vec3 normal     = vert.normal;
 
 	if(albedo.a < 0.5)
 		discard;
@@ -105,6 +131,11 @@ void main()
 
 	if(vec3(albedo) == vec3(0.0))
 		frag_color = vec4(vert.tex_coord, 0.0, 0.0);
+		
+	// frag_color = vec4(0.5); // DEBUG: Lighting
+	vec3 lighting = calc_light(normal, cam_dir);
+	frag_color = frag_color * vec4(lighting, 0.0);
 
-	vec3 direct_lighting = vec3(0.0);
+	// frag_color = vec4(normal, 0.0);              // DEBUG: Normal
+	// frag_color = vec4(vert.tex_coord, 0.0, 0.0); // DEBUG: UV
 }
