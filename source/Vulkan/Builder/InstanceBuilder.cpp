@@ -14,7 +14,7 @@
 namespace
 {
 
-std::string_view toString(VkDebugUtilsMessageSeverityFlagBitsEXT severity)
+std::string_view ToString(VkDebugUtilsMessageSeverityFlagBitsEXT severity)
 {
 	switch(severity)
 	{
@@ -33,7 +33,7 @@ std::string_view toString(VkDebugUtilsMessageSeverityFlagBitsEXT severity)
 	return "";
 }
 
-std::string_view toString(VkDebugUtilsMessageTypeFlagsEXT type)
+std::string_view ToString(VkDebugUtilsMessageTypeFlagsEXT type)
 {
 	switch(type)
 	{
@@ -196,7 +196,7 @@ void InstanceBuilder::createDebugMessager(VkInstance instance)
 		                 "|-Type:     {}\n"
 		                 "|-Severity: {}\n"
 		                 "`-Message:  {}",
-		                 toString(type), toString(severity), data->pMessage)
+		                 ToString(type), ToString(severity), data->pMessage)
 		         .c_str());
 		return VK_FALSE;
 	};

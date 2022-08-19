@@ -54,7 +54,7 @@ private:
 	static void createCommandPool();
 };
 
-inline std::string_view toString(VkResult res)
+inline std::string_view ToString(VkResult res)
 {
 	switch(res)
 	{
@@ -135,6 +135,6 @@ inline std::string_view toString(VkResult res)
 inline VkResult VKCheck(VkResult res)
 {
 	if(res != VK_SUCCESS)
-		throw std::runtime_error("Vulkan:" + std::string(toString(res)));
+		throw std::runtime_error("Vulkan:" + std::string(ToString(res)));
 	return res;
 }

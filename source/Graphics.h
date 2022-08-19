@@ -16,6 +16,7 @@
 #include "VertexFormat.h"
 
 #include "AssimpImporter.h"
+#include "Font.h"
 #include "Model.h"
 #include "Primitive.h"
 
