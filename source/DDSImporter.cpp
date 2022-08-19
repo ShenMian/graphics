@@ -99,7 +99,7 @@ std::shared_ptr<Texture> DDSImporter::load(const fs::path& path)
 	bool compressed = true;
 
 	size_t blockSize;
-	Format fmt;
+	Format fmt = Format::Unknown;
 	if(memcmp("DXT1", &header.format.fourCC, 4))
 	{
 		// BC1 compression (DXT1)
@@ -158,8 +158,6 @@ std::shared_ptr<Texture> DDSImporter::load(const fs::path& path)
 	auto   width  = header.width;
 	auto   height = header.height;
 	auto   depth  = std::max(header.depth, 1u);
-
-	size += width * height * depth * 4;
 	for(uint32_t level = 0; level < header.mipMapCount; ++level)
 	{
 		size += width * height * depth;
@@ -171,6 +169,6 @@ std::shared_ptr<Texture> DDSImporter::load(const fs::path& path)
 	std::vector<char> buf(size);
 	file.read(buf.data(), size);
 
-	return Texture::create(Image(buf.data(), size, Vector2i(header.width, header.height), 4), fmt, header.mipMapCount,
-	                       type);
+	// return Texture::create(..., fmt, header.mipMapCount, type);
+	return nullptr;
 }
