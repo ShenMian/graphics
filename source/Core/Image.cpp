@@ -48,7 +48,9 @@ void Image::load(const fs::path& path)
 
 void Image::load(const void* data, size_t sizeBytes, const Vector2i& size, int channels)
 {
-	size_    = size;
+	assert(size.x * size.y * channels == sizeBytes);
+
+	size_     = size;
 	channels_ = channels;
 	data_.resize(sizeBytes);
 	std::memcpy(this->data_.data(), data, this->data_.size());
@@ -81,7 +83,7 @@ void Image::save(const fs::path& path) const
 			throw std::runtime_error("failed to save image to tga");
 	}
 	else
-		assert(false); // 不支持的导出格式
+		throw std::runtime_error("unsupport format"); // 不支持的导出格式
 }
 
 void Image::setPixel(const Vector4f& color, const Vector2i& pos)
