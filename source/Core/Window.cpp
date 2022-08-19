@@ -14,10 +14,9 @@
 
 namespace fs = std::filesystem;
 
-Window::Window(std::string_view title, const Vector2i& size, bool fullscreen)
+Window::Window(std::string_view title, const Vector2i& size)
 {
-	handle = glfwCreateWindow(size.x, size.y, title.data(), fullscreen ? Monitor::getPrimary()->getHandle() : nullptr,
-	                          nullptr);
+	handle = glfwCreateWindow(size.x, size.y, title.data(), nullptr, nullptr);
 	if(handle == nullptr)
 		throw std::runtime_error("failed to create window");
 
@@ -84,13 +83,16 @@ void Window::setFullscreen(bool fullscreen)
 {
 	if(fullscreen)
 	{
-		size     = getSize();
-		position = getPosition();
-	}
+		// 保存窗口状态, 便于复原
+		this->position = getPosition();
+		this->size     = getSize();
 
-	const auto monitor = Monitor::getPrimary();
-	glfwSetWindowMonitor(handle, fullscreen ? monitor->getHandle() : nullptr, position.x, position.y, size.x, size.y,
-	                     GLFW_DONT_CARE);
+		const auto monitor = Monitor::getPrimary();
+		glfwSetWindowMonitor(handle, monitor->getHandle(), 0, 0, monitor->getSize().x, monitor->getSize().y,
+		                     GLFW_DONT_CARE);
+	}
+	else
+		glfwSetWindowMonitor(handle, nullptr, position.x, position.y, size.x, size.y, GLFW_DONT_CARE);
 }
 
 bool Window::isFullscreen() const noexcept
