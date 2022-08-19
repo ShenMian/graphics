@@ -22,9 +22,15 @@ public:
 	Font(const std::filesystem::path& path);
 	virtual ~Font();
 
-	void loadFromFile(const std::filesystem::path& path);
+	/**
+	 * @brief 从字体文件加载.
+	 */
+	void load(const std::filesystem::path& path);
 
-	Glyph getGlyph(uint32_t code, uint16_t size);
+	/**
+	 * @brief 获取字形.
+	 */
+	Glyph getGlyph(unsigned long code, uint16_t size);
 
 	static void init();
 	static void deinit();
