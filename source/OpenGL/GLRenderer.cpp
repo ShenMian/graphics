@@ -35,6 +35,9 @@ void GLRenderer::init(const Window& win)
 
 	glEnable(GL_MULTISAMPLE);
 
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 	glEnable(GL_DEBUG_OUTPUT);
 	glDebugMessageCallback(
 	    [](GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, GLchar const* message,
