@@ -63,8 +63,11 @@ Model AssimpImporter::load(const fs::path& path)
 	constexpr unsigned int maxQualityFlags = qualityFlags | aiProcess_OptimizeMeshes;
 
 	Assimp::Importer importer;
-	importer.SetProgressHandler(
-	    new Progress([](float progress) { printf(":: Model loading: %.1f%%  \r", progress * 100); }));
+	importer.SetProgressHandler(new Progress([](float progress) {
+		printf(":: Model loading: %.1f%%  \r", progress * 100);
+		if(progress == 1.f)
+			printf("\n");
+	}));
 	scene = importer.ReadFile(path.string(), fastFlags);
 
 	if(scene == nullptr || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || scene->mRootNode == nullptr)
@@ -139,11 +142,11 @@ void AssimpImporter::loadMaterial(const aiMaterial& mat)
 	    .pbr =
 	        {
 	            .albedo    = loadTexture(aiTextureType_BASE_COLOR),
-	            .normals   = loadTexture(aiTextureType_NORMAL_CAMERA),
-	            .roughness = loadTexture(aiTextureType_DIFFUSE_ROUGHNESS),
+	            .normals   = loadTexture(aiTextureType_NORMALS), // aiTextureType_NORMAL_CAMERA
 	            .metallic  = loadTexture(aiTextureType_METALNESS),
-	            .ao        = loadTexture(aiTextureType_AMBIENT_OCCLUSION),
-	            .emissive  = loadTexture(aiTextureType_EMISSION_COLOR),
+	            .roughness = loadTexture(aiTextureType_DIFFUSE_ROUGHNESS),
+	            .emissive  = loadTexture(aiTextureType_EMISSIVE), // aiTextureType_EMISSION_COLOR
+	            .occlusion = loadTexture(aiTextureType_AMBIENT_OCCLUSION),
 	        },
 	    .diffuse   = loadTexture(aiTextureType_DIFFUSE),
 	    .specular  = loadTexture(aiTextureType_SPECULAR),
