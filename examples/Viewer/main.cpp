@@ -3,6 +3,8 @@
 
 #include "../Base/Base.hpp"
 
+#include <glad/glad.h>
+
 class Viewer final : public Base
 {
 public:
@@ -75,7 +77,7 @@ public:
 		speed += model.aabb.max.y - model.aabb.min.y;
 		speed += model.aabb.max.z - model.aabb.min.z;
 		speed /= 3;
-		controller.setSpeed(speed * 0.5);
+		controller.setSpeed(speed * 0.4);
 
 		bool running    = true;
 		window->onClose = [&] { running = false; };
@@ -95,6 +97,14 @@ public:
 
             case Key::F11:
                 window->setFullscreen(!window->isFullscreen());
+                break;
+
+            case Key::F12:
+                std::vector<char> buf(3 * window->getSize().x * window->getSize().y);
+                glReadPixels(0, 0, window->getSize().x, window->getSize().y, GL_RGB, GL_UNSIGNED_BYTE, buf.data());
+                auto img = Image(buf.data(), buf.size(), window->getSize(), 3);
+                img.flipVertically();
+                img.save("screenshot.png");
                 break;
             }
 		};
