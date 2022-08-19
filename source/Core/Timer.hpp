@@ -12,12 +12,12 @@
 /**
  * @brief 计时器.
  */
-class Clock
+class Timer
 {
 public:
 	using clock = std::chrono::high_resolution_clock;
 
-	Clock()
+	Timer()
 	{
 		restart();
 	}

@@ -20,7 +20,7 @@
 #include "Model.h"
 #include "Primitive.h"
 
-#include "Core/Clock.hpp"
+#include "Core/Timer.hpp"
 #include "Core/Controller.h"
 #include "Core/Gamepad.h"
 #include "Core/Image.h"
