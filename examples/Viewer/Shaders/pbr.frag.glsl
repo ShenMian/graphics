@@ -119,6 +119,7 @@ void main()
 		frag_color = vec4(vert.tex_coord, 0.0, 1.0);
 		
 	frag_color = vec4(texture(normal_map, vert.tex_coord).rgb, 1.0);
+
 	// frag_color = vec4(normal, 1.0);              // DEBUG: normal only
 	// frag_color = vec4(emissive, 1.0);            // DEBUG: emissive only
 	// frag_color = vec4(vec3(metalness), 1.0);     // DEBUG: metalness only

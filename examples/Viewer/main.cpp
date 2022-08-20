@@ -21,17 +21,17 @@ public:
 			// path = "../../../../../../Model/san_miguel/san-miguel-low-poly.obj";
 
 			// PBR
-			// path = "../../../../../../Model/pbr/sponza/sponza.glb";
-			path = "../../../../../../Model/m4a1/m4a1.gltf";
+			path = "../../../../../../Model/pbr/sponza/sponza.glb";
+			// path = "../../../../../../Model/m4a1/m4a1.gltf";
 			// path = "../../../../../../Model/pistol/kimber_desert_warrior/scene.gltf";
-			// path = "../../../../../../Model/pbr/MetalRoughSpheres/MetalRoughSpheres.gltf";
+			path = "../../../../../../Model/pbr/MetalRoughSpheres/MetalRoughSpheres.gltf";
 			// path = "../../../../../../Model/ORCA/bistro/BistroExterior.glb";
 			// path = "../../../../../../Model/ORCA/bistro/BistroExterior.fbx";
 			// path = "../../../../../../Model/ORCA/SunTemple/SunTemple.fbx";
 		}
 
-		AssimpImporter importer;
-		auto           model = importer.load(path);
+		ModelImporter importer;
+		auto          model = importer.load(path);
 		printModelInfo(model);
 
 		// model.meshes.clear();
@@ -40,8 +40,8 @@ public:
 		// model.meshs.push_back(Primitive::makeCapsule(15, 2, 0.5).value());
 		// model.meshs.push_back(Primitive::makePlane(10, 10).value());
 
-		// auto program = Program::create("Shaders/mesh");
-		auto program = Program::create("Shaders/pbr");
+		auto program = Program::create("Shaders/mesh");
+		// auto program = Program::create("Shaders/pbr");
 
 		PipelineLayout layout = {{"albedo", 0, PipelineLayout::Type::Texture, PipelineLayout::StageFlags::Fragment},
 		                         {"roughness", 1, PipelineLayout::Type::Texture, PipelineLayout::StageFlags::Fragment},
@@ -57,7 +57,7 @@ public:
 		auto cmdBuffer = CommandBuffer::create();
 
 		Camera camera(Camera::Type::Perspective);
-		camera.setPerspective(radians(45.f), (float)window->getSize().x / window->getSize().y, 0.1f, 5000.f);
+		camera.setPerspective(radians(45.f), (float)window->getSize().x / window->getSize().y, 0.1f, 2000.f);
 
 		Gamepad gamepad(0);
 
@@ -126,19 +126,17 @@ public:
 		window->setCursorLock(true);
 		window->setRawMouseMotion(true);
 
-		ui::Window ATT("ATT"); // 摄像机姿态信息
-		ui::Label  position;   // 坐标
-		ui::Label  angles;     // 姿态角角度
-		ATT.add(position);
-		ATT.add(angles);
+		ui::Window attInfo("ATT"); // 摄像机姿态信息
+		ui::Label  position;       // 坐标
+		ui::Label  angles;         // 姿态角角度
+		attInfo.add(position);
+		attInfo.add(angles);
 
-		ui::NodeEditor editor;
-
-		Timer clock;
+		Timer timer;
 		while(running)
 		{
-			const auto dt = (float)clock.getSeconds();
-			clock.restart();
+			const auto dt = (float)timer.getSeconds();
+			timer.restart();
 #if 0
 			static float elapse = 0;
 			elapse += dt;
@@ -153,8 +151,6 @@ public:
 
 			UI::beginFrame();
 
-			editor.update();
-
 			const auto& pos = camera.getPosition();
 			position.setText(fmt::format("X    : {: .2f}\n"
 			                             "Y    : {: .2f}\n"
@@ -165,7 +161,7 @@ public:
 			                           "Pitch: {: .1f}\n"
 			                           "Yaw  : {: .1f}\n",
 			                           dir.z, dir.x, dir.y));
-			ATT.update();
+			attInfo.update();
 
 			matrices->getBuffer().map();
 			matrices->getBuffer().write(camera.getView().data(), sizeof(Matrix4f));
