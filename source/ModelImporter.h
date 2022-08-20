@@ -3,14 +3,15 @@
 
 #pragma once
 
-#include "Importer.h"
 #include "Mesh.h"
+#include <filesystem>
 
 /** @addtogroup model
  *  @{
  */
 
 class Mesh;
+class Model;
 class Vector;
 class Animation;
 struct Material;
@@ -24,10 +25,10 @@ struct aiAnimation;
 /**
  * @brief Assimp 模型导入器.
  */
-class AssimpImporter : public Importer
+class ModelImporter
 {
 public:
-	Model load(const std::filesystem::path& path) override;
+	Model load(const std::filesystem::path& path);
 
 private:
 	void loadScene();

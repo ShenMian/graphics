@@ -1,7 +1,7 @@
 ﻿// Copyright 2021 ShenMian
 // License(Apache-2.0)
 
-#include "AssimpImporter.h"
+#include "ModelImporter.h"
 #include "Animation.h"
 #include "IndexBuffer.h"
 #include "Material.h"
@@ -50,7 +50,7 @@ private:
 
 } // namespace
 
-Model AssimpImporter::load(const fs::path& path)
+Model ModelImporter::load(const fs::path& path)
 {
 	if(!fs::is_regular_file(path))
 		throw std::runtime_error(fmt::format("no such file: {}", path));
@@ -81,7 +81,7 @@ Model AssimpImporter::load(const fs::path& path)
 	return model;
 }
 
-void AssimpImporter::loadScene()
+void ModelImporter::loadScene()
 {
 	model->name = scene->mName.C_Str();
 
@@ -94,7 +94,7 @@ void AssimpImporter::loadScene()
 	loadNode(*scene->mRootNode);
 }
 
-void AssimpImporter::loadNode(const aiNode& node)
+void ModelImporter::loadNode(const aiNode& node)
 {
 	for(unsigned int i = 0; i < node.mNumMeshes; i++)
 		loadMesh(*scene->mMeshes[node.mMeshes[i]]);
@@ -103,7 +103,7 @@ void AssimpImporter::loadNode(const aiNode& node)
 		loadNode(*node.mChildren[i]);
 }
 
-void AssimpImporter::loadMesh(const aiMesh& mesh)
+void ModelImporter::loadMesh(const aiMesh& mesh)
 {
 	const auto vertices = loadVertices(mesh);
 	const auto indices  = loadIndices(mesh);
@@ -111,12 +111,26 @@ void AssimpImporter::loadMesh(const aiMesh& mesh)
 	for(const auto& vertex : vertices)
 		model->aabb.expand(vertex.position);
 
+	auto& m = model->materials[mesh.mMaterialIndex];
+
 	model->meshes.push_back({mesh.mName.C_Str(), vertices, indices, &model->materials[mesh.mMaterialIndex]});
 	model->vertexCount += vertices.size();
 	model->indexCount += indices.size();
+
+	for(unsigned int i = 0; i < mesh.mNumBones; i++)
+	{
+		auto& bone = mesh.mBones[i];
+		bone->mName;
+		bone->mOffsetMatrix;
+		for(unsigned int j = 0; j < bone->mNumWeights; i++)
+		{
+			bone->mWeights[i].mVertexId;
+			bone->mWeights[i].mWeight;
+		}
+	}
 }
 
-void AssimpImporter::loadMaterial(const aiMaterial& mat)
+void ModelImporter::loadMaterial(const aiMaterial& mat)
 {
 	auto loadTexture = [&](aiTextureType type) -> std::shared_ptr<Texture> {
 		if(mat.GetTextureCount(type) == 0)
@@ -159,13 +173,13 @@ void AssimpImporter::loadMaterial(const aiMaterial& mat)
 	});
 }
 
-void AssimpImporter::loadAnimation(const aiAnimation& anim)
+void ModelImporter::loadAnimation(const aiAnimation& anim)
 {
 	model->animations.emplace_back(anim.mName.C_Str(), static_cast<float>(anim.mDuration / anim.mTicksPerSecond),
 	                               static_cast<int>(anim.mTicksPerSecond));
 }
 
-std::vector<Mesh::Vertex> AssimpImporter::loadVertices(const aiMesh& mesh)
+std::vector<Mesh::Vertex> ModelImporter::loadVertices(const aiMesh& mesh)
 {
 	std::vector<Mesh::Vertex> vertices;
 
@@ -202,7 +216,7 @@ std::vector<Mesh::Vertex> AssimpImporter::loadVertices(const aiMesh& mesh)
 	return vertices;
 }
 
-std::vector<unsigned int> AssimpImporter::loadIndices(const aiMesh& mesh)
+std::vector<unsigned int> ModelImporter::loadIndices(const aiMesh& mesh)
 {
 	std::vector<unsigned int> indices;
 

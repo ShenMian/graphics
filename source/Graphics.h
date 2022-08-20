@@ -15,7 +15,8 @@
 #include "VertexBuffer.h"
 #include "VertexFormat.h"
 
-#include "AssimpImporter.h"
+#include "ModelImporter.h"
+#include "DDSImporter.h"
 #include "Font.h"
 #include "Model.h"
 #include "Primitive.h"
