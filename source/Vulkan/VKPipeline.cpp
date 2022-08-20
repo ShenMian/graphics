@@ -133,7 +133,6 @@ void VKPipeline::createPipelineLayout(const Descriptor& desc)
 	auto renderer = reinterpret_cast<VKRenderer*>(Renderer::get());
 
 	std::vector<VkDescriptorSetLayoutBinding> bindings;
-
 	for(const auto& binding : desc.layout.getBindings())
 	{
 		VkDescriptorSetLayoutBinding layoutBinding = {};

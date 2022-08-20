@@ -34,8 +34,8 @@ public:
 			{{+0.5, -0.5, +0.5}, {0.2f, 0.2f, 0.2f}}
 		};
 		// clang-format on
-		VertexFormat format = {{"position", Format::RGB32F}, {"color", Format::RGB32F}};
-		auto vertexBuffer = VertexBuffer::create(vertices, format);
+		VertexFormat format       = {{"position", Format::RGB32F}, {"color", Format::RGB32F}};
+		auto         vertexBuffer = VertexBuffer::create(vertices, format);
 
 		// 创建顶点索引, 表示构成 12 个三角形的顶点组成
 		// clang-format off
@@ -76,7 +76,8 @@ public:
 		};
 		window->setVisible(true);
 
-		Matrix4f model = Matrix4f::createRotationX(radians(-15.f));
+		Matrix4f  model = Matrix4f::createRotationX(radians(-15.f));
+		Transform transform;
 
 		while(running)
 		{
