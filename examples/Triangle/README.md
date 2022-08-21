@@ -59,16 +59,17 @@ VertexFormat format = {
     {"position", Format::RG32F}, // 2D 坐标, 包含两个 32 位的 float 变量.
     {"color",    Format::RGB32F} // RGB 颜色, 包含三个 32 位的 float 变量.
 };
-
-// 若无法确定结构体对齐方式, 可以使用下面方法
-VertexFormat format;
-format.addAttribute({"position", Format::RG32F, offsetof(Vertex, position)});
-format.addAttribute({"position", Format::RG32F, offsetof(Vertex, color)});
-format.setStride(sizeof(Vertex)); // 设置数组中每个顶点的大小.
 ```
 
-创建 VertexFormat 的过程中会通过格式自动计算成员的偏移量/单个顶点的大小. 但由于内存对齐, 实际的大小不一定等于各成员大小之和.  
-因此还提供了第二种方式, 确保在不确定对齐方式的情况下确保数据正确.  
+假设存放顶点数据的数组没有任何填充(padding), 创建 VertexFormat 的过程中会通过格式自动推导成员的偏移量/单个顶点的大小.  
+但由于内存对齐, 实际的大小不一定等于各成员大小之和. 若无法确定结构体对齐方式, 可以使用下面方法:  
+
+```cpp
+VertexFormat format;
+format.addAttribute({"position", Format::RG32F,  offsetof(Vertex, position)});
+format.addAttribute({"color",    Format::RGB32F, offsetof(Vertex, color)});
+format.setStride(sizeof(Vertex)); // 设置数组中每个顶点的大小.
+```
 
 创建顶点缓冲区.  
 
@@ -84,15 +85,25 @@ auto vertexBuffer = VertexBuffer::create(vertices, format);
 auto program = Program::create("Shaders/forward");
 ```
 
-这行代码会找到 [Shaders](Shaders) 文件夹下了两个源文件, 分别是 [forward.vert.glsl](Shaders/forward.vert.glsl)(顶点着色器源文件) 和 [forward.frag.glsl](Shaders/forward.frag.glsl)(片段着色器源文件). 将其编译为 SPIR-V 并读取链接为着色器程序.  
+这行代码会找到 Shaders 文件夹下了两个源文件, 分别是 [forward.vert.glsl](Shaders/forward.vert.glsl)(顶点着色器源文件) 和 [forward.frag.glsl](Shaders/forward.frag.glsl)(片段着色器源文件).  
+将其编译为 SPIR-V 并载入链接为着色器程序.  
+
+## 渲染管线
+
+```cpp
+Pipeline::Descriptor desc;
+desc.program      = program; // 指定着色器程序
+desc.vertexFormat = format;  // 指定顶点数据格式
+auto pipeline = Pipeline::create(desc); // 创建渲染管线
+```
 
 ## 命令缓冲区 & 命令队列
 
-创建命令缓冲区和命令队列.  
+创建命令队列和命令缓冲区, 顺序必须固定.  
 
 ```cpp
-auto cmdBuffer = CommandBuffer::create(); // 创建命令缓冲区
 auto cmdQueue  = CommandQueue::create();  // 创建命令队列
+auto cmdBuffer = CommandBuffer::create(); // 创建命令缓冲区
 ```
 
 ## 主循环
@@ -109,8 +120,11 @@ while(running)
     program->use(); // 使用着色器程序
     cmdBuffer->begin();
     {
-        cmdBuffer->setClearColor({0, 0, 0, 0}); // 设置清空颜色缓冲区的默认值为黑色
-        cmdBuffer->clear(ClearFlag::Color);     // 清空颜色缓冲区
+		cmdBuffer->setPipeline(pipeline); // 设置要使用的渲染管线
+
+		cmdBuffer->setViewport({window->getSize()}); // 设置视口
+        cmdBuffer->setClearColor({0, 0, 0, 0});      // 设置清空颜色缓冲区的默认值为黑色
+        cmdBuffer->clear(ClearFlag::Color);          // 清空颜色缓冲区
 
         cmdBuffer->setVertexBuffer(vertexBuffer);     // 设置顶点缓冲区
         cmdBuffer->draw(0, vertexBuffer->getCount()); // 绘制顶点缓冲区中的全部数据
@@ -121,5 +135,3 @@ while(running)
     window.update(); // 更新窗口事件并交换缓冲区, 该语句执行完即可从窗口看到渲染结果
 }
 ```
-
-**提示**: 未提及的部分将会在源文件中包含相应的注释.  

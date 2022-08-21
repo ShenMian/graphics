@@ -29,15 +29,15 @@ public:
 			{{-0.5, -0.5}, {0, 0, 1}}
 		};
 		// clang-format on
-		VertexFormat layout = {{"position", Format::RG32F}, {"color", Format::RGB32F}};
-		auto vertexBuffer = VertexBuffer::create(vertices, layout);
+		VertexFormat format = {{"position", Format::RG32F}, {"color", Format::RGB32F}};
+		auto vertexBuffer = VertexBuffer::create(vertices, format);
 
 		// 创建着色器程序
 		auto program = Program::create("Shaders/forward");
 
 		Pipeline::Descriptor desc;
 		desc.program      = program;
-		desc.vertexFormat = layout;
+		desc.vertexFormat = format;
 		// desc.viewports.push_back(Viewport({0, 0}, window.getSize()));
 		auto pipeline = Pipeline::create(desc);
 
