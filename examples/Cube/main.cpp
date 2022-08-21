@@ -78,6 +78,7 @@ public:
 
 		Matrix4f  model = Matrix4f::createRotationX(radians(-15.f));
 		Transform transform;
+		transform.rotation().eular({radians(-15.f), 0.f, 0.f});
 
 		while(running)
 		{

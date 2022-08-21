@@ -11,7 +11,7 @@
 
 ## 创建模型的变换矩阵
 
-创建一个 4x4 矩阵, 用于表示改模型的变换. 包括: 位置, 旋转和缩放. 后面将对该矩阵进行旋转变换来实现对立方体的旋转.  
+创建一个 4x4 矩阵, 用于表示改模型的变换(平移, 旋转和缩放). 后面将对该矩阵进行旋转变换来实现对立方体的旋转.  
 
 ```cpp
 Matrix4f model = Matrix4f::createRotationX(radians(15.f)); // 绕 X 轴旋转 15 度
@@ -32,7 +32,15 @@ model *= Matrix4f::createRotationY(radians(0.5f));
 ## 着色器
 
 ```cpp
-layout (location = 0) in vec3 position; // 顶点的 3D 坐标
+// 变换矩阵
+layout(binding = 0) uniform Matrices
+{
+    mat4 view;  // 视图变换矩阵
+    mat4 proj;  // 投影变换矩阵
+    mat4 model; // 模型变换矩阵
+} mat;
+
+layout (location = 0) in vec3 position; // 顶点的坐标
 
 // ... skip ...
 
@@ -42,14 +50,14 @@ void main()
 {
     // ... skip ...
 
-    // 将每个顶点坐标都乘以模型变换矩阵, 以得到变换后的顶点坐标.
-    gl_Position = model * vec4(position, 1.0);
+    // 将每个顶点坐标都乘以变换矩阵, 得到变换后的顶点坐标
+    gl_Position = mat.proj * mat.view * mat.model * vec4(position, 1.0);
 }
 ```
 
 ## 清空深度缓冲区
 
-绘制 3D 图像时会使用深度缓冲区来存储每个像素的深度值, 因此在每次绘制后需要清空.  
+绘制 3D 图像时会使用深度缓冲区来存储每个像素的深度值, 每次绘制前需要清空.  
 
 ```cpp
 cmdBuffer->setClearDepth(std::numeric_limits<float>::infinity()); // 设置清空深度缓冲区的默认值为无穷大
