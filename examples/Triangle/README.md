@@ -120,9 +120,9 @@ while(running)
     program->use(); // 使用着色器程序
     cmdBuffer->begin();
     {
-		cmdBuffer->setPipeline(pipeline); // 设置要使用的渲染管线
+        cmdBuffer->setPipeline(pipeline); // 设置要使用的渲染管线
 
-		cmdBuffer->setViewport({window->getSize()}); // 设置视口
+        cmdBuffer->setViewport({window->getSize()}); // 设置视口
         cmdBuffer->setClearColor({0, 0, 0, 0});      // 设置清空颜色缓冲区的默认值为黑色
         cmdBuffer->clear(ClearFlag::Color);          // 清空颜色缓冲区
 

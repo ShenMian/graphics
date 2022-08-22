@@ -58,50 +58,35 @@ public:
 
 	void printMonitorInfo()
 	{
-		puts("Monitor");
 		const auto monitors = Monitor::getMonitors();
-		if(monitors.empty())
+		fmt::print("Monitors\n");
+		for(const auto& mon : monitors)
 		{
-			printWarn("no monitor");
-			return;
+			fmt::print("{:{}}{}\n", "", 2, mon.getName());
+			fmt::print("{:{}}{:12}: {}x{}\n", "", 4, "size", mon.getSize().x, mon.getSize().y);
+			fmt::print("{:{}}{:12}: {}\n", "", 4, "refresh rate", mon.getRefreshRate());
 		}
-		for(size_t i = 0; i < monitors.size() - 1; i++)
-		{
-			fmt::print("|-{}\n"
-			           "| |-Size        : {}x{}\n"
-			           "| `-Refresh rate: {} Hz\n",
-			           monitors[i].getName(), monitors[i].getSize().x, monitors[i].getSize().y,
-			           monitors[i].getRefreshRate());
-		}
-		fmt::print("`-{}\n"
-		           "  |-Size        : {}x{}\n"
-		           "  `-Refresh rate: {} Hz\n",
-		           monitors.back().getName(), monitors.back().getSize().x, monitors.back().getSize().y,
-		           monitors.back().getRefreshRate());
 	}
 
 	void printRendererInfo()
 	{
 		const auto renderer = Renderer::get();
-		fmt::print("Renderer\n"
-		           "|-Device  : {}\n"
-		           "|-Renderer: {}\n"
-		           "`-Vendor  : {}\n",
-		           renderer->getDeviceName(), renderer->getRendererName(), renderer->getVendorName());
+		fmt::print("Renderer\n");
+		fmt::print("{:{}}{:8}: {}\n", "", 2, "device", renderer->getDeviceName());
+		fmt::print("{:{}}{:8}: {}\n", "", 2, "renderer", renderer->getRendererName());
+		fmt::print("{:{}}{:8}: {}\n", "", 2, "vendor", renderer->getVendorName());
 	}
 
 	void printModelInfo(const Model& model)
 	{
-		fmt::print("Model\n"
-		           "|-Name     : {}\n"
-		           "|-Triangles: {}\n"
-		           "|-Vertices : {}\n"
-		           "|-Indices  : {}\n"
-		           "|-Meshes   : {}\n"
-		           "|-Materials: {}\n"
-		           "`-Anims    : {}\n",
-		           model.name, model.indexCount / 3, model.vertexCount, model.indexCount, model.meshes.size(),
-		           model.materials.size(), model.animations.size());
+		fmt::print("Model\n");
+		fmt::print("{:{}}{:9}: {}\n", "", 2, "name", model.name);
+		fmt::print("{:{}}{:9}: {}\n", "", 2, "triangles", model.indexCount / 3);
+		fmt::print("{:{}}{:9}: {}\n", "", 2, "vertices", model.vertexCount);
+		fmt::print("{:{}}{:9}: {}\n", "", 2, "indices", model.indexCount);
+		fmt::print("{:{}}{:9}: {}\n", "", 2, "meshes", model.meshes.size());
+		fmt::print("{:{}}{:9}: {}\n", "", 2, "materials", model.materials.size());
+		fmt::print("{:{}}{:9}: {}\n", "", 2, "anims", model.animations.size());
 	}
 
 	void printInfo(std::string_view msg) { fmt::print("{} {}\n", fmt::styled("[*]", fg(fmt::color::blue)), msg); }
