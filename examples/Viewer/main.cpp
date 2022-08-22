@@ -5,6 +5,13 @@
 
 #include <glad/glad.h>
 
+struct alignas(16) DirectionalLight
+{
+	Vector3 color;
+	float   intensity;
+	Vector3 direction;
+};
+
 class Viewer final : public Base
 {
 public:
@@ -18,13 +25,14 @@ public:
 		else
 		{
 			path = "../../../../../../Model/sponza/sponza.obj";
+			// path = "../../../../../../Model/dishonored_2/scene.glb";
 			// path = "../../../../../../Model/san_miguel/san-miguel-low-poly.obj";
 
 			// PBR
-			path = "../../../../../../Model/pbr/sponza/sponza.glb";
-			// path = "../../../../../../Model/m4a1/m4a1.gltf";
+			// path = "../../../../../../Model/pbr/sponza/sponza.glb";
+			path = "../../../../../../Model/m4a1/m4a1.gltf";
 			// path = "../../../../../../Model/pistol/kimber_desert_warrior/scene.gltf";
-			path = "../../../../../../Model/pbr/MetalRoughSpheres/MetalRoughSpheres.gltf";
+			// path = "../../../../../../Model/pbr/MetalRoughSpheres/MetalRoughSpheres.gltf";
 			// path = "../../../../../../Model/ORCA/bistro/BistroExterior.glb";
 			// path = "../../../../../../Model/ORCA/bistro/BistroExterior.fbx";
 			// path = "../../../../../../Model/ORCA/SunTemple/SunTemple.fbx";
@@ -40,8 +48,8 @@ public:
 		// model.meshs.push_back(Primitive::makeCapsule(15, 2, 0.5).value());
 		// model.meshs.push_back(Primitive::makePlane(10, 10).value());
 
-		auto program = Program::create("Shaders/mesh");
-		// auto program = Program::create("Shaders/pbr");
+		// auto program = Program::create("Shaders/phong");
+		auto program = Program::create("Shaders/pbr");
 
 		PipelineLayout layout = {{"albedo", 0, PipelineLayout::Type::Texture, PipelineLayout::StageFlags::Fragment},
 		                         {"roughness", 1, PipelineLayout::Type::Texture, PipelineLayout::StageFlags::Fragment},
@@ -66,6 +74,7 @@ public:
 		controller.setGamepad(gamepad);
 
 		auto matrices = UniformBuffer::create(0, 3 * sizeof(Matrix4f));
+		auto lights   = UniformBuffer::create(1, sizeof(DirectionalLight) + sizeof(uint32_t));
 
 		/*
 		GLUniformBuffer animation("Animation", 1, 100 * sizeof(Matrix4f));
@@ -168,6 +177,18 @@ public:
 			matrices->getBuffer().write(camera.getProjection().data(), sizeof(Matrix4f), sizeof(Matrix4f));
 			matrices->getBuffer().write(Matrix4f().data(), sizeof(Matrix4f), 2 * sizeof(Matrix4f));
 			matrices->getBuffer().unmap();
+
+			std::vector<DirectionalLight> dirLights;
+			dirLights.push_back(DirectionalLight{
+			    .color     = Vector3(0.0),
+			    .intensity = 1.f,
+			    .direction = Vector3(-1.0, 0.0, -0.5),
+			});
+			size_t dirLightsSize = dirLights.size();
+			lights->getBuffer().map();
+			lights->getBuffer().write(dirLights.data(), dirLightsSize * sizeof(DirectionalLight));
+			lights->getBuffer().write(&dirLightsSize, sizeof(uint32_t), dirLightsSize * sizeof(DirectionalLight));
+			lights->getBuffer().unmap();
 
 			cmdBuffer->begin();
 			{

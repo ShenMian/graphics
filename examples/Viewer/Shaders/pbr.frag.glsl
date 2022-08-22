@@ -1,9 +1,9 @@
+// Copyright 2021 SMS
+// License(Apache-2.0)
+
 #version 450
 #extension GL_KHR_vulkan_glsl : enable
 precision highp float;
-
-// Copyright 2021 SMS
-// License(Apache-2.0)
 
 const float PI = 3.141592654;
 
@@ -118,7 +118,7 @@ void main()
 	if(vec3(albedo) == vec3(0.0))
 		frag_color = vec4(vert.tex_coord, 0.0, 1.0);
 		
-	frag_color = vec4(texture(normal_map, vert.tex_coord).rgb, 1.0);
+	// frag_color = vec4(texture(normal_map, vert.tex_coord).rgb, 1.0);
 
 	// frag_color = vec4(normal, 1.0);              // DEBUG: normal only
 	// frag_color = vec4(emissive, 1.0);            // DEBUG: emissive only

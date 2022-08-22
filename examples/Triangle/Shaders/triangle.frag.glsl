@@ -1,7 +1,7 @@
-#version 450
-
 // Copyright 2021 SMS
 // License(Apache-2.0)
+
+#version 450
 
 layout(location = 0) out vec4 frag_color;
 

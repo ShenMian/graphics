@@ -1,9 +1,9 @@
+// Copyright 2021 SMS
+// License(Apache-2.0)
+
 #version 450
 #extension GL_KHR_vulkan_glsl : enable
 precision highp float;
-
-// Copyright 2021 SMS
-// License(Apache-2.0)
 
 const float PI = 3.141592654;
 
@@ -60,6 +60,12 @@ layout(binding = 0) uniform Matrices
 	mat4 model;
 } mat;
 
+layout(binding = 1, std140) uniform Lights
+{
+	DirectionalLight dir_lights[1];
+	int              dir_lights_size;
+} lights;
+
 layout(location = 0) uniform sampler2D diffuse_map;
 layout(location = 1) uniform sampler2D specular_map;
 layout(location = 2) uniform sampler2D ambient_map;
@@ -73,6 +79,33 @@ layout(location = 0) in Vert vert;
 
 layout(location = 0) out vec4 frag_color;
 
+#define DEBUG_ONLY_NORMAL 0
+#define DEBUG_ONLY_UV     0
+
+#define ENABLE_BLINN_PHONG  1
+#define ENABLE_TOON_SHADING 0
+
+const int   toon_color_levels = 4;
+const float toon_scale_factor = 1.0 / toon_color_levels;
+const float rim_light_power   = 2.0;
+
+/**
+  * @brief 获取轮廓光系数.
+  *
+  * @param N 表面法向量.
+  * @param V 表面指向相机方向.
+  */
+float calc_rim_light_factor(vec3 V, vec3 N)
+{
+    float factor = dot(V, N);
+    factor       = max(1.0 - factor, 0.0);
+    factor       = pow(factor, rim_light_power);
+    return factor;
+}
+
+/**
+  * @brief 获取 TBN 矩阵.
+  */
 mat3 get_tbn_matrix()
 {
 	vec3 q1  = dFdx(vert.position);
@@ -87,6 +120,9 @@ mat3 get_tbn_matrix()
 	return mat3(T, B, N);
 }
 
+/**
+  * @brief 获取向量.
+  */
 vec3 get_normal()
 {
 	vec3 tangent_normal = normalize(texture(normal_map, vert.tex_coord).rgb * 2.0 - 1.0);
@@ -111,10 +147,25 @@ vec3 calc_dir_light(DirectionalLight light, vec3 N, vec3 V)
 	const float ks        = 1.0;  // 镜面反射系数
 	const float shininess = 32.0; // 镜面反射指数
 
-	vec3 ambient_color  = texture(diffuse_map, vert.tex_coord).rgb;
 	vec3 diffuse_color  = texture(diffuse_map, vert.tex_coord).rgb;
 	vec3 specular_color = texture(specular_map, vert.tex_coord).rgb;
 
+	if(diffuse_color == vec3(0.0))
+		diffuse_color = vec3(0.5);
+
+#if ENABLE_TOON_SHADING
+	// 环境光
+    const vec3 ambient = ka * light.color;
+
+	// 漫反射
+	const float diff    = ceil(max(dot(N, L), 0.0) * toon_color_levels) * toon_scale_factor;
+	const vec3  diffuse = kd * diff * light.color;
+
+	// 边缘光
+	const float rim = calc_rim_light_factor(V, N);
+
+	return ambient * diffuse_color + ((diffuse * diffuse_color + rim * diffuse_color) * light.intensity);
+#else
 	// 环境光
     const vec3 ambient = ka * light.color;
 
@@ -123,20 +174,23 @@ vec3 calc_dir_light(DirectionalLight light, vec3 N, vec3 V)
 	const vec3  diffuse = kd * diff * light.color;
 
 	// 镜面反射
-#if 1
-	// Blinn-Phong
-    const vec3  H = normalize(L + V);
-	float spec    = pow(max(dot(N, H), 0.0), shininess);
-	if(diff == 0.0)
-		spec = 0.0;
+	vec3 specular = vec3(0.0);
+	if(diff > 0.0)
+	{
+#if ENABLE_BLINN_PHONG
+		// Blinn-Phong
+		const vec3  H    = normalize(L + V);
+		const float spec = pow(max(dot(N, H), 0.0), shininess);
 #else
-	// Phong
-	const vec3  R    = reflect(-L, N);
-	const float spec = pow(max(dot(V, R), 0.0), shininess / 4.0);
+		// Phong
+		const vec3  R    = reflect(-L, N);
+		const float spec = pow(max(dot(V, R), 0.0), shininess / 4.0);
 #endif
-	const vec3 specular = ks * spec * light.color;
+		specular = ks * spec * light.color;
+	}
 
-	return ambient * ambient_color + ((diffuse * diffuse_color + specular * specular_color) * light.intensity);
+	return ambient * diffuse_color + ((diffuse * diffuse_color + specular * specular_color) * light.intensity);
+#endif
 }
 
 /**
@@ -159,6 +213,7 @@ vec3 calc_point_light(PointLight light, vec3 N, vec3 V)
 	const float dis         = length(L);
     const float attenuation = light.intensity / (light.constant + light.linear * dis + light.quadratic * (dis * dis));
 
+	// TODO: 会导致存在环境光
 	return calc_dir_light(dir_light, N, V) * attenuation;
 }
 
@@ -184,7 +239,8 @@ vec3 calc_spot_light(SpotLight light, vec3 N, vec3 V)
     point_light.constant  = light.constant;
     point_light.linear    = light.linear;
     point_light.quadratic = light.quadratic;
-
+	
+	// TODO: 会导致存在环境光
 	return calc_point_light(point_light, N, V);
 }
 
@@ -202,16 +258,16 @@ vec3 calc_light(vec3 N, vec3 V)
 	dir_light.direction = vec3(-1.0, 0.0, -0.5);
 
 	PointLight point_light;
-	point_light.color     = vec3(1.0);
-	point_light.intensity = 1.0;
+	point_light.color     = vec3(1.0, 0.0, 0.0);
+	point_light.intensity = 10.0;
 	point_light.position  = vec3(0.0);
 	point_light.constant  = 1.0;
 	point_light.linear    = 0.09;
 	point_light.quadratic = 0.032;
 
 	SpotLight spot_light;
-	spot_light.color       = vec3(1.0);
-	spot_light.intensity   = 1.0;
+	spot_light.color       = vec3(0.0, 1.0, 0.0);
+	spot_light.intensity   = 10.0;
 	spot_light.position    = vec3(0.0);
 	spot_light.direction   = -V;
     spot_light.cutOff      = radians(12.5);
@@ -224,6 +280,12 @@ vec3 calc_light(vec3 N, vec3 V)
 	lighting += calc_dir_light(dir_light, N, V);
 	// lighting += calc_point_light(point_light, N, V);
 	// lighting += calc_spot_light(spot_light, N, V);
+
+	// lighting += calc_dir_light(lights.dir_lights[0], N, V);
+	/*
+	for(int i = 0; i < lights.dir_lights_size; i++)
+		lighting += calc_dir_light(lights.dir_lights[i], N, V);
+	*/
 	return lighting;
 }
 
@@ -238,20 +300,16 @@ void main()
 	vec3  normal   = vert.normal;
 	// vec3  normal   = get_normal();
 
-	if(albedo.a < 0.5)
-		discard;
-
-	frag_color = albedo;
-
-	if(vec3(albedo) == vec3(0.0))
-		frag_color = vec4(vert.tex_coord, 0.0, 1.0);
-
 	vec3 V = normalize(cam_pos - vert.position);
 	vec3 lighting = calc_light(normal, V);
-	frag_color = vec4(lighting, 1.0);
-	
-	// frag_color = vec4(normal, 1.0);                     // DEBUG: normal only
-	// frag_color = texture(specular_map, vert.tex_coord); // DEBUG: specular only
-	// frag_color = vec4(vert.tex_coord, 0.0, 1.0);        // DEBUG: uv only
+	frag_color = vec4(lighting, albedo.a);
+
+#if DEBUG_ONLY_NORMAL
+	frag_color = vec4(normal, 1.0);                     // DEBUG: normal only
+#endif
+#if DEBUG_ONLY_UV
+	frag_color = vec4(vert.tex_coord, 0.0, 1.0);        // DEBUG: uv only
+#endif
 	// frag_color = vec4(emissive, 1.0);                   // DEBUG: emissive only
+	// frag_color = texture(specular_map, vert.tex_coord); // DEBUG: specular only
 }
