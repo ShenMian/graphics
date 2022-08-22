@@ -35,7 +35,7 @@ public:
 	/**
 	 * @brief 生成包含 UV 坐标的球.
 	 */
-	static std::optional<Mesh> makeSphere(unsigned int lat, unsigned int lon);
+	static std::optional<Mesh> makeUVSphere(unsigned int lat, unsigned int lon);
 
 	/**
 	 * @brief 生成 ICO 球.

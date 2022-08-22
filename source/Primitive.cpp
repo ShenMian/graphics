@@ -210,7 +210,7 @@ std::optional<Mesh> Primitive::makePlane(unsigned int x, unsigned int z)
 	return Mesh("plane", vertices, indices);
 }
 
-std::optional<Mesh> Primitive::makeSphere(unsigned int lat, unsigned int lon)
+std::optional<Mesh> Primitive::makeUVSphere(unsigned int lat, unsigned int lon)
 {
 	// Edge case throws off counts so return nullptrs
 	if(lon < 2 || lat < 2)

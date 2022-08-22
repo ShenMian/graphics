@@ -29,10 +29,11 @@ public:
 			// path = "../../../../../../Model/san_miguel/san-miguel-low-poly.obj";
 
 			// PBR
-			// path = "../../../../../../Model/pbr/sponza/sponza.glb";
-			path = "../../../../../../Model/m4a1/m4a1.gltf";
+			path = "../../../../../../Model/pbr/sponza/sponza.glb";
+			// path = "../../../../../../Model/m4a1/m4a1.gltf";
 			// path = "../../../../../../Model/pistol/kimber_desert_warrior/scene.gltf";
-			// path = "../../../../../../Model/pbr/MetalRoughSpheres/MetalRoughSpheres.gltf";
+			path = "../../../../../../Model/pbr/MetalRoughSpheres/MetalRoughSpheres.gltf";
+			// path = "../../../../../../Model/pbr/FlightHelmet/FlightHelmet.gltf";
 			// path = "../../../../../../Model/ORCA/bistro/BistroExterior.glb";
 			// path = "../../../../../../Model/ORCA/bistro/BistroExterior.fbx";
 			// path = "../../../../../../Model/ORCA/SunTemple/SunTemple.fbx";
@@ -43,7 +44,7 @@ public:
 		printModelInfo(model);
 
 		// model.meshes.clear();
-		// model.meshes.push_back(Primitive::makeSphere(64, 32).value());
+		// model.meshes.push_back(Primitive::makeUVSphere(64, 32).value());
 		// model.meshs.push_back(Primitive::makeIcoSphere(7));
 		// model.meshs.push_back(Primitive::makeCapsule(15, 2, 0.5).value());
 		// model.meshs.push_back(Primitive::makePlane(10, 10).value());
@@ -178,6 +179,7 @@ public:
 			matrices->getBuffer().write(Matrix4f().data(), sizeof(Matrix4f), 2 * sizeof(Matrix4f));
 			matrices->getBuffer().unmap();
 
+			/*
 			std::vector<DirectionalLight> dirLights;
 			dirLights.push_back(DirectionalLight{
 			    .color     = Vector3(0.0),
@@ -189,6 +191,7 @@ public:
 			lights->getBuffer().write(dirLights.data(), dirLightsSize * sizeof(DirectionalLight));
 			lights->getBuffer().write(&dirLightsSize, sizeof(uint32_t), dirLightsSize * sizeof(DirectionalLight));
 			lights->getBuffer().unmap();
+			*/
 
 			cmdBuffer->begin();
 			{
@@ -213,8 +216,8 @@ public:
 							cmdBuffer->setTexture(mesh.material->pbr.normals, 1);
 							cmdBuffer->setTexture(mesh.material->pbr.metallic, 2);
 							cmdBuffer->setTexture(mesh.material->pbr.roughness, 3);
-							// cmdBuffer->setTexture(mesh.material->pbr.emissive, 4);
-							// cmdBuffer->setTexture(mesh.material->pbr.occlusion, 5);
+							cmdBuffer->setTexture(mesh.material->pbr.emissive, 4);
+							cmdBuffer->setTexture(mesh.material->pbr.occlusion, 5);
 						}
 						else
 						{
@@ -249,18 +252,3 @@ int main(int argc, char* argv[])
 	Viewer instance;
 	return instance.run(argc, argv);
 }
-
-/*
-const std::vector<Image> images = {
-    {"../../../3DModel/skybox/cube/right.jpg"},
-    {"../../../3DModel/skybox/cube/left.jpg"},
-    {"../../../3DModel/skybox/cube/top.jpg"},
-    {"../../../3DModel/skybox/cube/bottom.jpg"},
-    {"../../../3DModel/skybox/cube/front.jpg"},
-    {"../../../3DModel/skybox/cube/back.jpg"}
-};
-auto cubemap = Texture::create(images);
-auto program = Program::create("Shaders/skybox");
-cubemap->bind(0);
-program->setUniform("cubemap", 0);
-*/
