@@ -85,7 +85,7 @@ GLShader::GLShader(const Descriptor& desc) : Shader(desc), handle(glCreateShader
 			level += 2;
 			fmt::print("{:{}}{:7}: {}\n", "", level, "binding", binding);
 			fmt::print("{:{}}{:7}: {}\n", "", level, "size", size);
-			fmt::print("{:{}}{:7}: {}\n", "", level, "members", "");
+			fmt::print("{:{}}{}\n", "", level, "members");
 
 			level += 2;
 			for(size_t i = 0; i < memberCount; i++)

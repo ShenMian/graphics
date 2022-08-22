@@ -186,7 +186,7 @@ GLTexture::GLTexture(const Image& image, Format fmt, uint32_t mipmapCount, Type 
 			break;
 		}
 
-		size_t offset = 0;
+		size_t  offset = 0;
 		GLsizei width  = flippedImage.size().x;
 		GLsizei height = flippedImage.size().y;
 		for(uint32_t level = 0; level < mipmapCount; level++)
@@ -206,8 +206,7 @@ GLTexture::GLTexture(const Image& image, Format fmt, uint32_t mipmapCount, Type 
 	GLsizei height = flippedImage.size().y;
 	glTextureStorage2D(handle, 1, GLInternalFormat(format), width, height);
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-	glTextureSubImage2D(handle, 0, 0, 0, width, height, GLFormat(format), GL_UNSIGNED_BYTE,
-			            flippedImage.data());
+	glTextureSubImage2D(handle, 0, 0, 0, width, height, GLFormat(format), GL_UNSIGNED_BYTE, flippedImage.data());
 
 	if(mipmapCount == 1)
 		generateMipmap();
@@ -230,7 +229,7 @@ GLTexture::GLTexture(const std::vector<Image>& images) : Texture(Type::Cube, Get
 
 		// glTextureSubImage3D(handle, 0, 0, 0, i, flippedImage.size().x, flippedImage.size().y, 1, GL_UNSIGNED_BYTE,
 		//                     GLFormat(format), flippedImage.data());
-		bind();
+		glBindTexture(GL_TEXTURE_2D, handle);
 		glTexImage2D(static_cast<GLenum>(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i), 0, GLInternalFormat(format),
 		             static_cast<GLsizei>(flippedImage.size().x), static_cast<GLsizei>(flippedImage.size().y), 0,
 		             GLFormat(format), GL_UNSIGNED_BYTE, flippedImage.data());
