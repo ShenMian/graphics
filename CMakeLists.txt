@@ -1,10 +1,8 @@
 ﻿# Copyright 2021 SMS
 # License(Apache-2.0)
 
-# 指定最小版本号
 cmake_minimum_required(VERSION 3.16)
 
-# 指定项目名和版本号
 project(Graphics
     VERSION      0.0.0
     DESCRIPTION  "A simple abstraction layer for the modern graphics APIs."
@@ -41,7 +39,7 @@ if(USE_CONAN AND EXISTS "${CMAKE_BINARY_DIR}/conanbuildinfo.cmake")
     conan_basic_setup()
 endif()
 
-# 指定构建目录
+# 指定库文件输出目录
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_DEBUG   "${CMAKE_BINARY_DIR}/lib")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE "${CMAKE_BINARY_DIR}/lib")
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG   "${CMAKE_BINARY_DIR}/lib")
