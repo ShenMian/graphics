@@ -70,21 +70,24 @@ GLShader::GLShader(const Descriptor& desc) : Shader(desc), handle(glCreateShader
 		if(res.uniform_buffers.empty())
 			return;
 
-		puts("Uniform buffers");
-		for(const auto& buf : res.uniform_buffers)
+		for(size_t i = 0; i < res.uniform_buffers.size(); i++)
 		{
+			const auto& buf = res.uniform_buffers[i];
+
 			const auto& type        = compiler.get_type(buf.base_type_id);
 			const auto  size        = compiler.get_declared_struct_size(type);
 			const auto  binding     = compiler.get_decoration(buf.id, spv::DecorationBinding);
 			const auto  memberCount = type.member_types.size();
 
-			puts(fmt::format("|-{}\n"
-			                 "  |-binding: {}\n"
-			                 "  |-size   : {} bytes\n"
-			                 "  `-members",
-			                 buf.name.empty() ? "NULL" : buf.name, binding, size, memberCount)
-			         .c_str());
+			size_t level = 0;
+			fmt::print("{:{}}{}\n", "", level, buf.name.empty() ? "NULL" : buf.name);
 
+			level += 2;
+			fmt::print("{:{}}{:7}: {}\n", "", level, "binding", binding);
+			fmt::print("{:{}}{:7}: {}\n", "", level, "size", size);
+			fmt::print("{:{}}{:7}: {}\n", "", level, "members", "");
+
+			level += 2;
 			for(size_t i = 0; i < memberCount; i++)
 			{
 				const auto&  memberName   = compiler.get_member_name(buf.base_type_id, i);
@@ -92,13 +95,21 @@ GLShader::GLShader(const Descriptor& desc) : Shader(desc), handle(glCreateShader
 				const size_t memberSize   = compiler.get_declared_struct_member_size(type, i);
 				const size_t memberOffset = compiler.type_struct_member_offset(type, i);
 
-				puts(fmt::format("    |-{}\n"
-				                 "      |-offset: {}\n"
-				                 "      |-type  : {}\n"
-				                 "      `-size  : {} bytes",
-				                 memberName.empty() ? "NULL" : memberName, memberOffset, "", memberSize)
-				         .c_str());
+				fmt::print("{:{}}{}\n", "", level, memberName.empty() ? "NULL" : memberName);
+
+				level += 2;
+				fmt::print("{:{}}{:6}: {}\n", "", level, "offset", memberOffset);
+				fmt::print("{:{}}{:6}: {}\n", "", level, "size", memberSize);
+
+				if(!memberType.array.empty())
+				{
+					const auto arrayStride = compiler.type_struct_member_array_stride(type, i);
+					fmt::print("{:{}}{:12}: {}\n", "", level, "array size", memberType.array.size());
+					fmt::print("{:{}}{:12}: {}\n", "", level, "array stride", arrayStride);
+				}
+				level -= 2;
 			}
+			level -= 2;
 		}
 	}
 }
