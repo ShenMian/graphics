@@ -137,19 +137,21 @@ $(document).ready(function(){initNavTree('_getting_started.html',''); initResiza
 应用骨架</h1>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;Graphics/Graphics.h&gt;</span> <span class="comment">// 引入 Graphics 头文件, 只需包含该文件</span></div>
 <div class="line"> </div>
-<div class="line"><span class="comment">// 初始化, 需按照严格的顺序. 在使用任何 API 前调用初始化即可.</span></div>
-<div class="line"><a class="code hl_function" href="class_renderer.html#a04003283aef7694ae68fe9a63bbca592">Renderer::setAPI</a>(Renderer::API::OpenGL); <span class="comment">// 选择将要使用的渲染后端 API.</span></div>
+<div class="line"><span class="comment">// 初始化, 需按照严格的顺序. 在使用任何 API 前调用初始化即可</span></div>
+<div class="line"><a class="code hl_function" href="class_renderer.html#a04003283aef7694ae68fe9a63bbca592">Renderer::setAPI</a>(Renderer::API::OpenGL); <span class="comment">// 选择将要使用的渲染后端 API</span></div>
 <div class="line">                                         <span class="comment">// 该步骤必须在初始化窗口前执行, 因为窗口实现依赖于渲染后端 API</span></div>
 <div class="line">Window::init();   <span class="comment">// 初始化窗口, 之后才可以调用窗口/显示器/输入相关的 API</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">const</span> <span class="keyword">auto</span> monitor = <a class="code hl_function" href="class_monitor.html#a8afbc04b4417bbeb2f4d4e2c69feb45c">Monitor::getPrimary</a>();   <span class="comment">// 获取主显示器</span></div>
 <div class="line">{</div>
 <div class="line">    <a class="code hl_class" href="class_window.html">Window</a> window(<span class="stringliteral">&quot;title&quot;</span>, monitor-&gt;getSize() / 2); <span class="comment">// 创建窗口, 窗口标题为 title, 大小为主显示器分辨率的一半,</span></div>
-<div class="line">                                                    <span class="comment">// 即窗口应该占据屏幕的 1/4.</span></div>
+<div class="line">                                                    <span class="comment">// 即窗口应该占据屏幕的 1/4</span></div>
 <div class="line">                                                    </div>
 <div class="line">    Renderer::init(window); <span class="comment">// 初始化渲染 API, 之后才可以使用渲染相关的 API</span></div>
-<div class="line">    UI::init();             <span class="comment">// (可选) 初始化 UI, 之后才能使用 UI 相关的 API.</span></div>
-<div class="line">                            <span class="comment">// 如果你不打算使用 UI 相关的 API, 可以跳过此步骤.</span></div>
+<div class="line">    UI::init(window);       <span class="comment">// (可选) 初始化 UI, 之后才能使用 UI 相关的 API.</span></div>
+<div class="line">                            <span class="comment">// 如果你不打算使用 UI 相关的 API, 可以跳过此步骤</span></div>
+<div class="line"> </div>
+<div class="line">    window.setVisible(<span class="keyword">true</span>); <span class="comment">// 显示窗口</span></div>
 <div class="line">                                                   </div>
 <div class="line">    {</div>
 <div class="line">        <span class="comment">// ... 构建渲染相关对象实例 ...</span></div>
@@ -162,6 +164,8 @@ $(document).ready(function(){initNavTree('_getting_started.html',''); initResiza
 <div class="line">            <span class="comment">// ... 渲染相关代码 ...</span></div>
 <div class="line">            </div>
 <div class="line">            UI::endFrame();</div>
+<div class="line"> </div>
+<div class="line">            window.update(); <span class="comment">// 更新窗口, 展示结果并进行事件回调</span></div>
 <div class="line">        }</div>
 <div class="line">    } <span class="comment">// 析构渲染相关实例</span></div>
 <div class="line">    </div>
