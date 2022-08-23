@@ -63,14 +63,15 @@ git submodule update --init # 签出子模块
 Renderer::setAPI(Renderer::API::OpenGL); // 选择将要使用的渲染后端 API.
                                          // 该步骤必须在初始化窗口前执行, 因为窗口实现依赖于渲染后端 API
 Window::init();   // 初始化窗口, 之后才可以调用窗口/显示器/输入相关的 API
-Renderer::init(); // 初始化渲染 API, 之后才可以使用渲染相关的 API
-UI::init();       // (可选) 初始化 UI, 之后才能使用 UI 相关的 API.
-                  // 如果你不打算使用 UI 相关的 API, 可以跳过此步骤.
 
 const auto monitor = Monitor::getPrimary();   // 获取主显示器
 {
     Window window("title", monitor->getSize() / 2); // 创建窗口, 窗口标题为 title, 大小为主显示器分辨率的一半,
                                                     // 即窗口应该占据屏幕的 1/4.
+                                                    
+    Renderer::init(window); // 初始化渲染 API, 之后才可以使用渲染相关的 API
+    UI::init();             // (可选) 初始化 UI, 之后才能使用 UI 相关的 API.
+                            // 如果你不打算使用 UI 相关的 API, 可以跳过此步骤.
                                                    
     {
         // ... 构建渲染相关对象实例 ...
