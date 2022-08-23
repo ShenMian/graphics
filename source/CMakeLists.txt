@@ -134,6 +134,10 @@ include("${DEPS_DIR}/imnodes.cmake")
 list(APPEND LIBS imnodes)
 list(APPEND INCS "${DEPS_DIR}/imnodes")
 
+if(WIN32)
+list(APPEND LIBS xinput)
+endif()
+
 # message(STATUS "INCS: ${INCS}")
 # message(STATUS "LIBS: ${LIBS}")
 

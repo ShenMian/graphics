@@ -2,19 +2,32 @@
 // License(Apache-2.0)
 
 #include "Gamepad.h"
-#include <GLFW/glfw3.h>
+#include "Platform.h"
 #include <cassert>
 #include <cstring>
 #include <fstream>
+#include <numeric>
 
 #define FMT_HEADER_ONLY
 #include <fmt/format.h>
 #include <fmt/std.h>
 
+#if TARGET_OS == OS_WIN
+#include <Windows.h>
+#include <Xinput.h>
+#endif
+
+#include <GLFW/glfw3.h>
+
 namespace fs = std::filesystem;
 
 Gamepad::Gamepad(handle_type handle) : handle(handle)
 {
+}
+
+Gamepad::~Gamepad()
+{
+	setVibration(0.0, 0.0);
 }
 
 void Gamepad::update()
@@ -91,6 +104,17 @@ float Gamepad::getRaw(Trigger trigger) const noexcept
 bool Gamepad::get(Button button) const noexcept
 {
 	return buttons[static_cast<uint8_t>(button)] == GLFW_PRESS;
+}
+
+void Gamepad::setVibration(float leftSpeed, float rightSpeed)
+{
+#if TARGET_OS == OS_WIN
+	XINPUT_VIBRATION state = {};
+	state.wLeftMotorSpeed  = leftSpeed * std::numeric_limits<WORD>::max();
+	state.wRightMotorSpeed = rightSpeed * std::numeric_limits<WORD>::max();
+	if(XInputSetState(handle, &state) != ERROR_SUCCESS)
+		throw std::runtime_error("Xinput: failed to set vibration");
+#endif
 }
 
 std::string_view Gamepad::getName() const

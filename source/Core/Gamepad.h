@@ -32,6 +32,11 @@ public:
 	Gamepad(handle_type handle = 0);
 
 	/**
+	 * @brief 默认析构函数.
+	 */
+	~Gamepad();
+
+	/**
 	 * @brief 更新数据.
 	 */
 	void update();
@@ -84,6 +89,14 @@ public:
 	 * @return 按键是否按下.
 	 */
 	bool get(Button button) const noexcept;
+
+	/**
+	 * @brief 设置震动反馈.
+	 *
+	 * @param leftSpeed  左马达转速.
+	 * @param rightSpeed 右马达转速.
+	 */
+	void setVibration(float leftSpeed, float rightSpeed);
 
 	/**
 	 * @brief 获取设备名称. 人类可读的, UTF-8 编码.
