@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.4"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Graphics: /github/workspace/source/PipelineLayout.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Graphics<span id="projectnumber">&#160;v0.0.0</span>
+   </div>
+   <div id="projectbrief">A simple abstraction layer for the modern graphics APIs.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.4 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'搜索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('_pipeline_layout_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">PipelineLayout.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright 2021 ShenMian</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// License(Apache-2.0)</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;cstdint&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;initializer_list&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;string_view&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="class_pipeline_layout.html">   14</a></span><span class="keyword">class </span><a class="code hl_class" href="class_pipeline_layout.html">PipelineLayout</a></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>{</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keyword">enum class</span> Type</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    {</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        <a class="code hl_class" href="class_uniform_buffer.html">UniformBuffer</a>,</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        Sampler,</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        <a class="code hl_class" href="class_texture.html">Texture</a></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    };</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="struct_pipeline_layout_1_1_stage_flags.html">   24</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="struct_pipeline_layout_1_1_stage_flags.html">StageFlags</a></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    {</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>        <span class="keyword">enum</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        {</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="struct_pipeline_layout_1_1_stage_flags.html#a29f719ba28c9c5d1aad311d52e7cfbcdae820a6ac4dd34d05f6607e6dfe12ce5b">   28</a></span>            <a class="code hl_enumvalue" href="struct_pipeline_layout_1_1_stage_flags.html#a29f719ba28c9c5d1aad311d52e7cfbcdae820a6ac4dd34d05f6607e6dfe12ce5b">Vertex</a>   = 1 &lt;&lt; 0, </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="struct_pipeline_layout_1_1_stage_flags.html#a29f719ba28c9c5d1aad311d52e7cfbcda149afe1cc4fb70e43ef1d0f485920960">   29</a></span>            <a class="code hl_enumvalue" href="struct_pipeline_layout_1_1_stage_flags.html#a29f719ba28c9c5d1aad311d52e7cfbcda149afe1cc4fb70e43ef1d0f485920960">Geometry</a> = 1 &lt;&lt; 1, </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="struct_pipeline_layout_1_1_stage_flags.html#a29f719ba28c9c5d1aad311d52e7cfbcdaa9cd37577ec3fd1aac666d52889bea40">   30</a></span>            <a class="code hl_enumvalue" href="struct_pipeline_layout_1_1_stage_flags.html#a29f719ba28c9c5d1aad311d52e7cfbcdaa9cd37577ec3fd1aac666d52889bea40">Fragment</a> = 1 &lt;&lt; 2, </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>            <a class="code hl_enumvalue" href="struct_pipeline_layout_1_1_stage_flags.html#a29f719ba28c9c5d1aad311d52e7cfbcda99d7cd69ab5493b69405b0a0a1118239">Compute</a>  = 1 &lt;&lt; 3  </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="struct_pipeline_layout_1_1_stage_flags.html#a29f719ba28c9c5d1aad311d52e7cfbcda99d7cd69ab5493b69405b0a0a1118239">   32</a></span>        };</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    };</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="struct_pipeline_layout_1_1_binding.html">   35</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="struct_pipeline_layout_1_1_binding.html">Binding</a></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    {</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <a class="code hl_struct" href="struct_pipeline_layout_1_1_binding.html">Binding</a>(std::string_view name, uint32_t binding, Type type, uint32_t stageFlags, uint32_t arraySize = 1)</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>            : type(type), binding(binding), stageFlags(stageFlags), arraySize(arraySize)</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        {</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        }</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        uint32_t binding;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        Type     type;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        uint32_t stageFlags;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        uint32_t arraySize;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    };</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <a class="code hl_class" href="class_pipeline_layout.html">PipelineLayout</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <a class="code hl_class" href="class_pipeline_layout.html">PipelineLayout</a>(<span class="keyword">const</span> std::initializer_list&lt;Binding&gt;&amp; list);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordtype">void</span> addBinding(<a class="code hl_struct" href="struct_pipeline_layout_1_1_binding.html">Binding</a> attr);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keyword">const</span> std::vector&lt;Binding&gt;&amp; getBindings() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    std::vector&lt;Binding&gt; bindings;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>};</div>
+<div class="ttc" id="aclass_pipeline_layout_html"><div class="ttname"><a href="class_pipeline_layout.html">PipelineLayout</a></div><div class="ttdoc">图形管线绑定布局.</div><div class="ttdef"><b>Definition:</b> PipelineLayout.h:15</div></div>
+<div class="ttc" id="aclass_texture_html"><div class="ttname"><a href="class_texture.html">Texture</a></div><div class="ttdoc">纹理.</div><div class="ttdef"><b>Definition:</b> Texture.h:22</div></div>
+<div class="ttc" id="aclass_uniform_buffer_html"><div class="ttname"><a href="class_uniform_buffer.html">UniformBuffer</a></div><div class="ttdef"><b>Definition:</b> UniformBuffer.h:12</div></div>
+<div class="ttc" id="astruct_pipeline_layout_1_1_binding_html"><div class="ttname"><a href="struct_pipeline_layout_1_1_binding.html">PipelineLayout::Binding</a></div><div class="ttdef"><b>Definition:</b> PipelineLayout.h:36</div></div>
+<div class="ttc" id="astruct_pipeline_layout_1_1_stage_flags_html"><div class="ttname"><a href="struct_pipeline_layout_1_1_stage_flags.html">PipelineLayout::StageFlags</a></div><div class="ttdef"><b>Definition:</b> PipelineLayout.h:25</div></div>
+<div class="ttc" id="astruct_pipeline_layout_1_1_stage_flags_html_a29f719ba28c9c5d1aad311d52e7cfbcda149afe1cc4fb70e43ef1d0f485920960"><div class="ttname"><a href="struct_pipeline_layout_1_1_stage_flags.html#a29f719ba28c9c5d1aad311d52e7cfbcda149afe1cc4fb70e43ef1d0f485920960">PipelineLayout::StageFlags::Geometry</a></div><div class="ttdeci">@ Geometry</div><div class="ttdef"><b>Definition:</b> PipelineLayout.h:29</div></div>
+<div class="ttc" id="astruct_pipeline_layout_1_1_stage_flags_html_a29f719ba28c9c5d1aad311d52e7cfbcda99d7cd69ab5493b69405b0a0a1118239"><div class="ttname"><a href="struct_pipeline_layout_1_1_stage_flags.html#a29f719ba28c9c5d1aad311d52e7cfbcda99d7cd69ab5493b69405b0a0a1118239">PipelineLayout::StageFlags::Compute</a></div><div class="ttdeci">@ Compute</div><div class="ttdef"><b>Definition:</b> PipelineLayout.h:31</div></div>
+<div class="ttc" id="astruct_pipeline_layout_1_1_stage_flags_html_a29f719ba28c9c5d1aad311d52e7cfbcdaa9cd37577ec3fd1aac666d52889bea40"><div class="ttname"><a href="struct_pipeline_layout_1_1_stage_flags.html#a29f719ba28c9c5d1aad311d52e7cfbcdaa9cd37577ec3fd1aac666d52889bea40">PipelineLayout::StageFlags::Fragment</a></div><div class="ttdeci">@ Fragment</div><div class="ttdef"><b>Definition:</b> PipelineLayout.h:30</div></div>
+<div class="ttc" id="astruct_pipeline_layout_1_1_stage_flags_html_a29f719ba28c9c5d1aad311d52e7cfbcdae820a6ac4dd34d05f6607e6dfe12ce5b"><div class="ttname"><a href="struct_pipeline_layout_1_1_stage_flags.html#a29f719ba28c9c5d1aad311d52e7cfbcdae820a6ac4dd34d05f6607e6dfe12ce5b">PipelineLayout::StageFlags::Vertex</a></div><div class="ttdeci">@ Vertex</div><div class="ttdef"><b>Definition:</b> PipelineLayout.h:28</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_b2f33c71d4aa5e7af42a1ca61ff5af1b.html">source</a></li><li class="navelem"><b>PipelineLayout.h</b></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4 </li>
+  </ul>
+</div>
+</body>
+</html>
