@@ -3,7 +3,7 @@
 
 #version 450
 
-const float PI = 3.141592654;
+const float PI = 3.14159265359;
 
 uniform float time;
 

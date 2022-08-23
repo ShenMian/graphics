@@ -5,7 +5,7 @@
 #extension GL_KHR_vulkan_glsl : enable
 precision highp float;
 
-const float PI = 3.141592654;
+const float PI = 3.14159265359;
 
 struct Vert
 {
@@ -108,14 +108,14 @@ float calc_rim_light_factor(vec3 V, vec3 N)
   */
 mat3 get_tbn_matrix()
 {
-	vec3 q1  = dFdx(vert.position);
-	vec3 q2  = dFdy(vert.position);
-	vec2 st1 = dFdx(vert.tex_coord);
-	vec2 st2 = dFdy(vert.tex_coord);
+	const vec3 q1  = dFdx(vert.position);
+	const vec3 q2  = dFdy(vert.position);
+	const vec2 st1 = dFdx(vert.tex_coord);
+	const vec2 st2 = dFdy(vert.tex_coord);
 
-	vec3 N = normalize(vert.normal);
-	vec3 T = normalize(q1 * st2.t - q2 * st1.t);
-	vec3 B = -normalize(cross(N, T));
+	const vec3 N = normalize(vert.normal);
+	const vec3 T = normalize(q1 * st2.t - q2 * st1.t);
+	const vec3 B = -normalize(cross(N, T));
 
 	return mat3(T, B, N);
 }
@@ -125,8 +125,8 @@ mat3 get_tbn_matrix()
   */
 vec3 get_normal()
 {
-	vec3 tangent_normal = normalize(texture(normal_map, vert.tex_coord).rgb * 2.0 - 1.0);
-	mat3 TBN            = get_tbn_matrix();
+	const vec3 tangent_normal = normalize(texture(normal_map, vert.tex_coord).rgb * 2.0 - 1.0);
+	const mat3 TBN            = get_tbn_matrix();
 
 	return TBN * tangent_normal;
 }
@@ -255,7 +255,7 @@ vec3 calc_light(vec3 N, vec3 V)
 	DirectionalLight dir_light;
 	dir_light.color     = vec3(1.0);
 	dir_light.intensity = 1.0;
-	dir_light.direction = vec3(-1.0, 0.0, -0.5);
+	dir_light.direction = normalize(vec3(-1.0, 0.0, -0.5));
 
 	PointLight point_light;
 	point_light.color     = vec3(1.0, 0.0, 0.0);

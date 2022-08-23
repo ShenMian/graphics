@@ -8,7 +8,7 @@ struct Vert
     vec2 tex_coord;
 };
 
-const float PI = 3.141592654;
+const float PI = 3.14159265359;
 
 layout(location = 0) in Vert vert;
 
