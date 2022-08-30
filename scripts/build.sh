@@ -20,7 +20,7 @@ fi
 
 if [ ! -z "$compiler" ] && [ ! -z "$compiler_version" ]; then
   CONAN_ARGS="-s build_type=$build_type -s compiler=$compiler -s compiler.version=$compiler_version"
-  CMAKE_ARGS="-DCMAKE_CXX_COMPILER=$compiler++"
+  CMAKE_ARGS="-DCMAKE_BUILD_TYPE=$build_type -DCMAKE_C_COMPILER=$compiler -DCMAKE_CXX_COMPILER=$compiler++"
 fi
 
 cd "$( cd "$( dirname "$0"  )" && pwd  )" || exit

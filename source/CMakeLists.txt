@@ -124,10 +124,15 @@ endif()
 add_subdirectory("${DEPS_DIR}/glslang" "glslang")
 
 # 添加 shaderc
-set(SHADERC_SKIP_TESTS ON)
-add_subdirectory("${DEPS_DIR}/shaderc" "shaderc")
-list(APPEND LIBS shaderc)
-list(APPEND INCS "${DEPS_DIR}/shaderc/libshaderc/include")
+find_package(shaderc QUIET)
+if(shaderc_FOUND)
+    list(APPEND LIBS shaderc::shaderc)
+else()
+    set(SHADERC_SKIP_TESTS ON)
+    add_subdirectory("${DEPS_DIR}/shaderc" "shaderc")
+    list(APPEND LIBS shaderc)
+    list(APPEND INCS "${DEPS_DIR}/shaderc/libshaderc/include")
+endif()
 
 # 添加 imnodes
 include("${DEPS_DIR}/imnodes.cmake")
