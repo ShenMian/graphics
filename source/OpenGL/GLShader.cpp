@@ -88,12 +88,12 @@ GLShader::GLShader(const Descriptor& desc) : Shader(desc), handle(glCreateShader
 			fmt::print("{:{}}{}\n", "", level, "members");
 
 			level += 2;
-			for(size_t i = 0; i < memberCount; i++)
+			for(size_t j = 0; j < memberCount; j++)
 			{
-				const auto&  memberName   = compiler.get_member_name(buf.base_type_id, i);
-				const auto&  memberType   = compiler.get_type(type.member_types[i]);
-				const size_t memberSize   = compiler.get_declared_struct_member_size(type, i);
-				const size_t memberOffset = compiler.type_struct_member_offset(type, i);
+				const auto&  memberName   = compiler.get_member_name(buf.base_type_id, j);
+				const auto&  memberType   = compiler.get_type(type.member_types[j]);
+				const size_t memberSize   = compiler.get_declared_struct_member_size(type, j);
+				const size_t memberOffset = compiler.type_struct_member_offset(type, j);
 
 				fmt::print("{:{}}{}\n", "", level, memberName.empty() ? "NULL" : memberName);
 
@@ -103,7 +103,7 @@ GLShader::GLShader(const Descriptor& desc) : Shader(desc), handle(glCreateShader
 
 				if(!memberType.array.empty())
 				{
-					const auto arrayStride = compiler.type_struct_member_array_stride(type, i);
+					const auto arrayStride = compiler.type_struct_member_array_stride(type, j);
 					fmt::print("{:{}}{:12}: {}\n", "", level, "array size", memberType.array.size());
 					fmt::print("{:{}}{:12}: {}\n", "", level, "array stride", arrayStride);
 				}
