@@ -109,11 +109,14 @@ bool Gamepad::get(Button button) const noexcept
 void Gamepad::setVibration(float leftSpeed, float rightSpeed)
 {
 #if TARGET_OS == OS_WIN
-	XINPUT_VIBRATION state = {};
-	state.wLeftMotorSpeed  = leftSpeed * std::numeric_limits<WORD>::max();
-	state.wRightMotorSpeed = rightSpeed * std::numeric_limits<WORD>::max();
-	if(XInputSetState(handle, &state) != ERROR_SUCCESS)
-		throw std::runtime_error("Xinput: failed to set vibration");
+	if(isConnected())
+	{
+		XINPUT_VIBRATION state = {};
+		state.wLeftMotorSpeed  = leftSpeed * std::numeric_limits<WORD>::max();
+		state.wRightMotorSpeed = rightSpeed * std::numeric_limits<WORD>::max();
+		if(XInputSetState(handle, &state) != ERROR_SUCCESS)
+			throw std::runtime_error("Xinput: failed to set vibration");
+	}
 #endif
 }
 
