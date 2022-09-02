@@ -4,6 +4,7 @@
   "description": "A simple abstraction layer for the modern graphics APIs.",
   "homepage": "https://github.com/ShenMian/Graphics",
   "dependencies": [
+    "fmt",
     "stb",
     "glad",
     "glfw3",
