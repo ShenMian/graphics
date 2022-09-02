@@ -31,6 +31,99 @@ std::unordered_map<Shader::Stage, shaderc_shader_kind> SCStage = {
     {Shader::Stage::Geometry, shaderc_glsl_geometry_shader},
     {Shader::Stage::Compute, shaderc_glsl_compute_shader}};
 
+std::string ToString(spirv_cross::SPIRType type)
+{
+	std::string result;
+
+	switch(type.basetype)
+	{
+		using enum spirv_cross::SPIRType::BaseType;
+
+	case Void:
+		result += "Void";
+		break;
+
+	case Boolean:
+		result += "Boolean";
+		break;
+
+	case SByte:
+		result += "SByte";
+		break;
+
+	case UByte:
+		result += "UByte";
+		break;
+
+	case Short:
+		result += "Short";
+		break;
+
+	case UShort:
+		result += "UShort";
+		break;
+
+	case Int:
+		result += "Int";
+		break;
+
+	case UInt:
+		result += "UInt";
+		break;
+
+	case Int64:
+		result += "Int64";
+		break;
+
+	case UInt64:
+		result += "UInt64";
+		break;
+
+	case AtomicCounter:
+		result += "AtomicCounter";
+		break;
+
+	case Half:
+		result += "Half";
+		break;
+
+	case Float:
+		result += "Float";
+		break;
+
+	case Double:
+		result += "Double";
+		break;
+
+	case Struct:
+		result += "Struct";
+		break;
+
+	case Image:
+		result += "Image";
+		break;
+
+	case SampledImage:
+		result += "SampledImage";
+		break;
+
+	case Sampler:
+		result += "Sampler";
+		break;
+
+	default:
+		result += "Unknown";
+		break;
+	}
+
+	if(type.columns > 1)
+	{
+		result += " (matrix)";
+	}
+
+	return result;
+}
+
 } // namespace
 
 GLShader::GLShader(const Descriptor& desc) : Shader(desc), handle(glCreateShader(GLStage[stage]))
@@ -67,9 +160,25 @@ GLShader::GLShader(const Descriptor& desc) : Shader(desc), handle(glCreateShader
 
 	{
 		const auto res = compiler.get_shader_resources();
-		if(res.uniform_buffers.empty())
-			return;
 
+		size_t level = 0;
+
+		fmt::print("{:{}}{}\n", "", level, "Sampled images");
+		for(size_t i = 0; i < res.sampled_images.size(); i++)
+		{
+			const auto& img  = res.sampled_images[i];
+			const auto  binding = compiler.get_decoration(img.id, spv::DecorationBinding);
+			const auto  location = compiler.get_decoration(img.id, spv::DecorationLocation);
+
+			fmt::print("{:{}}- {}\n", "", level, img.name);
+
+			level += 2;
+			fmt::print("{:{}}{:8}: {}\n", "", level, "binding", binding);
+			fmt::print("{:{}}{:8}: {}\n", "", level, "location", location);
+			level -= 2;
+		}
+
+		fmt::print("{:{}}{}\n", "", level, "Uniform buffers");
 		for(size_t i = 0; i < res.uniform_buffers.size(); i++)
 		{
 			const auto& buf = res.uniform_buffers[i];
@@ -79,15 +188,13 @@ GLShader::GLShader(const Descriptor& desc) : Shader(desc), handle(glCreateShader
 			const auto  binding     = compiler.get_decoration(buf.id, spv::DecorationBinding);
 			const auto  memberCount = type.member_types.size();
 
-			size_t level = 0;
-			fmt::print("{:{}}{}\n", "", level, buf.name.empty() ? "NULL" : buf.name);
+			fmt::print("{:{}}- {}\n", "", level, buf.name.empty() ? "NULL" : buf.name);
 
 			level += 2;
 			fmt::print("{:{}}{:7}: {}\n", "", level, "binding", binding);
 			fmt::print("{:{}}{:7}: {}\n", "", level, "size", size);
 			fmt::print("{:{}}{}\n", "", level, "members");
 
-			level += 2;
 			for(size_t j = 0; j < memberCount; j++)
 			{
 				const auto&  memberName   = compiler.get_member_name(buf.base_type_id, j);
@@ -95,11 +202,12 @@ GLShader::GLShader(const Descriptor& desc) : Shader(desc), handle(glCreateShader
 				const size_t memberSize   = compiler.get_declared_struct_member_size(type, j);
 				const size_t memberOffset = compiler.type_struct_member_offset(type, j);
 
-				fmt::print("{:{}}{}\n", "", level, memberName.empty() ? "NULL" : memberName);
+				fmt::print("{:{}}- {}\n", "", level, memberName.empty() ? "NULL" : memberName);
 
 				level += 2;
 				fmt::print("{:{}}{:6}: {}\n", "", level, "offset", memberOffset);
 				fmt::print("{:{}}{:6}: {}\n", "", level, "size", memberSize);
+				fmt::print("{:{}}{:6}: {}\n", "", level, "type", ToString(memberType));
 
 				if(!memberType.array.empty())
 				{
@@ -109,7 +217,6 @@ GLShader::GLShader(const Descriptor& desc) : Shader(desc), handle(glCreateShader
 				}
 				level -= 2;
 			}
-			level -= 2;
 		}
 	}
 }
