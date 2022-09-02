@@ -66,14 +66,14 @@ layout(binding = 1, std140) uniform Lights
 	int              dir_lights_size;
 } lights;
 
-layout(location = 0) uniform sampler2D diffuse_map;
-layout(location = 1) uniform sampler2D specular_map;
-layout(location = 2) uniform sampler2D ambient_map;
-layout(location = 3) uniform sampler2D emissive_map;
-layout(location = 4) uniform sampler2D height_map;
-layout(location = 5) uniform sampler2D normal_map;
-layout(location = 6) uniform sampler2D shininess_map;
-layout(location = 7) uniform sampler2D opacity_map;
+layout(binding = 0) uniform sampler2D diffuse_map;
+layout(binding = 1) uniform sampler2D specular_map;
+layout(binding = 2) uniform sampler2D ambient_map;
+layout(binding = 3) uniform sampler2D emissive_map;
+layout(binding = 4) uniform sampler2D height_map;
+layout(binding = 5) uniform sampler2D normal_map;
+layout(binding = 6) uniform sampler2D shininess_map;
+layout(binding = 7) uniform sampler2D opacity_map;
 
 layout(location = 0) in Vert vert;
 
@@ -299,6 +299,9 @@ void main()
 	vec3  emissive = texture(emissive_map, vert.tex_coord).rgb;
 	vec3  normal   = vert.normal;
 	// vec3  normal   = get_normal();
+
+	if(albedo.a < 0.5)
+		discard;
 
 	vec3 V = normalize(cam_pos - vert.position);
 	vec3 lighting = calc_light(normal, V);

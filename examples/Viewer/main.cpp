@@ -3,6 +3,10 @@
 
 #include "../Base/Base.hpp"
 
+#include <imgui.h>
+
+#include <ImGuizmo.h>
+
 #include <glad/glad.h>
 
 struct alignas(16) DirectionalLight
@@ -11,6 +15,8 @@ struct alignas(16) DirectionalLight
 	float   intensity;
 	Vector3 direction;
 };
+
+#define PBR 1
 
 class Viewer final : public Base
 {
@@ -24,19 +30,20 @@ public:
 			path = argv[1];
 		else
 		{
-			path = "../../../../../../Model/sponza/sponza.obj";
-			// path = "../../../../../../Model/dishonored_2/scene.glb";
-			// path = "../../../../../../Model/san_miguel/san-miguel-low-poly.obj";
-
-			// PBR
+#if PBR
 			path = "../../../../../../Model/pbr/sponza/sponza.glb";
 			// path = "../../../../../../Model/m4a1/m4a1.gltf";
 			// path = "../../../../../../Model/pistol/kimber_desert_warrior/scene.gltf";
-			path = "../../../../../../Model/pbr/MetalRoughSpheres/MetalRoughSpheres.gltf";
+			// path = "../../../../../../Model/pbr/MetalRoughSpheres/MetalRoughSpheres.gltf";
 			// path = "../../../../../../Model/pbr/FlightHelmet/FlightHelmet.gltf";
-			// path = "../../../../../../Model/ORCA/bistro/BistroExterior.glb";
-			// path = "../../../../../../Model/ORCA/bistro/BistroExterior.fbx";
+			// path = "../../../../../../Model/ORCA/Bistro/BistroExterior.glb";
+			// path = "../../../../../../Model/ORCA/Bistro/BistroExterior.fbx";
 			// path = "../../../../../../Model/ORCA/SunTemple/SunTemple.fbx";
+#else
+			path = "../../../../../../Model/sponza/sponza.obj";
+			// path = "../../../../../../Model/dishonored_2/scene.glb";
+			// path = "../../../../../../Model/san_miguel/san-miguel-low-poly.obj";
+#endif
 		}
 
 		ModelImporter importer;
@@ -49,14 +56,32 @@ public:
 		// model.meshs.push_back(Primitive::makeCapsule(15, 2, 0.5).value());
 		// model.meshs.push_back(Primitive::makePlane(10, 10).value());
 
-		// auto program = Program::create("Shaders/phong");
-		auto program = Program::create("Shaders/pbr");
-
-		PipelineLayout layout = {{"albedo", 0, PipelineLayout::Type::Texture, PipelineLayout::StageFlags::Fragment},
-		                         {"roughness", 1, PipelineLayout::Type::Texture, PipelineLayout::StageFlags::Fragment},
-		                         {"ao", 2, PipelineLayout::Type::Texture, PipelineLayout::StageFlags::Fragment},
-		                         {"emissive", 3, PipelineLayout::Type::Texture, PipelineLayout::StageFlags::Fragment},
-		                         {"normal", 4, PipelineLayout::Type::Texture, PipelineLayout::StageFlags::Fragment}};
+#if PBR
+		auto           program = Program::create("Shaders/pbr");
+		PipelineLayout layout  = {
+		     {"albedo_map", 0, PipelineLayout::Type::Texture, PipelineLayout::StageFlags::Fragment},
+		     {"normal_map", 1, PipelineLayout::Type::Texture, PipelineLayout::StageFlags::Fragment},
+		     {"metallic_map", 2, PipelineLayout::Type::Texture, PipelineLayout::StageFlags::Fragment},
+		     {"roughness_map", 3, PipelineLayout::Type::Texture, PipelineLayout::StageFlags::Fragment},
+		     {"emissive_map", 4, PipelineLayout::Type::Texture, PipelineLayout::StageFlags::Fragment},
+		     { "occlusion_map",
+			   5,
+			   PipelineLayout::Type::Texture,
+			   PipelineLayout::StageFlags::Fragment }};
+#else
+		// clang-format off
+		auto           program = Program::create("Shaders/phong");
+		PipelineLayout layout  = {
+		     {"diffuse_map", 0, PipelineLayout::Type::Texture, PipelineLayout::StageFlags::Fragment},
+		     {"specular_map", 1, PipelineLayout::Type::Texture, PipelineLayout::StageFlags::Fragment},
+		     {"ambient_map", 2, PipelineLayout::Type::Texture, PipelineLayout::StageFlags::Fragment},
+		     {"emissive_map", 3, PipelineLayout::Type::Texture, PipelineLayout::StageFlags::Fragment},
+		     {"height_map", 4, PipelineLayout::Type::Texture, PipelineLayout::StageFlags::Fragment},
+		     {"normal_map", 5, PipelineLayout::Type::Texture, PipelineLayout::StageFlags::Fragment},
+		     {"shininess_map", 6, PipelineLayout::Type::Texture, PipelineLayout::StageFlags::Fragment},
+		     {"opacity_map", 7, PipelineLayout::Type::Texture, PipelineLayout::StageFlags::Fragment}};
+		// clang-format on
+#endif
 		Pipeline::Descriptor desc;
 		desc.layout   = layout;
 		desc.program  = program;
@@ -142,6 +167,8 @@ public:
 		attInfo.add(position);
 		attInfo.add(angles);
 
+		Matrix4f transform;
+
 		Timer timer;
 		while(running)
 		{
@@ -160,6 +187,7 @@ public:
 #endif
 
 			UI::beginFrame();
+			ImGuizmo::BeginFrame();
 
 			const auto& pos = camera.getPosition();
 			position.setText(fmt::format("X    : {: .2f}\n"
@@ -176,8 +204,29 @@ public:
 			matrices->getBuffer().map();
 			matrices->getBuffer().write(camera.getView().data(), sizeof(Matrix4f));
 			matrices->getBuffer().write(camera.getProjection().data(), sizeof(Matrix4f), sizeof(Matrix4f));
-			matrices->getBuffer().write(Matrix4f().data(), sizeof(Matrix4f), 2 * sizeof(Matrix4f));
+			matrices->getBuffer().write(transform.data(), sizeof(Matrix4f), 2 * sizeof(Matrix4f));
 			matrices->getBuffer().unmap();
+
+			// ImGuizmo::DrawGrid(camera.getView().data(), camera.getProjection().data(), Matrix4().data(), 10);
+
+#if 0
+			float translation[3], rotation[3], scale[3];
+			ImGuizmo::DecomposeMatrixToComponents(transform.data(), translation, rotation, scale);
+			ImGui::InputFloat3("Tr", translation);
+			ImGui::InputFloat3("Rt", rotation);
+			ImGui::InputFloat3("Sc", scale);
+			ImGuizmo::RecomposeMatrixFromComponents(translation, rotation, scale, transform.data());
+
+			// TODO: DEBUG
+			// ImGuizmo::DrawCubes(camera.getView().data(), camera.getProjection().data(), transform.data(), 1);
+
+			Matrix4 delta; // 逆变换, 用于撤回操作
+
+			ImGuiIO& io = ImGui::GetIO();
+			ImGuizmo::SetRect(0, 0, io.DisplaySize.x, io.DisplaySize.y);
+			ImGuizmo::Manipulate(camera.getView().data(), camera.getProjection().data(), ImGuizmo::OPERATION::TRANSLATE,
+			                     ImGuizmo::WORLD, transform.data(), delta.data());
+#endif
 
 			/*
 			std::vector<DirectionalLight> dirLights;
@@ -210,26 +259,23 @@ public:
 
 					if(mesh.material)
 					{
-						if(mesh.material->pbr.albedo)
-						{
-							cmdBuffer->setTexture(mesh.material->pbr.albedo, 0);
-							cmdBuffer->setTexture(mesh.material->pbr.normals, 1);
-							cmdBuffer->setTexture(mesh.material->pbr.metallic, 2);
-							cmdBuffer->setTexture(mesh.material->pbr.roughness, 3);
-							cmdBuffer->setTexture(mesh.material->pbr.emissive, 4);
-							cmdBuffer->setTexture(mesh.material->pbr.occlusion, 5);
-						}
-						else
-						{
-							cmdBuffer->setTexture(mesh.material->diffuse, 0);
-							cmdBuffer->setTexture(mesh.material->specular, 1);
-							cmdBuffer->setTexture(mesh.material->ambient, 2);
-							cmdBuffer->setTexture(mesh.material->emissive, 3);
-							cmdBuffer->setTexture(mesh.material->height, 4);
-							cmdBuffer->setTexture(mesh.material->normals, 5);
-							cmdBuffer->setTexture(mesh.material->shininess, 6);
-							cmdBuffer->setTexture(mesh.material->opacity, 7);
-						}
+#if PBR
+						cmdBuffer->setTexture(mesh.material->pbr.albedo, 0);
+						cmdBuffer->setTexture(mesh.material->pbr.normals, 1);
+						cmdBuffer->setTexture(mesh.material->pbr.metallic, 2);
+						cmdBuffer->setTexture(mesh.material->pbr.roughness, 3);
+						cmdBuffer->setTexture(mesh.material->pbr.emissive, 4);
+						cmdBuffer->setTexture(mesh.material->pbr.occlusion, 5);
+#else
+						cmdBuffer->setTexture(mesh.material->diffuse, 0);
+						cmdBuffer->setTexture(mesh.material->specular, 1);
+						cmdBuffer->setTexture(mesh.material->ambient, 2);
+						cmdBuffer->setTexture(mesh.material->emissive, 3);
+						cmdBuffer->setTexture(mesh.material->height, 4);
+						cmdBuffer->setTexture(mesh.material->normals, 5);
+						cmdBuffer->setTexture(mesh.material->shininess, 6);
+						cmdBuffer->setTexture(mesh.material->opacity, 7);
+#endif
 					}
 
 					cmdBuffer->drawIndexed(ib->getCount());

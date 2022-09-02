@@ -60,18 +60,21 @@ layout(binding = 0) uniform Matrices
 	mat4 model;
 } mat;
 
-layout(location = 0) uniform sampler2D albedo_map;
-layout(location = 1) uniform sampler2D normal_map;
-layout(location = 2) uniform sampler2D metallic_map;
-layout(location = 3) uniform sampler2D roughness_map;
-layout(location = 4) uniform sampler2D emissive_map;
-layout(location = 5) uniform sampler2D occlusion_map;
+layout(binding = 0) uniform sampler2D albedo_map;
+layout(binding = 1) uniform sampler2D normal_map;
+layout(binding = 2) uniform sampler2D metallic_map;
+layout(binding = 3) uniform sampler2D roughness_map;
+layout(binding = 4) uniform sampler2D emissive_map;
+layout(binding = 5) uniform sampler2D occlusion_map;
 
 layout(location = 0) in Vert vert;
 
 layout(location = 0) out vec4 frag_color;
 
 #define DEBUG_ONLY_NORMAL    0
+#define DEBUG_ONLY_EMISSIVE  0
+#define DEBUG_ONLY_METALNESS 0
+#define DEBUG_ONLY_ROUGHNESS 0
 #define DEBUG_ONLY_OCCLUSION 0
 
 vec3 flat_normal(vec3 pos) {
@@ -185,30 +188,40 @@ void main()
 	vec3 cam_pos  = inv_view[3].xyz;
 	vec3 cam_dir  = -normalize(inv_view[2].xyz);
 
-	const vec3 normal = vert.normal;
-	// const vec3 normal = get_normal();
+	// const vec3 normal = vert.normal;
+	const vec3 normal = get_normal();
 	
 	vec3 V = normalize(cam_pos - vert.position);
 	vec3 L = normalize(vec3(-1.0, 0.0, -0.5));
 	
-	const vec3  albedo    = texture(albedo_map, vert.tex_coord).rgb;
+	const vec4  albedo    = texture(albedo_map, vert.tex_coord).rgba;
 	const float occlusion = texture(occlusion_map, vert.tex_coord).r;
 
+	if(albedo.a < 0.5)
+		discard;
+
 	// vec3 ambient = vec3(0.3) * albedo * occlusion;
-	vec3 ambient = vec3(0.3) * albedo * 1.0;
+	vec3 ambient = vec3(0.3) * vec3(albedo) * 1.0;
 
-	frag_color = vec4(ambient + BRDF(V, normal, L), 1.0);
+	frag_color = vec4(ambient + BRDF(V, normal, L), albedo.a);
 		
-	// frag_color = vec4(texture(normal_map, vert.tex_coord).rgb, 1.0);
-
+	// frag_color = vec4(texture(albedo_map, vert.tex_coord).rgb, 1.0);
+	
 #if DEBUG_ONLY_NORMAL
-	frag_color = vec4(normal, 1.0);              // DEBUG: normal only
+	frag_color = vec4(normal, 1.0); // DEBUG: normal only
+	// frag_color = vec4(texture(normal_map, vert.tex_coord).rgb, 1.0);
 #endif
-	// frag_color = vec4(emissive, 1.0);            // DEBUG: emissive only
-	// frag_color = vec4(vec3(metalness), 1.0);     // DEBUG: metalness only
-	// frag_color = vec4(vec3(roughness), 1.0);     // DEBUG: roughness only
+#if DEBUG_ONLY_EMISSIVE
+	frag_color = vec4(texture(emissive_map, vert.tex_coord).rgb, 1.0); // DEBUG: emissive only
+#endif
+#if DEBUG_ONLY_METALNESS
+	frag_color = vec4(vec3(texture(metallic_map, vert.tex_coord).r), 1.0); // DEBUG: metalness only
+#endif
+#if DEBUG_ONLY_ROUGHNESS
+	frag_color = vec4(vec3(texture(roughness_map, vert.tex_coord).r), 1.0); // DEBUG: roughness only
+#endif
 #if DEBUG_ONLY_OCCLUSION
-	frag_color = vec4(vec3(occlusion), 1.0);     // DEBUG: occlusion only
+	frag_color = vec4(vec3(texture(occlusion_map, vert.tex_coord).r), 1.0); // DEBUG: occlusion only
 #endif
 	// frag_color = vec4(vert.tex_coord, 0.0, 1.0); // DEBUG: uv only
 }
