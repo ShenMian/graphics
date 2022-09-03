@@ -145,8 +145,10 @@ vec3 fresnel_schlick(float cosTheta, vec3 F0)
 vec3 BRDF(vec3 V, vec3 N, vec3 L)
 {
 	const vec3  albedo    = texture(albedo_map, vert.tex_coord).rgb;
-	const float metalness = texture(metallic_map, vert.tex_coord).r;
-	const float roughness = texture(roughness_map, vert.tex_coord).r;
+	// const float metalness = texture(metallic_map, vert.tex_coord).r;
+	// const float roughness = texture(roughness_map, vert.tex_coord).r;
+	const float metalness = texture(metallic_map, vert.tex_coord).b;
+	const float roughness = texture(roughness_map, vert.tex_coord).g;
 	const vec3  emissive  = texture(emissive_map, vert.tex_coord).rgb;
 
 	const vec3 H = normalize(V + L);
@@ -195,13 +197,14 @@ void main()
 	vec3 L = normalize(vec3(-1.0, 0.0, -0.5));
 	
 	const vec4  albedo    = texture(albedo_map, vert.tex_coord).rgba;
-	const float occlusion = texture(occlusion_map, vert.tex_coord).r;
+	// const float occlusion = texture(occlusion_map, vert.tex_coord).r;
+	const float occlusion = texture(metallic_map, vert.tex_coord).r;
 
 	if(albedo.a < 0.5)
 		discard;
 
-	// vec3 ambient = vec3(0.3) * albedo * occlusion;
-	vec3 ambient = vec3(0.3) * vec3(albedo) * 1.0;
+	vec3 ambient = vec3(0.3) * vec3(albedo) * occlusion;
+	// ambient = vec3(0.3) * vec3(albedo) * 1.0;
 
 	frag_color = vec4(ambient + BRDF(V, normal, L), albedo.a);
 		
@@ -216,12 +219,15 @@ void main()
 #endif
 #if DEBUG_ONLY_METALNESS
 	frag_color = vec4(vec3(texture(metallic_map, vert.tex_coord).r), 1.0); // DEBUG: metalness only
+	frag_color = vec4(vec3(texture(metallic_map, vert.tex_coord).b), 1.0); // DEBUG: metalness only
 #endif
 #if DEBUG_ONLY_ROUGHNESS
 	frag_color = vec4(vec3(texture(roughness_map, vert.tex_coord).r), 1.0); // DEBUG: roughness only
+	frag_color = vec4(vec3(texture(roughness_map, vert.tex_coord).g), 1.0); // DEBUG: roughness only
 #endif
 #if DEBUG_ONLY_OCCLUSION
 	frag_color = vec4(vec3(texture(occlusion_map, vert.tex_coord).r), 1.0); // DEBUG: occlusion only
+	frag_color = vec4(vec3(texture(metallic_map, vert.tex_coord).r), 1.0);  // DEBUG: occlusion only
 #endif
 	// frag_color = vec4(vert.tex_coord, 0.0, 1.0); // DEBUG: uv only
 }

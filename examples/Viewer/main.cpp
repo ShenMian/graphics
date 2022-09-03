@@ -32,7 +32,7 @@ public:
 		{
 #if PBR
 			path = "../../../../../../Model/pbr/sponza/sponza.glb";
-			// path = "../../../../../../Model/m4a1/m4a1.gltf";
+			path = "../../../../../../Model/m4a1/m4a1.gltf";
 			// path = "../../../../../../Model/pistol/kimber_desert_warrior/scene.gltf";
 			// path = "../../../../../../Model/pbr/MetalRoughSpheres/MetalRoughSpheres.gltf";
 			// path = "../../../../../../Model/pbr/FlightHelmet/FlightHelmet.gltf";
@@ -138,7 +138,7 @@ public:
                 break;
 
             case Key::F12:
-                std::vector<char> buf(3 * window->getSize().x * window->getSize().y);
+                std::vector<GLubyte> buf(3 * window->getSize().x * window->getSize().y);
                 glReadPixels(0, 0, window->getSize().x, window->getSize().y, GL_RGB, GL_UNSIGNED_BYTE, buf.data());
                 auto img = Image(buf.data(), buf.size(), window->getSize(), 3);
                 img.flipVertically();
