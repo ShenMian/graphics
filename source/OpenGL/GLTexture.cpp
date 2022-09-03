@@ -277,7 +277,7 @@ void GLTexture::generateMipmap()
 	glGenerateTextureMipmap(handle);
 }
 
-void GLTexture::bind(unsigned int slot)
+void GLTexture::bind(uint32_t binding)
 {
-	glBindTextureUnit(slot, handle);
+	glBindTextureUnit(binding, handle);
 }

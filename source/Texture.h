@@ -5,6 +5,7 @@
 
 #include "Core/Platform.h"
 #include "Format.h"
+#include <cstdint>
 #include <filesystem>
 #include <memory>
 #include <unordered_map>
@@ -72,7 +73,7 @@ public:
 	 */
 	[[nodiscard]] static std::shared_ptr<Texture> create(const std::vector<Image>& images);
 
-	virtual void bind(unsigned int slot = 0) = 0;
+	virtual void bind(uint32_t binding) = 0;
 
 	/**
 	 * @brief 设置缩小过滤方式.
