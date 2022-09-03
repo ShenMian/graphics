@@ -107,8 +107,8 @@ Public 成员函数</h2></td></tr>
 <tr class="memitem:a50faf7f10244c65b26599ccf07e745ef"><td class="memItemLeft" align="right" valign="top"><a id="a50faf7f10244c65b26599ccf07e745ef" name="a50faf7f10244c65b26599ccf07e745ef"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>GLTexture</b> (const std::vector&lt; <a class="el" href="class_image.html">Image</a> &gt; &amp;images)</td></tr>
 <tr class="separator:a50faf7f10244c65b26599ccf07e745ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aea69db920c03e72b480786e837debba5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_l_texture.html#aea69db920c03e72b480786e837debba5">bind</a> (unsigned int slot=0) override</td></tr>
-<tr class="separator:aea69db920c03e72b480786e837debba5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24a74d589536f92cb0e085deec52906b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_l_texture.html#a24a74d589536f92cb0e085deec52906b">bind</a> (uint32_t binding) override</td></tr>
+<tr class="separator:a24a74d589536f92cb0e085deec52906b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab6dbf1736f0b47c7696d3f0271495b8c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_g_l_texture.html#ab6dbf1736f0b47c7696d3f0271495b8c">setMinFilter</a> (<a class="el" href="class_texture.html#a55341847b37906ddffa803675617da27">Filter</a> filter) override</td></tr>
 <tr class="memdesc:ab6dbf1736f0b47c7696d3f0271495b8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置缩小过滤方式.  <a href="class_g_l_texture.html#ab6dbf1736f0b47c7696d3f0271495b8c">更多...</a><br /></td></tr>
 <tr class="separator:ab6dbf1736f0b47c7696d3f0271495b8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -128,9 +128,9 @@ Public 成员函数</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>generateMipmap</b> ()</td></tr>
 <tr class="separator:aab3a666dba71053f7abe94cbd79bc5c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_texture"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_texture')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="class_texture.html">Texture</a></td></tr>
-<tr class="memitem:afb44f8400c2a3c93d6cb6a84e1fe5e3f inherit pub_methods_class_texture"><td class="memItemLeft" align="right" valign="top"><a id="afb44f8400c2a3c93d6cb6a84e1fe5e3f" name="afb44f8400c2a3c93d6cb6a84e1fe5e3f"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>bind</b> (unsigned int slot=0)=0</td></tr>
-<tr class="separator:afb44f8400c2a3c93d6cb6a84e1fe5e3f inherit pub_methods_class_texture"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1074c8832a536ab93626f5064dbb960 inherit pub_methods_class_texture"><td class="memItemLeft" align="right" valign="top"><a id="aa1074c8832a536ab93626f5064dbb960" name="aa1074c8832a536ab93626f5064dbb960"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>bind</b> (uint32_t binding)=0</td></tr>
+<tr class="separator:aa1074c8832a536ab93626f5064dbb960 inherit pub_methods_class_texture"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a23aaceb94559abb5b9c756c2ec8ac431 inherit pub_methods_class_texture"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture.html#a23aaceb94559abb5b9c756c2ec8ac431">setMinFilter</a> (<a class="el" href="class_texture.html#a55341847b37906ddffa803675617da27">Filter</a> filter)=0</td></tr>
 <tr class="memdesc:a23aaceb94559abb5b9c756c2ec8ac431 inherit pub_methods_class_texture"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置缩小过滤方式.  <a href="class_texture.html#a23aaceb94559abb5b9c756c2ec8ac431">更多...</a><br /></td></tr>
 <tr class="separator:a23aaceb94559abb5b9c756c2ec8ac431 inherit pub_methods_class_texture"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -200,8 +200,8 @@ static std::unordered_map&lt; std::filesystem::path, std::shared_ptr&lt; <a clas
 <tr class="separator:acfdd135f8e40d858e97a1b5b808d8682 inherit pro_static_attribs_class_texture"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">成员函数说明</h2>
-<a id="aea69db920c03e72b480786e837debba5" name="aea69db920c03e72b480786e837debba5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aea69db920c03e72b480786e837debba5">&#9670;&nbsp;</a></span>bind()</h2>
+<a id="a24a74d589536f92cb0e085deec52906b" name="a24a74d589536f92cb0e085deec52906b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24a74d589536f92cb0e085deec52906b">&#9670;&nbsp;</a></span>bind()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -212,8 +212,8 @@ static std::unordered_map&lt; std::filesystem::path, std::shared_ptr&lt; <a clas
         <tr>
           <td class="memname">void GLTexture::bind </td>
           <td>(</td>
-          <td class="paramtype">unsigned int&#160;</td>
-          <td class="paramname"><em>slot</em> = <code>0</code></td><td>)</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>binding</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
