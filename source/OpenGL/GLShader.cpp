@@ -166,8 +166,8 @@ GLShader::GLShader(const Descriptor& desc) : Shader(desc), handle(glCreateShader
 		fmt::print("{:{}}{}\n", "", level, "Sampled images");
 		for(size_t i = 0; i < res.sampled_images.size(); i++)
 		{
-			const auto& img  = res.sampled_images[i];
-			const auto  binding = compiler.get_decoration(img.id, spv::DecorationBinding);
+			const auto& img      = res.sampled_images[i];
+			const auto  binding  = compiler.get_decoration(img.id, spv::DecorationBinding);
 			const auto  location = compiler.get_decoration(img.id, spv::DecorationLocation);
 
 			fmt::print("{:{}}- {}\n", "", level, img.name);
@@ -217,6 +217,7 @@ GLShader::GLShader(const Descriptor& desc) : Shader(desc), handle(glCreateShader
 				}
 				level -= 2;
 			}
+			level -= 2;
 		}
 	}
 }
