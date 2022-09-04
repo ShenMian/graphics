@@ -162,7 +162,7 @@ $(document).ready(function(){initNavTree('_texture_8h_source.html',''); initResi
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    Type   type;</div>
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    Format format;</div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="keyword">static</span> std::unordered_map&lt;std::filesystem::path, std::shared_ptr&lt;Texture&gt;&gt; cache;</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="keyword">static</span> std::unordered_map&lt;std::filesystem::path, std::shared_ptr&lt;Texture&gt;&gt; cache; <span class="comment">// FIXME: 内存泄露</span></div>
 <div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>};</div>
 <div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
 <div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span><span class="comment">// TODO: 需要移动到合适的位置</span></div>
