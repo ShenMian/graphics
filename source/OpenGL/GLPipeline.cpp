@@ -64,8 +64,8 @@ void GLPipeline::bind()
 	std::vector<GLDepthRange> depthRanges;
 	for(const auto& viewport : desc.viewports)
 	{
-		viewports.emplace_back(viewport.x, viewport.y, viewport.width, viewport.height);
-		depthRanges.emplace_back(viewport.minDepth, viewport.maxDepth);
+		viewports.push_back({viewport.x, viewport.y, viewport.width, viewport.height});
+		depthRanges.push_back({viewport.minDepth, viewport.maxDepth});
 	}
 	glViewportArrayv(1, viewports.size(), reinterpret_cast<const GLfloat*>(viewports.data()));
 	glDepthRangeArrayv(1, depthRanges.size(), reinterpret_cast<const GLdouble*>(depthRanges.data()));
