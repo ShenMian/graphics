@@ -36,7 +36,7 @@ std::shared_ptr<Texture> Texture::create(const fs::path& path, Format fmt, uint3
 		using enum Renderer::API;
 
 	case OpenGL:
-		ptr = std::make_shared<GLTexture>(absPath, fmt, mipmapCount, type);
+		ptr = std::make_shared<GLTexture>(Image(absPath), fmt, mipmapCount, type);
 	}
 	cache.insert({absPath, ptr});
 	return ptr;

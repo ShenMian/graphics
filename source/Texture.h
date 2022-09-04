@@ -126,7 +126,7 @@ protected:
 	Type   type;
 	Format format;
 
-	static std::unordered_map<std::filesystem::path, std::shared_ptr<Texture>> cache;
+	static std::unordered_map<std::filesystem::path, std::shared_ptr<Texture>> cache; // FIXME: 内存泄露
 };
 
 // TODO: 需要移动到合适的位置
