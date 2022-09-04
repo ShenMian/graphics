@@ -151,6 +151,19 @@ void ModelImporter::loadMaterial(const aiMaterial& mat)
 		return texture;
 	};
 
+	Material::PBR::Workflow workflow;
+	float                   value;
+	if(mat.Get(AI_MATKEY_METALLIC_FACTOR, value) == aiReturn_SUCCESS)
+	{
+		workflow = Material::PBR::Workflow::MetallicRoughness;
+	}
+	else if(mat.Get(AI_MATKEY_GLOSSINESS_FACTOR, value) == aiReturn_SUCCESS)
+	{
+		workflow = Material::PBR::Workflow::SpecularGlossiness;
+	}
+	else
+		throw std::runtime_error("unknown PBR workflow");
+
 	model->materials.push_back({
 	    .name = mat.GetName().C_Str(),
 	    .pbr =
@@ -161,6 +174,7 @@ void ModelImporter::loadMaterial(const aiMaterial& mat)
 	            .roughness = loadTexture(aiTextureType_DIFFUSE_ROUGHNESS),
 	            .emissive  = loadTexture(aiTextureType_EMISSIVE), // aiTextureType_EMISSION_COLOR
 	            .occlusion = loadTexture(aiTextureType_AMBIENT_OCCLUSION),
+	            .workflow  = workflow,
 	        },
 	    .diffuse   = loadTexture(aiTextureType_DIFFUSE),
 	    .specular  = loadTexture(aiTextureType_SPECULAR),

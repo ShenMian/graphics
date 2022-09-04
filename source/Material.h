@@ -17,21 +17,28 @@ struct Material
 {
 	struct PBR
 	{
+		enum Workflow : int
+		{
+			MetallicRoughness  = 0,
+			SpecularGlossiness = 1
+		};
+
 		std::shared_ptr<Texture> albedo;
 		std::shared_ptr<Texture> normals;   ///< 法线.
 		std::shared_ptr<Texture> metallic;  ///< 金属.
 		std::shared_ptr<Texture> roughness; ///< 粗糙.
 		std::shared_ptr<Texture> emissive;
 		std::shared_ptr<Texture> occlusion; ///< 环境光遮蔽.
+		Workflow                 workflow;
 	};
 
 	std::string name;
 
 	PBR pbr;
 
-	std::shared_ptr<Texture> diffuse;   ///< 漫反射.
-	std::shared_ptr<Texture> specular;  ///< 镜面反射.
-	std::shared_ptr<Texture> ambient;   ///< 环境光.
+	std::shared_ptr<Texture> diffuse;  ///< 漫反射.
+	std::shared_ptr<Texture> specular; ///< 镜面反射.
+	std::shared_ptr<Texture> ambient;  ///< 环境光.
 	std::shared_ptr<Texture> emissive;
 	std::shared_ptr<Texture> height;
 	std::shared_ptr<Texture> normals;   ///< 法线.
