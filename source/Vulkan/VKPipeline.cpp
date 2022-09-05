@@ -20,6 +20,15 @@ std::unordered_map<CullMode, VkCullModeFlags> VKCullMode = {
     {CullMode::Back, VK_CULL_MODE_BACK_BIT},
 };
 
+std::unordered_map<CompareOp, VkCompareOp> GLCompareOp = {{CompareOp::AlwaysPass, VK_COMPARE_OP_ALWAYS},
+                                                          {CompareOp::NeverPass, VK_COMPARE_OP_NEVER},
+                                                          {CompareOp::Less, VK_COMPARE_OP_LESS},
+                                                          {CompareOp::Equal, VK_COMPARE_OP_EQUAL},
+                                                          {CompareOp::LessEqual, VK_COMPARE_OP_LESS_OR_EQUAL},
+                                                          {CompareOp::Greater, VK_COMPARE_OP_GREATER},
+                                                          {CompareOp::GreaterEqual, VK_COMPARE_OP_GREATER_OR_EQUAL},
+                                                          {CompareOp::NotEqual, VK_COMPARE_OP_NOT_EQUAL}};
+
 std::unordered_map<Format, VkFormat> VKFormat = {
     {Format::R16F, VK_FORMAT_R16_SFLOAT},         {Format::RG16F, VK_FORMAT_R16G16_SFLOAT},
     {Format::RGB16F, VK_FORMAT_R16G16B16_SFLOAT}, {Format::RGBA16F, VK_FORMAT_R16G16B16A16_SFLOAT},
@@ -27,21 +36,11 @@ std::unordered_map<Format, VkFormat> VKFormat = {
     {Format::RGB32F, VK_FORMAT_R32G32B32_SFLOAT}, {Format::RGBA32F, VK_FORMAT_R32G32B32A32_SFLOAT},
 };
 
-VkDescriptorType VKType(PipelineLayout::Type type)
-{
-	switch(type)
-	{
-		using enum PipelineLayout::Type;
-
-	case UniformBuffer:
-		return VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
-	case Sampler:
-		return VK_DESCRIPTOR_TYPE_SAMPLER;
-	case Texture:
-		return VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE;
-	};
-	throw std::invalid_argument("");
-}
+std::unordered_map<PipelineLayout::Type, VkDescriptorType> VKType = {
+    {PipelineLayout::Type::UniformBuffer, VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER},
+    {PipelineLayout::Type::Sampler, VK_DESCRIPTOR_TYPE_SAMPLER},
+    {PipelineLayout::Type::Texture, VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE},
+};
 
 VkShaderStageFlags VKStageFlags(uint32_t flags)
 {
@@ -137,7 +136,7 @@ void VKPipeline::createPipelineLayout(const Descriptor& desc)
 	{
 		VkDescriptorSetLayoutBinding layoutBinding = {};
 		layoutBinding.binding                      = binding.binding;
-		layoutBinding.descriptorType               = VKType(binding.type);
+		layoutBinding.descriptorType               = VKType[binding.type];
 		layoutBinding.descriptorCount              = binding.arraySize;
 		layoutBinding.stageFlags                   = VKStageFlags(binding.stageFlags);
 		bindings.emplace_back(layoutBinding);
@@ -233,7 +232,7 @@ void VKPipeline::createRasterizerState(VkPipelineRasterizationStateCreateInfo& i
 	info.depthBiasConstantFactor = 0.0f; // Optional
 	info.depthBiasClamp          = 0.0f; // Optional
 	info.depthBiasSlopeFactor    = 0.0f; // Optional
-	info.lineWidth               = 1.0f;
+	info.lineWidth               = desc.rasterizer.lineWidth;
 }
 
 void VKPipeline::createMultisampleState(VkPipelineMultisampleStateCreateInfo& info, const Descriptor& desc)
@@ -250,9 +249,9 @@ void VKPipeline::createMultisampleState(VkPipelineMultisampleStateCreateInfo& in
 void VKPipeline::createDepthStencilState(VkPipelineDepthStencilStateCreateInfo& info, const Descriptor& desc)
 {
 	info.sType                 = VK_STRUCTURE_TYPE_PIPELINE_DEPTH_STENCIL_STATE_CREATE_INFO;
-	info.depthTestEnable       = VK_TRUE;
-	info.depthWriteEnable      = VK_TRUE;
-	info.depthCompareOp        = VK_COMPARE_OP_LESS;
+	info.depthTestEnable       = desc.depth.enableTest;
+	info.depthWriteEnable      = desc.depth.enableWrite;
+	info.depthCompareOp        = GLCompareOp[desc.depth.compareOp];
 	info.depthBoundsTestEnable = VK_FALSE;
 	info.stencilTestEnable     = VK_FALSE;
 	info.front                 = {};   // Optional

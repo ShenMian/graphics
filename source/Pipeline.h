@@ -30,10 +30,30 @@ enum class CullMode
 	Back,     ///< 背面剔除.
 };
 
+enum class CompareOp
+{
+	AlwaysPass,
+	NeverPass,
+	Less,
+	Equal,
+	LessEqual,
+	Greater,
+	NotEqual,
+	GreaterEqual,
+};
+
 struct RasterizerDescriptor
 {
 	PolygonMode polygonMode = PolygonMode::Fill;
 	CullMode    cullMode    = CullMode::Disabled;
+	float       lineWidth   = 1.0f;
+};
+
+struct DepthDescriptor
+{
+	bool      enableTest  = true;
+	bool      enableWrite = true;
+	CompareOp compareOp   = CompareOp::Less;
 };
 
 /**
@@ -44,13 +64,13 @@ class Pipeline
 public:
 	struct Descriptor
 	{
-		RasterizerDescriptor rasterizer;
-
 		PipelineLayout           layout;
 		VertexFormat             vertexFormat;
 		std::shared_ptr<Program> program;
+		std::vector<Viewport>    viewports;
 
-		std::vector<Viewport> viewports;
+		RasterizerDescriptor rasterizer;
+		DepthDescriptor      depth;
 	};
 
 	[[nodiscard]] static std::shared_ptr<Pipeline> create(const Descriptor& desc);

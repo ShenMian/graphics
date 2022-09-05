@@ -13,6 +13,11 @@ std::unordered_map<CullMode, GLenum> GLCullMdoe = {{CullMode::Front, GL_FRONT}, 
 std::unordered_map<PolygonMode, GLenum> GLPolygonMdoe = {{PolygonMode::Wireframe, GL_LINE},
                                                          {PolygonMode::Fill, GL_FILL}};
 
+std::unordered_map<CompareOp, GLenum> GLCompareOp = {
+    {CompareOp::AlwaysPass, GL_ALWAYS},   {CompareOp::NeverPass, GL_NEVER},  {CompareOp::Less, GL_LESS},
+    {CompareOp::Equal, GL_EQUAL},         {CompareOp::LessEqual, GL_EQUAL},  {CompareOp::Greater, GL_GREATER},
+    {CompareOp::GreaterEqual, GL_GEQUAL}, {CompareOp::NotEqual, GL_NOTEQUAL}};
+
 struct GLViewport
 {
 	GLfloat x;
@@ -27,13 +32,22 @@ struct GLDepthRange
 	GLdouble maxDepth;
 };
 
+void setViewports(const std::vector<GLViewport>& viewports)
+{
+	glViewportArrayv(1, viewports.size(), reinterpret_cast<const GLfloat*>(viewports.data()));
+}
+
+void setDepthRanges(const std::vector<GLDepthRange>& depthRanges)
+{
+	glDepthRangeArrayv(1, depthRanges.size(), reinterpret_cast<const GLdouble*>(depthRanges.data()));
+}
+
 } // namespace
 
 GLPipeline::GLPipeline(const Descriptor& desc) : Pipeline(desc)
 {
 	GLint maxViewports = 0;
 	glGetIntegerv(GL_MAX_VIEWPORTS, &maxViewports);
-
 	if(desc.viewports.size() >= maxViewports)
 		throw std::runtime_error("too many viewports");
 
@@ -50,7 +64,13 @@ void GLPipeline::bind()
 	glBindProgramPipeline(handle);
 
 	desc.program->use();
+	setupRasterizer(desc);
+	setupViewports(desc);
+	setupDepth(desc);
+}
 
+void GLPipeline::setupRasterizer(const Descriptor& desc)
+{
 	glPolygonMode(GL_FRONT_AND_BACK, GLPolygonMdoe[desc.rasterizer.polygonMode]);
 	if(desc.rasterizer.cullMode != CullMode::Disabled)
 	{
@@ -59,14 +79,27 @@ void GLPipeline::bind()
 	}
 	else
 		glDisable(GL_CULL_FACE);
+	glLineWidth(desc.rasterizer.lineWidth);
+}
 
-	std::vector<GLViewport>   viewports;
-	std::vector<GLDepthRange> depthRanges;
-	for(const auto& viewport : desc.viewports)
+void GLPipeline::setupViewports(const Descriptor& desc)
+{
+	for(size_t i = 0; i < desc.viewports.size(); i++)
 	{
-		viewports.push_back({viewport.x, viewport.y, viewport.width, viewport.height});
-		depthRanges.push_back({viewport.minDepth, viewport.maxDepth});
+		const auto& v = desc.viewports[i];
+		glViewportIndexedf(i, v.x, v.y, v.width, v.height);
+		glDepthRangeIndexed(i, v.minDepth, v.maxDepth);
 	}
-	glViewportArrayv(1, viewports.size(), reinterpret_cast<const GLfloat*>(viewports.data()));
-	glDepthRangeArrayv(1, depthRanges.size(), reinterpret_cast<const GLdouble*>(depthRanges.data()));
+}
+
+void GLPipeline::setupDepth(const Descriptor& desc)
+{
+	if(desc.depth.enableTest)
+	{
+		glEnable(GL_DEPTH_TEST);
+		glDepthFunc(GLCompareOp[desc.depth.compareOp]);
+	}
+	else
+		glDisable(GL_DEPTH_TEST);
+	glDepthMask(desc.depth.enableWrite);
 }

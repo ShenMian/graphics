@@ -15,5 +15,9 @@ public:
 	void bind() override;
 
 private:
+	void setupRasterizer(const Descriptor& desc);
+	void setupViewports(const Descriptor& desc);
+	void setupDepth(const Descriptor& desc);
+
 	GLuint handle;
 };
