@@ -19,6 +19,7 @@ var annotated_dup =
     [ "CommandQueue", "class_command_queue.html", null ],
     [ "Controller", "class_controller.html", "class_controller" ],
     [ "DDSImporter", "class_d_d_s_importer.html", null ],
+    [ "DepthDescriptor", "struct_depth_descriptor.html", null ],
     [ "DeviceBuilder", "class_device_builder.html", null ],
     [ "Font", "class_font.html", "class_font" ],
     [ "Gamepad", "class_gamepad.html", "class_gamepad" ],

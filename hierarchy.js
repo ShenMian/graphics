@@ -19,6 +19,7 @@ var hierarchy =
     ] ],
     [ "Controller", "class_controller.html", null ],
     [ "DDSImporter", "class_d_d_s_importer.html", null ],
+    [ "DepthDescriptor", "struct_depth_descriptor.html", null ],
     [ "Pipeline::Descriptor", "struct_pipeline_1_1_descriptor.html", null ],
     [ "Program::Descriptor", "struct_program_1_1_descriptor.html", null ],
     [ "Shader::Descriptor", "struct_shader_1_1_descriptor.html", null ],
