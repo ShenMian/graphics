@@ -95,6 +95,8 @@ public:
 	 *
 	 * @param leftSpeed  左马达转速.
 	 * @param rightSpeed 右马达转速.
+	 * 
+	 * @warning 仅在 Windows 下支持 XBox.
 	 */
 	void setVibration(float leftSpeed, float rightSpeed);
 

@@ -114,7 +114,7 @@ void Gamepad::setVibration(float leftSpeed, float rightSpeed)
 		XINPUT_VIBRATION state = {};
 		state.wLeftMotorSpeed  = leftSpeed * std::numeric_limits<WORD>::max();
 		state.wRightMotorSpeed = rightSpeed * std::numeric_limits<WORD>::max();
-		if(XInputSetState(handle, &state) != ERROR_SUCCESS)
+		if(XInputSetState(handle, &state) != ERROR_SUCCESS && isConnected())
 			throw std::runtime_error("Xinput: failed to set vibration");
 	}
 #endif
