@@ -137,8 +137,9 @@ void ModelImporter::loadMaterial(const aiMaterial& mat)
 			return nullptr;
 		assert(mat.GetTextureCount(type) == 1);
 
-		aiString path;
-		mat.GetTexture(type, 0, &path);
+		aiString         path;
+		aiTextureMapMode warp[2];
+		mat.GetTexture(type, 0, &path, nullptr, nullptr, nullptr, nullptr, warp);
 		if(!fs::exists(model->path.parent_path() / path.C_Str()))
 			return nullptr;
 		if((model->path.parent_path() / path.C_Str()).extension() == ".dds")
@@ -148,43 +149,53 @@ void ModelImporter::loadMaterial(const aiMaterial& mat)
 		}
 		auto texture = Texture::create(model->path.parent_path() / path.C_Str());
 		texture->setMinFilter(Texture::Filter::Trilinear);
+		texture->setSWarp(Warp[warp[0]]);
+		texture->setTWarp(Warp[warp[1]]);
 		return texture;
 	};
 
+	auto& material = model->materials.emplace_back();
+	material.name  = mat.GetName().C_Str();
+
 	Material::PBR::Workflow workflow;
-	float                   value;
-	if(mat.Get(AI_MATKEY_METALLIC_FACTOR, value) == aiReturn_SUCCESS)
+
+	aiShadingMode mode; 
+	mat.Get(AI_MATKEY_SHADING_MODEL, mode);
+	if(mode == aiShadingMode_PBR_BRDF)
 	{
-		workflow = Material::PBR::Workflow::MetallicRoughness;
-	}
-	else if(mat.Get(AI_MATKEY_GLOSSINESS_FACTOR, value) == aiReturn_SUCCESS)
-	{
-		workflow = Material::PBR::Workflow::SpecularGlossiness;
+		float value;
+		if(mat.Get(AI_MATKEY_METALLIC_FACTOR, value) == aiReturn_SUCCESS)
+		{
+			workflow = Material::PBR::Workflow::MetallicRoughness;
+		}
+		else if(mat.Get(AI_MATKEY_GLOSSINESS_FACTOR, value) == aiReturn_SUCCESS)
+		{
+			workflow = Material::PBR::Workflow::SpecularGlossiness;
+		}
+		else
+			throw std::runtime_error("unknown PBR workflow");
+
+		material.pbr = {
+		    .albedo    = loadTexture(aiTextureType_BASE_COLOR),
+		    .normals   = loadTexture(aiTextureType_NORMALS), // aiTextureType_NORMAL_CAMERA
+		    .metallic  = loadTexture(aiTextureType_METALNESS),
+		    .roughness = loadTexture(aiTextureType_DIFFUSE_ROUGHNESS),
+		    .emissive  = loadTexture(aiTextureType_EMISSIVE), // aiTextureType_EMISSION_COLOR
+		    .occlusion = loadTexture(aiTextureType_AMBIENT_OCCLUSION),
+		    .workflow  = workflow,
+		};
 	}
 	else
-		throw std::runtime_error("unknown PBR workflow");
-
-	model->materials.push_back({
-	    .name = mat.GetName().C_Str(),
-	    .pbr =
-	        {
-	            .albedo    = loadTexture(aiTextureType_BASE_COLOR),
-	            .normals   = loadTexture(aiTextureType_NORMALS), // aiTextureType_NORMAL_CAMERA
-	            .metallic  = loadTexture(aiTextureType_METALNESS),
-	            .roughness = loadTexture(aiTextureType_DIFFUSE_ROUGHNESS),
-	            .emissive  = loadTexture(aiTextureType_EMISSIVE), // aiTextureType_EMISSION_COLOR
-	            .occlusion = loadTexture(aiTextureType_AMBIENT_OCCLUSION),
-	            .workflow  = workflow,
-	        },
-	    .diffuse   = loadTexture(aiTextureType_DIFFUSE),
-	    .specular  = loadTexture(aiTextureType_SPECULAR),
-	    .ambient   = loadTexture(aiTextureType_AMBIENT),
-	    .emissive  = loadTexture(aiTextureType_EMISSIVE),
-	    .height    = loadTexture(aiTextureType_HEIGHT),
-	    .normals   = loadTexture(aiTextureType_NORMALS),
-	    .shininess = loadTexture(aiTextureType_SHININESS),
-	    .opacity   = loadTexture(aiTextureType_OPACITY),
-	});
+	{
+		material.diffuse   = loadTexture(aiTextureType_DIFFUSE);
+		material.specular  = loadTexture(aiTextureType_SPECULAR);
+		material.ambient   = loadTexture(aiTextureType_AMBIENT);
+		material.emissive  = loadTexture(aiTextureType_EMISSIVE);
+		material.height    = loadTexture(aiTextureType_HEIGHT);
+		material.normals   = loadTexture(aiTextureType_NORMALS);
+		material.shininess = loadTexture(aiTextureType_SHININESS);
+		material.opacity   = loadTexture(aiTextureType_OPACITY);
+	}
 }
 
 void ModelImporter::loadAnimation(const aiAnimation& anim)

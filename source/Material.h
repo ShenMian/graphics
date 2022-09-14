@@ -29,7 +29,14 @@ struct Material
 		std::shared_ptr<Texture> roughness; ///< 粗糙.
 		std::shared_ptr<Texture> emissive;
 		std::shared_ptr<Texture> occlusion; ///< 环境光遮蔽.
-		Workflow                 workflow;
+
+		float albedoFactor    = 1.0f;
+		float metallicFactor  = 1.0f;
+		float roughnessFactor = 1.0f;
+		float emissiveFactor  = 1.0f;
+		float occlusionFactor = 1.0f;
+
+		Workflow workflow;
 	};
 
 	std::string name;
