@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['metallic_0',['metallic',['../struct_material_1_1_p_b_r.html#a7f8d5ef56e4cbddfef054bde6fce002a',1,'Material::PBR']]]
+  ['entrypoint_0',['entryPoint',['../struct_shader_1_1_descriptor.html#a96861fa2f46a963baed7e6a6366ee1f4',1,'Shader::Descriptor']]]
 ];

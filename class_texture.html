@@ -185,8 +185,7 @@ Format&#160;</td><td class="memItemRight" valign="bottom"><b>format</b></td></tr
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-static-attribs" name="pro-static-attribs"></a>
 静态 Protected 属性</h2></td></tr>
-<tr class="memitem:acfdd135f8e40d858e97a1b5b808d8682"><td class="memItemLeft" align="right" valign="top"><a id="acfdd135f8e40d858e97a1b5b808d8682" name="acfdd135f8e40d858e97a1b5b808d8682"></a>
-static std::unordered_map&lt; std::filesystem::path, std::shared_ptr&lt; <a class="el" href="class_texture.html">Texture</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>cache</b></td></tr>
+<tr class="memitem:acfdd135f8e40d858e97a1b5b808d8682"><td class="memItemLeft" align="right" valign="top">static std::unordered_map&lt; std::filesystem::path, std::shared_ptr&lt; <a class="el" href="class_texture.html">Texture</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture.html#acfdd135f8e40d858e97a1b5b808d8682">cache</a></td></tr>
 <tr class="separator:acfdd135f8e40d858e97a1b5b808d8682"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
@@ -579,6 +578,33 @@ static std::unordered_map&lt; std::filesystem::path, std::shared_ptr&lt; <a clas
 </dl>
 
 <p>在 <a class="el" href="class_g_l_texture.html#a22f68c20e9572260f1d300f76ef56f9f">GLTexture</a> 内被实现.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="acfdd135f8e40d858e97a1b5b808d8682" name="acfdd135f8e40d858e97a1b5b808d8682"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acfdd135f8e40d858e97a1b5b808d8682">&#9670;&nbsp;</a></span>cache</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unordered_map&lt; fs::path, std::shared_ptr&lt; <a class="el" href="class_texture.html">Texture</a> &gt; &gt; Texture::cache</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >FIXME:</p><ol type="1">
+<li>内存泄露.</li>
+<li>数据相同的纹理其他属性(如寻址方式)可能不同. </li>
+</ol>
 
 </div>
 </div>

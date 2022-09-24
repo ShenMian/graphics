@@ -198,8 +198,7 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>deinit</b> ()<
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
 <div class="textblock"><p >游戏手柄. </p>
-<dl class="section warning"><dt>警告</dt><dd>不支持震动.</dd></dl>
-<p>获取手柄的按键状态, 摇杆数据和设备名称.</p>
+<p >获取手柄的按键状态, 摇杆数据和设备名称.</p>
 <div class="fragment"><div class="line"><a class="code hl_class" href="class_gamepad.html">Gamepad</a> gamepad; <span class="comment">// 如果使用一个手柄, 可以直接使用默认构造函数</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keywordflow">if</span>(!gamepad.<a class="code hl_function" href="class_gamepad.html#a33d4dbd503a8d645885bd19cbc390a91">isConnected</a>()) <span class="comment">// 检测手柄是否处于连接状态</span></div>
@@ -211,7 +210,7 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>deinit</b> ()<
 <div class="line"><span class="keywordtype">bool</span>     pressed   = gamepad.<a class="code hl_function" href="class_gamepad.html#adb986158a3306e5cef36f5c1b1bbe2bc">get</a>(Gamepad::Button::A))     <span class="comment">// 获取按键 A 是否按下</span></div>
 <div class="line"><span class="keywordtype">float</span>    magnitude = gamepad.<a class="code hl_function" href="class_gamepad.html#adb986158a3306e5cef36f5c1b1bbe2bc">get</a>(<a class="code hl_enumvalue" href="group__core.html#gga814093b43f211a291b19ccf662096738a811882fecd5c7618d7099ebbd39ea254">Gamepad::Trigger::left</a>); <span class="comment">// 获取左侧线性按键(LT)按力度</span></div>
 <div class="line">Vector2f position  = gamepad.<a class="code hl_function" href="class_gamepad.html#adb986158a3306e5cef36f5c1b1bbe2bc">get</a>(Gamepad::Thumb::left);   <span class="comment">// 获取左侧摇杆数据</span></div>
-<div class="ttc" id="aclass_gamepad_html"><div class="ttname"><a href="class_gamepad.html">Gamepad</a></div><div class="ttdoc">游戏手柄.</div><div class="ttdef"><b>Definition:</b> Gamepad.h:21</div></div>
+<div class="ttc" id="aclass_gamepad_html"><div class="ttname"><a href="class_gamepad.html">Gamepad</a></div><div class="ttdoc">游戏手柄.</div><div class="ttdef"><b>Definition:</b> Gamepad.h:19</div></div>
 <div class="ttc" id="aclass_gamepad_html_a33d4dbd503a8d645885bd19cbc390a91"><div class="ttname"><a href="class_gamepad.html#a33d4dbd503a8d645885bd19cbc390a91">Gamepad::isConnected</a></div><div class="ttdeci">bool isConnected() const</div><div class="ttdoc">检查手柄是否处于连接状态.</div><div class="ttdef"><b>Definition:</b> Gamepad.cpp:128</div></div>
 <div class="ttc" id="aclass_gamepad_html_adb986158a3306e5cef36f5c1b1bbe2bc"><div class="ttname"><a href="class_gamepad.html#adb986158a3306e5cef36f5c1b1bbe2bc">Gamepad::get</a></div><div class="ttdeci">Vector2f get(Thumb thumb) const noexcept</div><div class="ttdoc">获取摇杆数据.</div><div class="ttdef"><b>Definition:</b> Gamepad.cpp:52</div></div>
 <div class="ttc" id="aclass_gamepad_html_ae37f83a954aabbf634e9d6f37697ae58"><div class="ttname"><a href="class_gamepad.html#ae37f83a954aabbf634e9d6f37697ae58">Gamepad::update</a></div><div class="ttdeci">void update()</div><div class="ttdoc">更新数据.</div><div class="ttdef"><b>Definition:</b> Gamepad.cpp:33</div></div>

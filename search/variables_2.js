@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['entrypoint_0',['entryPoint',['../struct_shader_1_1_descriptor.html#a96861fa2f46a963baed7e6a6366ee1f4',1,'Shader::Descriptor']]]
+  ['diffuse_0',['diffuse',['../struct_material.html#ac7ba25300d2d139f8c2f9cceb02464c9',1,'Material']]]
 ];
