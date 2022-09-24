@@ -2,11 +2,9 @@
 // License(Apache-2.0)
 
 #include "GLVertexArray.h"
-#include "GLBuffer.h"
 #include "../VertexFormat.h"
-#include <glad/glad.h>
+#include "GLBuffer.h"
 #include <cstddef>
-#include <glad/glad.h>
 #include <stdexcept>
 #include <unordered_map>
 
@@ -82,7 +80,8 @@ void GLVertexArray::build(const VertexFormat& fmt, GLBuffer& vbo)
 	{
 		glEnableVertexArrayAttrib(handle, attr.location);
 		glVertexArrayAttribBinding(handle, attr.location, 0);
-		glVertexArrayAttribFormat(handle, attr.location, Components[attr.format], GLType[attr.format], attr.normalized, attr.offset);
+		glVertexArrayAttribFormat(handle, attr.location, Components[attr.format], GLType[attr.format], attr.normalized,
+		                          attr.offset);
 	}
 	glVertexArrayVertexBuffer(handle, 0, vbo, 0, fmt.getStride());
 	glVertexArrayElementBuffer(handle, vbo);
