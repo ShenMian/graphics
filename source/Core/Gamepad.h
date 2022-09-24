@@ -14,8 +14,6 @@
 
 /**
  * @brief 游戏手柄.
- *
- * @warning 不支持震动.
  */
 class Gamepad
 {

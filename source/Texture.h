@@ -126,7 +126,12 @@ protected:
 	Type   type;
 	Format format;
 
-	static std::unordered_map<std::filesystem::path, std::shared_ptr<Texture>> cache; // FIXME: 内存泄露
+	/**
+	 * FIXME:
+	 * 1. 内存泄露.
+	 * 2. 数据相同的纹理其他属性(如寻址方式)可能不同.
+	 */
+	static std::unordered_map<std::filesystem::path, std::shared_ptr<Texture>> cache;
 };
 
 // TODO: 需要移动到合适的位置
