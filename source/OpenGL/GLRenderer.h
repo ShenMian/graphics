@@ -17,4 +17,7 @@ public:
 	 */
 	static void init(const Window& win);
 	static void deinit();
+
+private:
+	static void setupDebugCallback();
 };
