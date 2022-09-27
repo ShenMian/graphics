@@ -157,12 +157,11 @@ void ModelImporter::loadMaterial(const aiMaterial& mat)
 	auto& material = model->materials.emplace_back();
 	material.name  = mat.GetName().C_Str();
 
-	Material::PBR::Workflow workflow;
-
 	aiShadingMode mode; 
 	mat.Get(AI_MATKEY_SHADING_MODEL, mode);
 	if(mode == aiShadingMode_PBR_BRDF)
 	{
+		Material::PBR::Workflow workflow;
 		float value;
 		if(mat.Get(AI_MATKEY_METALLIC_FACTOR, value) == aiReturn_SUCCESS)
 		{
