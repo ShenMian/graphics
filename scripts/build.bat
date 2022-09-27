@@ -1,6 +1,8 @@
-@echo off
+﻿@echo off
 REM Copyright 2021 ShenMian
 REM License(Apache-2.0)
+
+set "BUILD_DIR=build"
 
 cmake --version >nul 2>&1 || (
     echo === Need cmake.
@@ -16,22 +18,22 @@ mkdir build 2>nul
 
 echo === Installing dependencies...
 set "CONAN_SYSREQUIRES_MODE=enabled"
-conan install . --build=missing -if build -of build -s build_type=%BUILD_TYPE% -s compiler.runtime=%VS_ARGS% >nul || (
+conan install . --build=missing -if %BUILD_DIR% -of %BUILD_DIR% -s build_type=%BUILD_TYPE% -s compiler.runtime=%VS_ARGS% >nul || (
     echo === Failed to install.
     exit /b 1
 )
 
 echo === Generating CMake cache...
-cmake -Wno-dev -DCMAKE_BUILD_TYPE=%BUILD_TYPE% -B build >nul || (
+cmake -Wno-dev -DCMAKE_BUILD_TYPE=%BUILD_TYPE% -B %BUILD_DIR% >nul || (
     echo === Failed to generate CMake cache.
     exit /b 1
 )
 
 echo === Generating 'compile_commands.json'...
-xcopy build/compile_commands.json . 2>nul || echo No 'compile_commands.json' was generated.
+xcopy %BUILD_DIR%/compile_commands.json . 2>nul || echo No 'compile_commands.json' was generated.
 
 echo === Building...
-cmake --build build --config "%BUILD_TYPE%" -j16 || (
+cmake --build %BUILD_DIR% --config "%BUILD_TYPE%" -j16 || (
     echo === Failed to build.
     exit /b 1
 )
