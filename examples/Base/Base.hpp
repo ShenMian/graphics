@@ -8,6 +8,8 @@
 #include <fmt/color.h>
 #include <fmt/format.h>
 
+namespace fs = std::filesystem;
+
 class Base
 {
 public:
@@ -42,7 +44,7 @@ public:
 
 	int run(int argc, char* argv[])
 	{
-		std::filesystem::current_path(std::filesystem::path(argv[0]).parent_path());
+		fs::current_path(fs::path(argv[0]).parent_path());
 
 		try
 		{
