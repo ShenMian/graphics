@@ -39,8 +39,8 @@ void GLCommandBuffer::setViewport(const Viewport& viewport)
 	cmd->y      = static_cast<GLint>(viewport.x);
 	cmd->width  = static_cast<GLsizei>(viewport.width);
 	cmd->height = static_cast<GLsizei>(viewport.height);
-	cmd->n      = static_cast<GLdouble>(viewport.minDepth);
-	cmd->f      = static_cast<GLdouble>(viewport.maxDepth);
+	cmd->n      = static_cast<GLfloat>(viewport.minDepth);
+	cmd->f      = static_cast<GLfloat>(viewport.maxDepth);
 }
 
 void GLCommandBuffer::setPipeline(std::shared_ptr<Pipeline> pipeline)
@@ -86,8 +86,10 @@ void GLCommandBuffer::setClearDepth(float depth)
 	cmd->depth = depth;
 }
 
-void GLCommandBuffer::setClearStencil()
+void GLCommandBuffer::setClearStencil(uint32_t value)
 {
+	auto cmd = addCommand<GLCmdSetClearStencil>(GLOpcode::setClearStencil);
+	cmd->s   = value;
 }
 
 void GLCommandBuffer::draw(uint32_t vertexCount, uint32_t firstVertex)

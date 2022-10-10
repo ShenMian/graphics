@@ -139,7 +139,7 @@ void VKCommandBuffer::setClearDepth(float depth)
 {
 }
 
-void VKCommandBuffer::setClearStencil()
+void VKCommandBuffer::setClearStencil(uint32_t value)
 {
 }
 

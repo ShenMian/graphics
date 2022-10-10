@@ -30,7 +30,7 @@ public:
 	void clear(uint8_t flags) override;
 	void setClearColor(const Vector4& color) override;
 	void setClearDepth(float depth) override;
-	void setClearStencil() override;
+	void setClearStencil(uint32_t value) override;
 
 	void draw(uint32_t vertexCount, uint32_t firstVertex) override;
 	void drawIndexed(uint32_t indexCount, uint32_t firstIndex) override;
