@@ -19,10 +19,11 @@ var searchData=
   ['glpipeline_16',['GLPipeline',['../class_g_l_pipeline.html',1,'']]],
   ['glprogram_17',['GLProgram',['../class_g_l_program.html',1,'']]],
   ['glrenderer_18',['GLRenderer',['../class_g_l_renderer.html',1,'']]],
-  ['glshader_19',['GLShader',['../class_g_l_shader.html',1,'']]],
-  ['gltexture_20',['GLTexture',['../class_g_l_texture.html',1,'']]],
-  ['gluniformbuffer_21',['GLUniformBuffer',['../class_g_l_uniform_buffer.html',1,'']]],
-  ['glvertexarray_22',['GLVertexArray',['../class_g_l_vertex_array.html',1,'']]],
-  ['glvertexbuffer_23',['GLVertexBuffer',['../class_g_l_vertex_buffer.html',1,'']]],
-  ['glyph_24',['Glyph',['../struct_font_1_1_glyph.html',1,'Font']]]
+  ['glsampler_19',['GLSampler',['../class_g_l_sampler.html',1,'']]],
+  ['glshader_20',['GLShader',['../class_g_l_shader.html',1,'']]],
+  ['gltexture_21',['GLTexture',['../class_g_l_texture.html',1,'']]],
+  ['gluniformbuffer_22',['GLUniformBuffer',['../class_g_l_uniform_buffer.html',1,'']]],
+  ['glvertexarray_23',['GLVertexArray',['../class_g_l_vertex_array.html',1,'']]],
+  ['glvertexbuffer_24',['GLVertexBuffer',['../class_g_l_vertex_buffer.html',1,'']]],
+  ['glyph_25',['Glyph',['../struct_font_1_1_glyph.html',1,'Font']]]
 ];

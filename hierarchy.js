@@ -22,6 +22,7 @@ var hierarchy =
     [ "DepthDescriptor", "struct_depth_descriptor.html", null ],
     [ "Pipeline::Descriptor", "struct_pipeline_1_1_descriptor.html", null ],
     [ "Program::Descriptor", "struct_program_1_1_descriptor.html", null ],
+    [ "Sampler::Descriptor", "struct_sampler_1_1_descriptor.html", null ],
     [ "Shader::Descriptor", "struct_shader_1_1_descriptor.html", null ],
     [ "DeviceBuilder", "class_device_builder.html", null ],
     [ "Font", "class_font.html", null ],
@@ -73,6 +74,10 @@ var hierarchy =
       [ "VKRenderer", "class_v_k_renderer.html", null ]
     ] ],
     [ "RID", "class_r_i_d.html", null ],
+    [ "Sampler", "class_sampler.html", [
+      [ "GLSampler", "class_g_l_sampler.html", null ],
+      [ "VKSampler", "class_v_k_sampler.html", null ]
+    ] ],
     [ "Shader", "class_shader.html", [
       [ "GLShader", "class_g_l_shader.html", null ],
       [ "VKShader", "class_v_k_shader.html", null ]

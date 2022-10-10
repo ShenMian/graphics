@@ -1,9 +1,9 @@
 var searchData=
 [
   ['cache_0',['cache',['../class_texture.html#acfdd135f8e40d858e97a1b5b808d8682',1,'Texture']]],
-  ['camera_1',['Camera',['../class_camera.html#aa8ec068be0051d9f01ff3f19ae37cddb',1,'Camera::Camera()'],['../class_camera.html',1,'Camera']]],
+  ['camera_1',['Camera',['../class_camera.html',1,'Camera'],['../class_camera.html#aa8ec068be0051d9f01ff3f19ae37cddb',1,'Camera::Camera()']]],
   ['channelcount_2',['channelCount',['../class_image.html#a1199588fcdf503972928e8756eb9ec24',1,'Image']]],
-  ['clamptoedge_3',['ClampToEdge',['../class_texture.html#af110c1b8fc58036b94dced17b5399b68a74556551231333c36debc3d373261134',1,'Texture']]],
+  ['clamptoedge_3',['ClampToEdge',['../class_sampler.html#a02dc1744e42b8b48e61ca5276c1440efa74556551231333c36debc3d373261134',1,'Sampler::ClampToEdge()'],['../class_texture.html#af110c1b8fc58036b94dced17b5399b68a74556551231333c36debc3d373261134',1,'Texture::ClampToEdge()']]],
   ['clear_4',['clear',['../class_command_buffer.html#accc1761193f40a84dd8e3dd05f18dd0f',1,'CommandBuffer::clear()'],['../class_g_l_command_buffer.html#afb2847fd985cc379404cbecd852afa2f',1,'GLCommandBuffer::clear()'],['../class_v_k_command_buffer.html#acdd3586370f5e2dd6d40c2b697d4b88a',1,'VKCommandBuffer::clear()']]],
   ['clearflag_5',['ClearFlag',['../struct_clear_flag.html',1,'']]],
   ['commandbuffer_6',['CommandBuffer',['../class_command_buffer.html',1,'']]],

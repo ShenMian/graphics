@@ -14,8 +14,9 @@ var searchData=
   ['vkpipeline_11',['VKPipeline',['../class_v_k_pipeline.html',1,'']]],
   ['vkprogram_12',['VKProgram',['../class_v_k_program.html',1,'']]],
   ['vkrenderer_13',['VKRenderer',['../class_v_k_renderer.html',1,'']]],
-  ['vkshader_14',['VKShader',['../class_v_k_shader.html',1,'']]],
-  ['vkswapchain_15',['VKSwapchain',['../class_v_k_swapchain.html',1,'']]],
-  ['vkuniformbuffer_16',['VKUniformBuffer',['../class_v_k_uniform_buffer.html',1,'']]],
-  ['vkvertexbuffer_17',['VKVertexBuffer',['../class_v_k_vertex_buffer.html',1,'']]]
+  ['vksampler_14',['VKSampler',['../class_v_k_sampler.html',1,'']]],
+  ['vkshader_15',['VKShader',['../class_v_k_shader.html',1,'']]],
+  ['vkswapchain_16',['VKSwapchain',['../class_v_k_swapchain.html',1,'']]],
+  ['vkuniformbuffer_17',['VKUniformBuffer',['../class_v_k_uniform_buffer.html',1,'']]],
+  ['vkvertexbuffer_18',['VKVertexBuffer',['../class_v_k_vertex_buffer.html',1,'']]]
 ];

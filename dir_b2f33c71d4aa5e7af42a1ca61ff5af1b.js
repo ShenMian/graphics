@@ -23,6 +23,7 @@ var dir_b2f33c71d4aa5e7af42a1ca61ff5af1b =
     [ "Primitive.h", "_primitive_8h_source.html", null ],
     [ "Program.h", "_program_8h_source.html", null ],
     [ "Renderer.h", "_renderer_8h_source.html", null ],
+    [ "Sampler.h", "_sampler_8h_source.html", null ],
     [ "Shader.h", "_shader_8h_source.html", null ],
     [ "Texture.h", "_texture_8h_source.html", null ],
     [ "UniformBuffer.h", "_uniform_buffer_8h_source.html", null ],

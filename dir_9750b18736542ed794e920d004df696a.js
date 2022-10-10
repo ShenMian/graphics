@@ -11,6 +11,7 @@ var dir_9750b18736542ed794e920d004df696a =
     [ "VKPipeline.h", "_v_k_pipeline_8h_source.html", null ],
     [ "VKProgram.h", "_v_k_program_8h_source.html", null ],
     [ "VKRenderer.h", "_v_k_renderer_8h_source.html", null ],
+    [ "VKSampler.h", "_v_k_sampler_8h_source.html", null ],
     [ "VKShader.h", "_v_k_shader_8h_source.html", null ],
     [ "VKSwapchain.h", "_v_k_swapchain_8h_source.html", null ],
     [ "VKUniformBuffer.h", "_v_k_uniform_buffer_8h_source.html", null ],
