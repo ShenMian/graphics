@@ -261,7 +261,8 @@ void Window::init()
 
 	glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE); // 创建新窗口默认不可见
 	glfwWindowHint(GLFW_SAMPLES, 2);          // 开启 MSAA 抗锯齿
-	                                          // glfwWindowHint(GLFW_DECORATED, GLFW_FALSE); // 启用无边框
+
+	// glfwWindowHint(GLFW_DECORATED, GLFW_FALSE); // 启用无边框
 
 	/*
 	const auto& monitor = Monitor::getPrimary();

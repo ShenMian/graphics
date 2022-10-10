@@ -32,13 +32,11 @@ void Controller::moveFront(float step)
 void Controller::moveRight(float step)
 {
 	target += camera->getRight() * step;
-	;
 }
 
 void Controller::moveUp(float step)
 {
 	target += -Vector3f::unit_y * step;
-	;
 }
 
 void Controller::turnRight(float step)
