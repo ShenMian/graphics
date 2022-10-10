@@ -24,7 +24,7 @@ var searchData=
   ['getmouseposition_21',['getMousePosition',['../class_input.html#ada65d73a18226652a1b8330addf35e8a',1,'Input']]],
   ['getmousex_22',['getMouseX',['../class_input.html#aad68569383410edc8f78a943113ce511',1,'Input']]],
   ['getmousey_23',['getMouseY',['../class_input.html#ab8cd307e1a0fe647309da8583a51807b',1,'Input']]],
-  ['getname_24',['getName',['../class_v_k_physical_device.html#a9677d12b545e6324581f0b796a0eb229',1,'VKPhysicalDevice::getName()'],['../class_gamepad.html#ab0fd07c0c3c1ac1f0ab997000061bd80',1,'Gamepad::getName()'],['../class_shader.html#a6e91ea814d9d8ab826b483e209634393',1,'Shader::getName()'],['../class_animation.html#af2714b2f99011e0ecf67952032f38b7b',1,'Animation::getName()'],['../class_monitor.html#af348acf870af8a0e27c4560c96eafd7c',1,'Monitor::getName()']]],
+  ['getname_24',['getName',['../class_v_k_physical_device.html#a92f8e492cfdaae1c87ecbbb9552f2292',1,'VKPhysicalDevice::getName()'],['../class_gamepad.html#ab0fd07c0c3c1ac1f0ab997000061bd80',1,'Gamepad::getName()'],['../class_shader.html#a6e91ea814d9d8ab826b483e209634393',1,'Shader::getName()'],['../class_animation.html#af2714b2f99011e0ecf67952032f38b7b',1,'Animation::getName()'],['../class_monitor.html#af348acf870af8a0e27c4560c96eafd7c',1,'Monitor::getName()']]],
   ['getnear_25',['getNear',['../class_camera.html#ac8e964aa5463f7dd3d3555398685df52',1,'Camera']]],
   ['getphysicaldevice_26',['getPhysicalDevice',['../class_v_k_renderer.html#aa738911381876b0b264d3a0cbc6d89a2',1,'VKRenderer']]],
   ['getpixel_27',['getPixel',['../class_image.html#afa2d45be59ae6bd0867544f571fda47a',1,'Image']]],
@@ -41,7 +41,7 @@ var searchData=
   ['getswapchain_38',['getSwapchain',['../class_v_k_renderer.html#af0556e23b419b82a6cc229fdeb5fdf51',1,'VKRenderer']]],
   ['gettype_39',['getType',['../class_buffer.html#a8df11718cac1d3d4321bbc9a8410ad01',1,'Buffer::getType()'],['../class_camera.html#ae8f514578aa54023476ad541b167a1e0',1,'Camera::getType()'],['../class_texture.html#a885cf1c026c6227fbc1b99befa842416',1,'Texture::getType()']]],
   ['getusage_40',['getUsage',['../class_buffer.html#a35f7d79ac4e9d02a86aad038d525a8df',1,'Buffer']]],
-  ['getvendorname_41',['getVendorName',['../class_v_k_physical_device.html#a082cf079d83e70f3627275a5759608e6',1,'VKPhysicalDevice']]],
+  ['getvendorname_41',['getVendorName',['../class_v_k_physical_device.html#a79448c3eec40bb944987c7c58bafb9f0',1,'VKPhysicalDevice']]],
   ['getvfov_42',['getVFOV',['../class_camera.html#ae7caf7ede968e6f6eb38df6066f5b3d9',1,'Camera']]],
   ['getview_43',['getView',['../class_camera.html#a26a85543e0caeb0ff79cffeb8d27066c',1,'Camera']]]
 ];

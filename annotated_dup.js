@@ -29,6 +29,7 @@ var annotated_dup =
     [ "GLCmdDrawIndexed", "struct_g_l_cmd_draw_indexed.html", null ],
     [ "GLCmdSetClearColor", "struct_g_l_cmd_set_clear_color.html", null ],
     [ "GLCmdSetClearDepth", "struct_g_l_cmd_set_clear_depth.html", null ],
+    [ "GLCmdSetClearStencil", "struct_g_l_cmd_set_clear_stencil.html", null ],
     [ "GLCmdSetIndexBuffer", "struct_g_l_cmd_set_index_buffer.html", null ],
     [ "GLCmdSetPipeline", "struct_g_l_cmd_set_pipeline.html", null ],
     [ "GLCmdSetTexture", "struct_g_l_cmd_set_texture.html", null ],
