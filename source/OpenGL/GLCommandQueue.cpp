@@ -29,7 +29,7 @@ size_t GLCommandQueue::execute(GLOpcode opcode, const uint8_t* pc)
 	case GLOpcode::setViewport: {
 		auto args = reinterpret_cast<const GLCmdSetViewport*>(pc);
 		glViewport(args->x, args->y, args->width, args->height);
-		glDepthRange(args->n, args->f);
+		glDepthRangef(args->n, args->f);
 		return sizeof(*args);
 	}
 
@@ -85,6 +85,12 @@ size_t GLCommandQueue::execute(GLOpcode opcode, const uint8_t* pc)
 		return sizeof(*args);
 	}
 
+	case GLOpcode::setClearStencil: {
+		const auto args = reinterpret_cast<const GLCmdSetClearStencil*>(pc);
+		glClearStencil(args->s);
+		return sizeof(*args);
+	}
+
 	case GLOpcode::draw: {
 		const auto args = reinterpret_cast<const GLCmdDraw*>(pc);
 		glDrawArrays(GL_TRIANGLES, (GLsizei)args->firstVertex, (GLsizei)args->vertexCount);
@@ -93,7 +99,6 @@ size_t GLCommandQueue::execute(GLOpcode opcode, const uint8_t* pc)
 
 	case GLOpcode::drawIndexed: {
 		const auto args = reinterpret_cast<const GLCmdDrawIndexed*>(pc);
-		glEnable(GL_DEPTH_TEST);
 		// const GLintptr indices = args->firstIndex * sizeof(unsigned int);
 		glDrawElements(GL_TRIANGLES, (GLsizei)args->indexCount, GL_UNSIGNED_INT, nullptr);
 		return sizeof(*args);
