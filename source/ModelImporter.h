@@ -29,6 +29,12 @@ struct aiAnimation;
 class ModelImporter
 {
 public:
+	/**
+	 * @brief 加载模型.
+	 * 
+	 * @param path     模型文件路径.
+	 * @param callback 加载进度回调.
+	 */
 	Model load(const std::filesystem::path& path, std::function<void(float)> callback = nullptr);
 
 private:
@@ -38,8 +44,8 @@ private:
 	void loadMaterial(const aiMaterial&);
 	void loadAnimation(const aiAnimation&);
 
-	std::vector<Mesh::Vertex> loadVertices(const aiMesh&);
-	std::vector<unsigned int> loadIndices(const aiMesh&);
+	std::vector<Mesh::Vertex> loadVertices(const aiMesh&) noexcept;
+	std::vector<unsigned int> loadIndices(const aiMesh&) noexcept;
 
 	const aiScene* scene;
 	Model*         model;

@@ -200,7 +200,7 @@ void ModelImporter::loadAnimation(const aiAnimation& anim)
 	                               static_cast<int>(anim.mTicksPerSecond));
 }
 
-std::vector<Mesh::Vertex> ModelImporter::loadVertices(const aiMesh& mesh)
+std::vector<Mesh::Vertex> ModelImporter::loadVertices(const aiMesh& mesh) noexcept
 {
 	std::vector<Mesh::Vertex> vertices;
 
@@ -237,7 +237,7 @@ std::vector<Mesh::Vertex> ModelImporter::loadVertices(const aiMesh& mesh)
 	return vertices;
 }
 
-std::vector<unsigned int> ModelImporter::loadIndices(const aiMesh& mesh)
+std::vector<unsigned int> ModelImporter::loadIndices(const aiMesh& mesh) noexcept
 {
 	std::vector<unsigned int> indices;
 
