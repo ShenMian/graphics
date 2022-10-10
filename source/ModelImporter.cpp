@@ -50,7 +50,7 @@ private:
 
 } // namespace
 
-Model ModelImporter::load(const fs::path& path)
+Model ModelImporter::load(const fs::path& path, std::function<void(float)> callback)
 {
 	if(!fs::is_regular_file(path))
 		throw std::runtime_error(fmt::format("no such file: {}", path));
@@ -63,11 +63,8 @@ Model ModelImporter::load(const fs::path& path)
 	constexpr unsigned int maxQualityFlags = qualityFlags | aiProcess_OptimizeMeshes;
 
 	Assimp::Importer importer;
-	importer.SetProgressHandler(new Progress([](float progress) {
-		printf(":: Model loading: %.1f%%  \r", progress * 100);
-		if(progress == 1.f)
-			printf("\n");
-	}));
+	if(callback)
+		importer.SetProgressHandler(new Progress([&](float progress) { callback(progress); }));
 	scene = importer.ReadFile(path.string(), fastFlags);
 
 	if(scene == nullptr || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || scene->mRootNode == nullptr)

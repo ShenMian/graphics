@@ -5,6 +5,7 @@
 
 #include "Mesh.h"
 #include <filesystem>
+#include <functional>
 
 /** @addtogroup model
  *  @{
@@ -28,7 +29,7 @@ struct aiAnimation;
 class ModelImporter
 {
 public:
-	Model load(const std::filesystem::path& path);
+	Model load(const std::filesystem::path& path, std::function<void(float)> callback = nullptr);
 
 private:
 	void loadScene();
