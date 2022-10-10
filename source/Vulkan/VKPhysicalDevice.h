@@ -17,21 +17,21 @@ public:
 
 	VKPhysicalDevice(VkPhysicalDevice device, VkSurfaceKHR surface);
 
-	const VkPhysicalDeviceProperties& getProperties() const;
+	const VkPhysicalDeviceProperties& getProperties() const noexcept;
 
-	const VkPhysicalDeviceFeatures& getFeatures() const;
+	const VkPhysicalDeviceFeatures& getFeatures() const noexcept;
 
-	VkSurfaceKHR getSurface() const;
+	VkSurfaceKHR getSurface() const noexcept;
 
 	/**
 	 * @brief 获取设备名称.
 	 */
-	std::string_view getName() const;
+	std::string_view getName() const noexcept;
 
 	/**
 	 * @brief 获取设备供应商名称.
 	 */
-	std::string_view getVendorName() const;
+	std::string_view getVendorName() const noexcept;
 
 	VkSurfaceCapabilitiesKHR        getSurfaceCapabilities() const;
 	std::vector<VkSurfaceFormatKHR> getSurfaceFormats() const;

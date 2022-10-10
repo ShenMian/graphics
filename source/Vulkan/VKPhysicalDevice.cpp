@@ -37,32 +37,27 @@ VKPhysicalDevice::VKPhysicalDevice(VkPhysicalDevice device, VkSurfaceKHR surface
 	vkEnumerateDeviceExtensionProperties(handle, nullptr, &extensionCount, availableExtensions.data());
 }
 
-const VkPhysicalDeviceProperties& VKPhysicalDevice::getProperties() const
+const VkPhysicalDeviceProperties& VKPhysicalDevice::getProperties() const noexcept
 {
 	return properties;
 }
 
-const VkPhysicalDeviceFeatures& VKPhysicalDevice::getFeatures() const
+const VkPhysicalDeviceFeatures& VKPhysicalDevice::getFeatures() const noexcept
 {
 	return features;
 }
 
-bool VKPhysicalDevice::isExtensionAvailable(std::string_view name) const
-{
-	return std::ranges::any_of(availableExtensions, [name](const auto& ext) { return ext.extensionName == name; });
-}
-
-VkSurfaceKHR VKPhysicalDevice::getSurface() const
+VkSurfaceKHR VKPhysicalDevice::getSurface() const noexcept
 {
 	return surface;
 }
 
-std::string_view VKPhysicalDevice::getName() const
+std::string_view VKPhysicalDevice::getName() const noexcept
 {
 	return properties.deviceName;
 }
 
-std::string_view VKPhysicalDevice::getVendorName() const
+std::string_view VKPhysicalDevice::getVendorName() const noexcept
 {
 	switch(properties.vendorID)
 	{
@@ -114,6 +109,11 @@ std::vector<VkPresentModeKHR> VKPhysicalDevice::getSurfacePresentModes() const
 	presentModes.resize(presentModeCount);
 	vkGetPhysicalDeviceSurfacePresentModesKHR(handle, surface, &presentModeCount, presentModes.data());
 	return presentModes;
+}
+
+bool VKPhysicalDevice::isExtensionAvailable(std::string_view name) const
+{
+	return std::ranges::any_of(availableExtensions, [name](const auto& ext) { return ext.extensionName == name; });
 }
 
 VKPhysicalDevice::operator VkPhysicalDevice()
