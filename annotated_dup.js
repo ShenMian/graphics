@@ -53,7 +53,7 @@ var annotated_dup =
     [ "Material", "struct_material.html", "struct_material" ],
     [ "Mesh", "class_mesh.html", "class_mesh" ],
     [ "Model", "struct_model.html", null ],
-    [ "ModelImporter", "class_model_importer.html", null ],
+    [ "ModelImporter", "class_model_importer.html", "class_model_importer" ],
     [ "Monitor", "class_monitor.html", "class_monitor" ],
     [ "PhysicalDeviceSelector", "class_physical_device_selector.html", null ],
     [ "Pipeline", "class_pipeline.html", "class_pipeline" ],

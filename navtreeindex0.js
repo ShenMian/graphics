@@ -212,6 +212,7 @@ var NAVTREEINDEX0 =
 "class_mesh.html#a85a46b3f1d32d145153ae05816e28368":[3,1,1,1],
 "class_mesh.html#a8f9b5776987d94db7ac1eaa591340f1e":[3,1,1,2],
 "class_model_importer.html":[3,1,3],
+"class_model_importer.html#a9497388464c6e88232ef929d009cd471":[3,1,3,0],
 "class_monitor.html":[3,0,3],
 "class_monitor.html#a4e1e52b23525c876c8981564e657a7af":[3,0,3,3],
 "class_monitor.html#a60d2288e26fdc53ec6ebdc2b3b6b5a49":[3,0,3,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX0 =
 "class_texture.html#a55341847b37906ddffa803675617da27a969a7b6f1f3951ef293b3ff281dc293d":[4,0,55,0,2],
 "class_texture.html#a55341847b37906ddffa803675617da27aaf17c98bbd83c27d6426d2ff3fa81d7f":[4,0,55,0,1],
 "class_texture.html#a6488dbab409fd08a4731dcb2c921aad7":[4,0,55,6],
-"class_texture.html#a78ca4624d52f3b74d6af79beaa3ce5c1":[4,0,55,7],
-"class_texture.html#a885cf1c026c6227fbc1b99befa842416":[4,0,55,3]
+"class_texture.html#a78ca4624d52f3b74d6af79beaa3ce5c1":[4,0,55,7]
 };

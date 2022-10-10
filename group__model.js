@@ -20,5 +20,7 @@ var group__model =
       [ "isCompressed", "class_mesh.html#a805c66466278300f121c366cb0f9c6de", null ]
     ] ],
     [ "Model", "struct_model.html", null ],
-    [ "ModelImporter", "class_model_importer.html", null ]
+    [ "ModelImporter", "class_model_importer.html", [
+      [ "load", "class_model_importer.html#a9497388464c6e88232ef929d009cd471", null ]
+    ] ]
 ];
