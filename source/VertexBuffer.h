@@ -18,24 +18,24 @@ public:
 	/**
 	 * @brief 创建 VertexBuffer.
 	 *
-	 * @param data   顶点缓冲区.
-	 * @param layout 顶点格式.
-	 * @param usage  使用方式.
+	 * @param data  顶点缓冲区.
+	 * @param fmt   顶点格式.
+	 * @param usage 使用方式.
 	 */
 	template <typename T>
-	[[nodiscard]] static std::shared_ptr<VertexBuffer> create(const std::vector<T>& data, const VertexFormat& layout,
+	[[nodiscard]] static std::shared_ptr<VertexBuffer> create(const std::vector<T>& data, const VertexFormat& fmt,
 	                                                          Buffer::Usage usage = Buffer::Usage::Static);
 
 	/**
 	 * @brief 创建 VertexBuffer.
 	 *
-	 * @param data   顶点缓冲区指针.
-	 * @param size   顶点缓冲区大小, 单位: 字节.
-	 * @param count  顶点数量.
-	 * @param layout 顶点格式.
-	 * @param usage  使用方式.
+	 * @param data  顶点缓冲区指针.
+	 * @param size  顶点缓冲区大小, 单位: 字节.
+	 * @param count 顶点数量.
+	 * @param fmt   顶点格式.
+	 * @param usage 使用方式.
 	 */
-	[[nodiscard]] static std::shared_ptr<VertexBuffer> create(const void* data, size_t size, const VertexFormat& layout,
+	[[nodiscard]] static std::shared_ptr<VertexBuffer> create(const void* data, size_t size, const VertexFormat& fmt,
 	                                                          Buffer::Usage usage = Buffer::Usage::Static);
 
 	/**
@@ -65,8 +65,8 @@ private:
 };
 
 template <typename T>
-inline std::shared_ptr<VertexBuffer> VertexBuffer::create(const std::vector<T>& data, const VertexFormat& layout,
+inline std::shared_ptr<VertexBuffer> VertexBuffer::create(const std::vector<T>& data, const VertexFormat& fmt,
                                                           Buffer::Usage usage)
 {
-	return create(data.data(), data.size() * sizeof(T), layout, usage);
+	return create(data.data(), data.size() * sizeof(T), fmt, usage);
 }

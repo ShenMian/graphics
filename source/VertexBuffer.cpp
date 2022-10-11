@@ -8,7 +8,7 @@
 #include "OpenGL/GLVertexBuffer.h"
 #include "Vulkan/VKVertexBuffer.h"
 
-std::shared_ptr<VertexBuffer> VertexBuffer::create(const void* data, size_t size, const VertexFormat& layout,
+std::shared_ptr<VertexBuffer> VertexBuffer::create(const void* data, size_t size, const VertexFormat& fmt,
                                                    Buffer::Usage usage)
 {
 	switch(Renderer::getAPI())
@@ -16,10 +16,10 @@ std::shared_ptr<VertexBuffer> VertexBuffer::create(const void* data, size_t size
 		using enum Renderer::API;
 
 	case OpenGL:
-		return std::make_shared<GLVertexBuffer>(data, size, layout, usage);
+		return std::make_shared<GLVertexBuffer>(data, size, fmt, usage);
 
 	case Vulkan:
-		return std::make_shared<VKVertexBuffer>(data, size, layout, usage);
+		return std::make_shared<VKVertexBuffer>(data, size, fmt, usage);
 	}
 	return nullptr;
 }
