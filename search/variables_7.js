@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['path_0',['path',['../struct_shader_1_1_descriptor.html#a3d605a411ee9b397efe1b4bd21b7ac5e',1,'Shader::Descriptor']]]
+  ['roughness_0',['roughness',['../struct_material_1_1_p_b_r.html#a249515154b5aa43e36a0377ed9784efa',1,'Material::PBR']]]
 ];

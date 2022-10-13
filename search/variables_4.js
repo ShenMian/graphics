@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['metallic_0',['metallic',['../struct_material_1_1_p_b_r.html#a7f8d5ef56e4cbddfef054bde6fce002a',1,'Material::PBR']]]
+  ['normals_0',['normals',['../struct_material_1_1_p_b_r.html#a8505fb3cfbbb3de800e429334cc25baa',1,'Material::PBR::normals()'],['../struct_material.html#a8a128c07127f705d302f99dcf6ca0999',1,'Material::normals()']]]
 ];

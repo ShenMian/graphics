@@ -1,5 +1,8 @@
 var searchData=
 [
-  ['window_0',['Window',['../class_window.html#a0ae8e189557c4d340fe99236f70cf6f9',1,'Window']]],
-  ['write_1',['write',['../class_buffer.html#aeaa85d41836b7c2381c68160b951bfa5',1,'Buffer::write(std::span&lt; T &gt; data, size_t offset=0)'],['../class_buffer.html#a1dfdf1f77eeec6e076bba544fd7a9b82',1,'Buffer::write(const void *data, size_t size, size_t offset=0)']]]
+  ['unmap_0',['unmap',['../class_buffer.html#a6ba3b3427f1570055a2ad2137743435a',1,'Buffer::unmap()'],['../class_g_l_buffer.html#a85c80dfaa3d5d59fe53a82a6a83cd7fb',1,'GLBuffer::unmap()'],['../class_v_k_buffer.html#a3063d48f226a7d11f14de846f0a712d1',1,'VKBuffer::unmap()']]],
+  ['update_1',['update',['../class_controller.html#abff8d731f04eccd93049041c7ee142ce',1,'Controller::update()'],['../class_gamepad.html#ae37f83a954aabbf634e9d6f37697ae58',1,'Gamepad::update()'],['../class_window.html#a59515fc5a56e86d5a46d771595daac55',1,'Window::update()']]],
+  ['updatehandle_2',['updateHandle',['../classui_1_1_widget.html#a00b122fd63f70bbfe501fac5355a6457',1,'ui::Widget']]],
+  ['updateprojectionmatrix_3',['updateProjectionMatrix',['../class_camera.html#a27db4d90a765984a3e4e4a4bf72bd6ac',1,'Camera']]],
+  ['updateviewmatrix_4',['updateViewMatrix',['../class_camera.html#a4b381ff945f574dbb006d5c926a00e80',1,'Camera']]]
 ];

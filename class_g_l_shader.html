@@ -113,6 +113,10 @@ size_t&#160;</td><td class="memItemRight" valign="bottom"><b>getHandle</b> () co
 const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getName</b> () const</td></tr>
 <tr class="memdesc:a6e91ea814d9d8ab826b483e209634393 inherit pub_methods_class_shader"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取名称. <br /></td></tr>
 <tr class="separator:a6e91ea814d9d8ab826b483e209634393 inherit pub_methods_class_shader"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8baa27bc4f64282821fdb5f93f4f332a inherit pub_methods_class_shader"><td class="memItemLeft" align="right" valign="top"><a id="a8baa27bc4f64282821fdb5f93f4f332a" name="a8baa27bc4f64282821fdb5f93f4f332a"></a>
+const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getEntryPoint</b> () const</td></tr>
+<tr class="memdesc:a8baa27bc4f64282821fdb5f93f4f332a inherit pub_methods_class_shader"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取入口点名称. <br /></td></tr>
+<tr class="separator:a8baa27bc4f64282821fdb5f93f4f332a inherit pub_methods_class_shader"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3a91e257350332a3cd3af52d740405d5 inherit pub_methods_class_shader"><td class="memItemLeft" align="right" valign="top"><a id="a3a91e257350332a3cd3af52d740405d5" name="a3a91e257350332a3cd3af52d740405d5"></a>
 <a class="el" href="class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8f">Stage</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getStage</b> () const</td></tr>
 <tr class="memdesc:a3a91e257350332a3cd3af52d740405d5 inherit pub_methods_class_shader"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取阶段. <br /></td></tr>
@@ -140,13 +144,23 @@ const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>ge
 <tr class="memitem:a8bba8301aa0e47e0195765334df1ab2a inherit pro_methods_class_shader"><td class="memItemLeft" align="right" valign="top"><a id="a8bba8301aa0e47e0195765334df1ab2a" name="a8bba8301aa0e47e0195765334df1ab2a"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Shader</b> (const <a class="el" href="struct_shader_1_1_descriptor.html">Descriptor</a> &amp;desc)</td></tr>
 <tr class="separator:a8bba8301aa0e47e0195765334df1ab2a inherit pro_methods_class_shader"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af28fc333dcbb991fcc9f3357b3a43058 inherit pro_methods_class_shader"><td class="memItemLeft" align="right" valign="top"><a id="af28fc333dcbb991fcc9f3357b3a43058" name="af28fc333dcbb991fcc9f3357b3a43058"></a>
+std::vector&lt; uint32_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getCode</b> (std::filesystem::path path)</td></tr>
+<tr class="memdesc:af28fc333dcbb991fcc9f3357b3a43058 inherit pro_methods_class_shader"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取 SPIR-V 代码, 若未编译则先进行编译. <br /></td></tr>
+<tr class="separator:af28fc333dcbb991fcc9f3357b3a43058 inherit pro_methods_class_shader"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae3484242fc9225bbde56ef271989bdd3 inherit pro_methods_class_shader"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_shader.html#ae3484242fc9225bbde56ef271989bdd3">compile</a> (const std::filesystem::path &amp;sourcePath, const std::filesystem::path &amp;targetPath, <a class="el" href="class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8f">Stage</a> stage)</td></tr>
 <tr class="memdesc:ae3484242fc9225bbde56ef271989bdd3 inherit pro_methods_class_shader"><td class="mdescLeft">&#160;</td><td class="mdescRight">将 GLSL 编译为 SPIR-V.  <a href="class_shader.html#ae3484242fc9225bbde56ef271989bdd3">更多...</a><br /></td></tr>
 <tr class="separator:ae3484242fc9225bbde56ef271989bdd3 inherit pro_methods_class_shader"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b6c9f936b18f880b1b0f0c60c943e33 inherit pro_methods_class_shader"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_shader.html#a8b6c9f936b18f880b1b0f0c60c943e33">parse</a> (const std::vector&lt; uint32_t &gt; &amp;buf)</td></tr>
+<tr class="memdesc:a8b6c9f936b18f880b1b0f0c60c943e33 inherit pro_methods_class_shader"><td class="mdescLeft">&#160;</td><td class="mdescRight">将 GLSL 编译为 SPIR-V.  <a href="class_shader.html#a8b6c9f936b18f880b1b0f0c60c943e33">更多...</a><br /></td></tr>
+<tr class="separator:a8b6c9f936b18f880b1b0f0c60c943e33 inherit pro_methods_class_shader"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_class_shader"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_shader')"><img src="closed.png" alt="-"/>&#160;Protected 属性 继承自 <a class="el" href="class_shader.html">Shader</a></td></tr>
 <tr class="memitem:a8c8fba8311ca3a7cfeac5afeb346e51b inherit pro_attribs_class_shader"><td class="memItemLeft" align="right" valign="top"><a id="a8c8fba8311ca3a7cfeac5afeb346e51b" name="a8c8fba8311ca3a7cfeac5afeb346e51b"></a>
 std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b></td></tr>
 <tr class="separator:a8c8fba8311ca3a7cfeac5afeb346e51b inherit pro_attribs_class_shader"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83bfaa673d5a724781edb5d1c6bf098f inherit pro_attribs_class_shader"><td class="memItemLeft" align="right" valign="top"><a id="a83bfaa673d5a724781edb5d1c6bf098f" name="a83bfaa673d5a724781edb5d1c6bf098f"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>entryPoint</b></td></tr>
+<tr class="separator:a83bfaa673d5a724781edb5d1c6bf098f inherit pro_attribs_class_shader"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a475124c13e3925dda88ed118b0a9d2ed inherit pro_attribs_class_shader"><td class="memItemLeft" align="right" valign="top"><a id="a475124c13e3925dda88ed118b0a9d2ed" name="a475124c13e3925dda88ed118b0a9d2ed"></a>
 <a class="el" href="class_shader.html#aa09ca98027dbafd5d37c71f53a6efe8f">Stage</a>&#160;</td><td class="memItemRight" valign="bottom"><b>stage</b></td></tr>
 <tr class="separator:a475124c13e3925dda88ed118b0a9d2ed inherit pro_attribs_class_shader"><td class="memSeparator" colspan="2">&#160;</td></tr>
