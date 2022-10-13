@@ -15,50 +15,17 @@
 
 namespace fs = std::filesystem;
 
-// TODO: 与 GLShader 重复
-namespace
-{
-
-std::unordered_map<Shader::Stage, shaderc_shader_kind> SCStage = {
-    {Shader::Stage::Vertex, shaderc_glsl_vertex_shader},
-    {Shader::Stage::Fragment, shaderc_glsl_fragment_shader},
-    {Shader::Stage::Geometry, shaderc_glsl_geometry_shader},
-    {Shader::Stage::Compute, shaderc_glsl_compute_shader}};
-
-}
-
 VKShader::VKShader(const Descriptor& desc) : Shader(desc)
 {
-	auto renderer = reinterpret_cast<VKRenderer*>(Renderer::get());
-
-	auto path = desc.path;
-
-	if(!fs::exists(path))
-		throw std::runtime_error(fmt::format("no such file: {}", path));
-
-	if(path.extension() != ".spv")
-	{
-		compile(path, fs::path(path).replace_extension(".spv"), desc.stage);
-		path.replace_extension(".spv");
-	}
-
-	// 读取文件内容
-	const auto    fileSize = fs::file_size(path);
-	std::ifstream file(path, std::ios::binary);
-	if(!file.is_open())
-		throw std::runtime_error(fmt::format("failed to open file: {}", path));
-
-	std::vector<char> buffer(fileSize);
-	file.read(buffer.data(), fileSize);
-	if(!file.good() || file.gcount() != fileSize)
-		throw std::runtime_error(fmt::format("failed to read file: ", path));
-	file.close();
+	auto buf = getCode(desc.path);
+	parse(buf);
 
 	VkShaderModuleCreateInfo info = {};
 	info.sType                    = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
-	info.codeSize                 = buffer.size();
-	info.pCode                    = reinterpret_cast<const uint32_t*>(buffer.data());
+	info.codeSize                 = buf.size() * sizeof(uint32_t);
+	info.pCode                    = buf.data();
 
+	auto renderer = reinterpret_cast<VKRenderer*>(Renderer::get());
 	if(vkCreateShaderModule(renderer->getDevice(), &info, nullptr, &handle) != VK_SUCCESS)
 		throw std::runtime_error("failed to create shader module");
 }

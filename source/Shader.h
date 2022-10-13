@@ -45,6 +45,11 @@ public:
 	const std::string& getName() const;
 
 	/**
+	 * @brief 获取入口点名称.
+	 */
+	const std::string& getEntryPoint() const;
+
+	/**
 	 * @brief 获取阶段.
 	 */
 	Stage getStage() const;
@@ -54,26 +59,37 @@ protected:
 	virtual ~Shader() = default;
 
 	/**
+	 * @brief 获取 SPIR-V 代码, 若未编译则先进行编译.
+	 */
+	std::vector<uint32_t> getCode(std::filesystem::path path);
+
+	/**
 	 * @brief 将 GLSL 编译为 SPIR-V.
-	 * 
+	 *
 	 * @param sourcePath GLSL 文件路径.
-	 * @param targetPath
-	 * SPIR-V 文件路径.
+	 * @param targetPath SPIR-V 文件路径.
 	 * @param stage      着色器阶段.
-	 * 
+	 *
 	 * @warning 入口点必须为 main.
 	 */
 	void compile(const std::filesystem::path& sourcePath, const std::filesystem::path& targetPath, Stage stage);
 
+	/**
+	 * @brief 将 GLSL 编译为 SPIR-V.
+	 *
+	 * @param buf SPIR-V 代码.
+	 */
+	void parse(const std::vector<uint32_t>& buf);
+
 	std::string name;
+	std::string entryPoint;
 	Stage       stage;
 };
 
 struct Shader::Descriptor
 {
 	Stage                 stage;
-	std::filesystem::path path;                ///< 源码文件或 SPIR-V 文件路径.
-	std::string_view      entryPoint = "main"; ///< 入口点.
+	std::filesystem::path path; ///< GLSL 源码文件或 SPIR-V 文件路径.
 };
 
 /** @}*/

@@ -37,7 +37,7 @@ VKProgram::VKProgram(const Descriptor& desc) : Program(desc)
 		info.sType                           = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
 		info.stage                           = VKStage[stage];
 		info.module                          = shader->getHandle();
-		info.pName                           = "main";
+		info.pName                           = shader->getEntryPoint().c_str();
 		infos.push_back(info);
 	}
 }

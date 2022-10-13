@@ -6,6 +6,7 @@
 #include <cassert>
 #include <fstream>
 #include <shaderc/shaderc.hpp>
+#include <spirv_cross.hpp>
 
 #define FMT_HEADER_ONLY
 #include <fmt/format.h>
@@ -25,7 +26,100 @@ std::unordered_map<Shader::Stage, shaderc_shader_kind> SCStage = {
     {Shader::Stage::Geometry, shaderc_glsl_geometry_shader},
     {Shader::Stage::Compute, shaderc_glsl_compute_shader}};
 
+std::string ToString(spirv_cross::SPIRType type)
+{
+	std::string result;
+
+	switch(type.basetype)
+	{
+		using enum spirv_cross::SPIRType::BaseType;
+
+	case Void:
+		result += "void";
+		break;
+
+	case Boolean:
+		result += "boolean";
+		break;
+
+	case SByte:
+		result += "sbyte";
+		break;
+
+	case UByte:
+		result += "ubyte";
+		break;
+
+	case Short:
+		result += "short";
+		break;
+
+	case UShort:
+		result += "ushort";
+		break;
+
+	case Int:
+		result += "int";
+		break;
+
+	case UInt:
+		result += "uint";
+		break;
+
+	case Int64:
+		result += "int64";
+		break;
+
+	case UInt64:
+		result += "uint64";
+		break;
+
+	case AtomicCounter:
+		result += "atomicCounter";
+		break;
+
+	case Half:
+		result += "half";
+		break;
+
+	case Float:
+		result += "float";
+		break;
+
+	case Double:
+		result += "double";
+		break;
+
+	case Struct:
+		result += "struct";
+		break;
+
+	case Image:
+		result += "image";
+		break;
+
+	case SampledImage:
+		result += "sampled image";
+		break;
+
+	case Sampler:
+		result += "sampler";
+		break;
+
+	default:
+		result += "unknown";
+		break;
+	}
+
+	if(type.columns > 1)
+	{
+		result += " (matrix)";
+	}
+
+	return result;
 }
+
+} // namespace
 
 std::shared_ptr<Shader> Shader::create(const Descriptor& desc)
 {
@@ -50,6 +144,11 @@ const std::string& Shader::getName() const
 	return name;
 }
 
+const std::string& Shader::getEntryPoint() const
+{
+	return entryPoint;
+}
+
 Shader::Stage Shader::getStage() const
 {
 	return stage;
@@ -57,6 +156,31 @@ Shader::Stage Shader::getStage() const
 
 Shader::Shader(const Descriptor& desc) : name(desc.path.filename().string()), stage(desc.stage)
 {
+}
+
+std::vector<uint32_t> Shader::getCode(fs::path path)
+{
+	if(!fs::exists(path))
+		throw std::runtime_error(fmt::format("no such file: {}", path));
+
+	if(path.extension() != ".spv")
+	{
+		compile(path, fs::path(path).replace_extension(".spv"), stage);
+		path.replace_extension(".spv");
+	}
+
+	const auto    fileSize = fs::file_size(path);
+	std::ifstream file(path, std::ios::binary);
+	if(!file.is_open())
+		throw std::runtime_error(fmt::format("failed to open file: {}", path));
+
+	std::vector<uint32_t> buf(fileSize / sizeof(uint32_t));
+	file.read(reinterpret_cast<char*>(buf.data()), fileSize);
+	if(!file.good() || file.gcount() != fileSize)
+		throw std::runtime_error(fmt::format("failed to read file: {}", path));
+	file.close();
+
+	return buf;
 }
 
 /**
@@ -103,4 +227,73 @@ void Shader::compile(const fs::path& sourcePath, const fs::path& targetPath, Sta
 		throw std::runtime_error(fmt::format("failed to open file: {}", targetPath));
 	targetFile.write(reinterpret_cast<const char*>(spirv.data()), spirv.size() * sizeof(uint32_t));
 	targetFile.close();
+}
+
+void Shader::parse(const std::vector<uint32_t>& buf)
+{
+	spirv_cross::Compiler compiler(buf);
+	assert(compiler.get_entry_points_and_stages().size() == 1);
+	entryPoint = compiler.get_entry_points_and_stages().front().name;
+
+	// 反射并输出结果
+	const auto res = compiler.get_shader_resources();
+
+	size_t level = 0;
+
+	fmt::print("{:{}}{}\n", "", level, "Sampled images");
+	for(size_t i = 0; i < res.sampled_images.size(); i++)
+	{
+		const auto& img      = res.sampled_images[i];
+		const auto  binding  = compiler.get_decoration(img.id, spv::DecorationBinding);
+		const auto  location = compiler.get_decoration(img.id, spv::DecorationLocation);
+
+		fmt::print("{:{}}- {}\n", "", level, img.name);
+
+		level += 2;
+		fmt::print("{:{}}{:8}: {}\n", "", level, "binding", binding);
+		fmt::print("{:{}}{:8}: {}\n", "", level, "location", location);
+		level -= 2;
+	}
+
+	fmt::print("{:{}}{}\n", "", level, "Uniform buffers");
+	for(size_t i = 0; i < res.uniform_buffers.size(); i++)
+	{
+		const auto& buf = res.uniform_buffers[i];
+
+		const auto& type        = compiler.get_type(buf.base_type_id);
+		const auto  size        = compiler.get_declared_struct_size(type);
+		const auto  binding     = compiler.get_decoration(buf.id, spv::DecorationBinding);
+		const auto  memberCount = type.member_types.size();
+
+		fmt::print("{:{}}- {}\n", "", level, buf.name.empty() ? "NULL" : buf.name);
+
+		level += 2;
+		fmt::print("{:{}}{:7}: {}\n", "", level, "binding", binding);
+		fmt::print("{:{}}{:7}: {}\n", "", level, "size", size);
+		fmt::print("{:{}}{}\n", "", level, "members");
+
+		for(size_t j = 0; j < memberCount; j++)
+		{
+			const auto&  memberName   = compiler.get_member_name(buf.base_type_id, j);
+			const auto&  memberType   = compiler.get_type(type.member_types[j]);
+			const size_t memberSize   = compiler.get_declared_struct_member_size(type, j);
+			const size_t memberOffset = compiler.type_struct_member_offset(type, j);
+
+			fmt::print("{:{}}- {}\n", "", level, memberName.empty() ? "NULL" : memberName);
+
+			level += 2;
+			fmt::print("{:{}}{:6}: {}\n", "", level, "offset", memberOffset);
+			fmt::print("{:{}}{:6}: {}\n", "", level, "size", memberSize);
+			fmt::print("{:{}}{:6}: {}\n", "", level, "type", ToString(memberType));
+
+			if(!memberType.array.empty())
+			{
+				const auto arrayStride = compiler.type_struct_member_array_stride(type, j);
+				fmt::print("{:{}}{:12}: {}\n", "", level, "array size", memberType.array.size());
+				fmt::print("{:{}}{:12}: {}\n", "", level, "array stride", arrayStride);
+			}
+			level -= 2;
+		}
+		level -= 2;
+	}
 }
