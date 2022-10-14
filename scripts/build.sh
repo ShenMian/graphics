@@ -20,7 +20,7 @@ if [ -z "$build_type" ]; then
   build_type="Debug"
 fi
 
-if [ ! -z "$compiler" ] && [ ! -z "$compiler_version" ]; then
+if [ -n "$compiler" ] && [ -n "$compiler_version" ]; then
   conan_args="-s build_type=$build_type -s compiler=$compiler -s compiler.version=$compiler_version"
   cmake_args="-DCMAKE_BUILD_TYPE=$build_type -DCMAKE_C_COMPILER=$compiler -DCMAKE_CXX_COMPILER=$compiler++"
 fi

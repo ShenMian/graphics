@@ -8,7 +8,7 @@ net.exe session >nul 2>&1 || (
     exit /b 1
 )
 
-pushd %~dp0\..\Deps || exit /b 1
+pushd %~dp0\..\deps || exit /b 1
 
 REM 签出第三方库
 echo Checkout third-party libraries...

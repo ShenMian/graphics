@@ -9,4 +9,4 @@ cd .. || exit
 # 签出第三方库
 git submodule update --init
 
-./Deps/premake/bin/premake5 xcode4
+./deps/premake/bin/premake5 xcode4

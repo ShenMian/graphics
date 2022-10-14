@@ -72,7 +72,7 @@ function install_cmake() {
 
 # 切换到 Deps 目录
 cd "$( cd "$( dirname "$0"  )" && pwd  )" || exit
-cd ../Deps
+cd ../deps || exit
 
 # 獲取管理員權限
 if ! sudo echo
