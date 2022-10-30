@@ -34,9 +34,6 @@ public:
 	Mesh(std::string_view name, const std::vector<Vertex>& vertices, const std::vector<unsigned int>& indices,
 	     Material* mat = nullptr);
 
-	std::shared_ptr<VertexBuffer> vertexBuffer;
-	std::shared_ptr<IndexBuffer>  indexBuffer;
-
 	std::string               name;
 	std::vector<Vertex>       vertices;
 	std::vector<unsigned int> indices;
@@ -44,6 +41,9 @@ public:
 
 	uint32_t vertexCount = 0;
 	uint32_t indexCount  = 0;
+
+	std::shared_ptr<VertexBuffer> vertexBuffer;
+	std::shared_ptr<IndexBuffer>  indexBuffer;
 
 	/**
 	 * @brief 压缩.
