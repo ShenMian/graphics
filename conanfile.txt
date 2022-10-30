@@ -1,13 +1,13 @@
 ﻿[requires]
-fmt/9.0.0
+fmt/9.1.0
 stb/cci.20210910
-glfw/3.3.7
+glfw/3.3.8
 imgui/cci.20220621+1.88.docking
 imguizmo/cci.20210223
 freetype/2.12.1
 meshoptimizer/0.17
-vulkan-loader/1.3.216.0
-vulkan-headers/1.3.216.0
+vulkan-loader/1.3.231.1
+vulkan-headers/1.3.231.1
 # glad/0.1.35
 # assimp/5.2.2
 # shaderc/2021.1

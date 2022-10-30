@@ -1,4 +1,4 @@
-[submodule "Deps/assimp"]
+﻿[submodule "Deps/assimp"]
 	path = deps/assimp
 	url = https://github.com/assimp/assimp.git
 [submodule "Deps/Vulkan-Headers"]
@@ -7,9 +7,6 @@
 [submodule "Deps/meshoptimizer"]
 	path = deps/meshoptimizer
 	url = https://github.com/zeux/meshoptimizer.git
-[submodule "Deps/glfw"]
-	path = deps/glfw
-	url = https://github.com/glfw/glfw.git
 [submodule "Deps/stb"]
 	path = deps/stb
 	url = https://github.com/nothings/stb.git
@@ -46,3 +43,6 @@
 [submodule "Deps/imnodes"]
 	path = deps/imnodes
 	url = https://github.com/Nelarius/imnodes.git
+[submodule "deps/glfw"]
+	path = deps/glfw
+	url = https://github.com/glfw/glfw
