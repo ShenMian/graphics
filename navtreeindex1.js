@@ -1,5 +1,7 @@
 var NAVTREEINDEX1 =
 {
+"class_sampler.html#a040bed93d9961ce03951f16515e32124a969a7b6f1f3951ef293b3ff281dc293d":[4,0,55,1,2],
+"class_sampler.html#a040bed93d9961ce03951f16515e32124aaf17c98bbd83c27d6426d2ff3fa81d7f":[4,0,55,1,1],
 "class_shader.html":[3,2,2],
 "class_shader.html#a3a91e257350332a3cd3af52d740405d5":[3,2,2,5],
 "class_shader.html#a6e91ea814d9d8ab826b483e209634393":[3,2,2,4],
@@ -188,10 +190,10 @@ var NAVTREEINDEX1 =
 "hierarchy.html":[4,2],
 "index.html":[0],
 "index.html":[],
-"index.html#autotoc_md12":[0,0],
-"index.html#autotoc_md13":[0,1],
-"index.html#autotoc_md14":[0,2],
-"index.html#autotoc_md15":[0,3],
+"index.html#autotoc_md14":[0,0],
+"index.html#autotoc_md15":[0,1],
+"index.html#autotoc_md16":[0,2],
+"index.html#autotoc_md17":[0,3],
 "md__c_o_d_e__o_f__c_o_n_d_u_c_t.html":[1],
 "md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md1":[1,0],
 "md__c_o_d_e__o_f__c_o_n_d_u_c_t.html#autotoc_md2":[1,1],

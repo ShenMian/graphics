@@ -87,16 +87,21 @@ $(document).ready(function(){initNavTree('_getting_started.html',''); initResiza
 </div><!--header-->
 <div class="contents">
 <div class="toc"><h3>目录</h3>
-<ul><li class="level1"><a href="#autotoc_md7">用法</a></li>
-<li class="level1"><a href="#autotoc_md8">更新</a></li>
-<li class="level1"><a href="#autotoc_md9">应用骨架</a></li>
-<li class="level1"><a href="#autotoc_md10">输入</a></li>
-<li class="level1"><a href="#autotoc_md11">示例</a></li>
+<ul><li class="level1"><a href="#autotoc_md7">用法</a><ul><li class="level2"><a href="#autotoc_md8">CMake</a></li>
+<li class="level2"><a href="#autotoc_md9">Premake</a></li>
+</ul>
+</li>
+<li class="level1"><a href="#autotoc_md10">更新</a></li>
+<li class="level1"><a href="#autotoc_md11">应用骨架</a></li>
+<li class="level1"><a href="#autotoc_md12">输入</a></li>
+<li class="level1"><a href="#autotoc_md13">示例</a></li>
 </ul>
 </div>
 <div class="textblock"><p ><a class="anchor" id="md_GettingStarted"></a></p>
 <h1><a class="anchor" id="autotoc_md7"></a>
 用法</h1>
+<h2><a class="anchor" id="autotoc_md8"></a>
+CMake</h2>
 <p >通过 CMake 可以很快速/简单的使用该库.</p>
 <ol type="1">
 <li><p class="startli">将该仓库作为子模块加入你的仓库. 在你的仓库下执行下面的命令.</p>
@@ -115,6 +120,8 @@ $(document).ready(function(){initNavTree('_getting_started.html',''); initResiza
 <p ><b>警告</b>: 请查看 <a href="https://github.com/ShenMian/Graphics/blob/main/Deps/README.md">依赖项</a> 来确保不会产生菱形依赖. 或提前安装依赖项来减少产生菱形依赖的可能性, 执行 <code>vcpkg install</code> 命令或执行脚本 <code>Scripts/cmake_install_deps</code>. <br  />
  <b>注意</b>: 因为该项目包含大量 <a href="https://github.com/ShenMian/Graphics/blob/main/Deps/README.md">依赖项</a>, 所以可以通过执行 <code>vcpkg install</code> 命令或执行脚本 <code>Scripts/cmake_install_deps</code> 提前安装依赖项来加快编译速度. <br  />
 </p>
+<h2><a class="anchor" id="autotoc_md9"></a>
+Premake</h2>
 <p >通过 Premake 生成你所使用 IDE 的项目文件. <br  />
 </p>
 <div class="fragment"><div class="line">./Scripts/gen_gmake2 # 生成 GNU Makefile</div>
@@ -124,7 +131,7 @@ $(document).ready(function(){initNavTree('_getting_started.html',''); initResiza
 </p>
 <p >该项目编译后会生成一个静态库文件, 在生成你的可执行文件时需链接该静态库. <br  />
 </p>
-<h1><a class="anchor" id="autotoc_md8"></a>
+<h1><a class="anchor" id="autotoc_md10"></a>
 更新</h1>
 <p >因为该库对 Git 子模块的更新较为频繁, 请注意拉取后将子模块签出到相应的提交. 你可以使用下面的命令更新本地克隆仓库/子模块. <br  />
 </p>
@@ -133,7 +140,7 @@ $(document).ready(function(){initNavTree('_getting_started.html',''); initResiza
 <div class="line">git submodule update --init # 签出子模块</div>
 </div><!-- fragment --><p ><b>警告</b>: 不建议直接使用最新提交, 因为这些修改还不稳定, 甚至无法正常工作. <br  />
 </p>
-<h1><a class="anchor" id="autotoc_md9"></a>
+<h1><a class="anchor" id="autotoc_md11"></a>
 应用骨架</h1>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &lt;Graphics/Graphics.h&gt;</span> <span class="comment">// 引入 Graphics 头文件, 只需包含该文件</span></div>
 <div class="line"> </div>
@@ -177,13 +184,13 @@ $(document).ready(function(){initNavTree('_getting_started.html',''); initResiza
 <div class="ttc" id="aclass_monitor_html_a8afbc04b4417bbeb2f4d4e2c69feb45c"><div class="ttname"><a href="class_monitor.html#a8afbc04b4417bbeb2f4d4e2c69feb45c">Monitor::getPrimary</a></div><div class="ttdeci">static const Monitor * getPrimary() noexcept</div><div class="ttdoc">获取主显示器.</div><div class="ttdef"><b>Definition:</b> Monitor.cpp:11</div></div>
 <div class="ttc" id="aclass_renderer_html_a04003283aef7694ae68fe9a63bbca592"><div class="ttname"><a href="class_renderer.html#a04003283aef7694ae68fe9a63bbca592">Renderer::setAPI</a></div><div class="ttdeci">static void setAPI(API api)</div><div class="ttdoc">设置图形 API.</div><div class="ttdef"><b>Definition:</b> Renderer.cpp:31</div></div>
 <div class="ttc" id="aclass_window_html"><div class="ttname"><a href="class_window.html">Window</a></div><div class="ttdoc">窗体.</div><div class="ttdef"><b>Definition:</b> Window.h:24</div></div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md10"></a>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md12"></a>
 输入</h1>
 <ul>
 <li>键盘/鼠标输入: <a class="el" href="class_input.html">Input</a>.</li>
 <li>手柄(控制器)输入: <a class="el" href="class_gamepad.html">Gamepad</a>.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md11"></a>
+<h1><a class="anchor" id="autotoc_md13"></a>
 示例</h1>
 <p >阅读 <a href="https://github.com/ShenMian/Graphics/tree/main/Examples">示例</a> 是一种快速的入门方式. <br  />
  从示例中可以很直观的看到各种常见 API 的使用方式. <br  />

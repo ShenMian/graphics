@@ -27,11 +27,13 @@ var NAVTREEINDEX0 =
 "_g_l_vertex_buffer_8h_source.html":[5,0,0,1,12],
 "_gamepad_8h_source.html":[5,0,0,0,1],
 "_getting_started.html":[2],
-"_getting_started.html#autotoc_md10":[2,3],
-"_getting_started.html#autotoc_md11":[2,4],
+"_getting_started.html#autotoc_md10":[2,1],
+"_getting_started.html#autotoc_md11":[2,2],
+"_getting_started.html#autotoc_md12":[2,3],
+"_getting_started.html#autotoc_md13":[2,4],
 "_getting_started.html#autotoc_md7":[2,0],
-"_getting_started.html#autotoc_md8":[2,1],
-"_getting_started.html#autotoc_md9":[2,2],
+"_getting_started.html#autotoc_md8":[2,0,0],
+"_getting_started.html#autotoc_md9":[2,0,1],
 "_graphics_8h_source.html":[5,0,0,12],
 "_image_8h_source.html":[5,0,0,0,2],
 "_index_buffer_8h_source.html":[5,0,0,13],
@@ -247,7 +249,5 @@ var NAVTREEINDEX0 =
 "class_sampler.html#a02dc1744e42b8b48e61ca5276c1440efa7020426cfb0a204051be4b3053d2acc8":[4,0,55,2,0],
 "class_sampler.html#a02dc1744e42b8b48e61ca5276c1440efa74556551231333c36debc3d373261134":[4,0,55,2,1],
 "class_sampler.html#a040bed93d9961ce03951f16515e32124":[4,0,55,1],
-"class_sampler.html#a040bed93d9961ce03951f16515e32124a60494f02d440f316319dd0fad40ad007":[4,0,55,1,0],
-"class_sampler.html#a040bed93d9961ce03951f16515e32124a969a7b6f1f3951ef293b3ff281dc293d":[4,0,55,1,2],
-"class_sampler.html#a040bed93d9961ce03951f16515e32124aaf17c98bbd83c27d6426d2ff3fa81d7f":[4,0,55,1,1]
+"class_sampler.html#a040bed93d9961ce03951f16515e32124a60494f02d440f316319dd0fad40ad007":[4,0,55,1,0]
 };
