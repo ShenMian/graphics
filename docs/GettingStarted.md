@@ -4,6 +4,8 @@
 
 ## 用法
 
+### CMake
+
 通过 CMake 可以很快速/简单的使用该库.
 
 1. 将该仓库作为子模块加入你的仓库. 在你的仓库下执行下面的命令.
@@ -29,6 +31,8 @@
 
 **警告**: 请查看 [依赖项](https://github.com/ShenMian/Graphics/blob/main/Deps/README.md) 来确保不会产生菱形依赖. 或提前安装依赖项来减少产生菱形依赖的可能性, 执行 `vcpkg install` 命令或执行脚本 `Scripts/cmake_install_deps`.  
 **注意**: 因为该项目包含大量 [依赖项](https://github.com/ShenMian/Graphics/blob/main/Deps/README.md), 所以可以通过执行 `vcpkg install` 命令或执行脚本 `Scripts/cmake_install_deps` 提前安装依赖项来加快编译速度.  
+
+### Premake
 
 通过 Premake 生成你所使用 IDE 的项目文件.  
 
