@@ -115,9 +115,8 @@ void VKRenderer::createCommandPool()
 {
 	VkCommandPoolCreateInfo commandPoolInfo = {};
 	commandPoolInfo.sType                   = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO;
-	commandPoolInfo.queueFamilyIndex        = device.getQueueIndex(VKDevice::QueueType::Graphics);
-	;
-	commandPoolInfo.flags = VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT;
+	commandPoolInfo.queueFamilyIndex        = device.getQueueIndex(VKDevice::QueueType::Graphics).value();
+	commandPoolInfo.flags                   = VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT;
 	if(vkCreateCommandPool(device, &commandPoolInfo, nullptr, &commandPool) != VK_SUCCESS)
 		throw std::runtime_error("failed to create command pool");
 }

@@ -15,11 +15,11 @@ VKDevice::VKDevice(VkDevice device, VKPhysicalDevice& physicalDevice) : handle(d
 VkQueue VKDevice::getQueue(QueueType type) const
 {
 	const auto index = getQueueIndex(type);
-	if(index == -1)
+	if(!index.has_value())
 		throw std::runtime_error("requested queue do not exist");
 
 	VkQueue queue;
-	vkGetDeviceQueue(handle, index, 0, &queue);
+	vkGetDeviceQueue(handle, index.value(), 0, &queue);
 	return queue;
 }
 
@@ -33,30 +33,25 @@ VKDevice::operator VkDevice() const
 	return handle;
 }
 
-uint32_t VKDevice::getQueueIndex(QueueType type) const
+std::optional<uint32_t> VKDevice::getQueueIndex(QueueType type) const
 {
-	uint32_t index = -1;
 	switch(type)
 	{
 		using enum QueueType;
 
 	case Graphics:
-		index = physicalDevice.graphics;
-		break;
+		return physicalDevice.graphics;
 
 	case Compute:
-		index = physicalDevice.compute;
-		break;
+		return physicalDevice.compute;
 
 	case Transfer:
-		index = physicalDevice.transfer;
-		break;
+		return physicalDevice.transfer;
 
 	case Present:
-		index = physicalDevice.present;
-		break;
+		return physicalDevice.present;
 	}
-	return index;
+	return std::nullopt;
 }
 
 VKPhysicalDevice& VKDevice::getPhysicalDevice()

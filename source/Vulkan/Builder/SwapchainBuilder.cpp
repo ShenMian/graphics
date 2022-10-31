@@ -26,7 +26,7 @@ VKSwapchain SwapchainBuilder::build()
 	swapchainInfo.imageArrayLayers = 1;
 	swapchainInfo.imageUsage       = VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT;
 
-	const uint32_t queueFamilyIndices[] = {physicalDevice.graphics, physicalDevice.present};
+	const uint32_t queueFamilyIndices[] = {physicalDevice.graphics.value(), physicalDevice.present.value()};
 	if(physicalDevice.graphics != physicalDevice.present)
 	{
 		swapchainInfo.imageSharingMode      = VK_SHARING_MODE_CONCURRENT;

@@ -16,14 +16,14 @@ VKDevice DeviceBuilder::build()
 	VkPhysicalDeviceFeatures deviceFeatures = {};
 
 	std::set<uint32_t> uniqueQueueIndices;
-	if(physicalDevice.graphics != -1)
-		uniqueQueueIndices.insert(physicalDevice.graphics);
-	if(physicalDevice.compute != -1)
-		uniqueQueueIndices.insert(physicalDevice.compute);
-	if(physicalDevice.transfer != -1)
-		uniqueQueueIndices.insert(physicalDevice.transfer);
-	if(physicalDevice.present != -1)
-		uniqueQueueIndices.insert(physicalDevice.present);
+	if(physicalDevice.graphics.has_value())
+		uniqueQueueIndices.insert(physicalDevice.graphics.value());
+	if(physicalDevice.compute.has_value())
+		uniqueQueueIndices.insert(physicalDevice.compute.value());
+	if(physicalDevice.transfer.has_value())
+		uniqueQueueIndices.insert(physicalDevice.transfer.value());
+	if(physicalDevice.present.has_value())
+		uniqueQueueIndices.insert(physicalDevice.present.value());
 
 	float queuePriority = 1.0f;
 	for(const auto index : uniqueQueueIndices)

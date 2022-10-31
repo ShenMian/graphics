@@ -5,6 +5,7 @@
 
 #include "VKPhysicalDevice.h"
 #include <vulkan/vulkan.h>
+#include <optional>
 
 /**
  * @brief Vulkan 逻辑设备.
@@ -39,7 +40,7 @@ public:
 	 *
 	 * @param type 队列类型.
 	 */
-	uint32_t getQueueIndex(QueueType type) const;
+	std::optional<uint32_t> getQueueIndex(QueueType type) const;
 
 	VKPhysicalDevice& getPhysicalDevice();
 

@@ -27,19 +27,19 @@ VKPhysicalDevice PhysicalDeviceSelector::select()
 			continue;
 
 		if(info.requireGraphicsQueue)
-			if(device.graphics == -1)
+			if(!device.graphics.has_value())
 				continue;
 
 		if(info.requireComputeQueue)
-			if(device.compute == -1)
+			if(!device.compute.has_value())
 				continue;
 
 		if(info.requireTransferQueue)
-			if(device.transfer == -1)
+			if(!device.transfer.has_value())
 				continue;
 
 		if(info.requirePresentQueue)
-			if(device.present == -1)
+			if(!device.present.has_value())
 				continue;
 
 		if(info.requireMultiViewport)

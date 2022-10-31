@@ -3,6 +3,7 @@
 
 #pragma once
 
+#include <optional>
 #include <string_view>
 #include <vector>
 #include <vulkan/vulkan.h>
@@ -39,10 +40,10 @@ public:
 
 	bool isExtensionAvailable(std::string_view name) const;
 
-	uint32_t graphics = -1;
-	uint32_t compute  = -1;
-	uint32_t transfer = -1;
-	uint32_t present  = -1;
+	std::optional<uint32_t> graphics = std::nullopt;
+	std::optional<uint32_t> compute  = std::nullopt;
+	std::optional<uint32_t> transfer = std::nullopt;
+	std::optional<uint32_t> present  = std::nullopt;
 
 	operator VkPhysicalDevice();
 	operator VkPhysicalDevice() const;
