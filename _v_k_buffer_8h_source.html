@@ -105,8 +105,8 @@ $(document).ready(function(){initNavTree('_v_k_buffer_8h_source.html',''); initR
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_v_k_buffer.html#a3063d48f226a7d11f14de846f0a712d1">unmap</a>() <span class="keyword">override</span>;</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_v_k_buffer.html#a730f9894b404620b87c8337ec380be17">flush</a>(<span class="keywordtype">size_t</span> size = VK_WHOLE_SIZE, <span class="keywordtype">size_t</span> offset = 0) <span class="keyword">override</span>;</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keyword">operator</span> VkBuffer();</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keyword">operator</span> VkBuffer() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keyword">operator</span> VkBuffer() <span class="keyword">noexcept</span>;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keyword">operator</span> VkBuffer() <span class="keyword">const</span> <span class="keyword">noexcept</span>;</div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">private</span>:</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    uint32_t findMemoryType(uint32_t type, VkMemoryPropertyFlags properties);</div>

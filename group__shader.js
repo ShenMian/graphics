@@ -12,9 +12,9 @@ var group__shader =
       ] ],
       [ "compile", "class_shader.html#ae3484242fc9225bbde56ef271989bdd3", null ],
       [ "getCode", "class_shader.html#af28fc333dcbb991fcc9f3357b3a43058", null ],
-      [ "getEntryPoint", "class_shader.html#a8baa27bc4f64282821fdb5f93f4f332a", null ],
-      [ "getName", "class_shader.html#a6e91ea814d9d8ab826b483e209634393", null ],
-      [ "getStage", "class_shader.html#a3a91e257350332a3cd3af52d740405d5", null ],
+      [ "getEntryPoint", "class_shader.html#a5128444fc1202167b99d7514b8eee945", null ],
+      [ "getName", "class_shader.html#ad06825fc01c8ef22e2e673a98b49f2f3", null ],
+      [ "getStage", "class_shader.html#a95a08a063fa0b69b669b91c85bcbb835", null ],
       [ "parse", "class_shader.html#a8b6c9f936b18f880b1b0f0c60c943e33", null ]
     ] ],
     [ "Shader::Descriptor", "struct_shader_1_1_descriptor.html", [

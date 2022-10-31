@@ -1,6 +1,6 @@
 var class_swapchain_builder =
 [
-    [ "setDesiredExtent", "class_swapchain_builder.html#aa79fd2d4b5e9af8d17b1ba23e9bf1c93", null ],
-    [ "setDesiredFormat", "class_swapchain_builder.html#ab88fc41fc052bc679d39ee022b682499", null ],
-    [ "setDesiredPresentMode", "class_swapchain_builder.html#a813faf543b27668a82093a3680ef71e8", null ]
+    [ "setDesiredExtent", "class_swapchain_builder.html#a04aee76400a771b8c11142c7f48ecb3d", null ],
+    [ "setDesiredFormat", "class_swapchain_builder.html#a31879aa7a40942c9e3908da88defaadb", null ],
+    [ "setDesiredPresentMode", "class_swapchain_builder.html#a30d8ee8fc9719bc5e8017512a61ab612", null ]
 ];
