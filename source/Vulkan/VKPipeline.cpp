@@ -122,7 +122,12 @@ void VKPipeline::bind()
 {
 }
 
-VkPipeline VKPipeline::getHandle()
+VKPipeline::operator VkPipeline() noexcept
+{
+	return pipeline;
+}
+
+VKPipeline::operator VkPipeline() const noexcept
 {
 	return pipeline;
 }

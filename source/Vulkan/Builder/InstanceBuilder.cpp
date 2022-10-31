@@ -29,8 +29,10 @@ std::string_view ToString(VkDebugUtilsMessageSeverityFlagBitsEXT severity)
 
 	case VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT:
 		return "verbose";
+
+	default:
+		throw std::runtime_error("unknown debug message severity");
 	}
-	return "";
 }
 
 std::string_view ToString(VkDebugUtilsMessageTypeFlagsEXT type)
@@ -45,8 +47,10 @@ std::string_view ToString(VkDebugUtilsMessageTypeFlagsEXT type)
 
 	case VK_DEBUG_UTILS_MESSAGE_TYPE_PERFORMANCE_BIT_EXT:
 		return "performance";
+
+	default:
+		throw std::runtime_error("unknown debug message type");
 	}
-	return "";
 }
 
 } // namespace
@@ -95,25 +99,25 @@ VKInstance InstanceBuilder::build()
 	return instance;
 }
 
-InstanceBuilder& InstanceBuilder::setEngineName(std::string_view name)
+InstanceBuilder& InstanceBuilder::setEngineName(std::string_view name) noexcept
 {
 	appInfo.pEngineName = name.data();
 	return *this;
 }
 
-InstanceBuilder& InstanceBuilder::setEngineVersion(uint32_t major, uint32_t minor, uint32_t patch)
+InstanceBuilder& InstanceBuilder::setEngineVersion(uint32_t major, uint32_t minor, uint32_t patch) noexcept
 {
 	appInfo.engineVersion = VK_MAKE_VERSION(major, minor, patch);
 	return *this;
 }
 
-InstanceBuilder& InstanceBuilder::setAppName(std::string_view name)
+InstanceBuilder& InstanceBuilder::setAppName(std::string_view name) noexcept
 {
 	appInfo.pApplicationName = name.data();
 	return *this;
 }
 
-InstanceBuilder& InstanceBuilder::setAppVersion(uint32_t major, uint32_t minor, uint32_t patch)
+InstanceBuilder& InstanceBuilder::setAppVersion(uint32_t major, uint32_t minor, uint32_t patch) noexcept
 {
 	appInfo.applicationVersion = VK_MAKE_VERSION(major, minor, patch);
 	return *this;
@@ -145,7 +149,7 @@ InstanceBuilder& InstanceBuilder::enableDebugMessenger()
 	return *this;
 }
 
-InstanceBuilder& InstanceBuilder::setDebugCallback(PFN_vkDebugUtilsMessengerCallbackEXT callback)
+InstanceBuilder& InstanceBuilder::setDebugCallback(PFN_vkDebugUtilsMessengerCallbackEXT callback) noexcept
 {
 	info.debugMessageCallback = callback;
 	return *this;
@@ -184,8 +188,8 @@ void InstanceBuilder::createDebugMessager(VkInstance instance)
 	if(!info.enableValidationLayers)
 		throw std::runtime_error("must enable validation layers");
 
-	auto vkCreateDebugUtilsMessengerEXT =
-	    (PFN_vkCreateDebugUtilsMessengerEXT)vkGetInstanceProcAddr(instance, "vkCreateDebugUtilsMessengerEXT");
+	const auto vkCreateDebugUtilsMessengerEXT = reinterpret_cast<PFN_vkCreateDebugUtilsMessengerEXT>(
+	    vkGetInstanceProcAddr(instance, "vkCreateDebugUtilsMessengerEXT"));
 	if(vkCreateDebugUtilsMessengerEXT == nullptr)
 		throw std::runtime_error("failed to locate function");
 
@@ -213,8 +217,8 @@ void InstanceBuilder::createDebugMessager(VkInstance instance)
 
 void InstanceBuilder::destroyDebugMessager(VkInstance instance)
 {
-	auto vkDestroyDebugUtilsMessengerEXT =
-	    (PFN_vkDestroyDebugUtilsMessengerEXT)vkGetInstanceProcAddr(instance, "vkDestroyDebugUtilsMessengerEXT");
+	const auto vkDestroyDebugUtilsMessengerEXT = reinterpret_cast<PFN_vkDestroyDebugUtilsMessengerEXT>(
+	    vkGetInstanceProcAddr(instance, "vkDestroyDebugUtilsMessengerEXT"));
 	if(vkDestroyDebugUtilsMessengerEXT == nullptr)
 		throw std::runtime_error("failed to locate function");
 

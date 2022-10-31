@@ -19,7 +19,7 @@ public:
 	 *
 	 * @param name 引擎名称.
 	 */
-	InstanceBuilder& setEngineName(std::string_view name);
+	InstanceBuilder& setEngineName(std::string_view name) noexcept;
 
 	/**
 	 * @brief 设置引擎版本. (可选)
@@ -28,14 +28,14 @@ public:
 	 * @param minor 引擎子版本.
 	 * @param patch 引擎阶段版本.
 	 */
-	InstanceBuilder& setEngineVersion(uint32_t major, uint32_t minor, uint32_t patch);
+	InstanceBuilder& setEngineVersion(uint32_t major, uint32_t minor, uint32_t patch) noexcept;
 
 	/**
 	 * @brief 设置应用程序名称. (可选)
 	 *
 	 * @param name 应用程序名称.
 	 */
-	InstanceBuilder& setAppName(std::string_view name);
+	InstanceBuilder& setAppName(std::string_view name) noexcept;
 
 	/**
 	 * @brief 设置应用程序版本. (可选)
@@ -44,7 +44,7 @@ public:
 	 * @param minor 应用程序子版本.
 	 * @param patch 应用程序阶段版本.
 	 */
-	InstanceBuilder& setAppVersion(uint32_t major, uint32_t minor, uint32_t patch);
+	InstanceBuilder& setAppVersion(uint32_t major, uint32_t minor, uint32_t patch) noexcept;
 
 	/**
 	 * @brief 启用 Layer.
@@ -75,7 +75,7 @@ public:
 	 *
 	 * @param callback 回调函数.
 	 */
-	InstanceBuilder& setDebugCallback(PFN_vkDebugUtilsMessengerCallbackEXT callback);
+	InstanceBuilder& setDebugCallback(PFN_vkDebugUtilsMessengerCallbackEXT callback) noexcept;
 
 private:
 	bool isLayerAvailable(std::string_view name) const;

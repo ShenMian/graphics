@@ -43,17 +43,17 @@ public:
 	/**
 	 * @brief 获取名称.
 	 */
-	const std::string& getName() const;
+	const std::string& getName() const noexcept;
 
 	/**
 	 * @brief 获取入口点名称.
 	 */
-	const std::string& getEntryPoint() const;
+	const std::string& getEntryPoint() const noexcept;
 
 	/**
 	 * @brief 获取阶段.
 	 */
-	Stage getStage() const;
+	Stage getStage() const noexcept;
 
 protected:
 	Shader(const Descriptor& desc);

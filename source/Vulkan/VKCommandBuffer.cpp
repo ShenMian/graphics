@@ -90,7 +90,7 @@ void VKCommandBuffer::setViewport(const Viewport& viewport)
 void VKCommandBuffer::setPipeline(std::shared_ptr<Pipeline> p)
 {
 	auto pipeline = std::dynamic_pointer_cast<VKPipeline>(p);
-	vkCmdBindPipeline(handles[index], VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline->getHandle());
+	vkCmdBindPipeline(handles[index], VK_PIPELINE_BIND_POINT_GRAPHICS, *pipeline);
 }
 
 void VKCommandBuffer::setVertexBuffer(std::shared_ptr<VertexBuffer> buf)

@@ -53,34 +53,34 @@ VKSwapchain SwapchainBuilder::build()
 	return {swapchain, device, format.format, extent};
 }
 
-SwapchainBuilder& SwapchainBuilder::setDesiredFormat(VkSurfaceFormatKHR format)
+SwapchainBuilder& SwapchainBuilder::setDesiredFormat(VkSurfaceFormatKHR format) noexcept
 {
 	info.desiredFormat = format;
 	return *this;
 }
 
-SwapchainBuilder& SwapchainBuilder::setDesiredPresentMode(VkPresentModeKHR presentMode)
+SwapchainBuilder& SwapchainBuilder::setDesiredPresentMode(VkPresentModeKHR presentMode) noexcept
 {
 	info.desiredPresentMode = presentMode;
 	return *this;
 }
 
-SwapchainBuilder& SwapchainBuilder::setDesiredExtent(VkExtent2D extent)
+SwapchainBuilder& SwapchainBuilder::setDesiredExtent(VkExtent2D extent) noexcept
 {
 	info.desiredExtent = extent;
 	return *this;
 }
 
-uint32_t SwapchainBuilder::getImageCount()
+uint32_t SwapchainBuilder::getImageCount() const
 {
 	const auto capabilities = device.getPhysicalDevice().getSurfaceCapabilities();
-	auto       imageCount   = capabilities.minImageCount + 1;
+	const auto imageCount   = capabilities.minImageCount + 1;
 	if(capabilities.maxImageCount != 0 && imageCount > capabilities.maxImageCount)
-		imageCount = capabilities.maxImageCount;
+		return capabilities.maxImageCount;
 	return imageCount;
 }
 
-VkSurfaceFormatKHR SwapchainBuilder::getSurfaceFormat()
+VkSurfaceFormatKHR SwapchainBuilder::getSurfaceFormat() const
 {
 	const auto         formats = device.getPhysicalDevice().getSurfaceFormats();
 	VkSurfaceFormatKHR format  = formats[0];
@@ -90,7 +90,7 @@ VkSurfaceFormatKHR SwapchainBuilder::getSurfaceFormat()
 	return format;
 }
 
-VkPresentModeKHR SwapchainBuilder::getPresentMode()
+VkPresentModeKHR SwapchainBuilder::getPresentMode() const
 {
 	const auto       presentModes = device.getPhysicalDevice().getSurfacePresentModes();
 	VkPresentModeKHR presentMode  = VK_PRESENT_MODE_FIFO_KHR;
@@ -100,7 +100,7 @@ VkPresentModeKHR SwapchainBuilder::getPresentMode()
 	return presentMode;
 }
 
-VkExtent2D SwapchainBuilder::getExtent()
+VkExtent2D SwapchainBuilder::getExtent() const
 {
 	const auto capabilities = device.getPhysicalDevice().getSurfaceCapabilities();
 	auto       extent       = capabilities.currentExtent;

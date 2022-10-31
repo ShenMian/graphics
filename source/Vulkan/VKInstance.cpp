@@ -12,12 +12,12 @@ void VKInstance::destroy()
 	vkDestroyInstance(handle, nullptr);
 }
 
-VKInstance::operator VkInstance()
+VKInstance::operator VkInstance() noexcept
 {
 	return handle;
 }
 
-VKInstance::operator VkInstance() const
+VKInstance::operator VkInstance() const noexcept
 {
 	return handle;
 }

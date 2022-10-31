@@ -54,25 +54,25 @@ VKPhysicalDevice PhysicalDeviceSelector::select()
 	throw std::runtime_error("failed to select suitable physical device");
 }
 
-PhysicalDeviceSelector& PhysicalDeviceSelector::requireGraphicsQueue()
+PhysicalDeviceSelector& PhysicalDeviceSelector::requireGraphicsQueue() noexcept
 {
 	info.requireGraphicsQueue = true;
 	return *this;
 }
 
-PhysicalDeviceSelector& PhysicalDeviceSelector::requireComputeQueue()
+PhysicalDeviceSelector& PhysicalDeviceSelector::requireComputeQueue() noexcept
 {
 	info.requireComputeQueue = true;
 	return *this;
 }
 
-PhysicalDeviceSelector& PhysicalDeviceSelector::requireTransferQueue()
+PhysicalDeviceSelector& PhysicalDeviceSelector::requireTransferQueue() noexcept
 {
 	info.requireTransferQueue = true;
 	return *this;
 }
 
-PhysicalDeviceSelector& PhysicalDeviceSelector::requirePresentQueue()
+PhysicalDeviceSelector& PhysicalDeviceSelector::requirePresentQueue() noexcept
 {
 	info.requirePresentQueue = true;
 	return *this;

@@ -76,7 +76,7 @@ void GLProgram::setUniform(const std::string& name, const Matrix4& value)
 	glUniformMatrix4fv(getUniformLocation(name), 1, false, value.data());
 }
 
-GLProgram::operator GLuint() const
+GLProgram::operator GLuint() const noexcept
 {
 	return handle;
 }

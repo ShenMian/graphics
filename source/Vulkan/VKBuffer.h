@@ -17,8 +17,8 @@ public:
 	void unmap() override;
 	void flush(size_t size = VK_WHOLE_SIZE, size_t offset = 0) override;
 
-	operator VkBuffer();
-	operator VkBuffer() const;
+	operator VkBuffer() noexcept;
+	operator VkBuffer() const noexcept;
 
 private:
 	uint32_t findMemoryType(uint32_t type, VkMemoryPropertyFlags properties);

@@ -139,17 +139,17 @@ std::shared_ptr<Shader> Shader::create(const Descriptor& desc)
 	return nullptr;
 }
 
-const std::string& Shader::getName() const
+const std::string& Shader::getName() const noexcept
 {
 	return name;
 }
 
-const std::string& Shader::getEntryPoint() const
+const std::string& Shader::getEntryPoint() const noexcept
 {
 	return entryPoint;
 }
 
-Shader::Stage Shader::getStage() const
+Shader::Stage Shader::getStage() const noexcept
 {
 	return stage;
 }

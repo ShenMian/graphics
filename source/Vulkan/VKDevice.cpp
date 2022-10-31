@@ -23,12 +23,12 @@ VkQueue VKDevice::getQueue(QueueType type) const
 	return queue;
 }
 
-VKDevice::operator VkDevice()
+VKDevice::operator VkDevice() noexcept
 {
 	return handle;
 }
 
-VKDevice::operator VkDevice() const
+VKDevice::operator VkDevice() const noexcept
 {
 	return handle;
 }
@@ -54,7 +54,7 @@ std::optional<uint32_t> VKDevice::getQueueIndex(QueueType type) const
 	return std::nullopt;
 }
 
-VKPhysicalDevice& VKDevice::getPhysicalDevice()
+VKPhysicalDevice& VKDevice::getPhysicalDevice() noexcept
 {
 	return physicalDevice;
 }

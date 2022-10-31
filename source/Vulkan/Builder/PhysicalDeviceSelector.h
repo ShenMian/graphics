@@ -16,13 +16,13 @@ public:
 
 	VKPhysicalDevice select();
 
-	PhysicalDeviceSelector& requireGraphicsQueue();
+	PhysicalDeviceSelector& requireGraphicsQueue() noexcept;
 
-	PhysicalDeviceSelector& requireComputeQueue();
+	PhysicalDeviceSelector& requireComputeQueue() noexcept;
 
-	PhysicalDeviceSelector& requireTransferQueue();
+	PhysicalDeviceSelector& requireTransferQueue() noexcept;
 
-	PhysicalDeviceSelector& requirePresentQueue();
+	PhysicalDeviceSelector& requirePresentQueue() noexcept;
 
 private:
 	std::vector<VKPhysicalDevice> devices;

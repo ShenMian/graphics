@@ -15,7 +15,8 @@ public:
 
 	void bind() override;
 
-	VkPipeline getHandle();
+	operator VkPipeline() noexcept;
+	operator VkPipeline() const noexcept;
 
 private:
 	void createPipelineLayout(const Descriptor& desc);

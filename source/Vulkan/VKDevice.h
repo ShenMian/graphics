@@ -4,8 +4,8 @@
 #pragma once
 
 #include "VKPhysicalDevice.h"
-#include <vulkan/vulkan.h>
 #include <optional>
+#include <vulkan/vulkan.h>
 
 /**
  * @brief Vulkan 逻辑设备.
@@ -42,12 +42,12 @@ public:
 	 */
 	std::optional<uint32_t> getQueueIndex(QueueType type) const;
 
-	VKPhysicalDevice& getPhysicalDevice();
+	VKPhysicalDevice& getPhysicalDevice() noexcept;
 
 	void destroy();
 
-	operator VkDevice();
-	operator VkDevice() const;
+	operator VkDevice() noexcept;
+	operator VkDevice() const noexcept;
 
 private:
 	VkDevice         handle;

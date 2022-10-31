@@ -62,12 +62,12 @@ void GLBuffer::bind()
 	glBindBuffer(glType, handle);
 }
 
-GLBuffer::operator GLuint()
+GLBuffer::operator GLuint() noexcept
 {
 	return handle;
 }
 
-GLBuffer::operator GLuint() const
+GLBuffer::operator GLuint() const noexcept
 {
 	return handle;
 }

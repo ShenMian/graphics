@@ -74,12 +74,12 @@ void VKBuffer::flush(size_t size, size_t offset)
 	vkFlushMappedMemoryRanges(device, 1, &info);
 }
 
-VKBuffer::operator VkBuffer()
+VKBuffer::operator VkBuffer() noexcept
 {
 	return handle;
 }
 
-VKBuffer::operator VkBuffer() const
+VKBuffer::operator VkBuffer() const noexcept
 {
 	return handle;
 }

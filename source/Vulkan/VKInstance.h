@@ -16,8 +16,8 @@ public:
 
 	void destroy();
 
-	operator VkInstance();
-	operator VkInstance() const;
+	operator VkInstance() noexcept;
+	operator VkInstance() const noexcept;
 
 private:
 	VkInstance handle;
