@@ -7,5 +7,5 @@ var class_v_k_device =
       [ "Present", "class_v_k_device.html#a06fa199b3117acdfe766d967a560f799add058df87f5c88e3285a28ad7406a3c6", null ]
     ] ],
     [ "getQueue", "class_v_k_device.html#ab9a1f3885fed4a385a311f6ac8abdcf0", null ],
-    [ "getQueueIndex", "class_v_k_device.html#a80953af4c4d080ec0778c35483ed0027", null ]
+    [ "getQueueIndex", "class_v_k_device.html#a237f9b459beb02caba1d8e4836eab4a3", null ]
 ];

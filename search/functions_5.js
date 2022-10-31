@@ -34,7 +34,7 @@ var searchData=
   ['getprimary_31',['getPrimary',['../class_monitor.html#a8afbc04b4417bbeb2f4d4e2c69feb45c',1,'Monitor']]],
   ['getprojection_32',['getProjection',['../class_camera.html#a90f8ded7af9a5ba9fcabd5b43271be40',1,'Camera']]],
   ['getqueue_33',['getQueue',['../class_v_k_device.html#ab9a1f3885fed4a385a311f6ac8abdcf0',1,'VKDevice']]],
-  ['getqueueindex_34',['getQueueIndex',['../class_v_k_device.html#a80953af4c4d080ec0778c35483ed0027',1,'VKDevice']]],
+  ['getqueueindex_34',['getQueueIndex',['../class_v_k_device.html#a237f9b459beb02caba1d8e4836eab4a3',1,'VKDevice']]],
   ['getraw_35',['getRaw',['../class_gamepad.html#a3d1ef5d5e9845ac3e8dc5d484cc374e8',1,'Gamepad::getRaw(Thumb thumb) const noexcept'],['../class_gamepad.html#a699b3348d46e0ee4bcb7532499970570',1,'Gamepad::getRaw(Trigger trigger) const noexcept']]],
   ['getrefreshrate_36',['getRefreshRate',['../class_monitor.html#a4e1e52b23525c876c8981564e657a7af',1,'Monitor']]],
   ['getrotation_37',['getRotation',['../class_camera.html#a9f963f5adfd87616ac7d6608a17c0ac3',1,'Camera']]],
