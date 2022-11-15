@@ -54,7 +54,7 @@ public:
 			{
 				cmdBuffer->setPipeline(pipeline);
 
-				cmdBuffer->beginRenderPass();
+				// cmdBuffer->beginRenderPass();
 				{
 					cmdBuffer->setViewport({window->getSize()});
 					cmdBuffer->setClearColor({0, 0, 0, 0});
@@ -63,7 +63,7 @@ public:
 					cmdBuffer->setVertexBuffer(vertexBuffer);
 					cmdBuffer->draw(vertexBuffer->getCount());
 				}
-				cmdBuffer->endRenderPass();
+				// cmdBuffer->endRenderPass();
 			}
 			cmdBuffer->end();
 			cmdQueue->submit(cmdBuffer);

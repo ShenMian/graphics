@@ -14,7 +14,6 @@ struct Vert
 	vec2 tex_coord;
 	vec3 tangent;
 	vec3 bitangent;
-	mat3 TBN;
 };
 
 struct DirectionalLight
@@ -66,14 +65,14 @@ layout(binding = 1, std140) uniform Lights
 	int              dir_lights_size;
 } lights;
 
-layout(binding = 0) uniform sampler2D diffuse_map;
-layout(binding = 1) uniform sampler2D specular_map;
-layout(binding = 2) uniform sampler2D ambient_map;
-layout(binding = 3) uniform sampler2D emissive_map;
-layout(binding = 4) uniform sampler2D height_map;
-layout(binding = 5) uniform sampler2D normal_map;
-layout(binding = 6) uniform sampler2D shininess_map;
-layout(binding = 7) uniform sampler2D opacity_map;
+layout(binding = 2) uniform sampler2D diffuse_map;
+layout(binding = 3) uniform sampler2D specular_map;
+layout(binding = 4) uniform sampler2D ambient_map;
+layout(binding = 5) uniform sampler2D emissive_map;
+layout(binding = 6) uniform sampler2D height_map;
+layout(binding = 7) uniform sampler2D normal_map;
+layout(binding = 8) uniform sampler2D shininess_map;
+layout(binding = 9) uniform sampler2D opacity_map;
 
 layout(location = 0) in Vert vert;
 

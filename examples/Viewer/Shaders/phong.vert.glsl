@@ -10,7 +10,6 @@ struct Vert
     vec2 tex_coord;
     vec3 tangent;
     vec3 bitangent;
-    mat3 TBN;
 };
 
 struct Bone
@@ -63,11 +62,6 @@ void main()
     vert.tex_coord = tex_coord;
     vert.tangent   = tangent;
     vert.bitangent = bitangent;
-
-    vec3 T   = normalize(vec3(mat.model * vec4(tangent,   0.0)));
-    vec3 B   = normalize(vec3(mat.model * vec4(bitangent, 0.0)));
-    vec3 N   = normalize(vec3(mat.model * vec4(normal,    0.0)));
-    vert.TBN = transpose(mat3(T, B, N));
 
     // vert.position.x = -vert.position.x;
     // vert.position.z = -vert.position.z;
