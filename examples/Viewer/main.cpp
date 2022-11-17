@@ -105,7 +105,7 @@ void GLScreenshot(const Vector2i& size)
 	img.save("screenshot.png");
 }
 
-#define PBR 0
+#define PBR 1
 
 class Viewer final : public Base
 {
