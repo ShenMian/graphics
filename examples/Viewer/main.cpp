@@ -44,7 +44,7 @@ void RenderChar(unsigned long code, const Vector2f& pos, std::shared_ptr<Command
 {
 	Font::init();
 	{
-		Font font("C:/Windows/Fonts/CascadiaCode.ttf");
+		Font font("C:/Users/sms/AppData/Local/Microsoft/Windows/Fonts/CascadiaCode.ttf");
 
 		auto getTexture = [&](unsigned long code) {
 			static std::unordered_map<unsigned long, std::shared_ptr<Texture>> map;
