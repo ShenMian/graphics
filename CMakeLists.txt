@@ -75,8 +75,8 @@ macro(add_example NAME)
         message(FATAL_ERROR "Unsupported compiler")
     endif()
 
-    # 将 Shader 源文件复制到可执行文件的目录下
-    file(COPY "Shaders" DESTINATION "${CMAKE_BINARY_DIR}/bin/${NAME}")
+    # 将 shader 源文件复制到可执行文件的目录下
+    file(COPY "shaders" DESTINATION "${CMAKE_BINARY_DIR}/bin/${NAME}")
 endmacro()
 
 if(WIN32)
@@ -100,7 +100,7 @@ set(DEPS_DIR "${PROJECT_SOURCE_DIR}/deps")
 add_subdirectory(source)
 
 if(BUILD_EXAMPLES)
-    add_subdirectory(examples/Triangle)
-    add_subdirectory(examples/Cube)
-    add_subdirectory(examples/Viewer)
+    add_subdirectory(examples/triangle)
+    add_subdirectory(examples/cube)
+    add_subdirectory(examples/viewer)
 endif()

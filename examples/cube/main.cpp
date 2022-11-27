@@ -1,7 +1,7 @@
 ﻿// Copyright 2021 ShenMian
 // License(Apache-2.0)
 
-#include "../Base/Base.hpp"
+#include "../base/base.hpp"
 
 namespace
 {
@@ -50,7 +50,7 @@ public:
 		// clang-format on
 		auto indexBuffer = IndexBuffer::create(indices);
 
-		auto program = Program::create("Shaders/mesh");
+		auto program = Program::create("shaders/mesh");
 
 		PipelineLayout layout = {
 		    {"matrices", 0, PipelineLayout::Type::UniformBuffer, PipelineLayout::StageFlags::Vertex}};

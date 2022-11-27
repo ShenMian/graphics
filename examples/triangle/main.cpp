@@ -1,7 +1,7 @@
 ﻿// Copyright 2021 ShenMian
 // License(Apache-2.0)
 
-#include "../Base/Base.hpp"
+#include "../base/base.hpp"
 
 namespace
 {
@@ -33,7 +33,7 @@ public:
 		auto         vertexBuffer = VertexBuffer::create(vertices, format);
 
 		// 创建着色器程序
-		auto program = Program::create("Shaders/forward");
+		auto program = Program::create("shaders/forward");
 
 		Pipeline::Descriptor desc;
 		desc.program          = program;

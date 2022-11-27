@@ -1,7 +1,7 @@
 ﻿// Copyright 2021 ShenMian
 // License(Apache-2.0)
 
-#include "../Base/Base.hpp"
+#include "../base/base.hpp"
 
 #include <imgui.h>
 
@@ -75,9 +75,9 @@ void RenderChar(unsigned long code, const Vector2f& pos, std::shared_ptr<Command
 		VertexFormat fmt          = {{{"position", Format::RG32F}, {"tex_coord", Format::RG32F}}};
 		auto         vertexBuffer = VertexBuffer::create(vertices, sizeof(vertices), fmt, Buffer::Usage::Dynamic);
 
-		auto           program = Program::create("Shaders/text2d");
+		auto           program = Program::create("shaders/text2d");
 		PipelineLayout layout  = {
-		     {"albedo_map", 0, PipelineLayout::Type::Texture, PipelineLayout::StageFlags::Fragment}};
+            {"albedo_map", 0, PipelineLayout::Type::Texture, PipelineLayout::StageFlags::Fragment}};
 		Pipeline::Descriptor desc;
 		// desc.rasterizer.polygonMode = PolygonMode::Wireframe;
 		desc.layout   = layout;
@@ -134,20 +134,25 @@ public:
 			// Basic test
 			// path = "../../../../../../Model/glTF-Sample-Models/MetalRoughSpheres/glTF/MetalRoughSpheres.gltf";
 			// path = "../../../../../../Model/glTF-Sample-Models/NormalTangentTest/glTF/NormalTangentTest.gltf";
-			// path = "../../../../../../Model/glTF-Sample-Models/NormalTangentMirrorTest/glTF/NormalTangentMirrorTest.gltf";
-			// path = "../../../../../../Model/glTF-Sample-Models/TextureLinearInterpolationTest/glTF/TextureLinearInterpolationTest.gltf";
-			// path = "../../../../../../Model/glTF-Sample-Models/TextureCoordinateTest/glTF/TextureCoordinateTest.gltf";
-			// path = "../../../../../../Model/glTF-Sample-Models/TextureSettingsTest/glTF/TextureSettingsTest.gltf";
-			// path = "../../../../../../Model/glTF-Sample-Models/VertexColorTest/glTF/VertexColorTest.gltf";
-			// path = "../../../../../../Model/glTF-Sample-Models/AlphaBlendModeTest/glTF/AlphaBlendModeTest.gltf";
+			// path =
+			// "../../../../../../Model/glTF-Sample-Models/NormalTangentMirrorTest/glTF/NormalTangentMirrorTest.gltf";
+			// path =
+			// "../../../../../../Model/glTF-Sample-Models/TextureLinearInterpolationTest/glTF/TextureLinearInterpolationTest.gltf";
+			// path =
+			// "../../../../../../Model/glTF-Sample-Models/TextureCoordinateTest/glTF/TextureCoordinateTest.gltf"; path
+			// = "../../../../../../Model/glTF-Sample-Models/TextureSettingsTest/glTF/TextureSettingsTest.gltf"; path =
+			// "../../../../../../Model/glTF-Sample-Models/VertexColorTest/glTF/VertexColorTest.gltf"; path =
+			// "../../../../../../Model/glTF-Sample-Models/AlphaBlendModeTest/glTF/AlphaBlendModeTest.gltf";
 
 			// Feature test
 			// path = "../../../../../../Model/glTF-Sample-Models/AttenuationTest/glTF/AttenuationTest.gltf";
 			// path = "../../../../../../Model/glTF-Sample-Models/ClearcoatTest/glTF/ClearcoatTest.gltf";
 			// path = "../../../../../../Model/glTF-Sample-Models/EmissiveStrengthTest/glTF/EmissiveStrengthTest.gltf";
-			// path = "../../../../../../Model/glTF-Sample-Models/SpecGlossVsMetalRough/glTF/SpecGlossVsMetalRough.gltf";
-			// path = "../../../../../../Model/glTF-Sample-Models/TextureTransformTest/glTF/TextureTransformTest.gltf";
-			// path = "../../../../../../Model/glTF-Sample-Models/TextureTransformMultiTest/glTF/TextureTransformMultiTest.gltf";
+			// path =
+			// "../../../../../../Model/glTF-Sample-Models/SpecGlossVsMetalRough/glTF/SpecGlossVsMetalRough.gltf"; path
+			// = "../../../../../../Model/glTF-Sample-Models/TextureTransformTest/glTF/TextureTransformTest.gltf"; path
+			// =
+			// "../../../../../../Model/glTF-Sample-Models/TextureTransformMultiTest/glTF/TextureTransformMultiTest.gltf";
 #else
 			path = "../../../../../../Model/sponza/sponza.obj";
 			// path = "../../../../../../Model/dishonored_2/scene.glb";
@@ -162,7 +167,7 @@ public:
 		// model.meshes.push_back(Primitive::makePlane(10, 10).value());
 
 #if PBR
-		auto program = Program::create("Shaders/pbr");
+		auto program = Program::create("shaders/pbr");
 		// clang-format off
 		PipelineLayout layout  = {
 		     {"albedo_map", 1, PipelineLayout::Type::Texture, PipelineLayout::StageFlags::Fragment},
@@ -173,7 +178,7 @@ public:
 		     {"occlusion_map", 6, PipelineLayout::Type::Texture, PipelineLayout::StageFlags::Fragment}};
 		// clang-format on
 #else
-		auto program = Program::create("Shaders/phong");
+		auto program = Program::create("shaders/phong");
 		PipelineLayout layout = {
 		    {"diffuse_map", 2, PipelineLayout::Type::Texture, PipelineLayout::StageFlags::Fragment},
 		    {"specular_map", 3, PipelineLayout::Type::Texture, PipelineLayout::StageFlags::Fragment},
