@@ -160,8 +160,8 @@ add_library(graphics::graphics ALIAS graphics)
 
 # 指定头文件目录
 target_include_directories(graphics PUBLIC
-    ${INCS}
-    "${PROJECT_SOURCE_DIR}/source")
+    "${INCS}"
+    "${PROJECT_SOURCE_DIR}/src")
 
 # 指定库文件目录
 target_link_libraries(graphics PUBLIC ${LIBS} ${CONAN_LIBS})

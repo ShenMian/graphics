@@ -97,7 +97,7 @@ endif()
 # 添加第三方库
 set(DEPS_DIR "${PROJECT_SOURCE_DIR}/deps")
 
-add_subdirectory(source)
+add_subdirectory(src)
 
 if(BUILD_EXAMPLES)
     add_subdirectory(examples/triangle)
