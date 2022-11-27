@@ -48,30 +48,13 @@ var NAVTREE =
       [ "应用骨架", "_getting_started.html#autotoc_md11", null ],
       [ "输入", "_getting_started.html#autotoc_md12", null ],
       [ "示例", "_getting_started.html#autotoc_md13", null ]
-    ] ],
-    [ "模块", "modules.html", "modules" ],
-    [ "类", "annotated.html", [
-      [ "类列表", "annotated.html", "annotated_dup" ],
-      [ "类索引", "classes.html", null ],
-      [ "类继承关系", "hierarchy.html", "hierarchy" ],
-      [ "类成员", "functions.html", [
-        [ "全部", "functions.html", "functions_dup" ],
-        [ "函数", "functions_func.html", "functions_func" ],
-        [ "变量", "functions_vars.html", null ],
-        [ "枚举", "functions_enum.html", null ],
-        [ "枚举值", "functions_eval.html", null ]
-      ] ]
-    ] ],
-    [ "文件", "files.html", [
-      [ "文件列表", "files.html", "files_dup" ]
     ] ]
   ] ]
 ];
 
 var NAVTREEINDEX =
 [
-"_animation_8h_source.html",
-"class_sampler.html#a040bed93d9961ce03951f16515e32124a969a7b6f1f3951ef293b3ff281dc293d"
+"_getting_started.html"
 ];
 
 var SYNCONMSG = '点击 关闭 面板同步';
