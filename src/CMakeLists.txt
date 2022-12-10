@@ -76,7 +76,7 @@ if(NOT USE_CONAN)
     list(APPEND INCS "${DEPS_DIR}/Vulkan-Headers/include")
 endif()
 
-list(APPEND INCS "${DEPS_DIR}/Math/include")
+list(APPEND INCS "${DEPS_DIR}/Math/src")
 list(APPEND INCS "${DEPS_DIR}/Math/deps/gcem/include")
 list(APPEND INCS "${CMAKE_BINARY_DIR}/include")
 

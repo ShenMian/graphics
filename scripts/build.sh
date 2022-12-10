@@ -32,7 +32,8 @@ mkdir $build_dir 2>/dev/null
 
 echo "=== Installing dependencies..."
 export CONAN_SYSREQUIRES_MODE=enabled
-conan install . --build=missing -if $build_dir -of $build_dir $conan_args -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True >/dev/null || {
+# conan install . --build=missing -if $build_dir -of $build_dir $conan_args -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True >/dev/null || {
+conan install -pr clang . --build=missing -if $build_dir -of $build_dir $conan_args -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True >/dev/null || {
   echo "=== Failed to install."
   exit 1
 }
