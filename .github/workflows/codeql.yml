@@ -53,9 +53,9 @@ jobs:
         submodules: recursive
 
     - name: Install clang
-      uses: egor-tensin/setup-clang@v1.3
-      with:
-        version: 13
+      run: |
+        sudo apt update
+        sudo apt install clang-14
 
     - name: Install Conan
       uses: turtlebrowser/get-conan@v1.0
