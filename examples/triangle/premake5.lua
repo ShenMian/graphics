@@ -1,4 +1,4 @@
-﻿-- Copyright 2021 SMS
+﻿-- Copyright 2022 ShenMian
 -- License(Apache-2.0)
 
 project "triangle"

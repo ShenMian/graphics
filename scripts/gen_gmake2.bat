@@ -1,5 +1,5 @@
 @echo off
-REM Copyright 2021 SMS
+REM Copyright 2022 ShenMian
 REM License(Apache-2.0)
 
 REM 切换到主目录

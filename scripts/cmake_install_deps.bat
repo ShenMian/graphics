@@ -1,5 +1,5 @@
 @echo off
-REM Copyright 2021 ShenMian
+REM Copyright 2022 ShenMian
 REM License(Apache-2.0)
 
 REM 检测是否有管理员权限
