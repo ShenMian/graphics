@@ -27,6 +27,8 @@ public:
 
 		Renderer::init(*window);
 		UI::init(*window);
+		Font::init();
+
 		Input::setWindow(*window);
 
 		printMonitorInfo();
@@ -35,6 +37,7 @@ public:
 
 	void deinit()
 	{
+		Font::deinit();
 		UI::deinit();
 		Renderer::deinit();
 

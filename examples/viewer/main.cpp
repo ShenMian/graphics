@@ -3,6 +3,8 @@
 
 #include "../base/base.hpp"
 
+#include <array>
+
 #include <imgui.h>
 
 #include <ImGuizmo.h>
@@ -40,59 +42,52 @@ struct alignas(16) DirectionalLight
 	Vector3 direction;
 };
 
-void RenderChar(unsigned long code, const Vector2f& pos, std::shared_ptr<CommandBuffer> cmdBuf)
+void DrawChar(Font& font, unsigned long code, const Vector2f& pos, std::shared_ptr<CommandBuffer> cmdBuf)
 {
-	Font::init();
-	{
-		Font font("C:/Users/sms/AppData/Local/Microsoft/Windows/Fonts/CascadiaCode.ttf");
+	auto getTexture = [&](unsigned long code) {
+		static std::unordered_map<unsigned long, std::shared_ptr<Texture>> map;
 
-		auto getTexture = [&](unsigned long code) {
-			static std::unordered_map<unsigned long, std::shared_ptr<Texture>> map;
+		auto it = map.find(code);
+		if(it != map.end())
+			return it->second;
+		std::shared_ptr<Texture> texture;
+		Image                    flippedImage = font.getGlyph(code, 32).image;
+		flippedImage.flipVertically();
+		texture = Texture::create(flippedImage);
+		map.insert({code, texture});
+		return texture;
+	};
 
-			auto it = map.find(code);
-			if(it != map.end())
-				return it->second;
-			std::shared_ptr<Texture> texture;
-			Image                    flippedImage = font.getGlyph(code, 32).image;
-			flippedImage.flipVertically();
-			texture = Texture::create(flippedImage);
-			map.insert({code, texture});
-			return texture;
-		};
+	auto       texture = getTexture(code);
+	const auto size    = font.getGlyph(code, 32).image.size();
+	// clang-format off
+	float vertices[6][4] = {
+		{pos.x,          pos.y + size.y, 0.0, 0.0},
+		{pos.x,          pos.y,          0.0, 1.0},
+		{pos.x + size.x, pos.y,          1.0, 1.0},
 
-		auto       texture = getTexture(code);
-		const auto size    = font.getGlyph(code, 32).image.size();
-		// clang-format off
-		float vertices[6][4] = {
-			{pos.x,          pos.y + size.y, 0.0, 0.0},
-			{pos.x,          pos.y,          0.0, 1.0},
-		    {pos.x + size.x, pos.y,          1.0, 1.0},
+		{pos.x,          pos.y + size.y, 0.0, 0.0},
+		{pos.x + size.x, pos.y,          1.0, 1.0},
+		{pos.x + size.x, pos.y + size.y, 1.0, 0.0}};
+	// clang-format on
+	VertexFormat fmt          = {{{"position", Format::RG32F}, {"tex_coord", Format::RG32F}}};
+	auto         vertexBuffer = VertexBuffer::create(vertices, sizeof(vertices), fmt, Buffer::Usage::Dynamic);
 
-			{pos.x,          pos.y + size.y, 0.0, 0.0},
-		    {pos.x + size.x, pos.y,          1.0, 1.0},
-			{pos.x + size.x, pos.y + size.y, 1.0, 0.0}};
-		// clang-format on
-		VertexFormat fmt          = {{{"position", Format::RG32F}, {"tex_coord", Format::RG32F}}};
-		auto         vertexBuffer = VertexBuffer::create(vertices, sizeof(vertices), fmt, Buffer::Usage::Dynamic);
+	auto           program = Program::create("shaders/text2d");
+	PipelineLayout layout  = {{"albedo_map", 0, PipelineLayout::Type::Texture, PipelineLayout::StageFlags::Fragment}};
+	Pipeline::Descriptor desc;
+	// desc.rasterizer.polygonMode = PolygonMode::Wireframe;
+	desc.layout   = layout;
+	desc.program  = program;
+	auto pipeline = Pipeline::create(desc);
 
-		auto           program = Program::create("shaders/text2d");
-		PipelineLayout layout  = {
-            {"albedo_map", 0, PipelineLayout::Type::Texture, PipelineLayout::StageFlags::Fragment}};
-		Pipeline::Descriptor desc;
-		// desc.rasterizer.polygonMode = PolygonMode::Wireframe;
-		desc.layout   = layout;
-		desc.program  = program;
-		auto pipeline = Pipeline::create(desc);
-
-		cmdBuf->setPipeline(pipeline);
-		cmdBuf->setTexture(texture, 0);
-		cmdBuf->setVertexBuffer(vertexBuffer);
-		cmdBuf->draw(6);
-	}
-	Font::deinit();
+	cmdBuf->setPipeline(pipeline);
+	cmdBuf->setTexture(texture, 0);
+	cmdBuf->setVertexBuffer(vertexBuffer);
+	cmdBuf->draw(6);
 }
 
-void RenderString(std::string_view str)
+void DrawString(std::string_view str)
 {
 }
 
@@ -114,6 +109,8 @@ public:
 
 	int main(int argc, char* argv[])
 	{
+		Font font("C:/Users/sms/AppData/Local/Microsoft/Windows/Fonts/CascadiaCode.ttf");
+
 		fs::path path;
 		if(argc > 1)
 			path = argv[1];
@@ -282,6 +279,12 @@ public:
 		window->setCursorLock(true);
 		window->setRawMouseMotion(true);
 
+		ui::Window performance("Performance");
+		ui::Label  fps;
+		ui::Label  gpu;
+		performance.add(fps);
+		performance.add(gpu);
+
 		ui::Window attInfo("ATT"); // 摄像机姿态信息
 		ui::Label  position;       // 坐标
 		ui::Label  angles;         // 姿态角角度
@@ -310,17 +313,36 @@ public:
 			UI::beginFrame();
 			ImGuizmo::BeginFrame();
 
-			const auto& pos = camera.getPosition();
-			position.setText(fmt::format("X    : {: .2f}\n"
-			                             "Y    : {: .2f}\n"
-			                             "Z    : {: .2f}\n",
-			                             pos.x, pos.y, pos.z));
-			const auto& dir = camera.getRotation();
-			angles.setText(fmt::format("Roll : {: .1f}\n"
-			                           "Pitch: {: .1f}\n"
-			                           "Yaw  : {: .1f}\n",
-			                           dir.z, dir.x, dir.y));
-			attInfo.update();
+			{
+				static size_t                 fpsRecordsCount   = 0;
+				static std::array<float, 100> dtRecords         = {0};
+				dtRecords[fpsRecordsCount++ % dtRecords.size()] = dt;
+				const auto avgDt  = std::accumulate(dtRecords.begin(), dtRecords.end(), 0.f) / dtRecords.size();
+				const auto avgFps = 1.f / avgDt;
+
+				static size_t                 gpuRecordsCount     = 0;
+				static std::array<float, 100> gpuRecords          = {0};
+				gpuRecords[gpuRecordsCount++ % gpuRecords.size()] = dt * 1000.f;
+				const auto avgGPU = std::accumulate(gpuRecords.begin(), gpuRecords.end(), 0.f) / gpuRecords.size();
+
+				fps.setText(fmt::format("FPS: {}\n", static_cast<int>(avgFps)));
+				gpu.setText(fmt::format("GPU: {:.2f} ms\n", avgGPU));
+				performance.update();
+			}
+
+			{
+				const auto& pos = camera.getPosition();
+				position.setText(fmt::format("X    : {: .2f}\n"
+				                             "Y    : {: .2f}\n"
+				                             "Z    : {: .2f}\n",
+				                             pos.x, pos.y, pos.z));
+				const auto& dir = camera.getRotation();
+				angles.setText(fmt::format("Roll : {: .1f}\n"
+				                           "Pitch: {: .1f}\n"
+				                           "Yaw  : {: .1f}\n",
+				                           dir.z, dir.x, dir.y));
+				attInfo.update();
+			}
 
 			matrices->getBuffer().map();
 			{
@@ -405,7 +427,7 @@ public:
 					cmdBuffer->drawIndexed(ib->getCount());
 				}
 
-				// RenderChar('A', {0, 0}, cmdBuffer);
+				// DrawChar(font, 'A', {0, 0}, cmdBuffer);
 			}
 			cmdBuffer->end();
 			cmdQueue->submit(cmdBuffer);
