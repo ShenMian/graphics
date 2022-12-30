@@ -4,6 +4,7 @@
 #include "Shader.h"
 #include "Renderer.h"
 #include <cassert>
+#include <stdexcept>
 #include <fstream>
 #include <shaderc/shaderc.hpp>
 #include <spirv_cross.hpp>
@@ -171,12 +172,12 @@ std::vector<uint32_t> Shader::getCode(fs::path path)
 
 	const auto    fileSize = fs::file_size(path);
 	std::ifstream file(path, std::ios::binary);
-	if(!file.is_open())
+	if(!file)
 		throw std::runtime_error(fmt::format("failed to open file: {}", path));
 
 	std::vector<uint32_t> buf(fileSize / sizeof(uint32_t));
 	file.read(reinterpret_cast<char*>(buf.data()), fileSize);
-	if(!file.good() || file.gcount() != fileSize)
+	if(!file || file.gcount() != fileSize)
 		throw std::runtime_error(fmt::format("failed to read file: {}", path));
 	file.close();
 
@@ -196,7 +197,7 @@ void Shader::compile(const fs::path& sourcePath, const fs::path& targetPath, Sta
 
 	// 读取源代码
 	std::ifstream file(sourcePath, std::ios::binary);
-	if(!file.is_open())
+	if(!file)
 		throw std::runtime_error(fmt::format("failed to open file: {}", sourcePath));
 
 	std::stringstream buf;

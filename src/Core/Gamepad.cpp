@@ -134,7 +134,9 @@ bool Gamepad::loadMappingsDb(const fs::path& path)
 {
 	if(!fs::exists(path))
 		throw std::runtime_error(fmt::format("no such file: {}", path));
-	std::ifstream     file(path, std::ios::binary);
+	std::ifstream file(path, std::ios::binary);
+	if(!file)
+		throw std::runtime_error(fmt::format("failed to open file: {}", path));
 	std::stringstream buf;
 	buf << file.rdbuf();
 	return glfwUpdateGamepadMappings(buf.str().c_str());

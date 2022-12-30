@@ -87,7 +87,7 @@ std::shared_ptr<Texture> DDSImporter::load(const fs::path& path)
 		throw std::runtime_error(fmt::format("no such file: {}", path));
 
 	std::ifstream file(path, std::ios::binary);
-	if(!file.is_open())
+	if(!file)
 		throw std::runtime_error(fmt::format("failed to open file: {}", path));
 
 	auto magicNumber = Read<uint32_t>(file);
