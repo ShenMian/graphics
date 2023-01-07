@@ -1,11 +1,11 @@
 ﻿# Copyright 2022 ShenMian
 # License(Apache-2.0)
 
-if(NOT USE_CONAN)
+# if(NOT USE_CONAN)
     list(APPEND INCS "${DEPS_DIR}/stb")
     list(APPEND INCS "${DEPS_DIR}/fmt/include")
 
-    # 添加 imgui
+    # imgui
     find_package(imgui QUIET)
     if(imgui_FOUND)
         list(APPEND LIBS imgui::imgui)
@@ -16,12 +16,12 @@ if(NOT USE_CONAN)
     list(APPEND INCS "${DEPS_DIR}/imgui")
     list(APPEND INCS "${DEPS_DIR}/imgui/backends")
 
-    # 添加 imguizmo
+    # imguizmo
     include("${DEPS_DIR}/imguizmo.cmake")
     list(APPEND LIBS imguizmo)
     list(APPEND INCS "${DEPS_DIR}/ImGuizmo")
 
-    # 添加 freetype
+    # freetype
     find_package(freetype QUIET)
     if(FREETYPE_FOUND)
         list(APPEND LIBS ${FREETYPE_LIBRARIES})
@@ -32,7 +32,7 @@ if(NOT USE_CONAN)
         list(APPEND INCS "${DEPS_DIR}/freetype/include")
     endif()
 
-    # 添加 glfw3
+    # glfw3
     list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/Scripts")
     set(GLFW3_DIR "C:/Program Files (x86)/GLFW/lib/cmake/glfw3")
     find_package(GLFW3 QUIET)
@@ -53,7 +53,7 @@ if(NOT USE_CONAN)
     list(APPEND LIBS glfw_mt)
     list(APPEND INCS "${DEPS_DIR}/glfw/include")
 
-    # 添加 meshoptimizer
+    # meshoptimizer
     find_package(meshoptimizer CONFIG QUIET)
     if(meshoptimizer_FOUND)
         list(APPEND LIBS meshoptimizer::meshoptimizer)
@@ -63,7 +63,7 @@ if(NOT USE_CONAN)
     endif()
     list(APPEND INCS "${DEPS_DIR}/meshoptimizer/src")
 
-    # 添加 vulkan
+    # vulkan
     find_package(Vulkan QUIET)
     if(Vulkan_FOUND)
         list(APPEND LIBS ${Vulkan_LIBRARIES})
@@ -74,13 +74,13 @@ if(NOT USE_CONAN)
         message(FATAL_ERROR "Vulkan not found")
     endif()
     list(APPEND INCS "${DEPS_DIR}/Vulkan-Headers/include")
-endif()
+# endif()
 
 list(APPEND INCS "${DEPS_DIR}/Math/src")
 list(APPEND INCS "${DEPS_DIR}/Math/deps/gcem/include")
 list(APPEND INCS "${CMAKE_BINARY_DIR}/include")
 
-# 添加 assimp
+# assimp
 find_package(assimp QUIET)
 if(assimp_FOUND)
     list(APPEND LIBS assimp::assimp)
@@ -94,7 +94,7 @@ list(APPEND INCS
     "${DEPS_DIR}/assimp/include"
     "${DEPS_DIR}/assimp/build/include")
 
-# 添加 glad
+# glad
 find_package(glad QUIET)
 if(GLAD_FOUND)
     list(APPEND LIBS glad::glad)
@@ -104,13 +104,13 @@ else()
 endif()
 list(APPEND INCS "${DEPS_DIR}/glad/include")
 
-# 添加 spirv-headers
+# spirv-headers
 add_subdirectory("${DEPS_DIR}/SPIRV-Headers" "SPIRV-Headers")
 
-# 添加 spirv-tools
+# spirv-tools
 add_subdirectory("${DEPS_DIR}/SPIRV-Tools" "SPIRV-Tools")
 
-# 添加 spirv-cross
+# spirv-cross
 find_package(spirv_cross_core QUIET)
 if(spirv_cross_core_FOUND)
     list(APPEND LIBS spirv-cross-core)
@@ -120,10 +120,10 @@ else()
     list(APPEND INCS "${DEPS_DIR}/SPIRV-Cross")
 endif()
 
-# 添加 glslang
+# glslang
 add_subdirectory("${DEPS_DIR}/glslang" "glslang")
 
-# 添加 shaderc
+# shaderc
 find_package(shaderc QUIET)
 if(shaderc_FOUND)
     list(APPEND LIBS shaderc::shaderc)
@@ -134,17 +134,20 @@ else()
     list(APPEND INCS "${DEPS_DIR}/shaderc/libshaderc/include")
 endif()
 
-# 添加 imnodes
+# imnodes
 include("${DEPS_DIR}/imnodes.cmake")
 list(APPEND LIBS imnodes)
 list(APPEND INCS "${DEPS_DIR}/imnodes")
+target_include_directories(imnodes PRIVATE
+    "${DEPS_DIR}/imgui"
+    "${DEPS_DIR}/imgui/backends")
 
 if(WIN32)
 list(APPEND LIBS xinput)
 endif()
 
-# message(STATUS "INCS: ${INCS}")
-# message(STATUS "LIBS: ${LIBS}")
+message(STATUS "INCS: ${INCS}")
+message(STATUS "LIBS: ${LIBS}")
 
 file(GLOB_RECURSE SOURCES "*.cpp")
 
