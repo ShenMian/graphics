@@ -6,7 +6,7 @@ build_dir=target
 
 build_type=$1
 compiler=$2
-# compiler_version=$3
+compiler_version=$3
 shift
 shift
 shift
