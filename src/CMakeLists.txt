@@ -1,7 +1,7 @@
 ﻿# Copyright 2022 ShenMian
 # License(Apache-2.0)
 
-# if(NOT USE_CONAN)
+if(NOT USE_CONAN)
     list(APPEND INCS "${DEPS_DIR}/stb")
     list(APPEND INCS "${DEPS_DIR}/fmt/include")
 
@@ -74,7 +74,7 @@
         message(FATAL_ERROR "Vulkan not found")
     endif()
     list(APPEND INCS "${DEPS_DIR}/Vulkan-Headers/include")
-# endif()
+endif()
 
 list(APPEND INCS "${DEPS_DIR}/math/src")
 list(APPEND INCS "${DEPS_DIR}/math/deps/gcem/include")
@@ -101,8 +101,8 @@ if(GLAD_FOUND)
 else()
     include("${DEPS_DIR}/glad.cmake")
     list(APPEND LIBS glad)
+    list(APPEND INCS "${DEPS_DIR}/glad/include")
 endif()
-list(APPEND INCS "${DEPS_DIR}/glad/include")
 
 # spirv-headers
 add_subdirectory("${DEPS_DIR}/SPIRV-Headers" "SPIRV-Headers")
@@ -121,18 +121,19 @@ else()
 endif()
 
 # glslang
+find_package(glslang QUIET)
 add_subdirectory("${DEPS_DIR}/glslang" "glslang")
 
 # shaderc
-find_package(shaderc QUIET)
-if(shaderc_FOUND)
-    list(APPEND LIBS shaderc::shaderc)
-else()
+# find_package(shaderc QUIET)
+# if(shaderc_FOUND)
+#     list(APPEND LIBS shaderc::shaderc)
+# else()
     set(SHADERC_SKIP_TESTS ON)
     add_subdirectory("${DEPS_DIR}/shaderc" "shaderc")
     list(APPEND LIBS shaderc)
     list(APPEND INCS "${DEPS_DIR}/shaderc/libshaderc/include")
-endif()
+# endif()
 
 # imnodes
 include("${DEPS_DIR}/imnodes.cmake")
