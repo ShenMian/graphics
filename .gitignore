@@ -6,6 +6,7 @@
 [Oo]bj
 [Ll]ib
 [Bb]uild
+target
 
 # Visual Studio
 CMakeSettings.json
