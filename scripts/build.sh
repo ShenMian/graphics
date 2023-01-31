@@ -2,7 +2,7 @@
 # Copyright 2022 ShenMian
 # License(Apache-2.0)
 
-build_dir=build
+build_dir=target
 
 build_type=$1
 compiler=$2 # 编译器只能是 clang/gcc
@@ -19,9 +19,13 @@ fi
 if [ -z "$build_type" ]; then
   build_type="Debug"
 fi
+if [ -z "${compiler}" ]; then
+    compiler=clang
+    export CC=/usr/bin/clang
+    export CXX=/usr/bin/clang++
+fi
 
 if [ -n "$compiler" ] && [ -n "$compiler_version" ]; then
-  conan_args="-s build_type=$build_type -s compiler=$compiler -s compiler.version=$compiler_version"
   cmake_args="-DCMAKE_BUILD_TYPE=$build_type -DCMAKE_C_COMPILER=$compiler -DCMAKE_CXX_COMPILER=$compiler++"
 fi
 
@@ -30,13 +34,7 @@ cd .. || exit
 
 mkdir $build_dir 2>/dev/null
 
-echo "=== Installing dependencies..."
-export CONAN_SYSREQUIRES_MODE=enabled
-# conan install . --build=missing -if $build_dir -of $build_dir $conan_args -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True >/dev/null || {
-conan install -pr clang . --build=missing -if $build_dir -of $build_dir $conan_args -c tools.system.package_manager:mode=install -c tools.system.package_manager:sudo=True >/dev/null || {
-  echo "=== Failed to install."
-  exit 1
-}
+./scripts/install_dependencies.sh $build_type $compiler $compiler_version || exit 1
 
 echo "=== Generating CMake cache..."
 cmake -Wno-dev $cmake_args -B $build_dir >/dev/null || {
