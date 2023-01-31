@@ -11,7 +11,7 @@
 	path = deps/stb
 	url = https://github.com/nothings/stb.git
 [submodule "Deps/Math"]
-	path = deps/Math
+	path = deps/math
 	url = https://github.com/ShenMian/Math
 [submodule "Deps/shaderc"]
 	path = deps/shaderc
