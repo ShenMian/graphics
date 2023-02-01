@@ -1,4 +1,4 @@
-﻿// Copyright 2022 ShenMian
+// Copyright 2022 ShenMian
 // License(Apache-2.0)
 
 #pragma once
@@ -28,6 +28,9 @@ struct Model
 
 	uint32_t vertexCount = 0;
 	uint32_t indexCount  = 0;
+
+	void load(const std::filesystem::path& path);
+	void save(const std::filesystem::path& path);
 };
 
 /** @}*/

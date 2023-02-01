@@ -157,12 +157,6 @@ public:
 #endif
 		}
 
-		// model.meshes.clear();
-		// model.meshes.push_back(Primitive::makeUVSphere(64, 32).value());
-		// model.meshes.push_back(Primitive::makeIcoSphere(7));
-		// model.meshes.push_back(Primitive::makeCapsule(15, 2, 0.5).value());
-		// model.meshes.push_back(Primitive::makePlane(10, 10).value());
-
 #if PBR
 		auto program = Program::create("shaders/pbr");
 		// clang-format off
@@ -195,7 +189,8 @@ public:
 		auto cmdBuffer = CommandBuffer::create();
 
 		Camera camera(Camera::Type::Perspective);
-		camera.setPerspective(radians(45.f), (float)window->getSize().x / window->getSize().y, 0.1f, 2000.f);
+		camera.setPerspective(radians(60.f), (float)window->getSize().x / window->getSize().y, 0.1f, 2000.f);
+		const auto fov = degrees(camera.getHFOV());
 
 		Gamepad gamepad(0);
 
@@ -237,6 +232,16 @@ public:
 		};
 
 		loadModel(path);
+
+		model.save("D:/Users/sms/Desktop/test.model");
+		model.meshes.clear();
+		model.load("D:/Users/sms/Desktop/test.model");
+
+		// model.meshes.clear();
+		// model.meshes.push_back(Primitive::makeUVSphere(64, 32).value());
+		// model.meshes.push_back(Primitive::makeIcoSphere(7));
+		// model.meshes.push_back(Primitive::makeCapsule(15, 2, 0.5).value());
+		// model.meshes.push_back(Primitive::makePlane(10, 10).value());
 
 		bool running    = true;
 		window->onClose = [&] { running = false; };
@@ -313,8 +318,7 @@ public:
 			controller.update(dt);
 #endif
 
-			UI::beginFrame();
-			ImGuizmo::BeginFrame();
+			beginFrame();
 
 			{
 				static size_t                 fpsRecordsCount   = 0;
@@ -435,12 +439,22 @@ public:
 			cmdBuffer->end();
 			cmdQueue->submit(cmdBuffer);
 
-			UI::endFrame();
-
-			window->update();
+			endFrame();
 		}
 
 		return 0;
+	}
+
+	void beginFrame()
+	{
+		UI::beginFrame();
+		ImGuizmo::BeginFrame();
+	}
+
+	void endFrame()
+	{
+		UI::endFrame();
+		window->update();
 	}
 };
 
