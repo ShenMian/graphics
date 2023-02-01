@@ -37,6 +37,9 @@ std::shared_ptr<Texture> Texture::create(const fs::path& path, Format fmt, uint3
 
 	case OpenGL:
 		ptr = std::make_shared<GLTexture>(Image(absPath), fmt, mipmapCount, type);
+
+	case Vulkan:
+		assert(false);
 	}
 	cache.insert({absPath, ptr});
 	return ptr;
@@ -52,6 +55,9 @@ std::shared_ptr<Texture> Texture::create(const Image& image, Format fmt, uint32_
 
 	case OpenGL:
 		return std::make_shared<GLTexture>(image, fmt, mipmapCount, type);
+
+	case Vulkan:
+		assert(false);
 	}
 	return nullptr;
 }
@@ -67,6 +73,9 @@ std::shared_ptr<Texture> Texture::create(const std::vector<Image>& images)
 
 	case OpenGL:
 		return std::make_shared<GLTexture>(images);
+
+	case Vulkan:
+		assert(false);
 	}
 	return nullptr;
 }

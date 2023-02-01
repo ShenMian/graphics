@@ -117,12 +117,12 @@ void ModelImporter::loadMesh(const aiMesh& mesh)
 	for(unsigned int i = 0; i < mesh.mNumBones; i++)
 	{
 		auto& bone = mesh.mBones[i];
-		bone->mName;
-		bone->mOffsetMatrix;
+		// bone->mName;
+		// bone->mOffsetMatrix;
 		for(unsigned int j = 0; j < bone->mNumWeights; i++)
 		{
-			bone->mWeights[i].mVertexId;
-			bone->mWeights[i].mWeight;
+			// bone->mWeights[i].mVertexId;
+			// bone->mWeights[i].mWeight;
 		}
 	}
 }
@@ -154,12 +154,12 @@ void ModelImporter::loadMaterial(const aiMaterial& mat)
 	auto& material = model->materials.emplace_back();
 	material.name  = mat.GetName().C_Str();
 
-	aiShadingMode mode; 
+	aiShadingMode mode;
 	mat.Get(AI_MATKEY_SHADING_MODEL, mode);
 	if(mode == aiShadingMode_PBR_BRDF)
 	{
 		Material::PBR::Workflow workflow;
-		float value;
+		float                   value;
 		if(mat.Get(AI_MATKEY_METALLIC_FACTOR, value) == aiReturn_SUCCESS)
 		{
 			workflow = Material::PBR::Workflow::MetallicRoughness;

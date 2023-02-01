@@ -73,10 +73,10 @@ void NodeEditor::update()
 		const Pin* start = nullptr;
 		const Pin* end   = nullptr;
 		for(auto& node : nodes)
-			if(start = node.getPinById(startId))
+			if((start = node.getPinById(startId)))
 				break;
 		for(auto& node : nodes)
-			if(end = node.getPinById(endId))
+			if((end = node.getPinById(endId)))
 				break;
 
 		if(start != nullptr && end != nullptr && start->getKind() != end->getKind() &&
