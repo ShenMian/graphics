@@ -2,7 +2,7 @@
 # Copyright 2022 ShenMian
 # License(Apache-2.0)
 
-build_dir=target
+build_path=target
 
 build_type=$1
 compiler=$2 # 编译器只能是 clang/gcc
@@ -19,7 +19,7 @@ fi
 if [ -z "$build_type" ]; then
   build_type="Debug"
 fi
-if [ -z "${compiler}" ]; then
+if [ -z "$compiler" ]; then
     compiler=clang
     export CC=/usr/bin/clang
     export CXX=/usr/bin/clang++
@@ -32,21 +32,21 @@ fi
 cd "$( cd "$( dirname "$0"  )" && pwd  )" || exit
 cd .. || exit
 
-mkdir $build_dir 2>/dev/null
+mkdir $build_path 2>/dev/null
 
 ./scripts/install_dependencies.sh $build_type $compiler $compiler_version || exit 1
 
 echo "=== Generating CMake cache..."
-cmake -Wno-dev $cmake_args -B $build_dir >/dev/null || {
+cmake -Wno-dev $cmake_args -B $build_path >/dev/null || {
   echo "=== Failed to generate CMake cache."
   exit 1
 }
 
 echo "=== Generating 'compile_commands.json'..."
-cp $build_dir/compile_commands.json . &>/dev/null || echo "No 'compile_commands.json' was generated."
+cp $build_path/compile_commands.json . &>/dev/null || echo "No 'compile_commands.json' was generated."
 
 echo "=== Building..."
-cmake --build $build_dir --config "$build_type" -- -j$(nproc) >/dev/null || {
+cmake --build $build_path --config "$build_type" -- -j$(nproc) >/dev/null || {
   echo "=== Failed to build."
   exit 1
 }

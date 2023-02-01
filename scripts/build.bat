@@ -1,39 +1,33 @@
-﻿@echo off
+@echo off
 REM Copyright 2022 ShenMian
 REM License(Apache-2.0)
 
-set "BUILD_DIR=target"
+set "build_path=target"
 
 cmake --version >nul 2>&1 || (
     echo === Need cmake.
     exit /b 1
 )
 
-if "%~1"=="" (set "BUILD_TYPE=Debug") else (set "BUILD_TYPE=%~1")
-if "%BUILD_TYPE%"=="Debug" (set "VS_ARGS=MTd") else (set "VS_ARGS=MT")
+if "%~1"=="" (set "build_type=Debug") else (set "build_type=%~1")
 
 cd %~dp0\.. || exit /b 1
 
 mkdir build 2>nul
 
-echo === Installing dependencies...
-set "CONAN_SYSREQUIRES_MODE=enabled"
-conan install . --build=missing -if %BUILD_DIR% -of %BUILD_DIR% -s build_type=%BUILD_TYPE% -s compiler.runtime=%VS_ARGS% >nul || (
-    echo === Failed to install.
-    exit /b 1
-)
+call .\scripts\install_dependencies.bat %build_type% || exit /b 1
 
 echo === Generating CMake cache...
-cmake -Wno-dev -DCMAKE_BUILD_TYPE=%BUILD_TYPE% -B %BUILD_DIR% >nul || (
+cmake -Wno-dev -DCMAKE_build_type=%BUILD_TYPE% -B %build_path% >nul || (
     echo === Failed to generate CMake cache.
     exit /b 1
 )
 
 echo === Generating 'compile_commands.json'...
-xcopy %BUILD_DIR%/compile_commands.json . 2>nul || echo No 'compile_commands.json' was generated.
+xcopy %build_path%\compile_commands.json . 2>nul || echo No 'compile_commands.json' was generated.
 
 echo === Building...
-cmake --build %BUILD_DIR% --config "%BUILD_TYPE%" -j16 || (
+cmake --build %build_path% --config "%build_type%" -j18 || (
     echo === Failed to build.
     exit /b 1
 )
