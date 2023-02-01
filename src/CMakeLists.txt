@@ -158,32 +158,12 @@ if(USE_CONAN)
     list(APPEND SOURCES "${CMAKE_BINARY_DIR}/include/imgui_impl_vulkan.cpp")
 endif()
 
-# 添加静态库文件
 add_library(graphics STATIC ${SOURCES})
 add_library(graphics::graphics ALIAS graphics)
 
-# 指定头文件目录
 target_include_directories(graphics PUBLIC
     "${INCS}"
     "${PROJECT_SOURCE_DIR}/src")
-
-# 指定库文件目录
 target_link_libraries(graphics PUBLIC ${LIBS} ${CONAN_LIBS})
-
-# 添加宏定义
 target_compile_definitions(graphics PUBLIC ${GRAPHICS_DEFINES})
-
-# 指定 C++ 标准
-if(MSVC) # MSVC
-    set_property(TARGET graphics PROPERTY
-        CXX_STANDARD          23
-        CXX_STANDARD_REQUIRED ON)
-elseif(APPLE) # AppleClang
-    target_compile_options(graphics PRIVATE -std=c++2a)
-elseif(${CMAKE_CXX_COMPILER_ID} STREQUAL "Clang" OR ${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU") # GCC/Clang
-    set_property(TARGET graphics PROPERTY
-        CXX_STANDARD          20
-        CXX_STANDARD_REQUIRED ON)
-else()
-    message(FATAL_ERROR "Unsupported compiler")
-endif()
+target_compile_features(graphics PRIVATE cxx_std_20)

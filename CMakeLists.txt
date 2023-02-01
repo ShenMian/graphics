@@ -3,12 +3,10 @@
 
 cmake_minimum_required(VERSION 3.16)
 
-# 指定默认编译类型
 if(NOT DEFINED CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Debug)
 endif()
 
-# 默认生成 compilation databases
 if(NOT DEFINED CMAKE_EXPORT_COMPILE_COMMANDS)
     set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 endif()
@@ -19,7 +17,6 @@ project(Graphics
     HOMEPAGE_URL "https://github.com/ShenMian/Graphics"
     LANGUAGES    CXX C)
 
-# 选项
 option(USE_CONAN      "Use conan"      ON)
 option(BUILD_EXAMPLES "Build examples" ON)
 
@@ -39,7 +36,6 @@ if(USE_CONAN AND EXISTS "${CMAKE_BINARY_DIR}/conanbuildinfo.cmake")
     conan_basic_setup()
 endif()
 
-# 指定库文件输出目录
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_DEBUG   "${CMAKE_BINARY_DIR}/lib")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE "${CMAKE_BINARY_DIR}/lib")
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG   "${CMAKE_BINARY_DIR}/lib")
