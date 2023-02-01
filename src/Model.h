@@ -24,7 +24,7 @@ struct Model
 	std::vector<Animation> animations;
 	std::filesystem::path  path;
 
-	AABB3 aabb;
+	AABB aabb;
 
 	uint32_t vertexCount = 0;
 	uint32_t indexCount  = 0;
