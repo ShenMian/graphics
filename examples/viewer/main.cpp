@@ -261,6 +261,9 @@ public:
             case Key::PrintScreen:
                 GLScreenshot(window->getSize());
                 break;
+
+            default:
+                break;
             }
 		};
 		window->onScroll = [&](Vector2d offset) {

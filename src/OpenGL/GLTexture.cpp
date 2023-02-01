@@ -184,6 +184,9 @@ GLTexture::GLTexture(const Image& image, Format fmt, uint32_t mipmapCount, Type 
 		case Format::RGBA_DXT5:
 			blockSize = 16;
 			break;
+
+		default:
+			assert(false);
 		}
 
 		size_t  offset = 0;
