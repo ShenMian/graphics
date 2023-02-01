@@ -48,16 +48,6 @@ public:
 	void setOrthographic(float width, float height, float near, float far);
 
 	/**
-	 * @brief 获取观察矩阵.
-	 */
-	const Matrix4& getView() const;
-
-	/**
-	 * @brief 获取投影矩阵.
-	 */
-	const Matrix4& getProjection() const;
-
-	/**
 	 * @brief 获取投影类型.
 	 */
 	Type getType() const;
@@ -117,6 +107,16 @@ public:
 	Vector3f getFront() const;
 	Vector3f getRight() const;
 	Vector3f getUp() const;
+
+	/**
+	 * @brief 获取观察矩阵.
+	 */
+	const Matrix4& getView() const;
+
+	/**
+	 * @brief 获取投影矩阵.
+	 */
+	const Matrix4& getProjection() const;
 
 protected:
 	/**

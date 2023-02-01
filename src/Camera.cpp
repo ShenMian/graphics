@@ -28,18 +28,6 @@ void Camera::setOrthographic(float width, float height, float near, float far)
 	projectionDirty     = true;
 }
 
-const Matrix4& Camera::getView() const
-{
-	updateViewMatrix();
-	return view;
-}
-
-const Matrix4& Camera::getProjection() const
-{
-	updateProjectionMatrix();
-	return projection;
-}
-
 Camera::Type Camera::getType() const
 {
 	return type;
@@ -117,6 +105,18 @@ float Camera::getNear() const
 float Camera::getFar() const
 {
 	return perspective.far;
+}
+
+const Matrix4& Camera::getView() const
+{
+	updateViewMatrix();
+	return view;
+}
+
+const Matrix4& Camera::getProjection() const
+{
+	updateProjectionMatrix();
+	return projection;
 }
 
 void Camera::updateProjectionMatrix() const
