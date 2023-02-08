@@ -23,7 +23,7 @@ if [ -z "$compiler" ]; then
     export CXX=/usr/bin/clang++
 fi
 
-build_path=target/$1
+build_path=target/$build_type
 
 if [ -n "$compiler" ] && [ -n "$compiler_version" ]; then
   cmake_args="-DCMAKE_BUILD_TYPE=$build_type -DCMAKE_C_COMPILER=$compiler -DCMAKE_CXX_COMPILER=$compiler++"
@@ -37,7 +37,7 @@ mkdir $build_path 2>/dev/null
 ./scripts/install_dependencies.sh $build_type $compiler $compiler_version || exit 1
 
 echo "=== Generating CMake cache..."
-cmake -Wno-dev $cmake_args -B $build_path >/dev/null || {
+cmake -B $build_path -Wno-dev -G Ninja $cmake_args -DCMAKE_EXPORT_COMPILE_COMMANDS=ON >/dev/null || {
   echo "=== Failed to generate CMake cache."
   exit 1
 }
