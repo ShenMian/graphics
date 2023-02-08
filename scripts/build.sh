@@ -2,8 +2,6 @@
 # Copyright 2022 ShenMian
 # License(Apache-2.0)
 
-build_path=target
-
 build_type=$1
 compiler=$2 # 编译器只能是 clang/gcc
 compiler_version=$3
@@ -24,6 +22,8 @@ if [ -z "$compiler" ]; then
     export CC=/usr/bin/clang
     export CXX=/usr/bin/clang++
 fi
+
+build_path=target/$1
 
 if [ -n "$compiler" ] && [ -n "$compiler_version" ]; then
   cmake_args="-DCMAKE_BUILD_TYPE=$build_type -DCMAKE_C_COMPILER=$compiler -DCMAKE_CXX_COMPILER=$compiler++"

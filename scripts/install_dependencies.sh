@@ -2,8 +2,6 @@
 # Copyright 2022 ShenMian
 # License(Apache-2.0)
 
-build_path=target
-
 build_type=$1
 compiler=$2
 compiler_version=$3
@@ -25,6 +23,8 @@ fi
 if [ -z "$compiler_version" ]; then
     compiler_version=$(clang --version | head -n1 | cut -d' ' -f3 | cut -d'.' -f1)
 fi
+
+build_path=target/$build_type
 
 if [ "$compiler" = "clang" ]; then
     export CC=/usr/bin/clang

@@ -2,14 +2,14 @@
 REM Copyright 2022 ShenMian
 REM License(Apache-2.0)
 
-set "build_path=target"
-
 cmake --version >nul 2>&1 || (
     echo === Need cmake.
     exit /b 1
 )
 
 if "%~1"=="" (set "build_type=Debug") else (set "build_type=%~1")
+
+set "build_path=target/%build_type%"
 
 cd %~dp0\.. || exit /b 1
 
