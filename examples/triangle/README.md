@@ -1,4 +1,4 @@
-﻿# Triangle
+# Triangle
 
 渲染单个三角形.  
 

@@ -1,4 +1,4 @@
-﻿# 快速入门 {#GettingStarted}
+# 快速入门 {#GettingStarted}
 
 [TOC]
 
