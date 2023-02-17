@@ -1,0 +1,236 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Graphics: ui::Widget类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Graphics<span id="projectnumber">&#160;v0.0.0</span>
+   </div>
+   <div id="projectbrief">A simple abstraction layer for the modern graphics APIs.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('classui_1_1_widget.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-static-methods">静态 Public 成员函数</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="#pro-attribs">Protected 属性</a> &#124;
+<a href="classui_1_1_widget-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">ui::Widget类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+类 ui::Widget 继承关系图:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="classui_1_1_widget.png" usemap="#ui::Widget_map" alt=""/>
+  <map id="ui::Widget_map" name="ui::Widget_map">
+<area href="classui_1_1_button.html" title="按钮." alt="ui::Button" shape="rect" coords="0,56,72,80"/>
+<area href="classui_1_1_label.html" title="文本标签." alt="ui::Label" shape="rect" coords="82,56,154,80"/>
+<area href="classui_1_1_link.html" title="连接大头针的线." alt="ui::Link" shape="rect" coords="164,56,236,80"/>
+<area href="classui_1_1_menu.html" alt="ui::Menu" shape="rect" coords="246,56,318,80"/>
+<area href="classui_1_1_node.html" title="节点." alt="ui::Node" shape="rect" coords="328,56,400,80"/>
+<area href="classui_1_1_pin.html" title="节点上的大头针." alt="ui::Pin" shape="rect" coords="410,56,482,80"/>
+<area href="classui_1_1_window.html" alt="ui::Window" shape="rect" coords="492,56,564,80"/>
+  </map>
+</div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a8426cf69ec61377efd22cf0cc015f0d5"><td class="memItemLeft" align="right" valign="top"><a id="a8426cf69ec61377efd22cf0cc015f0d5" name="a8426cf69ec61377efd22cf0cc015f0d5"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Widget</b> (const std::string &amp;label)</td></tr>
+<tr class="separator:a8426cf69ec61377efd22cf0cc015f0d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28c03f7a0e71970327a496df80eee334"><td class="memItemLeft" align="right" valign="top"><a id="a28c03f7a0e71970327a496df80eee334" name="a28c03f7a0e71970327a496df80eee334"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Widget</b> (const std::string &amp;label, const std::string &amp;id)</td></tr>
+<tr class="separator:a28c03f7a0e71970327a496df80eee334"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4280f1b49fe77d784ba30830e3d3cf2c"><td class="memItemLeft" align="right" valign="top"><a id="a4280f1b49fe77d784ba30830e3d3cf2c" name="a4280f1b49fe77d784ba30830e3d3cf2c"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Widget</b> (const <a class="el" href="classui_1_1_widget.html">Widget</a> &amp;)</td></tr>
+<tr class="separator:a4280f1b49fe77d784ba30830e3d3cf2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc91a14a910c984855a3fcf76de9533a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classui_1_1_widget.html#adc91a14a910c984855a3fcf76de9533a">setLabel</a> (const std::string &amp;label)</td></tr>
+<tr class="memdesc:adc91a14a910c984855a3fcf76de9533a"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置组件标签.  <a href="classui_1_1_widget.html#adc91a14a910c984855a3fcf76de9533a">更多...</a><br /></td></tr>
+<tr class="separator:adc91a14a910c984855a3fcf76de9533a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f35c55b104b73608546f83f96b5cd61"><td class="memItemLeft" align="right" valign="top"><a id="a3f35c55b104b73608546f83f96b5cd61" name="a3f35c55b104b73608546f83f96b5cd61"></a>
+const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getLabel</b> () const noexcept</td></tr>
+<tr class="memdesc:a3f35c55b104b73608546f83f96b5cd61"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取组件标签. <br /></td></tr>
+<tr class="separator:a3f35c55b104b73608546f83f96b5cd61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad03f9e32657c9beb819aef7e91cdc450"><td class="memItemLeft" align="right" valign="top"><a id="ad03f9e32657c9beb819aef7e91cdc450" name="ad03f9e32657c9beb819aef7e91cdc450"></a>
+uint64_t&#160;</td><td class="memItemRight" valign="bottom"><b>getId</b> () const noexcept</td></tr>
+<tr class="separator:ad03f9e32657c9beb819aef7e91cdc450"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca3c3ff12594777ea14b9e737bc4eec3"><td class="memItemLeft" align="right" valign="top"><a id="aca3c3ff12594777ea14b9e737bc4eec3" name="aca3c3ff12594777ea14b9e737bc4eec3"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> ()</td></tr>
+<tr class="separator:aca3c3ff12594777ea14b9e737bc4eec3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+静态 Public 成员函数</h2></td></tr>
+<tr class="memitem:a89be3527e6d1c6a609e497a857c9dc1b"><td class="memItemLeft" align="right" valign="top"><a id="a89be3527e6d1c6a609e497a857c9dc1b" name="a89be3527e6d1c6a609e497a857c9dc1b"></a>
+static uint64_t&#160;</td><td class="memItemRight" valign="bottom"><b>requestId</b> ()</td></tr>
+<tr class="separator:a89be3527e6d1c6a609e497a857c9dc1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:a00b122fd63f70bbfe501fac5355a6457"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classui_1_1_widget.html#a00b122fd63f70bbfe501fac5355a6457">updateHandle</a> ()</td></tr>
+<tr class="memdesc:a00b122fd63f70bbfe501fac5355a6457"><td class="mdescLeft">&#160;</td><td class="mdescRight">更新句柄.  <a href="classui_1_1_widget.html#a00b122fd63f70bbfe501fac5355a6457">更多...</a><br /></td></tr>
+<tr class="separator:a00b122fd63f70bbfe501fac5355a6457"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected 属性</h2></td></tr>
+<tr class="memitem:aef6ac0b590baf53654ebbdedc3c38882"><td class="memItemLeft" align="right" valign="top"><a id="aef6ac0b590baf53654ebbdedc3c38882" name="aef6ac0b590baf53654ebbdedc3c38882"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>handle</b></td></tr>
+<tr class="separator:aef6ac0b590baf53654ebbdedc3c38882"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acaf9fd7ff5702c93093079d9c7c18e9d"><td class="memItemLeft" align="right" valign="top"><a id="acaf9fd7ff5702c93093079d9c7c18e9d" name="acaf9fd7ff5702c93093079d9c7c18e9d"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>label</b></td></tr>
+<tr class="separator:acaf9fd7ff5702c93093079d9c7c18e9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab34ea96ad0e85a1c8ca9435b878cdb2e"><td class="memItemLeft" align="right" valign="top"><a id="ab34ea96ad0e85a1c8ca9435b878cdb2e" name="ab34ea96ad0e85a1c8ca9435b878cdb2e"></a>
+uint64_t&#160;</td><td class="memItemRight" valign="bottom"><b>id</b></td></tr>
+<tr class="separator:ab34ea96ad0e85a1c8ca9435b878cdb2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="adc91a14a910c984855a3fcf76de9533a" name="adc91a14a910c984855a3fcf76de9533a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc91a14a910c984855a3fcf76de9533a">&#9670;&#160;</a></span>setLabel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ui::Widget::setLabel </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>label</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>设置组件标签. </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">label</td><td>组件标签. 不能包含字符串 "##". </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a00b122fd63f70bbfe501fac5355a6457" name="a00b122fd63f70bbfe501fac5355a6457"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00b122fd63f70bbfe501fac5355a6457">&#9670;&#160;</a></span>updateHandle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ui::Widget::updateHandle </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>更新句柄. </p>
+<p >每当 label 或 id 发生改变时, 句柄应该被更新. </p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/github/workspace/src/UI/<a class="el" href="_widget_8h_source.html">Widget.h</a></li>
+<li>/github/workspace/src/UI/Widget.cpp</li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><b>ui</b></li><li class="navelem"><a class="el" href="classui_1_1_widget.html">Widget</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5 </li>
+  </ul>
+</div>
+</body>
+</html>

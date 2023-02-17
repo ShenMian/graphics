@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Graphics: Mesh类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Graphics<span id="projectnumber">&#160;v0.0.0</span>
+   </div>
+   <div id="projectbrief">A simple abstraction layer for the modern graphics APIs.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('class_mesh.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">类</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-attribs">Public 属性</a> &#124;
+<a href="class_mesh-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">Mesh类 参考<div class="ingroups"><a class="el" href="group__model.html">模型</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>网格.  
+ <a href="class_mesh.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_mesh_8h_source.html">Mesh.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+类</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_mesh_1_1_vertex.html">Vertex</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a5049083748ce6efcc84614353da7dbbe"><td class="memItemLeft" align="right" valign="top"><a id="a5049083748ce6efcc84614353da7dbbe" name="a5049083748ce6efcc84614353da7dbbe"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Mesh</b> (std::string_view name, const std::vector&lt; <a class="el" href="struct_mesh_1_1_vertex.html">Vertex</a> &gt; &amp;vertices, const std::vector&lt; unsigned int &gt; &amp;indices, <a class="el" href="struct_material.html">Material</a> *mat=nullptr)</td></tr>
+<tr class="separator:a5049083748ce6efcc84614353da7dbbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85a46b3f1d32d145153ae05816e28368"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mesh.html#a85a46b3f1d32d145153ae05816e28368">compress</a> ()</td></tr>
+<tr class="memdesc:a85a46b3f1d32d145153ae05816e28368"><td class="mdescLeft">&#160;</td><td class="mdescRight">压缩.  <a href="class_mesh.html#a85a46b3f1d32d145153ae05816e28368">更多...</a><br /></td></tr>
+<tr class="separator:a85a46b3f1d32d145153ae05816e28368"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f9b5776987d94db7ac1eaa591340f1e"><td class="memItemLeft" align="right" valign="top"><a id="a8f9b5776987d94db7ac1eaa591340f1e" name="a8f9b5776987d94db7ac1eaa591340f1e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>decompress</b> ()</td></tr>
+<tr class="memdesc:a8f9b5776987d94db7ac1eaa591340f1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">解压. <br /></td></tr>
+<tr class="separator:a8f9b5776987d94db7ac1eaa591340f1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a805c66466278300f121c366cb0f9c6de"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_mesh.html#a805c66466278300f121c366cb0f9c6de">isCompressed</a> () const noexcept</td></tr>
+<tr class="separator:a805c66466278300f121c366cb0f9c6de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public 属性</h2></td></tr>
+<tr class="memitem:ac687e9dcfc7cc60b046fc2ec634200be"><td class="memItemLeft" align="right" valign="top"><a id="ac687e9dcfc7cc60b046fc2ec634200be" name="ac687e9dcfc7cc60b046fc2ec634200be"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b></td></tr>
+<tr class="separator:ac687e9dcfc7cc60b046fc2ec634200be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6465a888c97232a39e12aad008c969c3"><td class="memItemLeft" align="right" valign="top"><a id="a6465a888c97232a39e12aad008c969c3" name="a6465a888c97232a39e12aad008c969c3"></a>
+std::vector&lt; <a class="el" href="struct_mesh_1_1_vertex.html">Vertex</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>vertices</b></td></tr>
+<tr class="separator:a6465a888c97232a39e12aad008c969c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26632e27b772f24b069a738e7983b9da"><td class="memItemLeft" align="right" valign="top"><a id="a26632e27b772f24b069a738e7983b9da" name="a26632e27b772f24b069a738e7983b9da"></a>
+std::vector&lt; unsigned int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>indices</b></td></tr>
+<tr class="separator:a26632e27b772f24b069a738e7983b9da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2293ce5a7d3e598871a36bc8f81bba7d"><td class="memItemLeft" align="right" valign="top"><a id="a2293ce5a7d3e598871a36bc8f81bba7d" name="a2293ce5a7d3e598871a36bc8f81bba7d"></a>
+<a class="el" href="struct_material.html">Material</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>material</b> = nullptr</td></tr>
+<tr class="separator:a2293ce5a7d3e598871a36bc8f81bba7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31177b45a1d9008adf6aaaa6899f36b6"><td class="memItemLeft" align="right" valign="top"><a id="a31177b45a1d9008adf6aaaa6899f36b6" name="a31177b45a1d9008adf6aaaa6899f36b6"></a>
+uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>vertexCount</b> = 0</td></tr>
+<tr class="separator:a31177b45a1d9008adf6aaaa6899f36b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afaafc29c9662dd7738199be753d3091a"><td class="memItemLeft" align="right" valign="top"><a id="afaafc29c9662dd7738199be753d3091a" name="afaafc29c9662dd7738199be753d3091a"></a>
+uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>indexCount</b> = 0</td></tr>
+<tr class="separator:afaafc29c9662dd7738199be753d3091a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5cce6be79cc7fba4df7ddc4cb6cc0e2"><td class="memItemLeft" align="right" valign="top"><a id="ad5cce6be79cc7fba4df7ddc4cb6cc0e2" name="ad5cce6be79cc7fba4df7ddc4cb6cc0e2"></a>
+std::shared_ptr&lt; <a class="el" href="class_vertex_buffer.html">VertexBuffer</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>vertexBuffer</b></td></tr>
+<tr class="separator:ad5cce6be79cc7fba4df7ddc4cb6cc0e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab37c20a24681db6aae1dc9621e2b1318"><td class="memItemLeft" align="right" valign="top"><a id="ab37c20a24681db6aae1dc9621e2b1318" name="ab37c20a24681db6aae1dc9621e2b1318"></a>
+std::shared_ptr&lt; <a class="el" href="class_index_buffer.html">IndexBuffer</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>indexBuffer</b></td></tr>
+<tr class="separator:ab37c20a24681db6aae1dc9621e2b1318"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p >网格. </p>
+</div><h2 class="groupheader">成员函数说明</h2>
+<a id="a85a46b3f1d32d145153ae05816e28368" name="a85a46b3f1d32d145153ae05816e28368"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85a46b3f1d32d145153ae05816e28368">&#9670;&#160;</a></span>compress()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Mesh::compress </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>压缩. </p>
+<dl class="section return"><dt>返回</dt><dd>压缩率.</dd></dl>
+<dl class="section warning"><dt>警告</dt><dd>压缩前应先进行优化, 以提高压缩率. </dd></dl>
+
+</div>
+</div>
+<a id="a805c66466278300f121c366cb0f9c6de" name="a805c66466278300f121c366cb0f9c6de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a805c66466278300f121c366cb0f9c6de">&#9670;&#160;</a></span>isCompressed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Mesh::isCompressed </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >是否已经过压缩. </p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>/github/workspace/src/<a class="el" href="_mesh_8h_source.html">Mesh.h</a></li>
+<li>/github/workspace/src/Mesh.cpp</li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_mesh.html">Mesh</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5 </li>
+  </ul>
+</div>
+</body>
+</html>
