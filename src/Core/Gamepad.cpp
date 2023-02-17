@@ -72,8 +72,6 @@ Vector2f Gamepad::get(Thumb thumb) const noexcept
 
 Vector2f Gamepad::getRaw(Thumb thumb) const noexcept
 {
-	assert(thumb == Thumb::left || thumb == Thumb::right);
-
 	if(thumb == Thumb::left)
 		return {axes[GLFW_GAMEPAD_AXIS_LEFT_X], axes[GLFW_GAMEPAD_AXIS_LEFT_Y]};
 	else
@@ -93,8 +91,6 @@ float Gamepad::get(Trigger trigger) const noexcept
 
 float Gamepad::getRaw(Trigger trigger) const noexcept
 {
-	assert(trigger == Trigger::left || trigger == Trigger::right);
-
 	if(trigger == Trigger::left)
 		return axes[GLFW_GAMEPAD_AXIS_LEFT_TRIGGER];
 	else
