@@ -21,12 +21,15 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Install clang
+      - name: Setup clang
         run: |
          sudo apt update
          sudo apt install clang-14
 
-      - name: Install Conan
+      - name: Setup ninja
+        run: sudo apt install ninja-build
+
+      - name: Setup conan
         uses: turtlebrowser/get-conan@v1.0
 
       - name: Build

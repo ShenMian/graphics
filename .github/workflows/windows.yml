@@ -29,7 +29,10 @@ jobs:
       # - name: Setup MSVC Developer Command Environment
       #   uses: ilammy/msvc-dev-cmd@v1.10.0
 
-      - name: Install Conan
+      - name: Setup ninja
+        run: scoop install ninja
+
+      - name: Setup conan
         uses: turtlebrowser/get-conan@v1.0
 
       - name: Build
