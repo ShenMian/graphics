@@ -37,6 +37,7 @@ std::shared_ptr<Texture> Texture::create(const fs::path& path, Format fmt, uint3
 
 	case OpenGL:
 		ptr = std::make_shared<GLTexture>(Image(absPath), fmt, mipmapCount, type);
+		break;
 
 	case Vulkan:
 		assert(false);
