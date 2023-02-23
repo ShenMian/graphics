@@ -121,7 +121,7 @@ else()
 endif()
 
 # glslang
-find_package(glslang QUIET)
+# find_package(glslang QUIET)
 add_subdirectory("${DEPS_DIR}/glslang" "glslang")
 
 # shaderc
