@@ -16,7 +16,7 @@ set "build_path=target/%build_type%"
 
 echo === Installing dependencies...
 set "CONAN_SYSREQUIRES_MODE=enabled"
-conan install . -pr:b=default --build=missing -if %build_path% -of %build_path% -s build_type=%build_type% -s compiler.runtime=%msvc_args% || (
+conan install . -pr:b=default --build=missing -if "%build_path%" -of "%build_path%" -s build_type=%build_type% -s compiler.runtime=%msvc_args% || (
     echo === Failed to install.
     exit /b 1
 )
