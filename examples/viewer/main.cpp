@@ -109,7 +109,7 @@ public:
 
 	int main(int argc, char* argv[])
 	{
-		Font font("C:/Users/sms/AppData/Local/Microsoft/Windows/Fonts/CascadiaCode.ttf");
+		// Font font("C:/Users/sms/AppData/Local/Microsoft/Windows/Fonts/CascadiaCode.ttf");
 
 		fs::path path;
 		if(argc > 1)
@@ -224,18 +224,18 @@ public:
 
             // 根据模型大小设置相机移动速度
             auto speed = 0.f;
-            speed += model.aabb.max.x - model.aabb.min.x;
-            speed += model.aabb.max.y - model.aabb.min.y;
-            speed += model.aabb.max.z - model.aabb.min.z;
+            speed += model.aabb.max().x - model.aabb.min().x;
+            speed += model.aabb.max().y - model.aabb.min().y;
+            speed += model.aabb.max().z - model.aabb.min().z;
             speed /= 3;
             controller.setSpeed(speed * 0.4);
 		};
 
 		loadModel(path);
 
-		model.save("D:/Users/sms/Desktop/test.model");
-		model.meshes.clear();
-		model.load("D:/Users/sms/Desktop/test.model");
+		// model.save("D:/Users/sms/Desktop/test.model");
+		// model.meshes.clear();
+		// model.load("D:/Users/sms/Desktop/test.model");
 
 		// model.meshes.clear();
 		// model.meshes.push_back(Primitive::makeUVSphere(64, 32).value());
