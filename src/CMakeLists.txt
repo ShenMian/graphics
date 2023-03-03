@@ -34,7 +34,9 @@ if(NOT USE_CONAN)
 
     # glfw3
     list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/Scripts")
-    set(GLFW3_DIR "C:/Program Files (x86)/GLFW/lib/cmake/glfw3")
+    if(WIN32)
+        set(GLFW3_DIR "C:/Program Files (x86)/GLFW/lib/cmake/glfw3")
+    endif()
     find_package(GLFW3 QUIET)
     # TODO: ${GLFW3_LIBRARIES} 指定的文件可能与实际架构不一致
     if(GLFW3_FOUND)
@@ -48,9 +50,9 @@ if(NOT USE_CONAN)
         set(GLFW_VULKAN_STATIC  OFF CACHE BOOL "Assume the Vulkan loader is linked with the application" FORCE)
         set(GLFW_BUILD_DOCS     OFF CACHE BOOL "Build the GLFW documentation" FORCE)
         add_subdirectory("${DEPS_DIR}/glfw" "glfw3")
-        # list(APPEND LIBS glfw)
+        list(APPEND LIBS glfw)
     endif()
-    list(APPEND LIBS glfw_mt)
+    # list(APPEND LIBS glfw_mt)
     list(APPEND INCS "${DEPS_DIR}/glfw/include")
 
     # meshoptimizer
@@ -153,9 +155,12 @@ message(STATUS "LIBS: ${LIBS}")
 file(GLOB_RECURSE SOURCES "*.cpp")
 
 if(USE_CONAN)
-    list(APPEND SOURCES "${CMAKE_BINARY_DIR}/include/imgui_impl_glfw.cpp")
-    list(APPEND SOURCES "${CMAKE_BINARY_DIR}/include/imgui_impl_opengl3.cpp")
-    list(APPEND SOURCES "${CMAKE_BINARY_DIR}/include/imgui_impl_vulkan.cpp")
+    # list(APPEND SOURCES "${CMAKE_BINARY_DIR}/include/imgui_impl_glfw.cpp")
+    # list(APPEND SOURCES "${CMAKE_BINARY_DIR}/include/imgui_impl_opengl3.cpp")
+    # list(APPEND SOURCES "${CMAKE_BINARY_DIR}/include/imgui_impl_vulkan.cpp")
+    list(APPEND SOURCES "${PROJECT_SOURCE_DIR}/deps/imgui/backends/imgui_impl_glfw.cpp")
+    list(APPEND SOURCES "${PROJECT_SOURCE_DIR}/deps/imgui/backends/imgui_impl_opengl3.cpp")
+    list(APPEND SOURCES "${PROJECT_SOURCE_DIR}/deps/imgui/backends/imgui_impl_vulkan.cpp")
 endif()
 
 add_library(graphics STATIC ${SOURCES})

@@ -8,6 +8,9 @@
 [Bb]uild
 target
 
+# Conan
+CMakeUserPresets.json
+
 # Visual Studio
 CMakeSettings.json
 

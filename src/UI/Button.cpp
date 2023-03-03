@@ -13,7 +13,7 @@ Button::Button(const std::string& label, const Vector2& size) : Widget(label), s
 
 void Button::update()
 {
-	if(ImGui::Button(handle.c_str(), ImVec2(size.x, size.y)))
+	if(ImGui::Button(handle.c_str(), ImVec2(size.x(), size.y())))
 		if(click)
 			click(*this);
 	if(ImGui::IsItemHovered())

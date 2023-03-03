@@ -55,19 +55,19 @@ void GLProgram::setUniform(const std::string& name, float value)
 void GLProgram::setUniform(const std::string& name, const Vector2& value)
 {
 	use();
-	glUniform2f(getUniformLocation(name), value.x, value.y);
+	glUniform2f(getUniformLocation(name), value.x(), value.y());
 }
 
 void GLProgram::setUniform(const std::string& name, const Vector3& value)
 {
 	use();
-	glUniform3f(getUniformLocation(name), value.x, value.y, value.z);
+	glUniform3f(getUniformLocation(name), value.x(), value.y(), value.z());
 }
 
 void GLProgram::setUniform(const std::string& name, const Vector4& value)
 {
 	use();
-	glUniform4f(getUniformLocation(name), value.x, value.y, value.z, value.w);
+	glUniform4f(getUniformLocation(name), value.x(), value.y(), value.z(), value.w());
 }
 
 void GLProgram::setUniform(const std::string& name, const Matrix4& value)

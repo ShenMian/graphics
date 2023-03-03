@@ -208,29 +208,29 @@ std::vector<Mesh::Vertex> ModelImporter::loadVertices(const aiMesh& mesh) noexce
 	{
 		auto& vertex = vertices.emplace_back();
 
-		vertex.position.x = mesh.mVertices[i].x;
-		vertex.position.y = mesh.mVertices[i].y;
-		vertex.position.z = mesh.mVertices[i].z;
+		vertex.position.x() = mesh.mVertices[i].x;
+		vertex.position.y() = mesh.mVertices[i].y;
+		vertex.position.z() = mesh.mVertices[i].z;
 
 		if(mesh.HasNormals()) [[likely]]
 		{
-			vertex.normal.x = mesh.mNormals[i].x;
-			vertex.normal.y = mesh.mNormals[i].y;
-			vertex.normal.z = mesh.mNormals[i].z;
+			vertex.normal.x() = mesh.mNormals[i].x;
+			vertex.normal.y() = mesh.mNormals[i].y;
+			vertex.normal.z() = mesh.mNormals[i].z;
 		}
 
 		if(mesh.mTextureCoords[0]) [[likely]]
 		{
-			vertex.uv.x = mesh.mTextureCoords[0][i].x;
-			vertex.uv.y = mesh.mTextureCoords[0][i].y;
+			vertex.uv.x() = mesh.mTextureCoords[0][i].x;
+			vertex.uv.y() = mesh.mTextureCoords[0][i].y;
 
-			vertex.tangent.x = mesh.mTangents[i].x;
-			vertex.tangent.y = mesh.mTangents[i].y;
-			vertex.tangent.z = mesh.mTangents[i].z;
+			vertex.tangent.x() = mesh.mTangents[i].x;
+			vertex.tangent.y() = mesh.mTangents[i].y;
+			vertex.tangent.z() = mesh.mTangents[i].z;
 
-			vertex.bitangent.x = mesh.mBitangents[i].x;
-			vertex.bitangent.y = mesh.mBitangents[i].y;
-			vertex.bitangent.z = mesh.mBitangents[i].z;
+			vertex.bitangent.x() = mesh.mBitangents[i].x;
+			vertex.bitangent.y() = mesh.mBitangents[i].y;
+			vertex.bitangent.z() = mesh.mBitangents[i].z;
 		}
 	}
 

@@ -18,7 +18,7 @@ void Label::setText(const std::string& text)
 
 void Label::update()
 {
-	ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(color.r, color.g, color.b, 1.f));
+	ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(color.x(), color.y(), color.z(), 1.f));
 	ImGui::TextUnformatted(text.c_str());
 	ImGui::PopStyleColor(1);
 }

@@ -163,7 +163,7 @@ std::optional<Mesh> Primitive::makePlane(unsigned int x, unsigned int z)
 
 	// Translte origin instead of loop variables
 
-	Vector3 offset = Vector3(-1, 0, -1);
+	Vector3 offset = Vector3({-1, 0, -1});
 
 	for(unsigned int x_ = 0; x_ <= x; x_++)
 	{
@@ -174,8 +174,8 @@ std::optional<Mesh> Primitive::makePlane(unsigned int x, unsigned int z)
 			// 'Forward' is typically -Z so either the verts or UVs need
 			// to be flipped to align textures correctly
 
-			vertices[i].position = Vector3(x_ * xStep, 0, z_ * zStep) + offset;
-			vertices[i].uv       = Vector2(x_ * uStep, (z - z_) * vStep);
+			vertices[i].position = Vector3({x_ * xStep, 0, z_ * zStep}) + offset;
+			vertices[i].uv       = Vector2({x_ * uStep, (z - z_) * vStep});
 		}
 	}
 
@@ -239,14 +239,14 @@ std::optional<Mesh> Primitive::makeUVSphere(unsigned int lat, unsigned int lon)
 	{
 		for(unsigned int lon_ = 0; lon_ <= lon; lon_++, v++)
 		{
-			vertices[v].position = Vector3(cos(lon_ * lonStep) * sin(lat_ * latStep), // Circle equations from UVs
-			                               cos(lat_ * latStep - std::numbers::pi),    // bottom to top
-			                               sin(lon_ * lonStep) * sin(lat_ * latStep));
+			vertices[v].position =
+			    Vector3({static_cast<float>(cos(lon_ * lonStep) * sin(lat_ * latStep)), // Circle equations from UVs
+			             static_cast<float>(cos(lat_ * latStep - std::numbers::pi)),    // bottom to top
+			             static_cast<float>(sin(lon_ * lonStep) * sin(lat_ * latStep))});
 
-			vertices[v].uv = Vector2( // This is a UV spehre, so uvs map directly
-			    (float)lon_ / lon,    // to the verts. This is effectivly a Mercator
-			    (float)lat_ / lat     // projection
-			);
+			vertices[v].uv = Vector2({                   // This is a UV spehre, so uvs map directly to the verts.
+			                          (float)lon_ / lon, // This is effectivly a Mercator projection
+			                          (float)lat_ / lat});
 		}
 	}
 
@@ -378,23 +378,24 @@ std::optional<Mesh> Primitive::makeCapsule(unsigned int resolution, float height
 	{
 		for(unsigned int lon = 0; lon <= lonCount; lon++, v++)
 		{
-			vertices[v].position = Vector3(cos(lon * lonStep) * sin(lat * latStep), // Circle equations from UVs
-			                               cos(lat * latStep - std::numbers::pi),   // bottom to top
-			                               sin(lon * lonStep) * sin(lat * latStep));
+			vertices[v].position =
+			    Vector3({static_cast<float>(cos(lon * lonStep) * sin(lat * latStep)), // Circle equations from UVs
+			             static_cast<float>(cos(lat * latStep - std::numbers::pi)),   // bottom to top
+			             static_cast<float>(sin(lon * lonStep) * sin(lat * latStep))});
 
 			vertices[v].position *= radius;
 
 			// Move top hemisphere up and bottom down
 
 			if(lat > latCount / 2)
-				vertices[v].position.y += yOffset;
+				vertices[v].position.y() += yOffset;
 			else
-				vertices[v].position.y -= yOffset;
+				vertices[v].position.y() -= yOffset;
 
 			// UVs are almost the same as UV sphere, but V needs to be scaled
 			// to fit the height
 
-			vertices[v].uv = Vector2((float)lon / lonCount, (vertices[v].position.y + height) * 0.5f / height);
+			vertices[v].uv = Vector2({(float)lon / lonCount, (vertices[v].position.y() + height) * 0.5f / height});
 		}
 	}
 

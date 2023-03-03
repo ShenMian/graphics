@@ -18,8 +18,8 @@ void Controller::update(float dt)
 	processKeyboard(dt);
 	processGamepad(dt);
 
-	if(smoothness && camera->getPosition().distance(target) > speed * 0.001f)
-		camera->setPosition(Vector3f::lerp(camera->getPosition(), target, dt * smoothness));
+	if(smoothness && (camera->getPosition() - target).norm() > speed * 0.001f)
+		camera->setPosition(lerp(camera->getPosition(), target, dt * smoothness));
 	else
 		camera->setPosition(target);
 }
@@ -36,21 +36,22 @@ void Controller::moveRight(float step)
 
 void Controller::moveUp(float step)
 {
-	target += -Vector3f::unit_y * step;
+	const Vector3f unit_y({0.f, 1.f, 0.f}); // TODO
+	target += -unit_y * step;
 }
 
 void Controller::turnRight(float step)
 {
 	auto rot = camera->getRotation();
-	rot.y += step;
+	rot.y() += step;
 	camera->setRotation(rot);
 }
 
 void Controller::lookUp(float step)
 {
 	auto rot = camera->getRotation();
-	rot.x += step;
-	rot.x = std::clamp(rot.x, -89.f, 89.f);
+	rot.x() += step;
+	rot.x() = std::clamp(rot.x(), -89.f, 89.f);
 	camera->setRotation(rot);
 }
 
@@ -97,7 +98,8 @@ void Controller::processKeyboard(float dt)
 
 void Controller::processMouse(float dt)
 {
-	const Vector2f sensitivity = Vector2f::unit;
+	const Vector2f unit({2.f, 1.f}); // TODO
+	const Vector2f sensitivity = unit;
 
 	const auto      position = Input::getMousePosition();
 	static Vector2f lastPos  = position;
@@ -107,16 +109,16 @@ void Controller::processMouse(float dt)
 
 	// TODO
 #if 0
-	offset.x *= sensitivity.x * 8.f * dt;
-	offset.y *= sensitivity.y * 8.f * dt;
+	offset.x() *= sensitivity.x() * 8.f * dt;
+	offset.y() *= sensitivity.y() * 8.f * dt;
 #else
 	// 去除 dt 的干扰, 更加稳定
-	offset.x *= sensitivity.x * 0.09;
-	offset.y *= sensitivity.y * 0.09;
+	offset.x() *= sensitivity.x() * 0.09;
+	offset.y() *= sensitivity.y() * 0.09;
 #endif
 
-	lookUp(-offset.y);
-	turnRight(offset.x);
+	lookUp(-offset.y());
+	turnRight(offset.x());
 }
 
 void Controller::processGamepad(float dt)
@@ -130,15 +132,16 @@ void Controller::processGamepad(float dt)
 	if(gamepad->get(Gamepad::Button::LeftThumb))
 		step *= 3;
 
-	const Vector2f sensitivity = Vector2f::unit * 200.f * dt;
+	const Vector2f unit({1.f, 1.f}); // TODO
+	const Vector2f sensitivity = unit * 200.f * dt;
 
 	const auto leftThumb    = gamepad->get(Gamepad::Thumb::left);
 	const auto rightThumb   = gamepad->get(Gamepad::Thumb::right);
 	const auto rightTrigger = gamepad->get(Gamepad::Trigger::right);
 	const auto leftTrigger  = gamepad->get(Gamepad::Trigger::left);
-	moveFront(-leftThumb.y * step);
-	moveRight(leftThumb.x * step);
+	moveFront(-leftThumb.y() * step);
+	moveRight(leftThumb.x() * step);
 	moveUp((rightTrigger + (-leftTrigger)) * step);
-	lookUp(-rightThumb.y * sensitivity.x);
-	turnRight(rightThumb.x * sensitivity.y);
+	lookUp(-rightThumb.y() * sensitivity.x());
+	turnRight(rightThumb.x() * sensitivity.y());
 }

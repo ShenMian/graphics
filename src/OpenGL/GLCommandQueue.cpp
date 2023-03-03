@@ -75,7 +75,7 @@ size_t GLCommandQueue::execute(GLOpcode opcode, const uint8_t* pc)
 
 	case GLOpcode::setClearColor: {
 		const auto args = reinterpret_cast<const GLCmdSetClearColor*>(pc);
-		glClearColor(args->color.x, args->color.y, args->color.z, args->color.w);
+		glClearColor(args->color.x(), args->color.y(), args->color.z(), args->color.w());
 		return sizeof(*args);
 	}
 

@@ -13,8 +13,8 @@
 #include <fmt/std.h>
 
 #if TARGET_OS == OS_WIN
-#include <Windows.h>
-#include <Xinput.h>
+	#include <Windows.h>
+	#include <Xinput.h>
 #endif
 
 #include <GLFW/glfw3.h>
@@ -61,13 +61,13 @@ Vector2f Gamepad::get(Thumb thumb) const noexcept
 
 	const float factor = 1.f / (1.f - deadzone);
 
-	if(value.normSq() > deadzone * deadzone)
+	if(value.norm_sq() > deadzone * deadzone)
 	{
 		const float magnitude = std::min(value.norm(), 1.f);
 		return value.normalized() * ((magnitude - deadzone) * factor);
 	}
 	else
-		return Vector2f::zero;
+		return Vector2f(0.f);
 }
 
 Vector2f Gamepad::getRaw(Thumb thumb) const noexcept

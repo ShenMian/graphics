@@ -16,7 +16,7 @@ namespace fs = std::filesystem;
 
 Window::Window(std::string_view title, const Vector2i& size)
 {
-	handle = glfwCreateWindow(size.x, size.y, title.data(), nullptr, nullptr);
+	handle = glfwCreateWindow(size.x(), size.y(), title.data(), nullptr, nullptr);
 	if(handle == nullptr)
 		throw std::runtime_error("failed to create window");
 
@@ -44,7 +44,7 @@ void Window::setTitle(std::string_view title)
 
 void Window::setSize(const Vector2i& size)
 {
-	glfwSetWindowSize(handle, size.x, size.y);
+	glfwSetWindowSize(handle, size.x(), size.y());
 }
 
 Vector2i Window::getSize() const
@@ -56,7 +56,7 @@ Vector2i Window::getSize() const
 
 void Window::setPosition(const Vector2i& pos)
 {
-	glfwSetWindowPos(handle, pos.x, pos.y);
+	glfwSetWindowPos(handle, pos.x(), pos.y());
 }
 
 Vector2i Window::getPosition() const
@@ -88,11 +88,11 @@ void Window::setFullscreen(bool fullscreen)
 		this->size     = getSize();
 
 		const auto monitor = Monitor::getPrimary();
-		glfwSetWindowMonitor(handle, monitor->getHandle(), 0, 0, monitor->getSize().x, monitor->getSize().y,
+		glfwSetWindowMonitor(handle, monitor->getHandle(), 0, 0, monitor->getSize().x(), monitor->getSize().y(),
 		                     GLFW_DONT_CARE);
 	}
 	else
-		glfwSetWindowMonitor(handle, nullptr, position.x, position.y, size.x, size.y, GLFW_DONT_CARE);
+		glfwSetWindowMonitor(handle, nullptr, position.x(), position.y(), size.x(), size.y(), GLFW_DONT_CARE);
 }
 
 bool Window::isFullscreen() const noexcept
@@ -131,13 +131,13 @@ bool Window::isFloating() const noexcept
 
 void Window::setIcon(const Image& image)
 {
-	if(image.size().x > 48 && image.size().y > 48)
+	if(image.size().x() > 48 && image.size().y() > 48)
 		throw std::runtime_error("image size is too large");
 
 	GLFWimage glfwImage;
 	glfwImage.pixels = const_cast<unsigned char*>(image.data());
-	glfwImage.width  = image.size().x;
-	glfwImage.height = image.size().y;
+	glfwImage.width  = image.size().x();
+	glfwImage.height = image.size().y();
 	glfwSetWindowIcon(handle, 1, &glfwImage);
 }
 
@@ -158,7 +158,7 @@ bool Window::isCursorLock() const
 
 void Window::setCursorPosition(const Vector2i& pos)
 {
-	glfwSetCursorPos(handle, pos.x, pos.y);
+	glfwSetCursorPos(handle, pos.x(), pos.y());
 }
 
 Vector2d Window::getCursorPosition() const

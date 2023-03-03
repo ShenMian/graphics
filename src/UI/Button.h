@@ -15,7 +15,7 @@ namespace ui
 class Button : public Widget
 {
 public:
-	Button(const std::string& label, const Vector2& size = Vector2::zero);
+	Button(const std::string& label, const Vector2& size = Vector2(0.f));
 
 	void update() override;
 

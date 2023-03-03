@@ -154,7 +154,7 @@ protected:
 
 	Vector3f position;
 	Vector3f rotation;
-	Vector3f up = -Vector3f::unit_y;
+	Vector3f up = -Vector3f({0.f, 1.f, 0.f}); // TODO
 
 	mutable Matrix4 projection;
 	mutable bool    projectionDirty = true;

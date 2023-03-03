@@ -2,11 +2,12 @@
 fmt/9.1.0
 stb/cci.20220909
 glfw/3.3.8
-imgui/cci.20220621+1.88.docking
-imguizmo/cci.20210223
+# imgui/cci.20220621+1.88.docking
+imgui/cci.20230105+1.89.2.docking
+# imguizmo/cci.20210223 # conan 2.0 not ready
 freetype/2.12.1
 meshoptimizer/0.17
-vulkan-loader/1.3.236.0
+# vulkan-loader/1.3.236.0 # conan 2.0 not ready
 vulkan-headers/1.3.236.0
 # glad/0.1.36
 # assimp/5.2.2
@@ -15,7 +16,8 @@ vulkan-headers/1.3.236.0
 # spirv-headers/cci.20211010
 
 [generators]
-cmake
+CMakeDeps
+CMakeToolchain
 
 [imports]
 ./res/bindings, imgui_impl_glfw.h -> ./include
@@ -25,3 +27,11 @@ cmake
 ./res/bindings, imgui_impl_vulkan.h -> ./include
 ./res/bindings, imgui_impl_vulkan.cpp -> ./include
 ./res/bindings, imgui_impl_opengl3_loader.h -> ./include
+
+# ./misc/bindings, imgui_impl_glfw.h -> ./include
+# ./misc/bindings, imgui_impl_glfw.cpp -> ./include
+# ./misc/bindings, imgui_impl_opengl3.h -> ./include
+# ./misc/bindings, imgui_impl_opengl3.cpp -> ./include
+# ./misc/bindings, imgui_impl_vulkan.h -> ./include
+# ./misc/bindings, imgui_impl_vulkan.cpp -> ./include
+# ./misc/bindings, imgui_impl_opengl3_loader.h -> ./include

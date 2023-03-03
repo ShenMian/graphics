@@ -68,7 +68,7 @@ public:
 		for(const auto& mon : monitors)
 		{
 			fmt::print("{:{}}{}\n", "", 2, mon.getName());
-			fmt::print("{:{}}{:12}: {}x{}\n", "", 4, "size", mon.getSize().x, mon.getSize().y);
+			fmt::print("{:{}}{:12}: {}x{}\n", "", 4, "size", mon.getSize().x(), mon.getSize().y());
 			fmt::print("{:{}}{:12}: {}\n", "", 4, "refresh rate", mon.getRefreshRate());
 		}
 	}
@@ -95,11 +95,8 @@ public:
 	}
 
 	void printInfo(std::string_view msg) { fmt::print("{} {}\n", fmt::styled("[*]", fg(fmt::color::blue)), msg); }
-
 	void printGood(std::string_view msg) { fmt::print("{} {}\n", fmt::styled("[+]", fg(fmt::color::red)), msg); }
-
 	void printError(std::string_view msg) { fmt::print("{} {}\n", fmt::styled("[-]", fg(fmt::color::red)), msg); }
-
 	void printWarn(std::string_view msg) { fmt::print("{} {}\n", fmt::styled("[!]", fg(fmt::color::yellow)), msg); }
 
 protected:

@@ -62,13 +62,13 @@ void DrawChar(Font& font, unsigned long code, const Vector2f& pos, std::shared_p
 	const auto size    = font.getGlyph(code, 32).image.size();
 	// clang-format off
 	float vertices[6][4] = {
-		{pos.x,          pos.y + size.y, 0.0, 0.0},
-		{pos.x,          pos.y,          0.0, 1.0},
-		{pos.x + size.x, pos.y,          1.0, 1.0},
+		{pos.x(),            pos.y() + size.y(), 0.0, 0.0},
+		{pos.x(),            pos.y(),            0.0, 1.0},
+		{pos.x() + size.x(), pos.y(),            1.0, 1.0},
 
-		{pos.x,          pos.y + size.y, 0.0, 0.0},
-		{pos.x + size.x, pos.y,          1.0, 1.0},
-		{pos.x + size.x, pos.y + size.y, 1.0, 0.0}};
+		{pos.x(),            pos.y() + size.y(), 0.0, 0.0},
+		{pos.x() + size.x(), pos.y(),            1.0, 1.0},
+		{pos.x() + size.x(), pos.y() + size.y(), 1.0, 0.0}};
 	// clang-format on
 	VertexFormat fmt          = {{{"position", Format::RG32F}, {"tex_coord", Format::RG32F}}};
 	auto         vertexBuffer = VertexBuffer::create(vertices, sizeof(vertices), fmt, Buffer::Usage::Dynamic);
@@ -93,8 +93,8 @@ void DrawString(std::string_view str)
 
 void GLScreenshot(const Vector2i& size)
 {
-	std::vector<GLubyte> buf(3 * size.x * size.y);
-	glReadPixels(0, 0, size.x, size.y, GL_RGB, GL_UNSIGNED_BYTE, buf.data());
+	std::vector<GLubyte> buf(3 * size.x() * size.y());
+	glReadPixels(0, 0, size.x(), size.y(), GL_RGB, GL_UNSIGNED_BYTE, buf.data());
 	auto img = Image(buf.data(), buf.size(), size, 3);
 	img.flipVertically();
 	img.save("screenshot.png");
@@ -189,7 +189,7 @@ public:
 		auto cmdBuffer = CommandBuffer::create();
 
 		Camera camera(Camera::Type::Perspective);
-		camera.setPerspective(radians(60.f), (float)window->getSize().x / window->getSize().y, 0.1f, 2000.f);
+		camera.setPerspective(radians(60.f), (float)window->getSize().x() / window->getSize().y(), 0.1f, 2000.f);
 		const auto fov = degrees(camera.getHFOV());
 
 		Gamepad gamepad(0);
@@ -224,9 +224,9 @@ public:
 
             // 根据模型大小设置相机移动速度
             auto speed = 0.f;
-            speed += model.aabb.max().x - model.aabb.min().x;
-            speed += model.aabb.max().y - model.aabb.min().y;
-            speed += model.aabb.max().z - model.aabb.min().z;
+            speed += model.aabb.max().x() - model.aabb.min().x();
+            speed += model.aabb.max().y() - model.aabb.min().y();
+            speed += model.aabb.max().z() - model.aabb.min().z();
             speed /= 3;
             controller.setSpeed(speed * 0.4);
 		};
@@ -274,12 +274,12 @@ public:
 		window->onScroll = [&](Vector2d offset) {
 			static float fov = degrees(camera.getVFOV());
 			if(1.f <= fov && fov <= 60.f)
-				fov -= (float)offset.y * 3 * (fov / 60);
+				fov -= (float)offset.y() * 3 * (fov / 60);
 			fov = std::clamp(fov, 1.f, 60.f);
 			camera.setPerspective(radians(fov), camera.getAspectRatio(), camera.getNear(), camera.getFar());
 		};
 		window->onResize = [&](Vector2i size) {
-			camera.setPerspective(camera.getVFOV(), (float)size.x / size.y, camera.getNear(), camera.getFar());
+			camera.setPerspective(camera.getVFOV(), (float)size.x() / size.y(), camera.getNear(), camera.getFar());
 		};
 		window->onDrop = [&](int, const char* paths[]) { loadModel(paths[0]); };
 		window->setVisible(true);
@@ -342,12 +342,12 @@ public:
 				position.setText(fmt::format("X    : {: .2f}\n"
 				                             "Y    : {: .2f}\n"
 				                             "Z    : {: .2f}\n",
-				                             pos.x, pos.y, pos.z));
+				                             pos.x(), pos.y(), pos.z()));
 				const auto& dir = camera.getRotation();
 				angles.setText(fmt::format("Roll : {: .1f}\n"
 				                           "Pitch: {: .1f}\n"
 				                           "Yaw  : {: .1f}\n",
-				                           dir.z, dir.x, dir.y));
+				                           dir.z(), dir.x(), dir.y()));
 				attInfo.update();
 			}
 

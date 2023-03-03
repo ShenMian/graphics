@@ -17,7 +17,7 @@ project(Graphics
     HOMEPAGE_URL "https://github.com/ShenMian/Graphics"
     LANGUAGES    CXX C)
 
-option(USE_CONAN      "Use conan"      ON)
+option(USE_CONAN      "Use conan"      OFF)
 option(BUILD_EXAMPLES "Build examples" ON)
 
 # 输出基本信息
@@ -34,6 +34,8 @@ message(STATUS "`- Version: ${CMAKE_CXX_COMPILER_VERSION}")
 if(USE_CONAN AND EXISTS "${CMAKE_BINARY_DIR}/conanbuildinfo.cmake")
     include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
     conan_basic_setup()
+else()
+    message(WARNING "Skip conan")
 endif()
 
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_DEBUG   "${CMAKE_BINARY_DIR}/lib")

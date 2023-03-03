@@ -63,7 +63,7 @@ bool Mesh::isCompressed() const noexcept
 void Mesh::optimize()
 {
 	meshopt_optimizeVertexCache(indices.data(), indices.data(), indices.size(), vertices.size());
-	meshopt_optimizeOverdraw(indices.data(), indices.data(), indices.size(), &vertices[0].position.x, vertices.size(),
+	meshopt_optimizeOverdraw(indices.data(), indices.data(), indices.size(), &vertices[0].position.x(), vertices.size(),
 	                         sizeof(Vertex), 1.05f);
 	meshopt_optimizeVertexFetch(vertices.data(), indices.data(), indices.size(), vertices.data(), vertices.size(),
 	                            sizeof(Vertex));

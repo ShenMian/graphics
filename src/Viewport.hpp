@@ -13,12 +13,12 @@ struct Viewport
 	Viewport() = default;
 
 	Viewport(const Vector2f& size, float minDepth = 0.f, float maxDepth = 1.f)
-	    : Viewport(0, 0, size.x, size.y, minDepth, maxDepth)
+	    : Viewport(0, 0, size.x(), size.y(), minDepth, maxDepth)
 	{
 	}
 
 	Viewport(const Vector2f& position, const Vector2f& size, float minDepth = 0.f, float maxDepth = 1.f)
-	    : Viewport(position.x, position.y, size.x, size.y, minDepth, maxDepth)
+	    : Viewport(position.x(), position.y(), size.x(), size.y(), minDepth, maxDepth)
 	{
 	}
 

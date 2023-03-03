@@ -64,7 +64,7 @@ public:
 		auto cmdBuffer = CommandBuffer::create();
 
 		Camera camera(Camera::Type::Perspective);
-		camera.setPerspective(radians(60.f), (float)window->getSize().x / window->getSize().y, 0.1f, 5000.f);
+		camera.setPerspective(radians(60.f), (float)window->getSize().x() / window->getSize().y(), 0.1f, 5000.f);
 		camera.setPosition({0, 0, 3});
 
 		auto matrices = UniformBuffer::create(0, 3 * sizeof(Matrix4f));
@@ -72,7 +72,7 @@ public:
 		bool running     = true;
 		window->onClose  = [&] { running = false; };
 		window->onResize = [&](Vector2i size) {
-			camera.setPerspective(camera.getVFOV(), (float)size.x / size.y, camera.getNear(), camera.getFar());
+			camera.setPerspective(camera.getVFOV(), (float)size.x() / size.y(), camera.getNear(), camera.getFar());
 		};
 		window->setVisible(true);
 

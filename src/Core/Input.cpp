@@ -151,18 +151,18 @@ bool Input::isPressed(Mouse key)
 Vector2 Input::getMousePosition()
 {
 	Vector2d pos;
-	glfwGetCursorPos(window->getHandle(), &pos.x, &pos.y);
+	glfwGetCursorPos(window->getHandle(), &pos.x(), &pos.y());
 	return Vector2(pos);
 }
 
 float Input::getMouseX()
 {
-	return getMousePosition().x;
+	return getMousePosition().x();
 }
 
 float Input::getMouseY()
 {
-	return getMousePosition().y;
+	return getMousePosition().y();
 }
 
 Key Input::getKeyByName(std::string_view name)

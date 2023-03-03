@@ -129,10 +129,10 @@ void VKCommandBuffer::clear(uint8_t flags)
 
 void VKCommandBuffer::setClearColor(const Vector4& color)
 {
-	clearColor.float32[0] = color.r;
-	clearColor.float32[1] = color.g;
-	clearColor.float32[2] = color.b;
-	clearColor.float32[3] = color.a;
+	clearColor.float32[0] = color.x();
+	clearColor.float32[1] = color.y();
+	clearColor.float32[2] = color.z();
+	clearColor.float32[3] = color.w();
 }
 
 void VKCommandBuffer::setClearDepth(float depth)

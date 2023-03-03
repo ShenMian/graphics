@@ -58,11 +58,11 @@ const Vector3f& Camera::getRotation() const
 Vector3f Camera::getFront() const
 {
 	Vector3f front;
-	front.x = -std::cos(radians(rotation.x)) * std::sin(radians(rotation.y));
-	front.y = -std::sin(radians(rotation.x));
-	front.z = std::cos(radians(rotation.x)) * std::cos(radians(rotation.y));
+	front.x() = -std::cos(radians(rotation.x())) * std::sin(radians(rotation.y()));
+	front.y() = -std::sin(radians(rotation.x()));
+	front.z() = std::cos(radians(rotation.x())) * std::cos(radians(rotation.y()));
 	front.normalize();
-	return {front.x, front.y, -front.z};
+	return {front.x(), front.y(), -front.z()};
 }
 
 Vector3f Camera::getRight() const
@@ -135,13 +135,13 @@ void Camera::updateViewMatrix() const
 	auto trans = Matrix4f::createTranslate(position);
 	auto rot   = Matrix4f::identity();
 #if 0
-	rot *= Matrix4f::createRotation(radians(rotation.x), Vector3f::unit_x);
-	rot *= Matrix4f::createRotation(radians(-rotation.y), Vector3f::unit_y);
-	rot *= Matrix4f::createRotation(radians(rotation.z), Vector3f::unit_z);
+	rot *= Matrix4f::createRotation(radians(rotation.x()), Vector3f::unit_x);
+	rot *= Matrix4f::createRotation(radians(-rotation.y()), Vector3f::unit_y);
+	rot *= Matrix4f::createRotation(radians(rotation.z()), Vector3f::unit_z);
 #else
-	rot *= Matrix4f::createRotationX(radians(rotation.x));
-	rot *= Matrix4f::createRotationY(radians(rotation.y));
-	rot *= Matrix4f::createRotationZ(radians(rotation.z));
+	rot *= Matrix4f::createRotationX(radians(rotation.x()));
+	rot *= Matrix4f::createRotationY(radians(rotation.y()));
+	rot *= Matrix4f::createRotationZ(radians(rotation.z()));
 #endif
 	view = rot * trans;
 
