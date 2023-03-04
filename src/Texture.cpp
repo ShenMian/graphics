@@ -19,8 +19,6 @@ std::unordered_map<int, Format> ChannelsToFormat = {{1, Format::R8F},    {2, For
 
 }
 
-std::unordered_map<fs::path, std::shared_ptr<Texture>> Texture::cache;
-
 std::shared_ptr<Texture> Texture::create(const fs::path& path, Format fmt, uint32_t mipmapCount, Type type)
 {
 	assert(type != Type::Cube);

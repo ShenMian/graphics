@@ -131,5 +131,5 @@ protected:
 	 * 1. 内存泄露.
 	 * 2. 数据相同的纹理其他属性(如寻址方式)可能不同.
 	 */
-	static std::unordered_map<std::filesystem::path, std::shared_ptr<Texture>> cache;
+	inline static std::unordered_map<std::filesystem::path, std::shared_ptr<Texture>> cache;
 };
