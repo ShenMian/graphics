@@ -133,12 +133,3 @@ protected:
 	 */
 	static std::unordered_map<std::filesystem::path, std::shared_ptr<Texture>> cache;
 };
-
-// TODO: 需要移动到合适的位置
-#if TARGET_COMPILER == COMPILER_CLANG && __clang_major__ < 14
-template <>
-struct std::hash<std::filesystem::path>
-{
-	size_t operator()(const std::filesystem::path& path) const noexcept { return std::filesystem::hash_value(path); }
-};
-#endif
