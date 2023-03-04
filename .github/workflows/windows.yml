@@ -30,10 +30,16 @@ jobs:
       #   uses: ilammy/msvc-dev-cmd@v1.10.0
 
       - name: Setup ninja
-        run: scoop install ninja
+        uses: ashutoshvarma/setup-ninja@v1.1
+        with:
+          version: 1.10.1
+
 
       - name: Setup conan
         uses: turtlebrowser/get-conan@v1.0
+
+      - name: Setup conan profile
+        run: conan profile detect
 
       - name: Build
         run: ./scripts/build.bat ${{ matrix.type }}
