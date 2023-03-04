@@ -1,4 +1,4 @@
-﻿# Copyright 2022 ShenMian
+# Copyright 2022 ShenMian
 # License(Apache-2.0)
 
 cmake_minimum_required(VERSION 3.16)
@@ -14,7 +14,7 @@ endif()
 project(Graphics
     VERSION      0.0.0
     DESCRIPTION  "A simple abstraction layer for the modern graphics APIs."
-    HOMEPAGE_URL "https://github.com/ShenMian/Graphics"
+    HOMEPAGE_URL "https://github.com/ShenMian/graphics"
     LANGUAGES    CXX C)
 
 option(USE_CONAN      "Use conan"      OFF)
