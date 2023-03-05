@@ -17,7 +17,6 @@ project(Graphics
     HOMEPAGE_URL "https://github.com/ShenMian/graphics"
     LANGUAGES    CXX C)
 
-option(USE_CONAN      "Use conan"      OFF)
 option(BUILD_EXAMPLES "Build examples" ON)
 
 # 输出基本信息
