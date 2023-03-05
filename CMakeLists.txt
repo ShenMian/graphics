@@ -31,13 +31,6 @@ message(STATUS "Compiler")
 message(STATUS "|- ID     : ${CMAKE_CXX_COMPILER_ID}")
 message(STATUS "`- Version: ${CMAKE_CXX_COMPILER_VERSION}")
 
-if(USE_CONAN AND EXISTS "${CMAKE_BINARY_DIR}/conanbuildinfo.cmake")
-    include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
-    conan_basic_setup()
-else()
-    message(WARNING "Skip conan")
-endif()
-
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_DEBUG   "${CMAKE_BINARY_DIR}/lib")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE "${CMAKE_BINARY_DIR}/lib")
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG   "${CMAKE_BINARY_DIR}/lib")
