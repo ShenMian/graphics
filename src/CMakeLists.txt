@@ -9,10 +9,9 @@ add_library(graphics STATIC ${SOURCES})
 add_library(graphics::graphics ALIAS graphics)
 
 target_include_directories(graphics PUBLIC
-    "${INCS}"
     "${CMAKE_BINARY_DIR}/include" # TODO: maybe not necessary
     "${PROJECT_SOURCE_DIR}/src")
-target_link_libraries(graphics PUBLIC ${LIBS} ${CONAN_LIBS})
+target_link_libraries(graphics PUBLIC ${CONAN_LIBS})
 target_compile_definitions(graphics PUBLIC ${GRAPHICS_DEFINES})
 target_compile_features(graphics PRIVATE cxx_std_20)
 
