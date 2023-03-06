@@ -58,7 +58,7 @@ void NodeEditor::update()
 	for(auto& node : nodes)
 		node.update();
 
-	static std::unordered_map<int, Link> links;
+	static std::unordered_map<uint64_t, Link> links;
 
 	for(auto& [id, link] : links)
 		ImNodes::Link(id, link.start.getId(), link.end.getId());
