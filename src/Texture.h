@@ -5,6 +5,7 @@
 
 #include "Core/Platform.h"
 #include "Format.h"
+#include "math/math.hpp"
 #include <cstdint>
 #include <filesystem>
 #include <memory>
@@ -15,6 +16,13 @@
 // create(const std::vector<Image>& image /* mipmaps */, Format fmt = Format::Unknown, Type type = Type::_2D);
 
 class Image;
+
+/**
+ * @brief 获取纹理最大多级渐远等级.
+ *
+ * @param size 初始纹理大小.
+ */
+uint32_t GetMaxMipmapLevel(const Vector2i& size);
 
 /**
  * @brief 纹理.
@@ -49,21 +57,25 @@ public:
 	/**
 	 * @brief 从图像文件创建纹理.
 	 *
-	 * @param path 图像文件路径.
-	 * @param type 纹理类型.
+	 * @param path        图像文件路径.
+	 * @param fmt         图像数据个格式.
+	 * @param mipmapLevel 多级渐远纹理等级.
+	 * @param type        纹理类型.
 	 */
 	[[nodiscard]] static std::shared_ptr<Texture> create(const std::filesystem::path& path,
-	                                                     Format fmt = Format::Unknown, uint32_t mipmapCount = 1,
+	                                                     Format fmt = Format::Unknown, uint32_t mipmapLevel = -1,
 	                                                     Type type = Type::_2D);
 
 	/**
 	 * @brief 从图像创建纹理.
 	 *
-	 * @param image 图像.
-	 * @param type  纹理类型.
+	 * @param image       图像.
+	 * @param fmt         图像数据个格式.
+	 * @param mipmapLevel 多级渐远纹理等级.
+	 * @param type        纹理类型.
 	 */
 	[[nodiscard]] static std::shared_ptr<Texture> create(const Image& image, Format fmt = Format::Unknown,
-	                                                     uint32_t mipmapCount = 1, Type type = Type::_2D);
+	                                                     uint32_t mipmapLevel = -1, Type type = Type::_2D);
 
 	/**
 	 * @brief 从图像创建立方体纹理.
@@ -78,14 +90,14 @@ public:
 	/**
 	 * @brief 设置缩小过滤方式.
 	 *
-	 * @param filter 过滤方式.
+	 * @param filter 过滤方式, 可选的值有 Nearest, Bilinear, Trilinear.
 	 */
 	virtual void setMinFilter(Filter filter) = 0;
 
 	/**
 	 * @brief 设置放大过滤方式.
 	 *
-	 * @param filter 过滤方式.
+	 * @param filter 过滤方式, 可选的值有 Nearest, Bilinear.
 	 */
 	virtual void setMagFilter(Filter filter) = 0;
 

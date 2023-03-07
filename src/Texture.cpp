@@ -4,7 +4,9 @@
 #include "Texture.h"
 #include "Core/Image.h"
 #include "Renderer.h"
+#include <algorithm>
 #include <cassert>
+#include <cmath>
 #include <stdexcept>
 
 #include "OpenGL/GLTexture.h"
@@ -17,6 +19,11 @@ namespace
 std::unordered_map<int, Format> ChannelsToFormat = {{1, Format::R8F},    {2, Format::RG8F},   {3, Format::RGB8F},
                                                     {4, Format::RGBA8F}, {6, Format::RGB16F}, {8, Format::RGBA16F}};
 
+}
+
+uint32_t GetMaxMipmapLevel(const Vector2i& size)
+{
+	return std::log2(std::max(size.x(), size.y())) + 1;
 }
 
 std::shared_ptr<Texture> Texture::create(const fs::path& path, Format fmt, uint32_t mipmapCount, Type type)

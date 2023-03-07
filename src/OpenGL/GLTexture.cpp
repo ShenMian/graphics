@@ -150,8 +150,10 @@ bool IsCompress(Format fmt)
 
 } // namespace
 
-GLTexture::GLTexture(const Image& image, Format fmt, uint32_t mipmapCount, Type type) : Texture(type, fmt)
+GLTexture::GLTexture(const Image& image, Format fmt, uint32_t mipmapLevel, Type type) : Texture(type, fmt)
 {
+	assert(mipmapLevel != 0);
+
 	glCreateTextures(GLType[type], 1, &handle);
 
 	Image flippedImage = Image(image);
@@ -160,7 +162,7 @@ GLTexture::GLTexture(const Image& image, Format fmt, uint32_t mipmapCount, Type 
 	if(format == Format::Unknown)
 		format = GetImageFormat(flippedImage);
 
-	setMinFilter(Filter::Nearest);
+	setMinFilter(mipmapLevel == 1 ? Filter::Nearest : Filter::Trilinear);
 	setMagFilter(Filter::Bilinear);
 	setSWarp(Warp::Repeat);
 	setTWarp(Warp::Repeat);
@@ -168,7 +170,7 @@ GLTexture::GLTexture(const Image& image, Format fmt, uint32_t mipmapCount, Type 
 	if(IsCompress(format))
 	{
 		glTextureParameteri(handle, GL_TEXTURE_BASE_LEVEL, 0);
-		glTextureParameteri(handle, GL_TEXTURE_MAX_LEVEL, mipmapCount - 1);
+		glTextureParameteri(handle, GL_TEXTURE_MAX_LEVEL, mipmapLevel - 1); // TODO: handle mipmapLevel == 1
 
 		size_t blockSize;
 		switch(format)
@@ -192,9 +194,9 @@ GLTexture::GLTexture(const Image& image, Format fmt, uint32_t mipmapCount, Type 
 		size_t  offset = 0;
 		GLsizei width  = flippedImage.size().x();
 		GLsizei height = flippedImage.size().y();
-		for(uint32_t level = 0; level < mipmapCount; level++)
+		for(uint32_t level = 0; level < mipmapLevel; level++) // TODO: maybe level start at 1
 		{
-			// FIXME
+			// FIXME: 提取 mipmap
 			size_t size = ((width + 3) / 4) * ((height + 3) / 4) * blockSize;
 			glCompressedTextureSubImage2D(handle, level, 0, 0, width, height, GLCompressedFormat(format), size,
 			                              flippedImage.data() + offset);
@@ -205,14 +207,16 @@ GLTexture::GLTexture(const Image& image, Format fmt, uint32_t mipmapCount, Type 
 		return;
 	}
 
-	GLsizei width  = flippedImage.size().x();
-	GLsizei height = flippedImage.size().y();
-	glTextureStorage2D(handle, 1, GLInternalFormat(format), width, height);
+	const GLsizei width  = flippedImage.size().x();
+	const GLsizei height = flippedImage.size().y();
+
+	mipmapLevel = std::clamp(mipmapLevel, 1u, GetMaxMipmapLevel({width, height}));
+
+	glTextureStorage2D(handle, mipmapLevel, GLInternalFormat(format), width, height);
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 	glTextureSubImage2D(handle, 0, 0, 0, width, height, GLFormat(format), GL_UNSIGNED_BYTE, flippedImage.data());
 
-	if(mipmapCount == 1)
-		generateMipmap();
+	generateMipmap();
 }
 
 GLTexture::GLTexture(const std::vector<Image>& images) : Texture(Type::Cube, GetImageFormat(images[0]))
