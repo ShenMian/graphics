@@ -181,12 +181,12 @@ Format&#160;</td><td class="memItemRight" valign="bottom"><b>getFormat</b> () co
  }</td></tr>
 <tr class="separator:a9d0b09cfb795f9553db6a4eab396bef9 inherit pub_types_class_texture"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_static_methods_class_texture"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_class_texture')"><img src="closed.png" alt="-"/>&#160;静态 Public 成员函数 继承自 <a class="el" href="class_texture.html">Texture</a></td></tr>
-<tr class="memitem:a8e3c3b47a06fed4a4809af2516456773 inherit pub_static_methods_class_texture"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_texture.html">Texture</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture.html#a8e3c3b47a06fed4a4809af2516456773">create</a> (const std::filesystem::path &amp;path, Format fmt=Format::Unknown, uint32_t mipmapCount=1, Type type=Type::_2D)</td></tr>
-<tr class="memdesc:a8e3c3b47a06fed4a4809af2516456773 inherit pub_static_methods_class_texture"><td class="mdescLeft">&#160;</td><td class="mdescRight">从图像文件创建纹理.  <a href="class_texture.html#a8e3c3b47a06fed4a4809af2516456773">更多...</a><br /></td></tr>
-<tr class="separator:a8e3c3b47a06fed4a4809af2516456773 inherit pub_static_methods_class_texture"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a02a1286fb7fd5516438829c5cf93f141 inherit pub_static_methods_class_texture"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_texture.html">Texture</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture.html#a02a1286fb7fd5516438829c5cf93f141">create</a> (const <a class="el" href="class_image.html">Image</a> &amp;image, Format fmt=Format::Unknown, uint32_t mipmapCount=1, Type type=Type::_2D)</td></tr>
-<tr class="memdesc:a02a1286fb7fd5516438829c5cf93f141 inherit pub_static_methods_class_texture"><td class="mdescLeft">&#160;</td><td class="mdescRight">从图像创建纹理.  <a href="class_texture.html#a02a1286fb7fd5516438829c5cf93f141">更多...</a><br /></td></tr>
-<tr class="separator:a02a1286fb7fd5516438829c5cf93f141 inherit pub_static_methods_class_texture"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae5e20995309655415ada1686ba3b203 inherit pub_static_methods_class_texture"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_texture.html">Texture</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture.html#aae5e20995309655415ada1686ba3b203">create</a> (const std::filesystem::path &amp;path, Format fmt=Format::Unknown, uint32_t mipmapLevel=-1, Type type=Type::_2D)</td></tr>
+<tr class="memdesc:aae5e20995309655415ada1686ba3b203 inherit pub_static_methods_class_texture"><td class="mdescLeft">&#160;</td><td class="mdescRight">从图像文件创建纹理.  <a href="class_texture.html#aae5e20995309655415ada1686ba3b203">更多...</a><br /></td></tr>
+<tr class="separator:aae5e20995309655415ada1686ba3b203 inherit pub_static_methods_class_texture"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a524f0df5841bae679008d3896a05f3b6 inherit pub_static_methods_class_texture"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_texture.html">Texture</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture.html#a524f0df5841bae679008d3896a05f3b6">create</a> (const <a class="el" href="class_image.html">Image</a> &amp;image, Format fmt=Format::Unknown, uint32_t mipmapLevel=-1, Type type=Type::_2D)</td></tr>
+<tr class="memdesc:a524f0df5841bae679008d3896a05f3b6 inherit pub_static_methods_class_texture"><td class="mdescLeft">&#160;</td><td class="mdescRight">从图像创建纹理.  <a href="class_texture.html#a524f0df5841bae679008d3896a05f3b6">更多...</a><br /></td></tr>
+<tr class="separator:a524f0df5841bae679008d3896a05f3b6 inherit pub_static_methods_class_texture"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a09bd077920fa8379b91b34c5b28e6eec inherit pub_static_methods_class_texture"><td class="memItemLeft" align="right" valign="top">static std::shared_ptr&lt; <a class="el" href="class_texture.html">Texture</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_texture.html#a09bd077920fa8379b91b34c5b28e6eec">create</a> (const std::vector&lt; <a class="el" href="class_image.html">Image</a> &gt; &amp;images)</td></tr>
 <tr class="memdesc:a09bd077920fa8379b91b34c5b28e6eec inherit pub_static_methods_class_texture"><td class="mdescLeft">&#160;</td><td class="mdescRight">从图像创建立方体纹理.  <a href="class_texture.html#a09bd077920fa8379b91b34c5b28e6eec">更多...</a><br /></td></tr>
 <tr class="separator:a09bd077920fa8379b91b34c5b28e6eec inherit pub_static_methods_class_texture"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -261,7 +261,7 @@ Format&#160;</td><td class="memItemRight" valign="bottom"><b>format</b></td></tr
 <p>设置放大过滤方式. </p>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">filter</td><td>过滤方式. </td></tr>
+    <tr><td class="paramname">filter</td><td>过滤方式, 可选的值有 Nearest, Bilinear. </td></tr>
   </table>
   </dd>
 </dl>
@@ -297,7 +297,7 @@ Format&#160;</td><td class="memItemRight" valign="bottom"><b>format</b></td></tr
 <p>设置缩小过滤方式. </p>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">filter</td><td>过滤方式. </td></tr>
+    <tr><td class="paramname">filter</td><td>过滤方式, 可选的值有 Nearest, Bilinear, Trilinear. </td></tr>
   </table>
   </dd>
 </dl>
