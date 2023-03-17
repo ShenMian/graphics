@@ -2,6 +2,7 @@
 // License(Apache-2.0)
 
 #include "GLRenderer.h"
+#include <optional>
 #include <stdexcept>
 
 #include <glad/glad.h>
@@ -15,7 +16,7 @@
 namespace
 {
 
-std::string_view SourceToString(GLenum source)
+std::optional<std::string_view> SourceToString(GLenum source)
 {
 	switch(source)
 	{
@@ -32,11 +33,11 @@ std::string_view SourceToString(GLenum source)
 	case GL_DEBUG_SOURCE_OTHER:
 		return "OTHER";
 	default:
-		return "UNKNOWN";
+		return std::nullopt;
 	}
 };
 
-std::string_view TypeToString(GLenum type)
+std::optional<std::string_view> TypeToString(GLenum type)
 {
 	switch(type)
 	{
@@ -55,11 +56,11 @@ std::string_view TypeToString(GLenum type)
 	case GL_DEBUG_TYPE_OTHER:
 		return "OTHER";
 	default:
-		return "UNKNOWN";
+		return std::nullopt;
 	}
 };
 
-std::string_view SeverityToString(GLenum severity)
+std::optional<std::string_view> SeverityToString(GLenum severity)
 {
 	switch(severity)
 	{
@@ -72,7 +73,7 @@ std::string_view SeverityToString(GLenum severity)
 	case GL_DEBUG_SEVERITY_HIGH:
 		return "HIGH";
 	default:
-		return "UNKNOWN";
+		return std::nullopt;
 	}
 };
 
@@ -126,7 +127,8 @@ void GLRenderer::setupDebugCallback()
 		                 "|-Type:     {}\n"
 		                 "|-Severity: {}\n"
 		                 "`-Message:  {}",
-		                 SourceToString(source), TypeToString(type), SeverityToString(severity), message)
+		                 SourceToString(source).value(), TypeToString(type).value(), SeverityToString(severity).value(),
+		                 message)
 		         .c_str());
 	};
 
