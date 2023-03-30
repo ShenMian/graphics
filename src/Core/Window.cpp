@@ -32,7 +32,7 @@ Window::~Window()
 
 void Window::update()
 {
-	if(Renderer::getAPI() == Renderer::API::OpenGL)
+	if(Renderer::getBackend() == Renderer::Backend::OpenGL)
 		glfwSwapBuffers(handle);
 	glfwPollEvents();
 }
@@ -252,7 +252,7 @@ void Window::init()
 
 	Monitor::init();
 
-	if(Renderer::get()->getAPI() == Renderer::API::Vulkan)
+	if(Renderer::get()->getBackend() == Renderer::Backend::Vulkan)
 	{
 		if(!glfwVulkanSupported())
 			throw std::runtime_error("GLFW: Vulkan not supported");

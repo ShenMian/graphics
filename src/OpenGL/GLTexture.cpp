@@ -180,9 +180,6 @@ GLTexture::GLTexture(const Image& image, Format fmt, uint32_t mipmapLevel, Type 
 			break;
 
 		case Format::RGBA_DXT3:
-			blockSize = 16;
-			break;
-
 		case Format::RGBA_DXT5:
 			blockSize = 16;
 			break;

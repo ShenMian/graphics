@@ -58,7 +58,7 @@ public:
 	 * @brief 从图像文件创建纹理.
 	 *
 	 * @param path        图像文件路径.
-	 * @param fmt         图像数据个格式.
+	 * @param fmt         纹理格式.
 	 * @param mipmapLevel 多级渐远纹理等级.
 	 * @param type        纹理类型.
 	 */
@@ -70,7 +70,7 @@ public:
 	 * @brief 从图像创建纹理.
 	 *
 	 * @param image       图像.
-	 * @param fmt         图像数据个格式.
+	 * @param fmt         纹理格式.
 	 * @param mipmapLevel 多级渐远纹理等级.
 	 * @param type        纹理类型.
 	 */

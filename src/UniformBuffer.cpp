@@ -9,9 +9,9 @@
 
 std::shared_ptr<UniformBuffer> UniformBuffer::create(int binding, size_t size)
 {
-	switch(Renderer::getAPI())
+	switch(Renderer::getBackend())
 	{
-		using enum Renderer::API;
+		using enum Renderer::Backend;
 
 	case OpenGL:
 		return std::make_shared<GLUniformBuffer>(binding, size);

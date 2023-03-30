@@ -9,9 +9,9 @@
 
 std::shared_ptr<CommandBuffer> CommandBuffer::create()
 {
-	switch(Renderer::getAPI())
+	switch(Renderer::getBackend())
 	{
-		using enum Renderer::API;
+		using enum Renderer::Backend;
 
 	case OpenGL:
 		return std::make_shared<GLCommandBuffer>();

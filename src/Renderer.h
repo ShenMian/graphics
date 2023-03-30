@@ -9,7 +9,7 @@
 class Renderer
 {
 public:
-	enum class API
+	enum class Backend
 	{
 		OpenGL,
 		Vulkan,
@@ -23,16 +23,16 @@ public:
 	static Renderer* get();
 
 	/**
-	 * @brief 设置图形 API.
+	 * @brief 设置图形后端.
 	 *
-	 * @param api 图形 API.
+	 * @param backend 图形后端.
 	 */
-	static void setAPI(API api);
+	static void setBackend(Backend backend);
 
 	/**
-	 * @brief 获取图形 API.
+	 * @brief 获取图形后端.
 	 */
-	static API getAPI();
+	static Backend getBackend();
 
 	virtual std::string getDeviceName() const   = 0;
 	virtual std::string getRendererName() const = 0;
@@ -42,5 +42,5 @@ public:
 	static void deinit();
 
 private:
-	static API api;
+	static Backend backend;
 };

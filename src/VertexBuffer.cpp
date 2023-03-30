@@ -11,9 +11,9 @@
 std::shared_ptr<VertexBuffer> VertexBuffer::create(const void* data, size_t size, const VertexFormat& fmt,
                                                    Buffer::Usage usage)
 {
-	switch(Renderer::getAPI())
+	switch(Renderer::getBackend())
 	{
-		using enum Renderer::API;
+		using enum Renderer::Backend;
 
 	case OpenGL:
 		return std::make_shared<GLVertexBuffer>(data, size, fmt, usage);

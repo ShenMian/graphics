@@ -36,9 +36,9 @@ std::shared_ptr<Texture> Texture::create(const fs::path& path, Format fmt, uint3
 		return it->second;
 
 	std::shared_ptr<Texture> ptr;
-	switch(Renderer::getAPI())
+	switch(Renderer::getBackend())
 	{
-		using enum Renderer::API;
+		using enum Renderer::Backend;
 
 	case OpenGL:
 		ptr = std::make_shared<GLTexture>(Image(absPath), fmt, mipmapCount, type);
@@ -55,9 +55,9 @@ std::shared_ptr<Texture> Texture::create(const Image& image, Format fmt, uint32_
 {
 	assert(type != Type::Cube);
 
-	switch(Renderer::getAPI())
+	switch(Renderer::getBackend())
 	{
-		using enum Renderer::API;
+		using enum Renderer::Backend;
 
 	case OpenGL:
 		return std::make_shared<GLTexture>(image, fmt, mipmapCount, type);
@@ -73,9 +73,9 @@ std::shared_ptr<Texture> Texture::create(const std::vector<Image>& images)
 	if(images.size() != 6)
 		throw std::runtime_error("cubemap should have 6 images");
 
-	switch(Renderer::getAPI())
+	switch(Renderer::getBackend())
 	{
-		using enum Renderer::API;
+		using enum Renderer::Backend;
 
 	case OpenGL:
 		return std::make_shared<GLTexture>(images);

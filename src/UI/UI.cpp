@@ -14,9 +14,9 @@
 
 void UI::beginFrame()
 {
-	switch(Renderer::getAPI())
+	switch(Renderer::getBackend())
 	{
-		using enum Renderer::API;
+		using enum Renderer::Backend;
 
 	case OpenGL:
 		ImGui_ImplOpenGL3_NewFrame();
@@ -34,9 +34,9 @@ void UI::beginFrame()
 void UI::endFrame()
 {
 	ImGui::Render();
-	switch(Renderer::getAPI())
+	switch(Renderer::getBackend())
 	{
-		using enum Renderer::API;
+		using enum Renderer::Backend;
 
 	case OpenGL:
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
@@ -66,9 +66,9 @@ void UI::init(const Window& win)
 	auto& io = ImGui::GetIO();
 	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable; // 启用 Docking
 
-	switch(Renderer::getAPI())
+	switch(Renderer::getBackend())
 	{
-		using enum Renderer::API;
+		using enum Renderer::Backend;
 
 	case OpenGL:
 		ImGui_ImplGlfw_InitForOpenGL(win.getHandle(), true);
@@ -84,9 +84,9 @@ void UI::init(const Window& win)
 
 void UI::deinit()
 {
-	switch(Renderer::getAPI())
+	switch(Renderer::getBackend())
 	{
-		using enum Renderer::API;
+		using enum Renderer::Backend;
 
 	case OpenGL:
 		ImGui_ImplOpenGL3_Shutdown();

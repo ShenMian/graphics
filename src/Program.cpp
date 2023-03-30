@@ -17,9 +17,9 @@ namespace fs = std::filesystem;
 
 std::shared_ptr<Program> Program::create(const Descriptor& desc)
 {
-	switch(Renderer::getAPI())
+	switch(Renderer::getBackend())
 	{
-		using enum Renderer::API;
+		using enum Renderer::Backend;
 
 	case OpenGL:
 		return std::make_shared<GLProgram>(desc);

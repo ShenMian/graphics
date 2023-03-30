@@ -15,9 +15,9 @@ std::shared_ptr<IndexBuffer> IndexBuffer::create(std::span<const uint32_t> data,
 
 std::shared_ptr<IndexBuffer> IndexBuffer::create(const uint32_t* data, size_t size, Buffer::Usage usage)
 {
-	switch(Renderer::getAPI())
+	switch(Renderer::getBackend())
 	{
-		using enum Renderer::API;
+		using enum Renderer::Backend;
 
 	case OpenGL:
 		return std::make_shared<GLIndexBuffer>(data, size, usage);

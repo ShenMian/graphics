@@ -21,7 +21,7 @@ public:
 
 	void init()
 	{
-		Renderer::setAPI(Renderer::API::OpenGL);
+		Renderer::setBackend(Renderer::Backend::OpenGL);
 		Window::init();
 		window = new Window(name, Monitor::getPrimary()->getSize() / 2);
 

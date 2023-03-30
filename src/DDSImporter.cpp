@@ -158,7 +158,7 @@ std::shared_ptr<Texture> DDSImporter::load(const fs::path& path)
 	auto   width  = header.width;
 	auto   height = header.height;
 	auto   depth  = std::max(header.depth, 1u);
-	for(uint32_t level = 0; level < header.mipMapCount; ++level)
+	for(uint32_t level = 0; level < header.mipMapCount; ++level) // TODO: maybe level start at 1
 	{
 		size += width * height * depth;
 		width  = std::max(width / 2, 1u);
@@ -169,6 +169,6 @@ std::shared_ptr<Texture> DDSImporter::load(const fs::path& path)
 	std::vector<char> buf(size);
 	file.read(buf.data(), size);
 
-	// return Texture::create(..., fmt, header.mipMapCount, type);
+	// Image image(buf.data(), buf.size(), {static_cast<int>(header.width), static_cast<int>(header.height)}, 1);
 	return nullptr;
 }

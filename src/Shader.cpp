@@ -124,9 +124,9 @@ std::string ToString(spirv_cross::SPIRType type)
 
 std::shared_ptr<Shader> Shader::create(const Descriptor& desc)
 {
-	switch(Renderer::getAPI())
+	switch(Renderer::getBackend())
 	{
-		using enum Renderer::API;
+		using enum Renderer::Backend;
 
 	case OpenGL:
 		return std::make_shared<GLShader>(desc);
@@ -208,9 +208,9 @@ void Shader::compile(const fs::path& sourcePath, const fs::path& targetPath, Sta
 
 	// 编译
 	shaderc::CompileOptions options;
-	if(Renderer::getAPI() == Renderer::API::OpenGL)
+	if(Renderer::getBackend() == Renderer::Backend::OpenGL)
 		options.SetTargetEnvironment(shaderc_target_env_opengl, shaderc_env_version_opengl_4_5);
-	else if(Renderer::getAPI() == Renderer::API::Vulkan)
+	else if(Renderer::getBackend() == Renderer::Backend::Vulkan)
 		options.SetTargetEnvironment(shaderc_target_env_vulkan, shaderc_env_version_vulkan_1_2);
 	else
 		throw std::runtime_error("unsupported shader language (only support GLSL)");

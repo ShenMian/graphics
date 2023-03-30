@@ -8,9 +8,9 @@
 
 std::shared_ptr<Pipeline> Pipeline::create(const Descriptor& desc)
 {
-	switch(Renderer::getAPI())
+	switch(Renderer::getBackend())
 	{
-		using enum Renderer::API;
+		using enum Renderer::Backend;
 
 	case OpenGL:
 		return std::make_shared<GLPipeline>(desc);

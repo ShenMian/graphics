@@ -7,13 +7,13 @@
 #include "OpenGL/GLRenderer.h"
 #include "Vulkan/VKRenderer.h"
 
-Renderer::API Renderer::api = Renderer::API::OpenGL;
+Renderer::Backend Renderer::backend = Renderer::Backend::OpenGL;
 
 Renderer* Renderer::get()
 {
-	switch(Renderer::getAPI())
+	switch(Renderer::getBackend())
 	{
-		using enum Renderer::API;
+		using enum Renderer::Backend;
 
 	case OpenGL: {
 		static auto renderer = new GLRenderer; // TODO: 内存泄露
@@ -28,21 +28,21 @@ Renderer* Renderer::get()
 	return nullptr;
 }
 
-void Renderer::setAPI(API newAPI)
+void Renderer::setBackend(Backend newBackend)
 {
-	api = newAPI;
+	backend = newBackend;
 }
 
-Renderer::API Renderer::getAPI()
+Renderer::Backend Renderer::getBackend()
 {
-	return api;
+	return backend;
 }
 
 void Renderer::init(const Window& win)
 {
-	switch(Renderer::getAPI())
+	switch(Renderer::getBackend())
 	{
-		using enum Renderer::API;
+		using enum Renderer::Backend;
 
 	case OpenGL:
 		GLRenderer::init(win);
@@ -56,9 +56,9 @@ void Renderer::init(const Window& win)
 
 void Renderer::deinit()
 {
-	switch(Renderer::getAPI())
+	switch(Renderer::getBackend())
 	{
-		using enum Renderer::API;
+		using enum Renderer::Backend;
 
 	case OpenGL:
 		GLRenderer::deinit();

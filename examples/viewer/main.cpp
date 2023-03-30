@@ -111,49 +111,44 @@ public:
 	{
 		// Font font("C:/Users/sms/AppData/Local/Microsoft/Windows/Fonts/CascadiaCode.ttf");
 
-		fs::path path;
+		fs::path path = "../../../../../../Model/";
 		if(argc > 1)
 			path = argv[1];
 		else
 		{
 #if PBR
 			// Scene
-			path = "../../../../../../Model/glTF-Sample-Models/Sponza/glTF/Sponza.gltf";
-			// path = "../../../../../../Model/ORCA/Bistro/BistroExterior.glb";
-			// path = "../../../../../../Model/ORCA/Bistro/BistroExterior.fbx";
-			// path = "../../../../../../Model/ORCA/SunTemple/SunTemple.fbx";
+			path += "glTF-Sample-Models/Sponza/glTF/Sponza.gltf";
+			// path += "ORCA/Bistro/BistroExterior.glb";
+			// path += "ORCA/Bistro/BistroExterior.fbx";
+			// path += "ORCA/SunTemple/SunTemple.fbx";
 
 			// Model
-			// path = "../../../../../../Model/glTF-Sample-Models/FlightHelmet/glTF/FlightHelmet.gltf";
-			// path = "../../../../../../Model/m4a1/m4a1.gltf";
-			// path = "../../../../../../Model/pistol/kimber_desert_warrior/scene.gltf";
+			// path += "glTF-Sample-Models/FlightHelmet/glTF/FlightHelmet.gltf";
+			// path += "m4a1/m4a1.gltf";
+			// path += "pistol/kimber_desert_warrior/scene.gltf";
 
 			// Basic test
-			// path = "../../../../../../Model/glTF-Sample-Models/MetalRoughSpheres/glTF/MetalRoughSpheres.gltf";
-			// path = "../../../../../../Model/glTF-Sample-Models/NormalTangentTest/glTF/NormalTangentTest.gltf";
-			// path =
-			// "../../../../../../Model/glTF-Sample-Models/NormalTangentMirrorTest/glTF/NormalTangentMirrorTest.gltf";
-			// path =
-			// "../../../../../../Model/glTF-Sample-Models/TextureLinearInterpolationTest/glTF/TextureLinearInterpolationTest.gltf";
-			// path =
-			// "../../../../../../Model/glTF-Sample-Models/TextureCoordinateTest/glTF/TextureCoordinateTest.gltf"; path
-			// = "../../../../../../Model/glTF-Sample-Models/TextureSettingsTest/glTF/TextureSettingsTest.gltf"; path =
-			// "../../../../../../Model/glTF-Sample-Models/VertexColorTest/glTF/VertexColorTest.gltf"; path =
-			// "../../../../../../Model/glTF-Sample-Models/AlphaBlendModeTest/glTF/AlphaBlendModeTest.gltf";
+			// path += "glTF-Sample-Models/MetalRoughSpheres/glTF/MetalRoughSpheres.gltf";
+			// path += "glTF-Sample-Models/NormalTangentTest/glTF/NormalTangentTest.gltf";
+			// path += "glTF-Sample-Models/NormalTangentMirrorTest/glTF/NormalTangentMirrorTest.gltf";
+			// path += "glTF-Sample-Models/TextureLinearInterpolationTest/glTF/TextureLinearInterpolationTest.gltf";
+			// path += "glTF-Sample-Models/TextureCoordinateTest/glTF/TextureCoordinateTest.gltf";
+			// path += "glTF-Sample-Models/TextureSettingsTest/glTF/TextureSettingsTest.gltf";
+			// path += "glTF-Sample-Models/VertexColorTest/glTF/VertexColorTest.gltf";
+			// path += "glTF-Sample-Models/AlphaBlendModeTest/glTF/AlphaBlendModeTest.gltf";
 
 			// Feature test
-			// path = "../../../../../../Model/glTF-Sample-Models/AttenuationTest/glTF/AttenuationTest.gltf";
-			// path = "../../../../../../Model/glTF-Sample-Models/ClearcoatTest/glTF/ClearcoatTest.gltf";
-			// path = "../../../../../../Model/glTF-Sample-Models/EmissiveStrengthTest/glTF/EmissiveStrengthTest.gltf";
-			// path =
-			// "../../../../../../Model/glTF-Sample-Models/SpecGlossVsMetalRough/glTF/SpecGlossVsMetalRough.gltf"; path
-			// = "../../../../../../Model/glTF-Sample-Models/TextureTransformTest/glTF/TextureTransformTest.gltf"; path
-			// =
-			// "../../../../../../Model/glTF-Sample-Models/TextureTransformMultiTest/glTF/TextureTransformMultiTest.gltf";
+			// path += "glTF-Sample-Models/AttenuationTest/glTF/AttenuationTest.gltf";
+			// path += "glTF-Sample-Models/ClearcoatTest/glTF/ClearcoatTest.gltf";
+			// path += "glTF-Sample-Models/EmissiveStrengthTest/glTF/EmissiveStrengthTest.gltf";
+			// path += "glTF-Sample-Models/SpecGlossVsMetalRough/glTF/SpecGlossVsMetalRough.gltf";
+			// path += "glTF-Sample-Models/TextureTransformTest/glTF/TextureTransformTest.gltf";
+			// path += "glTF-Sample-Models/TextureTransformMultiTest/glTF/TextureTransformMultiTest.gltf";
 #else
-			path = "../../../../../../Model/sponza/sponza.obj";
-			// path = "../../../../../../Model/dishonored_2/scene.glb";
-			// path = "../../../../../../Model/san_miguel/san-miguel-low-poly.obj";
+			path = "sponza/sponza.obj";
+			// path = "dishonored_2/scene.glb";
+			// path = "san_miguel/san-miguel-low-poly.obj";
 #endif
 		}
 
@@ -189,7 +184,7 @@ public:
 		auto cmdBuffer = CommandBuffer::create();
 
 		Camera camera(Camera::Type::Perspective);
-		camera.setPerspective(radians(60.f), (float)window->getSize().x() / window->getSize().y(), 0.1f, 2000.f);
+		camera.setPerspective(radians(60.f), static_cast<float>(window->getSize().x()) / window->getSize().y(), 0.1f, 2000.f);
 		const auto fov = degrees(camera.getHFOV());
 
 		Gamepad gamepad(0);
@@ -274,12 +269,13 @@ public:
 		window->onScroll = [&](Vector2d offset) {
 			static float fov = degrees(camera.getVFOV());
 			if(1.f <= fov && fov <= 60.f)
-				fov -= (float)offset.y() * 3 * (fov / 60);
+				fov -= offset.y() * 3.f * (fov / 60);
 			fov = std::clamp(fov, 1.f, 60.f);
 			camera.setPerspective(radians(fov), camera.getAspectRatio(), camera.getNear(), camera.getFar());
 		};
 		window->onResize = [&](Vector2i size) {
-			camera.setPerspective(camera.getVFOV(), (float)size.x() / size.y(), camera.getNear(), camera.getFar());
+			camera.setPerspective(camera.getVFOV(), static_cast<float>(size.x()) / size.y(), camera.getNear(),
+			                      camera.getFar());
 		};
 		window->onDrop = [&](int, const char* paths[]) { loadModel(paths[0]); };
 		window->setVisible(true);
@@ -299,12 +295,12 @@ public:
 		attInfo.add(position);
 		attInfo.add(angles);
 
-		Matrix4f transform;
+		Matrix4f transform; // TODO
 
 		Timer timer;
 		while(running)
 		{
-			const auto dt = (float)timer.getSeconds();
+			const float dt = timer.getSeconds();
 			timer.restart();
 #if 0
 			static float elapse = 0;
