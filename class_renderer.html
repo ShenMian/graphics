@@ -111,10 +111,10 @@ $(document).ready(function(){initNavTree('class_renderer.html',''); initResizabl
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public 类型</h2></td></tr>
-<tr class="memitem:a90ca495a655a0ef7a802b067549b01e9"><td class="memItemLeft" align="right" valign="top"><a id="a90ca495a655a0ef7a802b067549b01e9" name="a90ca495a655a0ef7a802b067549b01e9"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>API</b> { <b>OpenGL</b>
+<tr class="memitem:a7a9bf9740ad02275d207bd00c3a124e9"><td class="memItemLeft" align="right" valign="top"><a id="a7a9bf9740ad02275d207bd00c3a124e9" name="a7a9bf9740ad02275d207bd00c3a124e9"></a>enum class &#160;</td><td class="memItemRight" valign="bottom"><b>Backend</b> { <b>OpenGL</b>
 , <b>Vulkan</b>
  }</td></tr>
-<tr class="separator:a90ca495a655a0ef7a802b067549b01e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a7a9bf9740ad02275d207bd00c3a124e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public 成员函数</h2></td></tr>
@@ -134,13 +134,13 @@ virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><b>getVen
 static <a class="el" href="class_renderer.html">Renderer</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>get</b> ()</td></tr>
 <tr class="memdesc:a9f5e294852455a98d519f4bc03708323"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取单例. <br /></td></tr>
 <tr class="separator:a9f5e294852455a98d519f4bc03708323"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a04003283aef7694ae68fe9a63bbca592"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer.html#a04003283aef7694ae68fe9a63bbca592">setAPI</a> (API api)</td></tr>
-<tr class="memdesc:a04003283aef7694ae68fe9a63bbca592"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置图形 API.  <a href="class_renderer.html#a04003283aef7694ae68fe9a63bbca592">更多...</a><br /></td></tr>
-<tr class="separator:a04003283aef7694ae68fe9a63bbca592"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9f11c63dc16c34489aba73dac51fc58c"><td class="memItemLeft" align="right" valign="top"><a id="a9f11c63dc16c34489aba73dac51fc58c" name="a9f11c63dc16c34489aba73dac51fc58c"></a>
-static API&#160;</td><td class="memItemRight" valign="bottom"><b>getAPI</b> ()</td></tr>
-<tr class="memdesc:a9f11c63dc16c34489aba73dac51fc58c"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取图形 API. <br /></td></tr>
-<tr class="separator:a9f11c63dc16c34489aba73dac51fc58c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5f578cfe215ee87e909304390e5add5"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_renderer.html#ac5f578cfe215ee87e909304390e5add5">setBackend</a> (Backend backend)</td></tr>
+<tr class="memdesc:ac5f578cfe215ee87e909304390e5add5"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置图形后端.  <a href="class_renderer.html#ac5f578cfe215ee87e909304390e5add5">更多...</a><br /></td></tr>
+<tr class="separator:ac5f578cfe215ee87e909304390e5add5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e880f2c069f04d3912c9c885124ec3a"><td class="memItemLeft" align="right" valign="top"><a id="a2e880f2c069f04d3912c9c885124ec3a" name="a2e880f2c069f04d3912c9c885124ec3a"></a>
+static Backend&#160;</td><td class="memItemRight" valign="bottom"><b>getBackend</b> ()</td></tr>
+<tr class="memdesc:a2e880f2c069f04d3912c9c885124ec3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取图形后端. <br /></td></tr>
+<tr class="separator:a2e880f2c069f04d3912c9c885124ec3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1d321bcd9ca101de15dbd4bfdbfc7a74"><td class="memItemLeft" align="right" valign="top"><a id="a1d321bcd9ca101de15dbd4bfdbfc7a74" name="a1d321bcd9ca101de15dbd4bfdbfc7a74"></a>
 static void&#160;</td><td class="memItemRight" valign="bottom"><b>init</b> (const <a class="el" href="class_window.html">Window</a> &amp;win)</td></tr>
 <tr class="separator:a1d321bcd9ca101de15dbd4bfdbfc7a74"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -149,8 +149,8 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>deinit</b> ()<
 <tr class="separator:a573844900d315590dcb333b2b539416e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">成员函数说明</h2>
-<a id="a04003283aef7694ae68fe9a63bbca592" name="a04003283aef7694ae68fe9a63bbca592"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a04003283aef7694ae68fe9a63bbca592">&#9670;&#160;</a></span>setAPI()</h2>
+<a id="ac5f578cfe215ee87e909304390e5add5" name="ac5f578cfe215ee87e909304390e5add5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5f578cfe215ee87e909304390e5add5">&#9670;&#160;</a></span>setBackend()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -159,10 +159,10 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>deinit</b> ()<
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Renderer::setAPI </td>
+          <td class="memname">void Renderer::setBackend </td>
           <td>(</td>
-          <td class="paramtype">API&#160;</td>
-          <td class="paramname"><em>api</em></td><td>)</td>
+          <td class="paramtype">Backend&#160;</td>
+          <td class="paramname"><em>backend</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -173,10 +173,10 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><b>deinit</b> ()<
 </table>
 </div><div class="memdoc">
 
-<p>设置图形 API. </p>
+<p>设置图形后端. </p>
 <dl class="params"><dt>参数</dt><dd>
   <table class="params">
-    <tr><td class="paramname">api</td><td>图形 API. </td></tr>
+    <tr><td class="paramname">backend</td><td>图形后端. </td></tr>
   </table>
   </dd>
 </dl>

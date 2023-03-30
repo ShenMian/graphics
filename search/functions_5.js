@@ -2,8 +2,8 @@ var searchData=
 [
   ['gamepad_0',['Gamepad',['../class_gamepad.html#a0153d72ca3f7dfb816a872191fa5a651',1,'Gamepad']]],
   ['get_1',['get',['../class_gamepad.html#adb986158a3306e5cef36f5c1b1bbe2bc',1,'Gamepad::get()'],['../class_renderer.html#a9f5e294852455a98d519f4bc03708323',1,'Renderer::get()'],['../class_gamepad.html#add5894040c3cb6c01f2708aa76c7b91c',1,'Gamepad::get(Button button) const noexcept'],['../class_gamepad.html#a470f93ec7bd5fe9dc2e019a3a2f82869',1,'Gamepad::get(Trigger trigger) const noexcept']]],
-  ['getapi_2',['getAPI',['../class_renderer.html#a9f11c63dc16c34489aba73dac51fc58c',1,'Renderer']]],
-  ['getaspectratio_3',['getAspectRatio',['../class_camera.html#ae293133e02172fd477f821dd0d065f2b',1,'Camera']]],
+  ['getaspectratio_2',['getAspectRatio',['../class_camera.html#ae293133e02172fd477f821dd0d065f2b',1,'Camera']]],
+  ['getbackend_3',['getBackend',['../class_renderer.html#a2e880f2c069f04d3912c9c885124ec3a',1,'Renderer']]],
   ['getclipboard_4',['getClipboard',['../class_input.html#aba15ec2c1c9163096c94f98e76dcfcdd',1,'Input']]],
   ['getcode_5',['getCode',['../class_shader.html#af28fc333dcbb991fcc9f3357b3a43058',1,'Shader']]],
   ['getcommandpool_6',['getCommandPool',['../class_v_k_renderer.html#a2688df65e25180d5b278acd638c26645',1,'VKRenderer']]],

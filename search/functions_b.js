@@ -1,9 +1,9 @@
 var searchData=
 [
   ['save_0',['save',['../class_image.html#aa22dec7058acdbf25133159b783c1a31',1,'Image']]],
-  ['setapi_1',['setAPI',['../class_renderer.html#a04003283aef7694ae68fe9a63bbca592',1,'Renderer']]],
-  ['setappname_2',['setAppName',['../class_instance_builder.html#a6c25c00eb1359b21d99ddcd9af28d0d7',1,'InstanceBuilder']]],
-  ['setappversion_3',['setAppVersion',['../class_instance_builder.html#af417569cafc38f3988e59d2cd1930a7a',1,'InstanceBuilder']]],
+  ['setappname_1',['setAppName',['../class_instance_builder.html#a6c25c00eb1359b21d99ddcd9af28d0d7',1,'InstanceBuilder']]],
+  ['setappversion_2',['setAppVersion',['../class_instance_builder.html#af417569cafc38f3988e59d2cd1930a7a',1,'InstanceBuilder']]],
+  ['setbackend_3',['setBackend',['../class_renderer.html#ac5f578cfe215ee87e909304390e5add5',1,'Renderer']]],
   ['setcamera_4',['setCamera',['../class_controller.html#a7e32999655d611ec05ed1b89aca5261b',1,'Controller']]],
   ['setclearcolor_5',['setClearColor',['../class_command_buffer.html#a5411b4ccdb568ff177ab4acf8e39e5e1',1,'CommandBuffer::setClearColor()'],['../class_g_l_command_buffer.html#ac0055c47b244077d3987503efb0e5915',1,'GLCommandBuffer::setClearColor()'],['../class_v_k_command_buffer.html#a40f73eeb505e41d0b59c14b511f3982b',1,'VKCommandBuffer::setClearColor()']]],
   ['setcleardepth_6',['setClearDepth',['../class_command_buffer.html#ac093a6b07928dd8f2f810317ef1bbad4',1,'CommandBuffer::setClearDepth()'],['../class_g_l_command_buffer.html#a0a3120c0567ab02fd5d7edfbfe457609',1,'GLCommandBuffer::setClearDepth()'],['../class_v_k_command_buffer.html#a21a99eeae6b2d3358469d6f15d73bea8',1,'VKCommandBuffer::setClearDepth()']]],
