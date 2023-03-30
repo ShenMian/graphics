@@ -133,12 +133,12 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>set_viewport<
 <tr class="memitem:a14443f96348014db05ea24751ccdbe34"><td class="memItemLeft" align="right" valign="top"><a id="a14443f96348014db05ea24751ccdbe34" name="a14443f96348014db05ea24751ccdbe34"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>set_pipeline</b> (std::shared_ptr&lt; <a class="el" href="class_pipeline.html">Pipeline</a> &gt; pipeline)=0</td></tr>
 <tr class="separator:a14443f96348014db05ea24751ccdbe34"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a663025c357246830d517879514078600"><td class="memItemLeft" align="right" valign="top"><a id="a663025c357246830d517879514078600" name="a663025c357246830d517879514078600"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>set_vertex_buffer</b> (std::shared_ptr&lt; <a class="el" href="class_vertex_buffer.html">VertexBuffer</a> &gt; vertexBuffer)=0</td></tr>
-<tr class="separator:a663025c357246830d517879514078600"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2dfad6e7a0a17de819725ccb6d44c4c2"><td class="memItemLeft" align="right" valign="top"><a id="a2dfad6e7a0a17de819725ccb6d44c4c2" name="a2dfad6e7a0a17de819725ccb6d44c4c2"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>set_index_buffer</b> (std::shared_ptr&lt; <a class="el" href="class_index_buffer.html">IndexBuffer</a> &gt; indexBuffer)=0</td></tr>
-<tr class="separator:a2dfad6e7a0a17de819725ccb6d44c4c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67defa4a6f9eb0c43ab177313fbfe6dc"><td class="memItemLeft" align="right" valign="top"><a id="a67defa4a6f9eb0c43ab177313fbfe6dc" name="a67defa4a6f9eb0c43ab177313fbfe6dc"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>set_vertex_buffer</b> (std::shared_ptr&lt; <a class="el" href="class_vertex_buffer.html">VertexBuffer</a> &gt; vertex_buffer)=0</td></tr>
+<tr class="separator:a67defa4a6f9eb0c43ab177313fbfe6dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cb9361cf712b20f9a6c33b2a7213e79"><td class="memItemLeft" align="right" valign="top"><a id="a2cb9361cf712b20f9a6c33b2a7213e79" name="a2cb9361cf712b20f9a6c33b2a7213e79"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>set_index_buffer</b> (std::shared_ptr&lt; <a class="el" href="class_index_buffer.html">IndexBuffer</a> &gt; index_buffer)=0</td></tr>
+<tr class="separator:a2cb9361cf712b20f9a6c33b2a7213e79"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af19dcf2b07bab0cbbbe01559da42c667"><td class="memItemLeft" align="right" valign="top"><a id="af19dcf2b07bab0cbbbe01559da42c667" name="af19dcf2b07bab0cbbbe01559da42c667"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>set_texture</b> (std::shared_ptr&lt; <a class="el" href="class_texture.html">Texture</a> &gt; texture, unsigned int slot)=0</td></tr>
 <tr class="separator:af19dcf2b07bab0cbbbe01559da42c667"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -154,12 +154,12 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>set_texture</
 <tr class="memitem:a22584d4b33262c8560c73e5749a8f1f9"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_command_buffer.html#a22584d4b33262c8560c73e5749a8f1f9">set_clear_stencil</a> (uint32_t value)=0</td></tr>
 <tr class="memdesc:a22584d4b33262c8560c73e5749a8f1f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置清空模板缓冲区的默认值.  <a href="class_command_buffer.html#a22584d4b33262c8560c73e5749a8f1f9">更多...</a><br /></td></tr>
 <tr class="separator:a22584d4b33262c8560c73e5749a8f1f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a765cad262643120cc0fc71fd938d9d66"><td class="memItemLeft" align="right" valign="top"><a id="a765cad262643120cc0fc71fd938d9d66" name="a765cad262643120cc0fc71fd938d9d66"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>draw</b> (uint32_t vertexCount, uint32_t firstVertex=0)=0</td></tr>
-<tr class="separator:a765cad262643120cc0fc71fd938d9d66"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a55e48a1beaca491e7a8f09a48844530b"><td class="memItemLeft" align="right" valign="top"><a id="a55e48a1beaca491e7a8f09a48844530b" name="a55e48a1beaca491e7a8f09a48844530b"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>draw_indexed</b> (uint32_t indexCount, uint32_t firstIndex=0)=0</td></tr>
-<tr class="separator:a55e48a1beaca491e7a8f09a48844530b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a798ffcf841b7b43cbc3398c7090d964d"><td class="memItemLeft" align="right" valign="top"><a id="a798ffcf841b7b43cbc3398c7090d964d" name="a798ffcf841b7b43cbc3398c7090d964d"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>draw</b> (uint32_t vertex_count, uint32_t first_vertex=0)=0</td></tr>
+<tr class="separator:a798ffcf841b7b43cbc3398c7090d964d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb3447351fb27cff21ba3811e549b744"><td class="memItemLeft" align="right" valign="top"><a id="afb3447351fb27cff21ba3811e549b744" name="afb3447351fb27cff21ba3811e549b744"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>draw_indexed</b> (uint32_t index_count, uint32_t first_index=0)=0</td></tr>
+<tr class="separator:afb3447351fb27cff21ba3811e549b744"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 静态 Public 成员函数</h2></td></tr>

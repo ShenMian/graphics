@@ -120,8 +120,8 @@ $(document).ready(function(){initNavTree('_g_l_command_buffer_8h_source.html',''
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keywordtype">void</span> set_pipeline(std::shared_ptr&lt;Pipeline&gt; pipeline) <span class="keyword">override</span>;</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keywordtype">void</span> set_vertex_buffer(std::shared_ptr&lt;VertexBuffer&gt; vertexBuffer) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordtype">void</span> set_index_buffer(std::shared_ptr&lt;IndexBuffer&gt; indexBuffer) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keywordtype">void</span> set_vertex_buffer(std::shared_ptr&lt;VertexBuffer&gt; vertex_buffer) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordtype">void</span> set_index_buffer(std::shared_ptr&lt;IndexBuffer&gt; index_buffer) <span class="keyword">override</span>;</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keywordtype">void</span> set_texture(std::shared_ptr&lt;Texture&gt; texture, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> slot) <span class="keyword">override</span>;</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_g_l_command_buffer.html#afb2847fd985cc379404cbecd852afa2f">clear</a>(uint8_t flags) <span class="keyword">override</span>;</div>
@@ -129,8 +129,8 @@ $(document).ready(function(){initNavTree('_g_l_command_buffer_8h_source.html',''
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_g_l_command_buffer.html#a1330f32ef96b27d921988f38a7ed49b7">set_clear_depth</a>(<span class="keywordtype">float</span> depth) <span class="keyword">override</span>;</div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_g_l_command_buffer.html#adffb1706bb0cf768245144b1a9ddaf7d">set_clear_stencil</a>(uint32_t value) <span class="keyword">override</span>;</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordtype">void</span> draw(uint32_t vertexCount, uint32_t firstVertex) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordtype">void</span> draw_indexed(uint32_t indexCount, uint32_t firstIndex) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordtype">void</span> draw(uint32_t vertex_count, uint32_t first_vertex) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordtype">void</span> draw_indexed(uint32_t index_count, uint32_t first_index) <span class="keyword">override</span>;</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; getData() <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
