@@ -34,11 +34,11 @@ var class_gamepad =
     [ "get", "class_gamepad.html#add5894040c3cb6c01f2708aa76c7b91c", null ],
     [ "get", "class_gamepad.html#adb986158a3306e5cef36f5c1b1bbe2bc", null ],
     [ "get", "class_gamepad.html#a470f93ec7bd5fe9dc2e019a3a2f82869", null ],
-    [ "getName", "class_gamepad.html#ab0fd07c0c3c1ac1f0ab997000061bd80", null ],
-    [ "getRaw", "class_gamepad.html#a3d1ef5d5e9845ac3e8dc5d484cc374e8", null ],
-    [ "getRaw", "class_gamepad.html#a699b3348d46e0ee4bcb7532499970570", null ],
-    [ "isConnected", "class_gamepad.html#a33d4dbd503a8d645885bd19cbc390a91", null ],
-    [ "loadMappingsDb", "class_gamepad.html#a3c38442114ed8e3932a3eb6dd60e45aa", null ],
-    [ "setVibration", "class_gamepad.html#ac0526c0a7e4b551f9ac9afb9e08c25ff", null ],
+    [ "get_name", "class_gamepad.html#a6a69e7ec1e2244a9f5d51bbbc79e7656", null ],
+    [ "get_raw", "class_gamepad.html#a139a6a49397dbdab755d959504778880", null ],
+    [ "get_raw", "class_gamepad.html#a0607b634bf701b0db72432a483462057", null ],
+    [ "is_connected", "class_gamepad.html#ab9ca148846e77d6949bd7deace24c63f", null ],
+    [ "load_mappings_db", "class_gamepad.html#a3a44e8640dbd94bbacf4e9b0e5617c34", null ],
+    [ "set_vibration", "class_gamepad.html#a4b41c6a46548aa1c6227b2551e3777b6", null ],
     [ "update", "class_gamepad.html#ae37f83a954aabbf634e9d6f37697ae58", null ]
 ];

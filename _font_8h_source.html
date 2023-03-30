@@ -119,21 +119,21 @@ $(document).ready(function(){initNavTree('_font_8h_source.html',''); initResizab
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_font.html#aace57f61e46b8ad93be7d9689a367dfc">load</a>(<span class="keyword">const</span> std::filesystem::path&amp; path);</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <a class="code hl_struct" href="struct_font_1_1_glyph.html">Glyph</a> <a class="code hl_function" href="class_font.html#a2b1e46e81e496acd877361beedcc187f">getGlyph</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> code, uint16_t size);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <a class="code hl_struct" href="struct_font_1_1_glyph.html">Glyph</a> <a class="code hl_function" href="class_font.html#a461256a7fe5c66fe6101600fdf9ea3d3">get_glyph</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> code, uint16_t size);</div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> init();</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keyword">static</span> <span class="keywordtype">void</span> deinit();</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordtype">void</span>     setPixelSize(uint16_t size);</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    uint16_t getPixelSize() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordtype">void</span>     set_pixel_size(uint16_t size);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    uint16_t get_pixel_size() <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    std::unordered_map&lt;uint64_t, Glyph&gt; glyphs;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    std::unordered_map&lt;uint64_t, Glyph&gt; glyph_cache_;</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    FT_Face handle;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    FT_Face handle_;</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>};</div>
 <div class="ttc" id="aclass_font_html"><div class="ttname"><a href="class_font.html">Font</a></div><div class="ttdef"><b>Definition:</b> Font.h:14</div></div>
-<div class="ttc" id="aclass_font_html_a2b1e46e81e496acd877361beedcc187f"><div class="ttname"><a href="class_font.html#a2b1e46e81e496acd877361beedcc187f">Font::getGlyph</a></div><div class="ttdeci">Glyph getGlyph(unsigned long code, uint16_t size)</div><div class="ttdoc">获取字形.</div><div class="ttdef"><b>Definition:</b> Font.cpp:44</div></div>
+<div class="ttc" id="aclass_font_html_a461256a7fe5c66fe6101600fdf9ea3d3"><div class="ttname"><a href="class_font.html#a461256a7fe5c66fe6101600fdf9ea3d3">Font::get_glyph</a></div><div class="ttdeci">Glyph get_glyph(unsigned long code, uint16_t size)</div><div class="ttdoc">获取字形.</div><div class="ttdef"><b>Definition:</b> Font.cpp:44</div></div>
 <div class="ttc" id="aclass_font_html_aace57f61e46b8ad93be7d9689a367dfc"><div class="ttname"><a href="class_font.html#aace57f61e46b8ad93be7d9689a367dfc">Font::load</a></div><div class="ttdeci">void load(const std::filesystem::path &amp;path)</div><div class="ttdoc">从字体文件加载.</div><div class="ttdef"><b>Definition:</b> Font.cpp:35</div></div>
 <div class="ttc" id="aclass_image_html"><div class="ttname"><a href="class_image.html">Image</a></div><div class="ttdoc">图像.</div><div class="ttdef"><b>Definition:</b> Image.h:19</div></div>
 <div class="ttc" id="astruct_font_1_1_glyph_html"><div class="ttname"><a href="struct_font_1_1_glyph.html">Font::Glyph</a></div><div class="ttdef"><b>Definition:</b> Font.h:17</div></div>

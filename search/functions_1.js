@@ -1,7 +1,7 @@
 var searchData=
 [
   ['camera_0',['Camera',['../class_camera.html#aa8ec068be0051d9f01ff3f19ae37cddb',1,'Camera']]],
-  ['channelcount_1',['channelCount',['../class_image.html#a1199588fcdf503972928e8756eb9ec24',1,'Image']]],
+  ['channel_5fcount_1',['channel_count',['../class_image.html#a059b4ff9eb36efd3cc8269996f9e74ff',1,'Image']]],
   ['clear_2',['clear',['../class_command_buffer.html#accc1761193f40a84dd8e3dd05f18dd0f',1,'CommandBuffer::clear()'],['../class_g_l_command_buffer.html#afb2847fd985cc379404cbecd852afa2f',1,'GLCommandBuffer::clear()'],['../class_v_k_command_buffer.html#acdd3586370f5e2dd6d40c2b697d4b88a',1,'VKCommandBuffer::clear()']]],
   ['compile_3',['compile',['../class_shader.html#ae3484242fc9225bbde56ef271989bdd3',1,'Shader']]],
   ['compress_4',['compress',['../class_mesh.html#a85a46b3f1d32d145153ae05816e28368',1,'Mesh']]],

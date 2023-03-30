@@ -1,5 +1,5 @@
 var class_animation =
 [
-    [ "getDuration", "class_animation.html#aa2cd2d5b8e2e6a8d6a2366556e29b03f", null ],
-    [ "getName", "class_animation.html#af2714b2f99011e0ecf67952032f38b7b", null ]
+    [ "get_duration", "class_animation.html#a8177c2bdf70e2f7cea3c6b98de362c7f", null ],
+    [ "get_name", "class_animation.html#aee8f0cca14b449be03a24bf49db662fa", null ]
 ];

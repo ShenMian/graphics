@@ -6,6 +6,6 @@ var class_v_k_device =
       [ "Transfer", "class_v_k_device.html#a06fa199b3117acdfe766d967a560f799a6950810f0d2bba97a6f710c7b965b84e", null ],
       [ "Present", "class_v_k_device.html#a06fa199b3117acdfe766d967a560f799add058df87f5c88e3285a28ad7406a3c6", null ]
     ] ],
-    [ "getQueue", "class_v_k_device.html#ab9a1f3885fed4a385a311f6ac8abdcf0", null ],
-    [ "getQueueIndex", "class_v_k_device.html#a237f9b459beb02caba1d8e4836eab4a3", null ]
+    [ "get_queue", "class_v_k_device.html#a36545b90c67b53a996a1039bee126187", null ],
+    [ "get_queue_index", "class_v_k_device.html#a0967b0f83cc4f0f69b61d50e3f4fc9ef", null ]
 ];

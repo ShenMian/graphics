@@ -120,17 +120,17 @@ $(document).ready(function(){initNavTree('_model_importer_8h_source.html',''); i
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <a class="code hl_struct" href="struct_model.html">Model</a> <a class="code hl_function" href="class_model_importer.html#a9497388464c6e88232ef929d009cd471">load</a>(<span class="keyword">const</span> std::filesystem::path&amp; path, std::function&lt;<span class="keywordtype">void</span>(<span class="keywordtype">float</span>)&gt; callback = <span class="keyword">nullptr</span>);</div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordtype">void</span> loadScene();</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordtype">void</span> loadNode(<span class="keyword">const</span> aiNode&amp;);</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordtype">void</span> loadMesh(<span class="keyword">const</span> aiMesh&amp;);</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordtype">void</span> loadMaterial(<span class="keyword">const</span> aiMaterial&amp;);</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordtype">void</span> loadAnimation(<span class="keyword">const</span> aiAnimation&amp;);</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordtype">void</span> load_scene();</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordtype">void</span> load_node(<span class="keyword">const</span> aiNode&amp;);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordtype">void</span> load_mesh(<span class="keyword">const</span> aiMesh&amp;);</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordtype">void</span> load_material(<span class="keyword">const</span> aiMaterial&amp;);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordtype">void</span> load_animation(<span class="keyword">const</span> aiAnimation&amp;);</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    std::vector&lt;Mesh::Vertex&gt; loadVertices(<span class="keyword">const</span> aiMesh&amp;) <span class="keyword">noexcept</span>;</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    std::vector&lt;unsigned int&gt; loadIndices(<span class="keyword">const</span> aiMesh&amp;) <span class="keyword">noexcept</span>;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    std::vector&lt;Mesh::Vertex&gt; load_vertices(<span class="keyword">const</span> aiMesh&amp;) <span class="keyword">noexcept</span>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    std::vector&lt;unsigned int&gt; load_indices(<span class="keyword">const</span> aiMesh&amp;) <span class="keyword">noexcept</span>;</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keyword">const</span> aiScene* scene;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <a class="code hl_struct" href="struct_model.html">Model</a>*         model;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keyword">const</span> aiScene* scene_;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <a class="code hl_struct" href="struct_model.html">Model</a>*         model_;</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>};</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
 <div class="ttc" id="aclass_animation_html"><div class="ttname"><a href="class_animation.html">Animation</a></div><div class="ttdoc">3D 动画.</div><div class="ttdef"><b>Definition:</b> Animation.h:12</div></div>

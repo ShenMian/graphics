@@ -1,8 +1,8 @@
 var class_v_k_renderer =
 [
-    [ "getCommandPool", "class_v_k_renderer.html#a2688df65e25180d5b278acd638c26645", null ],
-    [ "getDevice", "class_v_k_renderer.html#ae94ac18315d26db579d64fa9eba9c980", null ],
-    [ "getInstance", "class_v_k_renderer.html#a7ba13c5bead768bb16789ed02c54865c", null ],
-    [ "getPhysicalDevice", "class_v_k_renderer.html#aa738911381876b0b264d3a0cbc6d89a2", null ],
-    [ "getSwapchain", "class_v_k_renderer.html#af0556e23b419b82a6cc229fdeb5fdf51", null ]
+    [ "get_command_pool", "class_v_k_renderer.html#ad48bc857e2b7b4d20d2c26e95633b7ba", null ],
+    [ "get_device", "class_v_k_renderer.html#a2431da556e668b635cb398a890ca34de", null ],
+    [ "get_instance", "class_v_k_renderer.html#ab91ba41793931ba2c92703864caee7c0", null ],
+    [ "get_physical_device", "class_v_k_renderer.html#aa301faeebdfd369b3b7f09cdc9310e09", null ],
+    [ "get_swapchain", "class_v_k_renderer.html#a83071838c5d9adc3347505fc5b0d4642", null ]
 ];
