@@ -24,15 +24,15 @@ void GLCommandBuffer::end()
 {
 }
 
-void GLCommandBuffer::beginRenderPass()
+void GLCommandBuffer::begin_render_pass()
 {
 }
 
-void GLCommandBuffer::endRenderPass()
+void GLCommandBuffer::end_render_pass()
 {
 }
 
-void GLCommandBuffer::setViewport(const Viewport& viewport)
+void GLCommandBuffer::set_viewport(const Viewport& viewport)
 {
 	auto cmd    = addCommand<GLCmdSetViewport>(GLOpcode::setViewport);
 	cmd->x      = static_cast<GLint>(viewport.x);
@@ -43,25 +43,25 @@ void GLCommandBuffer::setViewport(const Viewport& viewport)
 	cmd->f      = static_cast<GLfloat>(viewport.maxDepth);
 }
 
-void GLCommandBuffer::setPipeline(std::shared_ptr<Pipeline> pipeline)
+void GLCommandBuffer::set_pipeline(std::shared_ptr<Pipeline> pipeline)
 {
 	auto cmd      = addCommand<GLCmdSetPipeline>(GLOpcode::setPipeline);
 	cmd->pipeline = pipeline;
 }
 
-void GLCommandBuffer::setVertexBuffer(std::shared_ptr<VertexBuffer> vertexBuffer)
+void GLCommandBuffer::set_vertex_buffer(std::shared_ptr<VertexBuffer> vertex_buffer)
 {
 	auto cmd          = addCommand<GLCmdSetVertexBuffer>(GLOpcode::setVertexBuffer);
-	cmd->vertexBuffer = std::dynamic_pointer_cast<GLVertexBuffer>(vertexBuffer);
+	cmd->vertexBuffer = std::dynamic_pointer_cast<GLVertexBuffer>(vertex_buffer);
 }
 
-void GLCommandBuffer::setIndexBuffer(std::shared_ptr<IndexBuffer> indexBuffer)
+void GLCommandBuffer::set_index_buffer(std::shared_ptr<IndexBuffer> index_buffer)
 {
 	auto cmd         = addCommand<GLCmdSetIndexBuffer>(GLOpcode::setIndexBuffer);
-	cmd->indexBuffer = std::dynamic_pointer_cast<GLIndexBuffer>(indexBuffer);
+	cmd->indexBuffer = std::dynamic_pointer_cast<GLIndexBuffer>(index_buffer);
 }
 
-void GLCommandBuffer::setTexture(std::shared_ptr<Texture> texture, unsigned int slot)
+void GLCommandBuffer::set_texture(std::shared_ptr<Texture> texture, unsigned int slot)
 {
 	auto cmd     = addCommand<GLCmdSetTexture>(GLOpcode::setTexture);
 	cmd->texture = std::dynamic_pointer_cast<GLTexture>(texture);
@@ -74,36 +74,36 @@ void GLCommandBuffer::clear(uint8_t flags)
 	cmd->flags = flags;
 }
 
-void GLCommandBuffer::setClearColor(const Vector4& color)
+void GLCommandBuffer::set_clear_color(const Vector4& color)
 {
 	auto cmd   = addCommand<GLCmdSetClearColor>(GLOpcode::setClearColor);
 	cmd->color = color;
 }
 
-void GLCommandBuffer::setClearDepth(float depth)
+void GLCommandBuffer::set_clear_depth(float depth)
 {
 	auto cmd   = addCommand<GLCmdSetClearDepth>(GLOpcode::setClearDepth);
 	cmd->depth = depth;
 }
 
-void GLCommandBuffer::setClearStencil(uint32_t value)
+void GLCommandBuffer::set_clear_stencil(uint32_t value)
 {
 	auto cmd = addCommand<GLCmdSetClearStencil>(GLOpcode::setClearStencil);
 	cmd->s   = value;
 }
 
-void GLCommandBuffer::draw(uint32_t vertexCount, uint32_t firstVertex)
+void GLCommandBuffer::draw(uint32_t vertex_count, uint32_t first_vertex)
 {
 	auto cmd         = addCommand<GLCmdDraw>(GLOpcode::draw);
-	cmd->vertexCount = vertexCount;
-	cmd->firstVertex = firstVertex;
+	cmd->vertexCount = vertex_count;
+	cmd->firstVertex = first_vertex;
 }
 
-void GLCommandBuffer::drawIndexed(uint32_t indexCount, uint32_t firstIndex)
+void GLCommandBuffer::draw_indexed(uint32_t index_count, uint32_t first_index)
 {
 	auto cmd        = addCommand<GLCmdDrawIndexed>(GLOpcode::drawIndexed);
-	cmd->indexCount = indexCount;
-	cmd->firstIndex = firstIndex;
+	cmd->indexCount = index_count;
+	cmd->firstIndex = first_index;
 }
 
 void GLCommandBuffer::addCommand(GLOpcode opcode)

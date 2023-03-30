@@ -6,56 +6,56 @@
 
 #include <optional>
 
-std::vector<Monitor> Monitor::monitors;
+std::vector<Monitor> Monitor::monitors_;
 
-const Monitor* Monitor::getPrimary() noexcept
+const Monitor* Monitor::get_primary() noexcept
 {
-	const auto it = std::find(monitors.begin(), monitors.end(), Monitor(glfwGetPrimaryMonitor()));
-	if(it == monitors.end())
+	const auto it = std::find(monitors_.begin(), monitors_.end(), Monitor(glfwGetPrimaryMonitor()));
+	if(it == monitors_.end())
 		return nullptr;
 	return &(*it);
 }
 
-const std::vector<Monitor>& Monitor::getMonitors()
+const std::vector<Monitor>& Monitor::get_monitors()
 {
-	return monitors;
+	return monitors_;
 }
 
-std::string_view Monitor::getName() const
+std::string_view Monitor::get_name() const
 {
-	return glfwGetMonitorName(handle);
+	return glfwGetMonitorName(handle_);
 }
 
-Vector2i Monitor::getSize() const
+Vector2i Monitor::get_size() const
 {
-	const auto videoMode = glfwGetVideoMode(handle);
+	const auto videoMode = glfwGetVideoMode(handle_);
 	return {videoMode->width, videoMode->height};
 }
 
-Vector2i Monitor::getPosition() const
+Vector2i Monitor::get_position() const
 {
 	int x, y;
-	glfwGetMonitorPos(handle, &x, &y);
+	glfwGetMonitorPos(handle_, &x, &y);
 	return {x, y};
 }
 
-int Monitor::getRefreshRate() const
+int Monitor::get_refresh_rate() const
 {
-	const auto videoMode = glfwGetVideoMode(handle);
+	const auto videoMode = glfwGetVideoMode(handle_);
 	return videoMode->refreshRate;
 }
 
-bool Monitor::isPrimary() const
+bool Monitor::is_primary() const
 {
-	return handle == glfwGetPrimaryMonitor();
+	return handle_ == glfwGetPrimaryMonitor();
 }
 
-GLFWmonitor* Monitor::getHandle() const
+GLFWmonitor* Monitor::get_handle() const
 {
-	return handle;
+	return handle_;
 }
 
-Monitor::Monitor(GLFWmonitor* handle) : handle(handle)
+Monitor::Monitor(GLFWmonitor* handle) : handle_(handle)
 {
 }
 
@@ -64,10 +64,10 @@ void Monitor::init()
 	static auto update = [] {
 		int        count;
 		const auto handles = glfwGetMonitors(&count);
-		monitors.clear();
+		monitors_.clear();
 		for(int i = 0; i < count; i++)
-			monitors.push_back(std::move(Monitor(handles[i])));
-		if(monitors.empty())
+			monitors_.push_back(std::move(Monitor(handles[i])));
+		if(monitors_.empty())
 			throw std::runtime_error("do no have any monitor");
 	};
 

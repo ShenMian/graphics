@@ -7,58 +7,58 @@
 namespace ui
 {
 
-uint64_t Widget::nextId = 0;
+uint64_t Widget::next_id_ = 0;
 
-Widget::Widget() : id(requestId())
+Widget::Widget() : id_(request_id())
 {
 }
 
-Widget::Widget(const std::string& label) : label(label), id(requestId())
+Widget::Widget(const std::string& label) : label_(label), id_(request_id())
 {
-	updateHandle();
+	update_handle();
 }
 
-Widget::Widget(const std::string& label, const std::string& id) : label(label), id(std::stoull(id))
+Widget::Widget(const std::string& label, const std::string& id) : label_(label), id_(std::stoull(id))
 {
-	updateHandle();
+	update_handle();
 }
 
-Widget::Widget(const Widget& rhs) : label(rhs.label), id(requestId())
+Widget::Widget(const Widget& rhs) : label_(rhs.label_), id_(request_id())
 {
-	updateHandle();
+	update_handle();
 }
 
-void Widget::setLabel(const std::string& label)
+void Widget::set_label(const std::string& label)
 {
-	this->label = label;
-	updateHandle();
+	this->label_ = label;
+	update_handle();
 }
 
-const std::string& Widget::getLabel() const noexcept
+const std::string& Widget::get_label() const noexcept
 {
-	return label;
+	return label_;
 }
 
-uint64_t Widget::getId() const noexcept
+uint64_t Widget::get_id() const noexcept
 {
-	return id;
+	return id_;
 }
 
 void Widget::update()
 {
 }
 
-void Widget::updateHandle()
+void Widget::update_handle()
 {
 	// if(label.contains("##"))
-	if(label.find("##") != std::string::npos)
+	if(label_.find("##") != std::string::npos)
 		throw std::runtime_error("widget label cannot contain \"##\".");
-	handle = label + "###" + std::to_string(id);
+	handle_ = label_ + "###" + std::to_string(id_);
 }
 
-uint64_t Widget::requestId()
+uint64_t Widget::request_id()
 {
-	return nextId++;
+	return next_id_++;
 }
 
 } // namespace ui

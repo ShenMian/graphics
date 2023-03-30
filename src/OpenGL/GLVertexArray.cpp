@@ -73,16 +73,16 @@ void GLVertexArray::build(const VertexFormat& fmt, GLBuffer& vbo)
 {
 	GLint maxAttribs;
 	glGetIntegerv(GL_MAX_VERTEX_ATTRIBS, &maxAttribs);
-	if(fmt.getAttributes().size() > maxAttribs)
+	if(fmt.get_attributes().size() > maxAttribs)
 		throw std::runtime_error("too many vertex attributes");
 
-	for(const auto& attr : fmt.getAttributes())
+	for(const auto& attr : fmt.get_attributes())
 	{
 		glEnableVertexArrayAttrib(handle, attr.location);
 		glVertexArrayAttribBinding(handle, attr.location, 0);
 		glVertexArrayAttribFormat(handle, attr.location, Components[attr.format], GLType[attr.format], attr.normalized,
 		                          attr.offset);
 	}
-	glVertexArrayVertexBuffer(handle, 0, vbo, 0, fmt.getStride());
+	glVertexArrayVertexBuffer(handle, 0, vbo, 0, fmt.get_stride());
 	glVertexArrayElementBuffer(handle, vbo);
 }

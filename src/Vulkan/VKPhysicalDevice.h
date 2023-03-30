@@ -18,27 +18,27 @@ public:
 
 	VKPhysicalDevice(VkPhysicalDevice device, VkSurfaceKHR surface);
 
-	const VkPhysicalDeviceProperties& getProperties() const noexcept;
+	const VkPhysicalDeviceProperties& get_properties() const noexcept;
 
-	const VkPhysicalDeviceFeatures& getFeatures() const noexcept;
+	const VkPhysicalDeviceFeatures& get_features() const noexcept;
 
-	VkSurfaceKHR getSurface() const noexcept;
+	VkSurfaceKHR get_surface() const noexcept;
 
 	/**
 	 * @brief 获取设备名称.
 	 */
-	std::string_view getName() const noexcept;
+	std::string_view get_name() const noexcept;
 
 	/**
 	 * @brief 获取设备供应商名称.
 	 */
-	std::string_view getVendorName() const noexcept;
+	std::string_view get_vendor_name() const noexcept;
 
-	VkSurfaceCapabilitiesKHR        getSurfaceCapabilities() const;
-	std::vector<VkSurfaceFormatKHR> getSurfaceFormats() const;
-	std::vector<VkPresentModeKHR>   getSurfacePresentModes() const;
+	VkSurfaceCapabilitiesKHR        get_surface_capabilities() const;
+	std::vector<VkSurfaceFormatKHR> get_surface_formats() const;
+	std::vector<VkPresentModeKHR>   get_surface_present_modes() const;
 
-	bool isExtensionAvailable(std::string_view name) const;
+	bool is_extension_available(std::string_view name) const;
 
 	std::optional<uint32_t> graphics = std::nullopt;
 	std::optional<uint32_t> compute  = std::nullopt;
@@ -49,11 +49,11 @@ public:
 	operator VkPhysicalDevice() const;
 
 private:
-	VkPhysicalDevice           handle;
-	VkPhysicalDeviceProperties properties;
-	VkPhysicalDeviceFeatures   features;
+	VkPhysicalDevice           handle_;
+	VkPhysicalDeviceProperties properties_;
+	VkPhysicalDeviceFeatures   features_;
 
-	VkSurfaceKHR surface;
+	VkSurfaceKHR surface_;
 
-	std::vector<VkExtensionProperties> availableExtensions;
+	std::vector<VkExtensionProperties> available_extensions_;
 };

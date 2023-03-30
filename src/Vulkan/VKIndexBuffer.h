@@ -12,11 +12,11 @@ class VKIndexBuffer : public IndexBuffer
 public:
 	VKIndexBuffer(const uint32_t* data, size_t size, Buffer::Usage usage);
 
-	Buffer& getBuffer() override;
+	Buffer& get_buffer() override;
 
 	operator VkBuffer();
 	operator VkBuffer() const;
 
 private:
-	VKBuffer buffer;
+	VKBuffer buffer_;
 };

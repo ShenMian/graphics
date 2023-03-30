@@ -17,14 +17,14 @@ class Node : public Widget
 public:
 	Node(const std::string& label);
 
-	void       addPin(const Pin& pin);
-	const Pin* getPinById(uint64_t id);
+	void       add_pin(const Pin& pin);
+	const Pin* get_pin_by_id(uint64_t id);
 
 	void update() override;
 
 private:
-	std::vector<Pin> inputs;
-	std::vector<Pin> outputs;
+	std::vector<Pin> inputs_;
+	std::vector<Pin> outputs_;
 };
 
 } // namespace ui

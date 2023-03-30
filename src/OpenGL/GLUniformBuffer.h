@@ -15,7 +15,7 @@ class GLUniformBuffer : public UniformBuffer
 public:
 	GLUniformBuffer(int binding, size_t size);
 
-	Buffer& getBuffer() override;
+	Buffer& get_buffer() override;
 
 private:
 	GLBuffer buffer;

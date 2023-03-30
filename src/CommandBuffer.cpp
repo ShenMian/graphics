@@ -9,7 +9,7 @@
 
 std::shared_ptr<CommandBuffer> CommandBuffer::create()
 {
-	switch(Renderer::getBackend())
+	switch(Renderer::get_backend())
 	{
 		using enum Renderer::Backend;
 

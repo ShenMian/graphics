@@ -16,7 +16,7 @@ public:
 	VKDevice build();
 
 private:
-	std::vector<VkDeviceQueueCreateInfo> queueInfos;
+	std::vector<VkDeviceQueueCreateInfo> queue_infos_;
 
-	VKPhysicalDevice& physicalDevice;
+	VKPhysicalDevice& physical_device_;
 };

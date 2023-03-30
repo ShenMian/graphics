@@ -21,18 +21,18 @@ public:
 
 	void init()
 	{
-		Renderer::setBackend(Renderer::Backend::OpenGL);
+		Renderer::set_backend(Renderer::Backend::OpenGL);
 		Window::init();
-		window = new Window(name, Monitor::getPrimary()->getSize() / 2);
+		window = new Window(name, Monitor::get_primary()->get_size() / 2);
 
 		Renderer::init(*window);
 		UI::init(*window);
 		Font::init();
 
-		Input::setWindow(*window);
+		Input::set_window(*window);
 
-		printMonitorInfo();
-		printRendererInfo();
+		print_monitor_info();
+		print_renderer_info();
 	}
 
 	void deinit()
@@ -55,34 +55,34 @@ public:
 		}
 		catch(std::runtime_error& e)
 		{
-			printError(e.what());
+			std::cout << e.what() << '\n';
 			getchar();
 			return 1;
 		}
 	}
 
-	void printMonitorInfo()
+	void print_monitor_info()
 	{
-		const auto monitors = Monitor::getMonitors();
+		const auto monitors = Monitor::get_monitors();
 		fmt::print("Monitors\n");
 		for(const auto& mon : monitors)
 		{
-			fmt::print("{:{}}{}\n", "", 2, mon.getName());
-			fmt::print("{:{}}{:12}: {}x{}\n", "", 4, "size", mon.getSize().x(), mon.getSize().y());
-			fmt::print("{:{}}{:12}: {}\n", "", 4, "refresh rate", mon.getRefreshRate());
+			fmt::print("{:{}}{}\n", "", 2, mon.get_name());
+			fmt::print("{:{}}{:12}: {}x{}\n", "", 4, "size", mon.get_size().x(), mon.get_size().y());
+			fmt::print("{:{}}{:12}: {}\n", "", 4, "refresh rate", mon.get_refresh_rate());
 		}
 	}
 
-	void printRendererInfo()
+	void print_renderer_info()
 	{
 		const auto renderer = Renderer::get();
 		fmt::print("Renderer\n");
-		fmt::print("{:{}}{:8}: {}\n", "", 2, "device", renderer->getDeviceName());
-		fmt::print("{:{}}{:8}: {}\n", "", 2, "renderer", renderer->getRendererName());
-		fmt::print("{:{}}{:8}: {}\n", "", 2, "vendor", renderer->getVendorName());
+		fmt::print("{:{}}{:8}: {}\n", "", 2, "device", renderer->get_device_name());
+		fmt::print("{:{}}{:8}: {}\n", "", 2, "renderer", renderer->get_renderer_name());
+		fmt::print("{:{}}{:8}: {}\n", "", 2, "vendor", renderer->get_vendor_name());
 	}
 
-	void printModelInfo(const Model& model)
+	void print_model_info(const Model& model)
 	{
 		fmt::print("Model\n");
 		fmt::print("{:{}}{:9}: {}\n", "", 2, "name", model.name);
@@ -93,11 +93,6 @@ public:
 		fmt::print("{:{}}{:9}: {}\n", "", 2, "materials", model.materials.size());
 		fmt::print("{:{}}{:9}: {}\n", "", 2, "anims", model.animations.size());
 	}
-
-	void printInfo(std::string_view msg) { fmt::print("{} {}\n", fmt::styled("[*]", fg(fmt::color::blue)), msg); }
-	void printGood(std::string_view msg) { fmt::print("{} {}\n", fmt::styled("[+]", fg(fmt::color::red)), msg); }
-	void printError(std::string_view msg) { fmt::print("{} {}\n", fmt::styled("[-]", fg(fmt::color::red)), msg); }
-	void printWarn(std::string_view msg) { fmt::print("{} {}\n", fmt::styled("[!]", fg(fmt::color::yellow)), msg); }
 
 protected:
 	Window* window;

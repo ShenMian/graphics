@@ -57,7 +57,7 @@ public:
 	 *
 	 * @warning 不建议直接使用.
 	 */
-	Vector2f getRaw(Thumb thumb) const noexcept;
+	Vector2f get_raw(Thumb thumb) const noexcept;
 
 	/**
 	 * @brief 获取线性按键力度.
@@ -77,7 +77,7 @@ public:
 	 *
 	 * @warning 不建议直接使用.
 	 */
-	float getRaw(Trigger trigger) const noexcept;
+	float get_raw(Trigger trigger) const noexcept;
 
 	/**
 	 * @brief 获取按键状态.
@@ -96,19 +96,19 @@ public:
 	 * 
 	 * @warning 仅在 Windows 下支持 XBox.
 	 */
-	void setVibration(float leftSpeed, float rightSpeed);
+	void set_vibration(float leftSpeed, float rightSpeed);
 
 	/**
 	 * @brief 获取设备名称. 人类可读的, UTF-8 编码.
 	 */
-	std::string_view getName() const;
+	std::string_view get_name() const;
 
 	/**
 	 * @brief 检查手柄是否处于连接状态.
 	 *
 	 * @return 是否已连接.
 	 */
-	bool isConnected() const;
+	bool is_connected() const;
 
 	/**
 	 * @brief 加载 SDL 按键映射数据库.
@@ -117,7 +117,7 @@ public:
 	 *
 	 * @return 是否成功.
 	 */
-	bool loadMappingsDb(const std::filesystem::path& path);
+	bool load_mappings_db(const std::filesystem::path& path);
 
 	bool operator==(const Gamepad&) const;
 
@@ -125,14 +125,14 @@ public:
 	static void deinit();
 
 private:
-	handle_type handle;
+	handle_type handle_;
 
-	float leftThumbDeadzone  = 0.1f;
-	float rightThumbDeadzone = 0.1f;
-	float triggerThreshold   = 0.01f;
+	float left_thumb_deadzone_  = 0.1f;
+	float right_thumb_deadzone_ = 0.1f;
+	float trigger_threshold_   = 0.01f;
 
-	unsigned char buttons[15] = {};
-	float         axes[6]     = {};
+	unsigned char buttons_[15] = {};
+	float         axes_[6]     = {};
 };
 
 /**
@@ -194,7 +194,7 @@ enum class Gamepad::Button : uint8_t
  * ```cpp
  * Gamepad gamepad; // 如果使用一个手柄, 可以直接使用默认构造函数
  *
- * if(!gamepad.isConnected()) // 检测手柄是否处于连接状态
+ * if(!gamepad.is_connected()) // 检测手柄是否处于连接状态
  * 	return;
  *
  * gamepad.update(); // 更新手柄数据, 获取按键/摇杆数据前需要先更新

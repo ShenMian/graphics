@@ -49,102 +49,102 @@ public:
 	 *
 	 * @param title 窗口标题.
 	 */
-	void setTitle(std::string_view title);
+	void set_title(std::string_view title);
 
 	/**
 	 * @brief 设置窗口大小.
 	 *
 	 * @param size 窗口大小.
 	 */
-	void setSize(const Vector2i& size);
+	void set_size(const Vector2i& size);
 
 	/**
 	 * @brief 获取窗口大小.
 	 */
-	Vector2i getSize() const;
+	Vector2i get_size() const;
 
 	/**
 	 * @brief 设置窗口坐标.
 	 *
 	 * @param pos 新窗口坐标.
 	 */
-	void setPosition(const Vector2i& pos);
+	void set_position(const Vector2i& pos);
 
 	/**
 	 * @brief 获取窗口坐标.
 	 *
 	 * @return 当前窗口坐标.
 	 */
-	Vector2i getPosition() const;
+	Vector2i get_position() const;
 
 	/**
 	 * @brief 设置窗口可见性.
 	 *
 	 * @param visible true 为可见, false 为不可见.
 	 */
-	void setVisible(bool visible);
+	void set_visible(bool visible);
 
 	/**
 	 * @brief 获取窗口可见性.
 	 *
 	 * @return true 为可见, false 为不可见.
 	 */
-	bool isVisible() const noexcept;
+	bool is_visible() const noexcept;
 
 	/**
 	 * @brief 设置窗口是否全屏.
 	 *
 	 * @param fullscreen true 为全屏, false 为窗口.
 	 */
-	void setFullscreen(bool fullscreen);
+	void set_fullscreen(bool fullscreen);
 
 	/**
 	 * @brief 是否处于全屏模式.
 	 */
-	bool isFullscreen() const noexcept;
+	bool is_fullscreen() const noexcept;
 
 	/**
 	 * @brief 设置是否开启垂直同步.
 	 *
 	 * @param enable true 为开启, false 为关闭.
 	 */
-	void setVSync(bool enable) noexcept;
+	void set_vsync(bool enable) noexcept;
 
 	/**
 	 * @brief 设置大小是否可调.
 	 *
 	 * @param enable true 为可调, false 为不可调.
 	 */
-	void setResizable(bool enable);
+	void set_resizable(bool enable);
 
 	/**
 	 * @brief 是否可调窗口大小.
 	 */
-	bool isResizable() const noexcept;
+	bool is_resizable() const noexcept;
 
 	/**
 	 * @brief 设置窗口是否置顶.
 	 *
 	 * @param enable true 为置顶, false 为不置顶.
 	 */
-	void setFloating(bool enable);
+	void set_floating(bool enable);
 
 	/**
 	 * @brief 是否已置顶.
 	 */
-	bool isFloating() const noexcept;
+	bool is_floating() const noexcept;
 
 	/**
 	 * @brief 设置窗口图标.
 	 *
 	 * @param image 图标图像.
 	 */
-	void setIcon(const Image& image);
+	void set_icon(const Image& image);
 
 	/**
 	 * @brief 请求聚焦.
 	 */
-	void requestFocus();
+	void request_focus();
 
 	/**
 	 * @brief 设置是否开启光标锁定.
@@ -153,24 +153,24 @@ public:
 	 *
 	 * @param enable true 为开启, false 为关闭.
 	 */
-	void setCursorLock(bool enable);
+	void set_cursor_lock(bool enable);
 
 	/**
 	 * @brief 是否开启光标锁定.
 	 */
-	bool isCursorLock() const;
+	bool is_cursor_lock() const;
 
 	/**
 	 * @brief 设置光标在窗口中的坐标.
 	 *
 	 * @param pos 新光标在窗口中的坐标.
 	 */
-	void setCursorPosition(const Vector2i& pos);
+	void set_cursor_position(const Vector2i& pos);
 
 	/**
 	 * @brief 获取光标在窗口中的坐标.
 	 */
-	Vector2d getCursorPosition() const;
+	Vector2d get_cursor_position() const;
 
 	/**
 	 * @brief 设置是否启用原始鼠标运动.
@@ -181,12 +181,12 @@ public:
 	 *
 	 * @warning 仅在禁用光标时有效.
 	 */
-	void setRawMouseMotion(bool enable);
+	void set_raw_mouse_motion(bool enable);
 
 	/**
 	 * @brief 获取本地句柄.
 	 */
-	GLFWwindow* getHandle() const;
+	GLFWwindow* get_handle() const;
 
 	std::function<void(Vector2i)>                 onResize;     ///< 窗口大小变化时回调
 	std::function<void(bool)>                     onFocus;      ///< 窗口获取/失去焦点回调
@@ -202,12 +202,12 @@ public:
 	static void deinit();
 
 private:
-	void setupCallbacks();
+	void setup_callbacks();
 
-	GLFWwindow* handle;
+	GLFWwindow* handle_;
 
-	Vector2i size;
-	Vector2i position;
+	Vector2i size_;
+	Vector2i position_;
 };
 
 /** @}*/

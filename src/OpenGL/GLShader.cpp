@@ -26,14 +26,14 @@ std::unordered_map<Shader::Stage, GLenum> GLStage = {{Shader::Stage::Vertex, GL_
 
 } // namespace
 
-GLShader::GLShader(const Descriptor& desc) : Shader(desc), handle(glCreateShader(GLStage[stage]))
+GLShader::GLShader(const Descriptor& desc) : Shader(desc), handle(glCreateShader(GLStage[stage_]))
 {
-	auto buf = getCode(desc.path);
+	auto buf = get_code(desc.path);
 	parse(buf);
 
 	glShaderBinary(1, &handle, GL_SHADER_BINARY_FORMAT_SPIR_V, buf.data(),
 	               static_cast<GLsizei>(buf.size() * sizeof(uint32_t)));
-	glSpecializeShader(handle, entryPoint.c_str(), 0, nullptr, nullptr);
+	glSpecializeShader(handle, entry_point_.c_str(), 0, nullptr, nullptr);
 }
 
 GLShader::~GLShader()
@@ -41,7 +41,7 @@ GLShader::~GLShader()
 	glDeleteShader(handle);
 }
 
-size_t GLShader::getHandle() const
+size_t GLShader::get_handle() const
 {
 	return handle;
 }

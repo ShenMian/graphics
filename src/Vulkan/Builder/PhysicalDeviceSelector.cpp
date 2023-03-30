@@ -14,39 +14,39 @@ PhysicalDeviceSelector::PhysicalDeviceSelector(VKInstance& instance, VkSurfaceKH
 	vkEnumeratePhysicalDevices(instance, &deviceCount, physicalDevices.data());
 
 	for(auto& device : physicalDevices)
-		devices.emplace_back(device, surface);
+		devices_.emplace_back(device, surface);
 }
 
 VKPhysicalDevice PhysicalDeviceSelector::select()
 {
-	for(const auto& device : devices)
+	for(const auto& device : devices_)
 	{
 		// TODO: 需要兼容没有独显的环境
-		if(!(device.getProperties().deviceType == VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU &&
-		     device.getFeatures().geometryShader))
+		if(!(device.get_properties().deviceType == VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU &&
+		     device.get_features().geometryShader))
 			continue;
 
-		if(info.requireGraphicsQueue)
+		if(info_.require_graphics_queue)
 			if(!device.graphics.has_value())
 				continue;
 
-		if(info.requireComputeQueue)
+		if(info_.require_compute_queue)
 			if(!device.compute.has_value())
 				continue;
 
-		if(info.requireTransferQueue)
+		if(info_.require_transfer_queue)
 			if(!device.transfer.has_value())
 				continue;
 
-		if(info.requirePresentQueue)
+		if(info_.require_present_queue)
 			if(!device.present.has_value())
 				continue;
 
-		if(info.requireMultiViewport)
-			if(!device.getFeatures().multiViewport)
+		if(info_.require_multi_viewport)
+			if(!device.get_features().multiViewport)
 				continue;
 
-		if(!device.isExtensionAvailable(VK_KHR_SWAPCHAIN_EXTENSION_NAME))
+		if(!device.is_extension_available(VK_KHR_SWAPCHAIN_EXTENSION_NAME))
 			continue;
 
 		return device;
@@ -54,26 +54,26 @@ VKPhysicalDevice PhysicalDeviceSelector::select()
 	throw std::runtime_error("failed to select suitable physical device");
 }
 
-PhysicalDeviceSelector& PhysicalDeviceSelector::requireGraphicsQueue() noexcept
+PhysicalDeviceSelector& PhysicalDeviceSelector::require_graphics_queue() noexcept
 {
-	info.requireGraphicsQueue = true;
+	info_.require_graphics_queue = true;
 	return *this;
 }
 
-PhysicalDeviceSelector& PhysicalDeviceSelector::requireComputeQueue() noexcept
+PhysicalDeviceSelector& PhysicalDeviceSelector::require_compute_queue() noexcept
 {
-	info.requireComputeQueue = true;
+	info_.require_compute_queue = true;
 	return *this;
 }
 
-PhysicalDeviceSelector& PhysicalDeviceSelector::requireTransferQueue() noexcept
+PhysicalDeviceSelector& PhysicalDeviceSelector::require_transfer_queue() noexcept
 {
-	info.requireTransferQueue = true;
+	info_.require_transfer_queue = true;
 	return *this;
 }
 
-PhysicalDeviceSelector& PhysicalDeviceSelector::requirePresentQueue() noexcept
+PhysicalDeviceSelector& PhysicalDeviceSelector::require_present_queue() noexcept
 {
-	info.requirePresentQueue = true;
+	info_.require_present_queue = true;
 	return *this;
 }

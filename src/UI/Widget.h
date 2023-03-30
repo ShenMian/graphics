@@ -24,18 +24,18 @@ public:
 	 *
 	 * @param label 组件标签. 不能包含字符串 "##".
 	 */
-	void setLabel(const std::string& label);
+	void set_label(const std::string& label);
 
 	/**
 	 * @brief 获取组件标签.
 	 */
-	const std::string& getLabel() const noexcept;
+	const std::string& get_label() const noexcept;
 
-	uint64_t getId() const noexcept;
+	uint64_t get_id() const noexcept;
 
 	virtual void update();
 
-	static uint64_t requestId();
+	static uint64_t request_id();
 
 protected:
 	/**
@@ -43,15 +43,15 @@ protected:
 	 *
 	 * 每当 label 或 id 发生改变时, 句柄应该被更新.
 	 */
-	void updateHandle();
+	void update_handle();
 
-	std::string handle;
+	std::string handle_;
 
-	std::string label;
-	uint64_t    id;
+	std::string label_;
+	uint64_t    id_;
 
 private:
-	static uint64_t nextId;
+	static uint64_t next_id_;
 };
 
 } // namespace ui

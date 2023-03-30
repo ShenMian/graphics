@@ -3,22 +3,22 @@
 
 #include "Animation.h"
 
-Animation::Animation(const std::string& name, float duration, uint32_t tickRate)
-    : name(name), duration(duration), tickRate(tickRate)
+Animation::Animation(const std::string& name, float duration, uint32_t tick_rate)
+    : name_(name), duration_(duration), tick_rate_(tick_rate)
 {
 }
 
-const std::string& Animation::getName() const
+const std::string& Animation::get_name() const
 {
-	return name;
+	return name_;
 }
 
-float Animation::getDuration() const
+float Animation::get_duration() const
 {
-	return duration;
+	return duration_;
 }
 
-uint32_t Animation::getTickRate() const
+uint32_t Animation::get_tick_rate() const
 {
-	return tickRate;
+	return tick_rate_;
 }

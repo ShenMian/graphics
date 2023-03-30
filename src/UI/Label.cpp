@@ -7,19 +7,19 @@
 namespace ui
 {
 
-Label::Label(const std::string& label) : Widget(label), text(label)
+Label::Label(const std::string& label) : Widget(label), text_(label)
 {
 }
 
-void Label::setText(const std::string& text)
+void Label::set_text(const std::string& text)
 {
-	this->text = text;
+	this->text_ = text;
 }
 
 void Label::update()
 {
-	ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(color.x(), color.y(), color.z(), 1.f));
-	ImGui::TextUnformatted(text.c_str());
+	ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(color_.x(), color_.y(), color_.z(), 1.f));
+	ImGui::TextUnformatted(text_.c_str());
 	ImGui::PopStyleColor(1);
 }
 

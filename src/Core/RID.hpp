@@ -25,23 +25,23 @@ public:
 	operator uint32_t() const;
 
 private:
-	uint32_t           id;
-	std::atomic<State> state = State::Unloaded;
+	uint32_t           id_;
+	std::atomic<State> state_ = State::Unloaded;
 
-	inline static std::set<uint32_t> usedIds;
+	inline static std::set<uint32_t> used_ids_;
 
-	inline static std::uniform_int_distribution<uint32_t> distrib;
-	inline static std::mt19937                            generator = std::mt19937(std::random_device()());
+	inline static std::uniform_int_distribution<uint32_t> distrib_;
+	inline static std::mt19937                            generator_ = std::mt19937(std::random_device()());
 };
 
 inline RID::RID()
 {
-	assert(usedIds.size() <= std::numeric_limits<uint32_t>::max());
+	assert(used_ids_.size() <= std::numeric_limits<uint32_t>::max());
 #if 1
 	do
 	{
-		id = distrib(generator);
-	} while(usedIds.contains(id));
+		id_ = distrib_(generator_);
+	} while(used_ids_.contains(id_));
 #else
 	id = distrib(generator);
 #endif
@@ -49,5 +49,5 @@ inline RID::RID()
 
 inline RID::operator uint32_t() const
 {
-	return id;
+	return id_;
 }

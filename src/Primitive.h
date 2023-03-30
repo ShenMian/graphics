@@ -16,7 +16,7 @@ public:
 	/**
 	 * @brief 生成平面.
 	 */
-	static std::optional<Mesh> makePlane(unsigned int x, unsigned int z);
+	static std::optional<Mesh> make_plane(unsigned int x, unsigned int z);
 
 	/**
 	 * @brief 生成立方体.
@@ -30,15 +30,15 @@ public:
 	 * @param height     高度.
 	 * @param radius     半径.
 	 */
-	static std::optional<Mesh> makeCapsule(unsigned int resolution, float height, float radius);
+	static std::optional<Mesh> make_capsule(unsigned int resolution, float height, float radius);
 
 	/**
 	 * @brief 生成包含 UV 坐标的球.
 	 */
-	static std::optional<Mesh> makeUVSphere(unsigned int lat, unsigned int lon);
+	static std::optional<Mesh> make_uv_sphere(unsigned int lat, unsigned int lon);
 
 	/**
 	 * @brief 生成 ICO 球.
 	 */
-	static Mesh makeIcoSphere(unsigned int resolution);
+	static Mesh make_ico_sphere(unsigned int resolution);
 };

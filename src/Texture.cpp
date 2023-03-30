@@ -31,12 +31,12 @@ std::shared_ptr<Texture> Texture::create(const fs::path& path, Format fmt, uint3
 	assert(type != Type::Cube);
 
 	const auto absPath = fs::absolute(path);
-	const auto it      = cache.find(absPath);
-	if(it != cache.end())
+	const auto it      = cache_.find(absPath);
+	if(it != cache_.end())
 		return it->second;
 
 	std::shared_ptr<Texture> ptr;
-	switch(Renderer::getBackend())
+	switch(Renderer::get_backend())
 	{
 		using enum Renderer::Backend;
 
@@ -47,7 +47,7 @@ std::shared_ptr<Texture> Texture::create(const fs::path& path, Format fmt, uint3
 	case Vulkan:
 		assert(false);
 	}
-	cache.insert({absPath, ptr});
+	cache_.insert({absPath, ptr});
 	return ptr;
 }
 
@@ -55,7 +55,7 @@ std::shared_ptr<Texture> Texture::create(const Image& image, Format fmt, uint32_
 {
 	assert(type != Type::Cube);
 
-	switch(Renderer::getBackend())
+	switch(Renderer::get_backend())
 	{
 		using enum Renderer::Backend;
 
@@ -73,7 +73,7 @@ std::shared_ptr<Texture> Texture::create(const std::vector<Image>& images)
 	if(images.size() != 6)
 		throw std::runtime_error("cubemap should have 6 images");
 
-	switch(Renderer::getBackend())
+	switch(Renderer::get_backend())
 	{
 		using enum Renderer::Backend;
 
@@ -86,16 +86,16 @@ std::shared_ptr<Texture> Texture::create(const std::vector<Image>& images)
 	return nullptr;
 }
 
-Texture::Type Texture::getType() const
+Texture::Type Texture::get_type() const
 {
-	return type;
+	return type_;
 }
 
-Format Texture::getFormat() const
+Format Texture::get_format() const
 {
-	return format;
+	return format_;
 }
 
-Texture::Texture(Type type, Format fmt) : type(type), format(fmt)
+Texture::Texture(Type type, Format fmt) : type_(type), format_(fmt)
 {
 }

@@ -15,7 +15,7 @@ std::shared_ptr<IndexBuffer> IndexBuffer::create(std::span<const uint32_t> data,
 
 std::shared_ptr<IndexBuffer> IndexBuffer::create(const uint32_t* data, size_t size, Buffer::Usage usage)
 {
-	switch(Renderer::getBackend())
+	switch(Renderer::get_backend())
 	{
 		using enum Renderer::Backend;
 
@@ -28,17 +28,17 @@ std::shared_ptr<IndexBuffer> IndexBuffer::create(const uint32_t* data, size_t si
 	return nullptr;
 }
 
-size_t IndexBuffer::getSize() const
+size_t IndexBuffer::get_size() const
 {
-	return size;
+	return size_;
 }
 
-uint32_t IndexBuffer::getCount() const
+uint32_t IndexBuffer::get_count() const
 {
-	return count;
+	return count_;
 }
 
 IndexBuffer::IndexBuffer(const void* data, size_t size)
-    : size(size), count(static_cast<uint32_t>(size / sizeof(unsigned int)))
+    : size_(size), count_(static_cast<uint32_t>(size / sizeof(unsigned int)))
 {
 }

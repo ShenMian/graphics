@@ -11,8 +11,8 @@ class VKCommandQueue : public CommandQueue
 public:
 	VKCommandQueue();
 
-	void submit(std::shared_ptr<CommandBuffer> commandBuffer) override;
+	void submit(std::shared_ptr<CommandBuffer> command_buffer) override;
 
 private:
-	VkQueue handle;
+	VkQueue handle_;
 };

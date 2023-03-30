@@ -64,17 +64,17 @@ public:
 		auto cmdBuffer = CommandBuffer::create();
 
 		Camera camera(Camera::Type::Perspective);
-		camera.setPerspective(radians(60.f), (float)window->getSize().x() / window->getSize().y(), 0.1f, 5000.f);
-		camera.setPosition({0, 0, 3});
+		camera.set_perspective(radians(60.f), (float)window->get_size().x() / window->get_size().y(), 0.1f, 5000.f);
+		camera.set_position({0, 0, 3});
 
 		auto matrices = UniformBuffer::create(0, 3 * sizeof(Matrix4f));
 
 		bool running     = true;
 		window->onClose  = [&] { running = false; };
 		window->onResize = [&](Vector2i size) {
-			camera.setPerspective(camera.getVFOV(), (float)size.x() / size.y(), camera.getNear(), camera.getFar());
+			camera.set_perspective(camera.get_vfov(), (float)size.x() / size.y(), camera.get_near(), camera.get_far());
 		};
-		window->setVisible(true);
+		window->set_visible(true);
 
 		Matrix4f  model = Matrix4f::createRotationX(radians(-15.f));
 		Transform transform;
@@ -85,28 +85,28 @@ public:
 			model *= Matrix4f::createRotationY(radians(0.5f));
 
 			// 更新 UniformBuffer
-			matrices->getBuffer().map();
-			matrices->getBuffer().write(camera.getView().data(), sizeof(Matrix4f));
-			matrices->getBuffer().write(camera.getProjection().data(), sizeof(Matrix4f), sizeof(Matrix4f));
-			matrices->getBuffer().write(model.data(), sizeof(Matrix4f), 2 * sizeof(Matrix4f));
-			matrices->getBuffer().unmap();
+			matrices->get_buffer().map();
+			matrices->get_buffer().write(camera.get_view().data(), sizeof(Matrix4f));
+			matrices->get_buffer().write(camera.get_projection().data(), sizeof(Matrix4f), sizeof(Matrix4f));
+			matrices->get_buffer().write(model.data(), sizeof(Matrix4f), 2 * sizeof(Matrix4f));
+			matrices->get_buffer().unmap();
 
 			cmdBuffer->begin();
 			{
-				cmdBuffer->setPipeline(pipeline);
+				cmdBuffer->set_pipeline(pipeline);
 
-				cmdBuffer->beginRenderPass();
+				cmdBuffer->begin_render_pass();
 				{
-					cmdBuffer->setViewport({window->getSize()});
-					cmdBuffer->setClearColor({0, 0, 0, 0});
-					cmdBuffer->setClearDepth(std::numeric_limits<float>::infinity());
+					cmdBuffer->set_viewport({window->get_size()});
+					cmdBuffer->set_clear_color({0, 0, 0, 0});
+					cmdBuffer->set_clear_depth(std::numeric_limits<float>::infinity());
 					cmdBuffer->clear(ClearFlag::Color | ClearFlag::Depth);
 
-					cmdBuffer->setVertexBuffer(vertexBuffer);
-					cmdBuffer->setIndexBuffer(indexBuffer);
-					cmdBuffer->drawIndexed(indexBuffer->getCount());
+					cmdBuffer->set_vertex_buffer(vertexBuffer);
+					cmdBuffer->set_index_buffer(indexBuffer);
+					cmdBuffer->draw_indexed(indexBuffer->get_count());
 				}
-				cmdBuffer->endRenderPass();
+				cmdBuffer->end_render_pass();
 			}
 			cmdBuffer->end();
 			cmdQueue->submit(cmdBuffer);

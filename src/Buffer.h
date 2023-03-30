@@ -71,22 +71,22 @@ public:
 	/**
 	 * @brief 获取缓冲区大小, 单位: 字节.
 	 */
-	[[nodiscard]] size_t getSize() const;
+	[[nodiscard]] size_t get_size() const;
 
 	/**
 	 * @brief 获取缓冲区类型.
 	 */
-	[[nodiscard]] Type getType() const;
+	[[nodiscard]] Type get_type() const;
 
 	/**
 	 * @brief 获取缓冲区使用方式.
 	 */
-	[[nodiscard]] Usage getUsage() const;
+	[[nodiscard]] Usage get_usage() const;
 
 	/**
 	 * @brief 获取映射的缓冲区.
 	 */
-	[[nodiscard]] void* getData();
+	[[nodiscard]] void* get_data();
 
 	/**
 	 * @brief 映射缓冲区到内存.
@@ -110,10 +110,10 @@ public:
 	virtual void flush(size_t size = -1, size_t offset = 0) = 0;
 
 protected:
-	size_t size;
-	Type   type;
-	Usage  usage;
-	void*  data = nullptr;
+	size_t size_;
+	Type   type_;
+	Usage  usage_;
+	void*  data_ = nullptr;
 };
 
 template <typename T>

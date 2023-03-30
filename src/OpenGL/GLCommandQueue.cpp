@@ -7,9 +7,9 @@
 #include <cassert>
 #include <glad/glad.h>
 
-void GLCommandQueue::submit(std::shared_ptr<CommandBuffer> commandBuffer)
+void GLCommandQueue::submit(std::shared_ptr<CommandBuffer> command_buffer)
 {
-	auto& buffer = dynamic_cast<GLCommandBuffer*>(commandBuffer.get())->getData();
+	auto& buffer = dynamic_cast<GLCommandBuffer*>(command_buffer.get())->getData();
 
 	const auto end = buffer.data() + buffer.size();
 	auto       pc  = buffer.data();

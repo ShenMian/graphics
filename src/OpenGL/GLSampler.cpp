@@ -21,11 +21,11 @@ GLSampler::GLSampler(const Descriptor& desc) : Sampler(desc)
 {
 	glCreateSamplers(1, &handle);
 
-	glSamplerParameteri(handle, GL_TEXTURE_MIN_FILTER, GLFilter[minFilter]);
-	glSamplerParameteri(handle, GL_TEXTURE_MAG_FILTER, GLFilter[magFilter]);
-	glSamplerParameteri(handle, GL_TEXTURE_WRAP_S, GLWarp[SWarp]);
-	glSamplerParameteri(handle, GL_TEXTURE_WRAP_T, GLWarp[TWarp]);
-	glSamplerParameteri(handle, GL_TEXTURE_WRAP_R, GLWarp[RWarp]);
+	glSamplerParameteri(handle, GL_TEXTURE_MIN_FILTER, GLFilter[min_filter_]);
+	glSamplerParameteri(handle, GL_TEXTURE_MAG_FILTER, GLFilter[mag_filter_]);
+	glSamplerParameteri(handle, GL_TEXTURE_WRAP_S, GLWarp[s_warp_]);
+	glSamplerParameteri(handle, GL_TEXTURE_WRAP_T, GLWarp[t_warp_]);
+	glSamplerParameteri(handle, GL_TEXTURE_WRAP_R, GLWarp[r_warp_]);
 
 	/*
 	GLfloat maxAniso;

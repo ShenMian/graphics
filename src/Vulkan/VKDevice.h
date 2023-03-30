@@ -33,16 +33,16 @@ public:
 	 *
 	 * @param type 队列类型.
 	 */
-	VkQueue getQueue(QueueType type) const;
+	VkQueue get_queue(QueueType type) const;
 
 	/**
 	 * @brief 获取队列索引.
 	 *
 	 * @param type 队列类型.
 	 */
-	std::optional<uint32_t> getQueueIndex(QueueType type) const;
+	std::optional<uint32_t> get_queue_index(QueueType type) const;
 
-	VKPhysicalDevice& getPhysicalDevice() noexcept;
+	VKPhysicalDevice& get_physical_device() noexcept;
 
 	void destroy();
 
@@ -50,6 +50,6 @@ public:
 	operator VkDevice() const noexcept;
 
 private:
-	VkDevice         handle;
-	VKPhysicalDevice physicalDevice;
+	VkDevice         handle_;
+	VKPhysicalDevice physical_device_;
 };

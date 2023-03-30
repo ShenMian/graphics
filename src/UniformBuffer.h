@@ -13,10 +13,10 @@ class UniformBuffer
 public:
 	[[nodiscard]] static std::shared_ptr<UniformBuffer> create(int binding, size_t size);
 
-	virtual Buffer& getBuffer() = 0;
+	virtual Buffer& get_buffer() = 0;
 
 protected:
 	UniformBuffer(int binding);
 
-	int binding;
+	int binding_;
 };

@@ -17,7 +17,7 @@ namespace fs = std::filesystem;
 
 std::shared_ptr<Program> Program::create(const Descriptor& desc)
 {
-	switch(Renderer::getBackend())
+	switch(Renderer::get_backend())
 	{
 		using enum Renderer::Backend;
 
@@ -112,11 +112,11 @@ std::shared_ptr<Program> Program::create(std::string_view name)
 	return create(desc);
 }
 
-int Program::getStageCount() const
+int Program::get_stage_count() const
 {
-	return stageCount;
+	return stage_count_;
 }
 
-Program::Program(const Descriptor& desc) : name(desc.name)
+Program::Program(const Descriptor& desc) : name_(desc.name)
 {
 }

@@ -13,45 +13,45 @@
 class VKRenderer : public Renderer
 {
 public:
-	std::string getDeviceName() const override;
-	std::string getRendererName() const override;
-	std::string getVendorName() const override;
+	std::string get_device_name() const override;
+	std::string get_renderer_name() const override;
+	std::string get_vendor_name() const override;
 
 	/**
 	 * @brief 获取 VKInstance.
 	 */
-	const VKInstance& getInstance() const;
+	const VKInstance& get_instance() const;
 
 	/**
 	 * @brief 获取 VKPhysicalDevice.
 	 */
-	const VKPhysicalDevice& getPhysicalDevice() const;
+	const VKPhysicalDevice& get_physical_device() const;
 
 	/**
 	 * @brief 获取 VKDevice.
 	 */
-	const VKDevice& getDevice() const;
+	const VKDevice& get_device() const;
 
 	/**
 	 * @brief 获取 VKSwapchain.
 	 */
-	const VKSwapchain& getSwapchain() const;
+	const VKSwapchain& get_swapchain() const;
 
 	/**
 	 * @brief 获取命令缓冲区池.
 	 */
-	const VkCommandPool& getCommandPool() const;
+	const VkCommandPool& get_command_pool() const;
 
 	static void init(const Window& win);
 	static void deinit();
 
 private:
-	static void createInstance();
-	static void createSurface(const Window& win);
-	static void selectPhysicalDevice();
-	static void createDevice();
-	static void createSwapchain();
-	static void createCommandPool();
+	static void create_instance();
+	static void create_surface(const Window& win);
+	static void select_physical_device();
+	static void create_device();
+	static void create_swapchain();
+	static void create_command_pool();
 };
 
 inline std::string_view ToString(VkResult res)

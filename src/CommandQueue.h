@@ -14,5 +14,5 @@ class CommandQueue
 public:
 	static std::shared_ptr<CommandQueue> create();
 
-	virtual void submit(std::shared_ptr<CommandBuffer> commandBuffer) = 0;
+	virtual void submit(std::shared_ptr<CommandBuffer> command_buffer) = 0;
 };

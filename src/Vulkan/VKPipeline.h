@@ -19,20 +19,20 @@ public:
 	operator VkPipeline() const noexcept;
 
 private:
-	void createPipelineLayout(const Descriptor& desc);
-	void createVertexInputState(VkPipelineVertexInputStateCreateInfo& info, const Descriptor& desc,
+	void create_pipeline_layout(const Descriptor& desc);
+	void create_vertex_input_state(VkPipelineVertexInputStateCreateInfo& info, const Descriptor& desc,
 	                            std::vector<VkVertexInputBindingDescription>&   bindings,
 	                            std::vector<VkVertexInputAttributeDescription>& attribs);
-	void createInputAssemblyState(VkPipelineInputAssemblyStateCreateInfo&, const Descriptor& desc);
-	void createViewportState(VkPipelineViewportStateCreateInfo& info, const Descriptor& desc,
+	void create_input_assembly_state(VkPipelineInputAssemblyStateCreateInfo&, const Descriptor& desc);
+	void create_viewport_state(VkPipelineViewportStateCreateInfo& info, const Descriptor& desc,
 	                         std::vector<VkViewport>& viewports, std::vector<VkRect2D>& scissors);
-	void createRasterizerState(VkPipelineRasterizationStateCreateInfo& info, const Descriptor& desc);
-	void createMultisampleState(VkPipelineMultisampleStateCreateInfo& info, const Descriptor& desc);
-	void createDepthStencilState(VkPipelineDepthStencilStateCreateInfo& info, const Descriptor& desc);
-	void createColorBlendState(VkPipelineColorBlendStateCreateInfo& info, const Descriptor& desc,
+	void create_rasterizer_state(VkPipelineRasterizationStateCreateInfo& info, const Descriptor& desc);
+	void create_multisample_state(VkPipelineMultisampleStateCreateInfo& info, const Descriptor& desc);
+	void create_depth_stencil_state(VkPipelineDepthStencilStateCreateInfo& info, const Descriptor& desc);
+	void create_color_blend_state(VkPipelineColorBlendStateCreateInfo& info, const Descriptor& desc,
 	                           std::vector<VkPipelineColorBlendAttachmentState>& colorBlendAttachments);
-	void createDynamicState(VkPipelineDynamicStateCreateInfo& info, std::vector<VkDynamicState>& dynamicStates);
+	void create_dynamic_state(VkPipelineDynamicStateCreateInfo& info, std::vector<VkDynamicState>& dynamicStates);
 
-	VkPipeline       pipeline;
-	VkPipelineLayout pipelineLayout;
+	VkPipeline       pipeline_;
+	VkPipelineLayout pipeline_layout_;
 };

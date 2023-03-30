@@ -17,13 +17,13 @@ class Label : public Widget
 public:
 	Label(const std::string& label = "");
 
-	void setText(const std::string& text);
+	void set_text(const std::string& text);
 
 	void update() override;
 
 private:
-	std::string text;
-	Vector3f    color = {1, 1, 1};
+	std::string text_;
+	Vector3f    color_ = {1, 1, 1};
 };
 
 } // namespace ui

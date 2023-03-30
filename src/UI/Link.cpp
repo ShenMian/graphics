@@ -7,18 +7,18 @@
 namespace ui
 {
 
-Link::Link(const Pin& start, const Pin& end) : start(start), end(end)
+Link::Link(const Pin& start, const Pin& end) : start_(start), end_(end)
 {
 }
 
-const Pin& Link::getStart() const noexcept
+const Pin& Link::get_start() const noexcept
 {
-	return start;
+	return start_;
 }
 
-const Pin& Link::getEnd() const noexcept
+const Pin& Link::get_end() const noexcept
 {
-	return end;
+	return end_;
 }
 
 }; // namespace ui

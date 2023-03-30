@@ -36,17 +36,17 @@ public:
 
 	Sampler(const Descriptor& desc);
 
-	Filter getMinFilter() const noexcept;
-	Filter getMagFilter() const noexcept;
+	Filter get_min_filter() const noexcept;
+	Filter get_mag_filter() const noexcept;
 
-	Warp getSWarpMode() const noexcept;
-	Warp getTWarpMode() const noexcept;
-	Warp getRWarpMode() const noexcept;
+	Warp get_s_warp_mode() const noexcept;
+	Warp get_t_warp_mode() const noexcept;
+	Warp get_r_warp_mode() const noexcept;
 
 protected:
-	Filter minFilter;
-	Filter magFilter;
-	Warp   SWarp;
-	Warp   TWarp;
-	Warp   RWarp;
+	Filter min_filter_;
+	Filter mag_filter_;
+	Warp   s_warp_;
+	Warp   t_warp_;
+	Warp   r_warp_;
 };

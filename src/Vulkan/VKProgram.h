@@ -22,16 +22,16 @@ public:
 
 	void use() override;
 
-	void setUniform(const std::string& name, int value) override;
-	void setUniform(const std::string& name, float value) override;
-	void setUniform(const std::string& name, const Vector2& value) override;
-	void setUniform(const std::string& name, const Vector3& value) override;
-	void setUniform(const std::string& name, const Vector4& value) override;
-	void setUniform(const std::string& name, const Matrix4& value) override;
+	void set_uniform(const std::string& name, int value) override;
+	void set_uniform(const std::string& name, float value) override;
+	void set_uniform(const std::string& name, const Vector2& value) override;
+	void set_uniform(const std::string& name, const Vector3& value) override;
+	void set_uniform(const std::string& name, const Vector4& value) override;
+	void set_uniform(const std::string& name, const Matrix4& value) override;
 
 private:
-	void addShader(std::shared_ptr<Shader> shader);
+	void add_shader(std::shared_ptr<Shader> shader);
 
-	std::unordered_map<Shader::Stage, std::shared_ptr<VKShader>> shaders;
-	std::vector<VkPipelineShaderStageCreateInfo>                 infos;
+	std::unordered_map<Shader::Stage, std::shared_ptr<VKShader>> shaders_;
+	std::vector<VkPipelineShaderStageCreateInfo>                 infos_;
 };

@@ -5,84 +5,84 @@
 #include <stdexcept>
 
 VKSwapchain::VKSwapchain(VkSwapchainKHR swapchain, VKDevice& device, VkFormat imageFormat, VkExtent2D extent)
-    : handle(swapchain), device(device), imageFormat(imageFormat), size(extent)
+    : handle_(swapchain), device_(device), image_format_(imageFormat), size_(extent)
 {
 	uint32_t imageCount;
-	if(vkGetSwapchainImagesKHR(device, handle, &imageCount, nullptr) != VK_SUCCESS)
+	if(vkGetSwapchainImagesKHR(device, handle_, &imageCount, nullptr) != VK_SUCCESS)
 		throw std::runtime_error("failed to get swapchain images");
-	images.resize(imageCount);
-	vkGetSwapchainImagesKHR(device, handle, &imageCount, images.data());
+	images_.resize(imageCount);
+	vkGetSwapchainImagesKHR(device, handle_, &imageCount, images_.data());
 
-	createImageViews();
-	createRenderPass();
-	createFramebuffers();
-	createSyncObjects();
+	create_image_views();
+	create_render_pass();
+	create_framebuffers();
+	create_sync_objects();
 }
 
-const std::vector<VkImage>& VKSwapchain::getImages() const
+const std::vector<VkImage>& VKSwapchain::get_images() const
 {
-	return images;
+	return images_;
 }
 
-const std::vector<VkImageView>& VKSwapchain::getImageViews() const
+const std::vector<VkImageView>& VKSwapchain::get_image_views() const
 {
-	return imageViews;
+	return image_views_;
 }
 
-VkRenderPass VKSwapchain::getRenderPass() const
+VkRenderPass VKSwapchain::get_render_pass() const
 {
-	return renderPass;
+	return render_pass_;
 }
 
-const std::vector<VkFramebuffer>& VKSwapchain::getFramebuffers() const
+const std::vector<VkFramebuffer>& VKSwapchain::get_framebuffers() const
 {
-	return framebuffers;
+	return framebuffers_;
 }
 
-const std::vector<VkSemaphore>& VKSwapchain::getImageAvailableSemaphores() const
+const std::vector<VkSemaphore>& VKSwapchain::get_image_available_semaphores() const
 {
-	return imageAvailableSemaphores;
+	return image_available_semaphores_;
 }
 
-const std::vector<VkSemaphore>& VKSwapchain::getRenderFinishedSemaphores() const
+const std::vector<VkSemaphore>& VKSwapchain::get_render_finished_semaphores() const
 {
-	return renderFinishedSemaphores;
+	return render_finished_semaphores_;
 }
 
 void VKSwapchain::destroy()
 {
-	destroySyncObjects();
-	destroyFramebuffers();
-	vkDestroyRenderPass(device, renderPass, nullptr);
-	destroyImageViews();
-	vkDestroySwapchainKHR(device, handle, nullptr);
+	destroy_sync_objects();
+	destroy_framebuffers();
+	vkDestroyRenderPass(device_, render_pass_, nullptr);
+	destroy_image_views();
+	vkDestroySwapchainKHR(device_, handle_, nullptr);
 }
 
-const VkExtent2D& VKSwapchain::getSize() const
+const VkExtent2D& VKSwapchain::get_size() const
 {
-	return size;
+	return size_;
 }
 
 VKSwapchain::operator VkSwapchainKHR()
 {
-	return handle;
+	return handle_;
 }
 
 VKSwapchain::operator VkSwapchainKHR() const
 {
-	return handle;
+	return handle_;
 }
 
-void VKSwapchain::createImageViews()
+void VKSwapchain::create_image_views()
 {
-	imageViews.resize(images.size());
-	for(size_t i = 0; i < images.size(); i++)
+	image_views_.resize(images_.size());
+	for(size_t i = 0; i < images_.size(); i++)
 	{
 		VkImageViewCreateInfo imageViewInfo           = {};
 		imageViewInfo.sType                           = VK_STRUCTURE_TYPE_IMAGE_VIEW_CREATE_INFO;
-		imageViewInfo.image                           = images[i];
+		imageViewInfo.image                           = images_[i];
 		imageViewInfo.viewType                        = VK_IMAGE_VIEW_TYPE_2D;
-		imageViewInfo.format                          = imageFormat;
+		imageViewInfo.format                          = image_format_;
 		imageViewInfo.components.r                    = VK_COMPONENT_SWIZZLE_IDENTITY;
 		imageViewInfo.components.g                    = VK_COMPONENT_SWIZZLE_IDENTITY;
 		imageViewInfo.components.b                    = VK_COMPONENT_SWIZZLE_IDENTITY;
@@ -93,12 +93,12 @@ void VKSwapchain::createImageViews()
 		imageViewInfo.subresourceRange.baseArrayLayer = 0;
 		imageViewInfo.subresourceRange.layerCount     = 1;
 
-		if(vkCreateImageView(device, &imageViewInfo, nullptr, &imageViews[i]) != VK_SUCCESS)
+		if(vkCreateImageView(device_, &imageViewInfo, nullptr, &image_views_[i]) != VK_SUCCESS)
 			throw std::runtime_error("failed to create swapchain image view");
 	}
 }
 
-void VKSwapchain::createRenderPass()
+void VKSwapchain::create_render_pass()
 {
 	std::vector<VkAttachmentDescription> attachments;
 
@@ -150,30 +150,30 @@ void VKSwapchain::createRenderPass()
 	renderPassInfo.dependencyCount        = static_cast<uint32_t>(dependencies.size());
 	renderPassInfo.pDependencies          = dependencies.data();
 
-	if(vkCreateRenderPass(device, &renderPassInfo, nullptr, &renderPass) != VK_SUCCESS)
+	if(vkCreateRenderPass(device_, &renderPassInfo, nullptr, &render_pass_) != VK_SUCCESS)
 		throw std::runtime_error("failed to create render pass");
 }
 
-void VKSwapchain::createFramebuffers()
+void VKSwapchain::create_framebuffers()
 {
-	framebuffers.resize(imageViews.size());
-	for(size_t i = 0; i < imageViews.size(); i++)
+	framebuffers_.resize(image_views_.size());
+	for(size_t i = 0; i < image_views_.size(); i++)
 	{
 		VkFramebufferCreateInfo framebufferInfo = {};
 		framebufferInfo.sType                   = VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO;
-		framebufferInfo.renderPass              = renderPass;
+		framebufferInfo.renderPass              = render_pass_;
 		framebufferInfo.attachmentCount         = 1;
-		framebufferInfo.pAttachments            = &imageViews[i];
-		framebufferInfo.width                   = size.width;
-		framebufferInfo.height                  = size.height;
+		framebufferInfo.pAttachments            = &image_views_[i];
+		framebufferInfo.width                   = size_.width;
+		framebufferInfo.height                  = size_.height;
 		framebufferInfo.layers                  = 1;
 
-		if(vkCreateFramebuffer(device, &framebufferInfo, nullptr, &framebuffers[i]) != VK_SUCCESS)
+		if(vkCreateFramebuffer(device_, &framebufferInfo, nullptr, &framebuffers_[i]) != VK_SUCCESS)
 			throw std::runtime_error("failed to create framebuffer");
 	}
 }
 
-void VKSwapchain::createSyncObjects()
+void VKSwapchain::create_sync_objects()
 {
 	constexpr int maxFramesInFlight = 2;
 
@@ -184,33 +184,33 @@ void VKSwapchain::createSyncObjects()
 	fenceInfo.sType             = VK_STRUCTURE_TYPE_FENCE_CREATE_INFO;
 	fenceInfo.flags             = VK_FENCE_CREATE_SIGNALED_BIT;
 
-	imageAvailableSemaphores.resize(maxFramesInFlight);
-	renderFinishedSemaphores.resize(maxFramesInFlight);
+	image_available_semaphores_.resize(maxFramesInFlight);
+	render_finished_semaphores_.resize(maxFramesInFlight);
 	for(size_t i = 0; i < maxFramesInFlight; i++)
 	{
-		if(vkCreateSemaphore(device, &semaphoreInfo, nullptr, &imageAvailableSemaphores[i]) != VK_SUCCESS)
+		if(vkCreateSemaphore(device_, &semaphoreInfo, nullptr, &image_available_semaphores_[i]) != VK_SUCCESS)
 			throw std::runtime_error("failed to create semaphore");
-		if(vkCreateSemaphore(device, &semaphoreInfo, nullptr, &renderFinishedSemaphores[i]) != VK_SUCCESS)
+		if(vkCreateSemaphore(device_, &semaphoreInfo, nullptr, &render_finished_semaphores_[i]) != VK_SUCCESS)
 			throw std::runtime_error("failed to create semaphore");
 	}
 }
 
-void VKSwapchain::destroyImageViews()
+void VKSwapchain::destroy_image_views()
 {
-	for(auto view : imageViews)
-		vkDestroyImageView(device, view, nullptr);
+	for(auto view : image_views_)
+		vkDestroyImageView(device_, view, nullptr);
 }
 
-void VKSwapchain::destroyFramebuffers()
+void VKSwapchain::destroy_framebuffers()
 {
-	for(auto framebuffer : framebuffers)
-		vkDestroyFramebuffer(device, framebuffer, nullptr);
+	for(auto framebuffer : framebuffers_)
+		vkDestroyFramebuffer(device_, framebuffer, nullptr);
 }
 
-void VKSwapchain::destroySyncObjects()
+void VKSwapchain::destroy_sync_objects()
 {
-	for(size_t i = 0; i < imageAvailableSemaphores.size(); i++)
-		vkDestroySemaphore(device, imageAvailableSemaphores[i], nullptr);
-	for(size_t i = 0; i < renderFinishedSemaphores.size(); i++)
-		vkDestroySemaphore(device, renderFinishedSemaphores[i], nullptr);
+	for(size_t i = 0; i < image_available_semaphores_.size(); i++)
+		vkDestroySemaphore(device_, image_available_semaphores_[i], nullptr);
+	for(size_t i = 0; i < render_finished_semaphores_.size(); i++)
+		vkDestroySemaphore(device_, render_finished_semaphores_[i], nullptr);
 }

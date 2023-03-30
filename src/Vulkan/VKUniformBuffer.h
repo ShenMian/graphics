@@ -12,8 +12,8 @@ class VKUniformBuffer : public UniformBuffer
 public:
 	VKUniformBuffer(int binding, size_t size);
 
-	Buffer& getBuffer() override;
+	Buffer& get_buffer() override;
 
 private:
-	VKBuffer buffer;
+	VKBuffer buffer_;
 };

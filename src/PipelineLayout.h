@@ -48,10 +48,10 @@ public:
 	PipelineLayout() = default;
 	PipelineLayout(const std::initializer_list<Binding>& list);
 
-	void addBinding(Binding attr);
+	void add_binding(Binding attr);
 
-	const std::vector<Binding>& getBindings() const;
+	const std::vector<Binding>& get_bindings() const;
 
 private:
-	std::vector<Binding> bindings;
+	std::vector<Binding> bindings_;
 };

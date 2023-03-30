@@ -24,7 +24,7 @@ std::unordered_map<Texture::Warp, GLenum> GLWarp = {{Texture::Warp::Repeat, GL_R
 
 Format GetImageFormat(const Image& image)
 {
-	switch(image.channelCount())
+	switch(image.channel_count())
 	{
 	case 1:
 		return Format::R8F;
@@ -157,23 +157,23 @@ GLTexture::GLTexture(const Image& image, Format fmt, uint32_t mipmapLevel, Type 
 	glCreateTextures(GLType[type], 1, &handle);
 
 	Image flippedImage = Image(image);
-	flippedImage.flipVertically();
+	flippedImage.flip_vertically();
 
-	if(format == Format::Unknown)
-		format = GetImageFormat(flippedImage);
+	if(format_ == Format::Unknown)
+		format_ = GetImageFormat(flippedImage);
 
-	setMinFilter(mipmapLevel == 1 ? Filter::Nearest : Filter::Trilinear);
-	setMagFilter(Filter::Bilinear);
-	setSWarp(Warp::Repeat);
-	setTWarp(Warp::Repeat);
+	set_min_filter(mipmapLevel == 1 ? Filter::Nearest : Filter::Trilinear);
+	set_mag_filter(Filter::Bilinear);
+	set_s_warp(Warp::Repeat);
+	set_t_warp(Warp::Repeat);
 
-	if(IsCompress(format))
+	if(IsCompress(format_))
 	{
 		glTextureParameteri(handle, GL_TEXTURE_BASE_LEVEL, 0);
 		glTextureParameteri(handle, GL_TEXTURE_MAX_LEVEL, mipmapLevel - 1); // TODO: handle mipmapLevel == 1
 
 		size_t blockSize;
-		switch(format)
+		switch(format_)
 		{
 		case Format::RGBA_DXT1:
 			blockSize = 8;
@@ -195,7 +195,7 @@ GLTexture::GLTexture(const Image& image, Format fmt, uint32_t mipmapLevel, Type 
 		{
 			// FIXME: 提取 mipmap
 			size_t size = ((width + 3) / 4) * ((height + 3) / 4) * blockSize;
-			glCompressedTextureSubImage2D(handle, level, 0, 0, width, height, GLCompressedFormat(format), size,
+			glCompressedTextureSubImage2D(handle, level, 0, 0, width, height, GLCompressedFormat(format_), size,
 			                              flippedImage.data() + offset);
 			offset += size;
 			width /= 2;
@@ -209,34 +209,34 @@ GLTexture::GLTexture(const Image& image, Format fmt, uint32_t mipmapLevel, Type 
 
 	mipmapLevel = std::clamp(mipmapLevel, 1u, GetMaxMipmapLevel({width, height}));
 
-	glTextureStorage2D(handle, mipmapLevel, GLInternalFormat(format), width, height);
+	glTextureStorage2D(handle, mipmapLevel, GLInternalFormat(format_), width, height);
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-	glTextureSubImage2D(handle, 0, 0, 0, width, height, GLFormat(format), GL_UNSIGNED_BYTE, flippedImage.data());
+	glTextureSubImage2D(handle, 0, 0, 0, width, height, GLFormat(format_), GL_UNSIGNED_BYTE, flippedImage.data());
 
-	generateMipmap();
+	generate_mipmap();
 }
 
 GLTexture::GLTexture(const std::vector<Image>& images) : Texture(Type::Cube, GetImageFormat(images[0]))
 {
-	glCreateTextures(GLType[type], 1, &handle);
+	glCreateTextures(GLType[type_], 1, &handle);
 
-	setMinFilter(Filter::Nearest);
-	setMagFilter(Filter::Bilinear);
-	setSWarp(Warp::Repeat);
-	setTWarp(Warp::Repeat);
-	setRWarp(Warp::Repeat);
+	set_min_filter(Filter::Nearest);
+	set_mag_filter(Filter::Bilinear);
+	set_s_warp(Warp::Repeat);
+	set_t_warp(Warp::Repeat);
+	set_r_warp(Warp::Repeat);
 
 	for(size_t i = 0; i < images.size(); i++)
 	{
 		Image flippedImage = Image(images[i]);
-		flippedImage.flipVertically();
+		flippedImage.flip_vertically();
 
 		// glTextureSubImage3D(handle, 0, 0, 0, i, flippedImage.size().x, flippedImage.size().y, 1, GL_UNSIGNED_BYTE,
 		//                     GLFormat(format), flippedImage.data());
 		glBindTexture(GL_TEXTURE_2D, handle);
-		glTexImage2D(static_cast<GLenum>(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i), 0, GLInternalFormat(format),
+		glTexImage2D(static_cast<GLenum>(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i), 0, GLInternalFormat(format_),
 		             static_cast<GLsizei>(flippedImage.size().x()), static_cast<GLsizei>(flippedImage.size().y()), 0,
-		             GLFormat(format), GL_UNSIGNED_BYTE, flippedImage.data());
+		             GLFormat(format_), GL_UNSIGNED_BYTE, flippedImage.data());
 	}
 }
 
@@ -245,38 +245,38 @@ GLTexture::~GLTexture()
 	glDeleteTextures(1, &handle);
 }
 
-void GLTexture::setMinFilter(Filter filter)
+void GLTexture::set_min_filter(Filter filter)
 {
 	assert(filter == Filter::Nearest || filter == Filter::Bilinear || filter == Filter::Trilinear);
 
 	glTextureParameteri(handle, GL_TEXTURE_MIN_FILTER, GLFilter[filter]);
 }
 
-void GLTexture::setMagFilter(Filter filter)
+void GLTexture::set_mag_filter(Filter filter)
 {
 	assert(filter == Filter::Nearest || filter == Filter::Bilinear);
 
 	glTextureParameteri(handle, GL_TEXTURE_MAG_FILTER, GLFilter[filter]);
 }
 
-void GLTexture::setSWarp(Warp warp)
+void GLTexture::set_s_warp(Warp warp)
 {
 	glTextureParameteri(handle, GL_TEXTURE_WRAP_S, GLWarp[warp]);
 }
 
-void GLTexture::setTWarp(Warp warp)
+void GLTexture::set_t_warp(Warp warp)
 {
 	glTextureParameteri(handle, GL_TEXTURE_WRAP_T, GLWarp[warp]);
 }
 
-void GLTexture::setRWarp(Warp warp)
+void GLTexture::set_r_warp(Warp warp)
 {
-	assert(type == Type::_3D);
+	assert(type_ == Type::_3D);
 
 	glTextureParameteri(handle, GL_TEXTURE_WRAP_R, GLWarp[warp]);
 }
 
-void GLTexture::generateMipmap()
+void GLTexture::generate_mipmap()
 {
 	glGenerateTextureMipmap(handle);
 }

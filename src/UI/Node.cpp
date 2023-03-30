@@ -13,22 +13,22 @@ Node::Node(const std::string& label) : Widget(label)
 {
 }
 
-void Node::addPin(const Pin& pin)
+void Node::add_pin(const Pin& pin)
 {
-	inputs.push_back(pin);
+	inputs_.push_back(pin);
 }
 
-const Pin* Node::getPinById(uint64_t id)
+const Pin* Node::get_pin_by_id(uint64_t id)
 {
 	{
-		const auto it = std::ranges::find_if(inputs, [id](const auto& pin) { return pin.getId() == id; });
-		if(it != inputs.end())
+		const auto it = std::ranges::find_if(inputs_, [id](const auto& pin) { return pin.get_id() == id; });
+		if(it != inputs_.end())
 			return &*it;
 	}
 
 	{
-		const auto it = std::ranges::find_if(outputs, [id](const auto& pin) { return pin.getId() == id; });
-		if(it != outputs.end())
+		const auto it = std::ranges::find_if(outputs_, [id](const auto& pin) { return pin.get_id() == id; });
+		if(it != outputs_.end())
 			return &*it;
 	}
 
@@ -37,17 +37,17 @@ const Pin* Node::getPinById(uint64_t id)
 
 void Node::update()
 {
-	ImNodes::BeginNode(id);
+	ImNodes::BeginNode(id_);
 
 	ImNodes::BeginNodeTitleBar();
-	ImGui::TextUnformatted(label.c_str());
+	ImGui::TextUnformatted(label_.c_str());
 	ImNodes::EndNodeTitleBar();
 
-	for(size_t i = 0; i < inputs.size(); i++)
-		inputs[i].update();
+	for(size_t i = 0; i < inputs_.size(); i++)
+		inputs_[i].update();
 
-	for(size_t i = 0; i < outputs.size(); i++)
-		outputs[i].update();
+	for(size_t i = 0; i < outputs_.size(); i++)
+		outputs_[i].update();
 
 	ImNodes::EndNode();
 }

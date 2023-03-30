@@ -299,41 +299,41 @@ void Icon(const ImVec2& size, IconType type, bool filled, const ImVec4& color = 
 namespace ui
 {
 
-Pin::Pin(const std::string& label, Kind kind, Type type) : Widget(label), kind(kind), type(type)
+Pin::Pin(const std::string& label, Kind kind, Type type) : Widget(label), kind_(kind), type_(type)
 {
 }
 
-Pin::Type Pin::getType() const noexcept
+Pin::Type Pin::get_type() const noexcept
 {
-	return type;
+	return type_;
 }
 
-Pin::Kind Pin::getKind() const noexcept
+Pin::Kind Pin::get_kind() const noexcept
 {
-	return kind;
+	return kind_;
 }
 
 void Pin::update()
 {
-	if(kind == Kind::Input)
+	if(kind_ == Kind::Input)
 	{
-		ImNodes::BeginInputAttribute(id);
+		ImNodes::BeginInputAttribute(id_);
 
-		Icon(ImVec2(16, 16), PinIconType[type], false, PinIconColor[type]);
+		Icon(ImVec2(16, 16), PinIconType[type_], false, PinIconColor[type_]);
 		ImGui::SameLine();
-		ImGui::TextUnformatted(label.c_str());
+		ImGui::TextUnformatted(label_.c_str());
 
 		ImNodes::EndInputAttribute();
 	}
 	else
 	{
-		ImNodes::BeginOutputAttribute(id);
+		ImNodes::BeginOutputAttribute(id_);
 
 		// ImGui::Indent(ImGui::GetColumnWidth() - ImGui::CalcTextSize(label.c_str()).x);
 
-		ImGui::TextUnformatted(label.c_str());
+		ImGui::TextUnformatted(label_.c_str());
 		ImGui::SameLine();
-		Icon(ImVec2(16, 16), PinIconType[type], false, PinIconColor[type]);
+		Icon(ImVec2(16, 16), PinIconType[type_], false, PinIconColor[type_]);
 
 		ImNodes::EndOutputAttribute();
 	}

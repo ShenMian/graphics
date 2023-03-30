@@ -43,17 +43,17 @@ public:
 	/**
 	 * @brief 获取名称.
 	 */
-	const std::string& getName() const noexcept;
+	const std::string& get_name() const noexcept;
 
 	/**
 	 * @brief 获取入口点名称.
 	 */
-	const std::string& getEntryPoint() const noexcept;
+	const std::string& get_entry_point() const noexcept;
 
 	/**
 	 * @brief 获取阶段.
 	 */
-	Stage getStage() const noexcept;
+	Stage get_stage() const noexcept;
 
 protected:
 	Shader(const Descriptor& desc);
@@ -62,7 +62,7 @@ protected:
 	/**
 	 * @brief 获取 SPIR-V 代码, 若未编译则先进行编译.
 	 */
-	std::vector<uint32_t> getCode(std::filesystem::path path);
+	std::vector<uint32_t> get_code(std::filesystem::path path);
 
 	/**
 	 * @brief 将 GLSL 编译为 SPIR-V.
@@ -82,9 +82,9 @@ protected:
 	 */
 	void parse(const std::vector<uint32_t>& buf);
 
-	std::string name;
-	std::string entryPoint;
-	Stage       stage;
+	std::string name_;
+	std::string entry_point_;
+	Stage       stage_;
 };
 
 struct Shader::Descriptor

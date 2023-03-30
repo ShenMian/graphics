@@ -13,7 +13,7 @@ class GLVertexBuffer : public VertexBuffer
 public:
 	GLVertexBuffer(const void* data, size_t size, const VertexFormat& fmt, Buffer::Usage usage);
 
-	Buffer& getBuffer() override;
+	Buffer& get_buffer() override;
 
 	void bind();
 

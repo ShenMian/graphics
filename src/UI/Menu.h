@@ -16,12 +16,12 @@ class Menu : public Widget
 public:
 	Menu(const std::string& label);
 
-	void addItem(const std::string& label, const std::function<void()>& callback);
+	void add_item(const std::string& label, const std::function<void()>& callback);
 
 	void update() override;
 
 private:
-	std::vector<std::pair<std::string, std::function<void()>>> items;
+	std::vector<std::pair<std::string, std::function<void()>>> items_;
 };
 
 } // namespace ui

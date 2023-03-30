@@ -5,42 +5,42 @@
 #include <cassert>
 #include <cstring>
 
-Buffer::Buffer(size_t size, Type type, Usage usage) : size(size), type(type), usage(usage)
+Buffer::Buffer(size_t size, Type type, Usage usage) : size_(size), type_(type), usage_(usage)
 {
 }
 
-size_t Buffer::getSize() const
+size_t Buffer::get_size() const
 {
-	return size;
+	return size_;
 }
 
-Buffer::Type Buffer::getType() const
+Buffer::Type Buffer::get_type() const
 {
-	return type;
+	return type_;
 }
 
-Buffer::Usage Buffer::getUsage() const
+Buffer::Usage Buffer::get_usage() const
 {
-	return usage;
+	return usage_;
 }
 
-void* Buffer::getData()
+void* Buffer::get_data()
 {
-	return data;
+	return data_;
 }
 
 void Buffer::write(const void* data, size_t size, size_t offset)
 {
 	// TODO: 添加对 mapped buffer 范围的检查
-	assert(this->data);
-	assert(offset + size <= this->size);
-	std::memcpy(static_cast<unsigned char*>(this->data) + offset, data, size);
+	assert(this->data_);
+	assert(offset + size <= this->size_);
+	std::memcpy(static_cast<unsigned char*>(this->data_) + offset, data, size);
 }
 
 void Buffer::read(void* data, size_t size, size_t offset)
 {
 	// TODO: 添加对 mapped buffer 范围的检查
-	assert(this->data);
-	assert(offset + size <= this->size);
-	std::memcpy(data, static_cast<unsigned char*>(this->data) + offset, size);
+	assert(this->data_);
+	assert(offset + size <= this->size_);
+	std::memcpy(data, static_cast<unsigned char*>(this->data_) + offset, size);
 }

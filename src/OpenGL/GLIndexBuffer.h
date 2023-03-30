@@ -12,7 +12,7 @@ class GLIndexBuffer : public IndexBuffer
 public:
 	GLIndexBuffer(const uint32_t* data, size_t size, Buffer::Usage usage);
 
-	Buffer& getBuffer() override;
+	Buffer& get_buffer() override;
 
 	void bind();
 

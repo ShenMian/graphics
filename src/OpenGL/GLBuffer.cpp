@@ -33,26 +33,26 @@ GLBuffer::~GLBuffer()
 void GLBuffer::map(size_t size, size_t offset)
 {
 	const GLenum access = GL_MAP_READ_BIT | GL_MAP_WRITE_BIT;
-	if(data)
+	if(data_)
 		return; // 缓冲区已处于映射状态
 	if(size == (size_t)-1)
-		size = this->size;
-	assert(size <= this->size);
+		size = this->size_;
+	assert(size <= this->size_);
 
-	data = glMapNamedBufferRange(handle, offset, size, access);
+	data_ = glMapNamedBufferRange(handle, offset, size, access);
 }
 
 void GLBuffer::unmap()
 {
 	glUnmapNamedBuffer(handle);
-	data = nullptr;
+	data_ = nullptr;
 }
 
 void GLBuffer::flush(size_t size, size_t offset)
 {
 	if(size == (size_t)-1)
-		size = this->size;
-	assert(size <= this->size);
+		size = this->size_;
+	assert(size <= this->size_);
 
 	glFlushMappedNamedBufferRange(handle, offset, size);
 }

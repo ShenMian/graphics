@@ -11,22 +11,22 @@
 class Animation
 {
 public:
-	Animation(const std::string& name, float duration, uint32_t tickRate);
+	Animation(const std::string& name, float duration, uint32_t tick_rate);
 
 	/**
 	 * @brief 获取名称.
 	 */
-	const std::string& getName() const;
+	const std::string& get_name() const;
 
 	/**
 	 * @brief 获取持续时间, 单位: 秒.
 	 */
-	float getDuration() const;
+	float get_duration() const;
 
-	uint32_t getTickRate() const;
+	uint32_t get_tick_rate() const;
 
 private:
-	std::string name;
-	float       duration;
-	uint32_t    tickRate;
+	std::string name_;
+	float       duration_;
+	uint32_t    tick_rate_;
 };

@@ -12,26 +12,26 @@ Mesh::Mesh(std::string_view name, const std::vector<Vertex>& vertices, const std
       indexCount(indices.size())
 {
 	optimize();
-	createBuffers();
+	create_buffers();
 }
 
 float Mesh::compress()
 {
-	assert(!isCompressed());
+	assert(!is_compressed());
 	assert(vertexBuffer.use_count() == 1 && indexBuffer.use_count() == 1);
 
 	vertexBuffer.reset();
 	indexBuffer.reset();
 
-	vbuf.resize(meshopt_encodeVertexBufferBound(vertexCount, sizeof(Vertex)));
-	vbuf.resize(meshopt_encodeVertexBuffer(vbuf.data(), vbuf.size(), vertices.data(), vertexCount, sizeof(Vertex)));
-	vbuf.shrink_to_fit();
+	vbuf_.resize(meshopt_encodeVertexBufferBound(vertexCount, sizeof(Vertex)));
+	vbuf_.resize(meshopt_encodeVertexBuffer(vbuf_.data(), vbuf_.size(), vertices.data(), vertexCount, sizeof(Vertex)));
+	vbuf_.shrink_to_fit();
 
-	ibuf.resize(meshopt_encodeIndexBufferBound(indexCount, vertexCount));
-	ibuf.resize(meshopt_encodeIndexBuffer(ibuf.data(), ibuf.size(), indices.data(), indexCount));
-	ibuf.shrink_to_fit();
+	ibuf_.resize(meshopt_encodeIndexBufferBound(indexCount, vertexCount));
+	ibuf_.resize(meshopt_encodeIndexBuffer(ibuf_.data(), ibuf_.size(), indices.data(), indexCount));
+	ibuf_.shrink_to_fit();
 
-	const float ratio = static_cast<float>(vbuf.size() + ibuf.size()) /
+	const float ratio = static_cast<float>(vbuf_.size() + ibuf_.size()) /
 	                    (vertices.size() * sizeof(Vertex) + indices.size() * sizeof(unsigned int));
 
 	vertices.clear();
@@ -42,22 +42,22 @@ float Mesh::compress()
 
 void Mesh::decompress()
 {
-	assert(isCompressed());
+	assert(is_compressed());
 
 	const auto resvb =
-	    meshopt_decodeVertexBuffer(vertices.data(), vertexCount, sizeof(Vertex), vbuf.data(), vbuf.size());
-	const auto resib = meshopt_decodeIndexBuffer(indices.data(), indexCount, ibuf.data(), ibuf.size());
+	    meshopt_decodeVertexBuffer(vertices.data(), vertexCount, sizeof(Vertex), vbuf_.data(), vbuf_.size());
+	const auto resib = meshopt_decodeIndexBuffer(indices.data(), indexCount, ibuf_.data(), ibuf_.size());
 	assert(resvb == 0 && resib == 0);
 
-	createBuffers();
+	create_buffers();
 
-	vbuf.clear();
-	ibuf.clear();
+	vbuf_.clear();
+	ibuf_.clear();
 }
 
-bool Mesh::isCompressed() const noexcept
+bool Mesh::is_compressed() const noexcept
 {
-	return !vbuf.empty() || !ibuf.empty();
+	return !vbuf_.empty() || !ibuf_.empty();
 }
 
 void Mesh::optimize()
@@ -69,7 +69,7 @@ void Mesh::optimize()
 	                            sizeof(Vertex));
 }
 
-void Mesh::createBuffers()
+void Mesh::create_buffers()
 {
 	VertexFormat format = {
 	    {"position", Format::RGB32F}, {"normal", Format::RGB32F},    {"uv", Format::RG32F},

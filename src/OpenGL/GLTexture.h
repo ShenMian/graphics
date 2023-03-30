@@ -14,12 +14,12 @@ public:
 	~GLTexture();
 
 	void bind(uint32_t binding) override;
-	void setMinFilter(Filter filter) override;
-	void setMagFilter(Filter filter) override;
-	void setSWarp(Warp warp) override;
-	void setTWarp(Warp warp) override;
-	void setRWarp(Warp warp) override;
-	void generateMipmap();
+	void set_min_filter(Filter filter) override;
+	void set_mag_filter(Filter filter) override;
+	void set_s_warp(Warp warp) override;
+	void set_t_warp(Warp warp) override;
+	void set_r_warp(Warp warp) override;
+	void generate_mipmap();
 
 private:
 	GLuint handle;

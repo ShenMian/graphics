@@ -34,14 +34,14 @@ public:
 
 	Pin(const std::string& label, Kind kind, Type type);
 
-	Type getType() const noexcept;
-	Kind getKind() const noexcept;
+	Type get_type() const noexcept;
+	Kind get_kind() const noexcept;
 
 	void update() override;
 
 private:
-	Kind kind;
-	Type type;
+	Kind kind_;
+	Type type_;
 };
 
 } // namespace ui

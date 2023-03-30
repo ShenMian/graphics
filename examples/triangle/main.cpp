@@ -46,22 +46,22 @@ public:
 
 		bool running    = true;
 		window->onClose = [&] { running = false; };
-		window->setVisible(true); // 设置窗口可见
+		window->set_visible(true); // 设置窗口可见
 
 		while(running)
 		{
 			cmdBuffer->begin();
 			{
-				cmdBuffer->setPipeline(pipeline);
+				cmdBuffer->set_pipeline(pipeline);
 
 				// cmdBuffer->beginRenderPass();
 				{
-					cmdBuffer->setViewport({window->getSize()});
-					cmdBuffer->setClearColor({0, 0, 0, 0});
+					cmdBuffer->set_viewport({window->get_size()});
+					cmdBuffer->set_clear_color({0, 0, 0, 0});
 					cmdBuffer->clear(ClearFlag::Color);
 
-					cmdBuffer->setVertexBuffer(vertexBuffer);
-					cmdBuffer->draw(vertexBuffer->getCount());
+					cmdBuffer->set_vertex_buffer(vertexBuffer);
+					cmdBuffer->draw(vertexBuffer->get_count());
 				}
 				// cmdBuffer->endRenderPass();
 			}

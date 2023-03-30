@@ -64,12 +64,12 @@ void GLPipeline::bind()
 	glBindProgramPipeline(handle);
 
 	desc.program->use();
-	setupRasterizer(desc);
-	setupViewports(desc);
-	setupDepth(desc);
+	setup_rasterizer(desc);
+	setup_viewports(desc);
+	setup_depth(desc);
 }
 
-void GLPipeline::setupRasterizer(const Descriptor& desc)
+void GLPipeline::setup_rasterizer(const Descriptor& desc)
 {
 	glPolygonMode(GL_FRONT_AND_BACK, GLPolygonMdoe[desc.rasterizer.polygonMode]);
 	if(desc.rasterizer.cullMode != CullMode::Disabled)
@@ -82,7 +82,7 @@ void GLPipeline::setupRasterizer(const Descriptor& desc)
 	glLineWidth(desc.rasterizer.lineWidth);
 }
 
-void GLPipeline::setupViewports(const Descriptor& desc)
+void GLPipeline::setup_viewports(const Descriptor& desc)
 {
 	for(size_t i = 0; i < desc.viewports.size(); i++)
 	{
@@ -92,7 +92,7 @@ void GLPipeline::setupViewports(const Descriptor& desc)
 	}
 }
 
-void GLPipeline::setupDepth(const Descriptor& desc)
+void GLPipeline::setup_depth(const Descriptor& desc)
 {
 	if(desc.depth.enableTest)
 	{

@@ -7,101 +7,101 @@
 #include "Input.h"
 #include <algorithm>
 
-Controller::Controller(Camera& cam) : camera(&cam)
+Controller::Controller(Camera& cam) : camera_(&cam)
 {
 }
 
 void Controller::update(float dt)
 {
 	// FIXME: 同时使用键盘和游戏手柄能达到更高的速度
-	processMouse(dt);
-	processKeyboard(dt);
-	processGamepad(dt);
+	process_mouse(dt);
+	process_keyboard(dt);
+	process_gamepad(dt);
 
-	if(smoothness && (camera->getPosition() - target).norm() > speed * 0.001f)
-		camera->setPosition(lerp(camera->getPosition(), target, dt * smoothness));
+	if(smoothness_ && (camera_->get_position() - target_).norm() > speed_ * 0.001f)
+		camera_->set_position(lerp(camera_->get_position(), target_, dt * smoothness_));
 	else
-		camera->setPosition(target);
+		camera_->set_position(target_);
 }
 
-void Controller::moveFront(float step)
+void Controller::move_front(float step)
 {
-	target += camera->getFront() * step;
+	target_ += camera_->get_front() * step;
 }
 
-void Controller::moveRight(float step)
+void Controller::move_right(float step)
 {
-	target += camera->getRight() * step;
+	target_ += camera_->get_right() * step;
 }
 
-void Controller::moveUp(float step)
+void Controller::move_up(float step)
 {
 	const Vector3f unit_y({0.f, 1.f, 0.f}); // TODO
-	target += -unit_y * step;
+	target_ += -unit_y * step;
 }
 
-void Controller::turnRight(float step)
+void Controller::turn_right(float step)
 {
-	auto rot = camera->getRotation();
+	auto rot = camera_->get_rotation();
 	rot.y() += step;
-	camera->setRotation(rot);
+	camera_->set_rotation(rot);
 }
 
-void Controller::lookUp(float step)
+void Controller::look_up(float step)
 {
-	auto rot = camera->getRotation();
+	auto rot = camera_->get_rotation();
 	rot.x() += step;
 	rot.x() = std::clamp(rot.x(), -89.f, 89.f);
-	camera->setRotation(rot);
+	camera_->set_rotation(rot);
 }
 
-void Controller::setSpeed(float v)
+void Controller::set_speed(float v)
 {
-	speed = v;
+	speed_ = v;
 }
 
-void Controller::setSmoothness(float v)
+void Controller::set_smoothness(float v)
 {
-	smoothness = v;
+	smoothness_ = v;
 }
 
-void Controller::setCamera(Camera& cam)
+void Controller::set_camera(Camera& cam)
 {
-	camera = &cam;
-	target = camera->getPosition();
+	camera_ = &cam;
+	target_ = camera_->get_position();
 }
 
-void Controller::setGamepad(Gamepad& Gamepad)
+void Controller::set_gamepad(Gamepad& Gamepad)
 {
-	gamepad = &Gamepad;
+	gamepad_ = &Gamepad;
 }
 
-void Controller::processKeyboard(float dt)
+void Controller::process_keyboard(float dt)
 {
-	float step = speed * dt;
-	if(Input::isPressed(Key::LeftShift))
+	float step = speed_ * dt;
+	if(Input::is_pressed(Key::LeftShift))
 		step *= 3;
 
-	if(Input::isPressed(Key::W))
-		moveFront(step);
-	if(Input::isPressed(Key::S))
-		moveFront(-step);
-	if(Input::isPressed(Key::A))
-		moveRight(-step);
-	if(Input::isPressed(Key::D))
-		moveRight(step);
-	if(Input::isPressed(Key::E))
-		moveUp(step);
-	if(Input::isPressed(Key::Q))
-		moveUp(-step);
+	if(Input::is_pressed(Key::W))
+		move_front(step);
+	if(Input::is_pressed(Key::S))
+		move_front(-step);
+	if(Input::is_pressed(Key::A))
+		move_right(-step);
+	if(Input::is_pressed(Key::D))
+		move_right(step);
+	if(Input::is_pressed(Key::E))
+		move_up(step);
+	if(Input::is_pressed(Key::Q))
+		move_up(-step);
 }
 
-void Controller::processMouse(float dt)
+void Controller::process_mouse(float dt)
 {
 	const Vector2f unit({2.f, 1.f}); // TODO
 	const Vector2f sensitivity = unit;
 
-	const auto      position = Input::getMousePosition();
+	const auto      position = Input::get_mouse_position();
 	static Vector2f lastPos  = position;
 	const auto      pos      = static_cast<Vector2f>(position);
 	Vector2f        offset   = pos - lastPos;
@@ -117,31 +117,31 @@ void Controller::processMouse(float dt)
 	offset.y() *= sensitivity.y() * 0.09;
 #endif
 
-	lookUp(-offset.y());
-	turnRight(offset.x());
+	look_up(-offset.y());
+	turn_right(offset.x());
 }
 
-void Controller::processGamepad(float dt)
+void Controller::process_gamepad(float dt)
 {
-	if(!gamepad->isConnected())
+	if(!gamepad_->is_connected())
 		return;
 
-	gamepad->update();
+	gamepad_->update();
 
-	float step = speed * dt;
-	if(gamepad->get(Gamepad::Button::LeftThumb))
+	float step = speed_ * dt;
+	if(gamepad_->get(Gamepad::Button::LeftThumb))
 		step *= 3;
 
 	const Vector2f unit({1.f, 1.f}); // TODO
 	const Vector2f sensitivity = unit * 200.f * dt;
 
-	const auto leftThumb    = gamepad->get(Gamepad::Thumb::left);
-	const auto rightThumb   = gamepad->get(Gamepad::Thumb::right);
-	const auto rightTrigger = gamepad->get(Gamepad::Trigger::right);
-	const auto leftTrigger  = gamepad->get(Gamepad::Trigger::left);
-	moveFront(-leftThumb.y() * step);
-	moveRight(leftThumb.x() * step);
-	moveUp((rightTrigger + (-leftTrigger)) * step);
-	lookUp(-rightThumb.y() * sensitivity.x());
-	turnRight(rightThumb.x() * sensitivity.y());
+	const auto leftThumb    = gamepad_->get(Gamepad::Thumb::left);
+	const auto rightThumb   = gamepad_->get(Gamepad::Thumb::right);
+	const auto rightTrigger = gamepad_->get(Gamepad::Trigger::right);
+	const auto leftTrigger  = gamepad_->get(Gamepad::Trigger::left);
+	move_front(-leftThumb.y() * step);
+	move_right(leftThumb.x() * step);
+	move_up((rightTrigger + (-leftTrigger)) * step);
+	look_up(-rightThumb.y() * sensitivity.x());
+	turn_right(rightThumb.x() * sensitivity.y());
 }

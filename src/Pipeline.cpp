@@ -8,7 +8,7 @@
 
 std::shared_ptr<Pipeline> Pipeline::create(const Descriptor& desc)
 {
-	switch(Renderer::getBackend())
+	switch(Renderer::get_backend())
 	{
 		using enum Renderer::Backend;
 

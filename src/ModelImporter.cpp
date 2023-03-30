@@ -65,54 +65,54 @@ Model ModelImporter::load(const fs::path& path, std::function<void(float)> callb
 	Assimp::Importer importer;
 	if(callback)
 		importer.SetProgressHandler(new Progress([&](float progress) { callback(progress); }));
-	scene = importer.ReadFile(path.string(), fastFlags);
+	scene_ = importer.ReadFile(path.string(), fastFlags);
 
-	if(scene == nullptr || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || scene->mRootNode == nullptr)
+	if(scene_ == nullptr || scene_->mFlags & AI_SCENE_FLAGS_INCOMPLETE || scene_->mRootNode == nullptr)
 		throw std::runtime_error(fmt::format("Assimp: {}", importer.GetErrorString()));
 
 	Model model;
-	this->model       = &model;
-	this->model->path = path;
-	loadScene();
+	this->model_       = &model;
+	this->model_->path = path;
+	load_scene();
 
 	return model;
 }
 
-void ModelImporter::loadScene()
+void ModelImporter::load_scene()
 {
-	model->name = scene->mName.C_Str();
+	model_->name = scene_->mName.C_Str();
 
-	for(unsigned int i = 0; i < scene->mNumMaterials; i++)
-		loadMaterial(*scene->mMaterials[i]);
+	for(unsigned int i = 0; i < scene_->mNumMaterials; i++)
+		load_material(*scene_->mMaterials[i]);
 
-	for(unsigned int i = 0; i < scene->mNumAnimations; i++)
-		loadAnimation(*scene->mAnimations[i]);
+	for(unsigned int i = 0; i < scene_->mNumAnimations; i++)
+		load_animation(*scene_->mAnimations[i]);
 
-	loadNode(*scene->mRootNode);
+	load_node(*scene_->mRootNode);
 }
 
-void ModelImporter::loadNode(const aiNode& node)
+void ModelImporter::load_node(const aiNode& node)
 {
 	for(unsigned int i = 0; i < node.mNumMeshes; i++)
-		loadMesh(*scene->mMeshes[node.mMeshes[i]]);
+		load_mesh(*scene_->mMeshes[node.mMeshes[i]]);
 
 	for(unsigned int i = 0; i < node.mNumChildren; i++)
-		loadNode(*node.mChildren[i]);
+		load_node(*node.mChildren[i]);
 }
 
-void ModelImporter::loadMesh(const aiMesh& mesh)
+void ModelImporter::load_mesh(const aiMesh& mesh)
 {
-	const auto vertices = loadVertices(mesh);
-	const auto indices  = loadIndices(mesh);
+	const auto vertices = load_vertices(mesh);
+	const auto indices  = load_indices(mesh);
 
 	for(const auto& vertex : vertices)
-		model->aabb.expand(vertex.position);
+		model_->aabb.expand(vertex.position);
 
-	auto& m = model->materials[mesh.mMaterialIndex];
+	auto& m = model_->materials[mesh.mMaterialIndex];
 
-	model->meshes.push_back({mesh.mName.C_Str(), vertices, indices, &model->materials[mesh.mMaterialIndex]});
-	model->vertexCount += vertices.size();
-	model->indexCount += indices.size();
+	model_->meshes.push_back({mesh.mName.C_Str(), vertices, indices, &model_->materials[mesh.mMaterialIndex]});
+	model_->vertexCount += vertices.size();
+	model_->indexCount += indices.size();
 
 	for(unsigned int i = 0; i < mesh.mNumBones; i++)
 	{
@@ -127,7 +127,7 @@ void ModelImporter::loadMesh(const aiMesh& mesh)
 	}
 }
 
-void ModelImporter::loadMaterial(const aiMaterial& mat)
+void ModelImporter::load_material(const aiMaterial& mat)
 {
 	auto loadTexture = [&](aiTextureType type) -> std::shared_ptr<Texture> {
 		if(mat.GetTextureCount(type) == 0)
@@ -137,21 +137,21 @@ void ModelImporter::loadMaterial(const aiMaterial& mat)
 		aiString         path;
 		aiTextureMapMode warp[2];
 		mat.GetTexture(type, 0, &path, nullptr, nullptr, nullptr, nullptr, warp);
-		if(!fs::exists(model->path.parent_path() / path.C_Str()))
+		if(!fs::exists(model_->path.parent_path() / path.C_Str()))
 			return nullptr;
-		if((model->path.parent_path() / path.C_Str()).extension() == ".dds")
+		if((model_->path.parent_path() / path.C_Str()).extension() == ".dds")
 		{
 			DDSImporter importer;
-			return importer.load(model->path.parent_path() / path.C_Str());
+			return importer.load(model_->path.parent_path() / path.C_Str());
 		}
-		auto texture = Texture::create(model->path.parent_path() / path.C_Str());
-		texture->setMinFilter(Texture::Filter::Trilinear);
-		texture->setSWarp(Warp[warp[0]]);
-		texture->setTWarp(Warp[warp[1]]);
+		auto texture = Texture::create(model_->path.parent_path() / path.C_Str());
+		texture->set_min_filter(Texture::Filter::Trilinear);
+		texture->set_s_warp(Warp[warp[0]]);
+		texture->set_t_warp(Warp[warp[1]]);
 		return texture;
 	};
 
-	auto& material = model->materials.emplace_back();
+	auto& material = model_->materials.emplace_back();
 	material.name  = mat.GetName().C_Str();
 
 	aiShadingMode mode;
@@ -194,13 +194,13 @@ void ModelImporter::loadMaterial(const aiMaterial& mat)
 	}
 }
 
-void ModelImporter::loadAnimation(const aiAnimation& anim)
+void ModelImporter::load_animation(const aiAnimation& anim)
 {
-	model->animations.emplace_back(anim.mName.C_Str(), static_cast<float>(anim.mDuration / anim.mTicksPerSecond),
+	model_->animations.emplace_back(anim.mName.C_Str(), static_cast<float>(anim.mDuration / anim.mTicksPerSecond),
 	                               static_cast<int>(anim.mTicksPerSecond));
 }
 
-std::vector<Mesh::Vertex> ModelImporter::loadVertices(const aiMesh& mesh) noexcept
+std::vector<Mesh::Vertex> ModelImporter::load_vertices(const aiMesh& mesh) noexcept
 {
 	std::vector<Mesh::Vertex> vertices;
 
@@ -237,7 +237,7 @@ std::vector<Mesh::Vertex> ModelImporter::loadVertices(const aiMesh& mesh) noexce
 	return vertices;
 }
 
-std::vector<unsigned int> ModelImporter::loadIndices(const aiMesh& mesh) noexcept
+std::vector<unsigned int> ModelImporter::load_indices(const aiMesh& mesh) noexcept
 {
 	std::vector<unsigned int> indices;
 

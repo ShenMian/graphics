@@ -20,5 +20,5 @@ public:
 	operator VkInstance() const noexcept;
 
 private:
-	VkInstance handle;
+	VkInstance handle_;
 };

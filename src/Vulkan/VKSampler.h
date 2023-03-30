@@ -13,5 +13,5 @@ public:
 	~VKSampler();
 
 private:
-	VkSampler handle;
+	VkSampler handle_;
 };

@@ -21,10 +21,10 @@ public:
 	operator VkBuffer() const noexcept;
 
 private:
-	uint32_t findMemoryType(uint32_t type, VkMemoryPropertyFlags properties);
+	uint32_t find_memory_type(uint32_t type, VkMemoryPropertyFlags properties) const;
 
-	VkBuffer       handle;
-	VkDeviceMemory memory;
+	VkBuffer       handle_;
+	VkDeviceMemory memory_;
 
-	VKRenderer* renderer;
+	VKRenderer* renderer_;
 };

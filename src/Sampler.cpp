@@ -5,33 +5,33 @@
 #include <cassert>
 
 Sampler::Sampler(const Descriptor& desc)
-    : minFilter(desc.minFilter), magFilter(desc.magFilter), SWarp(desc.SWarp), TWarp(desc.TWarp), RWarp(desc.RWarp)
+    : min_filter_(desc.minFilter), mag_filter_(desc.magFilter), s_warp_(desc.SWarp), t_warp_(desc.TWarp), r_warp_(desc.RWarp)
 {
-	assert(minFilter == Filter::Nearest || minFilter == Filter::Bilinear || minFilter == Filter::Trilinear);
-	assert(magFilter == Filter::Nearest || magFilter == Filter::Bilinear);
+	assert(min_filter_ == Filter::Nearest || min_filter_ == Filter::Bilinear || min_filter_ == Filter::Trilinear);
+	assert(mag_filter_ == Filter::Nearest || mag_filter_ == Filter::Bilinear);
 }
 
-Sampler::Filter Sampler::getMinFilter() const noexcept
+Sampler::Filter Sampler::get_min_filter() const noexcept
 {
-	return minFilter;
+	return min_filter_;
 }
 
-Sampler::Filter Sampler::getMagFilter() const noexcept
+Sampler::Filter Sampler::get_mag_filter() const noexcept
 {
-	return magFilter;
+	return mag_filter_;
 }
 
-Sampler::Warp Sampler::getSWarpMode() const noexcept
+Sampler::Warp Sampler::get_s_warp_mode() const noexcept
 {
-	return SWarp;
+	return s_warp_;
 }
 
-Sampler::Warp Sampler::getTWarpMode() const noexcept
+Sampler::Warp Sampler::get_t_warp_mode() const noexcept
 {
-	return TWarp;
+	return t_warp_;
 }
 
-Sampler::Warp Sampler::getRWarpMode() const noexcept
+Sampler::Warp Sampler::get_r_warp_mode() const noexcept
 {
-	return RWarp;
+	return r_warp_;
 }

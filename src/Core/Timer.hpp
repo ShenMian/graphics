@@ -19,17 +19,17 @@ public:
 
 	Timer() { restart(); }
 
-	void restart() noexcept { start = clock::now(); }
+	void restart() noexcept { start_ = clock::now(); }
 
-	auto getMilliseconds() const noexcept
+	auto get_milliseconds() const noexcept
 	{
-		return std::chrono::duration_cast<std::chrono::milliseconds>(clock::now() - start).count();
+		return std::chrono::duration_cast<std::chrono::milliseconds>(clock::now() - start_).count();
 	}
 
-	auto getSeconds() const noexcept { return static_cast<double>(getMilliseconds()) / 1000.0; }
+	auto get_seconds() const noexcept { return static_cast<double>(get_milliseconds()) / 1000.0; }
 
 private:
-	std::chrono::time_point<clock> start;
+	std::chrono::time_point<clock> start_;
 };
 
 /** @}*/

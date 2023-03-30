@@ -38,19 +38,19 @@ public:
 	/**
 	 * @brief 获取缓冲区大小, 单位: 字节.
 	 */
-	[[nodiscard]] size_t getSize() const;
+	[[nodiscard]] size_t get_size() const;
 
 	/**
 	 * @brief 获取索引数.
 	 */
-	[[nodiscard]] uint32_t getCount() const;
+	[[nodiscard]] uint32_t get_count() const;
 
-	virtual Buffer& getBuffer() = 0;
+	virtual Buffer& get_buffer() = 0;
 
 protected:
 	IndexBuffer(const void* data, size_t size);
 
 private:
-	size_t   size;
-	uint32_t count;
+	size_t   size_;
+	uint32_t count_;
 };

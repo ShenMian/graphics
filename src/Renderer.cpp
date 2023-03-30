@@ -7,11 +7,11 @@
 #include "OpenGL/GLRenderer.h"
 #include "Vulkan/VKRenderer.h"
 
-Renderer::Backend Renderer::backend = Renderer::Backend::OpenGL;
+Renderer::Backend Renderer::backend_ = Renderer::Backend::OpenGL;
 
 Renderer* Renderer::get()
 {
-	switch(Renderer::getBackend())
+	switch(Renderer::get_backend())
 	{
 		using enum Renderer::Backend;
 
@@ -28,19 +28,19 @@ Renderer* Renderer::get()
 	return nullptr;
 }
 
-void Renderer::setBackend(Backend newBackend)
+void Renderer::set_backend(Backend newBackend)
 {
-	backend = newBackend;
+	backend_ = newBackend;
 }
 
-Renderer::Backend Renderer::getBackend()
+Renderer::Backend Renderer::get_backend()
 {
-	return backend;
+	return backend_;
 }
 
 void Renderer::init(const Window& win)
 {
-	switch(Renderer::getBackend())
+	switch(Renderer::get_backend())
 	{
 		using enum Renderer::Backend;
 
@@ -56,7 +56,7 @@ void Renderer::init(const Window& win)
 
 void Renderer::deinit()
 {
-	switch(Renderer::getBackend())
+	switch(Renderer::get_backend())
 	{
 		using enum Renderer::Backend;
 

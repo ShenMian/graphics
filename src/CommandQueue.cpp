@@ -10,7 +10,7 @@
 
 std::shared_ptr<CommandQueue> CommandQueue::create()
 {
-	switch(Renderer::getBackend())
+	switch(Renderer::get_backend())
 	{
 		using enum Renderer::Backend;
 

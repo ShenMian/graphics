@@ -38,17 +38,17 @@ public:
 	Model load(const std::filesystem::path& path, std::function<void(float)> callback = nullptr);
 
 private:
-	void loadScene();
-	void loadNode(const aiNode&);
-	void loadMesh(const aiMesh&);
-	void loadMaterial(const aiMaterial&);
-	void loadAnimation(const aiAnimation&);
+	void load_scene();
+	void load_node(const aiNode&);
+	void load_mesh(const aiMesh&);
+	void load_material(const aiMaterial&);
+	void load_animation(const aiAnimation&);
 
-	std::vector<Mesh::Vertex> loadVertices(const aiMesh&) noexcept;
-	std::vector<unsigned int> loadIndices(const aiMesh&) noexcept;
+	std::vector<Mesh::Vertex> load_vertices(const aiMesh&) noexcept;
+	std::vector<unsigned int> load_indices(const aiMesh&) noexcept;
 
-	const aiScene* scene;
-	Model*         model;
+	const aiScene* scene_;
+	Model*         model_;
 };
 
 /** @}*/

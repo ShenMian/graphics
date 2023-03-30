@@ -12,9 +12,7 @@
 #define FMT_HEADER_ONLY
 #include <fmt/format.h>
 
-namespace fs = std::filesystem;
-
-GLProgram::GLProgram(const Descriptor& desc) : Program(desc), handle(glCreateProgram())
+GLProgram::GLProgram(const Descriptor& desc) : Program(desc), handle_(glCreateProgram())
 {
 	if(desc.vertex == nullptr || desc.fragment == nullptr)
 		throw std::runtime_error("program must have vertex shader and fragment shader");
@@ -32,70 +30,70 @@ GLProgram::GLProgram(const Descriptor& desc) : Program(desc), handle(glCreatePro
 
 GLProgram::~GLProgram()
 {
-	glDeleteProgram(handle);
+	glDeleteProgram(handle_);
 }
 
 void GLProgram::use()
 {
-	glUseProgram(handle);
+	glUseProgram(handle_);
 }
 
-void GLProgram::setUniform(const std::string& name, int value)
+void GLProgram::set_uniform(const std::string& name, int value)
 {
 	use();
-	glUniform1i(getUniformLocation(name), value);
+	glUniform1i(get_uniform_location(name), value);
 }
 
-void GLProgram::setUniform(const std::string& name, float value)
+void GLProgram::set_uniform(const std::string& name, float value)
 {
 	use();
-	glUniform1f(getUniformLocation(name), value);
+	glUniform1f(get_uniform_location(name), value);
 }
 
-void GLProgram::setUniform(const std::string& name, const Vector2& value)
+void GLProgram::set_uniform(const std::string& name, const Vector2& value)
 {
 	use();
-	glUniform2f(getUniformLocation(name), value.x(), value.y());
+	glUniform2f(get_uniform_location(name), value.x(), value.y());
 }
 
-void GLProgram::setUniform(const std::string& name, const Vector3& value)
+void GLProgram::set_uniform(const std::string& name, const Vector3& value)
 {
 	use();
-	glUniform3f(getUniformLocation(name), value.x(), value.y(), value.z());
+	glUniform3f(get_uniform_location(name), value.x(), value.y(), value.z());
 }
 
-void GLProgram::setUniform(const std::string& name, const Vector4& value)
+void GLProgram::set_uniform(const std::string& name, const Vector4& value)
 {
 	use();
-	glUniform4f(getUniformLocation(name), value.x(), value.y(), value.z(), value.w());
+	glUniform4f(get_uniform_location(name), value.x(), value.y(), value.z(), value.w());
 }
 
-void GLProgram::setUniform(const std::string& name, const Matrix4& value)
+void GLProgram::set_uniform(const std::string& name, const Matrix4& value)
 {
 	use();
-	glUniformMatrix4fv(getUniformLocation(name), 1, false, value.data());
+	glUniformMatrix4fv(get_uniform_location(name), 1, false, value.data());
 }
 
 GLProgram::operator GLuint() const noexcept
 {
-	return handle;
+	return handle_;
 }
 
-int GLProgram::getUniformBufferLocation(const std::string& name)
+int GLProgram::get_uniform_buffer_location(const std::string& name) const
 {
-	return glGetUniformBlockIndex(handle, name.c_str());
+	return glGetUniformBlockIndex(handle_, name.c_str());
 }
 
-int GLProgram::getUniformLocation(const std::string& name)
+int GLProgram::get_uniform_location(const std::string& name) const
 {
-	// FIXME: SPRI-V Shader 无法再正确识别该项
-	const auto it = uniformLocations.find(name);
-	if(it == uniformLocations.end())
+	// FIXME: SPRI-V shader 无法再正确识别该项
+	const auto it = uniform_location_cache_.find(name);
+	if(it == uniform_location_cache_.end())
 	{
-		const auto location = glGetUniformLocation(handle, name.c_str());
+		const auto location = glGetUniformLocation(handle_, name.c_str());
 		if(location == -1)
 			throw std::runtime_error("uniform buffer name do not exist");
-		uniformLocations[name] = location;
+		uniform_location_cache_[name] = location;
 		return location;
 	}
 	return it->second;
@@ -105,34 +103,34 @@ void GLProgram::attach(const std::shared_ptr<Shader> shader)
 {
 	if(shader == nullptr)
 		return;
-	stageCount++;
+	stage_count_++;
 	auto glShader = std::dynamic_pointer_cast<GLShader>(shader);
-	glAttachShader(handle, (GLuint)glShader->getHandle());
+	glAttachShader(handle_, static_cast<GLuint>(glShader->get_handle()));
 }
 
 void GLProgram::detach(const std::shared_ptr<Shader> shader)
 {
 	if(shader == nullptr)
 		return;
-	stageCount++;
+	stage_count_++;
 	auto glShader = std::dynamic_pointer_cast<GLShader>(shader);
-	glDetachShader(handle, (GLuint)glShader->getHandle());
+	glDetachShader(handle_, static_cast<GLuint>(glShader->get_handle()));
 }
 
 void GLProgram::link()
 {
-	glLinkProgram(handle);
+	glLinkProgram(handle_);
 
 	// 获取链接结果状态
 	int status;
-	glGetProgramiv(handle, GL_LINK_STATUS, &status);
+	glGetProgramiv(handle_, GL_LINK_STATUS, &status);
 	if(status == GL_FALSE)
 	{
 		// 获取报错内容
 		int size;
-		glGetProgramiv(handle, GL_INFO_LOG_LENGTH, &size);
+		glGetProgramiv(handle_, GL_INFO_LOG_LENGTH, &size);
 		std::string info(size, '\0');
-		glGetProgramInfoLog(handle, (GLsizei)info.size(), &size, info.data());
-		throw std::runtime_error(fmt::format("program '{}' link failed: {}", name, info));
+		glGetProgramInfoLog(handle_, (GLsizei)info.size(), &size, info.data());
+		throw std::runtime_error(fmt::format("program '{}' link failed: {}", name_, info));
 	}
 }

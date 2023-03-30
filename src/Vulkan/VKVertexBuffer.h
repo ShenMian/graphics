@@ -12,11 +12,11 @@ class VKVertexBuffer : public VertexBuffer
 public:
 	VKVertexBuffer(const void* data, size_t size, const VertexFormat& layout, Buffer::Usage usage);
 
-	Buffer& getBuffer() override;
+	Buffer& get_buffer() override;
 
 	operator VkBuffer();
 	operator VkBuffer() const;
 
 private:
-	VKBuffer buffer;
+	VKBuffer buffer_;
 };

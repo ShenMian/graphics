@@ -62,14 +62,14 @@ public:
 	/**
 	 * 是否已经过压缩.
 	 */
-	bool isCompressed() const noexcept;
+	bool is_compressed() const noexcept;
 
 private:
 	void optimize();
-	void createBuffers();
+	void create_buffers();
 
-	std::vector<unsigned char> vbuf;
-	std::vector<unsigned char> ibuf;
+	std::vector<unsigned char> vbuf_;
+	std::vector<unsigned char> ibuf_;
 };
 
 /** @}*/

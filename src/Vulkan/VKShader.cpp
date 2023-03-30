@@ -17,7 +17,7 @@ namespace fs = std::filesystem;
 
 VKShader::VKShader(const Descriptor& desc) : Shader(desc)
 {
-	auto buf = getCode(desc.path);
+	auto buf = get_code(desc.path);
 	parse(buf);
 
 	VkShaderModuleCreateInfo info = {};
@@ -26,17 +26,17 @@ VKShader::VKShader(const Descriptor& desc) : Shader(desc)
 	info.pCode                    = buf.data();
 
 	auto renderer = reinterpret_cast<VKRenderer*>(Renderer::get());
-	if(vkCreateShaderModule(renderer->getDevice(), &info, nullptr, &handle) != VK_SUCCESS)
+	if(vkCreateShaderModule(renderer->get_device(), &info, nullptr, &handle_) != VK_SUCCESS)
 		throw std::runtime_error("failed to create shader module");
 }
 
 VKShader::~VKShader()
 {
 	auto renderer = reinterpret_cast<VKRenderer*>(Renderer::get());
-	vkDestroyShaderModule(renderer->getDevice(), handle, nullptr);
+	vkDestroyShaderModule(renderer->get_device(), handle_, nullptr);
 }
 
-VkShaderModule VKShader::getHandle()
+VkShaderModule VKShader::get_handle()
 {
-	return handle;
+	return handle_;
 }

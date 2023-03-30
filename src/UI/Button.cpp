@@ -7,13 +7,13 @@
 namespace ui
 {
 
-Button::Button(const std::string& label, const Vector2& size) : Widget(label), size(size)
+Button::Button(const std::string& label, const Vector2& size) : Widget(label), size_(size)
 {
 }
 
 void Button::update()
 {
-	if(ImGui::Button(handle.c_str(), ImVec2(size.x(), size.y())))
+	if(ImGui::Button(handle_.c_str(), ImVec2(size_.x(), size_.y())))
 		if(click)
 			click(*this);
 	if(ImGui::IsItemHovered())

@@ -30,16 +30,16 @@ public:
 	/**
 	 * @brief 获取字形.
 	 */
-	Glyph getGlyph(unsigned long code, uint16_t size);
+	Glyph get_glyph(unsigned long code, uint16_t size);
 
 	static void init();
 	static void deinit();
 
 private:
-	void     setPixelSize(uint16_t size);
-	uint16_t getPixelSize() const;
+	void     set_pixel_size(uint16_t size);
+	uint16_t get_pixel_size() const;
 
-	std::unordered_map<uint64_t, Glyph> glyphs;
+	std::unordered_map<uint64_t, Glyph> glyph_cache_;
 
-	FT_Face handle;
+	FT_Face handle_;
 };

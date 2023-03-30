@@ -9,7 +9,7 @@
 
 std::shared_ptr<UniformBuffer> UniformBuffer::create(int binding, size_t size)
 {
-	switch(Renderer::getBackend())
+	switch(Renderer::get_backend())
 	{
 		using enum Renderer::Backend;
 
@@ -22,6 +22,6 @@ std::shared_ptr<UniformBuffer> UniformBuffer::create(int binding, size_t size)
 	return nullptr;
 }
 
-UniformBuffer::UniformBuffer(int binding) : binding(binding)
+UniformBuffer::UniformBuffer(int binding) : binding_(binding)
 {
 }

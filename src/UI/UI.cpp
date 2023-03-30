@@ -12,9 +12,9 @@
 
 #include <ImGuizmo.h>
 
-void UI::beginFrame()
+void UI::begin_frame()
 {
-	switch(Renderer::getBackend())
+	switch(Renderer::get_backend())
 	{
 		using enum Renderer::Backend;
 
@@ -31,10 +31,10 @@ void UI::beginFrame()
 	ImGuizmo::BeginFrame();
 }
 
-void UI::endFrame()
+void UI::end_frame()
 {
 	ImGui::Render();
-	switch(Renderer::getBackend())
+	switch(Renderer::get_backend())
 	{
 		using enum Renderer::Backend;
 
@@ -66,17 +66,17 @@ void UI::init(const Window& win)
 	auto& io = ImGui::GetIO();
 	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable; // 启用 Docking
 
-	switch(Renderer::getBackend())
+	switch(Renderer::get_backend())
 	{
 		using enum Renderer::Backend;
 
 	case OpenGL:
-		ImGui_ImplGlfw_InitForOpenGL(win.getHandle(), true);
+		ImGui_ImplGlfw_InitForOpenGL(win.get_handle(), true);
 		ImGui_ImplOpenGL3_Init("#version 450");
 		break;
 
 	case Vulkan:
-		ImGui_ImplGlfw_InitForVulkan(win.getHandle(), true);
+		ImGui_ImplGlfw_InitForVulkan(win.get_handle(), true);
 		// ImGui_ImplVulkan_Init(ImGui_ImplVulkan_InitInfo);
 		break;
 	}
@@ -84,7 +84,7 @@ void UI::init(const Window& win)
 
 void UI::deinit()
 {
-	switch(Renderer::getBackend())
+	switch(Renderer::get_backend())
 	{
 		using enum Renderer::Backend;
 

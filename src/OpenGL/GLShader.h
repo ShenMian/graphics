@@ -15,7 +15,7 @@ public:
 	/**
 	 * @brief 获取本地句柄.
 	 */
-	size_t getHandle() const;
+	size_t get_handle() const;
 
 private:
 	GLuint handle;

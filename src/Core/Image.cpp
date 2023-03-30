@@ -86,7 +86,7 @@ void Image::save(const fs::path& path) const
 		throw std::runtime_error("unsupport format"); // 不支持的导出格式
 }
 
-void Image::setPixel(const Vector4f& color, const Vector2i& pos)
+void Image::set_pixel(const Vector4f& color, const Vector2i& pos)
 {
 	assert(pos.x() < size_.x() && pos.y() < size_.y());
 	auto pixel = &data_[(pos.y() * size_.x() + pos.x()) * channels_];
@@ -96,14 +96,14 @@ void Image::setPixel(const Vector4f& color, const Vector2i& pos)
 	*pixel++   = (uint8_t)(color.w() * 255); // a
 }
 
-Vector4f Image::getPixel(const Vector2i& pos) const
+Vector4f Image::get_pixel(const Vector2i& pos) const
 {
 	assert(pos.x() < size_.x() && pos.y() < size_.y());
 	const auto pixel = &data_[(pos.y() * size_.x() + pos.x()) * channels_];
 	return {pixel[0] / 255.f, pixel[1] / 255.f, pixel[2] / 255.f, pixel[3] / 255.f};
 }
 
-void Image::flipHorizontally() noexcept
+void Image::flip_horizontally() noexcept
 {
 	const auto rowSize = size_.x() * channels_;
 
@@ -121,7 +121,7 @@ void Image::flipHorizontally() noexcept
 	}
 }
 
-void Image::flipVertically() noexcept
+void Image::flip_vertically() noexcept
 {
 	const auto rowSize = size_.x() * channels_;
 
@@ -146,7 +146,7 @@ const uint8_t* Image::data() const noexcept
 	return data_.data();
 }
 
-size_t Image::sizeBytes() const noexcept
+size_t Image::size_bytes() const noexcept
 {
 	return data_.size();
 }
@@ -156,7 +156,7 @@ Vector2i Image::size() const noexcept
 	return size_;
 }
 
-int Image::channelCount() const noexcept
+int Image::channel_count() const noexcept
 {
 	return channels_;
 }

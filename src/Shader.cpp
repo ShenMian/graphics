@@ -124,7 +124,7 @@ std::string ToString(spirv_cross::SPIRType type)
 
 std::shared_ptr<Shader> Shader::create(const Descriptor& desc)
 {
-	switch(Renderer::getBackend())
+	switch(Renderer::get_backend())
 	{
 		using enum Renderer::Backend;
 
@@ -140,33 +140,33 @@ std::shared_ptr<Shader> Shader::create(const Descriptor& desc)
 	return nullptr;
 }
 
-const std::string& Shader::getName() const noexcept
+const std::string& Shader::get_name() const noexcept
 {
-	return name;
+	return name_;
 }
 
-const std::string& Shader::getEntryPoint() const noexcept
+const std::string& Shader::get_entry_point() const noexcept
 {
-	return entryPoint;
+	return entry_point_;
 }
 
-Shader::Stage Shader::getStage() const noexcept
+Shader::Stage Shader::get_stage() const noexcept
 {
-	return stage;
+	return stage_;
 }
 
-Shader::Shader(const Descriptor& desc) : name(desc.path.filename().string()), stage(desc.stage)
+Shader::Shader(const Descriptor& desc) : name_(desc.path.filename().string()), stage_(desc.stage)
 {
 }
 
-std::vector<uint32_t> Shader::getCode(fs::path path)
+std::vector<uint32_t> Shader::get_code(fs::path path)
 {
 	if(!fs::exists(path))
 		throw std::runtime_error(fmt::format("no such file: {}", path));
 
 	if(path.extension() != ".spv")
 	{
-		compile(path, fs::path(path).replace_extension(".spv"), stage);
+		compile(path, fs::path(path).replace_extension(".spv"), stage_);
 		path.replace_extension(".spv");
 	}
 
@@ -208,9 +208,9 @@ void Shader::compile(const fs::path& sourcePath, const fs::path& targetPath, Sta
 
 	// 编译
 	shaderc::CompileOptions options;
-	if(Renderer::getBackend() == Renderer::Backend::OpenGL)
+	if(Renderer::get_backend() == Renderer::Backend::OpenGL)
 		options.SetTargetEnvironment(shaderc_target_env_opengl, shaderc_env_version_opengl_4_5);
-	else if(Renderer::getBackend() == Renderer::Backend::Vulkan)
+	else if(Renderer::get_backend() == Renderer::Backend::Vulkan)
 		options.SetTargetEnvironment(shaderc_target_env_vulkan, shaderc_env_version_vulkan_1_2);
 	else
 		throw std::runtime_error("unsupported shader language (only support GLSL)");
@@ -234,7 +234,7 @@ void Shader::parse(const std::vector<uint32_t>& buf)
 {
 	spirv_cross::Compiler compiler(buf);
 	assert(compiler.get_entry_points_and_stages().size() == 1);
-	entryPoint = compiler.get_entry_points_and_stages().front().name;
+	entry_point_ = compiler.get_entry_points_and_stages().front().name;
 
 	// 反射并输出结果
 	const auto res = compiler.get_shader_resources();

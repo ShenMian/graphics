@@ -21,13 +21,13 @@
 
 namespace fs = std::filesystem;
 
-Gamepad::Gamepad(handle_type handle) : handle(handle)
+Gamepad::Gamepad(handle_type handle) : handle_(handle)
 {
 }
 
 Gamepad::~Gamepad()
 {
-	setVibration(0.0, 0.0);
+	set_vibration(0.0, 0.0);
 }
 
 void Gamepad::update()
@@ -36,10 +36,10 @@ void Gamepad::update()
 	//     return;
 
 	GLFWgamepadstate state;
-	if(!glfwGetGamepadState(handle, &state))
+	if(!glfwGetGamepadState(handle_, &state))
 		return;
-	std::memcpy(buttons, state.buttons, sizeof(buttons));
-	std::memcpy(axes, state.axes, sizeof(axes));
+	std::memcpy(buttons_, state.buttons, sizeof(buttons_));
+	std::memcpy(axes_, state.axes, sizeof(axes_));
 
 	/*
 	int axisCount, buttonCount;
@@ -51,13 +51,13 @@ void Gamepad::update()
 
 Vector2f Gamepad::get(Thumb thumb) const noexcept
 {
-	Vector2f value = getRaw(thumb);
+	Vector2f value = get_raw(thumb);
 
 	float deadzone;
 	if(thumb == Thumb::left)
-		deadzone = leftThumbDeadzone;
+		deadzone = left_thumb_deadzone_;
 	else
-		deadzone = rightThumbDeadzone;
+		deadzone = right_thumb_deadzone_;
 
 	const float factor = 1.f / (1.f - deadzone);
 
@@ -70,63 +70,63 @@ Vector2f Gamepad::get(Thumb thumb) const noexcept
 		return Vector2f(0.f);
 }
 
-Vector2f Gamepad::getRaw(Thumb thumb) const noexcept
+Vector2f Gamepad::get_raw(Thumb thumb) const noexcept
 {
 	if(thumb == Thumb::left)
-		return {axes[GLFW_GAMEPAD_AXIS_LEFT_X], axes[GLFW_GAMEPAD_AXIS_LEFT_Y]};
+		return {axes_[GLFW_GAMEPAD_AXIS_LEFT_X], axes_[GLFW_GAMEPAD_AXIS_LEFT_Y]};
 	else
-		return {axes[GLFW_GAMEPAD_AXIS_RIGHT_X], axes[GLFW_GAMEPAD_AXIS_RIGHT_Y]};
+		return {axes_[GLFW_GAMEPAD_AXIS_RIGHT_X], axes_[GLFW_GAMEPAD_AXIS_RIGHT_Y]};
 }
 
 float Gamepad::get(Trigger trigger) const noexcept
 {
-	const float value  = getRaw(trigger);
-	const float factor = 1.f / (1.f - triggerThreshold);
+	const float value  = get_raw(trigger);
+	const float factor = 1.f / (1.f - trigger_threshold_);
 
-	if(value > triggerThreshold)
-		return (value - triggerThreshold) * factor;
+	if(value > trigger_threshold_)
+		return (value - trigger_threshold_) * factor;
 	else
 		return 0;
 }
 
-float Gamepad::getRaw(Trigger trigger) const noexcept
+float Gamepad::get_raw(Trigger trigger) const noexcept
 {
 	if(trigger == Trigger::left)
-		return axes[GLFW_GAMEPAD_AXIS_LEFT_TRIGGER];
+		return axes_[GLFW_GAMEPAD_AXIS_LEFT_TRIGGER];
 	else
-		return axes[GLFW_GAMEPAD_AXIS_RIGHT_TRIGGER];
+		return axes_[GLFW_GAMEPAD_AXIS_RIGHT_TRIGGER];
 }
 
 bool Gamepad::get(Button button) const noexcept
 {
-	return buttons[static_cast<uint8_t>(button)] == GLFW_PRESS;
+	return buttons_[static_cast<uint8_t>(button)] == GLFW_PRESS;
 }
 
-void Gamepad::setVibration(float leftSpeed, float rightSpeed)
+void Gamepad::set_vibration(float leftSpeed, float rightSpeed)
 {
 #if TARGET_OS == OS_WIN
-	if(isConnected())
+	if(is_connected())
 	{
 		XINPUT_VIBRATION state = {};
 		state.wLeftMotorSpeed  = leftSpeed * std::numeric_limits<WORD>::max();
 		state.wRightMotorSpeed = rightSpeed * std::numeric_limits<WORD>::max();
-		if(XInputSetState(handle, &state) != ERROR_SUCCESS && isConnected())
+		if(XInputSetState(handle_, &state) != ERROR_SUCCESS && is_connected())
 			throw std::runtime_error("Xinput: failed to set vibration");
 	}
 #endif
 }
 
-std::string_view Gamepad::getName() const
+std::string_view Gamepad::get_name() const
 {
-	return glfwGetJoystickName(handle);
+	return glfwGetJoystickName(handle_);
 }
 
-bool Gamepad::isConnected() const
+bool Gamepad::is_connected() const
 {
-	return glfwJoystickPresent(handle); // FIXME: Linux 下未连接手柄时会返回 true
+	return glfwJoystickPresent(handle_); // FIXME: Linux 下未连接手柄时会返回 true
 }
 
-bool Gamepad::loadMappingsDb(const fs::path& path)
+bool Gamepad::load_mappings_db(const fs::path& path)
 {
 	if(!fs::exists(path))
 		throw std::runtime_error(fmt::format("no such file: {}", path));
@@ -140,7 +140,7 @@ bool Gamepad::loadMappingsDb(const fs::path& path)
 
 bool Gamepad::operator==(const Gamepad& rhs) const
 {
-	return handle == rhs.handle;
+	return handle_ == rhs.handle_;
 }
 
 void Gamepad::init()

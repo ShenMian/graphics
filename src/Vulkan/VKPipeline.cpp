@@ -61,45 +61,45 @@ VkShaderStageFlags VKStageFlags(uint32_t flags)
 VKPipeline::VKPipeline(const Descriptor& desc) : Pipeline(desc)
 {
 	auto  renderer  = reinterpret_cast<VKRenderer*>(Renderer::get());
-	auto& swapchain = renderer->getSwapchain();
+	auto& swapchain = renderer->get_swapchain();
 
 	auto program = std::dynamic_pointer_cast<VKProgram>(desc.program);
 
-	createPipelineLayout(desc);
+	create_pipeline_layout(desc);
 
 	std::vector<VkVertexInputBindingDescription>   bindings;
 	std::vector<VkVertexInputAttributeDescription> attribs;
 	VkPipelineVertexInputStateCreateInfo           vertexInputState = {};
-	createVertexInputState(vertexInputState, desc, bindings, attribs);
+	create_vertex_input_state(vertexInputState, desc, bindings, attribs);
 
 	VkPipelineInputAssemblyStateCreateInfo inputAssemblyState = {};
-	createInputAssemblyState(inputAssemblyState, desc);
+	create_input_assembly_state(inputAssemblyState, desc);
 
 	std::vector<VkViewport>           vkViewports;
 	std::vector<VkRect2D>             vkScissors;
 	VkPipelineViewportStateCreateInfo viewportState = {};
-	createViewportState(viewportState, desc, vkViewports, vkScissors);
+	create_viewport_state(viewportState, desc, vkViewports, vkScissors);
 
 	VkPipelineRasterizationStateCreateInfo rasterizerState = {};
-	createRasterizerState(rasterizerState, desc);
+	create_rasterizer_state(rasterizerState, desc);
 
 	VkPipelineMultisampleStateCreateInfo multisampleState = {};
-	createMultisampleState(multisampleState, desc);
+	create_multisample_state(multisampleState, desc);
 
 	VkPipelineDepthStencilStateCreateInfo depthStencilState = {};
-	createDepthStencilState(depthStencilState, desc);
+	create_depth_stencil_state(depthStencilState, desc);
 
 	std::vector<VkPipelineColorBlendAttachmentState> colorBlendAttachments = {};
 	VkPipelineColorBlendStateCreateInfo              colorBlendState       = {};
-	createColorBlendState(colorBlendState, desc, colorBlendAttachments);
+	create_color_blend_state(colorBlendState, desc, colorBlendAttachments);
 
 	VkPipelineDynamicStateCreateInfo dynamicState = {};
 	std::vector<VkDynamicState>      dynamicStates;
-	createDynamicState(dynamicState, dynamicStates);
+	create_dynamic_state(dynamicState, dynamicStates);
 
 	VkGraphicsPipelineCreateInfo pipelineInfo = {};
 	pipelineInfo.sType                        = VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO;
-	pipelineInfo.stageCount                   = program->getStageCount();
+	pipelineInfo.stageCount                   = program->get_stage_count();
 	pipelineInfo.pStages                      = program->getInfos().data();
 	pipelineInfo.pVertexInputState            = &vertexInputState;
 	pipelineInfo.pInputAssemblyState          = &inputAssemblyState;
@@ -111,9 +111,9 @@ VKPipeline::VKPipeline(const Descriptor& desc) : Pipeline(desc)
 	// pipelineInfo.pDepthStencilState = &depthStencilState;
 	pipelineInfo.pColorBlendState = &colorBlendState;
 	pipelineInfo.pDynamicState    = &dynamicState;
-	pipelineInfo.layout           = pipelineLayout;
-	pipelineInfo.renderPass       = swapchain.getRenderPass();
-	if(vkCreateGraphicsPipelines(renderer->getDevice(), VK_NULL_HANDLE, 1, &pipelineInfo, nullptr, &pipeline) !=
+	pipelineInfo.layout           = pipeline_layout_;
+	pipelineInfo.renderPass       = swapchain.get_render_pass();
+	if(vkCreateGraphicsPipelines(renderer->get_device(), VK_NULL_HANDLE, 1, &pipelineInfo, nullptr, &pipeline_) !=
 	   VK_SUCCESS)
 		throw std::runtime_error("failed to create graphics pipeline");
 }
@@ -124,20 +124,20 @@ void VKPipeline::bind()
 
 VKPipeline::operator VkPipeline() noexcept
 {
-	return pipeline;
+	return pipeline_;
 }
 
 VKPipeline::operator VkPipeline() const noexcept
 {
-	return pipeline;
+	return pipeline_;
 }
 
-void VKPipeline::createPipelineLayout(const Descriptor& desc)
+void VKPipeline::create_pipeline_layout(const Descriptor& desc)
 {
 	auto renderer = reinterpret_cast<VKRenderer*>(Renderer::get());
 
 	std::vector<VkDescriptorSetLayoutBinding> bindings;
-	for(const auto& binding : desc.layout.getBindings())
+	for(const auto& binding : desc.layout.get_bindings())
 	{
 		VkDescriptorSetLayoutBinding layoutBinding = {};
 		layoutBinding.binding                      = binding.binding;
@@ -152,18 +152,18 @@ void VKPipeline::createPipelineLayout(const Descriptor& desc)
 	layoutInfo.sType                           = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO;
 	layoutInfo.bindingCount                    = static_cast<uint32_t>(bindings.size());
 	layoutInfo.pBindings                       = bindings.data();
-	if(vkCreateDescriptorSetLayout(renderer->getDevice(), &layoutInfo, nullptr, &setLayout) != VK_SUCCESS)
+	if(vkCreateDescriptorSetLayout(renderer->get_device(), &layoutInfo, nullptr, &setLayout) != VK_SUCCESS)
 		throw std::runtime_error("failed to create descriptor set layout");
 
 	VkPipelineLayoutCreateInfo pipelineLayoutInfo = {};
 	pipelineLayoutInfo.sType                      = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
 	pipelineLayoutInfo.setLayoutCount             = 1;
 	pipelineLayoutInfo.pSetLayouts                = &setLayout;
-	if(vkCreatePipelineLayout(renderer->getDevice(), &pipelineLayoutInfo, nullptr, &pipelineLayout) != VK_SUCCESS)
+	if(vkCreatePipelineLayout(renderer->get_device(), &pipelineLayoutInfo, nullptr, &pipeline_layout_) != VK_SUCCESS)
 		throw std::runtime_error("failed to create pipeline layout");
 }
 
-void VKPipeline::createVertexInputState(VkPipelineVertexInputStateCreateInfo& info, const Descriptor& desc,
+void VKPipeline::create_vertex_input_state(VkPipelineVertexInputStateCreateInfo& info, const Descriptor& desc,
                                         std::vector<VkVertexInputBindingDescription>&   bindings,
                                         std::vector<VkVertexInputAttributeDescription>& attribs)
 {
@@ -172,10 +172,10 @@ void VKPipeline::createVertexInputState(VkPipelineVertexInputStateCreateInfo& in
 	VkVertexInputBindingDescription binding = {};
 	binding.binding                         = 0;
 	binding.inputRate                       = VK_VERTEX_INPUT_RATE_VERTEX;
-	binding.stride                          = layout.getStride();
+	binding.stride                          = layout.get_stride();
 	bindings.push_back(binding);
 
-	for(const auto& attr : layout.getAttributes())
+	for(const auto& attr : layout.get_attributes())
 	{
 		VkVertexInputAttributeDescription vkAttr = {};
 		vkAttr.location                          = attr.location;
@@ -191,14 +191,14 @@ void VKPipeline::createVertexInputState(VkPipelineVertexInputStateCreateInfo& in
 	info.pVertexAttributeDescriptions    = attribs.data();
 }
 
-void VKPipeline::createInputAssemblyState(VkPipelineInputAssemblyStateCreateInfo& info, const Descriptor& desc)
+void VKPipeline::create_input_assembly_state(VkPipelineInputAssemblyStateCreateInfo& info, const Descriptor& desc)
 {
 	info.sType                  = VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO;
 	info.topology               = VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST;
 	info.primitiveRestartEnable = VK_FALSE;
 }
 
-void VKPipeline::createViewportState(VkPipelineViewportStateCreateInfo& info, const Descriptor& desc,
+void VKPipeline::create_viewport_state(VkPipelineViewportStateCreateInfo& info, const Descriptor& desc,
                                      std::vector<VkViewport>& vkViewports, std::vector<VkRect2D>& vkScissors)
 {
 	for(const auto& viewport : desc.viewports)
@@ -225,7 +225,7 @@ void VKPipeline::createViewportState(VkPipelineViewportStateCreateInfo& info, co
 	info.pScissors     = vkScissors.data();
 }
 
-void VKPipeline::createRasterizerState(VkPipelineRasterizationStateCreateInfo& info, const Descriptor& desc)
+void VKPipeline::create_rasterizer_state(VkPipelineRasterizationStateCreateInfo& info, const Descriptor& desc)
 {
 	info.sType                   = VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO;
 	info.depthClampEnable        = VK_FALSE;
@@ -240,7 +240,7 @@ void VKPipeline::createRasterizerState(VkPipelineRasterizationStateCreateInfo& i
 	info.lineWidth               = desc.rasterizer.lineWidth;
 }
 
-void VKPipeline::createMultisampleState(VkPipelineMultisampleStateCreateInfo& info, const Descriptor& desc)
+void VKPipeline::create_multisample_state(VkPipelineMultisampleStateCreateInfo& info, const Descriptor& desc)
 {
 	info.sType                 = VK_STRUCTURE_TYPE_PIPELINE_MULTISAMPLE_STATE_CREATE_INFO;
 	info.sampleShadingEnable   = VK_FALSE;
@@ -251,7 +251,7 @@ void VKPipeline::createMultisampleState(VkPipelineMultisampleStateCreateInfo& in
 	info.alphaToOneEnable      = VK_FALSE; // Optional
 }
 
-void VKPipeline::createDepthStencilState(VkPipelineDepthStencilStateCreateInfo& info, const Descriptor& desc)
+void VKPipeline::create_depth_stencil_state(VkPipelineDepthStencilStateCreateInfo& info, const Descriptor& desc)
 {
 	info.sType                 = VK_STRUCTURE_TYPE_PIPELINE_DEPTH_STENCIL_STATE_CREATE_INFO;
 	info.depthTestEnable       = desc.depth.enableTest;
@@ -265,7 +265,7 @@ void VKPipeline::createDepthStencilState(VkPipelineDepthStencilStateCreateInfo& 
 	info.maxDepthBounds        = 1.0f; // Optional
 }
 
-void VKPipeline::createColorBlendState(VkPipelineColorBlendStateCreateInfo& info, const Descriptor& desc,
+void VKPipeline::create_color_blend_state(VkPipelineColorBlendStateCreateInfo& info, const Descriptor& desc,
                                        std::vector<VkPipelineColorBlendAttachmentState>& attachments)
 {
 	VkPipelineColorBlendAttachmentState attachement = {};
@@ -291,7 +291,7 @@ void VKPipeline::createColorBlendState(VkPipelineColorBlendStateCreateInfo& info
 	info.blendConstants[3] = 0.0f; // Optional
 }
 
-void VKPipeline::createDynamicState(VkPipelineDynamicStateCreateInfo& info, std::vector<VkDynamicState>& dynamicStates)
+void VKPipeline::create_dynamic_state(VkPipelineDynamicStateCreateInfo& info, std::vector<VkDynamicState>& dynamicStates)
 {
 	dynamicStates.push_back(VK_DYNAMIC_STATE_VIEWPORT);
 	dynamicStates.push_back(VK_DYNAMIC_STATE_LINE_WIDTH);

@@ -11,20 +11,20 @@ Menu::Menu(const std::string& label) : Widget(label)
 {
 }
 
-void Menu::addItem(const std::string& label, const std::function<void()>& callback)
+void Menu::add_item(const std::string& label, const std::function<void()>& callback)
 {
-	items.emplace_back(label, callback);
+	items_.emplace_back(label, callback);
 }
 
 void Menu::update()
 {
-	if(!ImGui::BeginMenu(getLabel().c_str()))
+	if(!ImGui::BeginMenu(get_label().c_str()))
 	{
 		ImGui::EndMenu();
 		return;
 	}
 
-	for(const auto& [label, callback] : items)
+	for(const auto& [label, callback] : items_)
 	{
 		if(ImGui::MenuItem(label.c_str()))
 			callback();

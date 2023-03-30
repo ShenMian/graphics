@@ -24,7 +24,7 @@ NodeEditor::NodeEditor()
 	// ImNodes::GetCurrentContext()->Style.PinOffset = 10;
 	ImNodes::PushAttributeFlag(ImNodesAttributeFlags_EnableLinkDetachWithDragClick);
 
-	context = ImNodes::EditorContextCreate();
+	context_ = ImNodes::EditorContextCreate();
 
 	Pin aPin("A", Pin::Kind::Input, Pin::Type::Bool);
 	Pin bPin("B", Pin::Kind::Output, Pin::Type::Int);
@@ -33,16 +33,16 @@ NodeEditor::NodeEditor()
 	Pin ePin("E", Pin::Kind::Input, Pin::Type::Int);
 
 	Node aNode("A");
-	aNode.addPin(aPin);
-	aNode.addPin(bPin);
-	aNode.addPin(cPin);
+	aNode.add_pin(aPin);
+	aNode.add_pin(bPin);
+	aNode.add_pin(cPin);
 
 	Node bNode("B");
-	bNode.addPin(dPin);
-	bNode.addPin(ePin);
+	bNode.add_pin(dPin);
+	bNode.add_pin(ePin);
 
-	nodes.push_back(std::move(aNode));
-	nodes.push_back(std::move(bNode));
+	nodes_.push_back(std::move(aNode));
+	nodes_.push_back(std::move(bNode));
 }
 
 NodeEditor::~NodeEditor()
@@ -55,13 +55,13 @@ void NodeEditor::update()
 	ImGui::Begin("node editor");
 	ImNodes::BeginNodeEditor();
 
-	for(auto& node : nodes)
+	for(auto& node : nodes_)
 		node.update();
 
 	static std::unordered_map<uint64_t, Link> links;
 
 	for(auto& [id, link] : links)
-		ImNodes::Link(id, link.start.getId(), link.end.getId());
+		ImNodes::Link(id, link.start.get_id(), link.end.get_id());
 
 	// ImNodes::MiniMap();
 	ImNodes::EndNodeEditor();
@@ -72,16 +72,16 @@ void NodeEditor::update()
 	{
 		const Pin* start = nullptr;
 		const Pin* end   = nullptr;
-		for(auto& node : nodes)
-			if((start = node.getPinById(startId)))
+		for(auto& node : nodes_)
+			if((start = node.get_pin_by_id(startId)))
 				break;
-		for(auto& node : nodes)
-			if((end = node.getPinById(endId)))
+		for(auto& node : nodes_)
+			if((end = node.get_pin_by_id(endId)))
 				break;
 
-		if(start != nullptr && end != nullptr && start->getKind() != end->getKind() &&
-		   start->getType() == end->getType())
-			links.insert(std::make_pair(Widget::requestId(), Link{*start, *end}));
+		if(start != nullptr && end != nullptr && start->get_kind() != end->get_kind() &&
+		   start->get_type() == end->get_type())
+			links.insert(std::make_pair(Widget::request_id(), Link{*start, *end}));
 	}
 
 	int linkId;

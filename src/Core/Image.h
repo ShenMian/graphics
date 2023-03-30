@@ -69,22 +69,22 @@ public:
 	/**
 	 * @brief 获取图像数据.
 	 */
-	void setPixel(const Vector4f& color, const Vector2i& pos);
+	void set_pixel(const Vector4f& color, const Vector2i& pos);
 
 	/**
 	 * @brief 获取指定像素.
 	 */
-	Vector4f getPixel(const Vector2i& pos) const;
+	Vector4f get_pixel(const Vector2i& pos) const;
 
 	/**
 	 * @brief 水平(左右)翻转.
 	 */
-	void flipHorizontally() noexcept;
+	void flip_horizontally() noexcept;
 
 	/**
 	 * @brief 垂直(上下)翻转.
 	 */
-	void flipVertically() noexcept;
+	void flip_vertically() noexcept;
 
 	/**
 	 * @brief 获取图像数据.
@@ -99,7 +99,7 @@ public:
 	/**
 	 * @brief 获取图像数据大小.
 	 */
-	size_t sizeBytes() const noexcept;
+	size_t size_bytes() const noexcept;
 
 	/**
 	 * @brief 获取图像分辨率.
@@ -109,7 +109,7 @@ public:
 	/**
 	 * @brief 获取通道数.
 	 */
-	int channelCount() const noexcept;
+	int channel_count() const noexcept;
 
 private:
 	std::vector<uint8_t> data_;

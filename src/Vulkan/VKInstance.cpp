@@ -3,21 +3,21 @@
 
 #include "VKInstance.h"
 
-VKInstance::VKInstance(VkInstance instance) : handle(instance)
+VKInstance::VKInstance(VkInstance instance) : handle_(instance)
 {
 }
 
 void VKInstance::destroy()
 {
-	vkDestroyInstance(handle, nullptr);
+	vkDestroyInstance(handle_, nullptr);
 }
 
 VKInstance::operator VkInstance() noexcept
 {
-	return handle;
+	return handle_;
 }
 
 VKInstance::operator VkInstance() const noexcept
 {
-	return handle;
+	return handle_;
 }

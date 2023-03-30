@@ -16,12 +16,12 @@ class Link : public Widget
 public:
 	Link(const Pin& start, const Pin& end);
 
-	const Pin& getStart() const noexcept;
-	const Pin& getEnd() const noexcept;
+	const Pin& get_start() const noexcept;
+	const Pin& get_end() const noexcept;
 
 private:
-	const Pin& start;
-	const Pin& end;
+	const Pin& start_;
+	const Pin& end_;
 };
 
 }; // namespace ui

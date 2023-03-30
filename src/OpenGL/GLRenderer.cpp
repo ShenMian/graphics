@@ -79,28 +79,28 @@ std::optional<std::string_view> SeverityToString(GLenum severity)
 
 } // namespace
 
-std::string GLRenderer::getDeviceName() const
+std::string GLRenderer::get_device_name() const
 {
 	return reinterpret_cast<const char*>(glGetString(GL_RENDERER));
 }
 
-std::string GLRenderer::getRendererName() const
+std::string GLRenderer::get_renderer_name() const
 {
 	return std::string("OpenGL ") + reinterpret_cast<const char*>(glGetString(GL_VERSION));
 }
 
-std::string GLRenderer::getVendorName() const
+std::string GLRenderer::get_vendor_name() const
 {
 	return reinterpret_cast<const char*>(glGetString(GL_VENDOR));
 }
 
 void GLRenderer::init(const Window& win)
 {
-	glfwMakeContextCurrent(win.getHandle());
+	glfwMakeContextCurrent(win.get_handle());
 	if(!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 		throw std::runtime_error("Glad: failed to init");
 
-	setupDebugCallback();
+	setup_debug_callback();
 
 	glEnable(GL_MULTISAMPLE);
 
@@ -113,7 +113,7 @@ void GLRenderer::deinit()
 	glfwMakeContextCurrent(nullptr);
 }
 
-void GLRenderer::setupDebugCallback()
+void GLRenderer::setup_debug_callback()
 {
 	glEnable(GL_DEBUG_OUTPUT);
 

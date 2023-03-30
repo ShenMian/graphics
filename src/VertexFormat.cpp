@@ -22,7 +22,7 @@ std::unordered_map<Format, uint32_t> sizeOf = {
 
 }
 
-uint32_t VertexFormat::Attribute::getSize() const
+uint32_t VertexFormat::Attribute::get_size() const
 {
 	assert(sizeOf.contains(format));
 	return sizeOf[format];
@@ -31,33 +31,33 @@ uint32_t VertexFormat::Attribute::getSize() const
 VertexFormat::VertexFormat(const std::initializer_list<Attribute>& list)
 {
 	for(const auto& attr : list)
-		addAttribute(attr);
+		add_attribute(attr);
 }
 
-void VertexFormat::addAttribute(Attribute attr)
+void VertexFormat::add_attribute(Attribute attr)
 {
 	if(attr.location == -1)
-		attr.location = static_cast<uint32_t>(attribs.size());
+		attr.location = static_cast<uint32_t>(attribs_.size());
 	if(attr.offset == -1)
-		attr.offset = stride;
-	stride += attr.getSize();
+		attr.offset = stride_;
+	stride_ += attr.get_size();
 
-	assert(std::find_if(attribs.begin(), attribs.end(),
-	                    [&](auto v) { return v.location == attr.location && v.name == attr.name; }) == attribs.end());
-	attribs.push_back(attr);
+	assert(std::find_if(attribs_.begin(), attribs_.end(),
+	                    [&](auto v) { return v.location == attr.location && v.name == attr.name; }) == attribs_.end());
+	attribs_.push_back(attr);
 }
 
-const std::vector<VertexFormat::Attribute> VertexFormat::getAttributes() const
+const std::vector<VertexFormat::Attribute> VertexFormat::get_attributes() const
 {
-	return attribs;
+	return attribs_;
 }
 
-void VertexFormat::setStride(uint32_t stride)
+void VertexFormat::set_stride(uint32_t stride)
 {
-	this->stride = stride;
+	this->stride_ = stride;
 }
 
-uint32_t VertexFormat::getStride() const
+uint32_t VertexFormat::get_stride() const
 {
-	return stride;
+	return stride_;
 }

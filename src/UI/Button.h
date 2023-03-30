@@ -23,7 +23,7 @@ public:
 	std::function<void(Button&)> hover;
 
 private:
-	Vector2 size;
+	Vector2 size_;
 };
 
 } // namespace ui

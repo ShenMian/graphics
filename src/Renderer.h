@@ -27,20 +27,20 @@ public:
 	 *
 	 * @param backend 图形后端.
 	 */
-	static void setBackend(Backend backend);
+	static void set_backend(Backend backend);
 
 	/**
 	 * @brief 获取图形后端.
 	 */
-	static Backend getBackend();
+	static Backend get_backend();
 
-	virtual std::string getDeviceName() const   = 0;
-	virtual std::string getRendererName() const = 0;
-	virtual std::string getVendorName() const   = 0;
+	virtual std::string get_device_name() const   = 0;
+	virtual std::string get_renderer_name() const = 0;
+	virtual std::string get_vendor_name() const   = 0;
 
 	static void init(const Window& win);
 	static void deinit();
 
 private:
-	static Backend backend;
+	static Backend backend_;
 };

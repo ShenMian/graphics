@@ -22,11 +22,11 @@ VKSampler::VKSampler(const Descriptor& desc) : Sampler(desc)
 {
 	VkSamplerCreateInfo info = {};
 	info.sType               = VK_STRUCTURE_TYPE_SAMPLER_CREATE_INFO;
-	info.minFilter           = VKFilter[minFilter];
-	info.magFilter           = VKFilter[magFilter];
-	info.addressModeU        = VKWarp[SWarp];
-	info.addressModeV        = VKWarp[TWarp];
-	info.addressModeW        = VKWarp[RWarp];
+	info.minFilter           = VKFilter[min_filter_];
+	info.magFilter           = VKFilter[mag_filter_];
+	info.addressModeU        = VKWarp[s_warp_];
+	info.addressModeV        = VKWarp[t_warp_];
+	info.addressModeW        = VKWarp[r_warp_];
 	// vkCreateSampler()
 }
 

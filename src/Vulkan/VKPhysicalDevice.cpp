@@ -6,16 +6,16 @@
 #include <stdexcept>
 #include <vector>
 
-VKPhysicalDevice::VKPhysicalDevice(VkPhysicalDevice device, VkSurfaceKHR surface) : handle(device), surface(surface)
+VKPhysicalDevice::VKPhysicalDevice(VkPhysicalDevice device, VkSurfaceKHR surface) : handle_(device), surface_(surface)
 {
-	vkGetPhysicalDeviceProperties(device, &properties);
-	vkGetPhysicalDeviceFeatures(device, &features);
+	vkGetPhysicalDeviceProperties(device, &properties_);
+	vkGetPhysicalDeviceFeatures(device, &features_);
 
 	// 获取队列族索引
 	uint32_t queueFamilyCount;
-	vkGetPhysicalDeviceQueueFamilyProperties(handle, &queueFamilyCount, nullptr);
+	vkGetPhysicalDeviceQueueFamilyProperties(handle_, &queueFamilyCount, nullptr);
 	std::vector<VkQueueFamilyProperties> queueFamilies(queueFamilyCount);
-	vkGetPhysicalDeviceQueueFamilyProperties(handle, &queueFamilyCount, queueFamilies.data());
+	vkGetPhysicalDeviceQueueFamilyProperties(handle_, &queueFamilyCount, queueFamilies.data());
 	for(uint32_t i = 0; i < queueFamilies.size(); i++)
 	{
 		if(queueFamilies[i].queueFlags & VK_QUEUE_GRAPHICS_BIT)
@@ -32,34 +32,34 @@ VKPhysicalDevice::VKPhysicalDevice(VkPhysicalDevice device, VkSurfaceKHR surface
 	}
 
 	uint32_t extensionCount;
-	vkEnumerateDeviceExtensionProperties(handle, nullptr, &extensionCount, nullptr);
-	availableExtensions.resize(extensionCount);
-	vkEnumerateDeviceExtensionProperties(handle, nullptr, &extensionCount, availableExtensions.data());
+	vkEnumerateDeviceExtensionProperties(handle_, nullptr, &extensionCount, nullptr);
+	available_extensions_.resize(extensionCount);
+	vkEnumerateDeviceExtensionProperties(handle_, nullptr, &extensionCount, available_extensions_.data());
 }
 
-const VkPhysicalDeviceProperties& VKPhysicalDevice::getProperties() const noexcept
+const VkPhysicalDeviceProperties& VKPhysicalDevice::get_properties() const noexcept
 {
-	return properties;
+	return properties_;
 }
 
-const VkPhysicalDeviceFeatures& VKPhysicalDevice::getFeatures() const noexcept
+const VkPhysicalDeviceFeatures& VKPhysicalDevice::get_features() const noexcept
 {
-	return features;
+	return features_;
 }
 
-VkSurfaceKHR VKPhysicalDevice::getSurface() const noexcept
+VkSurfaceKHR VKPhysicalDevice::get_surface() const noexcept
 {
-	return surface;
+	return surface_;
 }
 
-std::string_view VKPhysicalDevice::getName() const noexcept
+std::string_view VKPhysicalDevice::get_name() const noexcept
 {
-	return properties.deviceName;
+	return properties_.deviceName;
 }
 
-std::string_view VKPhysicalDevice::getVendorName() const noexcept
+std::string_view VKPhysicalDevice::get_vendor_name() const noexcept
 {
-	switch(properties.vendorID)
+	switch(properties_.vendorID)
 	{
 	case 0x1002:
 		return "Advanced Micro Devices, Inc.";
@@ -81,47 +81,47 @@ std::string_view VKPhysicalDevice::getVendorName() const noexcept
 	return "Unknown";
 }
 
-VkSurfaceCapabilitiesKHR VKPhysicalDevice::getSurfaceCapabilities() const
+VkSurfaceCapabilitiesKHR VKPhysicalDevice::get_surface_capabilities() const
 {
 	VkSurfaceCapabilitiesKHR capabilities;
-	if(vkGetPhysicalDeviceSurfaceCapabilitiesKHR(handle, surface, &capabilities) != VK_SUCCESS)
+	if(vkGetPhysicalDeviceSurfaceCapabilitiesKHR(handle_, surface_, &capabilities) != VK_SUCCESS)
 		throw std::runtime_error("failed to get surface capabilities");
 	return capabilities;
 }
 
-std::vector<VkSurfaceFormatKHR> VKPhysicalDevice::getSurfaceFormats() const
+std::vector<VkSurfaceFormatKHR> VKPhysicalDevice::get_surface_formats() const
 {
 	std::vector<VkSurfaceFormatKHR> formats;
 	uint32_t                        formatCount;
-	if(vkGetPhysicalDeviceSurfaceFormatsKHR(handle, surface, &formatCount, nullptr) != VK_SUCCESS)
+	if(vkGetPhysicalDeviceSurfaceFormatsKHR(handle_, surface_, &formatCount, nullptr) != VK_SUCCESS)
 		throw std::runtime_error("failed to get surface formats");
 	formats.resize(formatCount);
-	vkGetPhysicalDeviceSurfaceFormatsKHR(handle, surface, &formatCount, formats.data());
+	vkGetPhysicalDeviceSurfaceFormatsKHR(handle_, surface_, &formatCount, formats.data());
 	return formats;
 }
 
-std::vector<VkPresentModeKHR> VKPhysicalDevice::getSurfacePresentModes() const
+std::vector<VkPresentModeKHR> VKPhysicalDevice::get_surface_present_modes() const
 {
 	std::vector<VkPresentModeKHR> presentModes;
 	uint32_t                      presentModeCount;
-	if(vkGetPhysicalDeviceSurfacePresentModesKHR(handle, surface, &presentModeCount, nullptr) != VK_SUCCESS)
+	if(vkGetPhysicalDeviceSurfacePresentModesKHR(handle_, surface_, &presentModeCount, nullptr) != VK_SUCCESS)
 		throw std::runtime_error("failed to get surface present modes");
 	presentModes.resize(presentModeCount);
-	vkGetPhysicalDeviceSurfacePresentModesKHR(handle, surface, &presentModeCount, presentModes.data());
+	vkGetPhysicalDeviceSurfacePresentModesKHR(handle_, surface_, &presentModeCount, presentModes.data());
 	return presentModes;
 }
 
-bool VKPhysicalDevice::isExtensionAvailable(std::string_view name) const
+bool VKPhysicalDevice::is_extension_available(std::string_view name) const
 {
-	return std::ranges::any_of(availableExtensions, [name](const auto& ext) { return ext.extensionName == name; });
+	return std::ranges::any_of(available_extensions_, [name](const auto& ext) { return ext.extensionName == name; });
 }
 
 VKPhysicalDevice::operator VkPhysicalDevice()
 {
-	return handle;
+	return handle_;
 }
 
 VKPhysicalDevice::operator VkPhysicalDevice() const
 {
-	return handle;
+	return handle_;
 }

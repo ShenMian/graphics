@@ -16,24 +16,24 @@ public:
 
 	VKPhysicalDevice select();
 
-	PhysicalDeviceSelector& requireGraphicsQueue() noexcept;
+	PhysicalDeviceSelector& require_graphics_queue() noexcept;
 
-	PhysicalDeviceSelector& requireComputeQueue() noexcept;
+	PhysicalDeviceSelector& require_compute_queue() noexcept;
 
-	PhysicalDeviceSelector& requireTransferQueue() noexcept;
+	PhysicalDeviceSelector& require_transfer_queue() noexcept;
 
-	PhysicalDeviceSelector& requirePresentQueue() noexcept;
+	PhysicalDeviceSelector& require_present_queue() noexcept;
 
 private:
-	std::vector<VKPhysicalDevice> devices;
+	std::vector<VKPhysicalDevice> devices_;
 
 	struct
 	{
-		bool requireGraphicsQueue = false;
-		bool requireComputeQueue  = false;
-		bool requireTransferQueue = false;
-		bool requirePresentQueue  = false;
+		bool require_graphics_queue = false;
+		bool require_compute_queue  = false;
+		bool require_transfer_queue = false;
+		bool require_present_queue  = false;
 
-		bool requireMultiViewport = false;
-	} info;
+		bool require_multi_viewport = false;
+	} info_;
 };

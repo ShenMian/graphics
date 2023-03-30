@@ -51,15 +51,15 @@ void DrawChar(Font& font, unsigned long code, const Vector2f& pos, std::shared_p
 		if(it != map.end())
 			return it->second;
 		std::shared_ptr<Texture> texture;
-		Image                    flippedImage = font.getGlyph(code, 32).image;
-		flippedImage.flipVertically();
+		Image                    flippedImage = font.get_glyph(code, 32).image;
+		flippedImage.flip_vertically();
 		texture = Texture::create(flippedImage);
 		map.insert({code, texture});
 		return texture;
 	};
 
 	auto       texture = getTexture(code);
-	const auto size    = font.getGlyph(code, 32).image.size();
+	const auto size    = font.get_glyph(code, 32).image.size();
 	// clang-format off
 	float vertices[6][4] = {
 		{pos.x(),            pos.y() + size.y(), 0.0, 0.0},
@@ -81,9 +81,9 @@ void DrawChar(Font& font, unsigned long code, const Vector2f& pos, std::shared_p
 	desc.program  = program;
 	auto pipeline = Pipeline::create(desc);
 
-	cmdBuf->setPipeline(pipeline);
-	cmdBuf->setTexture(texture, 0);
-	cmdBuf->setVertexBuffer(vertexBuffer);
+	cmdBuf->set_pipeline(pipeline);
+	cmdBuf->set_texture(texture, 0);
+	cmdBuf->set_vertex_buffer(vertexBuffer);
 	cmdBuf->draw(6);
 }
 
@@ -96,7 +96,7 @@ void GLScreenshot(const Vector2i& size)
 	std::vector<GLubyte> buf(3 * size.x() * size.y());
 	glReadPixels(0, 0, size.x(), size.y(), GL_RGB, GL_UNSIGNED_BYTE, buf.data());
 	auto img = Image(buf.data(), buf.size(), size, 3);
-	img.flipVertically();
+	img.flip_vertically();
 	img.save("screenshot.png");
 }
 
@@ -184,14 +184,14 @@ public:
 		auto cmdBuffer = CommandBuffer::create();
 
 		Camera camera(Camera::Type::Perspective);
-		camera.setPerspective(radians(60.f), static_cast<float>(window->getSize().x()) / window->getSize().y(), 0.1f, 2000.f);
-		const auto fov = degrees(camera.getHFOV());
+		camera.set_perspective(radians(60.f), static_cast<float>(window->get_size().x()) / window->get_size().y(), 0.1f, 2000.f);
+		const auto fov = degrees(camera.get_hfov());
 
 		Gamepad gamepad(0);
 
 		Controller controller;
-		controller.setCamera(camera);
-		controller.setGamepad(gamepad);
+		controller.set_camera(camera);
+		controller.set_gamepad(gamepad);
 
 		auto matrices = UniformBuffer::create(0, sizeof(MatricesBuffer));
 #if PBR
@@ -215,7 +215,7 @@ public:
                 if(progress == 1.f)
                     printf("\n");
             });
-            printModelInfo(model);
+            print_model_info(model);
 
             // 根据模型大小设置相机移动速度
             auto speed = 0.f;
@@ -223,7 +223,7 @@ public:
             speed += model.aabb.max().y() - model.aabb.min().y();
             speed += model.aabb.max().z() - model.aabb.min().z();
             speed /= 3;
-            controller.setSpeed(speed * 0.4);
+            controller.set_speed(speed * 0.4);
 		};
 
 		loadModel(path);
@@ -251,15 +251,15 @@ public:
                 break;
 
             case Key::LeftAlt:
-                window->setCursorLock(!window->isCursorLock());
+                window->set_cursor_lock(!window->is_cursor_lock());
                 break;
 
             case Key::F11:
-                window->setFullscreen(!window->isFullscreen());
+                window->set_fullscreen(!window->is_fullscreen());
                 break;
 
             case Key::PrintScreen:
-                GLScreenshot(window->getSize());
+                GLScreenshot(window->get_size());
                 break;
 
             default:
@@ -267,21 +267,21 @@ public:
             }
 		};
 		window->onScroll = [&](Vector2d offset) {
-			static float fov = degrees(camera.getVFOV());
+			static float fov = degrees(camera.get_vfov());
 			if(1.f <= fov && fov <= 60.f)
 				fov -= offset.y() * 3.f * (fov / 60);
 			fov = std::clamp(fov, 1.f, 60.f);
-			camera.setPerspective(radians(fov), camera.getAspectRatio(), camera.getNear(), camera.getFar());
+			camera.set_perspective(radians(fov), camera.get_aspect_ratio(), camera.get_near(), camera.get_far());
 		};
 		window->onResize = [&](Vector2i size) {
-			camera.setPerspective(camera.getVFOV(), static_cast<float>(size.x()) / size.y(), camera.getNear(),
-			                      camera.getFar());
+			camera.set_perspective(camera.get_vfov(), static_cast<float>(size.x()) / size.y(), camera.get_near(),
+			                      camera.get_far());
 		};
 		window->onDrop = [&](int, const char* paths[]) { loadModel(paths[0]); };
-		window->setVisible(true);
+		window->set_visible(true);
 
-		window->setCursorLock(true);
-		window->setRawMouseMotion(true);
+		window->set_cursor_lock(true);
+		window->set_raw_mouse_motion(true);
 
 		ui::Window performance("Performance");
 		ui::Label  fps;
@@ -300,7 +300,7 @@ public:
 		Timer timer;
 		while(running)
 		{
-			const float dt = timer.getSeconds();
+			const float dt = timer.get_seconds();
 			timer.restart();
 #if 0
 			static float elapse = 0;
@@ -328,33 +328,33 @@ public:
 				gpuRecords[gpuRecordsCount++ % gpuRecords.size()] = dt * 1000.f;
 				const auto avgGPU = std::accumulate(gpuRecords.begin(), gpuRecords.end(), 0.f) / gpuRecords.size();
 
-				fps.setText(fmt::format("FPS: {}\n", static_cast<int>(avgFps)));
-				gpu.setText(fmt::format("GPU: {:.2f} ms\n", avgGPU));
+				fps.set_text(fmt::format("FPS: {}\n", static_cast<int>(avgFps)));
+				gpu.set_text(fmt::format("GPU: {:.2f} ms\n", avgGPU));
 				performance.update();
 			}
 
 			{
-				const auto& pos = camera.getPosition();
-				position.setText(fmt::format("X    : {: .2f}\n"
+				const auto& pos = camera.get_position();
+				position.set_text(fmt::format("X    : {: .2f}\n"
 				                             "Y    : {: .2f}\n"
 				                             "Z    : {: .2f}\n",
 				                             pos.x(), pos.y(), pos.z()));
-				const auto& dir = camera.getRotation();
-				angles.setText(fmt::format("Roll : {: .1f}\n"
+				const auto& dir = camera.get_rotation();
+				angles.set_text(fmt::format("Roll : {: .1f}\n"
 				                           "Pitch: {: .1f}\n"
 				                           "Yaw  : {: .1f}\n",
 				                           dir.z(), dir.x(), dir.y()));
 				attInfo.update();
 			}
 
-			matrices->getBuffer().map();
+			matrices->get_buffer().map();
 			{
-				auto ptr   = static_cast<MatricesBuffer*>(matrices->getBuffer().getData());
-				ptr->view  = camera.getView();
-				ptr->proj  = camera.getProjection();
+				auto ptr   = static_cast<MatricesBuffer*>(matrices->get_buffer().get_data());
+				ptr->view  = camera.get_view();
+				ptr->proj  = camera.get_projection();
 				ptr->model = transform;
 			}
-			matrices->getBuffer().unmap();
+			matrices->get_buffer().unmap();
 
 			// ImGuizmo::DrawGrid(camera.getView().data(), camera.getProjection().data(), Matrix4().data(), 10);
 
@@ -393,28 +393,28 @@ public:
 
 			cmdBuffer->begin();
 			{
-				cmdBuffer->setViewport({window->getSize()});
-				cmdBuffer->setClearColor({0, 0, 0, 0});
+				cmdBuffer->set_viewport({window->get_size()});
+				cmdBuffer->set_clear_color({0, 0, 0, 0});
 				cmdBuffer->clear(ClearFlag::Color | ClearFlag::Depth);
 
-				cmdBuffer->setPipeline(pipeline);
+				cmdBuffer->set_pipeline(pipeline);
 				for(const auto& mesh : model.meshes)
 				{
 					const auto vb = mesh.vertexBuffer;
 					const auto ib = mesh.indexBuffer;
 
-					cmdBuffer->setVertexBuffer(vb);
-					cmdBuffer->setIndexBuffer(ib);
+					cmdBuffer->set_vertex_buffer(vb);
+					cmdBuffer->set_index_buffer(ib);
 
 					if(mesh.material)
 					{
 #if PBR
-						cmdBuffer->setTexture(mesh.material->pbr.albedo, 1);
-						cmdBuffer->setTexture(mesh.material->pbr.normals, 2);
-						cmdBuffer->setTexture(mesh.material->pbr.metallic, 3);
-						cmdBuffer->setTexture(mesh.material->pbr.roughness, 4);
-						cmdBuffer->setTexture(mesh.material->pbr.emissive, 5);
-						cmdBuffer->setTexture(mesh.material->pbr.occlusion, 6);
+						cmdBuffer->set_texture(mesh.material->pbr.albedo, 1);
+						cmdBuffer->set_texture(mesh.material->pbr.normals, 2);
+						cmdBuffer->set_texture(mesh.material->pbr.metallic, 3);
+						cmdBuffer->set_texture(mesh.material->pbr.roughness, 4);
+						cmdBuffer->set_texture(mesh.material->pbr.emissive, 5);
+						cmdBuffer->set_texture(mesh.material->pbr.occlusion, 6);
 #else
 						cmdBuffer->setTexture(mesh.material->diffuse, 2);
 						cmdBuffer->setTexture(mesh.material->specular, 3);
@@ -427,7 +427,7 @@ public:
 #endif
 					}
 
-					cmdBuffer->drawIndexed(ib->getCount());
+					cmdBuffer->draw_indexed(ib->get_count());
 				}
 
 				// DrawChar(font, 'A', {0, 0}, cmdBuffer);
@@ -443,13 +443,13 @@ public:
 
 	void beginFrame()
 	{
-		UI::beginFrame();
+		UI::begin_frame();
 		ImGuizmo::BeginFrame();
 	}
 
 	void endFrame()
 	{
-		UI::endFrame();
+		UI::end_frame();
 		window->update();
 	}
 };

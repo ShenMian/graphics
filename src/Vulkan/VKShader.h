@@ -12,8 +12,8 @@ public:
 	VKShader(const Descriptor& desc);
 	virtual ~VKShader();
 
-	VkShaderModule getHandle();
+	VkShaderModule get_handle();
 
 private:
-	VkShaderModule handle;
+	VkShaderModule handle_;
 };

@@ -42,14 +42,14 @@ public:
 	 */
 	virtual void end() = 0;
 
-	virtual void beginRenderPass() = 0;
-	virtual void endRenderPass()   = 0;
+	virtual void begin_render_pass() = 0;
+	virtual void end_render_pass()   = 0;
 
-	virtual void setViewport(const Viewport& viewport)                           = 0;
-	virtual void setPipeline(std::shared_ptr<Pipeline> pipeline)                 = 0;
-	virtual void setVertexBuffer(std::shared_ptr<VertexBuffer> vertexBuffer)     = 0;
-	virtual void setIndexBuffer(std::shared_ptr<IndexBuffer> indexBuffer)        = 0;
-	virtual void setTexture(std::shared_ptr<Texture> texture, unsigned int slot) = 0;
+	virtual void set_viewport(const Viewport& viewport)                           = 0;
+	virtual void set_pipeline(std::shared_ptr<Pipeline> pipeline)                 = 0;
+	virtual void set_vertex_buffer(std::shared_ptr<VertexBuffer> vertex_buffer)     = 0;
+	virtual void set_index_buffer(std::shared_ptr<IndexBuffer> index_buffer)        = 0;
+	virtual void set_texture(std::shared_ptr<Texture> texture, unsigned int slot) = 0;
 
 	/**
 	 * @brief 清空缓冲区.
@@ -65,22 +65,22 @@ public:
 	 *
 	 * @param color 默认值.
 	 */
-	virtual void setClearColor(const Vector4& color) = 0;
+	virtual void set_clear_color(const Vector4& color) = 0;
 
 	/**
 	 * @brief 设置清空深度缓冲区的默认值.
 	 *
 	 * @param depth 默认值.
 	 */
-	virtual void setClearDepth(float depth) = 0;
+	virtual void set_clear_depth(float depth) = 0;
 
 	/**
 	 * @brief 设置清空模板缓冲区的默认值.
 	 *
 	 * @param value 默认值.
 	 */
-	virtual void setClearStencil(uint32_t value) = 0;
+	virtual void set_clear_stencil(uint32_t value) = 0;
 
-	virtual void draw(uint32_t vertexCount, uint32_t firstVertex = 0)      = 0;
-	virtual void drawIndexed(uint32_t indexCount, uint32_t firstIndex = 0) = 0;
+	virtual void draw(uint32_t vertex_count, uint32_t first_vertex = 0)      = 0;
+	virtual void draw_indexed(uint32_t index_count, uint32_t first_index = 0) = 0;
 };

@@ -7,25 +7,25 @@
 
 VKVertexBuffer::VKVertexBuffer(const void* data, size_t size, const VertexFormat& layout, Buffer::Usage usage)
     : VertexBuffer(data, size, layout),
-      buffer(size, Buffer::Type::Vertex, usage,
+      buffer_(size, Buffer::Type::Vertex, usage,
              VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT)
 {
-	buffer.map();
-	buffer.write(data, size);
-	buffer.unmap();
+	buffer_.map();
+	buffer_.write(data, size);
+	buffer_.unmap();
 }
 
-Buffer& VKVertexBuffer::getBuffer()
+Buffer& VKVertexBuffer::get_buffer()
 {
-	return buffer;
+	return buffer_;
 }
 
 VKVertexBuffer::operator VkBuffer()
 {
-	return buffer;
+	return buffer_;
 }
 
 VKVertexBuffer::operator VkBuffer() const
 {
-	return buffer;
+	return buffer_;
 }

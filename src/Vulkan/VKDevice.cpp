@@ -4,62 +4,62 @@
 #include "VKDevice.h"
 #include <stdexcept>
 
-VKDevice::VKDevice(VkDevice device) : handle(device)
+VKDevice::VKDevice(VkDevice device) : handle_(device)
 {
 }
 
-VKDevice::VKDevice(VkDevice device, VKPhysicalDevice& physicalDevice) : handle(device), physicalDevice(physicalDevice)
+VKDevice::VKDevice(VkDevice device, VKPhysicalDevice& physicalDevice) : handle_(device), physical_device_(physicalDevice)
 {
 }
 
-VkQueue VKDevice::getQueue(QueueType type) const
+VkQueue VKDevice::get_queue(QueueType type) const
 {
-	const auto index = getQueueIndex(type);
+	const auto index = get_queue_index(type);
 	if(!index.has_value())
 		throw std::runtime_error("requested queue do not exist");
 
 	VkQueue queue;
-	vkGetDeviceQueue(handle, index.value(), 0, &queue);
+	vkGetDeviceQueue(handle_, index.value(), 0, &queue);
 	return queue;
 }
 
 VKDevice::operator VkDevice() noexcept
 {
-	return handle;
+	return handle_;
 }
 
 VKDevice::operator VkDevice() const noexcept
 {
-	return handle;
+	return handle_;
 }
 
-std::optional<uint32_t> VKDevice::getQueueIndex(QueueType type) const
+std::optional<uint32_t> VKDevice::get_queue_index(QueueType type) const
 {
 	switch(type)
 	{
 		using enum QueueType;
 
 	case Graphics:
-		return physicalDevice.graphics;
+		return physical_device_.graphics;
 
 	case Compute:
-		return physicalDevice.compute;
+		return physical_device_.compute;
 
 	case Transfer:
-		return physicalDevice.transfer;
+		return physical_device_.transfer;
 
 	case Present:
-		return physicalDevice.present;
+		return physical_device_.present;
 	}
 	return std::nullopt;
 }
 
-VKPhysicalDevice& VKDevice::getPhysicalDevice() noexcept
+VKPhysicalDevice& VKDevice::get_physical_device() noexcept
 {
-	return physicalDevice;
+	return physical_device_;
 }
 
 void VKDevice::destroy()
 {
-	vkDestroyDevice(handle, nullptr);
+	vkDestroyDevice(handle_, nullptr);
 }

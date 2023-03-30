@@ -11,23 +11,23 @@
 VKCommandQueue::VKCommandQueue()
 {
 	auto renderer = reinterpret_cast<VKRenderer*>(Renderer::get());
-	handle        = renderer->getDevice().getQueue(VKDevice::QueueType::Graphics);
+	handle_        = renderer->get_device().get_queue(VKDevice::QueueType::Graphics);
 }
 
-void VKCommandQueue::submit(std::shared_ptr<CommandBuffer> commandBuffer)
+void VKCommandQueue::submit(std::shared_ptr<CommandBuffer> command_buffer)
 {
 	auto  renderer  = reinterpret_cast<VKRenderer*>(Renderer::get());
-	auto& device    = renderer->getDevice();
-	auto& swapchain = renderer->getSwapchain();
+	auto& device    = renderer->get_device();
+	auto& swapchain = renderer->get_swapchain();
 
 	uint32_t imageIndex;
-	vkAcquireNextImageKHR(device, renderer->getSwapchain(), std::numeric_limits<uint64_t>::max(),
-	                      swapchain.getImageAvailableSemaphores()[0], VK_NULL_HANDLE, &imageIndex);
+	vkAcquireNextImageKHR(device, renderer->get_swapchain(), std::numeric_limits<uint64_t>::max(),
+	                      swapchain.get_image_available_semaphores()[0], VK_NULL_HANDLE, &imageIndex);
 
-	const auto vkCommandBuffer = std::dynamic_pointer_cast<VKCommandBuffer>(commandBuffer);
+	const auto vkCommandBuffer = std::dynamic_pointer_cast<VKCommandBuffer>(command_buffer);
 
-	VkSemaphore          waitSemaphores[]   = {swapchain.getImageAvailableSemaphores()[0]};
-	VkSemaphore          signalSemaphores[] = {swapchain.getRenderFinishedSemaphores()[0]};
+	VkSemaphore          waitSemaphores[]   = {swapchain.get_image_available_semaphores()[0]};
+	VkSemaphore          signalSemaphores[] = {swapchain.get_render_finished_semaphores()[0]};
 	VkPipelineStageFlags waitStages[]       = {VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT};
 	VkCommandBuffer      commandBuffers[]   = {*vkCommandBuffer};
 
@@ -41,13 +41,13 @@ void VKCommandQueue::submit(std::shared_ptr<CommandBuffer> commandBuffer)
 	submitInfo.signalSemaphoreCount = 1;
 	submitInfo.pSignalSemaphores    = signalSemaphores;
 
-	if(vkQueueSubmit(handle, 1, &submitInfo, VK_NULL_HANDLE) != VK_SUCCESS)
+	if(vkQueueSubmit(handle_, 1, &submitInfo, VK_NULL_HANDLE) != VK_SUCCESS)
 		throw std::runtime_error("failed to submit command buffer");
 
 
-	auto presentQueue = device.getQueue(VKDevice::QueueType::Present);
+	const auto presentQueue = device.get_queue(VKDevice::QueueType::Present);
 
-	VkSwapchainKHR swapchains[] = {renderer->getSwapchain()};
+	VkSwapchainKHR swapchains[] = {renderer->get_swapchain()};
 
 	VkPresentInfoKHR presentInfo   = {};
 	presentInfo.sType              = VK_STRUCTURE_TYPE_PRESENT_INFO_KHR;

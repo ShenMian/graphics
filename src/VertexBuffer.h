@@ -41,27 +41,27 @@ public:
 	/**
 	 * @brief 获取缓冲区大小, 单位: 字节.
 	 */
-	[[nodiscard]] size_t getSize() const;
+	[[nodiscard]] size_t get_size() const;
 
 	/**
 	 * @brief 获取顶点数.
 	 */
-	[[nodiscard]] uint32_t getCount() const;
+	[[nodiscard]] uint32_t get_count() const;
 
 	/**
 	 * @brief 获取顶格式.
 	 */
-	[[nodiscard]] const VertexFormat& getFormat() const;
+	[[nodiscard]] const VertexFormat& get_format() const;
 
-	virtual Buffer& getBuffer() = 0;
+	virtual Buffer& get_buffer() = 0;
 
 protected:
 	VertexBuffer(const void* data, size_t size, const VertexFormat& layout);
 
 private:
-	size_t       size;
-	uint32_t     count;
-	VertexFormat format;
+	size_t       size_;
+	uint32_t     count_;
+	VertexFormat format_;
 };
 
 template <typename T>

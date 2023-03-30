@@ -62,8 +62,8 @@ public:
 	std::function<void(Window&)> hover;
 
 private:
-	Flag                 flags;
-	std::vector<Widget*> widgets;
+	Flag                 flags_;
+	std::vector<Widget*> widgets_;
 };
 
 } // namespace ui

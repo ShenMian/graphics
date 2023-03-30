@@ -33,40 +33,40 @@ public:
 	 */
 	void update(float dt);
 
-	void moveFront(float step);
-	void moveRight(float step);
-	void moveUp(float step);
+	void move_front(float step);
+	void move_right(float step);
+	void move_up(float step);
 
-	void turnRight(float step);
-	void lookUp(float step);
+	void turn_right(float step);
+	void look_up(float step);
 
 	/**
 	 * @brief 设置移动速度.
 	 *
 	 * @param v 移动速度.
 	 */
-	void setSpeed(float v);
+	void set_speed(float v);
 
 	/**
 	 * @brief 设置平滑度.
 	 *
 	 * @param v 平滑度, 越高缓冲效果时间越短. 0 表示不开启平滑.
 	 */
-	void setSmoothness(float v);
+	void set_smoothness(float v);
 
 	/**
 	 * @brief 设置控制的相机.
 	 *
 	 * @param cam 控制的相机.
 	 */
-	void setCamera(Camera& cam);
+	void set_camera(Camera& cam);
 
 	/**
 	 * @brief 设置要获取输入的手柄.
 	 *
 	 * @param gamepad 手柄.
 	 */
-	void setGamepad(Gamepad& gamepad);
+	void set_gamepad(Gamepad& gamepad);
 
 private:
 	/**
@@ -74,27 +74,27 @@ private:
 	 *
 	 * @param dt 时间变化量.
 	 */
-	void processKeyboard(float dt);
+	void process_keyboard(float dt);
 
 	/**
 	 * @brief 处理鼠标输入, 控制相机转向.
 	 *
 	 * @param dt 时间变化量.
 	 */
-	void processMouse(float dt);
+	void process_mouse(float dt);
 
 	/**
 	 * @brief 处理手柄输入, 控制相机移动和转向.
 	 *
 	 * @param dt 时间变化量.
 	 */
-	void processGamepad(float dt);
+	void process_gamepad(float dt);
 
-	Camera* camera = nullptr;
-	float   speed  = 200.f;
+	Camera* camera_ = nullptr;
+	float   speed_  = 200.f;
 
-	float    smoothness = 11;
-	Vector3f target;
+	float    smoothness_ = 11;
+	Vector3f target_;
 
-	Gamepad* gamepad = nullptr;
+	Gamepad* gamepad_ = nullptr;
 };

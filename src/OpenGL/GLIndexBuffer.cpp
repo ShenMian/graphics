@@ -24,7 +24,7 @@ GLIndexBuffer::GLIndexBuffer(const uint32_t* data, size_t size, Buffer::Usage us
 	buffer.unmap();
 }
 
-Buffer& GLIndexBuffer::getBuffer()
+Buffer& GLIndexBuffer::get_buffer()
 {
 	return buffer;
 }

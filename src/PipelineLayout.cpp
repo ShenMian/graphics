@@ -10,17 +10,17 @@
 PipelineLayout::PipelineLayout(const std::initializer_list<Binding>& list)
 {
 	for(const auto& attr : list)
-		addBinding(attr);
+		add_binding(attr);
 }
 
-const std::vector<PipelineLayout::Binding>& PipelineLayout::getBindings() const
+const std::vector<PipelineLayout::Binding>& PipelineLayout::get_bindings() const
 {
-	return bindings;
+	return bindings_;
 }
 
-void PipelineLayout::addBinding(Binding attr)
+void PipelineLayout::add_binding(Binding attr)
 {
-	assert(std::find_if(bindings.begin(), bindings.end(), [&](auto v) { return v.binding == attr.binding; }) ==
-	       bindings.end());
-	bindings.push_back(attr);
+	assert(std::find_if(bindings_.begin(), bindings_.end(), [&](auto v) { return v.binding == attr.binding; }) ==
+	       bindings_.end());
+	bindings_.push_back(attr);
 }

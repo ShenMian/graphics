@@ -25,8 +25,8 @@ public:
 	void update();
 
 private:
-	ImNodesEditorContext* context;
-	std::vector<Node>     nodes;
+	ImNodesEditorContext* context_;
+	std::vector<Node>     nodes_;
 };
 
 } // namespace ui

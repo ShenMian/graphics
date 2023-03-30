@@ -13,7 +13,7 @@ GLUniformBuffer::GLUniformBuffer(int binding, size_t size)
 	glBindBufferBase(GL_UNIFORM_BUFFER, binding, buffer);
 }
 
-Buffer& GLUniformBuffer::getBuffer()
+Buffer& GLUniformBuffer::get_buffer()
 {
 	return buffer;
 }

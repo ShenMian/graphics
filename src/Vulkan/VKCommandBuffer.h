@@ -16,30 +16,30 @@ public:
 	void begin() override;
 	void end() override;
 
-	void beginRenderPass() override;
-	void endRenderPass() override;
+	void begin_render_pass() override;
+	void end_render_pass() override;
 
-	void setViewport(const Viewport& viewport) override;
+	void set_viewport(const Viewport& viewport) override;
 
-	void setPipeline(std::shared_ptr<Pipeline> pipeline) override;
+	void set_pipeline(std::shared_ptr<Pipeline> pipeline) override;
 
-	void setVertexBuffer(std::shared_ptr<VertexBuffer> vertexBuffer) override;
-	void setIndexBuffer(std::shared_ptr<IndexBuffer> indexBuffer) override;
-	void setTexture(std::shared_ptr<Texture> texture, unsigned int slot) override;
+	void set_vertex_buffer(std::shared_ptr<VertexBuffer> vertex_buffer) override;
+	void set_index_buffer(std::shared_ptr<IndexBuffer> index_buffer) override;
+	void set_texture(std::shared_ptr<Texture> texture, unsigned int slot) override;
 
 	void clear(uint8_t flags) override;
-	void setClearColor(const Vector4& color) override;
-	void setClearDepth(float depth) override;
-	void setClearStencil(uint32_t value) override;
+	void set_clear_color(const Vector4& color) override;
+	void set_clear_depth(float depth) override;
+	void set_clear_stencil(uint32_t value) override;
 
-	void draw(uint32_t vertexCount, uint32_t firstVertex) override;
-	void drawIndexed(uint32_t indexCount, uint32_t firstIndex) override;
+	void draw(uint32_t vertex_count, uint32_t first_vertex) override;
+	void draw_indexed(uint32_t index_count, uint32_t first_index) override;
 
 	operator VkCommandBuffer() const;
 
 private:
-	std::vector<VkCommandBuffer> handles;
-	size_t                       index = 0;
+	std::vector<VkCommandBuffer> handles_;
+	size_t                       index_ = 0;
 
-	VkClearColorValue clearColor = {};
+	VkClearColorValue clear_color_ = {};
 };

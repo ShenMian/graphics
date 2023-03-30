@@ -8,9 +8,9 @@
 class GLRenderer : public Renderer
 {
 public:
-	std::string getDeviceName() const override;
-	std::string getRendererName() const override;
-	std::string getVendorName() const override;
+	std::string get_device_name() const override;
+	std::string get_renderer_name() const override;
+	std::string get_vendor_name() const override;
 
 	/**
 	 * @note 将会在调用线程中使用指定窗口的 context.
@@ -19,5 +19,5 @@ public:
 	static void deinit();
 
 private:
-	static void setupDebugCallback();
+	static void setup_debug_callback();
 };

@@ -16,120 +16,120 @@ namespace fs = std::filesystem;
 
 Window::Window(std::string_view title, const Vector2i& size)
 {
-	handle = glfwCreateWindow(size.x(), size.y(), title.data(), nullptr, nullptr);
-	if(handle == nullptr)
+	handle_ = glfwCreateWindow(size.x(), size.y(), title.data(), nullptr, nullptr);
+	if(handle_ == nullptr)
 		throw std::runtime_error("failed to create window");
 
-	glfwSetWindowUserPointer(handle, static_cast<void*>(this));
+	glfwSetWindowUserPointer(handle_, static_cast<void*>(this));
 
-	setupCallbacks();
+	setup_callbacks();
 }
 
 Window::~Window()
 {
-	glfwDestroyWindow(handle);
+	glfwDestroyWindow(handle_);
 }
 
 void Window::update()
 {
-	if(Renderer::getBackend() == Renderer::Backend::OpenGL)
-		glfwSwapBuffers(handle);
+	if(Renderer::get_backend() == Renderer::Backend::OpenGL)
+		glfwSwapBuffers(handle_);
 	glfwPollEvents();
 }
 
-void Window::setTitle(std::string_view title)
+void Window::set_title(std::string_view title)
 {
-	glfwSetWindowTitle(handle, title.data());
+	glfwSetWindowTitle(handle_, title.data());
 }
 
-void Window::setSize(const Vector2i& size)
+void Window::set_size(const Vector2i& size)
 {
-	glfwSetWindowSize(handle, size.x(), size.y());
+	glfwSetWindowSize(handle_, size.x(), size.y());
 }
 
-Vector2i Window::getSize() const
+Vector2i Window::get_size() const
 {
 	int x, y;
-	glfwGetWindowSize(handle, &x, &y);
+	glfwGetWindowSize(handle_, &x, &y);
 	return {x, y};
 }
 
-void Window::setPosition(const Vector2i& pos)
+void Window::set_position(const Vector2i& pos)
 {
-	glfwSetWindowPos(handle, pos.x(), pos.y());
+	glfwSetWindowPos(handle_, pos.x(), pos.y());
 }
 
-Vector2i Window::getPosition() const
+Vector2i Window::get_position() const
 {
 	int x, y;
-	glfwGetWindowPos(handle, &x, &y);
+	glfwGetWindowPos(handle_, &x, &y);
 	return {x, y};
 }
 
-void Window::setVisible(bool visible)
+void Window::set_visible(bool visible)
 {
 	if(visible)
-		glfwShowWindow(handle);
+		glfwShowWindow(handle_);
 	else
-		glfwHideWindow(handle);
+		glfwHideWindow(handle_);
 }
 
-bool Window::isVisible() const noexcept
+bool Window::is_visible() const noexcept
 {
-	return glfwGetWindowAttrib(handle, GLFW_VISIBLE);
+	return glfwGetWindowAttrib(handle_, GLFW_VISIBLE);
 }
 
-void Window::setFullscreen(bool fullscreen)
+void Window::set_fullscreen(bool fullscreen)
 {
 	if(fullscreen)
 	{
 		// 保存窗口状态, 便于复原
-		this->position = getPosition();
-		this->size     = getSize();
+		this->position_ = get_position();
+		this->size_     = get_size();
 
-		const auto monitor = Monitor::getPrimary();
-		glfwSetWindowMonitor(handle, monitor->getHandle(), 0, 0, monitor->getSize().x(), monitor->getSize().y(),
+		const auto monitor = Monitor::get_primary();
+		glfwSetWindowMonitor(handle_, monitor->get_handle(), 0, 0, monitor->get_size().x(), monitor->get_size().y(),
 		                     GLFW_DONT_CARE);
 	}
 	else
-		glfwSetWindowMonitor(handle, nullptr, position.x(), position.y(), size.x(), size.y(), GLFW_DONT_CARE);
+		glfwSetWindowMonitor(handle_, nullptr, position_.x(), position_.y(), size_.x(), size_.y(), GLFW_DONT_CARE);
 }
 
-bool Window::isFullscreen() const noexcept
+bool Window::is_fullscreen() const noexcept
 {
-	return glfwGetWindowMonitor(handle) != nullptr;
+	return glfwGetWindowMonitor(handle_) != nullptr;
 }
 
-void Window::setVSync(bool enable) noexcept
+void Window::set_vsync(bool enable) noexcept
 {
-	glfwMakeContextCurrent(handle);
+	glfwMakeContextCurrent(handle_);
 	if(enable)
 		glfwSwapInterval(1);
 	else
 		glfwSwapInterval(0);
 }
 
-void Window::setResizable(bool enable)
+void Window::set_resizable(bool enable)
 {
-	glfwSetWindowAttrib(handle, GLFW_RESIZABLE, enable);
+	glfwSetWindowAttrib(handle_, GLFW_RESIZABLE, enable);
 }
 
-bool Window::isResizable() const noexcept
+bool Window::is_resizable() const noexcept
 {
-	return glfwGetWindowAttrib(handle, GLFW_RESIZABLE);
+	return glfwGetWindowAttrib(handle_, GLFW_RESIZABLE);
 }
 
-void Window::setFloating(bool enable)
+void Window::set_floating(bool enable)
 {
-	glfwSetWindowAttrib(handle, GLFW_FLOATING, enable);
+	glfwSetWindowAttrib(handle_, GLFW_FLOATING, enable);
 }
 
-bool Window::isFloating() const noexcept
+bool Window::is_floating() const noexcept
 {
-	return glfwGetWindowAttrib(handle, GLFW_FLOATING);
+	return glfwGetWindowAttrib(handle_, GLFW_FLOATING);
 }
 
-void Window::setIcon(const Image& image)
+void Window::set_icon(const Image& image)
 {
 	if(image.size().x() > 48 && image.size().y() > 48)
 		throw std::runtime_error("image size is too large");
@@ -138,48 +138,48 @@ void Window::setIcon(const Image& image)
 	glfwImage.pixels = const_cast<unsigned char*>(image.data());
 	glfwImage.width  = image.size().x();
 	glfwImage.height = image.size().y();
-	glfwSetWindowIcon(handle, 1, &glfwImage);
+	glfwSetWindowIcon(handle_, 1, &glfwImage);
 }
 
-void Window::requestFocus()
+void Window::request_focus()
 {
-	glfwRequestWindowAttention(handle);
+	glfwRequestWindowAttention(handle_);
 }
 
-void Window::setCursorLock(bool enable)
+void Window::set_cursor_lock(bool enable)
 {
-	glfwSetInputMode(handle, GLFW_CURSOR, enable ? GLFW_CURSOR_DISABLED : GLFW_CURSOR_NORMAL);
+	glfwSetInputMode(handle_, GLFW_CURSOR, enable ? GLFW_CURSOR_DISABLED : GLFW_CURSOR_NORMAL);
 }
 
-bool Window::isCursorLock() const
+bool Window::is_cursor_lock() const
 {
-	return glfwGetInputMode(handle, GLFW_CURSOR) == GLFW_CURSOR_DISABLED;
+	return glfwGetInputMode(handle_, GLFW_CURSOR) == GLFW_CURSOR_DISABLED;
 }
 
-void Window::setCursorPosition(const Vector2i& pos)
+void Window::set_cursor_position(const Vector2i& pos)
 {
-	glfwSetCursorPos(handle, pos.x(), pos.y());
+	glfwSetCursorPos(handle_, pos.x(), pos.y());
 }
 
-Vector2d Window::getCursorPosition() const
+Vector2d Window::get_cursor_position() const
 {
 	double x, y;
-	glfwGetCursorPos(handle, &x, &y);
+	glfwGetCursorPos(handle_, &x, &y);
 	return {x, y};
 }
 
-void Window::setRawMouseMotion(bool enable)
+void Window::set_raw_mouse_motion(bool enable)
 {
 	if(glfwRawMouseMotionSupported())
-		glfwSetInputMode(handle, GLFW_RAW_MOUSE_MOTION, enable);
+		glfwSetInputMode(handle_, GLFW_RAW_MOUSE_MOTION, enable);
 }
 
-GLFWwindow* Window::getHandle() const
+GLFWwindow* Window::get_handle() const
 {
-	return handle;
+	return handle_;
 }
 
-void Window::setupCallbacks()
+void Window::setup_callbacks()
 {
 	glfwSetErrorCallback([](int error, const char* desc) {
 		if(error == 65537)
@@ -187,58 +187,58 @@ void Window::setupCallbacks()
 		throw std::runtime_error(fmt::format("GLFW: {}", desc));
 	});
 
-	glfwSetWindowSizeCallback(handle, [](GLFWwindow* native, int width, int height) {
+	glfwSetWindowSizeCallback(handle_, [](GLFWwindow* native, int width, int height) {
 		const auto handle = static_cast<Window*>(glfwGetWindowUserPointer(native));
 		if(handle->onResize)
 			handle->onResize({width, height});
 	});
 
-	glfwSetWindowCloseCallback(handle, [](GLFWwindow* native) {
+	glfwSetWindowCloseCallback(handle_, [](GLFWwindow* native) {
 		const auto handle = static_cast<Window*>(glfwGetWindowUserPointer(native));
 		if(handle->onClose)
 			handle->onClose();
 	});
 
-	glfwSetWindowFocusCallback(handle, [](GLFWwindow* native, int focused) {
+	glfwSetWindowFocusCallback(handle_, [](GLFWwindow* native, int focused) {
 		const auto handle = static_cast<Window*>(glfwGetWindowUserPointer(native));
 		if(handle->onFocus)
 			handle->onFocus(static_cast<bool>(focused));
 	});
 
 
-	glfwSetKeyCallback(handle, [](GLFWwindow* native, int key, int scancode, int action, int mods) {
+	glfwSetKeyCallback(handle_, [](GLFWwindow* native, int key, int scancode, int action, int mods) {
 		const auto handle = static_cast<Window*>(glfwGetWindowUserPointer(native));
 		if(handle->onKey)
 			handle->onKey(action, static_cast<Key>(key));
 	});
 
 
-	glfwSetScrollCallback(handle, [](GLFWwindow* native, double xOffset, double yOffset) {
+	glfwSetScrollCallback(handle_, [](GLFWwindow* native, double xOffset, double yOffset) {
 		const auto handle = static_cast<Window*>(glfwGetWindowUserPointer(native));
 		if(handle->onScroll)
 			handle->onScroll({xOffset, yOffset});
 	});
 
-	glfwSetCursorPosCallback(handle, [](GLFWwindow* native, double x, double y) {
+	glfwSetCursorPosCallback(handle_, [](GLFWwindow* native, double x, double y) {
 		const auto handle = static_cast<Window*>(glfwGetWindowUserPointer(native));
 		if(handle->onMouseMove)
 			handle->onMouseMove({x, y});
 	});
 
-	glfwSetCursorEnterCallback(handle, [](GLFWwindow* native, int entered) {
+	glfwSetCursorEnterCallback(handle_, [](GLFWwindow* native, int entered) {
 		const auto handle = static_cast<Window*>(glfwGetWindowUserPointer(native));
 		if(handle->onMouseEnter)
 			handle->onMouseEnter(entered);
 	});
 
-	glfwSetMouseButtonCallback(handle, [](GLFWwindow* native, int button, int action, int mods) {
+	glfwSetMouseButtonCallback(handle_, [](GLFWwindow* native, int button, int action, int mods) {
 		const auto handle = static_cast<Window*>(glfwGetWindowUserPointer(native));
 		if(handle->onMouse)
 			handle->onMouse(action, static_cast<Mouse>(button));
 	});
 
 
-	glfwSetDropCallback(handle, [](GLFWwindow* native, int pathCount, const char* paths[]) {
+	glfwSetDropCallback(handle_, [](GLFWwindow* native, int pathCount, const char* paths[]) {
 		const auto handle = static_cast<Window*>(glfwGetWindowUserPointer(native));
 		if(handle->onDrop)
 			handle->onDrop(pathCount, paths);
@@ -252,7 +252,7 @@ void Window::init()
 
 	Monitor::init();
 
-	if(Renderer::get()->getBackend() == Renderer::Backend::Vulkan)
+	if(Renderer::get()->get_backend() == Renderer::Backend::Vulkan)
 	{
 		if(!glfwVulkanSupported())
 			throw std::runtime_error("GLFW: Vulkan not supported");

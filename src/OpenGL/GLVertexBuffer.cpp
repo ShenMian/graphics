@@ -15,7 +15,7 @@ GLVertexBuffer::GLVertexBuffer(const void* data, size_t size, const VertexFormat
 	vao.build(fmt, buffer);
 }
 
-Buffer& GLVertexBuffer::getBuffer()
+Buffer& GLVertexBuffer::get_buffer()
 {
 	return buffer;
 }

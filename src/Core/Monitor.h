@@ -22,42 +22,42 @@ public:
 	/**
 	 * @brief 获取主显示器.
 	 */
-	static const Monitor* getPrimary() noexcept;
+	static const Monitor* get_primary() noexcept;
 
 	/**
 	 * @brief 获取全部显示器.
 	 */
-	static const std::vector<Monitor>& getMonitors();
+	static const std::vector<Monitor>& get_monitors();
 
 	/**
 	 * @brief 获取显示器名称.
 	 */
-	std::string_view getName() const;
+	std::string_view get_name() const;
 
 	/**
 	 * @brief 获取显示器大小(即分辨率), 单位: 像素.
 	 */
-	Vector2i getSize() const;
+	Vector2i get_size() const;
 
 	/**
 	 * @brief 获取显示器位置.
 	 */
-	Vector2i getPosition() const;
+	Vector2i get_position() const;
 
 	/**
 	 * @brief 获取显示器刷新率, 单位: Hz.
 	 */
-	int getRefreshRate() const;
+	int get_refresh_rate() const;
 
 	/**
 	 * @brief 是否为主显示器.
 	 */
-	bool isPrimary() const;
+	bool is_primary() const;
 
 	/**
 	 * @brief 获取本地句柄.
 	 */
-	GLFWmonitor* getHandle() const;
+	GLFWmonitor* get_handle() const;
 
 	bool operator==(const Monitor&) const = default;
 
@@ -68,9 +68,9 @@ private:
 	Monitor() = default;
 	Monitor(GLFWmonitor* handle);
 
-	GLFWmonitor* handle = nullptr;
+	GLFWmonitor* handle_ = nullptr;
 
-	static std::vector<Monitor> monitors;
+	static std::vector<Monitor> monitors_;
 };
 
 /** @}*/

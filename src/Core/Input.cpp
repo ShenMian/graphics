@@ -138,54 +138,44 @@ const std::unordered_map<std::string_view, Mouse> nameToMouse = {
 
 const Window* Input::window;
 
-bool Input::isPressed(Key key)
+bool Input::is_pressed(Key key)
 {
-	return glfwGetKey(window->getHandle(), static_cast<int>(key)) == GLFW_PRESS;
+	return glfwGetKey(window->get_handle(), static_cast<int>(key)) == GLFW_PRESS;
 }
 
-bool Input::isPressed(Mouse key)
+bool Input::is_pressed(Mouse key)
 {
-	return glfwGetMouseButton(window->getHandle(), static_cast<int>(key)) == GLFW_PRESS;
+	return glfwGetMouseButton(window->get_handle(), static_cast<int>(key)) == GLFW_PRESS;
 }
 
-Vector2 Input::getMousePosition()
+Vector2 Input::get_mouse_position()
 {
 	Vector2d pos;
-	glfwGetCursorPos(window->getHandle(), &pos.x(), &pos.y());
+	glfwGetCursorPos(window->get_handle(), &pos.x(), &pos.y());
 	return Vector2(pos);
 }
 
-float Input::getMouseX()
-{
-	return getMousePosition().x();
-}
-
-float Input::getMouseY()
-{
-	return getMousePosition().y();
-}
-
-Key Input::getKeyByName(std::string_view name)
+Key Input::get_key_by_name(std::string_view name)
 {
 	return nameToKey.at(name);
 }
 
-Mouse Input::getMouseByName(std::string_view name)
+Mouse Input::get_mouse_by_name(std::string_view name)
 {
 	return nameToMouse.at(name);
 }
 
-std::string_view Input::getClipboard()
+std::string_view Input::get_clipboard()
 {
 	return glfwGetClipboardString(nullptr);
 }
 
-void Input::setClipboard(const std::string& str)
+void Input::set_clipboard(const std::string& str)
 {
 	glfwSetClipboardString(nullptr, str.c_str());
 }
 
-void Input::setWindow(const Window& win)
+void Input::set_window(const Window& win)
 {
 	window = &win;
 }

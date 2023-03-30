@@ -92,56 +92,56 @@ public:
 	 *
 	 * @param filter 过滤方式, 可选的值有 Nearest, Bilinear, Trilinear.
 	 */
-	virtual void setMinFilter(Filter filter) = 0;
+	virtual void set_min_filter(Filter filter) = 0;
 
 	/**
 	 * @brief 设置放大过滤方式.
 	 *
 	 * @param filter 过滤方式, 可选的值有 Nearest, Bilinear.
 	 */
-	virtual void setMagFilter(Filter filter) = 0;
+	virtual void set_mag_filter(Filter filter) = 0;
 
 	/**
 	 * @brief 设置 S 环绕方式.
 	 *
 	 * @param warp 环绕方式.
 	 */
-	virtual void setSWarp(Warp warp) = 0;
+	virtual void set_s_warp(Warp warp) = 0;
 
 	/**
 	 * @brief 设置 T 环绕方式.
 	 *
 	 * @param warp 环绕方式.
 	 */
-	virtual void setTWarp(Warp warp) = 0;
+	virtual void set_t_warp(Warp warp) = 0;
 
 	/**
 	 * @brief 设置 R 环绕方式.
 	 *
 	 * @param warp 环绕方式.
 	 */
-	virtual void setRWarp(Warp warp) = 0;
+	virtual void set_r_warp(Warp warp) = 0;
 
 	/**
 	 * @brief 获取纹理类型.
 	 */
-	[[nodiscard]] Type getType() const;
+	[[nodiscard]] Type get_type() const;
 
 	/**
 	 * @brief 获取像素格式.
 	 */
-	[[nodiscard]] Format getFormat() const;
+	[[nodiscard]] Format get_format() const;
 
 protected:
 	Texture(Type type, Format fmt);
 
-	Type   type;
-	Format format;
+	Type   type_;
+	Format format_;
 
 	/**
 	 * FIXME:
 	 * 1. 内存泄露.
 	 * 2. 数据相同的纹理其他属性(如寻址方式)可能不同.
 	 */
-	inline static std::unordered_map<std::filesystem::path, std::shared_ptr<Texture>> cache;
+	inline static std::unordered_map<std::filesystem::path, std::shared_ptr<Texture>> cache_;
 };

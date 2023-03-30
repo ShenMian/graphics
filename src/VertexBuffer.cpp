@@ -11,7 +11,7 @@
 std::shared_ptr<VertexBuffer> VertexBuffer::create(const void* data, size_t size, const VertexFormat& fmt,
                                                    Buffer::Usage usage)
 {
-	switch(Renderer::getBackend())
+	switch(Renderer::get_backend())
 	{
 		using enum Renderer::Backend;
 
@@ -24,22 +24,22 @@ std::shared_ptr<VertexBuffer> VertexBuffer::create(const void* data, size_t size
 	return nullptr;
 }
 
-size_t VertexBuffer::getSize() const
+size_t VertexBuffer::get_size() const
 {
-	return size;
+	return size_;
 }
 
-uint32_t VertexBuffer::getCount() const
+uint32_t VertexBuffer::get_count() const
 {
-	return count;
+	return count_;
 }
 
-const VertexFormat& VertexBuffer::getFormat() const
+const VertexFormat& VertexBuffer::get_format() const
 {
-	return format;
+	return format_;
 }
 
 VertexBuffer::VertexBuffer(const void* data, size_t size, const VertexFormat& layout)
-    : size(size), count(static_cast<uint32_t>(size / layout.getStride())), format(layout)
+    : size_(size), count_(static_cast<uint32_t>(size / layout.get_stride())), format_(layout)
 {
 }
