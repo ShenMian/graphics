@@ -116,13 +116,18 @@ void ModelImporter::load_mesh(const aiMesh& mesh)
 
 	for(unsigned int i = 0; i < mesh.mNumBones; i++)
 	{
-		auto& bone = mesh.mBones[i];
-		// bone->mName;
-		// bone->mOffsetMatrix;
-		for(unsigned int j = 0; j < bone->mNumWeights; i++)
+		const auto& aiBone = mesh.mBones[i];
+
+		auto& bone = model_->bones.emplace_back();
+		bone.name = aiBone->mName.C_Str();
+		bone.offset = Matrix4f(&aiBone->mOffsetMatrix.a1);
+
+		bone.indices.resize(aiBone->mNumWeights);
+		bone.weights.resize(aiBone->mNumWeights);
+		for(unsigned int j = 0; j < aiBone->mNumWeights; j++)
 		{
-			// bone->mWeights[i].mVertexId;
-			// bone->mWeights[i].mWeight;
+			bone.indices[j] = aiBone->mWeights[j].mVertexId;
+			bone.weights[j] = aiBone->mWeights[j].mWeight;
 		}
 	}
 }

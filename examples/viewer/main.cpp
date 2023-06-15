@@ -111,44 +111,47 @@ public:
 	{
 		// Font font("C:/Users/sms/AppData/Local/Microsoft/Windows/Fonts/CascadiaCode.ttf");
 
-		fs::path path = "../../../../../../Model/";
+		fs::path path = "../../../../../../model/";
 		if(argc > 1)
 			path = argv[1];
 		else
 		{
 #if PBR
 			// Scene
-			path += "glTF-Sample-Models/Sponza/glTF/Sponza.gltf";
+			// path += "glTF-Sample-Models/2.0/Sponza/glTF/Sponza.gltf";
 			// path += "ORCA/Bistro/BistroExterior.glb";
 			// path += "ORCA/Bistro/BistroExterior.fbx";
 			// path += "ORCA/SunTemple/SunTemple.fbx";
 
+			// Animation
+			path += "glTF-Sample-Models/2.0/CesiumMan/glTF/CesiumMan.gltf";
+
 			// Model
-			// path += "glTF-Sample-Models/FlightHelmet/glTF/FlightHelmet.gltf";
+			// path += "glTF-Sample-Models/2.0/FlightHelmet/glTF/FlightHelmet.gltf";
 			// path += "m4a1/m4a1.gltf";
 			// path += "pistol/kimber_desert_warrior/scene.gltf";
 
 			// Basic test
-			// path += "glTF-Sample-Models/MetalRoughSpheres/glTF/MetalRoughSpheres.gltf";
-			// path += "glTF-Sample-Models/NormalTangentTest/glTF/NormalTangentTest.gltf";
-			// path += "glTF-Sample-Models/NormalTangentMirrorTest/glTF/NormalTangentMirrorTest.gltf";
-			// path += "glTF-Sample-Models/TextureLinearInterpolationTest/glTF/TextureLinearInterpolationTest.gltf";
-			// path += "glTF-Sample-Models/TextureCoordinateTest/glTF/TextureCoordinateTest.gltf";
-			// path += "glTF-Sample-Models/TextureSettingsTest/glTF/TextureSettingsTest.gltf";
-			// path += "glTF-Sample-Models/VertexColorTest/glTF/VertexColorTest.gltf";
-			// path += "glTF-Sample-Models/AlphaBlendModeTest/glTF/AlphaBlendModeTest.gltf";
+			// path += "glTF-Sample-Models/2.0/MetalRoughSpheres/glTF/MetalRoughSpheres.gltf";
+			// path += "glTF-Sample-Models/2.0/NormalTangentTest/glTF/NormalTangentTest.gltf";
+			// path += "glTF-Sample-Models/2.0/NormalTangentMirrorTest/glTF/NormalTangentMirrorTest.gltf";
+			// path += "glTF-Sample-Models/2.0/TextureLinearInterpolationTest/glTF/TextureLinearInterpolationTest.gltf";
+			// path += "glTF-Sample-Models/2.0/TextureCoordinateTest/glTF/TextureCoordinateTest.gltf";
+			// path += "glTF-Sample-Models/2.0/TextureSettingsTest/glTF/TextureSettingsTest.gltf";
+			// path += "glTF-Sample-Models/2.0/VertexColorTest/glTF/VertexColorTest.gltf";
+			// path += "glTF-Sample-Models/2.0/AlphaBlendModeTest/glTF/AlphaBlendModeTest.gltf";
 
 			// Feature test
-			// path += "glTF-Sample-Models/AttenuationTest/glTF/AttenuationTest.gltf";
-			// path += "glTF-Sample-Models/ClearcoatTest/glTF/ClearcoatTest.gltf";
-			// path += "glTF-Sample-Models/EmissiveStrengthTest/glTF/EmissiveStrengthTest.gltf";
-			// path += "glTF-Sample-Models/SpecGlossVsMetalRough/glTF/SpecGlossVsMetalRough.gltf";
-			// path += "glTF-Sample-Models/TextureTransformTest/glTF/TextureTransformTest.gltf";
-			// path += "glTF-Sample-Models/TextureTransformMultiTest/glTF/TextureTransformMultiTest.gltf";
+			// path += "glTF-Sample-Models/2.0/AttenuationTest/glTF/AttenuationTest.gltf";
+			// path += "glTF-Sample-Models/2.0/ClearcoatTest/glTF/ClearcoatTest.gltf";
+			// path += "glTF-Sample-Models/2.0/EmissiveStrengthTest/glTF/EmissiveStrengthTest.gltf";
+			// path += "glTF-Sample-Models/2.0/SpecGlossVsMetalRough/glTF/SpecGlossVsMetalRough.gltf";
+			// path += "glTF-Sample-Models/2.0/TextureTransformTest/glTF/TextureTransformTest.gltf";
+			// path += "glTF-Sample-Models/2.0/TextureTransformMultiTest/glTF/TextureTransformMultiTest.gltf";
 #else
-			path = "sponza/sponza.obj";
-			// path = "dishonored_2/scene.glb";
-			// path = "san_miguel/san-miguel-low-poly.obj";
+			// path += "sponza/sponza.obj";
+			// path += "san_miguel/san-miguel-low-poly.obj";
+			// path += "dishonored_2/scene.glb";
 #endif
 		}
 
@@ -416,14 +419,14 @@ public:
 						cmdBuffer->set_texture(mesh.material->pbr.emissive, 5);
 						cmdBuffer->set_texture(mesh.material->pbr.occlusion, 6);
 #else
-						cmdBuffer->setTexture(mesh.material->diffuse, 2);
-						cmdBuffer->setTexture(mesh.material->specular, 3);
-						cmdBuffer->setTexture(mesh.material->ambient, 4);
-						cmdBuffer->setTexture(mesh.material->emissive, 5);
-						cmdBuffer->setTexture(mesh.material->height, 6);
-						cmdBuffer->setTexture(mesh.material->normals, 7);
-						cmdBuffer->setTexture(mesh.material->shininess, 8);
-						cmdBuffer->setTexture(mesh.material->opacity, 9);
+						cmdBuffer->set_texture(mesh.material->diffuse, 2);
+						cmdBuffer->set_texture(mesh.material->specular, 3);
+						cmdBuffer->set_texture(mesh.material->ambient, 4);
+						cmdBuffer->set_texture(mesh.material->emissive, 5);
+						cmdBuffer->set_texture(mesh.material->height, 6);
+						cmdBuffer->set_texture(mesh.material->normals, 7);
+						cmdBuffer->set_texture(mesh.material->shininess, 8);
+						cmdBuffer->set_texture(mesh.material->opacity, 9);
 #endif
 					}
 

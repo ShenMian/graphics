@@ -4,6 +4,7 @@
 #pragma once
 
 #include "Animation.h"
+#include "Bone.h"
 #include "Material.h"
 #include "Mesh.h"
 #include <math/math.hpp>
@@ -21,6 +22,7 @@ struct Model
 	std::string            name;
 	std::vector<Mesh>      meshes;
 	std::vector<Material>  materials;
+	std::vector<Bone>      bones;
 	std::vector<Animation> animations;
 	std::filesystem::path  path;
 

@@ -30,7 +30,7 @@ void Model::load(const fs::path& path)
 	file.read(reinterpret_cast<char*>(&header), sizeof(header));
 	assert(header.version == 0);
 
-	// TODO
+	// TODO: name, materials, bones, animations
 	size_t size;
 	file >> size;
 	for(size_t i = 0; i < size; i++)
@@ -56,7 +56,7 @@ void Model::save(const fs::path& path)
 	Header header;
 	file.write(reinterpret_cast<const char*>(&header), sizeof(header));
 
-	// TODO
+	// TODO: name, materials, bones, animations
 	file << meshes.size();
 	for(const auto& mesh : meshes)
 	{
