@@ -37,23 +37,23 @@ public:
 	void draw(uint32_t vertex_count, uint32_t first_vertex) override;
 	void draw_indexed(uint32_t index_count, uint32_t first_index) override;
 
-	const auto& getData() const;
+	const auto& get_data() const;
 
 private:
-	void addCommand(GLOpcode opcode);
+	void add_command(GLOpcode opcode);
 	template <typename T>
-	T* addCommand(GLOpcode opcode);
+	T* add_command(GLOpcode opcode);
 
 	std::vector<uint8_t> buffer;
 };
 
-inline const auto& GLCommandBuffer::getData() const
+inline const auto& GLCommandBuffer::get_data() const
 {
 	return buffer;
 }
 
 template <typename T>
-inline T* GLCommandBuffer::addCommand(GLOpcode opcode)
+inline T* GLCommandBuffer::add_command(GLOpcode opcode)
 {
 	auto offset = buffer.size();
 	buffer.push_back(static_cast<uint8_t>(opcode));

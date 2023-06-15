@@ -9,7 +9,7 @@
 
 void GLCommandQueue::submit(std::shared_ptr<CommandBuffer> command_buffer)
 {
-	auto& buffer = dynamic_cast<GLCommandBuffer*>(command_buffer.get())->getData();
+	auto& buffer = dynamic_cast<GLCommandBuffer*>(command_buffer.get())->get_data();
 
 	const auto end = buffer.data() + buffer.size();
 	auto       pc  = buffer.data();

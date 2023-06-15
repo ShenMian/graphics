@@ -172,6 +172,8 @@ GLTexture::GLTexture(const Image& image, Format fmt, uint32_t mipmapLevel, Type 
 		glTextureParameteri(handle, GL_TEXTURE_BASE_LEVEL, 0);
 		glTextureParameteri(handle, GL_TEXTURE_MAX_LEVEL, mipmapLevel - 1); // TODO: handle mipmapLevel == 1
 
+		glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+
 		size_t blockSize;
 		switch(format_)
 		{
@@ -185,16 +187,16 @@ GLTexture::GLTexture(const Image& image, Format fmt, uint32_t mipmapLevel, Type 
 			break;
 
 		default:
-			assert(false);
+			throw std::runtime_error("unsupported compressed texture format");
 		}
 
 		size_t  offset = 0;
 		GLsizei width  = flippedImage.size().x();
 		GLsizei height = flippedImage.size().y();
-		for(uint32_t level = 0; level < mipmapLevel; level++) // TODO: maybe level start at 1
+		for(uint32_t level = 0; level < mipmapLevel; level++)
 		{
-			// FIXME: 提取 mipmap
-			size_t size = ((width + 3) / 4) * ((height + 3) / 4) * blockSize;
+			// FIXME
+			const GLsizei size = ((width + 3) / 4) * ((height + 3) / 4) * blockSize;
 			glCompressedTextureSubImage2D(handle, level, 0, 0, width, height, GLCompressedFormat(format_), size,
 			                              flippedImage.data() + offset);
 			offset += size;
@@ -209,8 +211,9 @@ GLTexture::GLTexture(const Image& image, Format fmt, uint32_t mipmapLevel, Type 
 
 	mipmapLevel = std::clamp(mipmapLevel, 1u, GetMaxMipmapLevel({width, height}));
 
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
+
 	glTextureStorage2D(handle, mipmapLevel, GLInternalFormat(format_), width, height);
-	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 	glTextureSubImage2D(handle, 0, 0, 0, width, height, GLFormat(format_), GL_UNSIGNED_BYTE, flippedImage.data());
 
 	generate_mipmap();
@@ -248,14 +251,12 @@ GLTexture::~GLTexture()
 void GLTexture::set_min_filter(Filter filter)
 {
 	assert(filter == Filter::Nearest || filter == Filter::Bilinear || filter == Filter::Trilinear);
-
 	glTextureParameteri(handle, GL_TEXTURE_MIN_FILTER, GLFilter[filter]);
 }
 
 void GLTexture::set_mag_filter(Filter filter)
 {
 	assert(filter == Filter::Nearest || filter == Filter::Bilinear);
-
 	glTextureParameteri(handle, GL_TEXTURE_MAG_FILTER, GLFilter[filter]);
 }
 
@@ -272,7 +273,6 @@ void GLTexture::set_t_warp(Warp warp)
 void GLTexture::set_r_warp(Warp warp)
 {
 	assert(type_ == Type::_3D);
-
 	glTextureParameteri(handle, GL_TEXTURE_WRAP_R, GLWarp[warp]);
 }
 
