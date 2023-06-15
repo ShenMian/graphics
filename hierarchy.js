@@ -3,6 +3,7 @@ var hierarchy =
     [ "Animation", "class_animation.html", null ],
     [ "VertexFormat::Attribute", "struct_vertex_format_1_1_attribute.html", null ],
     [ "PipelineLayout::Binding", "struct_pipeline_layout_1_1_binding.html", null ],
+    [ "Bone", "struct_bone.html", null ],
     [ "Buffer", "class_buffer.html", [
       [ "GLBuffer", "class_g_l_buffer.html", null ],
       [ "VKBuffer", "class_v_k_buffer.html", null ]
