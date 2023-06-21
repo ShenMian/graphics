@@ -10,7 +10,7 @@ const float PI = 3.14159265359;
 struct Vert
 {
 	vec3 position;
-	vec3 normal;
+	vec3 normal;	
 	vec2 tex_coord;
 	vec3 tangent;
 	vec3 bitangent;

@@ -124,11 +124,11 @@ public:
 			// path += "ORCA/SunTemple/SunTemple.fbx";
 
 			// Animation
-			path += "glTF-Sample-Models/2.0/CesiumMan/glTF/CesiumMan.gltf";
+			// path += "glTF-Sample-Models/2.0/CesiumMan/glTF/CesiumMan.gltf";
 
 			// Model
 			// path += "glTF-Sample-Models/2.0/FlightHelmet/glTF/FlightHelmet.gltf";
-			// path += "m4a1/m4a1.gltf";
+			path += "m4a1/m4a1.gltf";
 			// path += "pistol/kimber_desert_warrior/scene.gltf";
 
 			// Basic test
@@ -187,7 +187,8 @@ public:
 		auto cmdBuffer = CommandBuffer::create();
 
 		Camera camera(Camera::Type::Perspective);
-		camera.set_perspective(radians(60.f), static_cast<float>(window->get_size().x()) / window->get_size().y(), 0.1f, 2000.f);
+		camera.set_perspective(radians(60.f), static_cast<float>(window->get_size().x()) / window->get_size().y(), 0.1f,
+		                       2000.f);
 		const auto fov = degrees(camera.get_hfov());
 
 		Gamepad gamepad(0);
@@ -278,7 +279,7 @@ public:
 		};
 		window->onResize = [&](Vector2i size) {
 			camera.set_perspective(camera.get_vfov(), static_cast<float>(size.x()) / size.y(), camera.get_near(),
-			                      camera.get_far());
+			                       camera.get_far());
 		};
 		window->onDrop = [&](int, const char* paths[]) { loadModel(paths[0]); };
 		window->set_visible(true);
@@ -317,7 +318,7 @@ public:
 			controller.update(dt);
 #endif
 
-			beginFrame();
+			begin_frame();
 
 			{
 				static size_t                 fpsRecordsCount   = 0;
@@ -339,14 +340,14 @@ public:
 			{
 				const auto& pos = camera.get_position();
 				position.set_text(fmt::format("X    : {: .2f}\n"
-				                             "Y    : {: .2f}\n"
-				                             "Z    : {: .2f}\n",
-				                             pos.x(), pos.y(), pos.z()));
+				                              "Y    : {: .2f}\n"
+				                              "Z    : {: .2f}\n",
+				                              pos.x(), pos.y(), pos.z()));
 				const auto& dir = camera.get_rotation();
 				angles.set_text(fmt::format("Roll : {: .1f}\n"
-				                           "Pitch: {: .1f}\n"
-				                           "Yaw  : {: .1f}\n",
-				                           dir.z(), dir.x(), dir.y()));
+				                            "Pitch: {: .1f}\n"
+				                            "Yaw  : {: .1f}\n",
+				                            dir.z(), dir.x(), dir.y()));
 				attInfo.update();
 			}
 
@@ -438,19 +439,19 @@ public:
 			cmdBuffer->end();
 			cmdQueue->submit(cmdBuffer);
 
-			endFrame();
+			end_frame();
 		}
 
 		return 0;
 	}
 
-	void beginFrame()
+	void begin_frame()
 	{
 		UI::begin_frame();
 		ImGuizmo::BeginFrame();
 	}
 
-	void endFrame()
+	void end_frame()
 	{
 		UI::end_frame();
 		window->update();

@@ -132,16 +132,16 @@ void Camera::update_view_matrix() const
 {
 	// TODO
 
-	auto trans = Matrix4f::createTranslate(position_);
+	auto trans = Matrix4f::create_translate(position_);
 	auto rot   = Matrix4f::identity();
 #if 0
-	rot *= Matrix4f::createRotation(radians(rotation.x()), Vector3f::unit_x);
-	rot *= Matrix4f::createRotation(radians(-rotation.y()), Vector3f::unit_y);
-	rot *= Matrix4f::createRotation(radians(rotation.z()), Vector3f::unit_z);
+	rot *= Matrix4f::create_rotation(radians(rotation.x()), Vector3f::unit_x);
+	rot *= Matrix4f::create_rotation(radians(-rotation.y()), Vector3f::unit_y);
+	rot *= Matrix4f::create_rotation(radians(rotation.z()), Vector3f::unit_z);
 #else
-	rot *= Matrix4f::createRotationX(radians(rotation_.x()));
-	rot *= Matrix4f::createRotationY(radians(rotation_.y()));
-	rot *= Matrix4f::createRotationZ(radians(rotation_.z()));
+	rot *= Matrix4f::create_rotation_x(radians(rotation_.x()));
+	rot *= Matrix4f::create_rotation_y(radians(rotation_.y()));
+	rot *= Matrix4f::create_rotation_z(radians(rotation_.z()));
 #endif
 	view_ = rot * trans;
 

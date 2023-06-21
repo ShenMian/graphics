@@ -8,25 +8,14 @@
 /**
  * @brief 3D 动画.
  */
-class Animation
+struct Animation
 {
-public:
-	Animation(const std::string& name, float duration, uint32_t tick_rate);
+	Animation(const std::string& name, float duration, uint32_t tick_rate)
+	    : name(name), duration(duration), tick_rate(tick_rate)
+	{
+	}
 
-	/**
-	 * @brief 获取名称.
-	 */
-	const std::string& get_name() const;
-
-	/**
-	 * @brief 获取持续时间, 单位: 秒.
-	 */
-	float get_duration() const;
-
-	uint32_t get_tick_rate() const;
-
-private:
-	std::string name_;
-	float       duration_;
-	uint32_t    tick_rate_;
+	std::string name;
+	float       duration;
+	uint32_t    tick_rate;
 };

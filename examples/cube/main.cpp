@@ -76,13 +76,13 @@ public:
 		};
 		window->set_visible(true);
 
-		Matrix4f  model = Matrix4f::createRotationX(radians(-15.f));
+		Matrix4f  model = Matrix4f::create_rotation_x(radians(-15.f));
 		Transform transform;
 		transform.rotation().eular({radians(-15.f), 0.f, 0.f});
 
 		while(running)
 		{
-			model *= Matrix4f::createRotationY(radians(0.5f));
+			model *= Matrix4f::create_rotation_y(radians(0.5f));
 
 			// 更新 UniformBuffer
 			matrices->get_buffer().map();

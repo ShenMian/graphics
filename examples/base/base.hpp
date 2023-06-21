@@ -57,6 +57,7 @@ public:
 		{
 			std::cout << e.what() << '\n';
 			getchar();
+			getchar();
 			return 1;
 		}
 	}
@@ -91,6 +92,7 @@ public:
 		fmt::print("{:{}}{:9}: {}\n", "", 2, "indices", model.indexCount);
 		fmt::print("{:{}}{:9}: {}\n", "", 2, "meshes", model.meshes.size());
 		fmt::print("{:{}}{:9}: {}\n", "", 2, "materials", model.materials.size());
+		fmt::print("{:{}}{:9}: {}\n", "", 2, "bones", model.bones.size());
 		fmt::print("{:{}}{:9}: {}\n", "", 2, "anims", model.animations.size());
 	}
 
